@@ -84,6 +84,7 @@ argument can show, which is the step that requires the discretized projection ma
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
 | radial projections (module 7): cross-product geometry, the separation estimate, and tube containment | **proved**, no holes |
 | tubes (module 7): slab partitions, the two-chart directional estimate, and the averaged tube-square bound against the Riesz `1`-energy | **proved**, no holes |
+| caps (module 7): radial caps pull back into tubes, and tubes are covered by an explicit interval of slabs | **proved**, no holes |
 | Orponen's radial-projection theorem (module 7) | **open** — stated as `OrponenRadialProjection`, not proved |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
@@ -101,6 +102,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
 | `FalconerPacking/RadialProjection.lean` | module 7: the scalar cross product, the radial separation estimate, tubes, and the statement of Orponen's theorem |
 | `FalconerPacking/Tubes.lean` | module 7: slab partitions, the two slope charts, the directional estimate, and the averaged tube-square bound |
+| `FalconerPacking/Caps.lean` | module 7: radial caps pull back into pin tubes, and pin tubes are covered by an explicit interval of slabs |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
