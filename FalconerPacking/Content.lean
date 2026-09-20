@@ -95,4 +95,45 @@ theorem hausdorffContent_le_hausdorffMeasure (d : ℝ) (A : Set Plane) :
   refine le_iInf fun t ↦ le_iInf fun hcov ↦ le_iInf fun _ ↦ ?_
   exact hausdorffContent_le_of_cover hcov
 
+section DyadicContent
+
+/-- The dyadic `d`-content: countable covers by dyadic cubes, charged by the side length. -/
+def dyadicContent (d : ℝ) (A : Set Plane) : ℝ≥0∞ :=
+  ⨅ (c : ℕ → ℕ × (Fin 2 → ℤ)) (_ : A ⊆ ⋃ n, dyadicCube (c n).1 (c n).2),
+    ∑' n, ENNReal.ofReal ((2 : ℝ) ^ (-((c n).1 : ℝ) * d))
+
+/-- The cost of a dyadic cube in the ordinary content, compared with its side length. -/
+theorem ediam_dyadicCube_rpow_le {d : ℝ} (hd : 0 ≤ d) (n : ℕ) (k : Fin 2 → ℤ) :
+    (⨆ _ : (dyadicCube n k).Nonempty, Metric.ediam (dyadicCube n k) ^ d)
+      ≤ ENNReal.ofReal (Real.sqrt 2 ^ d) * ENNReal.ofReal ((2 : ℝ) ^ (-(n : ℝ) * d)) := by
+  refine iSup_le fun hne ↦ ?_
+  obtain ⟨x, hx⟩ := hne
+  have hdiam : Metric.ediam (dyadicCube n k) ≤ ENNReal.ofReal (Real.sqrt 2 / (2 : ℝ) ^ n) := by
+    refine Metric.ediam_le fun y hy z hz ↦ ?_
+    rw [edist_dist]
+    exact ENNReal.ofReal_le_ofReal (dist_le_of_mem_dyadicCube hy hz)
+  refine le_trans (ENNReal.rpow_le_rpow hdiam hd) (le_of_eq ?_)
+  rw [ENNReal.ofReal_rpow_of_pos (by positivity : (0 : ℝ) < Real.sqrt 2 / 2 ^ n),
+    ← ENNReal.ofReal_mul (by positivity)]
+  congr 1
+  rw [Real.div_rpow (Real.sqrt_nonneg 2) (by positivity), ← Real.rpow_natCast (2 : ℝ) n,
+    ← Real.rpow_mul (by norm_num : (0 : ℝ) ≤ 2),
+    show (-(n : ℝ) * d) = -((n : ℝ) * d) by ring,
+    Real.rpow_neg (by norm_num : (0 : ℝ) ≤ 2), div_eq_mul_inv]
+
+/-- **The contents are comparable.**  A dyadic cover is in particular a cover, so the ordinary
+content is at most `(√2) ^ d` times the dyadic content: a positive content forces every dyadic
+cover to be expensive, which is the lower bound the Frostman construction needs. -/
+theorem hausdorffContent_le_dyadicContent {d : ℝ} (hd : 0 ≤ d) (A : Set Plane) :
+    hausdorffContent d A ≤ ENNReal.ofReal (Real.sqrt 2 ^ d) * dyadicContent d A := by
+  rw [dyadicContent, ENNReal.mul_iInf_of_ne (by positivity) ENNReal.ofReal_ne_top]
+  refine le_iInf fun c ↦ ?_
+  rw [ENNReal.mul_iInf_of_ne (by positivity) ENNReal.ofReal_ne_top]
+  refine le_iInf fun hcov ↦ ?_
+  refine le_trans (hausdorffContent_le_of_cover (t := fun n ↦ dyadicCube (c n).1 (c n).2) hcov) ?_
+  rw [ENNReal.tsum_mul_left.symm]
+  exact ENNReal.tsum_le_tsum fun n ↦ ediam_dyadicCube_rpow_le hd _ _
+
+end DyadicContent
+
 end FalconerPacking
