@@ -361,4 +361,82 @@ theorem exists_bound_lintegral_projEnergy (μ : Measure Plane) [SFinite μ] {s :
   · exact Measurable.lintegral_prod_left' (μ := volume.restrict (Set.Icc (-1 : ℝ) 1))
       (hmeasF _ measurable_inner_normalSlope)
 
+/-! ### Marstrand's projection theorem
+
+Identifying the projected energy integral with the energy of the pushforward measure turns the
+comparison into the classical statement: a measure of finite `s`-energy, `0 < s < 1`, projects to
+a measure of finite `s`-energy in almost every direction.
+-/
+
+/-- The projection of the plane onto the line of slope normal `normalSlope a`. -/
+def projLine (a : ℝ) (x : Plane) : ℝ := ⟪x, normalSlope a⟫
+
+theorem measurable_projLine (a : ℝ) : Measurable (projLine a) := by
+  have : projLine a = fun x : Plane => x 0 + a * x 1 := by
+    funext x; exact inner_normalSlope x a
+  rw [this]
+  exact (measurable_coord 0).add (measurable_const.mul (measurable_coord 1))
+
+/-- The projected measure. -/
+def projMeasure (μ : Measure Plane) (a : ℝ) : Measure ℝ := Measure.map (projLine a) μ
+
+/-- The Riesz `s`-energy of a measure on the line. -/
+def energyLine (ν : Measure ℝ) (s : ℝ) : ℝ≥0∞ :=
+  ∫⁻ u, ∫⁻ v, (ENNReal.ofReal |u - v|) ^ (-s) ∂ν ∂ν
+
+/-- The energy of a projected measure is the projected energy integral. -/
+theorem energyLine_projMeasure (μ : Measure Plane) [SFinite μ] (a s : ℝ) :
+    energyLine (projMeasure μ a) s
+      = ∫⁻ p : Plane × Plane, (ENNReal.ofReal |⟪p.1 - p.2, normalSlope a⟫|) ^ (-s)
+          ∂(μ.prod μ) := by
+  have hm := measurable_projLine a
+  have hker : Measurable fun q : ℝ × ℝ => (ENNReal.ofReal |q.1 - q.2|) ^ (-s) :=
+    (ENNReal.measurable_ofReal.comp
+      (continuous_abs.measurable.comp (measurable_fst.sub measurable_snd))).pow_const _
+  calc energyLine (projMeasure μ a) s
+      = ∫⁻ u, ∫⁻ v, (ENNReal.ofReal |u - v|) ^ (-s) ∂(Measure.map (projLine a) μ)
+          ∂(Measure.map (projLine a) μ) := rfl
+    _ = ∫⁻ x, ∫⁻ y, (ENNReal.ofReal |projLine a x - projLine a y|) ^ (-s) ∂μ ∂μ := by
+        have hInner : ∀ u : ℝ, Measurable fun v : ℝ => (ENNReal.ofReal |u - v|) ^ (-s) :=
+          fun u => (ENNReal.measurable_ofReal.comp (continuous_abs.measurable.comp
+            (measurable_const.sub measurable_id))).pow_const _
+        have hOuter : Measurable fun u : ℝ => ∫⁻ v, (ENNReal.ofReal |u - v|) ^ (-s)
+            ∂(Measure.map (projLine a) μ) := hker.lintegral_prod_right'
+        rw [lintegral_map hOuter hm]
+        exact lintegral_congr fun x => lintegral_map (hInner _) hm
+    _ = ∫⁻ p : Plane × Plane, (ENNReal.ofReal |⟪p.1 - p.2, normalSlope a⟫|) ^ (-s)
+          ∂(μ.prod μ) := by
+        rw [lintegral_prod]
+        · refine (lintegral_congr fun x => lintegral_congr fun y => ?_).symm
+          rw [inner_sub_left]
+          rfl
+        · exact ((ENNReal.measurable_ofReal.comp (continuous_abs.measurable.comp
+            (measurable_inner_normalSlope.comp
+              (measurable_const.prodMk measurable_id)))).pow_const _).aemeasurable
+
+
+/-- **Marstrand's projection theorem, energy form.**  If `μ` has finite `s`-energy for some
+`0 < s < 1`, then almost every projection of `μ` again has finite `s`-energy.
+
+This is the statement that lets the manuscript's Section 2 speak of the projected densities at
+almost every angle, and it is the first thing module 8 needs. -/
+theorem ae_energyLine_projMeasure_ne_top (μ : Measure Plane) [SFinite μ] {s : ℝ}
+    (hs0 : 0 < s) (hs1 : s < 1) (hE : rieszEnergy μ s ≠ ⊤) :
+    ∀ᵐ a ∂(volume.restrict (Set.Icc (-1 : ℝ) 1)),
+      energyLine (projMeasure μ a) s ≠ ⊤ := by
+  obtain ⟨K, hKtop, hbound⟩ := exists_bound_lintegral_projEnergy μ hs0 hs1
+  have hg : Measurable fun z : ℝ × (Plane × Plane) =>
+      (ENNReal.ofReal |⟪z.2.1 - z.2.2, normalSlope z.1⟫|) ^ (-s) :=
+    (ENNReal.measurable_ofReal.comp
+      (continuous_abs.measurable.comp measurable_inner_normalSlope)).pow_const _
+  have hmeas : Measurable fun a : ℝ => ∫⁻ p : Plane × Plane,
+      (ENNReal.ofReal |⟪p.1 - p.2, normalSlope a⟫|) ^ (-s) ∂(μ.prod μ) :=
+    hg.lintegral_prod_right'
+  have hfin : (∫⁻ a in Set.Icc (-1 : ℝ) 1, (∫⁻ p : Plane × Plane,
+      (ENNReal.ofReal |⟪p.1 - p.2, normalSlope a⟫|) ^ (-s) ∂(μ.prod μ))) ≠ ⊤ :=
+    ne_top_of_le_ne_top (ENNReal.mul_ne_top hKtop hE) (le_trans le_self_add hbound)
+  filter_upwards [ae_lt_top hmeas hfin] with a ha
+  rw [energyLine_projMeasure]
+  exact ha.ne
+
 end FalconerPacking
