@@ -28,6 +28,8 @@ is strict, including at the two transition points.
 | dimensions: `dimH ≤ packingDim`, monotonicity, bounded case | **proved**, no holes |
 | profile: edge costs, potential, telescoped edge bound | **proved**, no holes |
 | profile: greedy descent, insertion, perturbation, zero-cost edges | **proved**, no holes |
+| profile: Lemma 3.2 (chain to the origin), Lemma 3.3 (endpoint estimate) | **proved**, no holes |
+| dyadic cubes: partition, nesting, diameter, measurability | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
@@ -64,7 +66,8 @@ registration; a registry submission asserts a complete machine-checked proof.
 | `FalconerPacking/Statement.lean` | the same definitions, for the modular development |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
 | `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
-| `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, the telescoped bound |
+| `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
+| `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Branches.lean` | the two analytic branches, as unproved interfaces |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
