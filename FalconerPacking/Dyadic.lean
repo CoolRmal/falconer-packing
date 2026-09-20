@@ -180,4 +180,42 @@ theorem exists_cubeIndex_pair (n : ℕ) (x : Plane) {r : ℝ} (hr : 0 < r)
 
 end Counting
 
+section Ancestors
+
+/-- The index of the generation-`n` ancestor, `m` levels up. -/
+def ancestor (m : ℕ) (k : Fin 2 → ℤ) : Fin 2 → ℤ := fun i ↦ k i / 2 ^ m
+
+@[simp] theorem ancestor_zero (k : Fin 2 → ℤ) : ancestor 0 k = k := by
+  funext i
+  simp [ancestor]
+
+theorem ancestor_succ (m : ℕ) (k : Fin 2 → ℤ) :
+    ancestor (m + 1) k = ancestor m (fun i ↦ k i / 2) := by
+  funext i
+  simp only [ancestor]
+  rw [Int.ediv_ediv_of_nonneg (by norm_num : (0 : ℤ) ≤ 2), pow_succ, mul_comm]
+
+/-- Each cube sits inside the cube of the previous generation with halved index. -/
+theorem dyadicCube_subset_parent (n : ℕ) (k : Fin 2 → ℤ) :
+    dyadicCube (n + 1) k ⊆ dyadicCube n (fun i ↦ k i / 2) := by
+  intro y hy
+  have hy' : cubeIndex (n + 1) y = k := mem_dyadicCube_iff.1 hy
+  refine mem_dyadicCube_iff.2 ?_
+  rw [cubeIndex_succ n y, hy']
+
+/-- Iterating the parent map: each cube sits inside its `m`-th ancestor. -/
+theorem dyadicCube_subset_ancestor (j m : ℕ) (k : Fin 2 → ℤ) :
+    dyadicCube (j + m) k ⊆ dyadicCube j (ancestor m k) := by
+  induction m generalizing k with
+  | zero => simp
+  | succ m ih =>
+      intro y hy
+      have hy' : y ∈ dyadicCube (j + m + 1) k := by
+        rwa [show j + (m + 1) = j + m + 1 by ring] at hy
+      have hstep := dyadicCube_subset_parent (j + m) k hy'
+      have := ih (fun i ↦ k i / 2) hstep
+      rwa [← ancestor_succ] at this
+
+end Ancestors
+
 end FalconerPacking
