@@ -13,6 +13,7 @@ import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
 import FalconerPacking.PositiveLimit
 import FalconerPacking.PinnedKernel
+import FalconerPacking.AffineDistance
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
