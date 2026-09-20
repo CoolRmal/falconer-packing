@@ -249,4 +249,283 @@ theorem card_mul_le_tsum_measure_slab_sq (μ : Measure Plane) (e : Plane) (δ : 
         Finset.sum_le_sum fun k hk => pow_le_pow_left' (hs k hk) 2
     _ ≤ ∑' k : ℤ, (μ (slab e δ k)) ^ 2 := ENNReal.sum_le_tsum s
 
+/-! ### The second chart, and the coordinate-free bound
+
+A single slope chart degenerates on one direction: `normalSlope a = (1, a)` never separates a
+displacement whose second coordinate vanishes, and the bound above is then vacuously `⊤`.  The
+transposed chart `normalSlopeT a = (a, 1)` degenerates on a different direction, and the two
+together cover the circle.  Combining them removes the coordinate artifact entirely.
+-/
+
+/-- The sublevel set of a nonconstant affine function of the slope is an interval of length
+`2c / |β|`.  This is the engine of both chart estimates. -/
+theorem volume_setOf_abs_linear_lt (α β c : ℝ) (hβ : β ≠ 0) :
+    volume {a : ℝ | |α + a * β| < c} ≤ ENNReal.ofReal (2 * c / |β|) := by
+  have habs : (0 : ℝ) < |β| := abs_pos.2 hβ
+  set m : ℝ := -α / β with hm
+  set w : ℝ := c / |β| with hw
+  have hsub : {a : ℝ | |α + a * β| < c} ⊆ Set.Ioo (m - w) (m + w) := by
+    intro a ha
+    simp only [Set.mem_setOf_eq] at ha
+    have key : |a - m| < w := by
+      have hmul : |a - m| * |β| = |α + a * β| := by
+        rw [← abs_mul, hm]; congr 1; field_simp; ring
+      rw [hw, lt_div_iff₀ habs, hmul]; exact ha
+    rw [abs_lt] at key
+    exact ⟨by linarith [key.1], by linarith [key.2]⟩
+  refine le_trans (measure_mono hsub) ?_
+  rw [Real.volume_Ioo]
+  apply ENNReal.ofReal_le_ofReal
+  rw [hw]; field_simp; ring_nf; rfl
+
+/-- The transposed normal of slope `a`: the second chart of the direction circle. -/
+def normalSlopeT (a : ℝ) : Plane := !₂[a, 1]
+
+theorem inner_normalSlopeT (v : Plane) (a : ℝ) : ⟪v, normalSlopeT a⟫ = v 1 + a * v 0 := by
+  rw [inner_plane, normalSlopeT]; simp; ring
+
+/-- On the first chart the slope is bounded, so a displacement whose first coordinate dominates
+is never annihilated. -/
+theorem eq_empty_of_lt_sub {v : Plane} {δ : ℝ} (h : δ ≤ |v 0| - |v 1|) :
+    {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlope a⟫| < δ} = ∅ := by
+  ext a
+  simp only [Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false, not_and, not_lt]
+  intro ha
+  rw [inner_normalSlope]
+  have h1 : |a * v 1| ≤ |v 1| := by
+    rw [abs_mul]
+    nlinarith [abs_nonneg (v 1), abs_nonneg a]
+  calc δ ≤ |v 0| - |v 1| := h
+    _ ≤ |v 0| - |a * v 1| := by linarith
+    _ ≤ |v 0 + a * v 1| := by
+        have := abs_sub_abs_le_abs_sub (v 0) (-(a * v 1))
+        simp only [abs_neg, sub_neg_eq_add] at this
+        linarith
+
+
+/-- A chart contributes at most `4δ / N` when its slope coefficient is at least `N / 2`. -/
+theorem chart_le_of_large (α β δ N : ℝ) (hδ : 0 < δ) (hN : 0 < N) (hβ : N / 2 ≤ |β|) :
+    volume {a : ℝ | |a| ≤ 1 ∧ |α + a * β| < δ} ≤ ENNReal.ofReal (4 * δ / N) := by
+  have hβ0 : β ≠ 0 := by
+    intro h; rw [h, abs_zero] at hβ; linarith
+  have habs : (0 : ℝ) < |β| := abs_pos.2 hβ0
+  refine le_trans (measure_mono fun a ha => ha.2) ?_
+  refine le_trans (volume_setOf_abs_linear_lt α β δ hβ0) ?_
+  apply ENNReal.ofReal_le_ofReal
+  rw [div_le_div_iff₀ habs hN]
+  nlinarith
+
+/-- A chart contributes nothing when its constant term dominates. -/
+theorem chart_eq_zero_of_small (α β δ : ℝ) (h : δ ≤ |α| - |β|) :
+    volume {a : ℝ | |a| ≤ 1 ∧ |α + a * β| < δ} = 0 := by
+  have : {a : ℝ | |a| ≤ 1 ∧ |α + a * β| < δ} = ∅ := by
+    ext a
+    simp only [Set.mem_setOf_eq, Set.mem_empty_iff_false, iff_false, not_and, not_lt]
+    intro ha
+    have h1 : |a * β| ≤ |β| := by
+      rw [abs_mul]; nlinarith [abs_nonneg β, abs_nonneg a]
+    have h2 := abs_sub_abs_le_abs_sub α (-(a * β))
+    simp only [abs_neg, sub_neg_eq_add] at h2
+    linarith
+  rw [this, measure_empty]
+
+/-- **The two-chart directional estimate.**  The two slope charts cover the circle of
+directions, and together they give the coordinate-free bound: the directions nearly
+annihilating a displacement `v` occupy measure `≤ 8δ / ‖v‖`.  Neither chart alone can say this,
+since each degenerates on one direction; the point is that they degenerate on different ones. -/
+theorem volume_chart_add_chartT_le (v : Plane) {δ : ℝ} (hδ : 0 < δ) (hv : 4 * δ ≤ ‖v‖) :
+    volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlope a⟫| < δ}
+      + volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlopeT a⟫| < δ}
+      ≤ ENNReal.ofReal (8 * δ / ‖v‖) := by
+  set N := ‖v‖ with hNdef
+  have hN : 0 < N := by linarith
+  have hsq : N ^ 2 = v 0 ^ 2 + v 1 ^ 2 := norm_sq_plane v
+  have habs0 : |v 0| ^ 2 = v 0 ^ 2 := sq_abs _
+  have habs1 : |v 1| ^ 2 = v 1 ^ 2 := sq_abs _
+  have hform1 : {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlope a⟫| < δ}
+      = {a : ℝ | |a| ≤ 1 ∧ |v 0 + a * v 1| < δ} := by
+    ext a; simp [inner_normalSlope]
+  have hform2 : {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlopeT a⟫| < δ}
+      = {a : ℝ | |a| ≤ 1 ∧ |v 1 + a * v 0| < δ} := by
+    ext a; simp [inner_normalSlopeT]
+  rw [hform1, hform2]
+  rcases le_or_gt (N / 2) |v 1| with h1 | h1
+  · -- the first chart is good
+    have c1 := chart_le_of_large (v 0) (v 1) δ N hδ hN h1
+    rcases le_or_gt (N / 2) |v 0| with h0 | h0
+    · have c2 := chart_le_of_large (v 1) (v 0) δ N hδ hN h0
+      calc _ ≤ ENNReal.ofReal (4 * δ / N) + ENNReal.ofReal (4 * δ / N) := add_le_add c1 c2
+        _ = ENNReal.ofReal (8 * δ / N) := by
+            rw [← ENNReal.ofReal_add (by positivity) (by positivity)]; ring_nf
+    · have hbig : δ ≤ |v 1| - |v 0| := by
+        have : |v 1| ^ 2 ≥ 3 * N ^ 2 / 4 := by nlinarith [abs_nonneg (v 0), abs_nonneg (v 1)]
+        nlinarith [abs_nonneg (v 1), abs_nonneg (v 0)]
+      rw [chart_eq_zero_of_small (v 1) (v 0) δ hbig, add_zero]
+      exact le_trans c1 (ENNReal.ofReal_le_ofReal (by
+        rw [div_le_div_iff₀ hN hN]; nlinarith))
+  · -- the first chart degenerates, so the second is good and the first is empty
+    have hv0 : N / 2 ≤ |v 0| := by
+      nlinarith [abs_nonneg (v 0), abs_nonneg (v 1)]
+    have c2 := chart_le_of_large (v 1) (v 0) δ N hδ hN hv0
+    have hbig : δ ≤ |v 0| - |v 1| := by
+      have : |v 0| ^ 2 ≥ 3 * N ^ 2 / 4 := by nlinarith [abs_nonneg (v 0), abs_nonneg (v 1)]
+      nlinarith [abs_nonneg (v 1), abs_nonneg (v 0)]
+    rw [chart_eq_zero_of_small (v 0) (v 1) δ hbig, zero_add]
+    exact le_trans c2 (ENNReal.ofReal_le_ofReal (by
+      rw [div_le_div_iff₀ hN hN]; nlinarith))
+
+
+/-- The two-chart estimate without the separation hypothesis.  Each chart has length two, so
+the trivial bound covers the near-diagonal range, and `ENNReal` division makes the degenerate
+value `⊤`. -/
+theorem volume_chart_add_chartT_le_uniform (v : Plane) {δ : ℝ} (hδ : 0 < δ) :
+    volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlope a⟫| < δ}
+      + volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, normalSlopeT a⟫| < δ}
+      ≤ ENNReal.ofReal (16 * δ) / ENNReal.ofReal ‖v‖ := by
+  have htriv : ∀ e : ℝ → Plane, volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, e a⟫| < δ} ≤ 2 := by
+    intro e
+    have hsub : {a : ℝ | |a| ≤ 1 ∧ |⟪v, e a⟫| < δ} ⊆ Set.Icc (-1 : ℝ) 1 :=
+      fun a ha => abs_le.1 ha.1
+    calc volume {a : ℝ | |a| ≤ 1 ∧ |⟪v, e a⟫| < δ} ≤ volume (Set.Icc (-1 : ℝ) 1) :=
+          measure_mono hsub
+      _ = 2 := by rw [Real.volume_Icc]; norm_num
+  rcases eq_or_lt_of_le (norm_nonneg v) with hv0 | hvpos
+  · have : ENNReal.ofReal (16 * δ) / ENNReal.ofReal ‖v‖ = ⊤ := by
+      rw [← hv0, ENNReal.ofReal_zero, ENNReal.div_zero
+        (by simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]; linarith)]
+    rw [this]; exact le_top
+  · rw [ENNReal.le_div_iff_mul_le (Or.inl (by
+      simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]; exact hvpos))
+      (Or.inl ENNReal.ofReal_ne_top)]
+    rcases le_or_gt (4 * δ) ‖v‖ with hsep | hsep
+    · have hmain := volume_chart_add_chartT_le v hδ hsep
+      calc _ ≤ ENNReal.ofReal (8 * δ / ‖v‖) * ENNReal.ofReal ‖v‖ :=
+            by gcongr
+        _ = ENNReal.ofReal (8 * δ) := by
+            rw [← ENNReal.ofReal_mul (by positivity), div_mul_cancel₀ _ hvpos.ne']
+        _ ≤ ENNReal.ofReal (16 * δ) := ENNReal.ofReal_le_ofReal (by linarith)
+    · calc _ ≤ (2 + 2 : ℝ≥0∞) * ENNReal.ofReal ‖v‖ :=
+            by gcongr <;> [exact htriv _; exact htriv _]
+        _ ≤ ENNReal.ofReal (16 * δ) := by
+            rw [show ((2 : ℝ≥0∞) + 2) = ENNReal.ofReal 4 by
+              rw [show (4:ℝ) = 2 + 2 by norm_num, ENNReal.ofReal_add (by norm_num) (by norm_num)]
+              norm_num,
+              ← ENNReal.ofReal_mul (by norm_num)]
+            exact ENNReal.ofReal_le_ofReal (by linarith)
+
+
+/-- Tonelli over the slope chart, for either family of normals. -/
+theorem swap_chart (μ : Measure Plane) [SFinite μ] (e : ℝ → Plane) {δ : ℝ}
+    (hg : Measurable fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, e z.1⟫) :
+    ∫⁻ a in Set.Icc (-1 : ℝ) 1, (μ.prod μ) {p : Plane × Plane | |⟪p.1 - p.2, e a⟫| < δ}
+      = ∫⁻ p : Plane × Plane,
+          volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, e a⟫| < δ} ∂(μ.prod μ) := by
+  have hS : MeasurableSet {z : ℝ × (Plane × Plane) | |⟪z.2.1 - z.2.2, e z.1⟫| < δ} := by
+    have : {z : ℝ × (Plane × Plane) | |⟪z.2.1 - z.2.2, e z.1⟫| < δ}
+        = {z | -δ < ⟪z.2.1 - z.2.2, e z.1⟫} ∩ {z | ⟪z.2.1 - z.2.2, e z.1⟫ < δ} := by
+      ext z; simp [abs_lt]
+    rw [this]
+    exact (measurableSet_lt measurable_const hg).inter (measurableSet_lt hg measurable_const)
+  set S := {z : ℝ × (Plane × Plane) | |⟪z.2.1 - z.2.2, e z.1⟫| < δ} with hSdef
+  calc ∫⁻ a in Set.Icc (-1 : ℝ) 1, (μ.prod μ) {p : Plane × Plane | |⟪p.1 - p.2, e a⟫| < δ}
+      = ∫⁻ a, ∫⁻ p, S.indicator 1 (a, p) ∂(μ.prod μ) ∂(volume.restrict (Set.Icc (-1 : ℝ) 1)) := by
+        refine lintegral_congr fun a => ?_
+        have hEq : {p : Plane × Plane | |⟪p.1 - p.2, e a⟫| < δ} = Prod.mk a ⁻¹' S := rfl
+        rw [hEq, ← lintegral_indicator_one (measurable_prodMk_left hS)]
+        rfl
+    _ = ∫⁻ p, ∫⁻ a, S.indicator 1 (a, p) ∂(volume.restrict (Set.Icc (-1 : ℝ) 1)) ∂(μ.prod μ) := by
+        exact lintegral_lintegral_swap (measurable_const.indicator hS).aemeasurable
+    _ = ∫⁻ p : Plane × Plane,
+          volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, e a⟫| < δ} ∂(μ.prod μ) := by
+        refine lintegral_congr fun p => ?_
+        have hEq : (fun x : ℝ => (x, p)) ⁻¹' S = {a : ℝ | |⟪p.1 - p.2, e a⟫| < δ} := rfl
+        have hmp : MeasurableSet ((fun x : ℝ => (x, p)) ⁻¹' S) := measurable_prodMk_right hS
+        rw [show (fun a : ℝ => S.indicator (1 : ℝ × (Plane × Plane) → ℝ≥0∞) (a, p))
+            = ((fun x : ℝ => (x, p)) ⁻¹' S).indicator 1 from rfl,
+          lintegral_indicator_one hmp, Measure.restrict_apply hmp, hEq]
+        congr 1
+        ext a
+        simp only [Set.mem_inter_iff, Set.mem_setOf_eq, Set.mem_Icc, abs_le]
+        tauto
+
+
+theorem measurable_chart_volume (e : ℝ → Plane) {δ : ℝ}
+    (hg : Measurable fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, e z.1⟫) :
+    Measurable fun p : Plane × Plane =>
+      volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, e a⟫| < δ} := by
+  have hS : MeasurableSet {z : ℝ × (Plane × Plane) | |z.1| ≤ 1 ∧ |⟪z.2.1 - z.2.2, e z.1⟫| < δ} := by
+    have h1 : MeasurableSet {z : ℝ × (Plane × Plane) | |z.1| ≤ 1} := by
+      have hrw : {z : ℝ × (Plane × Plane) | |z.1| ≤ 1} = Prod.fst ⁻¹' (Set.Icc (-1 : ℝ) 1) := by
+        ext z; simp [abs_le]
+      rw [hrw]
+      exact measurable_fst measurableSet_Icc
+    have h2 : MeasurableSet {z : ℝ × (Plane × Plane) | |⟪z.2.1 - z.2.2, e z.1⟫| < δ} := by
+      have : {z : ℝ × (Plane × Plane) | |⟪z.2.1 - z.2.2, e z.1⟫| < δ}
+          = {z | -δ < ⟪z.2.1 - z.2.2, e z.1⟫} ∩ {z | ⟪z.2.1 - z.2.2, e z.1⟫ < δ} := by
+        ext z; simp [abs_lt]
+      rw [this]
+      exact (measurableSet_lt measurable_const hg).inter (measurableSet_lt hg measurable_const)
+    exact h1.inter h2
+  exact measurable_measure_prodMk_right hS
+
+theorem measurable_inner_normalSlope :
+    Measurable fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, normalSlope z.1⟫ := by
+  have : (fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, normalSlope z.1⟫)
+      = fun z => (z.2.1 - z.2.2) 0 + z.1 * (z.2.1 - z.2.2) 1 := by
+    funext z; exact inner_normalSlope _ _
+  rw [this]
+  exact ((measurable_coord 0).comp ((measurable_fst.comp measurable_snd).sub
+      (measurable_snd.comp measurable_snd))).add
+    (measurable_fst.mul ((measurable_coord 1).comp ((measurable_fst.comp measurable_snd).sub
+      (measurable_snd.comp measurable_snd))))
+
+theorem measurable_inner_normalSlopeT :
+    Measurable fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, normalSlopeT z.1⟫ := by
+  have : (fun z : ℝ × (Plane × Plane) => ⟪z.2.1 - z.2.2, normalSlopeT z.1⟫)
+      = fun z => (z.2.1 - z.2.2) 1 + z.1 * (z.2.1 - z.2.2) 0 := by
+    funext z; exact inner_normalSlopeT _ _
+  rw [this]
+  exact ((measurable_coord 1).comp ((measurable_fst.comp measurable_snd).sub
+      (measurable_snd.comp measurable_snd))).add
+    (measurable_fst.mul ((measurable_coord 0).comp ((measurable_fst.comp measurable_snd).sub
+      (measurable_snd.comp measurable_snd))))
+
+
+/-- **The coordinate-free averaged tube-square bound.**  Averaging the slab direction over both
+slope charts, which together cover the circle of directions, the sum of the squares of the slab
+masses is controlled by the `1`-energy integrand of `μ` against itself — with no preferred
+coordinate axis.  For a Frostman measure of exponent above one the right-hand side is finite,
+so at almost every direction the slab masses are square-summable at every scale, uniformly. -/
+theorem lintegral_tsum_measure_slab_sq_two_chart_le
+    (μ : Measure Plane) [SFinite μ] {δ : ℝ} (hδ : 0 < δ) :
+    (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlope a) δ k)) ^ 2)
+      + (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlopeT a) δ k)) ^ 2)
+      ≤ ∫⁻ p : Plane × Plane,
+          ENNReal.ofReal (16 * δ) / ENNReal.ofReal ‖p.1 - p.2‖ ∂(μ.prod μ) := by
+  have step : ∀ e : ℝ → Plane,
+      (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (e a) δ k)) ^ 2)
+        ≤ ∫⁻ a in Set.Icc (-1 : ℝ) 1,
+            (μ.prod μ) {p : Plane × Plane | |⟪p.1 - p.2, e a⟫| < δ} := by
+    intro e
+    refine lintegral_mono fun a => ?_
+    rw [tsum_measure_slab_sq]
+    exact measure_mono fun p hp => abs_inner_sub_lt_of_slabIndex_eq hδ hp
+  calc (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlope a) δ k)) ^ 2)
+        + (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlopeT a) δ k)) ^ 2)
+      ≤ (∫⁻ a in Set.Icc (-1 : ℝ) 1,
+            (μ.prod μ) {p : Plane × Plane | |⟪p.1 - p.2, normalSlope a⟫| < δ})
+          + (∫⁻ a in Set.Icc (-1 : ℝ) 1,
+            (μ.prod μ) {p : Plane × Plane | |⟪p.1 - p.2, normalSlopeT a⟫| < δ}) :=
+        add_le_add (step normalSlope) (step normalSlopeT)
+    _ = (∫⁻ p, volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, normalSlope a⟫| < δ} ∂(μ.prod μ))
+          + (∫⁻ p, volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, normalSlopeT a⟫| < δ} ∂(μ.prod μ)) := by
+        rw [swap_chart μ _ measurable_inner_normalSlope,
+          swap_chart μ _ measurable_inner_normalSlopeT]
+    _ = ∫⁻ p, (volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, normalSlope a⟫| < δ}
+          + volume {a : ℝ | |a| ≤ 1 ∧ |⟪p.1 - p.2, normalSlopeT a⟫| < δ}) ∂(μ.prod μ) :=
+        (lintegral_add_left (measurable_chart_volume _ measurable_inner_normalSlope) _).symm
+    _ ≤ ∫⁻ p : Plane × Plane,
+          ENNReal.ofReal (16 * δ) / ENNReal.ofReal ‖p.1 - p.2‖ ∂(μ.prod μ) :=
+        lintegral_mono fun p => volume_chart_add_chartT_le_uniform _ hδ
+
 end FalconerPacking
