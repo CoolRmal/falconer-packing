@@ -447,4 +447,173 @@ theorem exists_zero_cost_edge {N m n : ℕ} (hmn : m < n) (hadm : Admissible N m
 
 end ZeroCost
 
+section Greedy
+
+open scoped Classical
+
+variable {g : ℕ → ℝ}
+
+/-- The admissible zero-cost jumps available from `n` at scale `N`. -/
+def jumpSet (g : ℕ → ℝ) (N n : ℕ) : Finset ℕ :=
+  (Finset.range n).filter fun j ↦ Admissible N j n ∧ edgeCost g j n = 0
+
+theorem mem_jumpSet {N n j : ℕ} :
+    j ∈ jumpSet g N n ↔ j < n ∧ Admissible N j n ∧ edgeCost g j n = 0 := by
+  simp [jumpSet, Finset.mem_filter, Finset.mem_range, and_assoc]
+
+/-- The greedy step: the *smallest* admissible zero-cost jump from `n`. -/
+def bestJump (g : ℕ → ℝ) (N n : ℕ) : ℕ :=
+  if h : (jumpSet g N n).Nonempty then (jumpSet g N n).min' h else 0
+
+theorem bestJump_mem {N n : ℕ} (h : (jumpSet g N n).Nonempty) :
+    bestJump g N n ∈ jumpSet g N n := by
+  rw [bestJump, dif_pos h]
+  exact Finset.min'_mem _ h
+
+theorem bestJump_le {N n j : ℕ} (h : j ∈ jumpSet g N n) : bestJump g N n ≤ j := by
+  rw [bestJump, dif_pos ⟨j, h⟩]
+  exact Finset.min'_le _ _ h
+
+theorem bestJump_lt {N n : ℕ} (h : (jumpSet g N n).Nonempty) : bestJump g N n < n :=
+  (mem_jumpSet.1 (bestJump_mem h)).1
+
+theorem edgeCost_bestJump {N n : ℕ} (h : (jumpSet g N n).Nonempty) :
+    edgeCost g (bestJump g N n) n = 0 :=
+  (mem_jumpSet.1 (bestJump_mem h)).2.2
+
+/-- **Two greedy steps more than double the remaining depth.**  This is the edge count of
+Lemma 3.2, obtained from minimality instead of from a separate merging pass: if the second jump
+were still admissible from `n`, the first jump would not have been the smallest one. -/
+theorem two_step_double {N n : ℕ} (hn : n ≤ N)
+    (h₁ : (jumpSet g N n).Nonempty) (h₂ : (jumpSet g N (bestJump g N n)).Nonempty) :
+    2 * (N - n) < N - bestJump g N (bestJump g N n) := by
+  set j₁ := bestJump g N n with hj₁
+  set j₂ := bestJump g N j₁ with hj₂
+  have hj₁n : j₁ < n := bestJump_lt h₁
+  have hj₂j₁ : j₂ < j₁ := bestJump_lt h₂
+  have hc₁ : edgeCost g j₁ n = 0 := edgeCost_bestJump h₁
+  have hc₂ : edgeCost g j₂ j₁ = 0 := edgeCost_bestJump h₂
+  have hmerge : edgeCost g j₂ n = 0 :=
+    edgeCost_merge_of_zero hj₂j₁.le hj₁n.le hc₂ hc₁
+  have hnot : ¬ Admissible N j₂ n := by
+    intro hadm
+    have : j₂ ∈ jumpSet g N n := mem_jumpSet.2 ⟨hj₂j₁.trans hj₁n, hadm, hmerge⟩
+    have := bestJump_le this
+    omega
+  rw [Admissible] at hnot
+  omega
+
+/-- Below the midpoint, the jump straight to the origin is admissible and free. -/
+theorem jumpSet_nonempty_of_le_half {N n : ℕ} (hn : 0 < n) (h2n : 2 * n ≤ N)
+    (h0 : g 0 = 0) (hpos : ∀ k, k ≤ n → 0 ≤ g k) : (jumpSet g N n).Nonempty :=
+  ⟨0, mem_jumpSet.2 ⟨hn, by rw [Admissible]; omega, edgeCost_zero_left h0 hpos⟩⟩
+
+/-- Above the midpoint, where the potential is nonpositive, the leftmost minimum of
+`[2n - N, n]` is an admissible zero-cost jump. -/
+theorem jumpSet_nonempty_of_potential_nonpos {N n : ℕ} {b : ℝ} (hn : N < 2 * n) (hnN : n < N)
+    (hL : potential b N g n ≤ 0) (hupper : ∀ k, k ≤ N → g k ≤ b * k) :
+    (jumpSet g N n).Nonempty := by
+  have hm_lt : 2 * n - N < n := by omega
+  have hadm : Admissible N (2 * n - N) n := by rw [Admissible]; omega
+  have hcast : ((2 * n - N : ℕ) : ℝ) = 2 * (n : ℝ) - N := by
+    have : (N : ℕ) ≤ 2 * n := by omega
+    push_cast [Nat.cast_sub this]
+    ring
+  have hgm : g (2 * n - N) ≤ g n := by
+    have h1 : g (2 * n - N) ≤ b * ((2 * n - N : ℕ) : ℝ) := hupper _ (by omega)
+    rw [potential] at hL
+    rw [hcast] at h1
+    linarith
+  obtain ⟨j, _, hjn, hjadm, hjcost⟩ := exists_zero_cost_edge hm_lt hadm hgm
+  exact ⟨j, mem_jumpSet.2 ⟨hjn, hjadm, hjcost⟩⟩
+
+/-- The greedy zero-cost chain: at most `k` smallest admissible zero-cost jumps. -/
+def greedyChain (g : ℕ → ℝ) (N : ℕ) : ℕ → ℕ → List ℕ
+  | 0, _ => []
+  | (k + 1), n =>
+      if h : (jumpSet g N n).Nonempty then
+        bestJump g N n :: greedyChain g N k (bestJump g N n)
+      else []
+
+theorem greedyChain_length (g : ℕ → ℝ) (N : ℕ) : ∀ (k n : ℕ), (greedyChain g N k n).length ≤ k
+  | 0, _ => by simp [greedyChain]
+  | (k + 1), n => by
+    rw [greedyChain]
+    split
+    · simpa using greedyChain_length g N k (bestJump g N n)
+    · simp
+
+/-- Every greedy step decreases the point and is an admissible edge. -/
+theorem greedyChain_chain (g : ℕ → ℝ) (N : ℕ) :
+    ∀ (k n : ℕ), List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n (greedyChain g N k n)
+  | 0, _ => by simp [greedyChain, List.Chain.nil]
+  | (k + 1), n => by
+    rw [greedyChain]
+    split
+    · rename_i h
+      exact List.Chain.cons ⟨bestJump_lt h, (mem_jumpSet.1 (bestJump_mem h)).2.1⟩
+        (greedyChain_chain g N k _)
+    · exact List.Chain.nil
+
+/-- The greedy chain is free. -/
+theorem chainCost_greedyChain (g : ℕ → ℝ) (N : ℕ) :
+    ∀ (k n : ℕ), chainCost g n (greedyChain g N k n) = 0
+  | 0, _ => by simp [greedyChain, chainCost]
+  | (k + 1), n => by
+    rw [greedyChain]
+    split
+    · rename_i h
+      have : chainCost g n (bestJump g N n :: greedyChain g N k (bestJump g N n))
+          = edgeCost g (bestJump g N n) n
+            + chainCost g (bestJump g N n) (greedyChain g N k (bestJump g N n)) := rfl
+      rw [this, edgeCost_bestJump h, chainCost_greedyChain g N k (bestJump g N n), add_zero]
+    · simp [chainCost]
+
+theorem jumpSet_zero_eq_empty (g : ℕ → ℝ) (N : ℕ) : jumpSet g N 0 = ∅ := by
+  ext j
+  simp [mem_jumpSet]
+
+/-- **The greedy chain reaches the origin.**  If an admissible zero-cost jump exists from every
+positive point, then `2m` greedy steps suffice as soon as `2 ^ m` doublings of the remaining
+depth cover `N`: two steps more than double the depth, and the depth cannot exceed `N`. -/
+theorem chainEnd_greedyChain_eq_zero {N : ℕ} (g : ℕ → ℝ)
+    (hjump : ∀ n, 0 < n → n ≤ N → (jumpSet g N n).Nonempty) :
+    ∀ (m n : ℕ), n ≤ N → N ≤ 2 ^ m * (N - n) → chainEnd n (greedyChain g N (2 * m) n) = 0
+  | 0, n, hn, hk => by
+    have hn0 : n = 0 := by
+      simp only [pow_zero, one_mul] at hk
+      omega
+    subst hn0
+    simp [greedyChain, chainEnd]
+  | (m + 1), n, hn, hk => by
+    rcases Nat.eq_zero_or_pos n with hn0 | hn0
+    · subst hn0
+      rw [show 2 * (m + 1) = (2 * m + 1) + 1 by ring, greedyChain,
+        dif_neg (by simp [jumpSet_zero_eq_empty])]
+      rfl
+    have h₁ := hjump n hn0 hn
+    set j₁ := bestJump g N n with hj₁
+    have hj₁n : j₁ < n := bestJump_lt h₁
+    have hstep : greedyChain g N (2 * (m + 1)) n = j₁ :: greedyChain g N (2 * m + 1) j₁ := by
+      rw [show 2 * (m + 1) = (2 * m + 1) + 1 by ring, greedyChain, dif_pos h₁]
+    rcases Nat.eq_zero_or_pos j₁ with hj₁0 | hj₁0
+    · have hzero : greedyChain g N (2 * m + 1) j₁ = [] := by
+        rw [hj₁0, greedyChain, dif_neg (by simp [jumpSet_zero_eq_empty])]
+      rw [hstep, chainEnd, hzero, chainEnd, hj₁0]
+    have h₂ := hjump j₁ hj₁0 (hj₁n.le.trans hn)
+    set j₂ := bestJump g N j₁ with hj₂
+    have hdouble : 2 * (N - n) < N - j₂ := two_step_double hn h₁ h₂
+    have hstep₂ : greedyChain g N (2 * m + 1) j₁ = j₂ :: greedyChain g N (2 * m) j₂ := by
+      rw [greedyChain, dif_pos h₂]
+    have hj₂N : j₂ ≤ N := ((bestJump_lt h₂).le.trans hj₁n.le).trans hn
+    have hk' : N ≤ 2 ^ m * (N - j₂) := by
+      refine hk.trans ?_
+      have : 2 ^ (m + 1) * (N - n) = 2 ^ m * (2 * (N - n)) := by ring
+      rw [this]
+      exact Nat.mul_le_mul_left _ (by omega)
+    rw [hstep, chainEnd, hstep₂, chainEnd]
+    exact chainEnd_greedyChain_eq_zero g hjump m j₂ hj₂N hk'
+
+end Greedy
+
 end FalconerPacking
