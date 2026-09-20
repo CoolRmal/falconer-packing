@@ -65,4 +65,85 @@ theorem weightProbabilityMeasure_mem_probabilityMeasuresSupportedOn
     weightProbabilityMeasure S pt w ∈ probabilityMeasuresSupportedOn K :=
   weightProbabilityMeasure_compl_eq_zero hK hw hmass hpt
 
+/-- Choose one normalized finite Frostman approximation at every positive depth.  The ball
+constant is uniform, and the `n`-th approximation has the estimate through depth `n + 1`. -/
+theorem exists_probabilityMeasure_approximation_sequence
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : IsCompact K)
+    {d : ℝ} (hd : 0 ≤ d) (hcontent : 0 < hausdorffContent d K) :
+    ∃ μ : ℕ → ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)),
+      (∀ n, μ n ∈ probabilityMeasuresSupportedOn K) ∧
+      ∀ n i, i ≤ n + 1 → ∀ x r, 0 < r → r ≤ dyadicCoverRadius i →
+        (μ n : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            (4 * ENNReal.ofReal (allowance i d)) := by
+  have hex : ∀ n : ℕ, ∃ μ : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)),
+      (μ : Measure (EuclideanSpace ℝ (Fin 2))) Kᶜ = 0 ∧
+      ∀ i ≤ n + 1, ∀ x r, 0 < r → r ≤ dyadicCoverRadius i →
+        (μ : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            (4 * ENNReal.ofReal (allowance i d)) := by
+    intro n
+    exact exists_compact_probabilityMeasure_all_scale_estimates hK
+      (Nat.succ_le_succ (Nat.zero_le n)) hd hcontent
+  choose μ hsupp hbound using hex
+  refine ⟨μ, ?_, ?_⟩
+  · exact fun n ↦ hsupp n
+  · exact fun n i hi ↦ hbound n i hi
+
+/-- The finite Frostman approximations have a weakly convergent subsequence supported on `K`. -/
+theorem exists_tendsto_frostman_approximation_subseq
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : IsCompact K)
+    {d : ℝ} (hd : 0 ≤ d) (hcontent : 0 < hausdorffContent d K) :
+    ∃ (μ : ℕ → ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)))
+      (ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2))) (φ : ℕ → ℕ),
+      ν ∈ probabilityMeasuresSupportedOn K ∧ StrictMono φ ∧
+      Tendsto (μ ∘ φ) atTop (𝓝 ν) ∧
+      ∀ n i, i ≤ n + 1 → ∀ x r, 0 < r → r ≤ dyadicCoverRadius i →
+        (μ n : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            (4 * ENNReal.ofReal (allowance i d)) := by
+  obtain ⟨μ, hsupp, hbound⟩ :=
+    exists_probabilityMeasure_approximation_sequence hK hd hcontent
+  obtain ⟨ν, hν, φ, hφ, hconv⟩ := exists_tendsto_subseq_of_supported hK μ hsupp
+  exact ⟨μ, ν, φ, hν, hφ, hconv, hbound⟩
+
+/-- An eventual uniform upper bound on the mass of an open ball passes to a weak limit. -/
+theorem probabilityMeasure_ball_le_of_tendsto_of_eventually_le
+    {μ : ℕ → ProbabilityMeasure (EuclideanSpace ℝ (Fin 2))}
+    {ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2))}
+    (hconv : Tendsto μ atTop (𝓝 ν)) {x : EuclideanSpace ℝ (Fin 2)} {r : ℝ}
+    {C : ℝ≥0∞}
+    (hbound : ∀ᶠ n in atTop,
+      (μ n : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤ C) :
+    (ν : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤ C := by
+  refine (ProbabilityMeasure.le_liminf_measure_open_of_tendsto
+    hconv Metric.isOpen_ball).trans ?_
+  calc
+    atTop.liminf (fun n ↦
+        (μ n : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r))
+      ≤ atTop.liminf (fun _ : ℕ ↦ C) := Filter.liminf_le_liminf hbound
+    _ = C := Filter.liminf_const C
+
+/-- The weak limit of the finite constructions is supported on `K` and retains every dyadic-scale
+ball estimate. -/
+theorem exists_probabilityMeasure_dyadic_frostman
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : IsCompact K)
+    {d : ℝ} (hd : 0 ≤ d) (hcontent : 0 < hausdorffContent d K) :
+    ∃ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)),
+      ν ∈ probabilityMeasuresSupportedOn K ∧
+      ∀ i x r, 0 < r → r ≤ dyadicCoverRadius i →
+        (ν : Measure (EuclideanSpace ℝ (Fin 2))) (Metric.ball x r) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            (4 * ENNReal.ofReal (allowance i d)) := by
+  obtain ⟨μ, ν, φ, hν, hφ, hconv, hbound⟩ :=
+    exists_tendsto_frostman_approximation_subseq hK hd hcontent
+  refine ⟨ν, hν, ?_⟩
+  intro i x r hr hri
+  apply probabilityMeasure_ball_le_of_tendsto_of_eventually_le hconv
+  filter_upwards [eventually_ge_atTop i] with k hk
+  apply hbound (φ k) i
+  · exact hk.trans (hφ.le_apply.trans (Nat.le_add_right (φ k) 1))
+  · exact hr
+  · exact hri
+
 end FalconerPacking

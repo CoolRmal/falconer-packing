@@ -236,6 +236,17 @@ theorem totalWeight_pos_of_hausdorffContent_pos {S : Finset (Fin 2 → ℤ)} {d 
   rw [ENNReal.ofReal_eq_zero.mpr hmass, mul_zero] at hbound
   exact (not_le_of_gt hcontent) hbound
 
+/-- Inverting the finite Frostman mass lower bound gives a normalization constant independent of
+the dyadic depth. -/
+theorem inverse_mass_le_content_constant {H c M : ℝ≥0∞} (hc0 : c ≠ 0) (hctop : c ≠ ∞)
+    (h : H ≤ c * M) : M⁻¹ ≤ c * H⁻¹ := by
+  calc
+    M⁻¹ = c * (c * M)⁻¹ := by
+      rw [ENNReal.mul_inv (Or.inl hc0) (Or.inl hctop), ← mul_assoc,
+        ENNReal.mul_inv_cancel hc0 hctop, one_mul]
+    _ ≤ c * H⁻¹ := by
+      gcongr
+
 /-- The finite Frostman lemma, packaged as normalized probability measures.  At every finite depth
 it produces a genuine probability measure with all dyadic estimates and the finest-scale ball
 estimate. -/
@@ -267,5 +278,49 @@ theorem exists_weightProbabilityMeasure_estimates (S : Finset (Fin 2 → ℤ)) {
       weightProbabilityMeasure_dyadicCube_le hw hmass hpt hbound hi c
   · exact fun x r hr hrn ↦
       weightProbabilityMeasure_ball_le hw hmass hpt hbound x hr hrn
+
+/-- The normalized finite Frostman measures satisfy estimates with one constant depending only on
+the positive content of `K`, rather than on the dyadic depth or the total weight at that depth. -/
+theorem exists_weightProbabilityMeasure_uniform_estimates (S : Finset (Fin 2 → ℤ))
+    {n : ℕ} (hn : 1 ≤ n) {d : ℝ} (hd : 0 ≤ d)
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hcontent : 0 < hausdorffContent d K)
+    (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k')
+    (pt : (Fin 2 → ℤ) → EuclideanSpace ℝ (Fin 2))
+    (hpt : ∀ k' ∈ S, pt k' ∈ dyadicCube n k') :
+    ∃ w : (Fin 2 → ℤ) → ℝ,
+      (∀ k, 0 ≤ w k) ∧
+      0 < ∑ k' ∈ S, w k' ∧
+      (∀ i ≤ n, ∀ k, cubeMass S n i w k ≤ allowance i d) ∧
+      (∀ i ≤ n, ∀ c,
+        (weightProbabilityMeasure S pt w : Measure (EuclideanSpace ℝ (Fin 2)))
+            (dyadicCube i c) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            ENNReal.ofReal (allowance i d)) ∧
+      ∀ x r, 0 < r → r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1)) →
+        (weightProbabilityMeasure S pt w : Measure (EuclideanSpace ℝ (Fin 2)))
+            (Metric.ball x r) ≤
+          (ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹) *
+            (4 * ENNReal.ofReal (allowance n d)) := by
+  obtain ⟨w, hw, hbound, hmassbound⟩ := exists_frostman_weights S hn hd hcov
+  have hmass : 0 < ∑ k' ∈ S, w k' :=
+    totalWeight_pos_of_hausdorffContent_pos hcontent hmassbound
+  have hsqrt : 0 < Real.sqrt 2 := Real.sqrt_pos.2 (by norm_num)
+  have hcpos : 0 < ENNReal.ofReal (Real.sqrt 2 ^ d) :=
+    ENNReal.ofReal_pos.2 (Real.rpow_pos_of_pos hsqrt d)
+  have hmasscoe : ((weightFiniteMeasure S pt w).mass : ℝ≥0∞) =
+      ENNReal.ofReal (∑ k' ∈ S, w k') := by
+    rw [weightFiniteMeasure_mass S pt hw]
+    rfl
+  have hcoeff : ((weightFiniteMeasure S pt w).mass : ℝ≥0∞)⁻¹ ≤
+      ENNReal.ofReal (Real.sqrt 2 ^ d) * (hausdorffContent d K)⁻¹ := by
+    rw [hmasscoe]
+    exact inverse_mass_le_content_constant hcpos.ne' ENNReal.ofReal_ne_top hmassbound
+  refine ⟨w, hw, hmass, hbound, ?_, ?_⟩
+  · intro i hi c
+    refine (weightProbabilityMeasure_dyadicCube_le hw hmass hpt hbound hi c).trans ?_
+    gcongr
+  · intro x r hr hrn
+    refine (weightProbabilityMeasure_ball_le hw hmass hpt hbound x hr hrn).trans ?_
+    gcongr
 
 end FalconerPacking
