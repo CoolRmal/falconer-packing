@@ -646,4 +646,29 @@ theorem exists_gamma_conditioningCubeIndices_coherentEnergy_tsum_ne_top
       hbox hμK hC hγ0 hγs hγu hη hfr
   exact ⟨γ, S, hγ0, hγhalf, hγs, hSfull, hSpos, hSsum⟩
 
+/-- A first-norm comparison controlled by a finite powered-energy sum makes the sequence of
+positive linearizations Cauchy.  This is the abstract convergence step of the coherent
+conditional-energy criterion. -/
+theorem cauchySeq_of_edist_le_coherentEnergy
+    {α : Type*} [PseudoEMetricSpace α] {f : ℕ → α}
+    {Z : ℕ → ℝ≥0∞} {K : ℝ≥0∞} {eta : ℝ}
+    (hK : K ≠ ∞) (hZ : (∑' n, Z n ^ eta) ≠ ∞)
+    (hstep : ∀ n, edist (f n) (f n.succ) ≤ K * Z n ^ eta) :
+    CauchySeq f := by
+  apply cauchySeq_of_edist_le_of_tsum_ne_top
+    (fun n ↦ K * Z n ^ eta) hstep
+  rw [ENNReal.tsum_mul_left]
+  exact ENNReal.mul_ne_top hK hZ
+
+/-- In a complete extended metric space, the coherent first-norm comparison therefore has a
+limit. -/
+theorem exists_tendsto_of_edist_le_coherentEnergy
+    {α : Type*} [PseudoEMetricSpace α] [CompleteSpace α] {f : ℕ → α}
+    {Z : ℕ → ℝ≥0∞} {K : ℝ≥0∞} {eta : ℝ}
+    (hK : K ≠ ∞) (hZ : (∑' n, Z n ^ eta) ≠ ∞)
+    (hstep : ∀ n, edist (f n) (f n.succ) ≤ K * Z n ^ eta) :
+    ∃ g : α, Filter.Tendsto f Filter.atTop (nhds g) :=
+  cauchySeq_tendsto_of_complete
+    (cauchySeq_of_edist_le_coherentEnergy hK hZ hstep)
+
 end FalconerPacking

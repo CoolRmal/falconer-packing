@@ -60,7 +60,7 @@ here certifies the conditional theorem, nothing more.
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
-| $$u<2s-1$$ gives a coherent parameter and powered conditional-energy summability | **proved**, no holes |
+| $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
