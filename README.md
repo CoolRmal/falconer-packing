@@ -9,8 +9,20 @@ $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$
 
 and define, for $1 < d \le 5/4$,
 
-$$B(d) = \begin{cases} 2d-1, & 1 < d \le d_0,\\ 3d^2 - \tfrac52 d, & d_0 < d \le d_1,\\
-\dfrac{(2d-1)^2 + \sqrt{(2d-1)^4+8d}}{4}, & d_1 < d \le 5/4.\end{cases}$$
+$$
+B(d) =
+\begin{cases}
+2d-1,
+  & 1 < d \le d_0, \\[4pt]
+3d^2 - \dfrac52 d,
+  & d_0 < d \le d_1, \\[8pt]
+\dfrac{(2d-1)^2 + \sqrt{(2d-1)^4+8d}}{4},
+  & d_1 < d \le \dfrac54.
+\end{cases}
+$$
+
+![Graph of the piecewise packing-dimension threshold B(d), with its two transition points and
+the admissible band between d and B(d).](docs/bound-curve.svg)
 
 **Theorem 1.1.** If $E \subseteq \mathbb{R}^2$ is Borel, $d = \dim_H E \in (1, 5/4]$ and
 $\dim_P E < B(d)$, then $|\Delta_y(E)| > 0$ for some $y \in E$.
