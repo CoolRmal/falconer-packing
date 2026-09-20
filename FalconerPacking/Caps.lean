@@ -169,4 +169,118 @@ theorem measure_capPreimage_le_of_slab_bound (ν : Measure Plane) {x e : Plane} 
         rw [ENNReal.ofReal_natCast]
     _ ≤ ENNReal.ofReal (2 * (R * r) / δ + 2) := ENNReal.ofReal_le_ofReal hcard
 
+/-! ### The Frostman slab bound, and the trivial cap estimate
+
+For a unit `e` the pair `(e, perp e)` is an orthonormal basis, so two slabs of the two
+perpendicular directions meet in a square of side `δ`.  A Frostman measure gives such a square
+the mass of a ball of radius `4 δ`, and a slab carried by a ball of radius `R₀` meets
+`O(R₀ / δ)` of them.  The result is the trivial non-concentration a Frostman exponent supplies,
+`O(δ ^ (t - 1))`, one power weaker than the radial-projection energy needs.
+-/
+
+/-- For a unit vector `e` the pair `(e, perp e)` is an orthonormal basis, so every vector
+decomposes into its two coordinates. -/
+theorem norm_sq_eq_inner_sq_add_inner_perp_sq {e : Plane} (he : ‖e‖ = 1) (v : Plane) :
+    ‖v‖ ^ 2 = ⟪v, e⟫ ^ 2 + ⟪v, perp e⟫ ^ 2 := by
+  have h1 : e 0 ^ 2 + e 1 ^ 2 = 1 := by rw [← norm_sq_plane, he]; norm_num
+  rw [norm_sq_plane, inner_plane, inner_perp_left]
+  nlinarith [h1]
+
+/-- The intersection of a slab with the perpendicular slab of the same width is a square of
+side `δ`, hence has diameter at most `2 δ`. -/
+theorem dist_le_of_mem_slab_inter {e : Plane} (he : ‖e‖ = 1) {δ : ℝ} (hδ : 0 < δ) {k j : ℤ}
+    {y z : Plane} (hy : y ∈ slab e δ k ∩ slab (perp e) δ j)
+    (hz : z ∈ slab e δ k ∩ slab (perp e) δ j) : dist y z ≤ 2 * δ := by
+  have h1 : |⟪y - z, e⟫| < δ := abs_inner_sub_lt_of_slabIndex_eq hδ (hy.1.trans hz.1.symm)
+  have h2 : |⟪y - z, perp e⟫| < δ := abs_inner_sub_lt_of_slabIndex_eq hδ (hy.2.trans hz.2.symm)
+  have hnorm := norm_sq_eq_inner_sq_add_inner_perp_sq he (y - z)
+  have hsq : ‖y - z‖ ^ 2 ≤ (2 * δ) ^ 2 := by
+    nlinarith [sq_abs ⟪y - z, e⟫, sq_abs ⟪y - z, perp e⟫, abs_nonneg ⟪y - z, e⟫,
+      abs_nonneg ⟪y - z, perp e⟫]
+  rw [dist_eq_norm]
+  nlinarith [norm_nonneg (y - z)]
+
+/-- A Frostman measure gives such a square the mass of a ball of radius `2 δ`. -/
+theorem measure_slab_inter_le {ν : Measure Plane} {t C : ℝ} (hfr : IsFrostman ν t C)
+    {e : Plane} (he : ‖e‖ = 1) {δ : ℝ} (hδ : 0 < δ) (hδ1 : 4 * δ ≤ 1) (k j : ℤ) :
+    ν (slab e δ k ∩ slab (perp e) δ j) ≤ ENNReal.ofReal (C * (4 * δ) ^ t) := by
+  rcases Set.eq_empty_or_nonempty (slab e δ k ∩ slab (perp e) δ j) with hempty | ⟨y₀, hy₀⟩
+  · rw [hempty, measure_empty]; simp
+  · have hsub : slab e δ k ∩ slab (perp e) δ j ⊆ Metric.ball y₀ (4 * δ) := by
+      intro y hy
+      have := dist_le_of_mem_slab_inter he hδ hy hy₀
+      simp only [Metric.mem_ball]
+      linarith
+    refine le_trans (measure_mono hsub) ?_
+    exact hfr y₀ (4 * δ) (by linarith) (by linarith)
+
+
+/-- **The Frostman slab bound.**  A `t`-Frostman measure carried by a ball of radius `R₀` gives
+a slab of width `δ` mass `O(δ ^ (t - 1))`: the slab meets `O(R₀ / δ)` of the squares of the
+previous lemma, each of mass `O(δ ^ t)`.
+
+For `t > 1` this tends to zero with `δ`, which is the trivial non-concentration a Frostman
+exponent supplies.  It is exactly one power weaker than what the reciprocal-determinant
+integral of `RadialProjection.lean` needs, and closing that power is Orponen's theorem. -/
+theorem measure_slab_le {ν : Measure Plane} {t C R₀ : ℝ} (hfr : IsFrostman ν t C)
+    (hsupp : ν (Metric.closedBall (0 : Plane) R₀)ᶜ = 0) (hR₀ : 0 ≤ R₀)
+    {e : Plane} (he : ‖e‖ = 1) {δ : ℝ} (hδ : 0 < δ) (hδ1 : 4 * δ ≤ 1) (k : ℤ) :
+    ν (slab e δ k) ≤ ENNReal.ofReal (2 * R₀ / δ + 2) * ENNReal.ofReal (C * (4 * δ) ^ t) := by
+  have hball : ν (slab e δ k) = ν (slab e δ k ∩ Metric.closedBall (0 : Plane) R₀) := by
+    have hnull : ν (slab e δ k \ Metric.closedBall (0 : Plane) R₀) = 0 :=
+      measure_mono_null (fun y hy => hy.2) hsupp
+    rw [← measure_inter_add_sdiff (slab e δ k) measurableSet_closedBall, hnull, add_zero]
+  have hsub : slab e δ k ∩ Metric.closedBall (0 : Plane) R₀
+      ⊆ ⋃ j ∈ Finset.Icc (tubeLo 0 e R₀ δ) (tubeHi 0 e R₀ δ),
+          (slab e δ k ∩ slab (perp e) δ j) := by
+    rintro y ⟨hk, hb⟩
+    have hy : y ∈ pinTube 0 e R₀ := by
+      show |⟪y - 0, perp e⟫| ≤ R₀
+      rw [sub_zero]
+      refine le_trans (abs_real_inner_le_norm _ _) ?_
+      rw [norm_perp, he, mul_one]
+      simpa using hb
+    have hcover := pinTube_subset_iUnion_slab 0 e hδ hy
+    simp only [Set.mem_iUnion, exists_prop] at hcover ⊢
+    obtain ⟨j, hj, hmem⟩ := hcover
+    exact ⟨j, hj, ⟨hk, hmem⟩⟩
+  rw [hball]
+  refine le_trans (measure_mono hsub) ?_
+  refine le_trans (measure_biUnion_finset_le _ _) ?_
+  refine le_trans (Finset.sum_le_card_nsmul _ _ _
+    fun j _ => measure_slab_inter_le hfr he hδ hδ1 k j) ?_
+  rw [nsmul_eq_mul]
+  gcongr
+  calc ((Finset.Icc (tubeLo 0 e R₀ δ) (tubeHi 0 e R₀ δ)).card : ℝ≥0∞)
+      = ENNReal.ofReal ((Finset.Icc (tubeLo 0 e R₀ δ) (tubeHi 0 e R₀ δ)).card : ℝ) := by
+        rw [ENNReal.ofReal_natCast]
+    _ ≤ ENNReal.ofReal (2 * R₀ / δ + 2) :=
+        ENNReal.ofReal_le_ofReal (card_tube_slabs_le 0 e hδ hR₀)
+
+
+/-- **The trivial radial cap bound.**  For a `t`-Frostman measure carried by a ball, the cap of
+radius `r` seen from any pin has mass `O(r ^ (t - 1))` once the scale is chosen as `δ = R r`.
+
+This is the bound Orponen's theorem improves on, and the improvement has to be genuine: `t ≤ 2`
+in the plane, so the exponent `t - 1` never exceeds one, while the radial-projection density is
+in `L^q` for `q > 1` only if the caps decay faster than the first power. -/
+theorem measure_capPreimage_le_frostman {ν : Measure Plane} {t C R₀ : ℝ}
+    (hfr : IsFrostman ν t C) (hsupp : ν (Metric.closedBall (0 : Plane) R₀)ᶜ = 0) (hR₀ : 0 ≤ R₀)
+    {x e : Plane} (he : ‖e‖ = 1) {R r δ : ℝ} (hR : 0 ≤ R) (hr : 0 ≤ r)
+    (hδ : 0 < δ) (hδ1 : 4 * δ ≤ 1) :
+    ν (capPreimage x e R r)
+      ≤ ENNReal.ofReal ((2 * (R * r) / δ + 2) * ((2 * R₀ / δ + 2) * (C * (4 * δ) ^ t))) := by
+  have hperp : ‖perp e‖ = 1 := by rw [norm_perp, he]
+  have hM : ∀ k : ℤ, ν (slab (perp e) δ k)
+      ≤ ENNReal.ofReal (2 * R₀ / δ + 2) * ENNReal.ofReal (C * (4 * δ) ^ t) :=
+    fun k => measure_slab_le hfr hsupp hR₀ hperp hδ hδ1 k
+  refine le_trans (measure_capPreimage_le_of_slab_bound ν he hδ hR hr hM) ?_
+  have h1 : (0 : ℝ) ≤ 2 * R₀ / δ + 2 := by positivity
+  have h0 : (0 : ℝ) ≤ 2 * (R * r) / δ + 2 := by positivity
+  have hEq : ENNReal.ofReal ((2 * (R * r) / δ + 2) * ((2 * R₀ / δ + 2) * (C * (4 * δ) ^ t)))
+      = ENNReal.ofReal (2 * (R * r) / δ + 2)
+        * (ENNReal.ofReal (2 * R₀ / δ + 2) * ENNReal.ofReal (C * (4 * δ) ^ t)) := by
+    rw [ENNReal.ofReal_mul h0, ENNReal.ofReal_mul h1]
+  rw [hEq]
+
 end FalconerPacking
