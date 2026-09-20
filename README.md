@@ -87,6 +87,7 @@ argument can show, which is the step that requires the discretized projection ma
 | caps (module 7): radial caps pull back into tubes, and tubes are covered by an explicit interval of slabs | **proved**, no holes |
 | Orponen's radial-projection theorem (module 7) | **open** — stated as `OrponenRadialProjection`, not proved |
 | projection energy (module 8): the `s`-Riesz kernel of a slope chart is integrable, with the expected bound | **proved**, no holes |
+| projection-energy comparison (module 8): Marstrand's projection theorem in energy form, `∫ I_s(π_a μ) da ≲ I_s(μ)` for `0 < s < 1` | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
