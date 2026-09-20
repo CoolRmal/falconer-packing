@@ -30,13 +30,13 @@ open Set
 namespace FalconerPacking
 
 /-- The dyadic square of generation `n` with integer index `k`, half-open in each coordinate. -/
-def dyadicCube (n : ℕ) (k : Fin 2 → ℤ) : Set Plane :=
+def dyadicCube (n : ℕ) (k : Fin 2 → ℤ) : Set (EuclideanSpace ℝ (Fin 2)) :=
   {x | ∀ i, (k i : ℝ) ≤ 2 ^ n * x i ∧ 2 ^ n * x i < (k i : ℝ) + 1}
 
 /-- The index of the generation-`n` cube containing `x`. -/
-def cubeIndex (n : ℕ) (x : Plane) : Fin 2 → ℤ := fun i ↦ ⌊(2 : ℝ) ^ n * x i⌋
+def cubeIndex (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) : Fin 2 → ℤ := fun i ↦ ⌊(2 : ℝ) ^ n * x i⌋
 
-theorem mem_dyadicCube_iff {n : ℕ} {k : Fin 2 → ℤ} {x : Plane} :
+theorem mem_dyadicCube_iff {n : ℕ} {k : Fin 2 → ℤ} {x : EuclideanSpace ℝ (Fin 2)} :
     x ∈ dyadicCube n k ↔ cubeIndex n x = k := by
   constructor
   · intro h
@@ -47,7 +47,7 @@ theorem mem_dyadicCube_iff {n : ℕ} {k : Fin 2 → ℤ} {x : Plane} :
     rw [← hi]
     exact ⟨Int.floor_le _, Int.lt_floor_add_one _⟩
 
-theorem mem_dyadicCube_cubeIndex (n : ℕ) (x : Plane) : x ∈ dyadicCube n (cubeIndex n x) :=
+theorem mem_dyadicCube_cubeIndex (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) : x ∈ dyadicCube n (cubeIndex n x) :=
   mem_dyadicCube_iff.2 rfl
 
 /-- Distinct cubes of the same generation are disjoint. -/
@@ -57,7 +57,7 @@ theorem dyadicCube_disjoint {n : ℕ} {k k' : Fin 2 → ℤ} (h : k ≠ k') :
   rw [← mem_dyadicCube_iff.1 hx, mem_dyadicCube_iff.1 hx']
 
 /-- The index of the parent cube is the index halved. -/
-theorem cubeIndex_succ (n : ℕ) (x : Plane) :
+theorem cubeIndex_succ (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) :
     cubeIndex n x = fun i ↦ cubeIndex (n + 1) x i / 2 := by
   funext i
   have h : (2 : ℝ) ^ n * x i = ((2 : ℝ) ^ (n + 1) * x i) / (2 : ℕ) := by
@@ -67,7 +67,7 @@ theorem cubeIndex_succ (n : ℕ) (x : Plane) :
   norm_num
 
 /-- Each cube is contained in its parent. -/
-theorem dyadicCube_succ_subset (n : ℕ) (x : Plane) :
+theorem dyadicCube_succ_subset (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) :
     dyadicCube (n + 1) (cubeIndex (n + 1) x) ⊆ dyadicCube n (cubeIndex n x) := by
   intro y hy
   have hy' : cubeIndex (n + 1) y = cubeIndex (n + 1) x := mem_dyadicCube_iff.1 hy
@@ -75,7 +75,7 @@ theorem dyadicCube_succ_subset (n : ℕ) (x : Plane) :
   rw [cubeIndex_succ n y, cubeIndex_succ n x, hy']
 
 /-- A generation-`n` cube has diameter at most `√2 / 2ⁿ`. -/
-theorem dist_le_of_mem_dyadicCube {n : ℕ} {k : Fin 2 → ℤ} {x y : Plane}
+theorem dist_le_of_mem_dyadicCube {n : ℕ} {k : Fin 2 → ℤ} {x y : EuclideanSpace ℝ (Fin 2)}
     (hx : x ∈ dyadicCube n k) (hy : y ∈ dyadicCube n k) :
     dist x y ≤ Real.sqrt 2 / (2 : ℝ) ^ n := by
   have hpow : (0 : ℝ) < 2 ^ n := by positivity
@@ -107,18 +107,18 @@ theorem dist_le_of_mem_dyadicCube {n : ℕ} {k : Fin 2 → ℤ} {x y : Plane}
 theorem measurableSet_dyadicCube (n : ℕ) (k : Fin 2 → ℤ) :
     MeasurableSet (dyadicCube n k) := by
   have hset : dyadicCube n k
-      = ⋂ i, (fun x : Plane ↦ (2 : ℝ) ^ n * x i) ⁻¹' Ico ((k i : ℝ)) ((k i : ℝ) + 1) := by
+      = ⋂ i, (fun x : EuclideanSpace ℝ (Fin 2) ↦ (2 : ℝ) ^ n * x i) ⁻¹' Ico ((k i : ℝ)) ((k i : ℝ) + 1) := by
     ext x
     simp [dyadicCube, Set.mem_Ico]
   rw [hset]
   refine MeasurableSet.iInter fun i ↦ ?_
-  have hmeas : Measurable fun x : Plane ↦ (2 : ℝ) ^ n * x i := by fun_prop
+  have hmeas : Measurable fun x : EuclideanSpace ℝ (Fin 2) ↦ (2 : ℝ) ^ n * x i := by fun_prop
   exact hmeas measurableSet_Ico
 
 section Counting
 
 /-- Coordinates are 1-Lipschitz for the Euclidean distance. -/
-theorem abs_sub_coord_le_dist (x y : Plane) (i : Fin 2) : |x i - y i| ≤ dist x y := by
+theorem abs_sub_coord_le_dist (x y : EuclideanSpace ℝ (Fin 2)) (i : Fin 2) : |x i - y i| ≤ dist x y := by
   rw [EuclideanSpace.dist_eq]
   have hle : dist (x i) (y i) ^ 2 ≤ ∑ j, dist (x j) (y j) ^ 2 :=
     Finset.single_le_sum (f := fun j ↦ dist (x j) (y j) ^ 2)
@@ -132,7 +132,7 @@ theorem abs_sub_coord_le_dist (x y : Plane) (i : Fin 2) : |x i - y i| ≤ dist x
 
 /-- **A small ball meets at most four cubes.**  If the ball has radius at most `2⁻ⁿ⁻¹`, then in
 each coordinate the cube index of its points takes at most two consecutive values. -/
-theorem exists_cubeIndex_pair (n : ℕ) (x : Plane) {r : ℝ} (hr : 0 < r)
+theorem exists_cubeIndex_pair (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : ℝ} (hr : 0 < r)
     (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1))) :
     ∃ k : Fin 2 → ℤ, ∀ y ∈ Metric.ball x r, ∀ i,
       cubeIndex n y i = k i ∨ cubeIndex n y i = k i + 1 := by

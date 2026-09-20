@@ -26,32 +26,32 @@ open scoped ENNReal NNReal
 namespace FalconerPacking
 
 /-- The cost of a single set: its diameter to the power `d`, and zero for the empty set. -/
-def contentCost (d : ℝ) (s : Set Plane) : ℝ≥0∞ := ⨆ _ : s.Nonempty, Metric.ediam s ^ d
+def contentCost (d : ℝ) (s : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ := ⨆ _ : s.Nonempty, Metric.ediam s ^ d
 
-@[simp] theorem contentCost_empty (d : ℝ) : contentCost d (∅ : Set Plane) = 0 := by
+@[simp] theorem contentCost_empty (d : ℝ) : contentCost d (∅ : Set (EuclideanSpace ℝ (Fin 2))) = 0 := by
   simp [contentCost]
 
 /-- The `d`-dimensional Hausdorff content, as an outer measure: countable covers with **no**
 constraint on the diameters. -/
-def hausdorffContent (d : ℝ) : MeasureTheory.OuterMeasure Plane :=
+def hausdorffContent (d : ℝ) : MeasureTheory.OuterMeasure (EuclideanSpace ℝ (Fin 2)) :=
   MeasureTheory.OuterMeasure.ofFunction (contentCost d) (contentCost_empty d)
 
-theorem hausdorffContent_apply (d : ℝ) (A : Set Plane) :
+theorem hausdorffContent_apply (d : ℝ) (A : Set (EuclideanSpace ℝ (Fin 2))) :
     hausdorffContent d A
-      = ⨅ (t : ℕ → Set Plane) (_ : A ⊆ ⋃ n, t n), ∑' n, contentCost d (t n) :=
+      = ⨅ (t : ℕ → Set (EuclideanSpace ℝ (Fin 2))) (_ : A ⊆ ⋃ n, t n), ∑' n, contentCost d (t n) :=
   MeasureTheory.OuterMeasure.ofFunction_apply _ _ _
 
-theorem hausdorffContent_le_contentCost (d : ℝ) (A : Set Plane) :
+theorem hausdorffContent_le_contentCost (d : ℝ) (A : Set (EuclideanSpace ℝ (Fin 2))) :
     hausdorffContent d A ≤ contentCost d A :=
   MeasureTheory.OuterMeasure.ofFunction_le _
 
-theorem hausdorffContent_le_of_cover {d : ℝ} {A : Set Plane} {t : ℕ → Set Plane}
+theorem hausdorffContent_le_of_cover {d : ℝ} {A : Set (EuclideanSpace ℝ (Fin 2))} {t : ℕ → Set (EuclideanSpace ℝ (Fin 2))}
     (ht : A ⊆ ⋃ n, t n) : hausdorffContent d A ≤ ∑' n, contentCost d (t n) := by
   rw [hausdorffContent_apply]
   exact iInf_le_of_le t (iInf_le _ ht)
 
 /-- Each piece of an efficient cover is small: its diameter is controlled by the total cost. -/
-theorem ediam_le_of_tsum_le {d : ℝ} {t : ℕ → Set Plane} {ε : ℝ≥0∞} (n : ℕ)
+theorem ediam_le_of_tsum_le {d : ℝ} {t : ℕ → Set (EuclideanSpace ℝ (Fin 2))} {ε : ℝ≥0∞} (n : ℕ)
     (hne : (t n).Nonempty) (h : ∑' m, contentCost d (t m) ≤ ε) :
     Metric.ediam (t n) ^ d ≤ ε := by
   refine le_trans (le_trans ?_ (ENNReal.le_tsum n)) h
@@ -61,7 +61,7 @@ theorem ediam_le_of_tsum_le {d : ℝ} {t : ℕ → Set Plane} {ε : ℝ≥0∞} 
 piece has diameter at most `ε ^ (1 / d)`, so the cover is admissible for the `r`-truncated
 Hausdorff measure once `ε` is small. -/
 theorem hausdorffMeasure_eq_zero_of_hausdorffContent_eq_zero {d : ℝ} (hd : 0 < d)
-    {A : Set Plane} (h : hausdorffContent d A = 0) : μH[d] A = 0 := by
+    {A : Set (EuclideanSpace ℝ (Fin 2))} (h : hausdorffContent d A = 0) : μH[d] A = 0 := by
   refine nonpos_iff_eq_zero.1 (ENNReal.le_of_forall_pos_le_add fun ε hεpos _ ↦ ?_)
   have hε : (0 : ℝ≥0∞) < (ε : ℝ≥0∞) := by exact_mod_cast hεpos
   rw [zero_add, MeasureTheory.Measure.hausdorffMeasure_apply]
@@ -93,7 +93,7 @@ theorem hausdorffMeasure_eq_zero_of_hausdorffContent_eq_zero {d : ℝ} (hd : 0 <
 
 /-- A set of positive Hausdorff measure has positive Hausdorff content: the hypothesis of the
 Frostman construction. -/
-theorem hausdorffContent_pos {d : ℝ} (hd : 0 < d) {A : Set Plane} (h : μH[d] A ≠ 0) :
+theorem hausdorffContent_pos {d : ℝ} (hd : 0 < d) {A : Set (EuclideanSpace ℝ (Fin 2))} (h : μH[d] A ≠ 0) :
     0 < hausdorffContent d A := by
   rcases eq_or_lt_of_le (bot_le : (0 : ℝ≥0∞) ≤ hausdorffContent d A) with h0 | h0
   · exact absurd (hausdorffMeasure_eq_zero_of_hausdorffContent_eq_zero hd h0.symm) h
@@ -121,7 +121,7 @@ theorem contentCost_dyadicCube_le {d : ℝ} (hd : 0 ≤ d) (n : ℕ) (k : Fin 2 
 
 /-- **A finite dyadic cover bounds the content.**  This is the lower bound that the saturated
 cubes of the Frostman construction supply. -/
-theorem hausdorffContent_le_of_finset_cover {d : ℝ} (hd : 0 ≤ d) {A : Set Plane}
+theorem hausdorffContent_le_of_finset_cover {d : ℝ} (hd : 0 ≤ d) {A : Set (EuclideanSpace ℝ (Fin 2))}
     {F : Finset (ℕ × (Fin 2 → ℤ))} (hcov : A ⊆ ⋃ p ∈ F, dyadicCube p.1 p.2) :
     hausdorffContent d A
       ≤ ∑ p ∈ F, ENNReal.ofReal (Real.sqrt 2 ^ d)

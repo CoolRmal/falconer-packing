@@ -441,7 +441,7 @@ theorem dyadicCube_subset_satCube {w : (Fin 2 → ℤ) → ℝ} (hsat : Saturate
 
 /-- **The mass lower bound of the Frostman construction.**  The total weight of the finished walk
 controls the Hausdorff content of any set covered by the occupied cubes. -/
-theorem hausdorffContent_le_totalMass {w : (Fin 2 → ℤ) → ℝ} {K : Set Plane} (hd : 0 ≤ d)
+theorem hausdorffContent_le_totalMass {w : (Fin 2 → ℤ) → ℝ} {K : Set (EuclideanSpace ℝ (Fin 2))} (hd : 0 ≤ d)
     (hsat : SaturatedSomewhere S n d w) (hw : ∀ k, 0 ≤ w k)
     (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k') :
     hausdorffContent d K
@@ -483,7 +483,7 @@ weights on the occupied cubes of generation `n` such that
 This is the whole finite content of Frostman's lemma; what remains for the classical statement is
 the passage to a weak limit as `n → ∞`. -/
 theorem exists_frostman_weights (S : Finset (Fin 2 → ℤ)) {n : ℕ} (hn : 1 ≤ n) {d : ℝ}
-    (hd : 0 ≤ d) {K : Set Plane} (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k') :
+    (hd : 0 ≤ d) {K : Set (EuclideanSpace ℝ (Fin 2))} (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k') :
     ∃ w : (Fin 2 → ℤ) → ℝ, (∀ k, 0 ≤ w k) ∧
       (∀ i ≤ n, ∀ k, cubeMass S n i w k ≤ allowance i d) ∧
       hausdorffContent d K

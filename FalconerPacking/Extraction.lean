@@ -26,9 +26,9 @@ namespace FalconerPacking
 
 /-- **The selection step.**  If `E` carries positive mass and its packing dimension is below `c`,
 some bounded piece of upper box dimension below `c` already carries positive mass. -/
-theorem exists_bounded_piece_of_measure_pos {μ : Measure Plane} {E : Set Plane} {c : ℝ≥0∞}
+theorem exists_bounded_piece_of_measure_pos {μ : Measure (EuclideanSpace ℝ (Fin 2))} {E : Set (EuclideanSpace ℝ (Fin 2))} {c : ℝ≥0∞}
     (hpack : packingDim E < c) (hμ : 0 < μ E) :
-    ∃ K : Set Plane, Bornology.IsBounded K ∧ upperBoxDim K < c ∧ 0 < μ (K ∩ E) := by
+    ∃ K : Set (EuclideanSpace ℝ (Fin 2)), Bornology.IsBounded K ∧ upperBoxDim K < c ∧ 0 < μ (K ∩ E) := by
   obtain ⟨K, hcov, hbdd, hlt⟩ := exists_cover_aux hpack
   by_contra hcon
   rw [not_exists] at hcon
@@ -48,19 +48,19 @@ theorem exists_bounded_piece_of_measure_pos {μ : Measure Plane} {E : Set Plane}
 
 /-- **Inner regularity after selection.**  A piece of positive mass contains a compact subset of
 positive mass, which is what the manuscript restricts its Frostman measure to. -/
-theorem exists_isCompact_subset_of_measure_pos {μ : Measure Plane} [IsFiniteMeasure μ]
-    [μ.InnerRegularCompactLTTop] {A : Set Plane} (hA : MeasurableSet A) (hμ : 0 < μ A) :
-    ∃ L : Set Plane, IsCompact L ∧ L ⊆ A ∧ 0 < μ L := by
+theorem exists_isCompact_subset_of_measure_pos {μ : Measure (EuclideanSpace ℝ (Fin 2))} [IsFiniteMeasure μ]
+    [μ.InnerRegularCompactLTTop] {A : Set (EuclideanSpace ℝ (Fin 2))} (hA : MeasurableSet A) (hμ : 0 < μ A) :
+    ∃ L : Set (EuclideanSpace ℝ (Fin 2)), IsCompact L ∧ L ⊆ A ∧ 0 < μ L := by
   obtain ⟨L, hLA, hLcomp, hL⟩ :=
     hA.exists_lt_isCompact_of_ne_top (μ := μ) (measure_ne_top μ A) hμ
   exact ⟨L, hLcomp, hLA, hL⟩
 
 section Separation
 
-variable {μ : Measure Plane}
+variable {μ : Measure (EuclideanSpace ℝ (Fin 2))}
 
 /-- Some point of a set of positive mass charges every ball around it. -/
-theorem exists_mem_forall_measure_ball_pos {K : Set Plane} (hμK : 0 < μ K) :
+theorem exists_mem_forall_measure_ball_pos {K : Set (EuclideanSpace ℝ (Fin 2))} (hμK : 0 < μ K) :
     ∃ x ∈ K, ∀ ε > 0, 0 < μ (K ∩ Metric.ball x ε) := by
   by_contra hcon
   rw [not_exists] at hcon
@@ -77,8 +77,8 @@ theorem exists_mem_forall_measure_ball_pos {K : Set Plane} (hμK : 0 < μ K) :
 /-- **The separation step.**  A compact set of positive mass for a Frostman measure splits into
 two compact subsets of positive mass at positive distance from each other. -/
 theorem exists_separated_compacts {s C : ℝ} (hs : 0 < s) (hfr : IsFrostman μ s C)
-    {K : Set Plane} (hK : IsCompact K) (hμK : 0 < μ K) :
-    ∃ (K₁ K₂ : Set Plane) (d : ℝ), IsCompact K₁ ∧ IsCompact K₂ ∧ K₁ ⊆ K ∧ K₂ ⊆ K ∧
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : IsCompact K) (hμK : 0 < μ K) :
+    ∃ (K₁ K₂ : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ), IsCompact K₁ ∧ IsCompact K₂ ∧ K₁ ⊆ K ∧ K₂ ⊆ K ∧
       0 < μ K₁ ∧ 0 < μ K₂ ∧ 0 < d ∧ ∀ y ∈ K₁, ∀ z ∈ K₂, d ≤ dist y z := by
   obtain ⟨x, hxK, hx⟩ := exists_mem_forall_measure_ball_pos hμK
   have hatom : μ {x} = 0 := measure_singleton_eq_zero_of_isFrostman hs hfr x

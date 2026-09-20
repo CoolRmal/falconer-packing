@@ -26,15 +26,15 @@ open scoped ENNReal
 namespace FalconerPacking
 
 /-- The normalized restriction of `σ` to `Q`. -/
-def normalizedRestrict (σ : Measure Plane) (Q : Set Plane) : Measure Plane :=
+def normalizedRestrict (σ : Measure (EuclideanSpace ℝ (Fin 2))) (Q : Set (EuclideanSpace ℝ (Fin 2))) : Measure (EuclideanSpace ℝ (Fin 2)) :=
   (σ Q)⁻¹ • σ.restrict Q
 
-theorem normalizedRestrict_apply (σ : Measure Plane) (Q s : Set Plane) (hs : MeasurableSet s) :
+theorem normalizedRestrict_apply (σ : Measure (EuclideanSpace ℝ (Fin 2))) (Q s : Set (EuclideanSpace ℝ (Fin 2))) (hs : MeasurableSet s) :
     normalizedRestrict σ Q s = (σ Q)⁻¹ * σ (s ∩ Q) := by
   rw [normalizedRestrict, Measure.smul_apply, smul_eq_mul, Measure.restrict_apply hs]
 
 /-- A normalized restriction to a set of positive finite mass is a probability measure. -/
-theorem isProbabilityMeasure_normalizedRestrict {σ : Measure Plane} {Q : Set Plane}
+theorem isProbabilityMeasure_normalizedRestrict {σ : Measure (EuclideanSpace ℝ (Fin 2))} {Q : Set (EuclideanSpace ℝ (Fin 2))}
     (hQ : MeasurableSet Q) (h0 : σ Q ≠ 0) (hfin : σ Q ≠ ⊤) :
     IsProbabilityMeasure (normalizedRestrict σ Q) := by
   constructor
@@ -43,20 +43,20 @@ theorem isProbabilityMeasure_normalizedRestrict {σ : Measure Plane} {Q : Set Pl
 
 /-- Enlarging the set keeps the mass positive: the enlarged parent of an occupied cube is
 occupied. -/
-theorem measure_pos_of_subset {σ : Measure Plane} {Q Q' : Set Plane} (hQQ' : Q ⊆ Q')
+theorem measure_pos_of_subset {σ : Measure (EuclideanSpace ℝ (Fin 2))} {Q Q' : Set (EuclideanSpace ℝ (Fin 2))} (hQQ' : Q ⊆ Q')
     (h : 0 < σ Q) : 0 < σ Q' :=
   h.trans_le (measure_mono hQQ')
 
 /-- The conditional ball bound: a normalized restriction charges a ball by at most the original
 measure of the ball, divided by the mass of the set. -/
-theorem normalizedRestrict_ball_le (σ : Measure Plane) (Q : Set Plane) (x : Plane) (r : ℝ) :
+theorem normalizedRestrict_ball_le (σ : Measure (EuclideanSpace ℝ (Fin 2))) (Q : Set (EuclideanSpace ℝ (Fin 2))) (x : EuclideanSpace ℝ (Fin 2)) (r : ℝ) :
     normalizedRestrict σ Q (Metric.ball x r) ≤ (σ Q)⁻¹ * σ (Metric.ball x r) := by
   rw [normalizedRestrict_apply σ Q _ Metric.isOpen_ball.measurableSet]
   exact mul_le_mul_left' (measure_mono inter_subset_left) _
 
 /-- **The Frostman estimate survives normalization.**  A normalized restriction of an
 `(s, C)`-Frostman measure to a set of positive finite mass is `(s, C / σ Q)`-Frostman. -/
-theorem isFrostman_normalizedRestrict {σ : Measure Plane} {Q : Set Plane} {s C : ℝ}
+theorem isFrostman_normalizedRestrict {σ : Measure (EuclideanSpace ℝ (Fin 2))} {Q : Set (EuclideanSpace ℝ (Fin 2))} {s C : ℝ}
     (hfr : IsFrostman σ s C) (h0 : σ Q ≠ 0) (hfin : σ Q ≠ ⊤) :
     IsFrostman (normalizedRestrict σ Q) s (C / (σ Q).toReal) := by
   intro x r hr hr1
@@ -71,7 +71,7 @@ section CubeBridge
 open scoped ENNReal
 
 /-- A Frostman bound on balls gives a Frostman bound on dyadic cubes. -/
-theorem measure_dyadicCube_le_of_isFrostman {μ : Measure Plane} {s C : ℝ} (hs : 0 ≤ s)
+theorem measure_dyadicCube_le_of_isFrostman {μ : Measure (EuclideanSpace ℝ (Fin 2))} {s C : ℝ} (hs : 0 ≤ s)
     (hfr : IsFrostman μ s C) {n : ℕ} (hn : 2 ≤ n) (k : Fin 2 → ℤ) :
     μ (dyadicCube n k) ≤ ENNReal.ofReal (C * (2 * Real.sqrt 2 / (2 : ℝ) ^ n) ^ s) := by
   rcases Set.eq_empty_or_nonempty (dyadicCube n k) with hempty | ⟨x, hx⟩
@@ -101,7 +101,7 @@ theorem measure_dyadicCube_le_of_isFrostman {μ : Measure Plane} {s C : ℝ} (hs
 
 /-- A bound on the mass of the dyadic cubes of generation `n` gives a bound on the mass of balls
 of radius at most `2⁻ⁿ⁻¹`: such a ball meets at most four cubes. -/
-theorem measure_ball_le_of_cube_bound {μ : Measure Plane} {n : ℕ} {x : Plane} {r : ℝ}
+theorem measure_ball_le_of_cube_bound {μ : Measure (EuclideanSpace ℝ (Fin 2))} {n : ℕ} {x : EuclideanSpace ℝ (Fin 2)} {r : ℝ}
     {M : ℝ≥0∞} (hr : 0 < r) (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1)))
     (hM : ∀ k, μ (dyadicCube n k) ≤ M) : μ (Metric.ball x r) ≤ 4 * M := by
   classical

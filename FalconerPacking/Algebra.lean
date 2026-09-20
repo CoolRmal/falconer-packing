@@ -22,10 +22,6 @@ noncomputable section
 
 namespace FalconerPacking
 
-/-- The exponent `A(s, u)` of the finite-profile criterion. -/
-def A (s u : ℝ) : ℝ :=
-  (max u (3 / 2) - s) / (2 * max u (3 / 2) - 1) + (u - s) / (2 * s)
-
 /-- The middle branch `Q(d) = 3d² - 5d/2` of the curve. -/
 def Q (d : ℝ) : ℝ := 3 * d ^ 2 - (5 / 2 : ℝ) * d
 

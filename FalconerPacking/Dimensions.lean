@@ -33,7 +33,7 @@ theorem two_rpow_neg_natCast_pos (n : ℕ) : (0 : ℝ) < (2 : ℝ) ^ (-(n : ℝ)
   Real.rpow_pos_of_pos (by norm_num) _
 
 /-- An open ball has extended diameter at most twice its radius. -/
-theorem ediam_ball_le (x : Plane) (r : ℝ) :
+theorem ediam_ball_le (x : EuclideanSpace ℝ (Fin 2)) (r : ℝ) :
     Metric.ediam (Metric.ball x r) ≤ ENNReal.ofReal (2 * r) := by
   refine Metric.ediam_le fun a ha b hb ↦ ?_
   have ha' : dist a x < r := Metric.mem_ball.1 ha
@@ -45,7 +45,7 @@ theorem ediam_ball_le (x : Plane) (r : ℝ) :
 
 /-- A polynomial covering bound with exponent `s` kills every Hausdorff measure of order
 `t > s`. -/
-theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ} (hs : 0 ≤ s)
+theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set (EuclideanSpace ℝ (Fin 2))} {s t : ℝ} (hs : 0 ≤ s)
     (h : HasUpperBoxBound E s) (hst : s < t) : μH[t] E = 0 := by
   obtain ⟨C, hC, hcov⟩ := h
   choose pts hsub hcard using hcov
@@ -80,7 +80,7 @@ theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ}
   -- the covering estimate
   refine nonpos_iff_eq_zero.1 ?_
   have hcover := MeasureTheory.Measure.hausdorffMeasure_le_liminf_sum
-    (ι := fun n : ℕ ↦ {x : Plane // x ∈ pts n}) t E
+    (ι := fun n : ℕ ↦ {x : EuclideanSpace ℝ (Fin 2) // x ∈ pts n}) t E
     (fun n ↦ ENNReal.ofReal (2 * r n))
     (by
       have hreal : Tendsto (fun n : ℕ ↦ 2 * r n) atTop (𝓝 0) := by
@@ -91,7 +91,7 @@ theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ}
       have h3 := (ENNReal.continuous_ofReal.tendsto 0).comp hreal
       rw [ENNReal.ofReal_zero] at h3
       exact h3)
-    (fun n i ↦ Metric.ball (i : Plane) (r n))
+    (fun n i ↦ Metric.ball (i : EuclideanSpace ℝ (Fin 2)) (r n))
     (Eventually.of_forall fun n i ↦ ediam_ball_le _ _)
     (Eventually.of_forall fun n ↦ by
       have := hsub n
@@ -99,11 +99,11 @@ theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ}
       exact this)
   refine hcover.trans ?_
   have hbound : ∀ n : ℕ,
-      (∑ i : {x : Plane // x ∈ pts n}, Metric.ediam (Metric.ball (i : Plane) (r n)) ^ t)
+      (∑ i : {x : EuclideanSpace ℝ (Fin 2) // x ∈ pts n}, Metric.ediam (Metric.ball (i : EuclideanSpace ℝ (Fin 2)) (r n)) ^ t)
         ≤ ENNReal.ofReal (g n) := by
     intro n
-    have hterm : ∀ i : {x : Plane // x ∈ pts n},
-        Metric.ediam (Metric.ball (i : Plane) (r n)) ^ t
+    have hterm : ∀ i : {x : EuclideanSpace ℝ (Fin 2) // x ∈ pts n},
+        Metric.ediam (Metric.ball (i : EuclideanSpace ℝ (Fin 2)) (r n)) ^ t
           ≤ ENNReal.ofReal ((2 * r n) ^ t) := by
       intro i
       rw [← ENNReal.ofReal_rpow_of_nonneg (by positivity) ht]
@@ -129,33 +129,33 @@ theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ}
 section Basic
 
 /-- A covering bound passes to subsets. -/
-theorem HasUpperBoxBound.mono {E F : Set Plane} {s : ℝ} (h : HasUpperBoxBound F s)
+theorem HasUpperBoxBound.mono {E F : Set (EuclideanSpace ℝ (Fin 2))} {s : ℝ} (h : HasUpperBoxBound F s)
     (hEF : E ⊆ F) : HasUpperBoxBound E s := by
   obtain ⟨C, hC, hcov⟩ := h
   refine ⟨C, hC, fun n ↦ ?_⟩
   obtain ⟨pts, hsub, hcard⟩ := hcov n
   exact ⟨pts, hEF.trans hsub, hcard⟩
 
-theorem upperBoxDim_mono {E F : Set Plane} (hEF : E ⊆ F) : upperBoxDim E ≤ upperBoxDim F := by
+theorem upperBoxDim_mono {E F : Set (EuclideanSpace ℝ (Fin 2))} (hEF : E ⊆ F) : upperBoxDim E ≤ upperBoxDim F := by
   refine le_iInf fun s ↦ le_iInf fun hs ↦ le_iInf fun h ↦ ?_
   exact iInf_le_of_le s (iInf_le_of_le hs (iInf_le _ (h.mono hEF)))
 
-theorem hasUpperBoxBound_empty (s : ℝ) (hs : 0 ≤ s) : HasUpperBoxBound (∅ : Set Plane) s := by
+theorem hasUpperBoxBound_empty (s : ℝ) (hs : 0 ≤ s) : HasUpperBoxBound (∅ : Set (EuclideanSpace ℝ (Fin 2))) s := by
   refine ⟨1, one_pos, fun n ↦ ⟨∅, by simp, ?_⟩⟩
   simp only [Finset.card_empty, Nat.cast_zero, one_mul]
   positivity
 
-@[simp] theorem upperBoxDim_empty : upperBoxDim (∅ : Set Plane) = 0 := by
+@[simp] theorem upperBoxDim_empty : upperBoxDim (∅ : Set (EuclideanSpace ℝ (Fin 2))) = 0 := by
   refine le_antisymm ?_ (by simp)
   refine iInf_le_of_le 0 (iInf_le_of_le le_rfl (iInf_le_of_le (hasUpperBoxBound_empty 0 le_rfl) ?_))
   simp
 
-theorem packingDim_mono {E F : Set Plane} (hEF : E ⊆ F) : packingDim E ≤ packingDim F := by
+theorem packingDim_mono {E F : Set (EuclideanSpace ℝ (Fin 2))} (hEF : E ⊆ F) : packingDim E ≤ packingDim F := by
   refine le_iInf fun K ↦ le_iInf fun hK ↦ le_iInf fun hb ↦ ?_
   exact iInf_le_of_le K (iInf_le_of_le (hEF.trans hK) (iInf_le _ hb))
 
 /-- For a bounded set the packing dimension is at most the upper box dimension. -/
-theorem packingDim_le_upperBoxDim {E : Set Plane} (hE : Bornology.IsBounded E) :
+theorem packingDim_le_upperBoxDim {E : Set (EuclideanSpace ℝ (Fin 2))} (hE : Bornology.IsBounded E) :
     packingDim E ≤ upperBoxDim E := by
   refine iInf_le_of_le (fun n ↦ if n = 0 then E else ∅) (iInf_le_of_le ?_ (iInf_le_of_le ?_ ?_))
   · exact fun x hx ↦ Set.mem_iUnion.2 ⟨0, by simpa using hx⟩
@@ -165,7 +165,7 @@ theorem packingDim_le_upperBoxDim {E : Set Plane} (hE : Bornology.IsBounded E) :
     by_cases hn : n = 0 <;> simp [hn]
 
 /-- A covering bound with a smaller exponent implies one with a larger exponent. -/
-theorem HasUpperBoxBound.mono_exponent {E : Set Plane} {s t : ℝ} (h : HasUpperBoxBound E s)
+theorem HasUpperBoxBound.mono_exponent {E : Set (EuclideanSpace ℝ (Fin 2))} {s t : ℝ} (h : HasUpperBoxBound E s)
     (hst : s ≤ t) : HasUpperBoxBound E t := by
   obtain ⟨C, hC, hcov⟩ := h
   refine ⟨C, hC, fun n ↦ ?_⟩
@@ -178,7 +178,7 @@ theorem HasUpperBoxBound.mono_exponent {E : Set Plane} {s t : ℝ} (h : HasUpper
 
 /-- Below a strict bound on the upper box dimension there is an actual covering bound with that
 exponent: the occupied-square count of the selected compact piece is `O(r ^ (-u))`. -/
-theorem hasUpperBoxBound_of_upperBoxDim_lt {E : Set Plane} {u : ℝ} (hu : 0 < u)
+theorem hasUpperBoxBound_of_upperBoxDim_lt {E : Set (EuclideanSpace ℝ (Fin 2))} {u : ℝ} (hu : 0 < u)
     (h : upperBoxDim E < ENNReal.ofReal u) : HasUpperBoxBound E u := by
   rw [upperBoxDim, iInf_lt_iff] at h
   obtain ⟨s, hs⟩ := h
@@ -192,7 +192,7 @@ theorem hasUpperBoxBound_of_upperBoxDim_lt {E : Set Plane} {u : ℝ} (hu : 0 < u
 end Basic
 
 /-- The Hausdorff dimension is at most the covering exponent of any polynomial dyadic bound. -/
-theorem dimH_le_of_hasUpperBoxBound {E : Set Plane} {s : ℝ} (hs : 0 ≤ s)
+theorem dimH_le_of_hasUpperBoxBound {E : Set (EuclideanSpace ℝ (Fin 2))} {s : ℝ} (hs : 0 ≤ s)
     (h : HasUpperBoxBound E s) : dimH E ≤ ENNReal.ofReal s := by
   refine dimH_le fun d' hd' ↦ ?_
   rw [ENNReal.coe_nnreal_eq, ENNReal.ofReal_le_ofReal_iff hs]
@@ -202,21 +202,21 @@ theorem dimH_le_of_hasUpperBoxBound {E : Set Plane} {s : ℝ} (hs : 0 ≤ s)
   exact ENNReal.zero_ne_top hd'
 
 /-- Hausdorff dimension is at most upper box dimension. -/
-theorem dimH_le_upperBoxDim (E : Set Plane) : dimH E ≤ upperBoxDim E := by
+theorem dimH_le_upperBoxDim (E : Set (EuclideanSpace ℝ (Fin 2))) : dimH E ≤ upperBoxDim E := by
   refine le_iInf fun s ↦ le_iInf fun hs ↦ le_iInf fun h ↦ ?_
   exact dimH_le_of_hasUpperBoxBound hs h
 
 /-- **Hausdorff dimension is at most packing dimension.**  The manuscript uses this to know
 that the packing exponent may be taken above the Hausdorff exponent. -/
-theorem dimH_le_packingDim (E : Set Plane) : dimH E ≤ packingDim E := by
+theorem dimH_le_packingDim (E : Set (EuclideanSpace ℝ (Fin 2))) : dimH E ≤ packingDim E := by
   refine le_iInf fun K ↦ le_iInf fun hK ↦ le_iInf fun _ ↦ ?_
   calc dimH E ≤ dimH (⋃ n, K n) := dimH_mono hK
     _ = ⨆ n, dimH (K n) := dimH_iUnion _
     _ ≤ ⨆ n, upperBoxDim (K n) := iSup_mono fun n ↦ dimH_le_upperBoxDim _
 
 /-- The cover extracted from a strict bound on the packing dimension. -/
-theorem exists_cover_aux {E : Set Plane} {c : ℝ≥0∞} (h : packingDim E < c) :
-    ∃ K : ℕ → Set Plane, E ⊆ ⋃ n, K n ∧ (∀ n, Bornology.IsBounded (K n)) ∧
+theorem exists_cover_aux {E : Set (EuclideanSpace ℝ (Fin 2))} {c : ℝ≥0∞} (h : packingDim E < c) :
+    ∃ K : ℕ → Set (EuclideanSpace ℝ (Fin 2)), E ⊆ ⋃ n, K n ∧ (∀ n, Bornology.IsBounded (K n)) ∧
       ∀ n, upperBoxDim (K n) < c := by
   rw [packingDim, iInf_lt_iff] at h
   obtain ⟨K, hK⟩ := h
@@ -231,7 +231,7 @@ section Stability
 
 /-- **Countable stability of packing dimension.**  The dimension of a countable union is the
 supremum of the dimensions, by diagonalizing the covers. -/
-theorem packingDim_iUnion_le (E : ℕ → Set Plane) :
+theorem packingDim_iUnion_le (E : ℕ → Set (EuclideanSpace ℝ (Fin 2))) :
     packingDim (⋃ n, E n) ≤ ⨆ n, packingDim (E n) := by
   refine le_of_forall_gt_imp_ge_of_dense fun c hc ↦ ?_
   have hlt : ∀ n, packingDim (E n) < c := fun n ↦

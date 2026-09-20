@@ -28,27 +28,24 @@ open scoped ENNReal
 
 namespace FalconerPacking
 
-/-- The Euclidean plane, with the Euclidean distance. -/
-abbrev Plane := EuclideanSpace ℝ (Fin 2)
-
 /-- The pinned distance set `Δ_y(E) = {|x - y| : x ∈ E}`. -/
-def pinnedDistances (E : Set Plane) (y : Plane) : Set ℝ :=
+def pinnedDistances (E : Set (EuclideanSpace ℝ (Fin 2))) (y : EuclideanSpace ℝ (Fin 2)) : Set ℝ :=
   (fun x ↦ dist x y) '' E
 
 /-- A polynomial covering bound at every dyadic radius, by open Euclidean balls. -/
-def HasUpperBoxBound (E : Set Plane) (s : ℝ) : Prop :=
-  ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, ∃ pts : Finset Plane,
+def HasUpperBoxBound (E : Set (EuclideanSpace ℝ (Fin 2))) (s : ℝ) : Prop :=
+  ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, ∃ pts : Finset (EuclideanSpace ℝ (Fin 2)),
     E ⊆ ⋃ x ∈ pts, Metric.ball x ((2 : ℝ) ^ (-(n : ℝ))) ∧
       (pts.card : ℝ) ≤ C * (2 : ℝ) ^ ((n : ℝ) * s)
 
 /-- The upper box dimension, as the infimum of the exponents with a polynomial covering
 bound at the dyadic scales. -/
-def upperBoxDim (E : Set Plane) : ℝ≥0∞ :=
+def upperBoxDim (E : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ :=
   ⨅ (s : ℝ) (_ : 0 ≤ s) (_ : HasUpperBoxBound E s), ENNReal.ofReal s
 
 /-- The packing dimension, in the standard bounded countable-cover characterization. -/
-def packingDim (E : Set Plane) : ℝ≥0∞ :=
-  ⨅ (K : ℕ → Set Plane) (_ : E ⊆ ⋃ n, K n) (_ : ∀ n, Bornology.IsBounded (K n)),
+def packingDim (E : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ :=
+  ⨅ (K : ℕ → Set (EuclideanSpace ℝ (Fin 2))) (_ : E ⊆ ⋃ n, K n) (_ : ∀ n, Bornology.IsBounded (K n)),
     ⨆ n, upperBoxDim (K n)
 
 /-- The first transition point `(9 + √33) / 12`: the root above one of `3d² - 5d/2 = 2d - 1`. -/
@@ -65,7 +62,7 @@ def bound (d : ℝ) : ℝ :=
 
 /-- **The target theorem.**  Let `E ⊆ ℝ²` be Borel with `d = dimH E`.  If `1 < d ≤ 5/4` and
 `dimP E < B(d)`, then some pin `y ∈ E` has a pinned distance set of positive length. -/
-theorem exists_pin_volume_pinnedDistances_pos (E : Set Plane) (d : ℝ)
+theorem exists_pin_volume_pinnedDistances_pos (E : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ)
     (hE : MeasurableSet E) (hdimH : dimH E = ENNReal.ofReal d)
     (hd_lt : 1 < d) (hd_le : d ≤ 5 / 4)
     (hpack : packingDim E < ENNReal.ofReal (bound d)) :

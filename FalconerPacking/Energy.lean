@@ -27,14 +27,14 @@ namespace FalconerPacking
 
 /-- A measure is `(s, C)`-Frostman if every ball of radius at most one has mass at most
 `C * r ^ s`. -/
-def IsFrostman (μ : Measure Plane) (s C : ℝ) : Prop :=
-  ∀ (x : Plane) (r : ℝ), 0 < r → r ≤ 1 → μ (Metric.ball x r) ≤ ENNReal.ofReal (C * r ^ s)
+def IsFrostman (μ : Measure (EuclideanSpace ℝ (Fin 2))) (s C : ℝ) : Prop :=
+  ∀ (x : EuclideanSpace ℝ (Fin 2)) (r : ℝ), 0 < r → r ≤ 1 → μ (Metric.ball x r) ≤ ENNReal.ofReal (C * r ^ s)
 
 /-- The Riesz kernel `|x - y| ^ (-a)`, valued in `ℝ≥0∞` and infinite on the diagonal. -/
-def rieszKernel (a : ℝ) (x y : Plane) : ℝ≥0∞ := ENNReal.ofReal (dist x y) ^ (-a)
+def rieszKernel (a : ℝ) (x y : EuclideanSpace ℝ (Fin 2)) : ℝ≥0∞ := ENNReal.ofReal (dist x y) ^ (-a)
 
 /-- The Riesz `a`-energy of a measure. -/
-def rieszEnergy (μ : Measure Plane) (a : ℝ) : ℝ≥0∞ :=
+def rieszEnergy (μ : Measure (EuclideanSpace ℝ (Fin 2))) (a : ℝ) : ℝ≥0∞ :=
   ∫⁻ x, ∫⁻ y, rieszKernel a x y ∂μ ∂μ
 
 section Dyadic
@@ -95,8 +95,8 @@ end Dyadic
 section Atoms
 
 /-- A Frostman measure has no atoms. -/
-theorem measure_singleton_eq_zero_of_isFrostman {μ : Measure Plane} {s C : ℝ} (hs : 0 < s)
-    (hfr : IsFrostman μ s C) (x : Plane) : μ {x} = 0 := by
+theorem measure_singleton_eq_zero_of_isFrostman {μ : Measure (EuclideanSpace ℝ (Fin 2))} {s C : ℝ} (hs : 0 < s)
+    (hfr : IsFrostman μ s C) (x : EuclideanSpace ℝ (Fin 2)) : μ {x} = 0 := by
   have hbound : ∀ k : ℕ, μ {x} ≤ ENNReal.ofReal (C * dyadicRadius k ^ s) := by
     intro k
     have hmem : μ {x} ≤ μ (Metric.ball x (dyadicRadius k)) :=
@@ -120,10 +120,10 @@ end Atoms
 
 section Bound
 
-variable {μ : Measure Plane} {s C a : ℝ}
+variable {μ : Measure (EuclideanSpace ℝ (Fin 2))} {s C a : ℝ}
 
 /-- Away from the diagonal the kernel is controlled by the inner radius of a dyadic annulus. -/
-theorem rieszKernel_le_of_le {x y : Plane} {r : ℝ} (ha : 0 ≤ a) (h : r ≤ dist x y) :
+theorem rieszKernel_le_of_le {x y : EuclideanSpace ℝ (Fin 2)} {r : ℝ} (ha : 0 ≤ a) (h : r ≤ dist x y) :
     rieszKernel a x y ≤ ENNReal.ofReal r ^ (-a) := by
   rw [rieszKernel, ENNReal.rpow_neg, ENNReal.rpow_neg]
   exact ENNReal.inv_le_inv.2 (ENNReal.rpow_le_rpow (ENNReal.ofReal_le_ofReal h) ha)
@@ -146,13 +146,13 @@ theorem exists_bound_lintegral_rieszKernel [IsFiniteMeasure μ] (hC : 0 < C) (ha
   · refine ENNReal.add_ne_top.2 ⟨measure_ne_top _ _, ENNReal.mul_ne_top ENNReal.ofReal_ne_top ?_⟩
     exact ENNReal.inv_ne_top.2 (tsub_pos_of_lt hqlt).ne'
   intro x
-  set A : ℕ → Set Plane := fun k ↦
+  set A : ℕ → Set (EuclideanSpace ℝ (Fin 2)) := fun k ↦
     Metric.ball x (dyadicRadius k) \ Metric.ball x (dyadicRadius (k + 1)) with hA
-  set F : Set Plane := (Metric.ball x 1)ᶜ with hF
+  set F : Set (EuclideanSpace ℝ (Fin 2)) := (Metric.ball x 1)ᶜ with hF
   have hAmeas : ∀ k, MeasurableSet (A k) :=
     fun k ↦ Metric.isOpen_ball.measurableSet.diff Metric.isOpen_ball.measurableSet
   have hFmeas : MeasurableSet F := Metric.isOpen_ball.measurableSet.compl
-  have hcover : (univ : Set Plane) ⊆ ({x} ∪ ⋃ k, A k) ∪ F := by
+  have hcover : (univ : Set (EuclideanSpace ℝ (Fin 2))) ⊆ ({x} ∪ ⋃ k, A k) ∪ F := by
     intro y _
     rcases eq_or_lt_of_le (dist_nonneg (x := y) (y := x)) with h | h
     · exact Or.inl (Or.inl (by simp [dist_eq_zero.1 h.symm]))
@@ -250,19 +250,19 @@ section Truncated
 /-- The truncated kernel at scales `a ≤ b` of §6.3: `b / a` on the diagonal, and
 `min (b / a) (b / |y - z|)` off it.  The diagonal case is explicit, so that Lean's totalized
 division at zero never contributes a value. -/
-def truncKernel (a b : ℝ) (y z : Plane) : ℝ≥0∞ :=
+def truncKernel (a b : ℝ) (y z : EuclideanSpace ℝ (Fin 2)) : ℝ≥0∞ :=
   if y = z then ENNReal.ofReal (b / a) else ENNReal.ofReal (min (b / a) (b / dist y z))
 
-variable {a b : ℝ} {y z : Plane}
+variable {a b : ℝ} {y z : EuclideanSpace ℝ (Fin 2)}
 
-theorem truncKernel_symm (a b : ℝ) (y z : Plane) : truncKernel a b y z = truncKernel a b z y := by
+theorem truncKernel_symm (a b : ℝ) (y z : EuclideanSpace ℝ (Fin 2)) : truncKernel a b y z = truncKernel a b z y := by
   rw [truncKernel, truncKernel, dist_comm]
   by_cases h : y = z
   · simp [h]
   · simp [h, Ne.symm h]
 
 /-- The truncation makes the kernel bounded by the ratio of the scales. -/
-theorem truncKernel_le (a b : ℝ) (y z : Plane) : truncKernel a b y z ≤ ENNReal.ofReal (b / a) := by
+theorem truncKernel_le (a b : ℝ) (y z : EuclideanSpace ℝ (Fin 2)) : truncKernel a b y z ≤ ENNReal.ofReal (b / a) := by
   rw [truncKernel]
   by_cases h : y = z
   · simp [h]
@@ -288,13 +288,13 @@ theorem truncKernel_of_le_dist (hb : 0 ≤ b) (ha : 0 < a) (h : a ≤ dist y z) 
   rw [truncKernel, if_neg hyz, min_eq_right (div_le_div_of_nonneg_left hb ha h)]
 
 /-- The truncated energy of §6.3. -/
-def truncEnergy (μ : Measure Plane) (a b : ℝ) : ℝ≥0∞ :=
+def truncEnergy (μ : Measure (EuclideanSpace ℝ (Fin 2))) (a b : ℝ) : ℝ≥0∞ :=
   ∫⁻ y, ∫⁻ z, truncKernel a b y z ∂μ ∂μ
 
 /-- The finite truncation bounds the energy by `b / a` times the squared mass. -/
-theorem truncEnergy_le (μ : Measure Plane) (a b : ℝ) :
+theorem truncEnergy_le (μ : Measure (EuclideanSpace ℝ (Fin 2))) (a b : ℝ) :
     truncEnergy μ a b ≤ ENNReal.ofReal (b / a) * μ univ * μ univ := by
-  have hinner : ∀ y : Plane, ∫⁻ z, truncKernel a b y z ∂μ
+  have hinner : ∀ y : EuclideanSpace ℝ (Fin 2), ∫⁻ z, truncKernel a b y z ∂μ
       ≤ ENNReal.ofReal (b / a) * μ univ := by
     intro y
     refine (lintegral_mono fun z ↦ truncKernel_le a b y z).trans ?_
@@ -304,7 +304,7 @@ theorem truncEnergy_le (μ : Measure Plane) (a b : ℝ) :
     _ = ENNReal.ofReal (b / a) * μ univ * μ univ := by
         rw [lintegral_const]
 
-theorem truncEnergy_ne_top (μ : Measure Plane) [IsFiniteMeasure μ] (a b : ℝ) :
+theorem truncEnergy_ne_top (μ : Measure (EuclideanSpace ℝ (Fin 2))) [IsFiniteMeasure μ] (a b : ℝ) :
     truncEnergy μ a b ≠ ⊤ :=
   ne_top_of_le_ne_top
     (ENNReal.mul_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top (measure_ne_top _ _))
