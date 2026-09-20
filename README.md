@@ -95,7 +95,7 @@ argument can show, which is the step that requires the discretized projection ma
 | Marstrand's projection theorem, absolute-continuity form (module 8): finite `I₁(μ)` gives an absolutely continuous projection at a.e. slope | **proved**, no holes |
 | the `L²` criterion for pinned distance sets: `O(δ)` mass in the hyperbolic tube gives a positive-length pinned distance set | **proved**, no holes |
 | a pin from an **averaged** hyperbolic-tube bound — the exact shape of both analytic branches' conclusions | **proved**, no holes |
-| the full reduction: a compact set of dimension above `d` has a positive-length pin, given only `HypTubeBound d` | **proved**, no holes |
+| the full reduction: any set carrying a compactly supported `d`-Frostman probability measure has a positive-length pin, given only `HypTubeBound d` | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
