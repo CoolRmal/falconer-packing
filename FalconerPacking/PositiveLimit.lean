@@ -7,6 +7,7 @@ import FalconerPacking.LocalEnergy
 import FalconerPacking.PinnedMeasure
 import Mathlib.MeasureTheory.Function.L1Space.Integrable
 import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
 import Mathlib.MeasureTheory.Measure.FiniteMeasure
 
 /-!
@@ -165,5 +166,48 @@ theorem absolutelyContinuous_of_coherentDensityComparison
   obtain ⟨g, hg⟩ :=
     exists_tendsto_of_edist_le_coherentEnergy hK hZ hstep
   exact absolutelyContinuous_of_tendsto_L1Density μ hg hweak
+
+/-- Almost-everywhere convergence of measurable random variables gives weak convergence of their
+pushforward laws, stated in the finite-measure space used by the positive-density argument. -/
+theorem tendsto_map_toFiniteMeasure_of_ae_tendsto
+    {Ω α : Type*} [MeasurableSpace Ω] [MeasurableSpace α]
+    [TopologicalSpace α] [OpensMeasurableSpace α]
+    (μ : ProbabilityMeasure Ω) {F : ℕ → Ω → α} {G : Ω → α}
+    (hF : ∀ n, AEMeasurable (F n) (μ : Measure Ω))
+    (hG : AEMeasurable G (μ : Measure Ω))
+    (hlim : ∀ᵐ ω ∂(μ : Measure Ω), Tendsto (fun n ↦ F n ω) atTop (𝓝 (G ω))) :
+    Tendsto
+      (fun n ↦ ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map (F n),
+          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+      atTop
+      (𝓝 (ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map G,
+          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+  have hdist := tendstoInDistribution_of_ae_tendsto hF hG hlim
+  exact (ProbabilityMeasure.toFiniteMeasure_continuous.tendsto _).comp hdist.tendsto
+
+/-- A uniform pointwise error tending to zero identifies the weak limit of the pushforward
+laws.  This is the form used for the quadratic affine approximation to distance. -/
+theorem tendsto_map_toFiniteMeasure_of_dist_le
+    {Ω α : Type*} [MeasurableSpace Ω] [MeasurableSpace α]
+    [PseudoMetricSpace α] [BorelSpace α]
+    (μ : ProbabilityMeasure Ω) {F : ℕ → Ω → α} {G : Ω → α} {ε : ℕ → ℝ}
+    (hF : ∀ n, AEMeasurable (F n) (μ : Measure Ω))
+    (hG : AEMeasurable G (μ : Measure Ω))
+    (hε : Tendsto ε atTop (𝓝 0))
+    (hclose : ∀ n ω, dist (F n ω) (G ω) ≤ ε n) :
+    Tendsto
+      (fun n ↦ ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map (F n),
+          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+      atTop
+      (𝓝 (ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map G,
+          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+  apply tendsto_map_toFiniteMeasure_of_ae_tendsto μ hF hG
+  filter_upwards with ω
+  apply tendsto_iff_dist_tendsto_zero.2
+  exact squeeze_zero (fun _ ↦ dist_nonneg) (fun n ↦ hclose n ω) hε
 
 end FalconerPacking
