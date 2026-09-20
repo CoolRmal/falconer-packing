@@ -35,6 +35,11 @@ def neighboringCubeIndices (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) :
     {⌊(2 : ℝ) ^ n * (x i - dyadicCoverRadius n)⌋,
       ⌊(2 : ℝ) ^ n * (x i - dyadicCoverRadius n)⌋ + 1}
 
+/-- In the plane there are exactly four candidate dyadic cubes around a ball center. -/
+theorem card_neighboringCubeIndices (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) :
+    (neighboringCubeIndices n x).card = 4 := by
+  simp [neighboringCubeIndices]
+
 theorem cubeIndex_mem_neighboringCubeIndices {n : ℕ} {x y : EuclideanSpace ℝ (Fin 2)}
     (hy : y ∈ Metric.ball x (dyadicCoverRadius n)) :
     cubeIndex n y ∈ neighboringCubeIndices n x := by
@@ -54,6 +59,20 @@ def occupiedCubeIndices (K : Set (EuclideanSpace ℝ (Fin 2))) (n : ℕ)
   by
     classical
     exact (coveringCubeIndices n t).filter fun k ↦ (K ∩ dyadicCube n k).Nonempty
+
+/-- Passing from a finite ball cover to the occupied dyadic cubes loses a factor of at most four. -/
+theorem card_occupiedCubeIndices_le (K : Set (EuclideanSpace ℝ (Fin 2))) (n : ℕ)
+    (t : Finset (EuclideanSpace ℝ (Fin 2))) :
+    (occupiedCubeIndices K n t).card ≤ 4 * t.card := by
+  classical
+  calc
+    (occupiedCubeIndices K n t).card ≤ (coveringCubeIndices n t).card := by
+      exact Finset.card_filter_le _ _
+    _ ≤ t.card * 4 := by
+      apply Finset.card_biUnion_le_card_mul
+      intro x hx
+      rw [card_neighboringCubeIndices]
+    _ = 4 * t.card := Nat.mul_comm _ _
 
 /-- A finite cover by the small balls yields a cover by the occupied candidate cubes. -/
 theorem subset_iUnion_occupiedCubeIndices {K : Set (EuclideanSpace ℝ (Fin 2))} {n : ℕ}
@@ -104,6 +123,29 @@ theorem exists_occupiedCubeIndices_and_points {K : Set (EuclideanSpace ℝ (Fin 
   intro k hk
   simp only [pt, dif_pos hk]
   exact Classical.choose_spec (hnonempty k hk)
+
+/-- A polynomial dyadic ball-cover bound gives occupied dyadic-cube covers with the same
+exponent and only a factor-four loss in cardinality. -/
+theorem exists_occupiedCubeIndices_card_le_of_hasUpperBoxBound
+    {K : Set (EuclideanSpace ℝ (Fin 2))} {u : ℝ}
+    (hK : HasUpperBoxBound K u) :
+    ∃ C : ℝ, 0 < C ∧ ∀ n : ℕ, ∃ S : Finset (Fin 2 → ℤ),
+      K ⊆ ⋃ k ∈ S, dyadicCube n k ∧
+      (S.card : ℝ) ≤ 4 * C * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u) := by
+  obtain ⟨C, hC, hcover⟩ := hK
+  refine ⟨C, hC, fun n ↦ ?_⟩
+  obtain ⟨t, htcover, htcard⟩ := hcover (n + 1)
+  let S := occupiedCubeIndices K n t
+  have htcover' : K ⊆ ⋃ x ∈ t, Metric.ball x (dyadicCoverRadius n) := by
+    simpa only [dyadicCoverRadius, Nat.cast_add, Nat.cast_one] using htcover
+  refine ⟨S, subset_iUnion_occupiedCubeIndices htcover', ?_⟩
+  have hcardNat : S.card ≤ 4 * t.card := by
+    exact card_occupiedCubeIndices_le K n t
+  calc
+    (S.card : ℝ) ≤ 4 * (t.card : ℝ) := by exact_mod_cast hcardNat
+    _ ≤ 4 * (C * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u)) := by
+      gcongr
+    _ = 4 * C * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u) := by ring
 
 /-- Combining compact discretization with the finite Frostman lemma gives normalized atomic
 probability measures at every positive depth.  Their atoms lie in `K`, and they satisfy all

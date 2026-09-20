@@ -59,7 +59,7 @@ here certifies the conditional theorem, nothing more.
 | weak compactness, supported subsequence extraction, and dyadic Frostman bounds in the limit | **proved**, no holes |
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
-| localized conditional-energy bound for normalized dyadic restrictions, including the finite cube sum | **proved**, no holes |
+| localized conditional-energy bound, occupied-cube counts, and full-measure finite conditioning families | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout

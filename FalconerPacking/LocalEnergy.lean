@@ -3,7 +3,7 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Restriction
+import FalconerPacking.OccupiedCubes
 
 /-!
 # Localized Frostman energy estimates
@@ -299,5 +299,83 @@ theorem sum_measure_mul_rieszEnergy_normalizedRestrict_dyadicCube_le
         (ENNReal.ofReal
             (C * (2 * Real.sqrt 2 / (2 : ℝ) ^ n) ^ (s - a) * 2 ^ a) *
           (1 - ENNReal.ofReal ((2 : ℝ) ^ (a - s)))⁻¹) := rfl
+
+/-- Removing the zero-mass cubes from a finite cover of a carrier leaves a union of full measure. -/
+theorem measure_compl_iUnion_filter_measure_ne_zero_eq_zero
+    {μ : Measure (EuclideanSpace ℝ (Fin 2))}
+    {K : Set (EuclideanSpace ℝ (Fin 2))} {n : ℕ}
+    {S : Finset (Fin 2 → ℤ)}
+    (hcover : K ⊆ ⋃ k ∈ S, dyadicCube n k) (hμK : μ Kᶜ = 0) :
+    μ (⋃ k ∈ S.filter fun k ↦ μ (dyadicCube n k) ≠ 0, dyadicCube n k)ᶜ = 0 := by
+  classical
+  let T := S.filter fun k ↦ μ (dyadicCube n k) ≠ 0
+  let Z := S.filter fun k ↦ μ (dyadicCube n k) = 0
+  have hZ : μ (⋃ k ∈ Z, dyadicCube n k) = 0 := by
+    apply nonpos_iff_eq_zero.1
+    refine (measure_biUnion_finset_le Z fun k ↦ dyadicCube n k).trans ?_
+    apply le_of_eq
+    apply Finset.sum_eq_zero
+    intro k hk
+    exact (Finset.mem_filter.1 hk).2
+  apply measure_mono_null (t := Kᶜ ∪ ⋃ k ∈ Z, dyadicCube n k) ?_
+    (measure_union_null hμK hZ)
+  intro x hx
+  by_cases hxK : x ∈ K
+  · right
+    obtain ⟨k, hkS, hxk⟩ := Set.mem_iUnion₂.1 (hcover hxK)
+    have hkzero : μ (dyadicCube n k) = 0 := by
+      by_contra hkne
+      have hkT : k ∈ T := Finset.mem_filter.2 ⟨hkS, hkne⟩
+      exact hx (Set.mem_iUnion₂.2 ⟨k, hkT, hxk⟩)
+    exact Set.mem_iUnion₂.2 ⟨k, Finset.mem_filter.2 ⟨hkS, hkzero⟩, hxk⟩
+  · exact Or.inl hxK
+
+/-- A polynomial covering bound supplies, at every scale, a finite family of positive-mass
+conditioning cubes whose weighted conditional energy has the expected covering-number bound. -/
+theorem exists_conditioningCubeIndices_energy_bound
+    {μ : Measure (EuclideanSpace ℝ (Fin 2))} [IsFiniteMeasure μ]
+    {K : Set (EuclideanSpace ℝ (Fin 2))} {u s C a : ℝ}
+    (hbox : HasUpperBoxBound K u) (hμK : μ Kᶜ = 0)
+    (hC : 0 < C) (ha : 0 < a) (has : a < s) (hfr : IsFrostman μ s C) :
+    ∃ Cbox : ℝ, 0 < Cbox ∧ ∀ n : ℕ, 2 ≤ n →
+      ∃ S : Finset (Fin 2 → ℤ),
+        μ (⋃ k ∈ S, dyadicCube n k)ᶜ = 0 ∧
+        (∀ k ∈ S, 0 < μ (dyadicCube n k)) ∧
+        ∑ k ∈ S, μ (dyadicCube n k) *
+            rieszEnergy (normalizedRestrict μ (dyadicCube n k)) a ≤
+          ENNReal.ofReal
+              (4 * Cbox * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u)) *
+            (ENNReal.ofReal
+                (C * (2 * Real.sqrt 2 / (2 : ℝ) ^ n) ^ (s - a) * 2 ^ a) *
+              (1 - ENNReal.ofReal ((2 : ℝ) ^ (a - s)))⁻¹) := by
+  obtain ⟨Cbox, hCbox, hcover⟩ :=
+    exists_occupiedCubeIndices_card_le_of_hasUpperBoxBound hbox
+  refine ⟨Cbox, hCbox, fun n hn ↦ ?_⟩
+  obtain ⟨S₀, hKcover, hS₀card⟩ := hcover n
+  let S := S₀.filter fun k ↦ μ (dyadicCube n k) ≠ 0
+  have hpos : ∀ k ∈ S, 0 < μ (dyadicCube n k) := by
+    intro k hk
+    exact pos_iff_ne_zero.2 (Finset.mem_filter.1 hk).2
+  refine ⟨S, measure_compl_iUnion_filter_measure_ne_zero_eq_zero hKcover hμK, hpos, ?_⟩
+  let B : ℝ≥0∞ :=
+    ENNReal.ofReal
+        (C * (2 * Real.sqrt 2 / (2 : ℝ) ^ n) ^ (s - a) * 2 ^ a) *
+      (1 - ENNReal.ofReal ((2 : ℝ) ^ (a - s)))⁻¹
+  have henergy := sum_measure_mul_rieszEnergy_normalizedRestrict_dyadicCube_le
+    hC ha has hfr hn S hpos
+  have hScardReal : (S.card : ℝ) ≤
+      4 * Cbox * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u) := by
+    calc
+      (S.card : ℝ) ≤ (S₀.card : ℝ) := by
+        exact_mod_cast Finset.card_filter_le S₀ (fun k ↦ μ (dyadicCube n k) ≠ 0)
+      _ ≤ 4 * Cbox * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u) := hS₀card
+  have hScard : (S.card : ℝ≥0∞) ≤
+      ENNReal.ofReal (4 * Cbox * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u)) := by
+    rw [← ENNReal.ofReal_natCast]
+    exact ENNReal.ofReal_le_ofReal hScardReal
+  exact henergy.trans (by
+    change (S.card : ℝ≥0∞) * B ≤
+      ENNReal.ofReal (4 * Cbox * (2 : ℝ) ^ (((n + 1 : ℕ) : ℝ) * u)) * B
+    gcongr)
 
 end FalconerPacking
