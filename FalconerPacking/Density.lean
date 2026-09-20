@@ -39,8 +39,8 @@ No Fourier transform appears anywhere.
 
 noncomputable section
 
-open MeasureTheory Set
-open scoped ENNReal RealInnerProductSpace
+open MeasureTheory Set Filter
+open scoped ENNReal RealInnerProductSpace Topology
 
 namespace FalconerPacking
 
@@ -383,23 +383,20 @@ theorem measurable_avg (σ : Measure ℝ) [SFinite σ] {ε : ℝ} :
       (measurable_fst.sub measurable_snd)) measurable_const
   exact measurable_measure_prodMk_left hS
 
-/-- **Finite `1`-energy forces absolute continuity, quantitatively.**  For a measure on the line
-of finite Riesz `1`-energy `E`, every measurable set satisfies `σ A ≤ (E · |Aᵋ|)^{1/2}`, where
-`Aᵋ` is the closed `ε`-thickening.  Letting `ε → 0` on a compact set gives `σ A ≤ (E |A|)^{1/2}`,
-so `σ` is absolutely continuous with respect to Lebesgue measure.
-
-The proof is Cauchy–Schwarz against the uniform `L²` bound on the `ε`-averages: the mass of `A`
-is recovered from those averages over the thickening, and the averages are square integrable
-with a bound independent of `ε`. -/
-theorem measure_le_rpow_energy_mul_volume (σ : Measure ℝ) [SFinite σ] {A : Set ℝ}
-    (hA : MeasurableSet A) {ε : ℝ} (hε : 0 < ε) :
-    σ A ≤ (energyLine σ 1 * volume (Metric.cthickening ε A)) ^ (1 / 2 : ℝ) := by
+/-- The abstract form of the Cauchy–Schwarz step: any uniform `L²` bound on the `ε`-averages,
+not just the one coming from the energy, bounds the measure of a set by the volume of its
+`ε`-thickening. -/
+theorem sq_measure_le_of_avg_bound (σ : Measure ℝ) [SFinite σ] {A : Set ℝ}
+    (hA : MeasurableSet A) {ε : ℝ} (hε : 0 < ε) {C : ℝ≥0∞}
+    (hbound : (∫⁻ u, (σ {x : ℝ | |u - x| ≤ ε}) ^ 2) ≤ ENNReal.ofReal (4 * ε ^ 2) * C) :
+    (σ A) ^ 2 ≤ C * volume (Metric.cthickening ε A) := by
   set T : Set ℝ := Metric.cthickening ε A with hT
   have hTmeas : MeasurableSet T := Metric.isClosed_cthickening.measurableSet
   set g : ℝ → ℝ≥0∞ := fun u => σ {x : ℝ | |u - x| ≤ ε} with hg
   have hgmeas : Measurable g := measurable_avg σ
   have hpos : ENNReal.ofReal (2 * ε) ≠ 0 := by
     simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]; linarith
+  have hct : ENNReal.ofReal (2 * ε) ≠ ⊤ := ENNReal.ofReal_ne_top
   have hholder : (∫⁻ u in T, g u)
       ≤ (∫⁻ u, g u ^ (2 : ℝ)) ^ (1 / 2 : ℝ) * (volume T) ^ (1 / 2 : ℝ) := by
     have hrw : (∫⁻ u in T, g u) = ∫⁻ u, g u * T.indicator (1 : ℝ → ℝ≥0∞) u := by
@@ -415,71 +412,67 @@ theorem measure_le_rpow_energy_mul_volume (σ : Measure ℝ) [SFinite σ] {A : S
     rw [hrw, ← hind]
     exact ENNReal.lintegral_mul_le_Lp_mul_Lq volume Real.HolderConjugate.two_two
       hgmeas.aemeasurable (measurable_const.indicator hTmeas).aemeasurable
-  have hsq : (∫⁻ u, g u ^ (2 : ℝ)) ≤ ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1 := by
-    have := lintegral_sq_measure_interval_le σ hε
-    refine le_trans (le_of_eq (lintegral_congr fun u => ?_)) this
-    rw [← ENNReal.rpow_natCast (g u) 2]
+  have h4 : ENNReal.ofReal (4 * ε ^ 2) ^ (1 / 2 : ℝ) = ENNReal.ofReal (2 * ε) := by
+    rw [ENNReal.ofReal_rpow_of_pos (by positivity : (0:ℝ) < 4 * ε ^ 2)]
+    congr 1
+    rw [show (4 : ℝ) * ε ^ 2 = (2 * ε) ^ (2 : ℕ) from by ring,
+      ← Real.rpow_natCast (2 * ε) 2, ← Real.rpow_mul (by positivity)]
     norm_num
+  have hconv : (∫⁻ u, g u ^ (2 : ℝ)) = ∫⁻ u, g u ^ 2 :=
+    lintegral_congr fun u => by rw [← ENNReal.rpow_natCast (g u) 2]; norm_num
   have hkey : ENNReal.ofReal (2 * ε) * σ A
-      ≤ ENNReal.ofReal (2 * ε)
-        * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
+      ≤ ENNReal.ofReal (2 * ε) * (C * volume T) ^ (1 / 2 : ℝ) := by
     refine le_trans (mul_measure_le_setLIntegral σ hA hε) (le_trans hholder ?_)
-    have h4 : ENNReal.ofReal (4 * ε ^ 2) ^ (1 / 2 : ℝ) = ENNReal.ofReal (2 * ε) := by
-      rw [ENNReal.ofReal_rpow_of_pos (by positivity : (0:ℝ) < 4 * ε ^ 2)]
-      congr 1
-      rw [show (4 : ℝ) * ε ^ 2 = (2 * ε) ^ (2 : ℕ) from by ring,
-        ← Real.rpow_natCast (2 * ε) 2, ← Real.rpow_mul (by positivity)]
-      norm_num
-    have hc : (ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1) ^ (1 / 2 : ℝ)
-        = ENNReal.ofReal (2 * ε) * (energyLine σ 1) ^ (1 / 2 : ℝ) := by
-      rw [ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), h4]
     calc (∫⁻ u, g u ^ (2 : ℝ)) ^ (1 / 2 : ℝ) * (volume T) ^ (1 / 2 : ℝ)
-        ≤ (ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1) ^ (1 / 2 : ℝ)
-            * (volume T) ^ (1 / 2 : ℝ) := by
+        ≤ (ENNReal.ofReal (4 * ε ^ 2) * C) ^ (1 / 2 : ℝ) * (volume T) ^ (1 / 2 : ℝ) := by
           gcongr
-      _ = ENNReal.ofReal (2 * ε) * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
-          rw [hc, ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), mul_assoc]
-  have hct : ENNReal.ofReal (2 * ε) ≠ ⊤ := ENNReal.ofReal_ne_top
-  calc σ A = (ENNReal.ofReal (2 * ε))⁻¹ * (ENNReal.ofReal (2 * ε) * σ A) := by
-        rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
-    _ ≤ (ENNReal.ofReal (2 * ε))⁻¹
-          * (ENNReal.ofReal (2 * ε) * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ)) := by gcongr
-    _ = (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
-        rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
+          rw [hconv]; exact hbound
+      _ = ENNReal.ofReal (2 * ε) * (C * volume T) ^ (1 / 2 : ℝ) := by
+          rw [ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), h4,
+            ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), mul_assoc]
+  have hstep : σ A ≤ (C * volume T) ^ (1 / 2 : ℝ) := by
+    calc σ A = (ENNReal.ofReal (2 * ε))⁻¹ * (ENNReal.ofReal (2 * ε) * σ A) := by
+          rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
+      _ ≤ (ENNReal.ofReal (2 * ε))⁻¹ * (ENNReal.ofReal (2 * ε) * (C * volume T) ^ (1/2:ℝ)) := by
+          gcongr
+      _ = (C * volume T) ^ (1 / 2 : ℝ) := by
+          rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
+  calc (σ A) ^ 2 ≤ ((C * volume T) ^ (1 / 2 : ℝ)) ^ 2 := by gcongr
+    _ = C * volume T := by rw [← ENNReal.rpow_natCast _ 2, ← ENNReal.rpow_mul]; norm_num
 
 
 
-theorem sq_measure_le (σ : Measure ℝ) [SFinite σ] {A : Set ℝ} (hA : MeasurableSet A)
-    {ε : ℝ} (hε : 0 < ε) :
-    (σ A) ^ 2 ≤ energyLine σ 1 * volume (Metric.cthickening ε A) := by
-  have h := measure_le_rpow_energy_mul_volume σ hA hε
-  calc (σ A) ^ 2
-      ≤ ((energyLine σ 1 * volume (Metric.cthickening ε A)) ^ (1 / 2 : ℝ)) ^ 2 := by gcongr
-    _ = energyLine σ 1 * volume (Metric.cthickening ε A) := by
-        rw [← ENNReal.rpow_natCast _ 2, ← ENNReal.rpow_mul]
-        norm_num
+/-- A bound that holds along a sequence of scales tending to zero already gives the compact
+estimate: the thickenings shrink to the set, and the inequality only has to hold frequently. -/
+theorem sq_measure_compact_le_of_frequently (σ : Measure ℝ) [SFinite σ] {K : Set ℝ}
+    (hK : IsCompact K) {C : ℝ≥0∞} (hC : C ≠ ⊤) {ε : ℕ → ℝ}
+    (hpos : ∀ n, 0 < ε n) (hto : Tendsto ε atTop (𝓝 0))
+    (hfreq : ∃ᶠ n in atTop,
+      (∫⁻ u, (σ {x : ℝ | |u - x| ≤ ε n}) ^ 2) ≤ ENNReal.ofReal (4 * (ε n) ^ 2) * C) :
+    (σ K) ^ 2 ≤ C * volume K := by
+  have hvol : Tendsto (fun n => C * volume (Metric.cthickening (ε n) K)) atTop
+      (𝓝 (C * volume K)) :=
+    ENNReal.Tendsto.const_mul
+      ((tendsto_measure_cthickening_of_isCompact (μ := (volume : Measure ℝ)) hK).comp hto)
+      (Or.inr hC)
+  by_contra hcon
+  push_neg at hcon
+  have hev : ∀ᶠ n in atTop, C * volume (Metric.cthickening (ε n) K) < (σ K) ^ 2 :=
+    hvol.eventually_lt_const hcon
+  obtain ⟨n, h1, h2⟩ := (hfreq.and_eventually hev).exists
+  exact absurd (sq_measure_le_of_avg_bound σ hK.measurableSet (hpos n) h1) (not_le.2 h2)
 
-/-- **The compact form.**  Letting the thickening shrink, a compact set has
-`σ K ² ≤ I₁(σ) · |K|`.  For `|K| = 0` this forces `σ K = 0`. -/
-theorem sq_measure_compact_le (σ : Measure ℝ) [SFinite σ] {K : Set ℝ} (hK : IsCompact K)
-    (hE : energyLine σ 1 ≠ ⊤) :
-    (σ K) ^ 2 ≤ energyLine σ 1 * volume K := by
-  have htend := tendsto_measure_cthickening_of_isCompact (μ := (volume : Measure ℝ)) hK
-  have h2 : Filter.Tendsto (fun r : ℝ => energyLine σ 1 * volume (Metric.cthickening r K))
-      (nhds 0) (nhds (energyLine σ 1 * volume K)) :=
-    ENNReal.Tendsto.const_mul htend (Or.inr hE)
-  refine ge_of_tendsto (x := nhdsWithin (0 : ℝ) (Set.Ioi 0))
-    (h2.mono_left nhdsWithin_le_nhds) ?_
-  filter_upwards [self_mem_nhdsWithin] with r hr
-  exact sq_measure_le σ hK.measurableSet hr
-
-/-- **Finite `1`-energy implies absolute continuity.** -/
-theorem absolutelyContinuous_of_energyLine_ne_top (σ : Measure ℝ) [IsFiniteMeasure σ]
-    (hE : energyLine σ 1 ≠ ⊤) : σ ≪ volume := by
+/-- Absolute continuity from a frequent bound along a sequence of scales. -/
+theorem absolutelyContinuous_of_frequently (σ : Measure ℝ) [IsFiniteMeasure σ]
+    {C : ℝ≥0∞} (hC : C ≠ ⊤) {ε : ℕ → ℝ}
+    (hpos : ∀ n, 0 < ε n) (hto : Tendsto ε atTop (𝓝 0))
+    (hfreq : ∃ᶠ n in atTop,
+      (∫⁻ u, (σ {x : ℝ | |u - x| ≤ ε n}) ^ 2) ≤ ENNReal.ofReal (4 * (ε n) ^ 2) * C) :
+    σ ≪ volume := by
   refine Measure.AbsolutelyContinuous.mk fun A hA hA0 => ?_
   have hcomp : ∀ K ⊆ A, IsCompact K → σ K = 0 := by
     intro K hKA hK
-    have h1 := sq_measure_compact_le σ hK hE
+    have h1 := sq_measure_compact_le_of_frequently σ hK hC hpos hto hfreq
     rw [measure_mono_null hKA hA0, mul_zero, nonpos_iff_eq_zero, pow_eq_zero_iff] at h1
     · exact h1
     · norm_num
@@ -487,5 +480,109 @@ theorem absolutelyContinuous_of_energyLine_ne_top (σ : Measure ℝ) [IsFiniteMe
   refine le_antisymm ?_ (zero_le')
   refine iSup_le fun K => iSup_le fun hKA => iSup_le fun hK => ?_
   exact le_of_eq (hcomp K hKA hK)
+
+
+
+/-- **Marstrand's projection theorem, absolute-continuity form.**  If a planar measure has finite
+Riesz `1`-energy, then for almost every slope its projection is absolutely continuous with
+respect to Lebesgue measure on the line.
+
+The proof is Fatou against the uniform `L²` bound of `lintegral_chart_sq_measure_interval_le`:
+the normalized `L²` norms of the `ε`-averages of the projections have integral at most `16 I₁(μ)`
+at every scale, so their lower limit is finite at almost every slope, and a frequent bound along
+a sequence of scales is all the Cauchy–Schwarz argument needs. -/
+instance instIsFiniteMeasureProjMeasureN (μ : Measure Plane) [IsFiniteMeasure μ] (n : Plane) :
+    IsFiniteMeasure (projMeasureN μ n) := by
+  rw [projMeasureN]
+  exact μ.isFiniteMeasure_map _
+
+theorem ae_absolutelyContinuous_projMeasure (μ : Measure Plane) [IsFiniteMeasure μ]
+    (hE : rieszEnergy μ 1 ≠ ⊤) :
+    ∀ᵐ a ∂(volume.restrict (Set.Icc (-1 : ℝ) 1)),
+      projMeasureN μ (normalSlope a) ≪ volume := by
+  set ε : ℕ → ℝ := fun n => 1 / (n + 1) with hεdef
+  have hpos : ∀ n, 0 < ε n := fun n => by positivity
+  have hto : Tendsto ε atTop (𝓝 0) := tendsto_one_div_add_atTop_nhds_zero_nat
+  set Q : ℕ → ℝ → ℝ≥0∞ := fun n a =>
+    ∫⁻ u : ℝ, ((projMeasureN μ (normalSlope a)) {x : ℝ | |u - x| ≤ ε n}) ^ 2 with hQ
+  have hQeq : ∀ n a, Q n a
+      = ∫⁻ q : Plane × Plane,
+          ENNReal.ofReal (2 * ε n - |⟪q.1 - q.2, normalSlope a⟫|) ∂(μ.prod μ) := by
+    intro n a
+    show (∫⁻ u : ℝ, ((projMeasureN μ (normalSlope a)) {x : ℝ | |u - x| ≤ ε n}) ^ 2) = _
+    rw [lintegral_sq_measure_interval_eq _ (hpos n),
+      lintegral_prod_projMeasureN μ (normalSlope a) measurable_ofReal_overlap]
+  have hQmeas : ∀ n, Measurable (Q n) := by
+    intro n
+    have h : Measurable fun a : ℝ => ∫⁻ q : Plane × Plane,
+        ENNReal.ofReal (2 * ε n - |⟪q.1 - q.2, normalSlope a⟫|) ∂(μ.prod μ) :=
+      ((measurable_ofReal_overlap (ε := ε n)).comp
+        measurable_inner_normalSlope).lintegral_prod_right'
+    have heq : Q n = fun a : ℝ => ∫⁻ q : Plane × Plane,
+        ENNReal.ofReal (2 * ε n - |⟪q.1 - q.2, normalSlope a⟫|) ∂(μ.prod μ) :=
+      funext (hQeq n)
+    rw [heq]; exact h
+  have hbound : ∀ n, (∫⁻ a in Set.Icc (-1 : ℝ) 1, Q n a)
+      ≤ ENNReal.ofReal (64 * (ε n) ^ 2) * rieszEnergy μ 1 := fun n =>
+    le_trans le_self_add (lintegral_chart_sq_measure_interval_le μ (hpos n))
+  set F : ℕ → ℝ → ℝ≥0∞ := fun n a => Q n a / ENNReal.ofReal (4 * (ε n) ^ 2) with hF
+  have hcne : ∀ n, ENNReal.ofReal (4 * (ε n) ^ 2) ≠ 0 := by
+    intro n
+    simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]
+    have := hpos n; positivity
+  have hFmeas : ∀ n, Measurable (F n) := fun n => (hQmeas n).div_const _
+  have hFbound : ∀ n, (∫⁻ a in Set.Icc (-1 : ℝ) 1, F n a) ≤ 16 * rieszEnergy μ 1 := by
+    intro n
+    have hc : ENNReal.ofReal (64 * (ε n) ^ 2) * rieszEnergy μ 1
+        = 16 * rieszEnergy μ 1 * ENNReal.ofReal (4 * (ε n) ^ 2) := by
+      rw [show (64 : ℝ) * (ε n) ^ 2 = 16 * (4 * (ε n) ^ 2) from by ring,
+        ENNReal.ofReal_mul (by norm_num : (0:ℝ) ≤ 16)]
+      rw [show ENNReal.ofReal (16 : ℝ) = 16 from by simp]
+      ring
+    calc (∫⁻ a in Set.Icc (-1 : ℝ) 1, F n a)
+        = (∫⁻ a in Set.Icc (-1 : ℝ) 1, Q n a) / ENNReal.ofReal (4 * (ε n) ^ 2) := by
+          simp only [hF, div_eq_mul_inv]
+          exact lintegral_mul_const _ (hQmeas n)
+      _ ≤ (ENNReal.ofReal (64 * (ε n) ^ 2) * rieszEnergy μ 1)
+            / ENNReal.ofReal (4 * (ε n) ^ 2) := by gcongr; exact hbound n
+      _ = 16 * rieszEnergy μ 1 := by
+          rw [hc, ENNReal.mul_div_cancel_right (hcne n) ENNReal.ofReal_ne_top]
+  have hne : (16 : ℝ≥0∞) * rieszEnergy μ 1 ≠ ⊤ := ENNReal.mul_ne_top (by simp) hE
+  have hfatou : (∫⁻ a in Set.Icc (-1 : ℝ) 1, liminf (fun n => F n a) atTop)
+      ≤ 16 * rieszEnergy μ 1 :=
+    le_trans (lintegral_liminf_le hFmeas)
+      (liminf_le_of_frequently_le (Filter.Frequently.of_forall hFbound))
+  have hae := ae_lt_top (Measurable.liminf hFmeas) (ne_top_of_le_ne_top hne hfatou)
+  filter_upwards [hae] with a ha
+  obtain ⟨M, hM1, hM2⟩ : ∃ M : ℝ≥0∞, liminf (fun n => F n a) atTop < M ∧ M ≠ ⊤ :=
+    ⟨liminf (fun n => F n a) atTop + 1, ENNReal.lt_add_right ha.ne one_ne_zero,
+      ENNReal.add_ne_top.2 ⟨ha.ne, ENNReal.one_ne_top⟩⟩
+  have hfreq : ∃ᶠ n in atTop, F n a < M := frequently_lt_of_liminf_lt (by isBoundedDefault) hM1
+  refine absolutelyContinuous_of_frequently _ hM2 hpos hto (hfreq.mono fun n hn => ?_)
+  have hlt : Q n a < M * ENNReal.ofReal (4 * (ε n) ^ 2) :=
+    (ENNReal.div_lt_iff (Or.inl (hcne n)) (Or.inl ENNReal.ofReal_ne_top)).1 hn
+  exact le_of_lt (by rw [mul_comm] at hlt; exact hlt)
+
+/-- The energy form: the uniform `L²` bound supplies the constant. -/
+theorem sq_measure_le (σ : Measure ℝ) [SFinite σ] {A : Set ℝ} (hA : MeasurableSet A)
+    {ε : ℝ} (hε : 0 < ε) :
+    (σ A) ^ 2 ≤ energyLine σ 1 * volume (Metric.cthickening ε A) :=
+  sq_measure_le_of_avg_bound σ hA hε (lintegral_sq_measure_interval_le σ hε)
+
+/-- **The compact form.**  Letting the thickening shrink, a compact set satisfies
+`σ K ² ≤ I₁(σ) · |K|`.  For `|K| = 0` this forces `σ K = 0`. -/
+theorem sq_measure_compact_le (σ : Measure ℝ) [SFinite σ] {K : Set ℝ} (hK : IsCompact K)
+    (hE : energyLine σ 1 ≠ ⊤) :
+    (σ K) ^ 2 ≤ energyLine σ 1 * volume K :=
+  sq_measure_compact_le_of_frequently σ hK hE (fun n => by positivity)
+    tendsto_one_div_add_atTop_nhds_zero_nat
+    (Filter.Frequently.of_forall fun n => lintegral_sq_measure_interval_le σ (by positivity))
+
+/-- **Finite `1`-energy implies absolute continuity.** -/
+theorem absolutelyContinuous_of_energyLine_ne_top (σ : Measure ℝ) [IsFiniteMeasure σ]
+    (hE : energyLine σ 1 ≠ ⊤) : σ ≪ volume :=
+  absolutelyContinuous_of_frequently σ hE (fun n => by positivity)
+    tendsto_one_div_add_atTop_nhds_zero_nat
+    (Filter.Frequently.of_forall fun n => lintegral_sq_measure_interval_le σ (by positivity))
 
 end FalconerPacking

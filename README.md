@@ -91,6 +91,7 @@ argument can show, which is the step that requires the discretized projection ma
 | Marstrand's projection theorem in energy form (module 8): a.e. projection of a finite-`s`-energy measure has finite `s`-energy | **proved**, no holes |
 | square integrability of projected densities (module 8): `∫ ‖(π_a μ)_ε‖₂² da ≲ I₁(μ)` uniformly in `ε`, with no Fourier transform | **proved**, no holes |
 | finite `1`-energy on the line implies absolute continuity, quantitatively (module 8) | **proved**, no holes |
+| Marstrand's projection theorem, absolute-continuity form (module 8): finite `I₁(μ)` gives an absolutely continuous projection at a.e. slope | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
