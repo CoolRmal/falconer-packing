@@ -158,4 +158,100 @@ theorem volume_pinnedDistances_pos_of_hyperbolic_bound
         congr 2
         ring
 
+/-! ### Averaging over the pin
+
+The criterion above is stated at a fixed pin, and the analytic branches supply information about
+the hyperbolic tubes only on average over a pin measure.  Fatou bridges the two: an average
+bound at every scale gives a finite lower limit at almost every pin, hence the frequent bound
+the criterion needs.
+
+The conclusion, `exists_mem_volume_pinnedDistances_pos_of_averaged_hypTube`, has exactly the
+shape of both analytic branches of Theorem 1.1.  Everything after the averaged tube bound is
+therefore supplied here, unconditionally.
+-/
+
+/-- The hyperbolic tube around a pin, as a set of pairs. -/
+def hypTube (y : Plane) (δ : ℝ) : Set (Plane × Plane) :=
+  {q | |dist q.1 y - dist q.2 y| < δ}
+
+theorem measurableSet_hypTube_prod (δ : ℝ) :
+    MeasurableSet {z : Plane × (Plane × Plane) | |dist z.2.1 z.1 - dist z.2.2 z.1| < δ} := by
+  refine measurableSet_lt (continuous_abs.measurable.comp ?_) measurable_const
+  have h1 : Measurable fun z : Plane × (Plane × Plane) => dist z.2.1 z.1 :=
+    (continuous_dist.comp ((continuous_fst.comp continuous_snd).prodMk continuous_fst)).measurable
+  have h2 : Measurable fun z : Plane × (Plane × Plane) => dist z.2.2 z.1 :=
+    (continuous_dist.comp ((continuous_snd.comp continuous_snd).prodMk continuous_fst)).measurable
+  exact h1.sub h2
+
+theorem measurable_measure_hypTube (μ : Measure Plane) [SFinite μ] (δ : ℝ) :
+    Measurable fun y : Plane => (μ.prod μ) (hypTube y δ) :=
+  measurable_measure_prodMk_left (measurableSet_hypTube_prod δ)
+
+
+
+/-- **A pin from an averaged hyperbolic-tube bound.**  Suppose the mass of the hyperbolic tube
+around the pin, averaged over a pin measure `ν`, is `O(δ)` at a sequence of scales tending to
+zero.  Then `ν`-almost every pin has a positive-length pinned distance set, so a pin can be
+chosen in any full-measure set for `ν`.
+
+This is the shape of both analytic branches of Theorem 1.1: everything after the averaged tube
+bound — Fatou to pass from an average at every scale to a frequent bound at almost every pin,
+then the `L²` criterion at that pin — is supplied here, unconditionally. -/
+theorem exists_mem_volume_pinnedDistances_pos_of_averaged_hypTube
+    (μ ν : Measure Plane) [IsFiniteMeasure μ] [IsFiniteMeasure ν]
+    {E F : Set Plane} (hμE : 0 < μ E) (hνF : ν Fᶜ = 0) (hν : 0 < ν univ)
+    {C : ℝ≥0∞} (hC : C ≠ ⊤) {δ : ℕ → ℝ} (hpos : ∀ n, 0 < δ n)
+    (hto : Tendsto δ atTop (𝓝 0))
+    (hbound : ∀ n, (∫⁻ y, (μ.prod μ) (hypTube y (2 * δ n)) ∂ν)
+      ≤ ENNReal.ofReal (2 * δ n) * C) :
+    ∃ y ∈ F, 0 < volume (pinnedDistances E y) := by
+  set G : ℕ → Plane → ℝ≥0∞ := fun n y =>
+    (μ.prod μ) (hypTube y (2 * δ n)) / ENNReal.ofReal (2 * δ n) with hG
+  have hcne : ∀ n, ENNReal.ofReal (2 * δ n) ≠ 0 := by
+    intro n
+    simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]
+    linarith [hpos n]
+  have hGmeas : ∀ n, Measurable (G n) := fun n =>
+    (measurable_measure_hypTube μ (2 * δ n)).div_const _
+  have hGbound : ∀ n, (∫⁻ y, G n y ∂ν) ≤ C := by
+    intro n
+    calc (∫⁻ y, G n y ∂ν)
+        = (∫⁻ y, (μ.prod μ) (hypTube y (2 * δ n)) ∂ν) / ENNReal.ofReal (2 * δ n) := by
+          simp only [hG, div_eq_mul_inv]
+          exact lintegral_mul_const _ (measurable_measure_hypTube μ (2 * δ n))
+      _ ≤ (ENNReal.ofReal (2 * δ n) * C) / ENNReal.ofReal (2 * δ n) := by gcongr; exact hbound n
+      _ = C := by
+          rw [mul_comm, ENNReal.mul_div_cancel_right (hcne n) ENNReal.ofReal_ne_top]
+  have hfatou : (∫⁻ y, liminf (fun n => G n y) atTop ∂ν) ≤ C :=
+    le_trans (lintegral_liminf_le hGmeas)
+      (liminf_le_of_frequently_le (Filter.Frequently.of_forall hGbound))
+  have hae := ae_lt_top (Measurable.liminf hGmeas) (ne_top_of_le_ne_top hC hfatou)
+  have hgood : ∀ᵐ y ∂ν, 0 < volume (pinnedDistances E y) := by
+    filter_upwards [hae] with y hy
+    obtain ⟨M, hM1, hM2⟩ : ∃ M : ℝ≥0∞, liminf (fun n => G n y) atTop < M ∧ M ≠ ⊤ :=
+      ⟨liminf (fun n => G n y) atTop + 1, ENNReal.lt_add_right hy.ne one_ne_zero,
+        ENNReal.add_ne_top.2 ⟨hy.ne, ENNReal.one_ne_top⟩⟩
+    have hfreq : ∃ᶠ n in atTop, G n y < M := frequently_lt_of_liminf_lt (by isBoundedDefault) hM1
+    refine volume_pinnedDistances_pos_of_hyperbolic_bound μ y hμE hM2 hpos hto
+      (hfreq.mono fun n hn => ?_)
+    have hlt : (μ.prod μ) (hypTube y (2 * δ n)) < M * ENNReal.ofReal (2 * δ n) :=
+      (ENNReal.div_lt_iff (Or.inl (hcne n)) (Or.inl ENNReal.ofReal_ne_top)).1 hn
+    rw [mul_comm M] at hlt
+    exact le_of_lt hlt
+  -- a full-measure set for `ν` meets `F`
+  by_contra hcon
+  push_neg at hcon
+  have hsub : F ⊆ {y | ¬ (0 < volume (pinnedDistances E y))} := by
+    intro y hy
+    simpa using (hcon y hy)
+  have hnull : ν {y | ¬ (0 < volume (pinnedDistances E y))} = 0 := hgood
+  have hF0 : ν F = 0 := measure_mono_null hsub hnull
+  have hFpos : 0 < ν F := by
+    have h1 : ν univ ≤ ν F + ν Fᶜ := by
+      rw [← Set.union_compl_self F]
+      exact measure_union_le _ _
+    rw [hνF, add_zero] at h1
+    exact lt_of_lt_of_le hν h1
+  exact absurd hF0 hFpos.ne'
+
 end FalconerPacking

@@ -93,6 +93,7 @@ argument can show, which is the step that requires the discretized projection ma
 | finite `1`-energy on the line implies absolute continuity, quantitatively (module 8) | **proved**, no holes |
 | Marstrand's projection theorem, absolute-continuity form (module 8): finite `I₁(μ)` gives an absolutely continuous projection at a.e. slope | **proved**, no holes |
 | the `L²` criterion for pinned distance sets: `O(δ)` mass in the hyperbolic tube gives a positive-length pinned distance set | **proved**, no holes |
+| a pin from an **averaged** hyperbolic-tube bound — the exact shape of both analytic branches' conclusions | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
