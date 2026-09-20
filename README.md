@@ -97,6 +97,7 @@ argument can show, which is the step that requires the discretized projection ma
 | a pin from an **averaged** hyperbolic-tube bound — the exact shape of both analytic branches' conclusions | **proved**, no holes |
 | the full reduction: any set carrying a compactly supported `d`-Frostman probability measure has a positive-length pin, given only `HypTubeBound d` | **proved**, no holes |
 | Theorem 1.1's conclusion for **closed** sets of dimension above `d`, from `HypTubeBound d` alone | **proved**, no holes |
+| the same with the **packing hypothesis used**: the covering-aware interface `HypTubeBoundC d u`, with the piece of small upper box dimension extracted from `dimP E < u` | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
