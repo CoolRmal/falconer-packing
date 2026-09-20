@@ -35,6 +35,7 @@ is strict, including at the two transition points.
 | selection: bounded piece of positive mass, compact subset, separated compact pair | **proved**, no holes |
 | truncated kernel and energy at scales `a ≤ b`, bounded by `b / a` | **proved**, no holes |
 | Hausdorff content: vanishing content forces vanishing measure | **proved**, no holes |
+| Frostman normalization: the walk up the cube tree enforces every allowance | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
@@ -77,6 +78,7 @@ registration; a registry submission asserts a complete machine-checked proof.
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
+| `FalconerPacking/FrostmanWeights.lean` | the finite Frostman normalization on the cube tree |
 | `FalconerPacking/Branches.lean` | the two analytic branches, as unproved interfaces |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
