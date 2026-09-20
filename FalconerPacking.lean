@@ -8,6 +8,7 @@ import FalconerPacking.Algebra
 import FalconerPacking.Dimensions
 import FalconerPacking.Profile
 import FalconerPacking.Dyadic
+import FalconerPacking.Energy
 import FalconerPacking.Branches
 import FalconerPacking.Main
 
