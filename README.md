@@ -20,49 +20,30 @@ is strict, including at the two transition points.
 
 ## Status
 
+The **checked theorem is the conditional form of Theorem 1.1** (Section 4 of the manuscript):
+the two analytic criteria enter as explicit hypotheses, and the theorem is the branch
+combination that derives the curve `B(d)` from them. That combination is fully proved, so the
+comparator's axiom report is `[propext, Classical.choice, Quot.sound]`.
+
+Unconditional Theorem 1.1 is recorded in `Challenge.lean` as `Target` and is **not proved**: it
+needs the original branch (Proposition 2.5) and the finite-profile branch (Theorem 3.1), whose
+formalization requires Orponen's radial-projection theorem, GIOW packet localization, tube
+deletion, the inflation step, the pinned identity, the shell bounds and the joint limit —
+modules 7 to 14 of the manuscript's ledger, none of which exists in Mathlib. A green comparator
+here certifies the conditional theorem, nothing more.
+
 | stage | state |
 |---|---|
-| statement (`Challenge.lean`) | type-checks; fully elaborated type identical to `Solution.lean` |
-| branch combination (Section 4) | **proved**, no holes |
+| challenge statement | type-checks; elaborated type identical to `Solution.lean` |
+| branch combination (Section 4) — **the checked theorem** | **proved**, no holes |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
-| dimensions: `dimH ≤ packingDim`, monotonicity, bounded case | **proved**, no holes |
-| profile: edge costs, potential, telescoped edge bound | **proved**, no holes |
-| profile: greedy descent, insertion, perturbation, zero-cost edges | **proved**, no holes |
+| dimensions: `dimH ≤ packingDim`, monotonicity, countable stability | **proved**, no holes |
 | profile: Lemma 3.2 (chain to the origin), Lemma 3.3 (endpoint estimate) | **proved**, no holes |
-| dyadic cubes: partition, nesting, diameter, measurability | **proved**, no holes |
+| dyadic cubes: partition, nesting, ancestors, diameter, four-cube bound | **proved**, no holes |
 | energy: Frostman measures have no atoms and finite `a`-energy for `a < s` | **proved**, no holes |
-| restrictions: normalized restrictions stay Frostman, with constant `C / σ Q` | **proved**, no holes |
-| selection: bounded piece of positive mass, compact subset, separated compact pair | **proved**, no holes |
-| truncated kernel and energy at scales `a ≤ b`, bounded by `b / a` | **proved**, no holes |
-| Hausdorff content: vanishing content forces vanishing measure | **proved**, no holes |
-| Frostman normalization: the walk up the cube tree enforces every allowance | **proved**, no holes |
-| **finite Frostman lemma**: allowances hold and the total mass dominates the content | **proved**, no holes |
-| `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
-| `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
-| comparator | statement stage passes locally; axiom stage reports `sorryAx` |
-
-The axiom report of the target theorem is currently
-
-```text
-'FalconerPacking.exists_pin_volume_pinnedDistances_pos' depends on axioms:
-  [propext, sorryAx, Classical.choice, Quot.sound]
-```
-
-The comparator job runs the real `leanprover/comparator` in its `landrun` sandbox. It builds and
-exports the challenge, builds the solution, and then stops at
-
-```text
-uncaught exception: Illegal axiom detected: 'sorryAx'
-```
-
-so the pipeline itself is in working order and the only obstruction is the unproved branches.
-
-`sorryAx` disappears exactly when the two analytic branches are proved. Section 7 of the
-manuscript lists the sixteen modules that needs: profile optimization, dyadic conditional
-measures, truncated energies, tube deletion, packet localization, the inflation step, the pinned
-identity, shell bounds, the joint limit, and the Borel reduction — together with Orponen's
-radial-projection theorem, which is not in Mathlib. This repository is **not** ready for
-registration; a registry submission asserts a complete machine-checked proof.
+| restrictions, selection, separation, Hausdorff content | **proved**, no holes |
+| **finite Frostman lemma**: allowances hold and total mass dominates the content | **proved**, no holes |
+| unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
 

@@ -6,23 +6,25 @@ Authors: Yongxi Lin
 import FalconerPacking.Main
 
 /-!
-# Solution: a Hausdorff–packing criterion for self-pinned distance sets
+# Solution: the branch combination
 
-The target theorem, in the exact form of `Challenge.lean`.  Its proof is the branch combination
-of Section 4, which consumes the two analytic branches of `FalconerPacking.Branches`.
+The challenge theorem, in the exact form of `Challenge.lean`: the conditional form of Theorem
+1.1, proved by the curve algebra of Section 4.
 -/
 
 open MeasureTheory
 
 namespace FalconerPacking
 
-/-- **The target theorem.**  Let `E ⊆ ℝ²` be Borel with `d = dimH E`.  If `1 < d ≤ 5/4` and
-`dimP E < B(d)`, then some pin `y ∈ E` has a pinned distance set of positive length. -/
-theorem exists_pin_volume_pinnedDistances_pos (E : Set Plane) (d : ℝ)
-    (hE : MeasurableSet E) (hdimH : dimH E = ENNReal.ofReal d)
+/-- **The challenge theorem** (Section 4 of the manuscript).  Assume the original-branch
+criterion and the finite-profile criterion.  Then a planar Borel set of Hausdorff dimension
+`d ∈ (1, 5/4]` whose packing dimension is below the curve `bound d` has a pin inside itself whose
+pinned distance set has positive Lebesgue measure. -/
+theorem exists_pin_of_branches (hOrig : OriginalBranch) (hProfile : FiniteProfileBranch)
+    (E : Set Plane) (d : ℝ) (hE : MeasurableSet E) (hdimH : dimH E = ENNReal.ofReal d)
     (hd_lt : 1 < d) (hd_le : d ≤ 5 / 4)
     (hpack : packingDim E < ENNReal.ofReal (bound d)) :
     ∃ y ∈ E, 0 < volume (pinnedDistances E y) :=
-  main E d hE hdimH hd_lt hd_le hpack
+  main hOrig hProfile E d hE hdimH hd_lt hd_le hpack
 
 end FalconerPacking

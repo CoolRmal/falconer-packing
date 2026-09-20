@@ -13,7 +13,6 @@ import FalconerPacking.Restriction
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
-import FalconerPacking.Branches
 import FalconerPacking.Main
 
 /-!

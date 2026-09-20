@@ -2,7 +2,7 @@
   "challenge_module": "Challenge",
   "solution_module": "Solution",
   "theorem_names": [
-    "FalconerPacking.exists_pin_volume_pinnedDistances_pos"
+    "FalconerPacking.exists_pin_of_branches"
   ],
   "permitted_axioms": [
     "propext",

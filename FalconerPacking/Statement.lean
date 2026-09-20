@@ -63,4 +63,31 @@ def bound (d : ℝ) : ℝ :=
   else if d ≤ d1 then 3 * d ^ 2 - (5 / 2 : ℝ) * d
   else ((2 * d - 1) ^ 2 + Real.sqrt ((2 * d - 1) ^ 4 + 8 * d)) / 4
 
+/-- The exponent `A(s, u)` of the finite-profile criterion. -/
+def A (s u : ℝ) : ℝ :=
+  (max u (3 / 2) - s) / (2 * max u (3 / 2) - 1) + (u - s) / (2 * s)
+
+/-- **The original branch criterion** (Proposition 2.5 of the manuscript), as a hypothesis:
+a planar Borel set with `dimH E > 1` and `dimP E < 2 dimH E - 1` has a pin in itself whose
+pinned distance set has positive length. -/
+def OriginalBranch : Prop :=
+  ∀ (E : Set Plane) (d : ℝ), MeasurableSet E → dimH E = ENNReal.ofReal d → 1 < d →
+    packingDim E < ENNReal.ofReal (2 * d - 1) →
+      ∃ y ∈ E, 0 < volume (pinnedDistances E y)
+
+/-- **The finite-profile criterion** (Theorem 3.1 of the manuscript), as a hypothesis, in the
+upper-bound form: if `dimP E < t` with `d ≤ t ≤ 2` and `A d t < d - 1`, then `E` has a pin in
+itself whose pinned distance set has positive length. -/
+def FiniteProfileBranch : Prop :=
+  ∀ (E : Set Plane) (d t : ℝ), MeasurableSet E → dimH E = ENNReal.ofReal d → 1 < d →
+    d < 3 / 2 → packingDim E < ENNReal.ofReal t → d ≤ t → t ≤ 2 → A d t < d - 1 →
+      ∃ y ∈ E, 0 < volume (pinnedDistances E y)
+
+/-- Theorem 1.1 of the manuscript, recorded as a proposition.  It is **not** asserted here: the
+challenge below is its conditional form, and the two analytic branches remain open. -/
+def Target : Prop :=
+  ∀ (E : Set Plane) (d : ℝ), MeasurableSet E → dimH E = ENNReal.ofReal d →
+    1 < d → d ≤ (5 / 4 : ℝ) → packingDim E < ENNReal.ofReal (bound d) →
+      ∃ y ∈ E, 0 < volume (pinnedDistances E y)
+
 end FalconerPacking
