@@ -386,4 +386,125 @@ theorem satCube_eq_of_mem {w : (Fin 2 → ℤ) → ℝ} (hsat : SaturatedSomewhe
 
 end MaximalSaturated
 
+section MassBound
+
+variable {S n d}
+
+/-- The maximal saturated cubes of the occupied cubes. -/
+noncomputable def satCubes (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) (w : (Fin 2 → ℤ) → ℝ) :
+    Finset (ℕ × (Fin 2 → ℤ)) :=
+  S.image (satCube S n d w)
+
+/-- **The saturated cubes carry no more than the total mass.**  Their fibres are disjoint, so
+their allowances sum to at most the total weight. -/
+theorem sum_allowance_satCubes_le {w : (Fin 2 → ℤ) → ℝ} (hsat : SaturatedSomewhere S n d w)
+    (hw : ∀ k, 0 ≤ w k) :
+    ∑ p ∈ satCubes S n d w, allowance p.1 d ≤ ∑ k' ∈ S, w k' := by
+  classical
+  have hex : ∀ c ∈ S, ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) c) = allowance i d :=
+    fun c hc ↦ (hsat c hc).imp fun i hi ↦ ⟨hi.1, hi.2⟩
+  set fibre : ℕ × (Fin 2 → ℤ) → Finset (Fin 2 → ℤ) :=
+    fun p ↦ S.filter fun k' ↦ ancestor (n - p.1) k' = p.2 with hfibre
+  have hsatmass : ∀ p ∈ satCubes S n d w, allowance p.1 d = ∑ k' ∈ fibre p, w k' := by
+    intro p hp
+    obtain ⟨a, ha, rfl⟩ := Finset.mem_image.1 hp
+    exact (cubeMass_satLevel (hex a ha)).symm
+  have hdisj : (satCubes S n d w : Set (ℕ × (Fin 2 → ℤ))).PairwiseDisjoint fibre := by
+    intro p hp q hq hpq
+    obtain ⟨a, ha, rfl⟩ := Finset.mem_image.1 hp
+    obtain ⟨b, hb, rfl⟩ := Finset.mem_image.1 hq
+    refine Finset.disjoint_left.2 fun k' hk'p hk'q ↦ hpq ?_
+    have hk'S : k' ∈ S := (Finset.mem_filter.1 hk'p).1
+    exact satCube_eq_of_mem hsat ha hb hk'S (Finset.mem_filter.1 hk'p).2
+      (Finset.mem_filter.1 hk'q).2
+  calc ∑ p ∈ satCubes S n d w, allowance p.1 d
+      = ∑ p ∈ satCubes S n d w, ∑ k' ∈ fibre p, w k' :=
+        Finset.sum_congr rfl hsatmass
+    _ = ∑ k' ∈ (satCubes S n d w).biUnion fibre, w k' := (Finset.sum_biUnion hdisj).symm
+    _ ≤ ∑ k' ∈ S, w k' := by
+        refine Finset.sum_le_sum_of_subset_of_nonneg ?_ fun k' _ _ ↦ hw k'
+        intro k' hk'
+        obtain ⟨p, _, hk'p⟩ := Finset.mem_biUnion.1 hk'
+        exact (Finset.mem_filter.1 hk'p).1
+
+/-- Each occupied cube sits inside its maximal saturated cube. -/
+theorem dyadicCube_subset_satCube {w : (Fin 2 → ℤ) → ℝ} (hsat : SaturatedSomewhere S n d w)
+    {k' : Fin 2 → ℤ} (hk' : k' ∈ S) :
+    dyadicCube n k' ⊆ dyadicCube (satCube S n d w k').1 (satCube S n d w k').2 := by
+  have hex : ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d :=
+    (hsat k' hk').imp fun i hi ↦ ⟨hi.1, hi.2⟩
+  have hle : satLevel S n d w k' ≤ n := satLevel_le hex
+  have harith : satLevel S n d w k' + (n - satLevel S n d w k') = n := by omega
+  have := dyadicCube_subset_ancestor (satLevel S n d w k') (n - satLevel S n d w k') k'
+  rw [harith] at this
+  exact this
+
+/-- **The mass lower bound of the Frostman construction.**  The total weight of the finished walk
+controls the Hausdorff content of any set covered by the occupied cubes. -/
+theorem hausdorffContent_le_totalMass {w : (Fin 2 → ℤ) → ℝ} {K : Set Plane} (hd : 0 ≤ d)
+    (hsat : SaturatedSomewhere S n d w) (hw : ∀ k, 0 ≤ w k)
+    (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k') :
+    hausdorffContent d K
+      ≤ ENNReal.ofReal (Real.sqrt 2 ^ d) * ENNReal.ofReal (∑ k' ∈ S, w k') := by
+  classical
+  have hcov' : K ⊆ ⋃ p ∈ satCubes S n d w, dyadicCube p.1 p.2 := by
+    intro x hx
+    obtain ⟨k', hk', hxk⟩ := Set.mem_iUnion₂.1 (hcov hx)
+    refine Set.mem_iUnion₂.2 ⟨satCube S n d w k', ?_, dyadicCube_subset_satCube hsat hk' hxk⟩
+    exact Finset.mem_image.2 ⟨k', hk', rfl⟩
+  refine le_trans (hausdorffContent_le_of_finset_cover hd hcov') ?_
+  have hallow : ∀ p : ℕ × (Fin 2 → ℤ),
+      ENNReal.ofReal ((2 : ℝ) ^ (-(p.1 : ℝ) * d)) = ENNReal.ofReal (allowance p.1 d) := by
+    intro p
+    rw [allowance]
+  calc ∑ p ∈ satCubes S n d w, ENNReal.ofReal (Real.sqrt 2 ^ d)
+          * ENNReal.ofReal ((2 : ℝ) ^ (-(p.1 : ℝ) * d))
+      = ENNReal.ofReal (Real.sqrt 2 ^ d)
+          * ∑ p ∈ satCubes S n d w, ENNReal.ofReal (allowance p.1 d) := by
+        rw [Finset.mul_sum]
+        exact Finset.sum_congr rfl fun p _ ↦ by rw [hallow p]
+    _ = ENNReal.ofReal (Real.sqrt 2 ^ d)
+          * ENNReal.ofReal (∑ p ∈ satCubes S n d w, allowance p.1 d) := by
+        rw [ENNReal.ofReal_sum_of_nonneg fun p _ ↦ (allowance_pos p.1 d).le]
+    _ ≤ ENNReal.ofReal (Real.sqrt 2 ^ d) * ENNReal.ofReal (∑ k' ∈ S, w k') := by
+        gcongr
+        exact sum_allowance_satCubes_le hsat hw
+
+end MassBound
+
+section FiniteFrostman
+
+/-- **The finite Frostman lemma.**  For every depth `n ≥ 1` the normalization walk produces
+weights on the occupied cubes of generation `n` such that
+
+* every generation `i ≤ n` stays within its allowance `2⁻ⁱᵈ`, and
+* the total mass dominates the Hausdorff content of the covered set, up to `(√2)ᵈ`.
+
+This is the whole finite content of Frostman's lemma; what remains for the classical statement is
+the passage to a weak limit as `n → ∞`. -/
+theorem exists_frostman_weights (S : Finset (Fin 2 → ℤ)) {n : ℕ} (hn : 1 ≤ n) {d : ℝ}
+    (hd : 0 ≤ d) {K : Set Plane} (hcov : K ⊆ ⋃ k' ∈ S, dyadicCube n k') :
+    ∃ w : (Fin 2 → ℤ) → ℝ, (∀ k, 0 ≤ w k) ∧
+      (∀ i ≤ n, ∀ k, cubeMass S n i w k ≤ allowance i d) ∧
+      hausdorffContent d K
+        ≤ ENNReal.ofReal (Real.sqrt 2 ^ d) * ENNReal.ofReal (∑ k' ∈ S, w k') := by
+  classical
+  set w := normalizeDown S n d (n - 1) (initialWeight n d) with hw
+  have hinit : ∀ k, 0 ≤ initialWeight n d k := initialWeight_nonneg n d
+  have hwnonneg : ∀ k, 0 ≤ w k := normalizeDown_nonneg S n d (n - 1) hinit
+  refine ⟨w, hwnonneg, fun i hi k ↦ ?_, ?_⟩
+  · rcases Nat.lt_or_ge i n with hlt | hge
+    · exact cubeMass_normalizeDown_le S n d (n - 1) hinit i (by omega) k
+    · -- the finest generation: the weights never exceeded their initial value
+      have hin : i = n := by omega
+      rw [hin, cubeMass_self]
+      split
+      · refine le_trans (normalizeDown_le S n d (n - 1) hinit k) (le_of_eq ?_)
+        rw [initialWeight]
+      · exact (allowance_pos n d).le
+  · exact hausdorffContent_le_totalMass hd (saturatedSomewhere_frostmanWeights S hn d) hwnonneg
+      hcov
+
+end FiniteFrostman
+
 end FalconerPacking
