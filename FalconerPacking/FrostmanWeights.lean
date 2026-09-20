@@ -287,4 +287,103 @@ theorem saturatedSomewhere_frostmanWeights (S : Finset (Fin 2 → ℤ)) {n : ℕ
 
 end Invariant
 
+section MaximalSaturated
+
+variable {S n d}
+
+open Classical in
+/-- The coarsest generation at which the ancestor of an occupied cube is saturated. -/
+noncomputable def satLevel (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) (w : (Fin 2 → ℤ) → ℝ)
+    (k' : Fin 2 → ℤ) : ℕ :=
+  if h : ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d then Nat.find h else 0
+
+/-- Saturation is inherited: if a cube is saturated, its generation is a saturation level of
+every finest cube inside it. -/
+theorem sat_of_mem {w : (Fin 2 → ℤ) → ℝ} {i : ℕ} {c k' : Fin 2 → ℤ} (hin : i ≤ n)
+    (hanc : ancestor (n - i) k' = c) (hc : cubeMass S n i w c = allowance i d) :
+    ∃ j, j ≤ n ∧ cubeMass S n j w (ancestor (n - j) k') = allowance j d :=
+  ⟨i, hin, by rw [hanc]; exact hc⟩
+
+theorem satLevel_le {w : (Fin 2 → ℤ) → ℝ} {k' : Fin 2 → ℤ}
+    (h : ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d) :
+    satLevel S n d w k' ≤ n := by
+  classical
+  rw [satLevel, dif_pos h]
+  exact (Nat.find_spec h).1
+
+theorem cubeMass_satLevel {w : (Fin 2 → ℤ) → ℝ} {k' : Fin 2 → ℤ}
+    (h : ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d) :
+    cubeMass S n (satLevel S n d w k') w (ancestor (n - satLevel S n d w k') k')
+      = allowance (satLevel S n d w k') d := by
+  classical
+  rw [satLevel, dif_pos h]
+  exact (Nat.find_spec h).2
+
+theorem satLevel_min {w : (Fin 2 → ℤ) → ℝ} {k' : Fin 2 → ℤ} {i : ℕ}
+    (h : ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d) (hin : i ≤ n)
+    (hi : cubeMass S n i w (ancestor (n - i) k') = allowance i d) :
+    satLevel S n d w k' ≤ i := by
+  classical
+  rw [satLevel, dif_pos h]
+  exact Nat.find_min' h ⟨hin, hi⟩
+
+/-- The maximal saturated cube of an occupied cube: its coarsest saturated ancestor. -/
+noncomputable def satCube (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) (w : (Fin 2 → ℤ) → ℝ)
+    (k' : Fin 2 → ℤ) : ℕ × (Fin 2 → ℤ) :=
+  (satLevel S n d w k', ancestor (n - satLevel S n d w k') k')
+
+/-- **The maximal saturated cubes are disjoint.**  Two of them that share a finest cube are
+equal: each contains the other's generator, so minimality of the saturation level forces the
+generations to agree. -/
+theorem satCube_eq_of_mem {w : (Fin 2 → ℤ) → ℝ} (hsat : SaturatedSomewhere S n d w)
+    {a b k' : Fin 2 → ℤ} (ha : a ∈ S) (hb : b ∈ S) (hk' : k' ∈ S)
+    (hka : ancestor (n - (satCube S n d w a).1) k' = (satCube S n d w a).2)
+    (hkb : ancestor (n - (satCube S n d w b).1) k' = (satCube S n d w b).2) :
+    satCube S n d w a = satCube S n d w b := by
+  have hex : ∀ c ∈ S, ∃ i, i ≤ n ∧ cubeMass S n i w (ancestor (n - i) c) = allowance i d :=
+    fun c hc ↦ (hsat c hc).imp fun i hi ↦ ⟨hi.1, hi.2⟩
+  -- both cubes are saturated, so both generations are saturation levels of `k'`
+  have hsatA : cubeMass S n (satCube S n d w a).1 w (satCube S n d w a).2
+      = allowance (satCube S n d w a).1 d := cubeMass_satLevel (hex a ha)
+  have hsatB : cubeMass S n (satCube S n d w b).1 w (satCube S n d w b).2
+      = allowance (satCube S n d w b).1 d := cubeMass_satLevel (hex b hb)
+  have hkA : satLevel S n d w k' ≤ (satCube S n d w a).1 :=
+    satLevel_min (hex k' hk') (satLevel_le (hex a ha)) (by rw [hka]; exact hsatA)
+  have hkB : satLevel S n d w k' ≤ (satCube S n d w b).1 :=
+    satLevel_min (hex k' hk') (satLevel_le (hex b hb)) (by rw [hkb]; exact hsatB)
+  -- the coarsest saturated cube of `k'` contains both, so it saturates their generators too
+  have hcontains : ∀ {c : Fin 2 → ℤ}, c ∈ S →
+      ancestor (n - (satCube S n d w c).1) k' = (satCube S n d w c).2 →
+      satLevel S n d w k' ≤ (satCube S n d w c).1 →
+      (satCube S n d w c).1 ≤ satLevel S n d w k' := by
+    intro c hc hkc hle
+    have hanc : ancestor (n - satLevel S n d w k') c
+        = ancestor (n - satLevel S n d w k') k' := by
+      have h1 : ancestor ((satCube S n d w c).1 - satLevel S n d w k')
+          (ancestor (n - (satCube S n d w c).1) c) = ancestor (n - satLevel S n d w k') c := by
+        rw [ancestor_ancestor]
+        congr 1
+        have hfst : (satCube S n d w c).1 = satLevel S n d w c := rfl
+        have := satLevel_le (hex c hc)
+        omega
+      have h2 : ancestor ((satCube S n d w c).1 - satLevel S n d w k')
+          (ancestor (n - (satCube S n d w c).1) k') = ancestor (n - satLevel S n d w k') k' := by
+        rw [ancestor_ancestor]
+        congr 1
+        have hfst : (satCube S n d w c).1 = satLevel S n d w c := rfl
+        have := satLevel_le (hex c hc)
+        omega
+      rw [← h1, ← h2, hkc]
+      rfl
+    refine satLevel_min (hex c hc) (satLevel_le (hex k' hk')) ?_
+    rw [hanc]
+    exact cubeMass_satLevel (hex k' hk')
+  have hA := hcontains ha hka hkA
+  have hB := hcontains hb hkb hkB
+  have hlevels : (satCube S n d w a).1 = (satCube S n d w b).1 := by omega
+  refine Prod.ext hlevels ?_
+  rw [← hka, ← hkb, hlevels]
+
+end MaximalSaturated
+
 end FalconerPacking
