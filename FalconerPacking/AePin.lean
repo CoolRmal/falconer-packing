@@ -427,4 +427,56 @@ theorem exists_pin_ball_of_energy (μ : Measure Plane) [IsProbabilityMeasure μ]
     (fun n => hkey _ (by positivity))
   exact ⟨y, hyB, hy⟩
 
+/-! ### The set-level statement
+
+Frostman's lemma converts a dimension hypothesis into a measure of finite `1`-energy, so the
+theorem reads: a compact planar set of Hausdorff dimension above one has a pin — somewhere in
+any ball containing it — whose pinned distance set has positive length.
+-/
+
+/-- **The distance-set analogue of Marstrand's theorem, for sets.**  A compact planar set of
+Hausdorff dimension above one has, in any ball containing it, a pin whose pinned distance set
+has positive length.
+
+Frostman's lemma supplies a measure of exponent above one, hence of finite Riesz `1`-energy, and
+`exists_pin_ball_of_energy` does the rest.  The pin is not asserted to lie in the set: that is
+Theorem 1.1, and it needs Orponen's radial-projection theorem. -/
+theorem exists_pin_ball_of_one_lt_dimH {K : Set Plane} (hK : IsCompact K)
+    (hdim : 1 < dimH K) {R : ℝ} (hR : 0 < R) (hKR : K ⊆ {x : Plane | ‖x‖ ≤ R}) :
+    ∃ y, ‖y‖ ≤ R ∧ 0 < volume (pinnedDistances K y) := by
+  obtain ⟨d, hd0, hd1', hdlt⟩ := ENNReal.lt_iff_exists_real_btwn.1 hdim
+  have hd1 : (1 : ℝ) < d := by
+    rwa [show (1 : ℝ≥0∞) = ENNReal.ofReal 1 from by simp,
+      ENNReal.ofReal_lt_ofReal_iff_of_nonneg (by norm_num : (0:ℝ) ≤ 1)] at hd1'
+  obtain ⟨θ', C, hθK, hθfr⟩ :=
+    exists_isFrostman_probabilityMeasure_of_lt_dimH hK (by linarith : (0:ℝ) < d) hdlt
+  set θ : Measure Plane := (θ' : Measure Plane) with hθ
+  haveI : IsProbabilityMeasure θ := θ'.2
+  have hKpos : 0 < θ K := by
+    have h1 : θ univ ≤ θ K + θ Kᶜ := by
+      rw [← Set.union_compl_self K]; exact measure_union_le _ _
+    rw [hθK, add_zero, measure_univ] at h1
+    exact lt_of_lt_of_le (by norm_num) h1
+  have hcar : θ {x : Plane | ‖x‖ ≤ R}ᶜ = 0 :=
+    measure_mono_null (Set.compl_subset_compl.2 hKR) hθK
+  have hen : rieszEnergy θ 1 ≠ ⊤ := by
+    rcases le_or_gt C 0 with hC | hC
+    · -- a nonpositive Frostman constant forces the measure to vanish, which is impossible
+      exfalso
+      have := hθfr 0 1 one_pos le_rfl
+      rw [show C * (1:ℝ) ^ (d:ℝ) = C from by rw [Real.one_rpow]; ring] at this
+      have h0 : ENNReal.ofReal C = 0 := ENNReal.ofReal_eq_zero.2 hC
+      rw [h0, nonpos_iff_eq_zero] at this
+      have : θ univ = 0 := by
+        refine measure_null_of_locally_null univ fun x _ => ⟨Metric.ball x 1, ?_, ?_⟩
+        · exact mem_nhdsWithin_of_mem_nhds (Metric.ball_mem_nhds x one_pos)
+        · have := hθfr x 1 one_pos le_rfl
+          rw [show C * (1:ℝ) ^ (d:ℝ) = C from by rw [Real.one_rpow]; ring, h0,
+            nonpos_iff_eq_zero] at this
+          exact this
+      simp [measure_univ] at this
+    · exact rieszEnergy_ne_top hC one_pos hd1 hθfr
+  obtain ⟨y, hy, hpos⟩ := exists_pin_ball_of_energy θ hKpos hR hcar hen
+  exact ⟨y, hy, hpos⟩
+
 end FalconerPacking
