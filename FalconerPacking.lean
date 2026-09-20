@@ -18,6 +18,7 @@ import FalconerPacking.Density
 import FalconerPacking.PinnedL2
 import FalconerPacking.Reduction
 import FalconerPacking.AePin
+import FalconerPacking.Bisector
 import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
 import FalconerPacking.PositiveLimit

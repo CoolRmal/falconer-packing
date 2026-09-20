@@ -254,11 +254,12 @@ with the source additionally carried by a set obeying a polynomial covering boun
 is small relative to the Frostman exponent, and without such a restriction the hypothesis would
 imply far more than is known. -/
 def HypTubeBoundC (d u : ℝ) : Prop :=
-  ∀ (μ ν : Measure Plane) (S : Set Plane) (Cμ Cν sep : ℝ),
+  ∀ (μ ν : Measure Plane) (S : Set Plane) (Cμ Cν sep M : ℝ),
     IsProbabilityMeasure μ → IsProbabilityMeasure ν →
     IsFrostman μ d Cμ → IsFrostman ν d Cν →
     μ Sᶜ = 0 → HasUpperBoxBound S u →
     0 < sep → (∀ᵐ x ∂μ, ∀ᵐ y ∂ν, sep ≤ dist x y) →
+    (∀ᵐ x ∂μ, ‖x‖ ≤ M) → (∀ᵐ y ∂ν, ‖y‖ ≤ M) →
     ∃ C : ℝ≥0∞, C ≠ ⊤ ∧ ∃ δ : ℕ → ℝ, (∀ n, 0 < δ n) ∧ Tendsto δ atTop (𝓝 0) ∧
       ∀ n, (∫⁻ y, (μ.prod μ) (hypTube y (2 * δ n)) ∂ν) ≤ ENNReal.ofReal (2 * δ n) * C
 
@@ -335,9 +336,16 @@ theorem exists_pin_of_hypTubeBoundC_of_isClosed {E : Set Plane} (hE : IsClosed E
     filter_upwards [hμc] with x hx
     filter_upwards [hνc] with y hy
     exact hdist x hx y hy
+  obtain ⟨M, hM⟩ := (hK'comp.isBounded).subset_closedBall (0 : Plane)
+  have hμM : ∀ᵐ x ∂μ, ‖x‖ ≤ M := by
+    filter_upwards [hμc] with x hx
+    simpa [dist_eq_norm] using hM (hK₁K hx)
+  have hνM : ∀ᵐ y ∂ν, ‖y‖ ≤ M := by
+    filter_upwards [hνc] with y hy
+    simpa [dist_eq_norm] using hM (hK₂K hy)
   obtain ⟨Cb, hCb, δ, hpos, hto, hb⟩ :=
-    hbound μ ν K' _ _ sep ‹IsProbabilityMeasure μ› ‹IsProbabilityMeasure ν› hμfr hνfr
-      hμK' hK'box hsep hae
+    hbound μ ν K' _ _ sep M ‹IsProbabilityMeasure μ› ‹IsProbabilityMeasure ν› hμfr hνfr
+      hμK' hK'box hsep hae hμM hνM
   have hμEpos : (0 : ℝ≥0∞) < μ E := by
     have h1 : μ univ ≤ μ E + μ Eᶜ := by
       rw [← Set.union_compl_self E]; exact measure_union_le _ _

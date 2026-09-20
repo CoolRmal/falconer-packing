@@ -100,7 +100,8 @@ argument can show, which is the step that requires the discretized projection ma
 | the same with the **packing hypothesis used**: the covering-aware interface `HypTubeBoundC d u`, with the piece of small upper box dimension extracted from `dimP E < u` | **proved**, no holes |
 | **set form**: a compact planar set of Hausdorff dimension above one has a pin, in any ball containing it, with a positive-length pinned distance set | **proved**, no holes |
 | **the almost-every-pin theorem, unconditionally**: a compactly supported measure of finite Riesz `1`-energy has a pin in any ball containing its support with a positive-length pinned distance set | **proved**, no holes |
-| unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
+| the remaining hypothesis restated as a statement about **lines**: `BisectorSlabBound → HypTubeBoundC` | **proved**, no holes |
+| unconditional Theorem 1.1 (`Target`) | **open** — one inequality: `BisectorSlabBound` |
 
 ## Layout
 
@@ -123,6 +124,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/PinnedL2.lean` | the `L²` criterion: the hyperbolic-tube bound gives a positive-length pinned distance set |
 | `FalconerPacking/Reduction.lean` | the reduction to one analytic hypothesis `HypTubeBound` |
 | `FalconerPacking/AePin.lean` | the almost-every-pin theorem: the hyperbolic strip is a slab, and a slab meets a ball in small area |
+| `FalconerPacking/Bisector.lean` | the one remaining hypothesis, as a statement about slabs around bisectors |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
