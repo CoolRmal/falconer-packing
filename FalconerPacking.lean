@@ -9,6 +9,7 @@ import FalconerPacking.Dimensions
 import FalconerPacking.Profile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
+import FalconerPacking.RadialProjection
 import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
 import FalconerPacking.PositiveLimit

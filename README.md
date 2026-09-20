@@ -44,6 +44,14 @@ deletion, the inflation step, the pinned identity, the shell bounds and the join
 modules 7 to 14 of the manuscript's ledger, none of which exists in Mathlib. A green comparator
 here certifies the conditional theorem, nothing more.
 
+`RadialProjection.lean` begins module 7 with the part that is elementary: the separation
+estimate `|det (y - x, z - x)| ≤ ‖y - x‖ ‖z - x‖ · |Θ_x y - Θ_x z|`, and its consequence that
+pins with close radial projections lie in a thin tube. That reduction also shows why the
+remaining step is genuinely hard: the reciprocal-determinant integral needs
+`μ(tube of width w) ≲ w^(1+ε)`, one power beyond what a planar Frostman exponent `s ≤ 2` gives,
+and closing that gap is Orponen's theorem, whose proof runs through Bourgain's discretized
+projection theorem. It is therefore recorded as `OrponenRadialProjection`, unproved.
+
 | stage | state |
 |---|---|
 | challenge statement | type-checks; elaborated type identical to `Solution.lean` |
@@ -65,6 +73,8 @@ here certifies the conditional theorem, nothing more.
 | coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
+| radial projections (module 7): cross-product geometry, the separation estimate, and tube containment | **proved**, no holes |
+| Orponen's radial-projection theorem (module 7) | **open** — stated as `OrponenRadialProjection`, not proved |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -79,6 +89,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
+| `FalconerPacking/RadialProjection.lean` | module 7: the scalar cross product, the radial separation estimate, tubes, and the statement of Orponen's theorem |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
