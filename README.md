@@ -25,6 +25,8 @@ is strict, including at the two transition points.
 | statement (`Challenge.lean`) | type-checks; fully elaborated type identical to `Solution.lean` |
 | branch combination (Section 4) | **proved**, no holes |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
+| dimensions: `dimH ≤ packingDim`, monotonicity, bounded case | **proved**, no holes |
+| profile: edge costs, potential, telescoped edge bound | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
@@ -51,6 +53,8 @@ registration; a registry submission asserts a complete machine-checked proof.
 | `Solution.lean` | the target theorem, in the same form, proved from the library |
 | `FalconerPacking/Statement.lean` | the same definitions, for the modular development |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
+| `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
+| `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, the telescoped bound |
 | `FalconerPacking/Branches.lean` | the two analytic branches, as unproved interfaces |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |

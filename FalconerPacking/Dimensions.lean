@@ -126,6 +126,46 @@ theorem hausdorffMeasure_eq_zero_of_hasUpperBoxBound {E : Set Plane} {s t : ℝ}
     exact h4
   exact le_of_eq hlim.liminf_eq
 
+section Basic
+
+/-- A covering bound passes to subsets. -/
+theorem HasUpperBoxBound.mono {E F : Set Plane} {s : ℝ} (h : HasUpperBoxBound F s)
+    (hEF : E ⊆ F) : HasUpperBoxBound E s := by
+  obtain ⟨C, hC, hcov⟩ := h
+  refine ⟨C, hC, fun n ↦ ?_⟩
+  obtain ⟨pts, hsub, hcard⟩ := hcov n
+  exact ⟨pts, hEF.trans hsub, hcard⟩
+
+theorem upperBoxDim_mono {E F : Set Plane} (hEF : E ⊆ F) : upperBoxDim E ≤ upperBoxDim F := by
+  refine le_iInf fun s ↦ le_iInf fun hs ↦ le_iInf fun h ↦ ?_
+  exact iInf_le_of_le s (iInf_le_of_le hs (iInf_le _ (h.mono hEF)))
+
+theorem hasUpperBoxBound_empty (s : ℝ) (hs : 0 ≤ s) : HasUpperBoxBound (∅ : Set Plane) s := by
+  refine ⟨1, one_pos, fun n ↦ ⟨∅, by simp, ?_⟩⟩
+  simp only [Finset.card_empty, Nat.cast_zero, one_mul]
+  positivity
+
+@[simp] theorem upperBoxDim_empty : upperBoxDim (∅ : Set Plane) = 0 := by
+  refine le_antisymm ?_ (by simp)
+  refine iInf_le_of_le 0 (iInf_le_of_le le_rfl (iInf_le_of_le (hasUpperBoxBound_empty 0 le_rfl) ?_))
+  simp
+
+theorem packingDim_mono {E F : Set Plane} (hEF : E ⊆ F) : packingDim E ≤ packingDim F := by
+  refine le_iInf fun K ↦ le_iInf fun hK ↦ le_iInf fun hb ↦ ?_
+  exact iInf_le_of_le K (iInf_le_of_le (hEF.trans hK) (iInf_le _ hb))
+
+/-- For a bounded set the packing dimension is at most the upper box dimension. -/
+theorem packingDim_le_upperBoxDim {E : Set Plane} (hE : Bornology.IsBounded E) :
+    packingDim E ≤ upperBoxDim E := by
+  refine iInf_le_of_le (fun n ↦ if n = 0 then E else ∅) (iInf_le_of_le ?_ (iInf_le_of_le ?_ ?_))
+  · exact fun x hx ↦ Set.mem_iUnion.2 ⟨0, by simpa using hx⟩
+  · intro n
+    by_cases hn : n = 0 <;> simp [hn, hE, Bornology.isBounded_empty]
+  · refine iSup_le fun n ↦ ?_
+    by_cases hn : n = 0 <;> simp [hn]
+
+end Basic
+
 /-- The Hausdorff dimension is at most the covering exponent of any polynomial dyadic bound. -/
 theorem dimH_le_of_hasUpperBoxBound {E : Set Plane} {s : ℝ} (hs : 0 ≤ s)
     (h : HasUpperBoxBound E s) : dimH E ≤ ENNReal.ofReal s := by
