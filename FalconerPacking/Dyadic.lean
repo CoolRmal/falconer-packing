@@ -216,6 +216,13 @@ theorem dyadicCube_subset_ancestor (j m : ℕ) (k : Fin 2 → ℤ) :
       have := ih (fun i ↦ k i / 2) hstep
       rwa [← ancestor_succ] at this
 
+/-- Ancestors compose. -/
+theorem ancestor_ancestor (a b : ℕ) (k : Fin 2 → ℤ) :
+    ancestor a (ancestor b k) = ancestor (a + b) k := by
+  funext i
+  simp only [ancestor]
+  rw [Int.ediv_ediv_of_nonneg (by positivity), ← pow_add, add_comm b a]
+
 end Ancestors
 
 end FalconerPacking

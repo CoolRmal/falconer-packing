@@ -200,4 +200,91 @@ theorem normalizeStep_dichotomy (w : (Fin 2 → ℤ) → ℝ) (j : ℕ) (k : Fin
 
 end Saturation
 
+section Invariant
+
+variable {S n d}
+
+/-- Inside an untouched cube, the masses of all finer cubes are unchanged. -/
+theorem cubeMass_eq_of_untouched {w w' : (Fin 2 → ℤ) → ℝ} {j i : ℕ} (hji : j ≤ i) (hin : i ≤ n)
+    {Q : Fin 2 → ℤ} (h : ∀ k' ∈ S.filter fun k' ↦ ancestor (n - j) k' = Q, w' k' = w k')
+    {c : Fin 2 → ℤ} (hc : ancestor (i - j) c = Q) :
+    cubeMass S n i w' c = cubeMass S n i w c := by
+  refine Finset.sum_congr rfl fun k' hk' ↦ ?_
+  have hanc : ancestor (n - i) k' = c := (Finset.mem_filter.1 hk').2
+  have hS : k' ∈ S := (Finset.mem_filter.1 hk').1
+  refine h k' (Finset.mem_filter.2 ⟨hS, ?_⟩)
+  have harith : i - j + (n - i) = n - j := by omega
+  rw [← harith, ← ancestor_ancestor, hanc, hc]
+
+/-- The walk's invariant: every occupied cube of the finest generation has an ancestor, at some
+generation above `j`, whose mass is exactly its allowance. -/
+def SaturatedAbove (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) (w : (Fin 2 → ℤ) → ℝ) (j : ℕ) :
+    Prop :=
+  ∀ k' ∈ S, ∃ i, j < i ∧ i ≤ n ∧ cubeMass S n i w (ancestor (n - i) k') = allowance i d
+
+/-- The conclusion of the walk: every occupied cube has a saturated ancestor. -/
+def SaturatedSomewhere (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) (w : (Fin 2 → ℤ) → ℝ) : Prop :=
+  ∀ k' ∈ S, ∃ i ≤ n, cubeMass S n i w (ancestor (n - i) k') = allowance i d
+
+/-- A step at generation `j + 1` lowers the invariant by one generation: cubes it scales become
+saturated there, and cubes it leaves alone keep their finer saturation. -/
+theorem saturatedAbove_normalizeStep {w : (Fin 2 → ℤ) → ℝ} {j : ℕ} (hj : j + 1 ≤ n)
+    (h : SaturatedAbove S n d w (j + 1)) :
+    SaturatedAbove S n d (normalizeStep S n (j + 1) d w) j := by
+  intro k' hk'
+  rcases normalizeStep_dichotomy (S := S) (n := n) (d := d) w (j + 1)
+    (ancestor (n - (j + 1)) k') with huntouched | hsat
+  · obtain ⟨i, hij, hin, hmass⟩ := h k' hk'
+    refine ⟨i, by omega, hin, ?_⟩
+    have hc : ancestor (i - (j + 1)) (ancestor (n - i) k') = ancestor (n - (j + 1)) k' := by
+      rw [ancestor_ancestor]
+      congr 1
+      omega
+    rw [cubeMass_eq_of_untouched (by omega) hin huntouched hc]
+    exact hmass
+  · exact ⟨j + 1, by omega, hj, hsat⟩
+
+/-- The final step, at generation `0`. -/
+theorem saturatedSomewhere_normalizeStep_zero {w : (Fin 2 → ℤ) → ℝ}
+    (h : SaturatedAbove S n d w 0) :
+    SaturatedSomewhere S n d (normalizeStep S n 0 d w) := by
+  intro k' hk'
+  rcases normalizeStep_dichotomy (S := S) (n := n) (d := d) w 0
+    (ancestor (n - 0) k') with huntouched | hsat
+  · obtain ⟨i, hij, hin, hmass⟩ := h k' hk'
+    refine ⟨i, hin, ?_⟩
+    have hc : ancestor (i - 0) (ancestor (n - i) k') = ancestor (n - 0) k' := by
+      rw [ancestor_ancestor]
+      congr 1
+      omega
+    rw [cubeMass_eq_of_untouched (by omega) hin huntouched hc]
+    exact hmass
+  · exact ⟨0, Nat.zero_le n, hsat⟩
+
+/-- **The walk saturates every occupied cube.** -/
+theorem saturatedSomewhere_normalizeDown :
+    ∀ (j : ℕ), j ≤ n → ∀ {w : (Fin 2 → ℤ) → ℝ}, SaturatedAbove S n d w j →
+      SaturatedSomewhere S n d (normalizeDown S n d j w)
+  | 0, _, w, h => saturatedSomewhere_normalizeStep_zero h
+  | (j + 1), hj, w, h => by
+      refine saturatedSomewhere_normalizeDown j (by omega) ?_
+      exact saturatedAbove_normalizeStep (by omega) h
+
+/-- The initial weights satisfy the invariant at the finest generation. -/
+theorem saturatedAbove_initialWeight (S : Finset (Fin 2 → ℤ)) {n : ℕ} (hn : 1 ≤ n) (d : ℝ) :
+    SaturatedAbove S n d (initialWeight n d) (n - 1) := by
+  intro k' hk'
+  refine ⟨n, by omega, le_rfl, ?_⟩
+  rw [Nat.sub_self, ancestor_zero]
+  exact cubeMass_initialWeight S n d hk'
+
+/-- **The finished walk.**  Starting from the initial weights, the normalization leaves every
+occupied cube with a saturated ancestor, while every generation stays within its allowance. -/
+theorem saturatedSomewhere_frostmanWeights (S : Finset (Fin 2 → ℤ)) {n : ℕ} (hn : 1 ≤ n)
+    (d : ℝ) :
+    SaturatedSomewhere S n d (normalizeDown S n d (n - 1) (initialWeight n d)) :=
+  saturatedSomewhere_normalizeDown (n - 1) (by omega) (saturatedAbove_initialWeight S hn d)
+
+end Invariant
+
 end FalconerPacking
