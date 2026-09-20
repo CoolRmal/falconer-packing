@@ -378,4 +378,73 @@ theorem edgeCost_perturb {m n : ℕ} {δ : ℝ} (hmn : m ≤ n) (hδ : ∀ k, |g
 
 end Insertion
 
+section ZeroCost
+
+variable {g : ℕ → ℝ}
+
+/-- Shrinking an interval from the left cannot lower its minimum. -/
+theorem gMin_le_gMin_of_le {m j n : ℕ} (hmj : m ≤ j) (hjn : j ≤ n) :
+    gMin g m n ≤ gMin g j n :=
+  le_gMin hjn fun k hk hk' ↦ gMin_le (hmj.trans hk) hk'
+
+/-- The leftmost point of `[m, n]` at which `g` attains its minimum. -/
+def argMinLeft (g : ℕ → ℝ) (m n : ℕ) : ℕ :=
+  if h : ((Finset.Icc m n).filter fun k ↦ g k = gMin g m n).Nonempty then
+    ((Finset.Icc m n).filter fun k ↦ g k = gMin g m n).min' h
+  else m
+
+theorem argMinLeft_spec {m n : ℕ} (hmn : m ≤ n) :
+    m ≤ argMinLeft g m n ∧ argMinLeft g m n ≤ n ∧ g (argMinLeft g m n) = gMin g m n := by
+  have hne : ((Finset.Icc m n).filter fun k ↦ g k = gMin g m n).Nonempty := by
+    have hIcc : (Finset.Icc m n).Nonempty := ⟨m, Finset.mem_Icc.2 ⟨le_rfl, hmn⟩⟩
+    obtain ⟨j, hjmem, hjeq⟩ := Finset.exists_mem_eq_inf' hIcc g
+    refine ⟨j, Finset.mem_filter.2 ⟨hjmem, ?_⟩⟩
+    rw [gMin, dif_pos hIcc, ← hjeq]
+  rw [argMinLeft, dif_pos hne]
+  have hmem := Finset.min'_mem _ hne
+  obtain ⟨hIcc, heq⟩ := Finset.mem_filter.1 hmem
+  exact ⟨(Finset.mem_Icc.1 hIcc).1, (Finset.mem_Icc.1 hIcc).2, heq⟩
+
+theorem argMinLeft_le_of_eq {m n k : ℕ} (hmn : m ≤ n) (hk : m ≤ k) (hk' : k ≤ n)
+    (heq : g k = gMin g m n) : argMinLeft g m n ≤ k := by
+  have hne : ((Finset.Icc m n).filter fun j ↦ g j = gMin g m n).Nonempty :=
+    ⟨k, Finset.mem_filter.2 ⟨Finset.mem_Icc.2 ⟨hk, hk'⟩, heq⟩⟩
+  rw [argMinLeft, dif_pos hne]
+  exact Finset.min'_le _ _ (Finset.mem_filter.2 ⟨Finset.mem_Icc.2 ⟨hk, hk'⟩, heq⟩)
+
+/-- The edge from `n` down to the leftmost minimum of `[m, n]` costs nothing. -/
+theorem edgeCost_argMinLeft {m n : ℕ} (hmn : m ≤ n) : edgeCost g (argMinLeft g m n) n = 0 := by
+  obtain ⟨hm, hn, heq⟩ := argMinLeft_spec (g := g) hmn
+  have hle : gMin g (argMinLeft g m n) n ≤ g (argMinLeft g m n) := gMin_le le_rfl hn
+  have hge : g (argMinLeft g m n) ≤ gMin g (argMinLeft g m n) n := by
+    rw [heq]; exact gMin_le_gMin_of_le hm hn
+  rw [edgeCost, le_antisymm hle hge, sub_self]
+
+/-- If the left endpoint is no higher than the right one, the leftmost minimum comes strictly
+before the right endpoint. -/
+theorem argMinLeft_lt {m n : ℕ} (hmn : m < n) (hg : g m ≤ g n) : argMinLeft g m n < n := by
+  obtain ⟨hm, hn, heq⟩ := argMinLeft_spec (g := g) hmn.le
+  rcases lt_or_eq_of_le hn with h | h
+  · exact h
+  · have hmin_n : g n = gMin g m n := by rw [← heq, h]
+    have hmin_le : gMin g m n ≤ g m := gMin_le le_rfl hmn.le
+    have hge : g m ≤ gMin g m n := by rw [← hmin_n]; exact hg
+    have hgm : g m = gMin g m n := le_antisymm hge hmin_le
+    have := argMinLeft_le_of_eq (g := g) hmn.le le_rfl hmn.le hgm
+    omega
+
+/-- **The zero-cost region of Lemma 3.2.**  When the left endpoint of an admissible edge is no
+higher than the right one, the edge can be replaced by a zero-cost admissible edge that still
+descends. -/
+theorem exists_zero_cost_edge {N m n : ℕ} (hmn : m < n) (hadm : Admissible N m n)
+    (hg : g m ≤ g n) :
+    ∃ j, m ≤ j ∧ j < n ∧ Admissible N j n ∧ edgeCost g j n = 0 := by
+  refine ⟨argMinLeft g m n, (argMinLeft_spec (g := g) hmn.le).1, argMinLeft_lt hmn hg, ?_,
+    edgeCost_argMinLeft hmn.le⟩
+  have hm := (argMinLeft_spec (g := g) hmn.le).1
+  rw [Admissible] at hadm ⊢
+  omega
+
+end ZeroCost
+
 end FalconerPacking

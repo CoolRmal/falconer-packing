@@ -27,6 +27,7 @@ is strict, including at the two transition points.
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
 | dimensions: `dimH ≤ packingDim`, monotonicity, bounded case | **proved**, no holes |
 | profile: edge costs, potential, telescoped edge bound | **proved**, no holes |
+| profile: greedy descent, insertion, perturbation, zero-cost edges | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
@@ -37,6 +38,15 @@ The axiom report of the target theorem is currently
 'FalconerPacking.exists_pin_volume_pinnedDistances_pos' depends on axioms:
   [propext, sorryAx, Classical.choice, Quot.sound]
 ```
+
+The comparator job runs the real `leanprover/comparator` in its `landrun` sandbox. It builds and
+exports the challenge, builds the solution, and then stops at
+
+```text
+uncaught exception: Illegal axiom detected: 'sorryAx'
+```
+
+so the pipeline itself is in working order and the only obstruction is the unproved branches.
 
 `sorryAx` disappears exactly when the two analytic branches are proved. Section 7 of the
 manuscript lists the sixteen modules that needs: profile optimization, dyadic conditional
