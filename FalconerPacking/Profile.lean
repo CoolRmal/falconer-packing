@@ -770,4 +770,60 @@ theorem exists_chain_to_zero {N n₀ q m m' : ℕ}
 
 end LemmaThreeTwo
 
+section Endpoint
+
+variable {g : ℕ → ℝ} {a : ℝ}
+
+/-- A 1-Lipschitz grid profile cannot drop faster than the grid distance. -/
+theorem sub_le_of_lipschitz {m n : ℕ} (hmn : m ≤ n) (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
+    g m - g n ≤ (n : ℝ) - (m : ℝ) := by
+  have htel : ∑ k ∈ Finset.Ico m n, (g (k + 1) - g k) = g n - g m := by
+    rw [Finset.sum_Ico_eq_sub _ hmn]
+    simp [Finset.sum_range_sub fun i ↦ g i]
+  have hbound : ∀ k ∈ Finset.Ico m n, -(1 : ℝ) ≤ g (k + 1) - g k := fun k _ ↦
+    (abs_le.1 (hlip k)).1
+  have hsum := Finset.sum_le_sum hbound
+  rw [Finset.sum_const, Nat.card_Ico, nsmul_eq_mul, htel, Nat.cast_sub hmn] at hsum
+  linarith
+
+/-- The parabolic endpoint estimate: a value above both the linear barrier `a x` and the
+Lipschitz cone `v - (x - l)` is at least `a (v + l) / (1 + a)`. -/
+theorem barrier_cone_le {v x l G : ℝ} (ha : 0 < a) (h1 : a * x ≤ G) (h2 : v - (x - l) ≤ G) :
+    a * (v + l) / (1 + a) ≤ G := by
+  have hpos : (0 : ℝ) < 1 + a := by linarith
+  rw [div_le_iff₀ hpos]
+  rcases le_or_gt ((v + l) / (1 + a)) x with h | h
+  · have hx : v + l ≤ x * (1 + a) := by rwa [div_le_iff₀ hpos] at h
+    have e1 : a * (v + l) ≤ a * (x * (1 + a)) := mul_le_mul_of_nonneg_left hx ha.le
+    have e2 : a * x * (1 + a) ≤ G * (1 + a) := mul_le_mul_of_nonneg_right h1 hpos.le
+    nlinarith [e1, e2]
+  · have hx : x * (1 + a) < v + l := by rwa [lt_div_iff₀ hpos] at h
+    have e2 : (v - (x - l)) * (1 + a) ≤ G * (1 + a) := mul_le_mul_of_nonneg_right h2 hpos.le
+    nlinarith [e2, hx]
+
+/-- **Lemma 3.3, the insertion estimate.**  Inserting the point `l` into an edge that crosses it
+raises the cost by at most `(g l - a * l) / (1 + a)`, for a profile above the barrier `a x`. -/
+theorem insert_cost_le {m l n : ℕ} (ha : 0 < a) (hml : m ≤ l) (hln : l ≤ n)
+    (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) (hlower : ∀ k : ℕ, a * k ≤ g k) :
+    edgeCost g m l + edgeCost g l n - edgeCost g m n ≤ (g l - a * l) / (1 + a) := by
+  have hpos : (0 : ℝ) < 1 + a := by linarith
+  have hA₁ : a * (g l + l) / (1 + a) ≤ gMin g l n := by
+    refine le_gMin hln fun x hx hx' ↦ ?_
+    refine barrier_cone_le (a := a) (v := g l) (x := (x : ℝ)) (l := (l : ℝ)) ha (hlower x) ?_
+    have := sub_le_of_lipschitz (g := g) hx hlip
+    linarith
+  have hins := edgeCost_insert (g := g) hml hln
+  have hmax : gMin g l n ≤ max (gMin g m l) (gMin g l n) := le_max_right _ _
+  have hstep : edgeCost g m l + edgeCost g l n - edgeCost g m n
+      = g l - max (gMin g m l) (gMin g l n) := by linarith [hins]
+  rw [hstep]
+  have hfinal : g l - max (gMin g m l) (gMin g l n) ≤ g l - a * (g l + l) / (1 + a) := by
+    have : a * (g l + l) / (1 + a) ≤ max (gMin g m l) (gMin g l n) := hA₁.trans hmax
+    linarith
+  refine hfinal.trans (le_of_eq ?_)
+  field_simp
+  ring
+
+end Endpoint
+
 end FalconerPacking
