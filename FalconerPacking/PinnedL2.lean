@@ -254,4 +254,77 @@ theorem exists_mem_volume_pinnedDistances_pos_of_averaged_hypTube
     exact lt_of_lt_of_le hν h1
   exact absurd hF0 hFpos.ne'
 
+/-! ### The dictionary with radial projections
+
+Seen from a pin, the separation of two source points splits exactly into a radial part and an
+angular part, and the split is an identity rather than an estimate:
+
+  `‖x - x'‖² = (‖x - y‖ - ‖x' - y‖)² + ‖x - y‖ ‖x' - y‖ · |Θ_y x - Θ_y x'|²`.
+
+The hyperbolic tube constrains the radial part, so membership in a thin tube forces the radial
+projections apart.  That is the precise sense in which the tube bound is a statement about
+radial projections, and hence the point at which Orponen's theorem is what is needed.
+-/
+
+/-- **The pinned-distance identity.**  Seen from a pin `y`, the separation of two source points
+splits exactly into a radial part and an angular part:
+
+`‖x - x'‖² = (‖x - y‖ - ‖x' - y‖)² + ‖x - y‖ ‖x' - y‖ · |Θ_y x - Θ_y x'|²`.
+
+The radial part is the quantity the hyperbolic tube constrains, and the angular part is the
+radial-projection separation.  The identity is exact, and it is the dictionary between the two:
+a thin hyperbolic tube forces the radial projections apart, and conversely. -/
+theorem norm_sub_sq_eq_radial_add_angular {x x' y : Plane} (hx : x ≠ y) (hx' : x' ≠ y) :
+    ‖x - x'‖ ^ 2
+      = (‖x - y‖ - ‖x' - y‖) ^ 2
+        + ‖x - y‖ * ‖x' - y‖ * dist (radialProj y x) (radialProj y x') ^ 2 := by
+  have hu : (0 : ℝ) < ‖x - y‖ := norm_pos_iff.2 (sub_ne_zero.2 hx)
+  have hu' : (0 : ℝ) < ‖x' - y‖ := norm_pos_iff.2 (sub_ne_zero.2 hx')
+  have hsub : x - x' = (x - y) - (x' - y) := by abel
+  have hnorm : ‖x - x'‖ ^ 2 = ‖x - y‖ ^ 2 - 2 * ⟪x - y, x' - y⟫ + ‖x' - y‖ ^ 2 := by
+    rw [hsub, ← real_inner_self_eq_norm_sq, inner_sub_sub_self]
+    simp only [real_inner_self_eq_norm_sq, real_inner_comm (x - y) (x' - y)]
+    ring
+  have hdist : dist (radialProj y x) (radialProj y x') ^ 2
+      = 2 - 2 * (⟪x - y, x' - y⟫ / (‖x - y‖ * ‖x' - y‖)) := by
+    rw [dist_eq_norm, ← real_inner_self_eq_norm_sq, inner_sub_sub_self]
+    have h1 : ⟪radialProj y x, radialProj y x⟫ = 1 := by
+      rw [real_inner_self_eq_norm_sq, norm_radialProj y hx]; norm_num
+    have h2 : ⟪radialProj y x', radialProj y x'⟫ = 1 := by
+      rw [real_inner_self_eq_norm_sq, norm_radialProj y hx']; norm_num
+    have h3 : ⟪radialProj y x, radialProj y x'⟫
+        = ⟪x - y, x' - y⟫ / (‖x - y‖ * ‖x' - y‖) := by
+      rw [radialProj, radialProj, real_inner_smul_left, real_inner_smul_right]
+      field_simp
+    have h3' : ⟪radialProj y x', radialProj y x⟫
+        = ⟪x - y, x' - y⟫ / (‖x - y‖ * ‖x' - y‖) := by
+      rw [real_inner_comm]; exact h3
+    rw [h1, h2, h3, h3']
+    ring
+  rw [hnorm, hdist]
+  field_simp
+  ring
+
+
+
+/-- **A thin hyperbolic tube forces the radial projections apart.**  If the distances from `y`
+to `x` and to `x'` differ by less than `δ`, and both source points lie within `R` of the pin,
+then the radial projections are separated by at least `(‖x - x'‖² - δ²)^{1/2} / R`.
+
+This is the exact sense in which the hyperbolic tube of `PinnedL2.lean` is a statement about
+radial projections, and hence the point at which Orponen's theorem is what is needed. -/
+theorem dist_radialProj_sq_ge_of_mem_hypTube {x x' y : Plane} (hx : x ≠ y) (hx' : x' ≠ y)
+    {δ R : ℝ} (hxR : ‖x - y‖ ≤ R) (hx'R : ‖x' - y‖ ≤ R)
+    (hmem : |dist x y - dist x' y| < δ) :
+    ‖x - x'‖ ^ 2 - δ ^ 2 ≤ R ^ 2 * dist (radialProj y x) (radialProj y x') ^ 2 := by
+  have hid := norm_sub_sq_eq_radial_add_angular hx hx'
+  rw [dist_eq_norm, dist_eq_norm] at hmem
+  have hrad : (‖x - y‖ - ‖x' - y‖) ^ 2 < δ ^ 2 := by
+    have h0 : (0 : ℝ) ≤ |‖x - y‖ - ‖x' - y‖| := abs_nonneg _
+    nlinarith [sq_abs (‖x - y‖ - ‖x' - y‖)]
+  have hprod : ‖x - y‖ * ‖x' - y‖ ≤ R ^ 2 := by
+    nlinarith [norm_nonneg (x - y), norm_nonneg (x' - y)]
+  nlinarith [dist_nonneg (x := radialProj y x) (y := radialProj y x'),
+    sq_nonneg (dist (radialProj y x) (radialProj y x'))]
+
 end FalconerPacking
