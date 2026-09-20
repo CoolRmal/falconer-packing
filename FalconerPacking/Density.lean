@@ -304,4 +304,188 @@ theorem lintegral_chart_sq_measure_interval_le (μ : Measure Plane) [SFinite μ]
   · exact Measurable.lintegral_prod_left' (μ := volume.restrict (Set.Icc (-1 : ℝ) 1))
       (measurable_ofReal_overlap.comp measurable_inner_normalSlope)
 
+/-! ### Absolute continuity
+
+The uniform `L²` bound converts into a quantitative absolute-continuity statement by
+Cauchy–Schwarz.  The mass of a set is recovered from the `ε`-averages integrated over the
+`ε`-thickening, so
+
+  `σ A ≤ (I₁(σ) · |Aᵋ|)^{1/2}`,
+
+and letting the thickening shrink on a compact set gives `σ K ² ≤ I₁(σ) |K|`.  Inner regularity
+then upgrades that to `σ ≪ volume` for a finite measure of finite `1`-energy.
+-/
+
+/-- The mass of `A` is recovered from the `ε`-averages, integrated over the `ε`-thickening. -/
+theorem mul_measure_le_setLIntegral (σ : Measure ℝ) [SFinite σ] {A : Set ℝ}
+    (hA : MeasurableSet A) {ε : ℝ} (hε : 0 < ε) :
+    ENNReal.ofReal (2 * ε) * σ A
+      ≤ ∫⁻ u in Metric.cthickening ε A, σ {x : ℝ | |u - x| ≤ ε} := by
+  set T : Set ℝ := Metric.cthickening ε A with hT
+  have hTmeas : MeasurableSet T := Metric.isClosed_cthickening.measurableSet
+  set W : Set (ℝ × ℝ) := {z | z.2 ∈ A ∧ |z.1 - z.2| ≤ ε} with hW
+  have hWmeas : MeasurableSet W := by
+    refine MeasurableSet.inter (measurable_snd hA) ?_
+    exact measurableSet_le (continuous_abs.measurable.comp
+      (measurable_fst.sub measurable_snd)) measurable_const
+  have hball : ∀ x ∈ A, {u : ℝ | |u - x| ≤ ε} ⊆ T := by
+    intro x hx u hu
+    refine Metric.mem_cthickening_of_dist_le u x ε A hx ?_
+    rw [Real.dist_eq]
+    exact hu
+  calc ENNReal.ofReal (2 * ε) * σ A
+      = ∫⁻ x in A, ENNReal.ofReal (2 * ε) ∂σ := by rw [setLIntegral_const, mul_comm]
+    _ = ∫⁻ x, (∫⁻ u, W.indicator 1 (u, x) ∂(volume.restrict T)) ∂σ := by
+        rw [← lintegral_indicator hA]
+        refine lintegral_congr fun x => ?_
+        by_cases hx : x ∈ A
+        · rw [Set.indicator_of_mem hx]
+          have hmb : MeasurableSet {u : ℝ | |u - x| ≤ ε} :=
+            measurableSet_le (continuous_abs.measurable.comp
+              (measurable_id.sub measurable_const)) measurable_const
+          have hsec : (fun u : ℝ => (u, x)) ⁻¹' W = {u : ℝ | |u - x| ≤ ε} := by
+            ext u; simp [hW, hx]
+          have hIcc : {u : ℝ | |u - x| ≤ ε} = Set.Icc (x - ε) (x + ε) := by
+            ext u; simp only [Set.mem_setOf_eq, Set.mem_Icc, abs_le]
+            constructor
+            · rintro ⟨h1, h2⟩; exact ⟨by linarith, by linarith⟩
+            · rintro ⟨h1, h2⟩; exact ⟨by linarith, by linarith⟩
+          rw [show (fun u : ℝ => W.indicator (1 : ℝ × ℝ → ℝ≥0∞) (u, x))
+              = ((fun u : ℝ => (u, x)) ⁻¹' W).indicator 1 from rfl,
+            lintegral_indicator_one (measurable_prodMk_right hWmeas), hsec,
+            Measure.restrict_apply hmb, Set.inter_eq_left.2 (hball x hx), hIcc, Real.volume_Icc]
+          congr 1; ring
+        · rw [Set.indicator_of_notMem hx]
+          have hsec : (fun u : ℝ => (u, x)) ⁻¹' W = ∅ := by
+            ext u; simp [hW, hx]
+          rw [show (fun u : ℝ => W.indicator (1 : ℝ × ℝ → ℝ≥0∞) (u, x))
+              = ((fun u : ℝ => (u, x)) ⁻¹' W).indicator 1 from rfl,
+            lintegral_indicator_one (measurable_prodMk_right hWmeas), hsec, measure_empty]
+    _ = ∫⁻ u, (∫⁻ x, W.indicator 1 (u, x) ∂σ) ∂(volume.restrict T) :=
+        by
+        refine lintegral_lintegral_swap
+          (f := fun x u : ℝ => W.indicator (1 : ℝ × ℝ → ℝ≥0∞) (u, x)) ?_
+        exact ((measurable_const.indicator hWmeas).comp
+          (measurable_snd.prodMk measurable_fst)).aemeasurable
+    _ ≤ ∫⁻ u in T, σ {x : ℝ | |u - x| ≤ ε} := by
+        refine lintegral_mono fun u => ?_
+        rw [show (fun x : ℝ => W.indicator (1 : ℝ × ℝ → ℝ≥0∞) (u, x))
+            = (Prod.mk u ⁻¹' W).indicator 1 from rfl,
+          lintegral_indicator_one (measurable_prodMk_left hWmeas)]
+        exact measure_mono fun x hx => hx.2
+
+
+
+theorem measurable_avg (σ : Measure ℝ) [SFinite σ] {ε : ℝ} :
+    Measurable fun u : ℝ => σ {x : ℝ | |u - x| ≤ ε} := by
+  have hS : MeasurableSet {z : ℝ × ℝ | |z.1 - z.2| ≤ ε} :=
+    measurableSet_le (continuous_abs.measurable.comp
+      (measurable_fst.sub measurable_snd)) measurable_const
+  exact measurable_measure_prodMk_left hS
+
+/-- **Finite `1`-energy forces absolute continuity, quantitatively.**  For a measure on the line
+of finite Riesz `1`-energy `E`, every measurable set satisfies `σ A ≤ (E · |Aᵋ|)^{1/2}`, where
+`Aᵋ` is the closed `ε`-thickening.  Letting `ε → 0` on a compact set gives `σ A ≤ (E |A|)^{1/2}`,
+so `σ` is absolutely continuous with respect to Lebesgue measure.
+
+The proof is Cauchy–Schwarz against the uniform `L²` bound on the `ε`-averages: the mass of `A`
+is recovered from those averages over the thickening, and the averages are square integrable
+with a bound independent of `ε`. -/
+theorem measure_le_rpow_energy_mul_volume (σ : Measure ℝ) [SFinite σ] {A : Set ℝ}
+    (hA : MeasurableSet A) {ε : ℝ} (hε : 0 < ε) :
+    σ A ≤ (energyLine σ 1 * volume (Metric.cthickening ε A)) ^ (1 / 2 : ℝ) := by
+  set T : Set ℝ := Metric.cthickening ε A with hT
+  have hTmeas : MeasurableSet T := Metric.isClosed_cthickening.measurableSet
+  set g : ℝ → ℝ≥0∞ := fun u => σ {x : ℝ | |u - x| ≤ ε} with hg
+  have hgmeas : Measurable g := measurable_avg σ
+  have hpos : ENNReal.ofReal (2 * ε) ≠ 0 := by
+    simp only [ne_eq, ENNReal.ofReal_eq_zero, not_le]; linarith
+  have hholder : (∫⁻ u in T, g u)
+      ≤ (∫⁻ u, g u ^ (2 : ℝ)) ^ (1 / 2 : ℝ) * (volume T) ^ (1 / 2 : ℝ) := by
+    have hrw : (∫⁻ u in T, g u) = ∫⁻ u, g u * T.indicator (1 : ℝ → ℝ≥0∞) u := by
+      rw [← lintegral_indicator hTmeas]
+      refine lintegral_congr fun u => ?_
+      by_cases h : u ∈ T <;> simp [Set.indicator_of_mem, Set.indicator_of_notMem, h]
+    have hind : (∫⁻ u, (T.indicator (1 : ℝ → ℝ≥0∞) u) ^ (2 : ℝ)) = volume T := by
+      rw [← lintegral_indicator_one hTmeas]
+      refine lintegral_congr fun u => ?_
+      by_cases h : u ∈ T <;>
+        simp [Set.indicator_of_mem, Set.indicator_of_notMem, h,
+          ENNReal.zero_rpow_of_pos (by norm_num : (0:ℝ) < 2)]
+    rw [hrw, ← hind]
+    exact ENNReal.lintegral_mul_le_Lp_mul_Lq volume Real.HolderConjugate.two_two
+      hgmeas.aemeasurable (measurable_const.indicator hTmeas).aemeasurable
+  have hsq : (∫⁻ u, g u ^ (2 : ℝ)) ≤ ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1 := by
+    have := lintegral_sq_measure_interval_le σ hε
+    refine le_trans (le_of_eq (lintegral_congr fun u => ?_)) this
+    rw [← ENNReal.rpow_natCast (g u) 2]
+    norm_num
+  have hkey : ENNReal.ofReal (2 * ε) * σ A
+      ≤ ENNReal.ofReal (2 * ε)
+        * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
+    refine le_trans (mul_measure_le_setLIntegral σ hA hε) (le_trans hholder ?_)
+    have h4 : ENNReal.ofReal (4 * ε ^ 2) ^ (1 / 2 : ℝ) = ENNReal.ofReal (2 * ε) := by
+      rw [ENNReal.ofReal_rpow_of_pos (by positivity : (0:ℝ) < 4 * ε ^ 2)]
+      congr 1
+      rw [show (4 : ℝ) * ε ^ 2 = (2 * ε) ^ (2 : ℕ) from by ring,
+        ← Real.rpow_natCast (2 * ε) 2, ← Real.rpow_mul (by positivity)]
+      norm_num
+    have hc : (ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1) ^ (1 / 2 : ℝ)
+        = ENNReal.ofReal (2 * ε) * (energyLine σ 1) ^ (1 / 2 : ℝ) := by
+      rw [ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), h4]
+    calc (∫⁻ u, g u ^ (2 : ℝ)) ^ (1 / 2 : ℝ) * (volume T) ^ (1 / 2 : ℝ)
+        ≤ (ENNReal.ofReal (4 * ε ^ 2) * energyLine σ 1) ^ (1 / 2 : ℝ)
+            * (volume T) ^ (1 / 2 : ℝ) := by
+          gcongr
+      _ = ENNReal.ofReal (2 * ε) * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
+          rw [hc, ENNReal.mul_rpow_of_nonneg _ _ (by norm_num : (0:ℝ) ≤ 1/2), mul_assoc]
+  have hct : ENNReal.ofReal (2 * ε) ≠ ⊤ := ENNReal.ofReal_ne_top
+  calc σ A = (ENNReal.ofReal (2 * ε))⁻¹ * (ENNReal.ofReal (2 * ε) * σ A) := by
+        rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
+    _ ≤ (ENNReal.ofReal (2 * ε))⁻¹
+          * (ENNReal.ofReal (2 * ε) * (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ)) := by gcongr
+    _ = (energyLine σ 1 * volume T) ^ (1 / 2 : ℝ) := by
+        rw [← mul_assoc, ENNReal.inv_mul_cancel hpos hct, one_mul]
+
+
+
+theorem sq_measure_le (σ : Measure ℝ) [SFinite σ] {A : Set ℝ} (hA : MeasurableSet A)
+    {ε : ℝ} (hε : 0 < ε) :
+    (σ A) ^ 2 ≤ energyLine σ 1 * volume (Metric.cthickening ε A) := by
+  have h := measure_le_rpow_energy_mul_volume σ hA hε
+  calc (σ A) ^ 2
+      ≤ ((energyLine σ 1 * volume (Metric.cthickening ε A)) ^ (1 / 2 : ℝ)) ^ 2 := by gcongr
+    _ = energyLine σ 1 * volume (Metric.cthickening ε A) := by
+        rw [← ENNReal.rpow_natCast _ 2, ← ENNReal.rpow_mul]
+        norm_num
+
+/-- **The compact form.**  Letting the thickening shrink, a compact set has
+`σ K ² ≤ I₁(σ) · |K|`.  For `|K| = 0` this forces `σ K = 0`. -/
+theorem sq_measure_compact_le (σ : Measure ℝ) [SFinite σ] {K : Set ℝ} (hK : IsCompact K)
+    (hE : energyLine σ 1 ≠ ⊤) :
+    (σ K) ^ 2 ≤ energyLine σ 1 * volume K := by
+  have htend := tendsto_measure_cthickening_of_isCompact (μ := (volume : Measure ℝ)) hK
+  have h2 : Filter.Tendsto (fun r : ℝ => energyLine σ 1 * volume (Metric.cthickening r K))
+      (nhds 0) (nhds (energyLine σ 1 * volume K)) :=
+    ENNReal.Tendsto.const_mul htend (Or.inr hE)
+  refine ge_of_tendsto (x := nhdsWithin (0 : ℝ) (Set.Ioi 0))
+    (h2.mono_left nhdsWithin_le_nhds) ?_
+  filter_upwards [self_mem_nhdsWithin] with r hr
+  exact sq_measure_le σ hK.measurableSet hr
+
+/-- **Finite `1`-energy implies absolute continuity.** -/
+theorem absolutelyContinuous_of_energyLine_ne_top (σ : Measure ℝ) [IsFiniteMeasure σ]
+    (hE : energyLine σ 1 ≠ ⊤) : σ ≪ volume := by
+  refine Measure.AbsolutelyContinuous.mk fun A hA hA0 => ?_
+  have hcomp : ∀ K ⊆ A, IsCompact K → σ K = 0 := by
+    intro K hKA hK
+    have h1 := sq_measure_compact_le σ hK hE
+    rw [measure_mono_null hKA hA0, mul_zero, nonpos_iff_eq_zero, pow_eq_zero_iff] at h1
+    · exact h1
+    · norm_num
+  rw [hA.measure_eq_iSup_isCompact_of_ne_top (measure_ne_top σ A)]
+  refine le_antisymm ?_ (zero_le')
+  refine iSup_le fun K => iSup_le fun hKA => iSup_le fun hK => ?_
+  exact le_of_eq (hcomp K hKA hK)
+
 end FalconerPacking
