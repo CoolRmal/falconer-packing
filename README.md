@@ -58,6 +58,7 @@ here certifies the conditional theorem, nothing more.
 | compact occupied-cube covers and normalized atomic Frostman measures | **proved**, no holes |
 | weak compactness, supported subsequence extraction, and dyadic Frostman bounds in the limit | **proved**, no holes |
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
+| pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -80,6 +81,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/OccupiedCubes.lean` | finite occupied covers and support-point selection for compact sets |
 | `FalconerPacking/WeakLimit.lean` | compactness, subsequences, and preservation of dyadic ball bounds in the weak limit |
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
+| `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
