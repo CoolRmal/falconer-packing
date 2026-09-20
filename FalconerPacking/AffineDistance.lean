@@ -211,7 +211,8 @@ theorem exists_mem_volume_pinnedDistances_pos_of_coherent_affineDistance
   · intro n
     exact (measurable_affineJointDistanceMap (hc n)).aemeasurable
   · exact tendsto_sq_div_const hr0 δ
-  · intro n p
+  · intro n
+    filter_upwards with p
     exact dist_affineJointDistanceMap_le (c n) hδ
       (hsource n p.2) (hseparated n p) (hrhalf n)
   · exact hdensity

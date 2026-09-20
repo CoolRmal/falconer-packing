@@ -210,4 +210,28 @@ theorem tendsto_map_toFiniteMeasure_of_dist_le
   apply tendsto_iff_dist_tendsto_zero.2
   exact squeeze_zero (fun _ ↦ dist_nonneg) (fun n ↦ hclose n ω) hε
 
+/-- The preceding weak-limit identification only needs the uniform error bound almost
+everywhere at each scale.  Countability of the scales produces one full-measure set on which
+all bounds hold. -/
+theorem tendsto_map_toFiniteMeasure_of_ae_dist_le
+    {Ω α : Type*} [MeasurableSpace Ω] [MeasurableSpace α]
+    [PseudoMetricSpace α] [BorelSpace α]
+    (μ : ProbabilityMeasure Ω) {F : ℕ → Ω → α} {G : Ω → α} {ε : ℕ → ℝ}
+    (hF : ∀ n, AEMeasurable (F n) (μ : Measure Ω))
+    (hG : AEMeasurable G (μ : Measure Ω))
+    (hε : Tendsto ε atTop (𝓝 0))
+    (hclose : ∀ n, ∀ᵐ ω ∂(μ : Measure Ω), dist (F n ω) (G ω) ≤ ε n) :
+    Tendsto
+      (fun n ↦ ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map (F n),
+          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+      atTop
+      (𝓝 (ProbabilityMeasure.toFiniteMeasure
+        (⟨(μ : Measure Ω).map G,
+          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+  apply tendsto_map_toFiniteMeasure_of_ae_tendsto μ hF hG
+  filter_upwards [ae_all_iff.2 hclose] with ω hω
+  apply tendsto_iff_dist_tendsto_zero.2
+  exact squeeze_zero (fun _ ↦ dist_nonneg) (fun n ↦ hω n) hε
+
 end FalconerPacking

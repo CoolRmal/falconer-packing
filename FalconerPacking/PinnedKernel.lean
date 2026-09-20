@@ -153,7 +153,9 @@ theorem jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximatio
         (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
           Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))))
     (hε : Tendsto ε atTop (𝓝 0))
-    (hclose : ∀ n p,
+    (hclose : ∀ n, ∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+        Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
       dist (A n p) (p.1, dist p.2 p.1) ≤ ε n)
     (hdensity : ∀ n,
       (((ν.prod μ : ProbabilityMeasure
@@ -180,7 +182,7 @@ theorem jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximatio
     ⟨(ρ : Measure
       (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map G,
       Measure.isProbabilityMeasure_map hG⟩
-  have hmap := tendsto_map_toFiniteMeasure_of_dist_le
+  have hmap := tendsto_map_toFiniteMeasure_of_ae_dist_le
     ρ hA hG hε hclose
   have heq : ∀ n,
       ProbabilityMeasure.toFiniteMeasure
@@ -228,7 +230,9 @@ theorem exists_mem_volume_pinnedDistances_pos_of_coherent_approximation
         (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
           Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))))
     (hε : Tendsto ε atTop (𝓝 0))
-    (hclose : ∀ n p,
+    (hclose : ∀ n, ∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+        Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
       dist (A n p) (p.1, dist p.2 p.1) ≤ ε n)
     (hdensity : ∀ n,
       (((ν.prod μ : ProbabilityMeasure

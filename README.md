@@ -64,6 +64,7 @@ here certifies the conditional theorem, nothing more.
 | positive `L¹` density limits, weak identification, affine-map limits, and absolute continuity | **proved**, no holes |
 | coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
+| compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -91,6 +92,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/DyadicCenters.lean` | measurable representative maps for occupied compact-source cubes |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
