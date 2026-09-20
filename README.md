@@ -31,6 +31,7 @@ is strict, including at the two transition points.
 | profile: Lemma 3.2 (chain to the origin), Lemma 3.3 (endpoint estimate) | **proved**, no holes |
 | dyadic cubes: partition, nesting, diameter, measurability | **proved**, no holes |
 | energy: Frostman measures have no atoms and finite `a`-energy for `a < s` | **proved**, no holes |
+| restrictions: normalized restrictions stay Frostman, with constant `C / σ Q` | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
@@ -70,6 +71,7 @@ registration; a registry submission asserts a complete machine-checked proof.
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
+| `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Branches.lean` | the two analytic branches, as unproved interfaces |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
