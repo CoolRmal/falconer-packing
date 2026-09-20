@@ -5,6 +5,7 @@ Authors: Yongxi Lin
 -/
 import FalconerPacking.PositiveLimit
 import Mathlib.MeasureTheory.Measure.WithDensityFinite
+import Mathlib.MeasureTheory.Measure.FiniteMeasureProd
 import Mathlib.Probability.Kernel.Composition.AbsolutelyContinuous
 import Mathlib.Probability.Kernel.Composition.Lemmas
 
@@ -19,7 +20,7 @@ to almost-every pinned law.
 noncomputable section
 
 open Filter MeasureTheory ProbabilityTheory Set
-open scoped ENNReal ProbabilityTheory
+open scoped ENNReal ProbabilityTheory Topology
 
 namespace FalconerPacking
 
@@ -133,5 +134,115 @@ theorem exists_mem_volume_pinnedDistances_pos_of_joint_absolutelyContinuous
     ∃ y ∈ F, 0 < volume (pinnedDistances E y) := by
   apply exists_mem_volume_pinnedDistances_pos_of_ae ν hμE hνF
   exact ae_pinnedDistanceMeasure_absolutelyContinuous_of_joint hjoint
+
+/-- Coherent `L¹` density comparisons for measurable approximations of the joint pin-distance
+map force the actual joint pin-distance law to be absolutely continuous.  This theorem joins
+the summable comparison, weak-limit identification, and disintegration interfaces; the only
+remaining input is the analytic construction of `A`, `f`, and the displayed bounds. -/
+theorem jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximation
+    (μ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)))
+    (A : ℕ →
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2)) →
+        (EuclideanSpace ℝ (Fin 2) × ℝ))
+    (f : ℕ →
+      (EuclideanSpace ℝ (Fin 2) × ℝ) →₁[
+        (ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume] ℝ)
+    {ε : ℕ → ℝ} {Z : ℕ → ℝ≥0∞} {K : ℝ≥0∞} {eta : ℝ}
+    (hA : ∀ n, AEMeasurable (A n)
+      ((ν.prod μ : ProbabilityMeasure
+        (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+          Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))))
+    (hε : Tendsto ε atTop (𝓝 0))
+    (hclose : ∀ n p,
+      dist (A n p) (p.1, dist p.2 p.1) ≤ ε n)
+    (hdensity : ∀ n,
+      (((ν.prod μ : ProbabilityMeasure
+        (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+          Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map (A n)) =
+        (finiteMeasureOfL1Density
+          ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume) (f n) :
+            Measure (EuclideanSpace ℝ (Fin 2) × ℝ)))
+    (hK : K ≠ ∞) (hZ : (∑' n, Z n ^ eta) ≠ ∞)
+    (hstep : ∀ n, edist (f n) (f n.succ) ≤ K * Z n ^ eta) :
+    jointPinnedDistanceMeasure
+        (μ : Measure (EuclideanSpace ℝ (Fin 2)))
+        (ν : Measure (EuclideanSpace ℝ (Fin 2))) ≪
+      (ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume := by
+  let ρ := ν.prod μ
+  let G :
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2)) →
+        (EuclideanSpace ℝ (Fin 2) × ℝ) :=
+    fun p ↦ (p.1, dist p.2 p.1)
+  have hG : AEMeasurable G
+      (ρ : Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :=
+    (show Measurable G by fun_prop).aemeasurable
+  let τ : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2) × ℝ) :=
+    ⟨(ρ : Measure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map G,
+      Measure.isProbabilityMeasure_map hG⟩
+  have hmap := tendsto_map_toFiniteMeasure_of_dist_le
+    ρ hA hG hε hclose
+  have heq : ∀ n,
+      ProbabilityMeasure.toFiniteMeasure
+          (⟨(ρ : Measure
+            (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map (A n),
+            Measure.isProbabilityMeasure_map (hA n)⟩ :
+              ProbabilityMeasure (EuclideanSpace ℝ (Fin 2) × ℝ)) =
+        finiteMeasureOfL1Density
+          ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume) (f n) := by
+    intro n
+    apply FiniteMeasure.toMeasure_injective
+    exact hdensity n
+  have hweak : Tendsto
+      (fun n ↦ finiteMeasureOfL1Density
+        ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume) (f n))
+      atTop (𝓝 (ProbabilityMeasure.toFiniteMeasure τ)) := by
+    rw [← funext heq]
+    exact hmap
+  have hac :
+      (ProbabilityMeasure.toFiniteMeasure τ :
+        Measure (EuclideanSpace ℝ (Fin 2) × ℝ)) ≪
+        (ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume :=
+    absolutelyContinuous_of_coherentDensityComparison
+      ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume)
+      hK hZ hstep hweak
+  simpa [jointPinnedDistanceMeasure, ρ, G, τ] using hac
+
+/-- The self-contained endpoint of the coherent approximation strategy: once the approximating
+joint laws have coherent `L¹` densities and converge uniformly to the distance map, there is a
+pin in the prescribed full-measure pin set with a positive-length distance set. -/
+theorem exists_mem_volume_pinnedDistances_pos_of_coherent_approximation
+    (μ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)))
+    {E F : Set (EuclideanSpace ℝ (Fin 2))}
+    (A : ℕ →
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2)) →
+        (EuclideanSpace ℝ (Fin 2) × ℝ))
+    (f : ℕ →
+      (EuclideanSpace ℝ (Fin 2) × ℝ) →₁[
+        (ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume] ℝ)
+    {ε : ℕ → ℝ} {Z : ℕ → ℝ≥0∞} {K : ℝ≥0∞} {eta : ℝ}
+    (hμE : 0 < (μ : Measure (EuclideanSpace ℝ (Fin 2))) E)
+    (hνF : (ν : Measure (EuclideanSpace ℝ (Fin 2))) Fᶜ = 0)
+    (hA : ∀ n, AEMeasurable (A n)
+      ((ν.prod μ : ProbabilityMeasure
+        (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+          Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))))
+    (hε : Tendsto ε atTop (𝓝 0))
+    (hclose : ∀ n p,
+      dist (A n p) (p.1, dist p.2 p.1) ≤ ε n)
+    (hdensity : ∀ n,
+      (((ν.prod μ : ProbabilityMeasure
+        (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+          Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map (A n)) =
+        (finiteMeasureOfL1Density
+          ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume) (f n) :
+            Measure (EuclideanSpace ℝ (Fin 2) × ℝ)))
+    (hK : K ≠ ∞) (hZ : (∑' n, Z n ^ eta) ≠ ∞)
+    (hstep : ∀ n, edist (f n) (f n.succ) ≤ K * Z n ^ eta) :
+    ∃ y ∈ F, 0 < volume (pinnedDistances E y) := by
+  apply exists_mem_volume_pinnedDistances_pos_of_joint_absolutelyContinuous
+    μ ν hμE hνF
+  exact jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximation
+    μ ν A f hA hε hclose hdensity hK hZ hstep
 
 end FalconerPacking

@@ -62,7 +62,7 @@ here certifies the conditional theorem, nothing more.
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
 | $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
 | positive `L¹` density limits, weak identification, affine-map limits, and absolute continuity | **proved**, no holes |
-| joint pin-distance kernels: joint absolute continuity gives almost-every pinned absolute continuity and a positive-length pin | **proved**, no holes |
+| coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -88,7 +88,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/LocalEnergy.lean` | scale-sensitive bounds and geometric summability for normalized dyadic restrictions |
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
-| `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, disintegration, and the positive-length fiber conclusion |
+| `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
