@@ -131,11 +131,13 @@ theorem abs_sub_coord_le_dist (x y : EuclideanSpace ℝ (Fin 2)) (i : Fin 2) : |
     _ ≤ Real.sqrt (∑ j, dist (x j) (y j) ^ 2) := Real.sqrt_le_sqrt hle
 
 /-- **A small ball meets at most four cubes.**  If the ball has radius at most `2⁻ⁿ⁻¹`, then in
-each coordinate the cube index of its points takes at most two consecutive values. -/
-theorem exists_cubeIndex_pair (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : ℝ} (hr : 0 < r)
+each coordinate the cube index of its points is the lower index determined by the ball, or its
+successor. -/
+theorem cubeIndex_eq_lower_or_succ (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : ℝ} (hr : 0 < r)
     (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1))) :
-    ∃ k : Fin 2 → ℤ, ∀ y ∈ Metric.ball x r, ∀ i,
-      cubeIndex n y i = k i ∨ cubeIndex n y i = k i + 1 := by
+    ∀ y ∈ Metric.ball x r, ∀ i,
+      cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ ∨
+        cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ + 1 := by
   have hpow : (0 : ℝ) < 2 ^ n := by positivity
   have h2r : (2 : ℝ) ^ n * (2 * r) ≤ 1 := by
     have hval : (2 : ℝ) ^ n * (2 * (2 : ℝ) ^ (-((n : ℝ) + 1))) = 1 := by
@@ -147,9 +149,7 @@ theorem exists_cubeIndex_pair (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : �
           mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hrn (by norm_num)) hpow.le
       _ = 1 := hval
   have hsplit : (2 : ℝ) ^ n * (2 * r) = 2 * ((2 : ℝ) ^ n * r) := by ring
-  refine ⟨fun i ↦ ⌊(2 : ℝ) ^ n * (x i - r)⌋, fun y hy i ↦ ?_⟩
-  show cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ ∨
-    cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ + 1
+  intro y hy i
   have hdist : |y i - x i| < r := by
     refine lt_of_le_of_lt ?_ (Metric.mem_ball.1 hy)
     simpa [abs_sub_comm] using abs_sub_coord_le_dist y x i
@@ -177,6 +177,13 @@ theorem exists_cubeIndex_pair (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : �
   rcases eq_or_lt_of_le hfloor_low with h | h
   · exact Or.inl h.symm
   · exact Or.inr (by omega)
+
+/-- Existential form of `cubeIndex_eq_lower_or_succ`. -/
+theorem exists_cubeIndex_pair (n : ℕ) (x : EuclideanSpace ℝ (Fin 2)) {r : ℝ} (hr : 0 < r)
+    (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1))) :
+    ∃ k : Fin 2 → ℤ, ∀ y ∈ Metric.ball x r, ∀ i,
+      cubeIndex n y i = k i ∨ cubeIndex n y i = k i + 1 :=
+  ⟨fun i ↦ ⌊(2 : ℝ) ^ n * (x i - r)⌋, cubeIndex_eq_lower_or_succ n x hr hrn⟩
 
 end Counting
 

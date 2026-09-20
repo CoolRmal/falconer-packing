@@ -14,6 +14,7 @@ import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
 import FalconerPacking.WeightMeasure
+import FalconerPacking.OccupiedCubes
 import FalconerPacking.Main
 
 /-!

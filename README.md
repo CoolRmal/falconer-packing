@@ -55,6 +55,7 @@ here certifies the conditional theorem, nothing more.
 | energy: Frostman measures have no atoms and finite `a`-energy for `a < s` | **proved**, no holes |
 | restrictions, selection, separation, Hausdorff content | **proved**, no holes |
 | **finite Frostman lemma**: allowances hold and total mass dominates the content | **proved**, no holes |
+| compact occupied-cube covers and normalized atomic Frostman measures | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -73,7 +74,8 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
 | `FalconerPacking/FrostmanWeights.lean` | the finite Frostman normalization on the cube tree |
-| `FalconerPacking/Branches.lean` | the two analytic branches, as unproved interfaces |
+| `FalconerPacking/WeightMeasure.lean` | normalized atomic measures and their cube and ball bounds |
+| `FalconerPacking/OccupiedCubes.lean` | finite occupied covers and support-point selection for compact sets |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
