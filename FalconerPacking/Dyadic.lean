@@ -115,4 +115,69 @@ theorem measurableSet_dyadicCube (n : ℕ) (k : Fin 2 → ℤ) :
   have hmeas : Measurable fun x : Plane ↦ (2 : ℝ) ^ n * x i := by fun_prop
   exact hmeas measurableSet_Ico
 
+section Counting
+
+/-- Coordinates are 1-Lipschitz for the Euclidean distance. -/
+theorem abs_sub_coord_le_dist (x y : Plane) (i : Fin 2) : |x i - y i| ≤ dist x y := by
+  rw [EuclideanSpace.dist_eq]
+  have hle : dist (x i) (y i) ^ 2 ≤ ∑ j, dist (x j) (y j) ^ 2 :=
+    Finset.single_le_sum (f := fun j ↦ dist (x j) (y j) ^ 2)
+      (fun j _ ↦ by positivity) (Finset.mem_univ i)
+  have h0 : (0 : ℝ) ≤ ∑ j, dist (x j) (y j) ^ 2 :=
+    Finset.sum_nonneg fun j _ ↦ by positivity
+  rw [← Real.dist_eq]
+  calc dist (x i) (y i) = Real.sqrt (dist (x i) (y i) ^ 2) := by
+        rw [Real.sqrt_sq dist_nonneg]
+    _ ≤ Real.sqrt (∑ j, dist (x j) (y j) ^ 2) := Real.sqrt_le_sqrt hle
+
+/-- **A small ball meets at most four cubes.**  If the ball has radius at most `2⁻ⁿ⁻¹`, then in
+each coordinate the cube index of its points takes at most two consecutive values. -/
+theorem exists_cubeIndex_pair (n : ℕ) (x : Plane) {r : ℝ} (hr : 0 < r)
+    (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1))) :
+    ∃ k : Fin 2 → ℤ, ∀ y ∈ Metric.ball x r, ∀ i,
+      cubeIndex n y i = k i ∨ cubeIndex n y i = k i + 1 := by
+  have hpow : (0 : ℝ) < 2 ^ n := by positivity
+  have h2r : (2 : ℝ) ^ n * (2 * r) ≤ 1 := by
+    have hval : (2 : ℝ) ^ n * (2 * (2 : ℝ) ^ (-((n : ℝ) + 1))) = 1 := by
+      rw [Real.rpow_neg (by norm_num : (0 : ℝ) ≤ 2), Real.rpow_add (by norm_num : (0 : ℝ) < 2),
+        Real.rpow_natCast, Real.rpow_one]
+      field_simp
+    calc (2 : ℝ) ^ n * (2 * r)
+        ≤ (2 : ℝ) ^ n * (2 * (2 : ℝ) ^ (-((n : ℝ) + 1))) :=
+          mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left hrn (by norm_num)) hpow.le
+      _ = 1 := hval
+  have hsplit : (2 : ℝ) ^ n * (2 * r) = 2 * ((2 : ℝ) ^ n * r) := by ring
+  refine ⟨fun i ↦ ⌊(2 : ℝ) ^ n * (x i - r)⌋, fun y hy i ↦ ?_⟩
+  show cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ ∨
+    cubeIndex n y i = ⌊(2 : ℝ) ^ n * (x i - r)⌋ + 1
+  have hdist : |y i - x i| < r := by
+    refine lt_of_le_of_lt ?_ (Metric.mem_ball.1 hy)
+    simpa [abs_sub_comm] using abs_sub_coord_le_dist y x i
+  have habs := abs_lt.1 hdist
+  have hlow : (2 : ℝ) ^ n * (x i - r) ≤ 2 ^ n * y i :=
+    mul_le_mul_of_nonneg_left (by linarith [habs.1]) hpow.le
+  have hmul : (2 : ℝ) ^ n * y i < 2 ^ n * (x i + r) :=
+    mul_lt_mul_of_pos_left (by linarith [habs.2]) hpow
+  have hhigh : (2 : ℝ) ^ n * y i < 2 ^ n * (x i - r) + 2 := by
+    have hexp : (2 : ℝ) ^ n * (x i + r) = 2 ^ n * (x i - r) + 2 * ((2 : ℝ) ^ n * r) := by ring
+    rw [hexp] at hmul
+    linarith [h2r, hsplit]
+  have hfloor_low : ⌊(2 : ℝ) ^ n * (x i - r)⌋ ≤ ⌊(2 : ℝ) ^ n * y i⌋ := Int.floor_le_floor hlow
+  have hfloor_high : ⌊(2 : ℝ) ^ n * y i⌋ ≤ ⌊(2 : ℝ) ^ n * (x i - r)⌋ + 1 := by
+    have hlt : (2 : ℝ) ^ n * y i < ((⌊(2 : ℝ) ^ n * (x i - r)⌋ : ℤ) : ℝ) + 2 := by
+      have := Int.lt_floor_add_one ((2 : ℝ) ^ n * (x i - r))
+      linarith [hhigh]
+    have hf : ⌊(2 : ℝ) ^ n * y i⌋ < ⌊(2 : ℝ) ^ n * (x i - r)⌋ + 2 := by
+      refine Int.floor_lt.2 ?_
+      push_cast
+      linarith [hlt]
+    omega
+  have hidx : cubeIndex n y i = ⌊(2 : ℝ) ^ n * y i⌋ := rfl
+  rw [hidx]
+  rcases eq_or_lt_of_le hfloor_low with h | h
+  · exact Or.inl h.symm
+  · exact Or.inr (by omega)
+
+end Counting
+
 end FalconerPacking
