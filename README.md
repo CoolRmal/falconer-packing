@@ -89,6 +89,7 @@ argument can show, which is the step that requires the discretized projection ma
 | projection energy (module 8): the `s`-Riesz kernel of a slope chart is integrable, with the expected bound | **proved**, no holes |
 | projection-energy comparison (module 8): Marstrand's projection theorem in energy form, `∫ I_s(π_a μ) da ≲ I_s(μ)` for `0 < s < 1` | **proved**, no holes |
 | Marstrand's projection theorem in energy form (module 8): a.e. projection of a finite-`s`-energy measure has finite `s`-energy | **proved**, no holes |
+| square integrability of projected densities (module 8): `∫ ‖(π_a μ)_ε‖₂² da ≲ I₁(μ)` uniformly in `ε`, with no Fourier transform | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -107,6 +108,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Tubes.lean` | module 7: slab partitions, the two slope charts, the directional estimate, and the averaged tube-square bound |
 | `FalconerPacking/Caps.lean` | module 7: radial caps pull back into pin tubes, and pin tubes are covered by an explicit interval of slabs |
 | `FalconerPacking/Projection.lean` | module 8: the projection-energy estimate on a slope chart |
+| `FalconerPacking/Density.lean` | module 8: square integrability of the projected densities, by the overlap identity |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
