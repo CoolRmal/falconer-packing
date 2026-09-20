@@ -12,6 +12,7 @@ import FalconerPacking.Energy
 import FalconerPacking.RadialProjection
 import FalconerPacking.Tubes
 import FalconerPacking.Caps
+import FalconerPacking.Projection
 import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
 import FalconerPacking.PositiveLimit
