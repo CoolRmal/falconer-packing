@@ -141,4 +141,63 @@ theorem cubeMass_normalizeDown_le :
         intro k'
         exact normalizeDown_le S n d j (normalizeStep_nonneg S n d hw (j + 1)) k'
 
+section Saturation
+
+variable {S n d}
+
+/-- At the finest generation the mass of a cube is just the weight it carries. -/
+theorem cubeMass_self (w : (Fin 2 → ℤ) → ℝ) (k : Fin 2 → ℤ) :
+    cubeMass S n n w k = if k ∈ S then w k else 0 := by
+  classical
+  rw [cubeMass, Nat.sub_self]
+  by_cases hk : k ∈ S
+  · rw [if_pos hk]
+    refine Finset.sum_eq_single_of_mem k ?_ ?_
+    · exact Finset.mem_filter.2 ⟨hk, by simp⟩
+    · intro b hb hbk
+      have : ancestor 0 b = k := (Finset.mem_filter.1 hb).2
+      rw [ancestor_zero] at this
+      exact absurd this hbk
+  · rw [if_neg hk]
+    refine Finset.sum_eq_zero fun b hb ↦ ?_
+    have hbS : b ∈ S := (Finset.mem_filter.1 hb).1
+    have hbk : ancestor 0 b = k := (Finset.mem_filter.1 hb).2
+    rw [ancestor_zero] at hbk
+    exact absurd (hbk ▸ hbS) hk
+
+/-- The initial weights of the construction: every occupied cube of generation `n` carries its
+own allowance. -/
+def initialWeight (n : ℕ) (d : ℝ) : (Fin 2 → ℤ) → ℝ := fun _ ↦ allowance n d
+
+theorem initialWeight_nonneg (n : ℕ) (d : ℝ) (k : Fin 2 → ℤ) : 0 ≤ initialWeight n d k :=
+  (allowance_pos n d).le
+
+/-- The initial weights saturate every occupied cube of the finest generation. -/
+theorem cubeMass_initialWeight (S : Finset (Fin 2 → ℤ)) (n : ℕ) (d : ℝ) {k : Fin 2 → ℤ}
+    (hk : k ∈ S) : cubeMass S n n (initialWeight n d) k = allowance n d := by
+  rw [cubeMass_self, if_pos hk, initialWeight]
+
+/-- **The step dichotomy.**  At each generation a cube is either left untouched by the
+normalization, or it is saturated: its mass becomes exactly its allowance.  This is what makes
+the saturated cubes of the finished walk a cover of the set. -/
+theorem normalizeStep_dichotomy (w : (Fin 2 → ℤ) → ℝ) (j : ℕ) (k : Fin 2 → ℤ) :
+    (∀ k' ∈ S.filter fun k' ↦ ancestor (n - j) k' = k, normalizeStep S n j d w k' = w k')
+      ∨ cubeMass S n j (normalizeStep S n j d w) k = allowance j d := by
+  by_cases hle : cubeMass S n j w k ≤ allowance j d
+  · refine Or.inl fun k' hk' ↦ ?_
+    have hanc : ancestor (n - j) k' = k := (Finset.mem_filter.1 hk').2
+    rw [normalizeStep, hanc, if_pos hle]
+  · refine Or.inr ?_
+    rw [not_le] at hle
+    have hm : 0 < cubeMass S n j w k := (allowance_pos j d).trans hle
+    have hsum : cubeMass S n j (normalizeStep S n j d w) k
+        = cubeMass S n j w k * (allowance j d / cubeMass S n j w k) := by
+      rw [cubeMass, cubeMass, Finset.sum_mul]
+      refine Finset.sum_congr rfl fun k' hk' ↦ ?_
+      have hanc : ancestor (n - j) k' = k := (Finset.mem_filter.1 hk').2
+      rw [normalizeStep, hanc, if_neg (not_le.2 hle), cubeMass]
+    rw [hsum, mul_div_cancel₀ _ hm.ne']
+
+end Saturation
+
 end FalconerPacking
