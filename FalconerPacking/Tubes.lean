@@ -528,4 +528,53 @@ theorem lintegral_tsum_measure_slab_sq_two_chart_le
           ENNReal.ofReal (16 * δ) / ENNReal.ofReal ‖p.1 - p.2‖ ∂(μ.prod μ) :=
         lintegral_mono fun p => volume_chart_add_chartT_le_uniform _ hδ
 
+/-! ### Against the Riesz energy
+
+The reciprocal-separation integral on the right of the two-chart bound is exactly the Riesz
+`1`-energy of `μ`, which `Energy.lean` shows is finite for every Frostman exponent above one.
+-/
+
+/-- The product-form reciprocal-separation integral is the Riesz `1`-energy, up to the constant. -/
+theorem lintegral_prod_inv_norm_sub (μ : Measure Plane) [SFinite μ] (c : ℝ) :
+    ∫⁻ p : Plane × Plane,
+        ENNReal.ofReal c / ENNReal.ofReal ‖p.1 - p.2‖ ∂(μ.prod μ)
+      = ENNReal.ofReal c * rieszEnergy μ 1 := by
+  have hker : ∀ p : Plane × Plane,
+      ENNReal.ofReal c / ENNReal.ofReal ‖p.1 - p.2‖
+        = ENNReal.ofReal c * rieszKernel 1 p.1 p.2 := by
+    intro p
+    rw [rieszKernel, ENNReal.rpow_neg_one, ← dist_eq_norm, div_eq_mul_inv]
+  have hmeas : Measurable fun p : Plane × Plane => rieszKernel 1 p.1 p.2 := by
+    unfold rieszKernel
+    exact (ENNReal.measurable_ofReal.comp measurable_dist).pow_const _
+  calc ∫⁻ p : Plane × Plane,
+        ENNReal.ofReal c / ENNReal.ofReal ‖p.1 - p.2‖ ∂(μ.prod μ)
+      = ∫⁻ p : Plane × Plane, ENNReal.ofReal c * rieszKernel 1 p.1 p.2 ∂(μ.prod μ) :=
+        lintegral_congr hker
+    _ = ENNReal.ofReal c * ∫⁻ p : Plane × Plane, rieszKernel 1 p.1 p.2 ∂(μ.prod μ) :=
+        lintegral_const_mul _ hmeas
+    _ = ENNReal.ofReal c * rieszEnergy μ 1 := by
+        rw [rieszEnergy, lintegral_prod _ hmeas.aemeasurable]
+
+/-- **The tube-square bound against the energy.**  For a measure of finite `1`-energy — in
+particular for any Frostman measure of exponent above one — the averaged sum of the squares of
+the slab masses is at most `16 δ` times that energy, uniformly in the scale. -/
+theorem lintegral_tsum_measure_slab_sq_le_energy
+    (μ : Measure Plane) [SFinite μ] {δ : ℝ} (hδ : 0 < δ) :
+    (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlope a) δ k)) ^ 2)
+      + (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlopeT a) δ k)) ^ 2)
+      ≤ ENNReal.ofReal (16 * δ) * rieszEnergy μ 1 := by
+  refine le_trans (lintegral_tsum_measure_slab_sq_two_chart_le μ hδ) ?_
+  rw [lintegral_prod_inv_norm_sub μ (16 * δ)]
+
+/-- The tube-square bound is finite for a Frostman measure of exponent above one. -/
+theorem lintegral_tsum_measure_slab_sq_ne_top
+    (μ : Measure Plane) [IsFiniteMeasure μ] {s C δ : ℝ} (hC : 0 < C) (hs : 1 < s)
+    (hfr : IsFrostman μ s C) (hδ : 0 < δ) :
+    ((∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlope a) δ k)) ^ 2)
+      + (∫⁻ a in Set.Icc (-1 : ℝ) 1, ∑' k : ℤ, (μ (slab (normalSlopeT a) δ k)) ^ 2)) ≠ ⊤ := by
+  refine ne_top_of_le_ne_top ?_ (lintegral_tsum_measure_slab_sq_le_energy μ hδ)
+  exact ENNReal.mul_ne_top ENNReal.ofReal_ne_top
+    (rieszEnergy_ne_top hC one_pos hs hfr)
+
 end FalconerPacking

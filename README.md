@@ -52,6 +52,15 @@ remaining step is genuinely hard: the reciprocal-determinant integral needs
 and closing that gap is Orponen's theorem, whose proof runs through Bourgain's discretized
 projection theorem. It is therefore recorded as `OrponenRadialProjection`, unproved.
 
+`Tubes.lean` proves the soft half of the heavy-tube count that both branches need. Tube
+directions are parametrized by slope rather than by a point of the circle, so no arclength
+measure and no inverse trigonometry appear; the two slope charts `(1, a)` and `(a, 1)`
+degenerate on different directions and together cover the circle. The outcome is
+`Σ_k μ(slab)² ≲ δ · I₁(μ)` on average over the direction, hence finite for every Frostman
+exponent above one. This is a *second-moment* bound, so it counts slabs of mass `≥ lam` only to
+precision `lam⁻²`; Orponen's theorem needs heavy slabs to be rarer than any second-moment
+argument can show, which is the step that requires the discretized projection machinery.
+
 | stage | state |
 |---|---|
 | challenge statement | type-checks; elaborated type identical to `Solution.lean` |
@@ -74,6 +83,7 @@ projection theorem. It is therefore recorded as `OrponenRadialProjection`, unpro
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
 | radial projections (module 7): cross-product geometry, the separation estimate, and tube containment | **proved**, no holes |
+| tubes (module 7): slab partitions, the two-chart directional estimate, and the averaged tube-square bound against the Riesz `1`-energy | **proved**, no holes |
 | Orponen's radial-projection theorem (module 7) | **open** — stated as `OrponenRadialProjection`, not proved |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
@@ -90,6 +100,7 @@ projection theorem. It is therefore recorded as `OrponenRadialProjection`, unpro
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
 | `FalconerPacking/RadialProjection.lean` | module 7: the scalar cross product, the radial separation estimate, tubes, and the statement of Orponen's theorem |
+| `FalconerPacking/Tubes.lean` | module 7: slab partitions, the two slope charts, the directional estimate, and the averaged tube-square bound |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
