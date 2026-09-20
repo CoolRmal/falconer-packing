@@ -92,6 +92,7 @@ argument can show, which is the step that requires the discretized projection ma
 | square integrability of projected densities (module 8): `∫ ‖(π_a μ)_ε‖₂² da ≲ I₁(μ)` uniformly in `ε`, with no Fourier transform | **proved**, no holes |
 | finite `1`-energy on the line implies absolute continuity, quantitatively (module 8) | **proved**, no holes |
 | Marstrand's projection theorem, absolute-continuity form (module 8): finite `I₁(μ)` gives an absolutely continuous projection at a.e. slope | **proved**, no holes |
+| the `L²` criterion for pinned distance sets: `O(δ)` mass in the hyperbolic tube gives a positive-length pinned distance set | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -111,6 +112,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Caps.lean` | module 7: radial caps pull back into pin tubes, and pin tubes are covered by an explicit interval of slabs |
 | `FalconerPacking/Projection.lean` | module 8: the projection-energy estimate on a slope chart |
 | `FalconerPacking/Density.lean` | module 8: square integrability of the projected densities, by the overlap identity |
+| `FalconerPacking/PinnedL2.lean` | the `L²` criterion: the hyperbolic-tube bound gives a positive-length pinned distance set |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
