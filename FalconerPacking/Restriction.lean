@@ -3,6 +3,7 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
+import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 
 /-!
@@ -64,5 +65,66 @@ theorem isFrostman_normalizedRestrict {σ : Measure Plane} {Q : Set Plane} {s C 
   refine (mul_le_mul_left' (hfr x r hr hr1) _).trans (le_of_eq ?_)
   rw [div_mul_eq_mul_div, ENNReal.ofReal_div_of_pos hpos, ENNReal.ofReal_toReal hfin,
     ENNReal.div_eq_inv_mul]
+
+section CubeBridge
+
+open scoped ENNReal
+
+/-- A Frostman bound on balls gives a Frostman bound on dyadic cubes. -/
+theorem measure_dyadicCube_le_of_isFrostman {μ : Measure Plane} {s C : ℝ} (hs : 0 ≤ s)
+    (hfr : IsFrostman μ s C) {n : ℕ} (hn : 2 ≤ n) (k : Fin 2 → ℤ) :
+    μ (dyadicCube n k) ≤ ENNReal.ofReal (C * (2 * Real.sqrt 2 / (2 : ℝ) ^ n) ^ s) := by
+  rcases Set.eq_empty_or_nonempty (dyadicCube n k) with hempty | ⟨x, hx⟩
+  · simp [hempty]
+  set r : ℝ := 2 * Real.sqrt 2 / (2 : ℝ) ^ n with hr
+  have hpow : (0 : ℝ) < 2 ^ n := by positivity
+  have hsqrt : (1 : ℝ) < Real.sqrt 2 := by
+    rw [show (1 : ℝ) = Real.sqrt 1 by simp]
+    exact Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
+  have hsqrt2 : Real.sqrt 2 < 3 / 2 := by
+    rw [show (3 / 2 : ℝ) = Real.sqrt ((3 / 2) ^ 2) by
+      rw [Real.sqrt_sq (by norm_num)]]
+    exact Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
+  have hrpos : 0 < r := by positivity
+  have hfour : (4 : ℝ) ≤ 2 ^ n := by
+    calc (4 : ℝ) = 2 ^ 2 := by norm_num
+      _ ≤ 2 ^ n := by
+          exact pow_le_pow_right₀ (by norm_num) hn
+  have hr1 : r ≤ 1 := by
+    rw [hr, div_le_one hpow]
+    linarith [hsqrt2, hfour]
+  refine le_trans (measure_mono ?_) (hfr x r hrpos hr1)
+  intro y hy
+  refine Metric.mem_ball.2 (lt_of_le_of_lt (dist_le_of_mem_dyadicCube hy hx) ?_)
+  rw [hr, div_lt_div_iff_of_pos_right hpow]
+  linarith [hsqrt]
+
+/-- A bound on the mass of the dyadic cubes of generation `n` gives a bound on the mass of balls
+of radius at most `2⁻ⁿ⁻¹`: such a ball meets at most four cubes. -/
+theorem measure_ball_le_of_cube_bound {μ : Measure Plane} {n : ℕ} {x : Plane} {r : ℝ}
+    {M : ℝ≥0∞} (hr : 0 < r) (hrn : r ≤ (2 : ℝ) ^ (-((n : ℝ) + 1)))
+    (hM : ∀ k, μ (dyadicCube n k) ≤ M) : μ (Metric.ball x r) ≤ 4 * M := by
+  classical
+  obtain ⟨k, hk⟩ := exists_cubeIndex_pair n x hr hrn
+  have hsub : Metric.ball x r
+      ⊆ ⋃ b : Fin 2 → Bool, dyadicCube n (fun i ↦ k i + if b i then 1 else 0) := by
+    intro y hy
+    refine Set.mem_iUnion.2 ⟨fun i ↦ decide (cubeIndex n y i = k i + 1), ?_⟩
+    refine mem_dyadicCube_iff.2 (funext fun i ↦ ?_)
+    rcases hk y hy i with h | h
+    · have hne : ¬ (cubeIndex n y i = k i + 1) := by omega
+      simp [h, hne]
+    · simp [h]
+  calc μ (Metric.ball x r)
+      ≤ μ (⋃ b : Fin 2 → Bool, dyadicCube n (fun i ↦ k i + if b i then 1 else 0)) :=
+        measure_mono hsub
+    _ ≤ ∑ b : Fin 2 → Bool, μ (dyadicCube n (fun i ↦ k i + if b i then 1 else 0)) :=
+        measure_iUnion_fintype_le _ _
+    _ ≤ (Finset.univ : Finset (Fin 2 → Bool)).card • M :=
+        Finset.sum_le_card_nsmul _ _ _ fun b _ ↦ hM _
+    _ = 4 * M := by
+        simp [Finset.card_univ, nsmul_eq_mul]
+
+end CubeBridge
 
 end FalconerPacking
