@@ -246,6 +246,136 @@ theorem depthIter_eq_of_le {M m D : ℕ} (hD : D ≤ M) (h : M ≤ 2 ^ m * D) :
   rw [min_eq_left h] at h₁
   exact le_antisymm (hle m D hD) h₁
 
+/-- The greedy descent of Lemma 3.2, as a list of at most `k` points. -/
+def descentChain (N q : ℕ) : ℕ → ℕ → List ℕ
+  | 0, _ => []
+  | (k + 1), n => if q + 1 < n then descend N q n :: descentChain N q k (descend N q n) else []
+
+theorem descentChain_length (N q : ℕ) : ∀ (k n : ℕ), (descentChain N q k n).length ≤ k
+  | 0, _ => by simp [descentChain]
+  | (k + 1), n => by
+    rw [descentChain]
+    split
+    · simpa using descentChain_length N q k (descend N q n)
+    · simp
+
+/-- Every step of the descent decreases the point and is an admissible edge. -/
+theorem descentChain_chain (N q : ℕ) :
+    ∀ (k n : ℕ), n < N →
+      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n (descentChain N q k n)
+  | 0, _, _ => by simp [descentChain, List.Chain.nil]
+  | (k + 1), n, hn => by
+    rw [descentChain]
+    split
+    · rename_i hq
+      refine List.Chain.cons ⟨descend_lt hq hn, admissible_descend N q n⟩ ?_
+      exact descentChain_chain N q k _ ((descend_lt hq hn).trans hn)
+    · exact List.Chain.nil
+
+/-- The descent is in particular a strictly decreasing chain. -/
+theorem descentChain_decreasing (N q k n : ℕ) (hn : n < N) :
+    List.Chain (· > ·) n (descentChain N q k n) :=
+  List.Chain.imp (fun _ _ h ↦ h.1) (descentChain_chain N q k n hn)
+
+/-- The remaining depth exactly doubles, capped at the barrier depth. -/
+theorem sub_descend {N q n : ℕ} (hn : n ≤ N) :
+    N - descend N q n = min (N - (q + 1)) (2 * (N - n)) := by
+  rw [descend]
+  omega
+
+/-- **The descent reaches the barrier.**  If `2 ^ k` doublings of the remaining depth cover the
+barrier depth, then `k` greedy steps end at or below `q + 1`. -/
+theorem chainEnd_descentChain_le (N q : ℕ) (hqN : q + 1 ≤ N) :
+    ∀ (k n : ℕ), n ≤ N → N - (q + 1) ≤ 2 ^ k * (N - n) →
+      chainEnd n (descentChain N q k n) ≤ q + 1
+  | 0, n, hn, hk => by
+    simp only [descentChain, chainEnd]
+    simp only [pow_zero, one_mul] at hk
+    omega
+  | (k + 1), n, hn, hk => by
+    rw [descentChain]
+    split
+    · rename_i hq
+      have hn' : descend N q n ≤ N := by rw [descend]; omega
+      refine chainEnd_descentChain_le N q hqN k (descend N q n) hn' ?_
+      rw [sub_descend hn]
+      rcases le_or_gt (N - (q + 1)) (2 * (N - n)) with h | h
+      · rw [min_eq_left h]
+        exact Nat.le_mul_of_pos_left _ (Nat.two_pow_pos k)
+      · rw [min_eq_right h.le]
+        exact hk.trans (le_of_eq (by ring))
+    · rename_i hq
+      simpa [chainEnd] using Nat.not_lt.1 hq
+
+/-- **The greedy descent of Lemma 3.2.**  From `n₀ < N`, once `2 ^ k` doublings of the remaining
+depth cover the barrier depth, there is a decreasing chain of at most `k` admissible edges that
+ends at or below `q + 1`, whose cost is at most the potential increment across it. -/
+theorem exists_descent_chain {N q k n₀ : ℕ} {b : ℝ} {g : ℕ → ℝ} (hqN : q + 1 ≤ N)
+    (hn : n₀ < N) (hb : 1 / 2 ≤ b) (hlip : ∀ j : ℕ, |g (j + 1) - g j| ≤ 1)
+    (hk : N - (q + 1) ≤ 2 ^ k * (N - n₀)) :
+    ∃ l : List ℕ, l.length ≤ k ∧
+      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n₀ l ∧
+      chainEnd n₀ l ≤ q + 1 ∧
+      chainCost g n₀ l ≤
+        (potential b N g n₀ - potential b N g (chainEnd n₀ l)) / (1 + 2 * b) :=
+  ⟨descentChain N q k n₀, descentChain_length N q k n₀, descentChain_chain N q k n₀ hn,
+    chainEnd_descentChain_le N q hqN k n₀ hn.le hk,
+    chainCost_le_potential hb hlip n₀ _ (descentChain_decreasing N q k n₀ hn)⟩
+
 end Descent
+
+section Insertion
+
+variable {g h : ℕ → ℝ}
+
+/-- A nonnegative profile that vanishes at the origin gives a zero-cost edge down to `0`. -/
+theorem edgeCost_zero_left {n : ℕ} (h0 : g 0 = 0) (hpos : ∀ k, k ≤ n → 0 ≤ g k) :
+    edgeCost g 0 n = 0 := by
+  have hmin : gMin g 0 n = 0 := by
+    refine le_antisymm ?_ (le_gMin (Nat.zero_le n) fun k _ hk ↦ hpos k hk)
+    have := gMin_le (g := g) (le_refl 0) (Nat.zero_le n)
+    rwa [h0] at this
+  rw [edgeCost, hmin, h0, sub_zero]
+
+/-- **Midpoint insertion** (fact 5 of the profile API).  Splitting the edge `[m, n]` at `p`
+increases the cost by exactly `g p - max (gMin g m p) (gMin g p n)`. -/
+theorem edgeCost_insert {m p n : ℕ} (hmp : m ≤ p) (hpn : p ≤ n) :
+    edgeCost g m p + edgeCost g p n
+      = edgeCost g m n + (g p - max (gMin g m p) (gMin g p n)) := by
+  rw [edgeCost, edgeCost, edgeCost, gMin_eq_min hmp hpn]
+  rcases le_total (gMin g m p) (gMin g p n) with hle | hle
+  · rw [min_eq_left hle, max_eq_right hle]
+  · rw [min_eq_right hle, max_eq_left hle]
+    ring
+
+/-- A uniform perturbation of the profile moves the interval minimum by at most `δ`. -/
+theorem gMin_perturb {m n : ℕ} {δ : ℝ} (hmn : m ≤ n) (hδ : ∀ k, |g k - h k| ≤ δ) :
+    |gMin g m n - gMin h m n| ≤ δ := by
+  have hδ0 : 0 ≤ δ := le_trans (abs_nonneg _) (hδ m)
+  have key : ∀ u v : ℕ → ℝ, (∀ k, |u k - v k| ≤ δ) → gMin u m n - gMin v m n ≤ δ := by
+    intro u v huv
+    obtain ⟨j, hj, hj', hgj⟩ : ∃ j, m ≤ j ∧ j ≤ n ∧ gMin v m n = v j := by
+      have hne : (Finset.Icc m n).Nonempty := ⟨m, Finset.mem_Icc.2 ⟨le_rfl, hmn⟩⟩
+      rw [gMin, dif_pos hne]
+      obtain ⟨j, hjmem, hjeq⟩ := Finset.exists_mem_eq_inf' hne v
+      exact ⟨j, (Finset.mem_Icc.1 hjmem).1, (Finset.mem_Icc.1 hjmem).2, hjeq⟩
+    have h₁ : gMin u m n ≤ u j := gMin_le hj hj'
+    have h₂ : u j - v j ≤ δ := (abs_le.1 (huv j)).2
+    rw [hgj]
+    linarith
+  refine abs_le.2 ⟨?_, key g h hδ⟩
+  have := key h g fun k ↦ by rw [abs_sub_comm]; exact hδ k
+  linarith
+
+/-- **Perturbation** (fact 6 of the profile API).  A uniform `δ`-perturbation of the profile
+changes every edge cost by at most `2δ`. -/
+theorem edgeCost_perturb {m n : ℕ} {δ : ℝ} (hmn : m ≤ n) (hδ : ∀ k, |g k - h k| ≤ δ) :
+    |edgeCost g m n - edgeCost h m n| ≤ 2 * δ := by
+  have h₁ := abs_le.1 (hδ m)
+  have h₂ := abs_le.1 (gMin_perturb hmn hδ)
+  rw [edgeCost, edgeCost]
+  refine abs_le.2 ⟨by linarith [h₁.1, h₂.2], by linarith [h₁.2, h₂.1]⟩
+
+end Insertion
 
 end FalconerPacking
