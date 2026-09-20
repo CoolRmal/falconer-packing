@@ -98,6 +98,7 @@ argument can show, which is the step that requires the discretized projection ma
 | the full reduction: any set carrying a compactly supported `d`-Frostman probability measure has a positive-length pin, given only `HypTubeBound d` | **proved**, no holes |
 | Theorem 1.1's conclusion for **closed** sets of dimension above `d`, from `HypTubeBound d` alone | **proved**, no holes |
 | the same with the **packing hypothesis used**: the covering-aware interface `HypTubeBoundC d u`, with the piece of small upper box dimension extracted from `dimP E < u` | **proved**, no holes |
+| the almost-every-pin problem, reduced to a plane-geometry statement (`StripAreaBound`) with no harmonic analysis | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -120,6 +121,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Density.lean` | module 8: square integrability of the projected densities, by the overlap identity |
 | `FalconerPacking/PinnedL2.lean` | the `L²` criterion: the hyperbolic-tube bound gives a positive-length pinned distance set |
 | `FalconerPacking/Reduction.lean` | the reduction to one analytic hypothesis `HypTubeBound` |
+| `FalconerPacking/AePin.lean` | the almost-every-pin problem, reduced to the hyperbolic strip area bound |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
