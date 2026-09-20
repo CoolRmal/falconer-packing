@@ -24,26 +24,12 @@ open scoped ENNReal
 
 namespace FalconerPacking
 
-/-- Unfolding the infimum in `packingDim`: below any strict upper bound there is an actual
-bounded countable cover whose pieces all have upper box dimension below that bound. -/
-theorem exists_cover_of_packingDim_lt {E : Set Plane} {c : ℝ≥0∞} (h : packingDim E < c) :
-    ∃ K : ℕ → Set Plane, E ⊆ ⋃ n, K n ∧ (∀ n, Bornology.IsBounded (K n)) ∧
-      ∀ n, upperBoxDim (K n) < c := by
-  rw [packingDim, iInf_lt_iff] at h
-  obtain ⟨K, hK⟩ := h
-  rw [iInf_lt_iff] at hK
-  obtain ⟨hcov, hK⟩ := hK
-  rw [iInf_lt_iff] at hK
-  obtain ⟨hbdd, hlt⟩ := hK
-  exact ⟨K, hcov, hbdd,
-    fun n ↦ lt_of_le_of_lt (le_iSup (fun m ↦ upperBoxDim (K m)) n) hlt⟩
-
 /-- **The selection step.**  If `E` carries positive mass and its packing dimension is below `c`,
 some bounded piece of upper box dimension below `c` already carries positive mass. -/
 theorem exists_bounded_piece_of_measure_pos {μ : Measure Plane} {E : Set Plane} {c : ℝ≥0∞}
     (hpack : packingDim E < c) (hμ : 0 < μ E) :
     ∃ K : Set Plane, Bornology.IsBounded K ∧ upperBoxDim K < c ∧ 0 < μ (K ∩ E) := by
-  obtain ⟨K, hcov, hbdd, hlt⟩ := exists_cover_of_packingDim_lt hpack
+  obtain ⟨K, hcov, hbdd, hlt⟩ := exists_cover_aux hpack
   by_contra hcon
   rw [not_exists] at hcon
   simp only [not_and, not_lt] at hcon

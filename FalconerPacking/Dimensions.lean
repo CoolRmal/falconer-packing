@@ -164,6 +164,31 @@ theorem packingDim_le_upperBoxDim {E : Set Plane} (hE : Bornology.IsBounded E) :
   · refine iSup_le fun n ↦ ?_
     by_cases hn : n = 0 <;> simp [hn]
 
+/-- A covering bound with a smaller exponent implies one with a larger exponent. -/
+theorem HasUpperBoxBound.mono_exponent {E : Set Plane} {s t : ℝ} (h : HasUpperBoxBound E s)
+    (hst : s ≤ t) : HasUpperBoxBound E t := by
+  obtain ⟨C, hC, hcov⟩ := h
+  refine ⟨C, hC, fun n ↦ ?_⟩
+  obtain ⟨pts, hsub, hcard⟩ := hcov n
+  refine ⟨pts, hsub, hcard.trans ?_⟩
+  have hmono : (2 : ℝ) ^ ((n : ℝ) * s) ≤ (2 : ℝ) ^ ((n : ℝ) * t) := by
+    refine Real.rpow_le_rpow_left_iff (by norm_num : (1 : ℝ) < 2) |>.2 ?_
+    exact mul_le_mul_of_nonneg_left hst (Nat.cast_nonneg n)
+  exact mul_le_mul_of_nonneg_left hmono hC.le
+
+/-- Below a strict bound on the upper box dimension there is an actual covering bound with that
+exponent: the occupied-square count of the selected compact piece is `O(r ^ (-u))`. -/
+theorem hasUpperBoxBound_of_upperBoxDim_lt {E : Set Plane} {u : ℝ} (hu : 0 < u)
+    (h : upperBoxDim E < ENNReal.ofReal u) : HasUpperBoxBound E u := by
+  rw [upperBoxDim, iInf_lt_iff] at h
+  obtain ⟨s, hs⟩ := h
+  rw [iInf_lt_iff] at hs
+  obtain ⟨hs0, hs⟩ := hs
+  rw [iInf_lt_iff] at hs
+  obtain ⟨hbound, hlt⟩ := hs
+  refine hbound.mono_exponent ?_
+  exact le_of_lt ((ENNReal.ofReal_lt_ofReal_iff hu).1 hlt)
+
 end Basic
 
 /-- The Hausdorff dimension is at most the covering exponent of any polynomial dyadic bound. -/
@@ -188,5 +213,39 @@ theorem dimH_le_packingDim (E : Set Plane) : dimH E ≤ packingDim E := by
   calc dimH E ≤ dimH (⋃ n, K n) := dimH_mono hK
     _ = ⨆ n, dimH (K n) := dimH_iUnion _
     _ ≤ ⨆ n, upperBoxDim (K n) := iSup_mono fun n ↦ dimH_le_upperBoxDim _
+
+/-- The cover extracted from a strict bound on the packing dimension. -/
+theorem exists_cover_aux {E : Set Plane} {c : ℝ≥0∞} (h : packingDim E < c) :
+    ∃ K : ℕ → Set Plane, E ⊆ ⋃ n, K n ∧ (∀ n, Bornology.IsBounded (K n)) ∧
+      ∀ n, upperBoxDim (K n) < c := by
+  rw [packingDim, iInf_lt_iff] at h
+  obtain ⟨K, hK⟩ := h
+  rw [iInf_lt_iff] at hK
+  obtain ⟨hcov, hK⟩ := hK
+  rw [iInf_lt_iff] at hK
+  obtain ⟨hbdd, hlt⟩ := hK
+  exact ⟨K, hcov, hbdd,
+    fun n ↦ lt_of_le_of_lt (le_iSup (fun m ↦ upperBoxDim (K m)) n) hlt⟩
+
+section Stability
+
+/-- **Countable stability of packing dimension.**  The dimension of a countable union is the
+supremum of the dimensions, by diagonalizing the covers. -/
+theorem packingDim_iUnion_le (E : ℕ → Set Plane) :
+    packingDim (⋃ n, E n) ≤ ⨆ n, packingDim (E n) := by
+  refine le_of_forall_gt_imp_ge_of_dense fun c hc ↦ ?_
+  have hlt : ∀ n, packingDim (E n) < c := fun n ↦
+    lt_of_le_of_lt (le_iSup (fun m ↦ packingDim (E m)) n) hc
+  choose K hcov hbdd hdim using fun n ↦ exists_cover_aux (hlt n)
+  refine iInf_le_of_le (fun m ↦ K m.unpair.1 m.unpair.2) (iInf_le_of_le ?_ (iInf_le_of_le ?_ ?_))
+  · intro x hx
+    obtain ⟨n, hn⟩ := Set.mem_iUnion.1 hx
+    obtain ⟨j, hj⟩ := Set.mem_iUnion.1 (hcov n hn)
+    refine Set.mem_iUnion.2 ⟨Nat.pair n j, ?_⟩
+    rwa [Nat.unpair_pair]
+  · exact fun m ↦ hbdd _ _
+  · exact iSup_le fun m ↦ (hdim _ _).le
+
+end Stability
 
 end FalconerPacking
