@@ -140,4 +140,112 @@ theorem edgeCost_le_of_lipschitz {m n : ℕ} (hmn : m ≤ n) (hb : 1 / 2 ≤ b)
 
 end Potential
 
+section Chains
+
+variable {g : ℕ → ℝ} {b : ℝ}
+
+/-- The potential `L k = 2bk - bN - g k` of Lemma 3.2. -/
+def potential (b : ℝ) (N : ℕ) (g : ℕ → ℝ) (k : ℕ) : ℝ := 2 * b * k - b * N - g k
+
+/-- An edge `[m, n]` is admissible at scale `N` when `2n ≤ N + m`. -/
+def Admissible (N m n : ℕ) : Prop := 2 * n ≤ N + m
+
+/-- The cost of a chain that starts at `n` and then visits the points of `l` in order. -/
+def chainCost (g : ℕ → ℝ) : ℕ → List ℕ → ℝ
+  | _, [] => 0
+  | n, m :: rest => edgeCost g m n + chainCost g m rest
+
+/-- The last point of a chain that starts at `n` and then visits the points of `l`. -/
+def chainEnd : ℕ → List ℕ → ℕ
+  | n, [] => n
+  | _, m :: rest => chainEnd m rest
+
+theorem chainCost_nonneg (g : ℕ → ℝ) :
+    ∀ (n : ℕ) (l : List ℕ), List.Chain (· > ·) n l → 0 ≤ chainCost g n l
+  | _, [], _ => le_rfl
+  | n, m :: rest, h => by
+    obtain ⟨hmn, hrest⟩ := List.chain_cons.1 h
+    exact add_nonneg (edgeCost_nonneg hmn.le) (chainCost_nonneg g m rest hrest)
+
+/-- A single edge costs at most the increment of the potential across it. -/
+theorem edgeCost_le_potential {N m n : ℕ} (hmn : m ≤ n) (hb : 1 / 2 ≤ b)
+    (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
+    edgeCost g m n ≤ (potential b N g n - potential b N g m) / (1 + 2 * b) := by
+  have hcast : ((n - m : ℕ) : ℝ) = (n : ℝ) - m := Nat.cast_sub hmn
+  have h := edgeCost_le_of_lipschitz (g := g) (b := b) hmn hb hlip
+  rw [hcast] at h
+  refine h.trans (le_of_eq ?_)
+  rw [potential, potential]
+  ring_nf
+
+/-- **The chain-cost bound.**  A descending chain costs at most the total increment of the
+potential between its endpoints. -/
+theorem chainCost_le_potential {N : ℕ} (hb : 1 / 2 ≤ b)
+    (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
+    ∀ (n : ℕ) (l : List ℕ), List.Chain (· > ·) n l →
+      chainCost g n l ≤ (potential b N g n - potential b N g (chainEnd n l)) / (1 + 2 * b)
+  | n, [], _ => by simp [chainCost, chainEnd]
+  | n, m :: rest, h => by
+    obtain ⟨hmn, hrest⟩ := List.chain_cons.1 h
+    have hstep := edgeCost_le_potential (N := N) (g := g) (b := b) hmn.le hb hlip
+    have htail := chainCost_le_potential (N := N) hb hlip m rest hrest
+    have : chainCost g n (m :: rest) = edgeCost g m n + chainCost g m rest := rfl
+    rw [this, chainEnd]
+    calc edgeCost g m n + chainCost g m rest
+        ≤ (potential b N g n - potential b N g m) / (1 + 2 * b) +
+            (potential b N g m - potential b N g (chainEnd m rest)) / (1 + 2 * b) :=
+          add_le_add hstep htail
+      _ = (potential b N g n - potential b N g (chainEnd m rest)) / (1 + 2 * b) := by ring
+
+end Chains
+
+section Descent
+
+/-- One step of the greedy descent of Lemma 3.2: halve the remaining depth, but never pass the
+barrier `q + 1`. -/
+def descend (N q n : ℕ) : ℕ := max (q + 1) (2 * n - N)
+
+theorem descend_lt {N q n : ℕ} (hq : q + 1 < n) (hn : n < N) : descend N q n < n := by
+  refine max_lt hq ?_
+  omega
+
+theorem admissible_descend (N q n : ℕ) : Admissible N (descend N q n) n := by
+  rw [Admissible, descend]
+  rcases le_or_gt (2 * n) N with h | h
+  · omega
+  · have : 2 * n - N ≤ max (q + 1) (2 * n - N) := le_max_right _ _
+    omega
+
+/-- The depth after `m` doubling steps, capped at the maximal depth `M`. -/
+def depthIter (M : ℕ) : ℕ → ℕ → ℕ
+  | 0, D => D
+  | (m + 1), D => depthIter M m (min (2 * D) M)
+
+/-- Doubling the remaining depth reaches the cap in `m` steps once `2 ^ m * D ≥ M`: this is the
+edge count of Lemma 3.2. -/
+theorem min_le_depthIter (M : ℕ) : ∀ (m D : ℕ), min M (2 ^ m * D) ≤ depthIter M m D
+  | 0, D => by simp [depthIter]
+  | (m + 1), D => by
+    refine le_trans ?_ (min_le_depthIter M m (min (2 * D) M))
+    rcases le_or_gt M (2 * D) with h | h
+    · rw [min_eq_right h]
+      have : M ≤ 2 ^ m * M := Nat.le_mul_of_pos_left _ (Nat.two_pow_pos m)
+      omega
+    · rw [min_eq_left h.le]
+      have : 2 ^ (m + 1) * D = 2 ^ m * (2 * D) := by ring
+      omega
+
+theorem depthIter_eq_of_le {M m D : ℕ} (hD : D ≤ M) (h : M ≤ 2 ^ m * D) :
+    depthIter M m D = M := by
+  have hle : ∀ (m D : ℕ), D ≤ M → depthIter M m D ≤ M := by
+    intro m
+    induction m with
+    | zero => intro D hD; simpa [depthIter] using hD
+    | succ m ih => intro D _; exact ih _ (min_le_right _ _)
+  have h₁ := min_le_depthIter M m D
+  rw [min_eq_left h] at h₁
+  exact le_antisymm (hle m D hD) h₁
+
+end Descent
+
 end FalconerPacking
