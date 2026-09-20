@@ -56,6 +56,7 @@ here certifies the conditional theorem, nothing more.
 | restrictions, selection, separation, Hausdorff content | **proved**, no holes |
 | **finite Frostman lemma**: allowances hold and total mass dominates the content | **proved**, no holes |
 | compact occupied-cube covers and normalized atomic Frostman measures | **proved**, no holes |
+| weak compactness and supported subsequence extraction | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -76,6 +77,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/FrostmanWeights.lean` | the finite Frostman normalization on the cube tree |
 | `FalconerPacking/WeightMeasure.lean` | normalized atomic measures and their cube and ball bounds |
 | `FalconerPacking/OccupiedCubes.lean` | finite occupied covers and support-point selection for compact sets |
+| `FalconerPacking/WeakLimit.lean` | compactness and subsequences for measures supported on a compact set |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 

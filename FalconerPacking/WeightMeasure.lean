@@ -104,6 +104,26 @@ theorem weightFiniteMeasure_mass (S : Finset (Fin 2 → ℤ))
     weightMeasure_univ S pt hw]
   rfl
 
+/-- If every selected atom lies in `K`, the atomic measure gives zero mass to its complement. -/
+theorem weightMeasure_compl_eq_zero {S : Finset (Fin 2 → ℤ)}
+    {pt : (Fin 2 → ℤ) → EuclideanSpace ℝ (Fin 2)} {w : (Fin 2 → ℤ) → ℝ}
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : MeasurableSet K)
+    (hpt : ∀ k ∈ S, pt k ∈ K) :
+    weightMeasure S pt w Kᶜ = 0 := by
+  rw [weightMeasure_apply S pt w hK.compl]
+  refine Finset.sum_eq_zero fun k hk ↦ ?_
+  simp [Measure.dirac_apply, hpt k hk]
+
+/-- Normalization preserves the fact that all mass is carried by `K`. -/
+theorem weightProbabilityMeasure_compl_eq_zero {S : Finset (Fin 2 → ℤ)}
+    {pt : (Fin 2 → ℤ) → EuclideanSpace ℝ (Fin 2)} {w : (Fin 2 → ℤ) → ℝ}
+    {K : Set (EuclideanSpace ℝ (Fin 2))} (hK : MeasurableSet K)
+    (hw : ∀ k, 0 ≤ w k) (hmass : 0 < ∑ k' ∈ S, w k')
+    (hpt : ∀ k ∈ S, pt k ∈ K) :
+    (weightProbabilityMeasure S pt w : Measure (EuclideanSpace ℝ (Fin 2))) Kᶜ = 0 := by
+  rw [weightProbabilityMeasure_toMeasure S pt hw hmass,
+    Measure.coe_nnreal_smul_apply, weightMeasure_compl_eq_zero hK hpt, mul_zero]
+
 section CubeMass
 
 variable {S : Finset (Fin 2 → ℤ)} {n : ℕ} {pt : (Fin 2 → ℤ) → EuclideanSpace ℝ (Fin 2)} {w : (Fin 2 → ℤ) → ℝ}
