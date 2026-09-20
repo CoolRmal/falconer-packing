@@ -11,6 +11,7 @@ import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
+import FalconerPacking.PositiveLimit
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights

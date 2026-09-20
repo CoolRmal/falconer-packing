@@ -61,6 +61,7 @@ here certifies the conditional theorem, nothing more.
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
 | $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
+| positive `L¹` density limits: weak identification and absolute continuity | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -85,6 +86,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/LocalEnergy.lean` | scale-sensitive bounds and geometric summability for normalized dyadic restrictions |
+| `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
