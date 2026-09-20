@@ -10,6 +10,7 @@ import FalconerPacking.Profile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
+import FalconerPacking.Extraction
 import FalconerPacking.Branches
 import FalconerPacking.Main
 
