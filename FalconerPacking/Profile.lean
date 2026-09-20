@@ -576,22 +576,22 @@ theorem jumpSet_zero_eq_empty (g : ℕ → ℝ) (N : ℕ) : jumpSet g N 0 = ∅ 
 /-- **The greedy chain reaches the origin.**  If an admissible zero-cost jump exists from every
 positive point, then `2m` greedy steps suffice as soon as `2 ^ m` doublings of the remaining
 depth cover `N`: two steps more than double the depth, and the depth cannot exceed `N`. -/
-theorem chainEnd_greedyChain_eq_zero {N : ℕ} (g : ℕ → ℝ)
-    (hjump : ∀ n, 0 < n → n ≤ N → (jumpSet g N n).Nonempty) :
-    ∀ (m n : ℕ), n ≤ N → N ≤ 2 ^ m * (N - n) → chainEnd n (greedyChain g N (2 * m) n) = 0
-  | 0, n, hn, hk => by
+theorem chainEnd_greedyChain_eq_zero {N : ℕ} (g : ℕ → ℝ) :
+    ∀ (m n : ℕ), n ≤ N → (∀ k, 0 < k → k ≤ n → (jumpSet g N k).Nonempty) →
+      N ≤ 2 ^ m * (N - n) → chainEnd n (greedyChain g N (2 * m) n) = 0
+  | 0, n, hn, _, hk => by
     have hn0 : n = 0 := by
       simp only [pow_zero, one_mul] at hk
       omega
     subst hn0
     simp [greedyChain, chainEnd]
-  | (m + 1), n, hn, hk => by
+  | (m + 1), n, hn, hjump, hk => by
     rcases Nat.eq_zero_or_pos n with hn0 | hn0
     · subst hn0
       rw [show 2 * (m + 1) = (2 * m + 1) + 1 by ring, greedyChain,
         dif_neg (by simp [jumpSet_zero_eq_empty])]
       rfl
-    have h₁ := hjump n hn0 hn
+    have h₁ := hjump n hn0 le_rfl
     set j₁ := bestJump g N n with hj₁
     have hj₁n : j₁ < n := bestJump_lt h₁
     have hstep : greedyChain g N (2 * (m + 1)) n = j₁ :: greedyChain g N (2 * m + 1) j₁ := by
@@ -600,7 +600,7 @@ theorem chainEnd_greedyChain_eq_zero {N : ℕ} (g : ℕ → ℝ)
     · have hzero : greedyChain g N (2 * m + 1) j₁ = [] := by
         rw [hj₁0, greedyChain, dif_neg (by simp [jumpSet_zero_eq_empty])]
       rw [hstep, chainEnd, hzero, chainEnd, hj₁0]
-    have h₂ := hjump j₁ hj₁0 (hj₁n.le.trans hn)
+    have h₂ := hjump j₁ hj₁0 hj₁n.le
     set j₂ := bestJump g N j₁ with hj₂
     have hdouble : 2 * (N - n) < N - j₂ := two_step_double hn h₁ h₂
     have hstep₂ : greedyChain g N (2 * m + 1) j₁ = j₂ :: greedyChain g N (2 * m) j₂ := by
@@ -612,8 +612,162 @@ theorem chainEnd_greedyChain_eq_zero {N : ℕ} (g : ℕ → ℝ)
       rw [this]
       exact Nat.mul_le_mul_left _ (by omega)
     rw [hstep, chainEnd, hstep₂, chainEnd]
-    exact chainEnd_greedyChain_eq_zero g hjump m j₂ hj₂N hk'
+    have hj₂n : j₂ < n := (bestJump_lt h₂).trans hj₁n
+    exact chainEnd_greedyChain_eq_zero g m j₂ hj₂N
+      (fun k hk0 hkj ↦ hjump k hk0 (hkj.trans hj₂n.le)) hk'
+
+/-- **The free descent of Lemma 3.2.**  In the region where the potential is nonpositive, a
+nonnegative profile below its upper barrier admits a zero-cost admissible chain from `n₀` all
+the way to the origin, using at most `2m` edges whenever `2 ^ m` doublings of the remaining
+depth cover `N`. -/
+theorem exists_free_chain {N n₀ m : ℕ} {b : ℝ} {g : ℕ → ℝ}
+    (h0 : g 0 = 0) (hnonneg : ∀ k, k ≤ N → 0 ≤ g k) (hupper : ∀ k, k ≤ N → g k ≤ b * k)
+    (hL : ∀ k, k ≤ n₀ → potential b N g k ≤ 0) (hn₀ : n₀ < N)
+    (hm : N ≤ 2 ^ m * (N - n₀)) :
+    ∃ l : List ℕ, l.length ≤ 2 * m ∧
+      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n₀ l ∧
+      chainEnd n₀ l = 0 ∧ chainCost g n₀ l = 0 := by
+  have hjump : ∀ k, 0 < k → k ≤ n₀ → (jumpSet g N k).Nonempty := by
+    intro k hk0 hkn
+    rcases le_or_gt (2 * k) N with h | h
+    · exact jumpSet_nonempty_of_le_half hk0 h h0 fun j hj ↦ hnonneg j (by omega)
+    · exact jumpSet_nonempty_of_potential_nonpos (b := b) h (by omega) (hL k hkn) hupper
+  exact ⟨greedyChain g N (2 * m) n₀, greedyChain_length g N (2 * m) n₀,
+    greedyChain_chain g N (2 * m) n₀,
+    chainEnd_greedyChain_eq_zero g m n₀ hn₀.le hjump hm,
+    chainCost_greedyChain g N (2 * m) n₀⟩
 
 end Greedy
+
+section Concat
+
+variable {g : ℕ → ℝ} {b : ℝ}
+
+theorem chainEnd_append : ∀ (n : ℕ) (l₁ l₂ : List ℕ),
+    chainEnd n (l₁ ++ l₂) = chainEnd (chainEnd n l₁) l₂
+  | _, [], _ => rfl
+  | _, m :: rest, l₂ => by
+    simpa [chainEnd] using chainEnd_append m rest l₂
+
+theorem chainCost_append (g : ℕ → ℝ) : ∀ (n : ℕ) (l₁ l₂ : List ℕ),
+    chainCost g n (l₁ ++ l₂) = chainCost g n l₁ + chainCost g (chainEnd n l₁) l₂
+  | _, [], _ => by simp [chainCost, chainEnd]
+  | n, m :: rest, l₂ => by
+    have h : chainCost g n (m :: (rest ++ l₂))
+        = edgeCost g m n + chainCost g m (rest ++ l₂) := rfl
+    have h' : chainCost g n (m :: rest) = edgeCost g m n + chainCost g m rest := rfl
+    simp only [List.cons_append, h, h', chainEnd]
+    rw [chainCost_append g m rest l₂]
+    ring
+
+theorem chain_append {R : ℕ → ℕ → Prop} : ∀ (n : ℕ) (l₁ l₂ : List ℕ),
+    List.Chain R n l₁ → List.Chain R (chainEnd n l₁) l₂ → List.Chain R n (l₁ ++ l₂)
+  | _, [], _, _, h₂ => by simpa [chainEnd] using h₂
+  | n, m :: rest, l₂, h₁, h₂ => by
+    obtain ⟨hnm, hrest⟩ := List.chain_cons.1 h₁
+    exact List.Chain.cons hnm (chain_append m rest l₂ hrest (by simpa [chainEnd] using h₂))
+
+/-- The potential is nondecreasing along the grid. -/
+theorem potential_mono {N : ℕ} (hb : 1 / 2 ≤ b) (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
+    Monotone (potential b N g) := by
+  refine monotone_nat_of_le_succ fun k ↦ ?_
+  simpa [potential] using potential_monotone (g := g) (b := b) N hb hlip k
+
+/-- A single grid step costs at most one, for a 1-Lipschitz profile. -/
+theorem edgeCost_succ_le_one {k : ℕ} (hlip : ∀ j : ℕ, |g (j + 1) - g j| ≤ 1) :
+    edgeCost g k (k + 1) ≤ 1 := by
+  have h := abs_le.1 (hlip k)
+  have hmin : min (g k) (g (k + 1)) ≤ gMin g k (k + 1) := by
+    refine le_gMin (Nat.le_succ k) fun j hj hj' ↦ ?_
+    rcases Nat.lt_or_ge j (k + 1) with h | h
+    · have hjk : j = k := by omega
+      subst hjk
+      exact min_le_left _ _
+    · have hjk : j = k + 1 := by omega
+      subst hjk
+      exact min_le_right _ _
+  rcases le_total (g k) (g (k + 1)) with hle | hle
+  · rw [min_eq_left hle] at hmin
+    have : gMin g k (k + 1) ≤ g k := gMin_le le_rfl (Nat.le_succ k)
+    rw [edgeCost]
+    linarith [le_antisymm this hmin]
+  · rw [min_eq_right hle] at hmin
+    rw [edgeCost]
+    linarith [h.1, h.2]
+
+end Concat
+
+section LemmaThreeTwo
+
+variable {g : ℕ → ℝ} {b : ℝ}
+
+/-- **Lemma 3.2, in its finite form.**  Below the barrier `q`, where the potential is already
+nonpositive, the greedy descent from `n₀` joins the free descent to the origin across at most one
+unit edge.  The resulting admissible chain has at most `m + 2m' + 1` edges and costs at most the
+full potential difference plus one.
+
+The manuscript states the cost as `(bN - g N) / (1 + 2b) + 3`; the potential form proved here is
+what the argument actually uses, and it avoids the continuous rescaling step. -/
+theorem exists_chain_to_zero {N n₀ q m m' : ℕ}
+    (hb : 1 / 2 ≤ b) (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1)
+    (h0 : g 0 = 0) (hnonneg : ∀ k, k ≤ N → 0 ≤ g k) (hupper : ∀ k, k ≤ N → g k ≤ b * k)
+    (hn₀ : n₀ < N) (hq : q + 2 ≤ N) (hqL : potential b N g q ≤ 0)
+    (hm : N - (q + 1) ≤ 2 ^ m * (N - n₀)) (hm' : N ≤ 2 ^ m' * (N - q)) :
+    ∃ l : List ℕ, l.length ≤ m + 2 * m' + 1 ∧
+      List.Chain (fun n k ↦ k < n ∧ Admissible N k n) n₀ l ∧
+      chainEnd n₀ l = 0 ∧
+      chainCost g n₀ l ≤ (potential b N g n₀ - potential b N g 0) / (1 + 2 * b) + 1 := by
+  have hpos : (0 : ℝ) < 1 + 2 * b := by linarith
+  have hmono := potential_mono (N := N) (g := g) (b := b) hb hlip
+  obtain ⟨l₁, hlen₁, hchain₁, hend₁, hcost₁⟩ :=
+    exists_descent_chain (N := N) (q := q) (k := m) (n₀ := n₀) (b := b) (g := g)
+      (by omega) hn₀ hb hlip hm
+  have hcost₁' : chainCost g n₀ l₁
+      ≤ (potential b N g n₀ - potential b N g 0) / (1 + 2 * b) := by
+    refine hcost₁.trans ((div_le_div_iff_of_pos_right hpos).2 ?_)
+    have := hmono (Nat.zero_le (chainEnd n₀ l₁))
+    linarith
+  rcases Nat.eq_zero_or_pos (chainEnd n₀ l₁) with hp0 | hp0
+  · exact ⟨l₁, by omega, hchain₁, hp0, by linarith⟩
+  by_cases hpq : chainEnd n₀ l₁ = q + 1
+  · -- one unit edge across the barrier, then the free descent
+    have hqN : q < N := by omega
+    have hqL' : ∀ k, k ≤ q → potential b N g k ≤ 0 := fun k hk ↦ (hmono hk).trans hqL
+    obtain ⟨l₂, hlen₂, hchain₂, hend₂, hcost₂⟩ :=
+      exists_free_chain (N := N) (n₀ := q) (m := m') (b := b) (g := g) h0 hnonneg hupper
+        hqL' hqN hm'
+    refine ⟨l₁ ++ q :: l₂, ?_, ?_, ?_, ?_⟩
+    · simp only [List.length_append, List.length_cons]
+      omega
+    · refine chain_append n₀ l₁ _ hchain₁ ?_
+      rw [hpq]
+      exact List.Chain.cons ⟨by omega, by rw [Admissible]; omega⟩ hchain₂
+    · rw [chainEnd_append, hpq]
+      simpa [chainEnd] using hend₂
+    · rw [chainCost_append]
+      have hstep : chainCost g (chainEnd n₀ l₁) (q :: l₂)
+          = edgeCost g q (chainEnd n₀ l₁) + chainCost g q l₂ := rfl
+      rw [hstep, hcost₂, hpq, add_zero]
+      have := edgeCost_succ_le_one (g := g) (k := q) hlip
+      linarith
+  · -- already below the barrier: descend freely
+    have hpq' : chainEnd n₀ l₁ ≤ q := by omega
+    have hpN : chainEnd n₀ l₁ < N := by omega
+    have hpL : ∀ k, k ≤ chainEnd n₀ l₁ → potential b N g k ≤ 0 := fun k hk ↦
+      (hmono (hk.trans hpq')).trans hqL
+    have hm'' : N ≤ 2 ^ m' * (N - chainEnd n₀ l₁) :=
+      hm'.trans (Nat.mul_le_mul_left _ (by omega))
+    obtain ⟨l₂, hlen₂, hchain₂, hend₂, hcost₂⟩ :=
+      exists_free_chain (N := N) (n₀ := chainEnd n₀ l₁) (m := m') (b := b) (g := g) h0 hnonneg
+        hupper hpL hpN hm''
+    refine ⟨l₁ ++ l₂, ?_, chain_append n₀ l₁ l₂ hchain₁ hchain₂, ?_, ?_⟩
+    · simp only [List.length_append]
+      omega
+    · rw [chainEnd_append]
+      exact hend₂
+    · rw [chainCost_append, hcost₂, add_zero]
+      linarith
+
+end LemmaThreeTwo
 
 end FalconerPacking
