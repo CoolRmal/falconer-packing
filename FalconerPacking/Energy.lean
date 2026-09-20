@@ -245,4 +245,72 @@ theorem rieszEnergy_ne_top [IsFiniteMeasure μ] (hC : 0 < C) (ha : 0 < a) (has :
 
 end Bound
 
+section Truncated
+
+/-- The truncated kernel at scales `a ≤ b` of §6.3: `b / a` on the diagonal, and
+`min (b / a) (b / |y - z|)` off it.  The diagonal case is explicit, so that Lean's totalized
+division at zero never contributes a value. -/
+def truncKernel (a b : ℝ) (y z : Plane) : ℝ≥0∞ :=
+  if y = z then ENNReal.ofReal (b / a) else ENNReal.ofReal (min (b / a) (b / dist y z))
+
+variable {a b : ℝ} {y z : Plane}
+
+theorem truncKernel_symm (a b : ℝ) (y z : Plane) : truncKernel a b y z = truncKernel a b z y := by
+  rw [truncKernel, truncKernel, dist_comm]
+  by_cases h : y = z
+  · simp [h]
+  · simp [h, Ne.symm h]
+
+/-- The truncation makes the kernel bounded by the ratio of the scales. -/
+theorem truncKernel_le (a b : ℝ) (y z : Plane) : truncKernel a b y z ≤ ENNReal.ofReal (b / a) := by
+  rw [truncKernel]
+  by_cases h : y = z
+  · simp [h]
+  · simp only [h, if_false]
+    exact ENNReal.ofReal_le_ofReal (min_le_left _ _)
+
+/-- Inside the inner scale the kernel is exactly the ratio of the scales. -/
+theorem truncKernel_of_dist_le (hb : 0 ≤ b) (ha : 0 < a) (h : dist y z ≤ a) :
+    truncKernel a b y z = ENNReal.ofReal (b / a) := by
+  rw [truncKernel]
+  by_cases hyz : y = z
+  · simp [hyz]
+  · have hd : 0 < dist y z := dist_pos.2 hyz
+    have : b / a ≤ b / dist y z := by
+      exact div_le_div_of_nonneg_left hb hd h
+    simp [hyz, min_eq_left this]
+
+/-- Outside the inner scale the kernel is the reciprocal distance, scaled by `b`. -/
+theorem truncKernel_of_le_dist (hb : 0 ≤ b) (ha : 0 < a) (h : a ≤ dist y z) :
+    truncKernel a b y z = ENNReal.ofReal (b / dist y z) := by
+  have hd : 0 < dist y z := lt_of_lt_of_le ha h
+  have hyz : y ≠ z := fun hyz ↦ by simp [hyz] at hd
+  rw [truncKernel, if_neg hyz, min_eq_right (div_le_div_of_nonneg_left hb ha h)]
+
+/-- The truncated energy of §6.3. -/
+def truncEnergy (μ : Measure Plane) (a b : ℝ) : ℝ≥0∞ :=
+  ∫⁻ y, ∫⁻ z, truncKernel a b y z ∂μ ∂μ
+
+/-- The finite truncation bounds the energy by `b / a` times the squared mass. -/
+theorem truncEnergy_le (μ : Measure Plane) (a b : ℝ) :
+    truncEnergy μ a b ≤ ENNReal.ofReal (b / a) * μ univ * μ univ := by
+  have hinner : ∀ y : Plane, ∫⁻ z, truncKernel a b y z ∂μ
+      ≤ ENNReal.ofReal (b / a) * μ univ := by
+    intro y
+    refine (lintegral_mono fun z ↦ truncKernel_le a b y z).trans ?_
+    rw [lintegral_const]
+  calc truncEnergy μ a b
+      ≤ ∫⁻ _y, ENNReal.ofReal (b / a) * μ univ ∂μ := lintegral_mono hinner
+    _ = ENNReal.ofReal (b / a) * μ univ * μ univ := by
+        rw [lintegral_const]
+
+theorem truncEnergy_ne_top (μ : Measure Plane) [IsFiniteMeasure μ] (a b : ℝ) :
+    truncEnergy μ a b ≠ ⊤ :=
+  ne_top_of_le_ne_top
+    (ENNReal.mul_ne_top (ENNReal.mul_ne_top ENNReal.ofReal_ne_top (measure_ne_top _ _))
+      (measure_ne_top _ _))
+    (truncEnergy_le μ a b)
+
+end Truncated
+
 end FalconerPacking

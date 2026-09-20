@@ -33,6 +33,7 @@ is strict, including at the two transition points.
 | energy: Frostman measures have no atoms and finite `a`-energy for `a < s` | **proved**, no holes |
 | restrictions: normalized restrictions stay Frostman, with constant `C / σ Q` | **proved**, no holes |
 | selection: bounded piece of positive mass, compact subset, separated compact pair | **proved**, no holes |
+| truncated kernel and energy at scales `a ≤ b`, bounded by `b / a` | **proved**, no holes |
 | `branch_original` (Proposition 2.5) | **not proved** — analytic input, `sorry` |
 | `branch_finiteProfile` (Theorem 3.1) | **not proved** — analytic input, `sorry` |
 | comparator | statement stage passes locally; axiom stage reports `sorryAx` |
