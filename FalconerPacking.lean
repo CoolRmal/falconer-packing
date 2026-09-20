@@ -10,6 +10,7 @@ import FalconerPacking.Profile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.RadialProjection
+import FalconerPacking.LocalPotential
 import FalconerPacking.Tubes
 import FalconerPacking.Caps
 import FalconerPacking.Projection

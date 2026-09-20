@@ -82,6 +82,7 @@ argument can show, which is the step that requires the discretized projection ma
 | coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
+| localized Riesz potential: the `a`-potential over a ball of radius `r` is `O(r^(s-a))` | **proved**, no holes |
 | radial projections (module 7): cross-product geometry, the separation estimate, and tube containment | **proved**, no holes |
 | tubes (module 7): slab partitions, the two-chart directional estimate, and the averaged tube-square bound against the Riesz `1`-energy | **proved**, no holes |
 | caps (module 7): radial caps pull back into tubes, and tubes are covered by an explicit interval of slabs | **proved**, no holes |
@@ -110,6 +111,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
 | `FalconerPacking/RadialProjection.lean` | module 7: the scalar cross product, the radial separation estimate, tubes, and the statement of Orponen's theorem |
+| `FalconerPacking/LocalPotential.lean` | the localized Riesz potential `O(r^(s-a))`, the route by which a covering hypothesis enters |
 | `FalconerPacking/Tubes.lean` | module 7: slab partitions, the two slope charts, the directional estimate, and the averaged tube-square bound |
 | `FalconerPacking/Caps.lean` | module 7: radial caps pull back into pin tubes, and pin tubes are covered by an explicit interval of slabs |
 | `FalconerPacking/Projection.lean` | module 8: the projection-energy estimate on a slope chart |
