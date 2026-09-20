@@ -15,6 +15,7 @@ import FalconerPacking.Caps
 import FalconerPacking.Projection
 import FalconerPacking.Density
 import FalconerPacking.PinnedL2
+import FalconerPacking.Reduction
 import FalconerPacking.Restriction
 import FalconerPacking.LocalEnergy
 import FalconerPacking.PositiveLimit

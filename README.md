@@ -94,6 +94,7 @@ argument can show, which is the step that requires the discretized projection ma
 | Marstrand's projection theorem, absolute-continuity form (module 8): finite `I₁(μ)` gives an absolutely continuous projection at a.e. slope | **proved**, no holes |
 | the `L²` criterion for pinned distance sets: `O(δ)` mass in the hyperbolic tube gives a positive-length pinned distance set | **proved**, no holes |
 | a pin from an **averaged** hyperbolic-tube bound — the exact shape of both analytic branches' conclusions | **proved**, no holes |
+| the full reduction: a compact set of dimension above `d` has a positive-length pin, given only `HypTubeBound d` | **proved**, no holes |
 | unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
 
 ## Layout
@@ -114,6 +115,7 @@ argument can show, which is the step that requires the discretized projection ma
 | `FalconerPacking/Projection.lean` | module 8: the projection-energy estimate on a slope chart |
 | `FalconerPacking/Density.lean` | module 8: square integrability of the projected densities, by the overlap identity |
 | `FalconerPacking/PinnedL2.lean` | the `L²` criterion: the hyperbolic-tube bound gives a positive-length pinned distance set |
+| `FalconerPacking/Reduction.lean` | the reduction to one analytic hypothesis `HypTubeBound` |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
 | `FalconerPacking/Extraction.lean` | module 15: the selection and separation steps of the reduction |
 | `FalconerPacking/Content.lean` | Hausdorff content, towards Frostman's lemma |
