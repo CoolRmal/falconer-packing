@@ -60,6 +60,35 @@ def bound (d : ℝ) : ℝ :=
   else if d ≤ d1 then 3 * d ^ 2 - (5 / 2 : ℝ) * d
   else ((2 * d - 1) ^ 2 + Real.sqrt ((2 * d - 1) ^ 4 + 8 * d)) / 4
 
+/-- The exponent in the finite-profile branch. -/
+def A (s u : ℝ) : ℝ :=
+  (max u (3 / 2) - s) / (2 * max u (3 / 2) - 1) + (u - s) / (2 * s)
+
+/-- The original analytic branch, isolated as an explicit proposition. -/
+def OriginalBranch : Prop :=
+  ∀ (E : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ),
+    MeasurableSet E → dimH E = ENNReal.ofReal d → 1 < d →
+      packingDim E < ENNReal.ofReal (2 * d - 1) →
+        ∃ y ∈ E, 0 < volume (pinnedDistances E y)
+
+/-- The finite-profile analytic branch, isolated as an explicit proposition. -/
+def FiniteProfileBranch : Prop :=
+  ∀ (E : Set (EuclideanSpace ℝ (Fin 2))) (d t : ℝ),
+    MeasurableSet E → dimH E = ENNReal.ofReal d → 1 < d → d < 3 / 2 →
+      packingDim E < ENNReal.ofReal t → d ≤ t → t ≤ 2 → A d t < d - 1 →
+        ∃ y ∈ E, 0 < volume (pinnedDistances E y)
+
+/-- The comparator target currently certifies the algebraic combination of the two explicitly
+stated analytic branches.  The unconditional target below remains the research theorem to be
+formalized. -/
+theorem exists_pin_of_branches (hOrig : OriginalBranch) (hProfile : FiniteProfileBranch)
+    (E : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ)
+    (hE : MeasurableSet E) (hdimH : dimH E = ENNReal.ofReal d)
+    (hd_lt : 1 < d) (hd_le : d ≤ 5 / 4)
+    (hpack : packingDim E < ENNReal.ofReal (bound d)) :
+    ∃ y ∈ E, 0 < volume (pinnedDistances E y) := by
+  sorry
+
 /-- **The target theorem.**  Let `E ⊆ ℝ²` be Borel with `d = dimH E`.  If `1 < d ≤ 5/4` and
 `dimP E < B(d)`, then some pin `y ∈ E` has a pinned distance set of positive length. -/
 theorem exists_pin_volume_pinnedDistances_pos (E : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ)
