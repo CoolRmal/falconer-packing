@@ -1,0 +1,135 @@
+\subsection{The unforced scale-profile estimate}
+\label{unforced:profile-section}
+
+An edge from \(n\) to \(m<n\) in \([0,N]\) is admissible when
+\(2n-m\le N\), and its cost is
+$$
+ c_g(m,n)=g(m)-\min_{[m,n]}g.
+$$
+No intermediate endpoint is prescribed in this section. This distinction is
+essential: the following estimate can be used in a distance argument only after
+the analytic transfer has been justified for such unforced chains.
+
+\begin{lemma}[Unforced profile bound]\label{unforced:profile}
+Let \(0<a\le b\le1\), and let \(g:[0,N]\to\mathbb R\) be 1-Lipschitz
+with \(ax\le g(x)\le bx\). For every \(0\le n_0<N\), an admissible
+decreasing chain from \(n_0\) to zero exists with at most
+$$
+ K\le C\left(1+\log\frac{N}{N-n_0}\right)
+$$
+edges and total cost at most \(NU(a,b)\), where
+\begin{equation}\label{unforced:cost}
+ U(a,b)=\begin{cases}
+ \dfrac{(b-a)(1-a)}{2(2b-a)},&b\le1/2,\\[7pt]
+ \dfrac{b-a}{1+2b},&b\ge1/2.
+ \end{cases}
+\end{equation}
+The formulas agree at \(b=1/2\). On a grid of mesh \(T\) containing
+\(0,n_0,N\), the endpoints can be chosen on the grid with additional
+\(O(KT)\) cost. If the barriers hold with uniform additive error
+\(\epsilon N\), the additional cost is \(O(K\epsilon N+KT)\).
+\end{lemma}
+
+\begin{proof}
+The case \(b\ge1/2\) is the bounded-length unforced chain estimate of
+Lemma~\ref{fprof:chain}, followed by the grid limit described below. We prove the additional case \(b\le1/2\),
+normalizing \(N=1\). Set
+$$
+ q=\frac{b}{2b-a},\qquad r=2q-1=\frac{a}{2b-a}.
+$$
+Then \(1/2<q\le1\) and \(0<r\le1\).
+
+First observe that every endpoint \(n\le q\) admits free continuation
+to zero. For \(1/2<n\le q\),
+\begin{equation}\label{unforced:zero-zone}
+ g(2n-1)\le b(2n-1)\le an\le g(n),
+\end{equation}
+because \((2b-a)n\le b\). Choosing the leftmost minimum of \(g\)
+on \([2n-1,n]\) gives an admissible zero-cost edge with endpoint less
+than \(n\). When \(n\le1/2\), the edge directly to zero is admissible
+and costs zero since \(g(0)=0\) and \(g\ge0\). On a finite grid the
+procedure terminates. Consecutive zero-cost intervals can be merged whenever
+their union is admissible, and their union remains zero-cost. Every two
+consecutive unmergeable intervals more than double the complementary depth,
+so the retained zero-cost chain has the required logarithmic length.
+If \(a=b\), then \(q=1\), and this argument already proves the result
+with zero cost. It also handles any starting point \(n_0\le q\).
+
+For the remaining initial portion, define on \([r,1]\)
+$$
+ H(z)=\frac z2+\left(b-\frac12\right)r.
+$$
+This majorizes \(bz\), since
+$$
+ H(z)-bz=\left(\frac12-b\right)(z-r)\ge0.
+$$
+For \(x\ge q\), put
+$$
+ \Lambda(x)=H(2x-1)-g(x)
+ =x-\frac12+\left(b-\frac12\right)r-g(x).
+$$
+The function \(\Lambda\) is nondecreasing, and
+$$
+ \Lambda(q)=H(r)-g(q)=br-g(q)=aq-g(q)\le0.
+$$
+Almost everywhere,
+$$
+ (-g')_+\le\frac{1-g'}2=\frac{\Lambda'}2.
+$$
+Use maximal admissible downward jumps through \(\{\Lambda>0\}\),
+shortening the last jump if necessary to reach its lower boundary. Their
+costs sum to at most \(\Lambda(n_0)_+/2\), because each edge cost is
+bounded by the negative variation of \(g\) over its interval. This is at
+most \(\Lambda(1)/2\).
+
+For a subsequent endpoint \(n\ge q\) with \(\Lambda(n)\le0\), the
+majorant is valid at \(2n-1\ge r\), and gives
+$$
+ g(2n-1)\le H(2n-1)\le g(n).
+$$
+Choose a leftmost minimum on \([2n-1,n]\) to take a zero-cost edge.
+Continue until the endpoint becomes at most \(q\); it need not equal
+\(q\). Below \(q\), use \eqref{unforced:zero-zone} to continue for free.
+The maximal jumps in the positive region double complementary depth except
+at the last jump. Compressing the zero-cost intervals as above gives the
+claimed bound on the total number of edges.
+
+Finally, \(H(1)\ge g(1)\ge a\), and therefore
+$$
+ \frac{\Lambda(1)}2
+ \le\frac{1/2+(b-1/2)r-a}{2}
+ =\frac{(b-a)(1-a)}{2(2b-a)}.
+$$
+This proves the cost bound.
+
+For precision about arbitrary continuous profiles, first run the construction
+on piecewise affine interpolants on grids with mesh tending to zero.
+The interpolants retain both barriers and the Lipschitz constant. If
+\(n_0\) is not a grid point, first jump to the nearest grid point below
+it; for sufficiently small mesh this is admissible and costs at most the
+mesh. Rounding
+the potential sign change and the threshold \(q\) requires at most a
+bounded number of grid crossings, each costing \(O(T)\). For example,
+one stops the positive-potential construction at the first grid point above
+its lower boundary, then takes the adjacent grid edge across that boundary.
+Below \(q\), the barrier argument applies directly. The edge-count bound
+is independent of the mesh. Pad endpoint lists by repeated endpoints and
+extract a convergent subsequence. Interval minima vary continuously with
+the profile and endpoints, and admissibility is closed. Removing repeated
+endpoints gives the exact continuous statement. This also proves the
+asserted fixed-mesh error bound.
+
+For approximate barriers, clamp the profile between \(ax\) and \(bx\)
+and interpolate its grid values. This preserves the 1-Lipschitz property
+and changes the profile uniformly by \(O(\epsilon N+T)\). Every edge
+cost changes by at most twice this amount. The resulting total error is
+\(O(K\epsilon N+KT)\), as claimed.
+\end{proof}
+
+The improvement over the global slope-\(1/2\) majorant is quantified by
+$$
+ \frac{1/2-a}{2}-U(a,b)
+ =\frac{a(1/2-b)}{2(2b-a)}\ge0\qquad(b\le1/2).
+$$
+The gain is strict below \(b=1/2\). This estimate is not asserted to be
+optimal in the small-slope range.

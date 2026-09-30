@@ -1,0 +1,259 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref,fancyhdr,graphicx}
+\hypersetup{hypertexnames=false,colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue,
+pdftitle={Self-pinned distances through unforced scale selection}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Self-pinned distance sets}
+\fancyhead[R]{\small Unforced scale selection}\fancyfoot[C]{\thepage}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}\newcommand{\HH}{\dim_{\mathrm H}}\newcommand{\PP}{\dim_{\mathrm P}}
+\newcommand{\supp}{\operatorname{supp}}\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\dd}{\,d}\newcommand{\norm}[1]{\left\|#1\right\|}\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{18mm}
+{\large\color{MidnightBlue} RESEARCH MANUSCRIPT}\par
+\vspace{8mm}
+{\Huge\bfseries Self-pinned distances}\par
+\vspace{5mm}
+{\LARGE through unforced scale selection}\par
+\vspace{12mm}
+30 September 2026
+\vspace{12mm}
+
+This manuscript refines the Hausdorff--packing sufficient condition by separating
+standard spatial wave packets from the auxiliary angular partitions in the
+Fourier estimate. The angular marks remain constant on each standard packet
+label; only the spectral calculation is subdivided more finely. This removes
+the prescribed midpoint from the scale-selection problem.
+
+\textbf{Scope.} The manuscript gives the complete mathematical argument using
+the explicitly cited established analytic inputs, including both analytic
+branches and the Borel-set reduction. Internal checks are not external
+refereeing or Lean kernel verification.
+
+\textbf{Optimality.} The weakest possible condition on the two dimensions is
+not established. An explicit profile proves sharpness of the upper-slope
+unforced chain estimate in this method; it is not a planar distance-set
+counterexample. No unrestricted improvement below the five-quarters threshold
+is claimed.
+
+\vfill
+The existing Lean challenge and comparator are unchanged. This mathematical
+manuscript does not complete the unconditional formalization.
+\end{titlepage}
+\tableofcontents
+\clearpage
+\section{Statement and scope}
+For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
+\(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
+\(|\cdot|\) denotes one-dimensional Lebesgue measure. Define
+\begin{equation}\label{uf:curve}
+ B_{\rm U}(d)=\begin{cases}
+ 2d-1,&1<d\le\dfrac87,\\[7pt]
+ \dfrac{2+2d-3d^2}{6-5d},&\dfrac87<d\le\dfrac76,\\[10pt]
+ \dfrac1{3-2d},&\dfrac76<d\le\dfrac54.
+ \end{cases}
+\end{equation}
+\begin{theorem}[Sufficient packing condition]\label{target:main}
+Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
+$$
+ \PP E<B_{\rm U}(d),
+$$
+then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+The proof constructs separated compact source and pin subsets of \(E\).
+A source probability has absolutely continuous pinned distance measures for
+almost every pin under the selected pin probability. Distance images of Borel
+sets are analytic, hence Lebesgue measurable.
+
+For example,
+$$
+ d=\frac{31}{25}=1.24\quad\Longrightarrow\quad
+ D<\frac{25}{13}=1.923076923\ldots\ \text{ is sufficient}.
+$$
+At \(d=5/4\), the condition is \(D<2\); the equality case \(D=2\) is not
+included. For \(d>5/4\), GIOW already gives the conclusion with no packing
+restriction \cite{giow}. The endpoints of all branches in \eqref{uf:curve}
+agree, and the packing inequality is strict throughout.
+
+A second exact example is \(d=23/20=1.15\), \(D=33/25=1.32\).
+Its profile cost is \(289/1960\), giving the strict margin \(1/392\).
+The dimension cutoff there is \(133/100=1.33\).
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../figures/packing-unforced.png}
+\caption{The new sufficient curve and the originally quoted curve. Values
+strictly below a curve are covered. No curve is asserted to be necessary.}
+\end{figure}
+
+\subsection{Definitions and established inputs}
+A probability \(\mu\) is \(s\)-Frostman if
+\(\mu(B(x,r))\le C r^s\) for \(0<r\le1\). Write
+$$
+ I_a(\mu)=\iint |x-x'|^{-a}\dd\mu(x)\dd\mu(x').
+$$
+An \(s\)-Frostman probability of bounded support has finite \(a\)-energy
+whenever \(0<a<s\), by summing spatial annuli.
+The external inputs are as follows.
+\begin{enumerate}
+\item Frostman's lemma for Borel subsets of Euclidean space, and the
+countable bounded-cover characterization of packing dimension using upper box dimension.
+Closures preserve bounded upper box dimension; positive-mass compact restrictions
+are available by inner regularity.
+\item Orponen's averaged radial-projection integrability \cite{orponen}, in the form
+of GIOW Theorem 3.7 or Keleti--Shmerkin Theorem 3.11. For separated compact
+Frostman probabilities of exponents greater than one, radial projections have
+\(L^q\) densities for some \(q>1\), with integrable \(q\)-th powers of their norms.
+\item Plancherel, the Riesz energy identity, polar coordinates and their projection
+consequences, with Fourier normalization
+\(\widehat f(\xi)=\int e^{-2\pi i x\cdot\xi}f(x)\,dx\).
+\item Keleti--Shmerkin Lemma 3.4 and Corollary 3.5 \cite{ks}, used only for finite
+terminal-cube restrictions, not to extract an infinite regular subset.
+\item The elementary packet localization of GIOW Section 3 \cite{giow},
+Liu's cap reconstruction (Lemma 4.2 of \cite{liu2026}), and the pinned quadratic
+identity \cite{liuidentity}. The variable-chain inflation multiplier is derived below.
+\end{enumerate}
+All constants may depend on the fixed compact supports, positive source-pin
+separation and chosen auxiliary parameters. They are uniform in frequency,
+regularized component, cube and cap. The notation \(\operatorname{RapDec}(R)\)
+means a quantity bounded by \(C_MR^{-M}\) for every fixed \(M>0\), uniformly
+in those indices. Summing polynomially many such errors preserves this property.
+The constants in losses \(R^{C_Kh}\) are independent of the regularization block
+size \(T\); fixed annular ratios depending on \(T\) only change multiplicative constants.
+
+
+\clearpage
+\input{packing-bound-original-branch.tex}
+\input{packing-unforced-finite-profile.tex}
+
+\section{Algebra and proof of the dimension criterion}
+Put \(a=s-1\) and \(b=u-1\). For \(0<a\le1/4\), the unforced cost
+\(U(a,b)\) is continuous across \(b=1/2\). On each side it is increasing
+in \(b\). The derivatives are respectively
+$$
+ \frac{a(1-a)}{2(2b-a)^2},\qquad
+ \frac{1+2a}{(1+2b)^2}.
+$$
+In the low-slope region, direct multiplication gives
+$$
+ U(a,b)<a\quad\Longleftrightarrow\quad
+ b(1-5a)<a(1-3a).
+$$
+When \(1/7<a\le1/6\), this is precisely
+$$
+ b<\frac{a(1-3a)}{1-5a}.
+$$
+The right side is at most \(1/2\), because that comparison is equivalent to
+\((6a-1)(a-1)\ge0\). In dimension variables its cutoff is
+\((2+2s-3s^2)/(6-5s)\). Its improvement over \(2s-1\) follows from
+$$
+ \frac{a(1-3a)}{1-5a}-2a=\frac{a(7a-1)}{1-5a}>0.
+$$
+
+For \(b\ge1/2\), the high-slope condition is
+$$
+ \frac{b-a}{1+2b}<a
+ \quad\Longleftrightarrow\quad
+ b<\frac{2a}{1-2a}.
+$$
+For \(1/6<a\le1/4\) the right side exceeds \(1/2\), and its dimension
+cutoff is \(1/(3-2s)\). All \(b\le1/2\) are covered in this range, since
+$$
+ U(a,b)\le U(a,1/2)=\frac{1-2a}{4}<a.
+$$
+At \(a=1/6\), strict \(b<1/2\) also gives \(U<a\).
+The joins at \(d=8/7\) and \(d=7/6\) have values \(9/7\) and \(3/2\),
+respectively.
+
+\begin{proof}[Proof of Theorem~\ref{target:main}]
+For \(1<d\le8/7\), apply the coherent criterion,
+Proposition~\ref{prop:coherentborel}, with both sets equal to \(E\).
+For \(8/7<d\le5/4\), the preceding algebra shows that
+\(D<B_{\rm U}(d)\) implies \(U(d-1,D-1)<d-1\).
+The unforced finite-profile criterion, Theorem~\ref{fprof:main}, gives the
+required pin. Its compact restrictions are subsets of \(E\), so the pin lies
+in \(E\). Strictness and continuity supply every exponent slack used in
+that theorem's Borel reduction.
+\end{proof}
+
+\section{What the sharpness statement does and does not establish}
+The next proposition concerns only the scale profiles and the specified
+edge-cost model. It shows that a better limiting cost in the high-slope
+region needs information beyond the two linear barriers and Lipschitz
+condition. A different analytic method or additional geometric information
+could still weaken the dimension condition.
+
+\input{packing-unforced-obstruction.tex}
+
+Proving a weakest possible condition for actual distance sets would require a
+necessity argument or counterexamples to positive-length pinned distances.
+None is supplied here. In particular, the sharp profile at \(a=1/4,b=1\)
+explains why this method reaches the five-quarters boundary without crossing
+it; it does not establish the optimal Falconer threshold.
+
+\clearpage
+\section{Plan for formal verification}
+No unconditional Lean verification or comparator acceptance is claimed.
+The existing target must retain the standard Euclidean distance, the same
+Borel-set hypotheses, and the standard Hausdorff and packing dimensions.
+No analytic conclusion may be inserted as an axiom or hidden in a definition.
+
+The elementary part can be developed first: define finite admissible chains
+with only \(2n-m\le N\); prove zero-cost merging and its length bound;
+formalize the affine-potential construction, its localized low-slope version,
+and the perturbation and rounding bounds. Then prove the algebra of
+\(U\) and \(B_{\rm U}\), including strict joins and continuity.
+
+The analytic part needs independent formal proofs of Frostman extraction,
+finite regularization, averaged radial projection, packet localization,
+the inherited marking identities, local orthogonality, local constancy,
+conditional tube counting, the pinned quadratic identity, and the joint
+limit. The standard spatial packets and the finer spectral labels must be
+separate objects. Formalizing their exact sum identity before any inequality
+would catch the main potential gap in this refinement.
+
+A useful order of deliverables is:
+\begin{center}
+\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{.23\textwidth}>{\raggedright\arraybackslash}p{.66\textwidth}}
+\toprule
+Milestone & Required checked statement \\
+\midrule
+Profile calculus & A bounded admissible chain with the exact cost and explicit grid error. \\
+Finite geometry & Cube ancestry, conditional normalization, tube overlap, and both angular inequalities. \\
+Packet/spectral interface & Whole-standard-cap reconstruction and the exact inherited spectral sum. \\
+Quadratic step & One tube threshold per inflation step, with every parameter dependency explicit. \\
+Measure conclusion & Summable shell densities identify the original joint distance law and a positive-length pin. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Finally assemble the measure theorem and compact/Borel reduction, and compare
+the elaborated unconditional statement with a fixed reference statement.
+Build every dependency and inspect the theorem's axiom report. Acceptance
+requires only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}; \texttt{sorryAx}, extra analytical axioms, or a conditional
+replacement target would fail the requested standard. This is a development
+plan, not evidence that the comparator has already accepted the theorem.
+
+\clearpage
+\begin{thebibliography}{9}\small
+\interlinepenalty=10000
+\bibitem{orponen} T. Orponen. On the dimension and smoothness of radial projections. \emph{Analysis \& PDE} 12 (2019), 1273--1294. \href{https://arxiv.org/abs/1710.11053}{arXiv:1710.11053}.
+\bibitem{ks} T. Keleti and P. Shmerkin. New bounds on the dimensions of planar distance sets. \emph{Geometric and Functional Analysis} 29 (2019), 1886--1948. \href{https://arxiv.org/abs/1801.08745}{arXiv:1801.08745}. Lemma 3.4, Corollary 3.5, Theorem 3.11.
+\bibitem{giow} L. Guth, A. Iosevich, Y. Ou and H. Wang. On Falconer's distance set problem in the plane. \emph{Inventiones Mathematicae} 219 (2020), 779--830. \href{https://arxiv.org/pdf/1808.09346v1}{arXiv:1808.09346v1}. Section 3, especially radial projection and packet localization.
+\bibitem{liuidentity} B. Liu. An \(L^2\)-identity and pinned distance problem. \emph{Geometric and Functional Analysis} 29 (2019), 283--294. \href{https://arxiv.org/abs/1802.00350}{arXiv:1802.00350}, Theorem 1.9.
+\bibitem{liu2026} B. Liu. Lebesgue measure of distance sets with regular pins and multi-scale Mizohata--Takeuchi-type estimates. Version 3, 16 July 2026. \href{https://arxiv.org/html/2603.15328v3}{arXiv:2603.15328v3}. Lemmas 3.1, 4.2--4.4.
+\end{thebibliography}
+\end{document}

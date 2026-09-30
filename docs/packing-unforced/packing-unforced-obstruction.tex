@@ -1,0 +1,78 @@
+\subsection{A sharp unforced profile obstruction above slope one half}
+\label{unforced:obstruction-section}
+
+The following example establishes sharpness only within the elementary
+profile problem. It is not a planar set with a null distance set and does
+not establish a necessary Hausdorff--packing condition.
+
+\begin{proposition}[Exact single-collapse cost]\label{unforced:obstruction}
+For \(0<a<b\le1\), let
+$$
+ g(x)=\min\{bx,1+a-x\}\qquad(0\le x\le1),
+ \qquad C=\frac{b-a}{1+2b}.
+$$
+This is a 1-Lipschitz profile with \(ax\le g(x)\le bx\). For
+\(0<\zeta<C\), the infimum of the costs of all admissible chains from
+\(1-\zeta\) to zero, with no forced intermediate endpoint, is exactly
+\(C-\zeta\). An attaining chain has
+\(O(1+\log(1/\zeta))\) edges.
+\end{proposition}
+
+\begin{proof}
+The two affine pieces meet at
+$$
+ p=\frac{1+a}{1+b}.
+$$
+Their slopes are \(b\) and \(-1\), so the Lipschitz assertion holds.
+The lower barrier on the terminal piece follows from
+\(1+a-x-ax=(1+a)(1-x)\ge0\), and all other barrier comparisons are
+immediate. Put
+$$
+ s=1-C=\frac{1+a+b}{1+2b},\qquad
+ q=2s-1=\frac{1+2a}{1+2b}.
+$$
+The assumption \(a<b\) gives \(q<p<s\).
+
+Consider any chain, and its first edge from \(n>s\) to an endpoint
+\(u\le s\). Every preceding edge lies on the terminal affine piece
+of slope \(-1\), so the preceding costs sum to \(1-\zeta-n\).
+If \(u\ge p\), the crossing edge costs \(n-u\ge n-s\). If
+\(u<p\), admissibility gives \(u\ge2n-1>q\). Since the profile has
+only one peak, its minimum over the crossing interval is at an endpoint,
+and the crossing cost is
+$$
+ \bigl(bu-(1+a-n)\bigr)_+
+ \ge(1+2b)(n-s).
+$$
+In either case, the total cost through this crossing edge is at least
+\(C-\zeta\). All subsequent costs are nonnegative, proving the lower
+bound.
+
+For attainment, double the complementary depth from \(1-\zeta\)
+down to \(s\), shortening the last jump if needed. This portion lies
+on the terminal descending piece and costs exactly \(C-\zeta\).
+The next edge \(s\to q\) is admissible with equality and has zero cost,
+because
+$$
+ g(s)=1+a-s=\frac{b(1+2a)}{1+2b}=g(q),
+$$
+and the profile is above this common value between the endpoints. On
+\([0,q]\), the profile is increasing, so all downward edges cost zero.
+Maximal admissible jumps finish at zero without further cost. Their
+number, together with the initial doubling part, has the stated
+logarithmic bound.
+\end{proof}
+
+For \(b\ge1/2\), the limit \(C\) in this example matches the universal
+upper bound in Lemma~\ref{unforced:profile}. Thus the limiting universal
+profile constant is sharp in that range. The example remains valid for
+\(b<1/2\), where equality with the universal minimax is not asserted.
+When \(a=b\), the profile is simply \(ax\) and all costs are zero.
+
+At \(a=1/4\), \(b=1\), the example has peak \(p=5/8\), critical
+endpoints \(s=3/4\), \(q=1/2\), and limiting cost \(1/4\). It
+therefore reaches the strict source-margin boundary at the full-packing
+dimension pair \(d=5/4\), \(D=2\). This obstructs a uniform improvement
+of this particular profile constant. It does not rule out a different
+analytic argument, additional geometric information, or a different
+finite-scale balance, and it supplies no distance-set counterexample.

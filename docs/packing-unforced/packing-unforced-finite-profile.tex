@@ -1,0 +1,222 @@
+\clearpage
+\section{The finite-profile branch}\label{fprof:section}
+
+For \(1<s\le5/4\) and \(s\le u\le2\), define
+\begin{equation}\label{fprof:A}
+ C(s,u)=U(s-1,u-1),\qquad
+ U(a,b)=\begin{cases}
+ \dfrac{(b-a)(1-a)}{2(2b-a)},&a\le b\le1/2,\\[7pt]
+ \dfrac{b-a}{1+2b},&1/2\le b\le1.
+ \end{cases}
+\end{equation}
+The parameter \(a\) lies in \((0,1/4]\), so all denominators are positive.
+The two expressions agree at \(b=1/2\).
+
+\begin{theorem}[Finite-profile criterion]\label{fprof:main}
+Let \(E\subset\R^2\) be Borel, and write \(d=\HH E\), \(D=\PP E\). If
+\begin{equation}\label{fprof:condition}
+ 1<d\le5/4,\qquad C(d,D)<d-1,
+\end{equation}
+then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+
+\subsection{The profile optimization}
+
+If \(g\) is a continuous function on \([0,N]\), put
+$$
+ c_g(m,n)=g(m)-\min_{m\leq x\leq n}g(x),\qquad 0\leq m<n\leq N.
+$$
+The direction of this difference matters: the left endpoint is the larger physical cell. Call an edge \([m,n]\) admissible if \(2n-m\leq N\).
+
+\begin{lemma}[A bounded-length chain]\label{fprof:chain}
+Let \(N\) be a positive integer. Suppose \(g(0)=0\), \(g\) is 1-Lipschitz and piecewise linear on the integer grid, and
+$$
+ ax\leq g(x)\leq bx,\qquad
+ 0<a\leq b\leq1,\quad b\geq\tfrac12.
+$$
+Given an integer \(0\leq n_0<N\), there is an admissible decreasing chain from \(n_0\) to zero, of at most
+$$
+ 3\left\lceil\log_2\frac{N}{N-n_0}\right\rceil+5
+$$
+edges, with total cost at most \((bN-g(N))/(1+2b)+3\).
+On a grid of mesh \(T\), replace the additive constant by \(3T\).
+\end{lemma}
+\begin{proof}
+Define
+$$
+ L(x)=2bx-bN-g(x),\qquad V(x)=\frac{\max\{L(x),0\}}{1+2b}.
+$$
+The function \(L\) is nondecreasing. On \(\{L\geq0\}\), almost everywhere,
+$$
+ (-g')_+\leq\frac{2b-g'}{1+2b}.
+$$
+For \(g'\geq0\) this follows from \(2b\geq1\); for \(g'<0\) it is equivalent to \(g'\geq-1\). Also
+$$
+ c_g(m,n)\leq\int_m^n(-g')_+\,dx.
+$$
+Let \(q\) be the largest integer with \(L(q)\leq0\). From \(n_0>q+1\), repeatedly replace \(n\) by \(\max\{q+1,2n-N\}\). These admissible edges double \(N-n\), except possibly the last. Their total cost is at most \(V(n_0)-V(q+1)\). If required, the edge from \(q+1\) to \(q\) costs at most one. If \(n_0\leq q\), omit this part.
+
+In the region \(L\leq0\), for \(n>N/2\) set \(m_0=2n-N\). Then
+$$
+ g(m_0)\leq bm_0\leq g(n).
+$$
+Choose the leftmost grid minimum on \([m_0,n]\). It occurs before \(n\), gives a zero-cost admissible edge, and remains in \(L\leq0\). If \(n\leq N/2\), the edge to zero has zero cost since \(g\geq0\). Thus a finite zero-cost continuation exists. Merge consecutive edges greedily whenever their union is admissible. Their union still has zero cost. Maximality implies that every two merged edges more than double \(N-n\), except at the end. This gives the stated edge count. Finally \(V(n_0)\leq V(N)=(bN-g(N))/(1+2b)\). Rescaling proves the mesh version.
+\end{proof}
+
+\input{packing-unforced-profile.tex}
+
+\subsection{Finite regularization of the original pin measure}
+
+We prove a measure version of Theorem~\ref{fprof:main}. Let \(\mu,\nu\) be probabilities on separated compact sets, normalized by a common translation and dilation into the interior of one unit
+dyadic cube. This preserves positive source-pin separation and both dimension
+exponents. Suppose both are \(t\)-Frostman for some \(t>s>1\), and
+\begin{equation}\label{fprof:cover}
+ N(\supp\nu,r)\leq C r^{-u},\qquad 0<r\leq1.
+\end{equation}
+We will prove
+\begin{equation}\label{fprof:ac}
+ C(s,u)<s-1\quad\Longrightarrow\quad
+ (d_y)_*\mu\ll\mathcal L^1\quad\text{for \(\nu\)-almost every \(y\)}.
+\end{equation}
+Constants can depend on these fixed measures and their separation. The radial-projection theorem of Orponen, in the form of GIOW Theorem 3.7 or Keleti--Shmerkin Theorem 3.11, supplies \(q>1\) such that
+\begin{equation}\label{fprof:radial}
+ B=\int\|\pi^y_*\mu\|_{L^q(S^1)}^q\dd\nu(y)<\infty.
+\end{equation}
+Here \(\pi^y(x)=(x-y)/|x-y|\). We also have \(I_s(\mu)<\infty\).
+
+Fix a large integer \(T\). Use a smooth partition of frequency space into a low-frequency ball and annuli indexed by \(R=2^N\), \(N=4T\ell\). The annular ratios depend only on \(T\); all localization constants below may do so as well. Write \(P_R\) for the annular multiplier, including a fixed smooth spatial cutoff equal to one near \(\supp\mu\) and supported a positive distance from \(\supp\nu\). These multipliers have uniformly bounded convolution-kernel first norms, with constants depending on \(T\).
+
+Apply Keleti--Shmerkin's finite regularization, Lemma 3.4 and Corollary 3.5, at depth \(N\). More precisely, first distribute each depth-\(N\) cube mass uniformly within that cube. The lemma partitions all but mass \(2^{-\epsilon N}\) into disjoint unions \(X_i\) of terminal cubes. Retain the \emph{original} restrictions
+$$
+ w_i=\nu(X_i),\qquad \sigma_i=w_i^{-1}\nu|_{X_i}.
+$$
+They have the same coarser cube masses as the regularized measures. With
+$$
+ \Gamma=\epsilon+\frac{\log_2(4T+2)+2}{T},
+$$
+we have \(w_i\geq R^{-\Gamma}\). For each \(i\), a function \(f_i\), linear on the \(T\)-grid with slopes in \([0,2]\), satisfies \(f_i(0)=0\) and, for every occupied cube of block depth \(k\),
+\begin{equation}\label{fprof:masses}
+ 2^{-f_i(k)-N/T}\leq\sigma_i(Q)\leq2^{-f_i(k)}.
+\end{equation}
+This follows directly by multiplying the one-step mass ratios in the definition of a regular measure. Also
+\begin{equation}\label{fprof:barriers}
+ sk-C\Gamma N-C_T\leq f_i(k)\leq uk+C_T.
+\end{equation}
+For the first inequality use \(\sigma_i\leq R^\Gamma\nu\), the Frostman bound, and the lower estimate in \eqref{fprof:masses}. For the second, the upper estimate in \eqref{fprof:masses} forces at least \(2^{f_i(k)}\) occupied cubes, whereas \eqref{fprof:cover} bounds their number by \(C2^{uk}\). Interpolation extends the barriers with \(O(T)\) error. Finally,
+\begin{equation}\label{fprof:radialcomponent}
+ \int\|\pi^y_*\mu\|_q^q\dd\sigma_i(y)\leq B R^\Gamma.
+\end{equation}
+
+Put \(g_i=f_i-\mathrm{id}\). Apply Lemma~\ref{unforced:profile} with
+\(a=s-1\), \(b=u-1\). Start at the \(T\)-grid point immediately
+below \((1-\zeta)N\), where \(0<\zeta<1/8\) is fixed.
+We obtain a chain, common to the entire component,
+\begin{gather}\label{fprof:levels}
+ n_0>n_1>\cdots>n_K=0,\qquad 2n_j-n_{j+1}\le N,\\
+ K\le C\log(1/\zeta)+C,\qquad
+ \sum_{j<K}c_{i,j}\le C(s,u)N+C K\Gamma N+C_{T,K},\label{fprof:sumcost}\\
+ c_{i,j}=g_i(n_{j+1})-\min_{[n_{j+1},n_j]}g_i.\nonumber
+\end{gather}
+No intermediate endpoint is prescribed. Admissibility of the final edge implies
+\(n_{K-1}\le N/2\), which is all that the final Fourier estimate will need.
+Grid interpolation in the clamping step only changes the last constant. The source \(\mu\) is never restricted or regularized in this process.
+
+\subsection{Truncated conditional energies and deletion}
+
+For one edge write \(m=n_{j+1}\), \(n=n_j\), \(b=2^{-m}\), \(a=2^{-n}\), and \(\rho=a/b\). A cube is called active when its \(\sigma_i\)-mass is positive. Only active cubes and their ancestors occur below.
+
+Let \(Q\) be an active depth-\(m\) cube. For any concentric enlargement \(Q^+\) by a factor between one and \(R^{C_Kh}\), set \(\lambda=(\sigma_i)_{Q^+}\). For \(m\leq k\leq n\), covering a ball by boundedly many dyadic cubes and using \eqref{fprof:masses} gives
+$$
+ \lambda(B(z,2^{-k}))\leq C R^{C\Gamma}2^{f_i(m)-f_i(k)}.
+$$
+Indeed, the denominator is at least the mass of the original active cube \(Q\); this avoids any boundary-sliver assumption about \(Q^+\). For intermediate radii between consecutive block-grid points, use the mass
+bound at the coarser grid point. The ratio between adjacent radii is at most
+\(2^T\), so this changes the estimate by a multiplicative constant depending
+only on \(T\) (one may take \(O(2^{2T})\)). It introduces no additional power
+of \(R\). Summing dyadic annuli yields
+\begin{equation}\label{fprof:energy}
+ J_\lambda(\rho):=\iint\min\{\rho^{-1},b/|y-z|\}\dd\lambda(y)\dd\lambda(z)
+ \leq C(N+1)R^{C\Gamma}2^{c_{i,j}}.
+\end{equation}
+For separations larger than \(b\), use the bound one. For the other annuli the summand is at most
+$$
+ C R^{C\Gamma}2^{k-m+f_i(m)-f_i(k)}
+ =C R^{C\Gamma}2^{g_i(m)-g_i(k)}.
+$$
+The innermost ball satisfies the same estimate. Replacing \(b\), the tube width, or the truncation parameter by factors at most \(R^{C_Kh}\) changes \eqref{fprof:energy} by at most another factor \(R^{C_Kh}\). This follows directly from the minimum kernel; no infinite conditional energy is used.
+
+Here is the deletion argument with its multiplier exposed. If a probability \(\lambda\) is in a ball of radius \(b\), take a \(\rho\)-net of unoriented directions and, in each direction, a bounded-overlap cover by \(\rho b\)-wide tubes. Pair counting gives
+\begin{equation}\label{fprof:pairs}
+ \sum_T\lambda(T)^2\leq C J_\lambda(\rho).
+\end{equation}
+For fixed \(y,z\), at most
+\(C\min\{\rho^{-1},b/|y-z|\}\) directions can place both points in such a tube; the spatial tube multiplicity in one direction is bounded. Integrating this statement proves \eqref{fprof:pairs}. Enlarged supports and tubes introduce only powers of the enlargement factor.
+
+For each pin, delete source directions whose angular maximal density exceeds a threshold \(L\). The maximal inequality on the circle and Holder's inequality imply
+\begin{equation}\label{fprof:sourcebad}
+ (\mu\times\sigma_i)(\text{source-heavy pairs})
+ \leq C_q L^{1-q} B R^\Gamma.
+\end{equation}
+For completeness, if \(v_y\) is the angular density, then
+\(\int_{\{Mv_y>L\}}v_y\leq C_qL^{1-q}\|v_y\|_q^q\): bound the length of that set by \(C_qL^{-q}\|v_y\|_q^q\), then use Holder. Intervals centered at a retained direction therefore have mass at most a constant times their length times \(L\).
+
+Now declare a pin tube heavy when \(\lambda(T)>H\rho\). Associate to it the unit-length source tube in the same direction, widened to angular width \(C\rho\). If this tube contains any pair not source-heavy, its source mass is at most \(CL\rho\). The fixed source-pin separation justifies this correspondence. Consequently the retained mass of pairs using heavy pin tubes is at most
+\begin{equation}\label{fprof:pinbad}
+ CL\rho\sum_{\lambda(T)>H\rho}\lambda(T)
+ \leq \frac{CL}{H}\sum_T\lambda(T)^2
+ \leq \frac{CL}{H}J_\lambda(\rho).
+\end{equation}
+One can discretize all tube centers and directions here: replacing a tube by a containing member of a grid changes widths by fixed factors. Directions within \(O(\rho)\) have the same containing tube after this enlargement. Thus the estimate also bounds the union over the finer angular caps used below, without paying their number.
+
+Sum \eqref{fprof:pinbad} over active parents with weights \(\sigma_i(Q^+)\). Concentric enlarged cubes at a fixed scale have overlap at most the square of their dilation factor. Equations \eqref{fprof:energy}--\eqref{fprof:pinbad} therefore remain valid with an additional \(R^{C_Kh}\). Choose
+\begin{equation}\label{fprof:thresholds}
+ L=R^{D_1h},\qquad H_{i,j}=R^{D_2h+C\Gamma}2^{c_{i,j}}.
+\end{equation}
+Here \(D_1\) is sufficiently large in terms of \(q,K\), and \(D_2\) is sufficiently large compared with \(D_1,K\). Then, for \(\Gamma\) sufficiently small compared with \(h\), the deleted pair mass is at most \(C R^{-c_1h}\). The constant \(c_1\) can be chosen larger than any fixed geometric overlap exponent needed below, by increasing \(D_1,D_2\). If \(H_{i,j}\rho\geq1\), there are no heavy pin tubes. Factors caused by an enlargement are covered by increasing \(D_1,D_2\); their dependence on \(K,q\) is permitted.
+
+\input{packing-unforced-transfer.tex}
+
+\subsection{Summation, absolute continuity, and the Borel reduction}
+
+Fix \(\eta>0\) with \(C(s,u)+\eta<s-1\). Choose \(\zeta\) so that \(C\zeta<\eta/4\), fixing a bound for \(K\). Next choose the constants \(D_1,D_2\) in \eqref{fprof:thresholds}. Choose \(h\) small enough that all \(C_{q,K}h\) losses are below \(\eta/4\), and finally choose \(T\) large and \(\epsilon\) small so that \(\Gamma\ll h\) and \(CK\Gamma<\eta/4\). These choices are fixed independently of \(R\). Logarithms and fixed \(T,K\) constants are absorbed for sufficiently large \(R\).
+
+For \(y\in X_i\) set \(G_{R,y}=G_{R,i,Q_0(y)}\), and on the discarded pin remainder set \(G_{R,y}=0\). Equation \eqref{fprof:badL1} and the parameter choices give
+\begin{equation}\label{fprof:jointL1}
+ \int\|(d_y)_*(P_R\mu-G_{R,y})\|_1\dd\nu(y)\leq C R^{-c},
+ \qquad c>0.
+\end{equation}
+On the remainder, use the uniformly bounded first norm of the \emph{whole annular multiplier}; pushforward decreases total variation, so its contribution is at most \(C_T2^{-\epsilon N}\). One must not estimate it by the sum of absolute values of all packets.
+
+Liu's pinned quadratic identity \cite{liuidentity} bounds the radial density's squared norm by a constant times
+$$
+ \int_0^\infty |G_{R,y}*\widehat\omega_r(y)|^2r\,dr.
+$$
+The source-pin distances lie in a fixed interval bounded away from zero, so its radial weights are equivalent to the unweighted first-dimensional density norm. The identity is applied separately at each pin and therefore permits the dependence of \(G_{R,y}\) on \(y\). Frequencies outside a fixed enlargement of the annulus contribute rapidly decreasing errors, by the packet and cutoff localization. Integrating \eqref{fprof:circleestimate} and using
+$$
+ \int_{|\xi|\asymp_T R}|\widehat\mu(\xi)|^2\dd\xi
+ \leq C_T R^{2-s}I_s(\mu)
+$$
+now gives
+\begin{equation}\label{fprof:jointL2}
+ \int\|(d_y)_*G_{R,y}\|_2^2\dd\nu(y)
+ \leq C R^{1-s+C(s,u)+\eta}I_s(\mu).
+\end{equation}
+To combine components, multiply their bounds by \(w_i\) and sum. The sets \(X_i\) are disjoint, and \(\sum_iw_i\leq1\); no factor counting the components appears.
+
+The exponents in \eqref{fprof:jointL1} and \eqref{fprof:jointL2} imply convergence of the bad shell densities in \(L^1(d\nu\,dt)\), and of the good shell densities in \(L^2(d\nu\,dt)\). All source functions have the same fixed compact support, so the radial variable ranges over a bounded interval. Include the smooth low-frequency density. Their sum is an integrable joint density.
+
+To identify it, finite shell sums reconstruct \(\mu\) as a distribution. If \(\Phi(y,t)\) is a smooth test function, then
+$$
+ x\longmapsto\chi(x)\int\Phi(y,|x-y|)\dd\nu(y)
+$$
+is a smooth compactly supported test function: the cutoff \(\chi\) keeps source and pins separated. Distributional reconstruction, followed by the stated norm convergence, identifies the joint density with the measure induced by \((y,x)\mapsto(y,|x-y|)\) on \(\nu\times\mu\). Uniqueness of disintegration proves \eqref{fprof:ac}. In particular these pinned probabilities are nonzero and supported on the corresponding compact distance sets.
+
+Finally suppose \eqref{fprof:condition} holds. By continuity and strictness choose
+$$
+ 1<s<t<d,\qquad D\leq u\leq2,\qquad C(s,u)<s-1,
+$$
+where \(u>D\) if \(D<2\), and \(u=2\) if \(D=2\). Take a compactly supported \(t\)-Frostman probability on \(E\). When \(D<2\), the packing-dimension covering characterization covers \(E\) by countably many bounded pieces of upper box dimension less than \(u\). Taking their closures and intersecting with \(E\) makes a Borel cover without changing the upper box bounds. At least one piece has positive Frostman mass. By inner regularity take a compact subset of positive mass there. When \(D=2\), the original compact support already has the universal covering bound with \(u=2\). In either case split the compact set into two separated compact subsets of positive mass. Their normalized restrictions \(\mu,\nu\) retain the \(t\)-Frostman estimate; the pin support satisfies \eqref{fprof:cover}. Equation \eqref{fprof:ac} supplies the required pin in \(E\). This proves Theorem~\ref{fprof:main}.
+
+Only the unforced cost bound is used at each regularized component.
+No midpoint or minimum-location condition remains in the measure theorem.
+The algebra leading to the explicit dimension curve follows in the next section.

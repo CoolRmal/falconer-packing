@@ -3,25 +3,32 @@
 A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned distance sets: a
 Hausdorff–packing dimension criterion* (19 September 2026).
 
-**Research update, 30 September 2026.** A [new proof manuscript](docs/packing-refinement/packing-refinement-proof.pdf)
-gives, in particular, the stronger sufficient condition
+**Research update, 30 September 2026.** The [latest complete proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
+gives the stronger sufficient cutoff
 
 $$
-D<\max\left\{2d-1,\frac{d(8d-7)}{d+1}\right\},\qquad 1<d\le\frac54.
+B_{\mathrm U}(d)=
+\begin{cases}
+2d-1,&1<d\le\dfrac87,\\[7pt]
+\dfrac{2+2d-3d^2}{6-5d},&\dfrac87<d\le\dfrac76,\\[9pt]
+\dfrac1{3-2d},&\dfrac76<d\le\dfrac54.
+\end{cases}
 $$
 
-A further supporting-line estimate improves this displayed bound on a small interval
-near Hausdorff dimension 1.19; the linked statement gives the full three-branch curve.
-At Hausdorff dimension 1.24, the cutoff improves from approximately 1.506696 to
-1.616428571; in particular, packing dimension 1.60 is covered.
+For a Borel planar set, packing dimension strictly below this cutoff implies a
+positive-length pinned distance set for some pin in the set. At Hausdorff dimension
+1.24, the sufficient cutoff is now 25/13, approximately 1.923077.
 
-![Comparison of the refined and previous sufficient packing cutoffs.](docs/figures/packing-refinement.svg)
+![Comparison of the latest and originally quoted sufficient packing cutoffs.](docs/figures/packing-unforced.svg)
 
-[Full statement, proof sources, and verification status](docs/packing-refinement/README.md).
-This is a sufficient improvement, not a proved weakest condition. An exact profile
-obstruction limits the present method in a stated range, but is not a distance-set
-counterexample. Its Lean formalization is not complete; the Lean target and curve
-described below remain the original ones.
+[Full statement, proof sources, and verification status](docs/packing-unforced/README.md).
+The weakest possible condition remains unproved. The proof includes sharpness of
+one profile estimate, not a counterexample establishing a necessary distance-set
+condition. The new mathematical argument has internal audits but no complete Lean
+verification. The Lean target and curve below remain the original ones.
+
+The [earlier forced-midpoint refinements](docs/packing-refinement/README.md) are
+retained with their proofs and audits.
 
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
