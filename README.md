@@ -205,6 +205,9 @@ measure-theoretic modules prove some of the downstream steps.
 | high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
 | compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
+| finite hard-interval representation of actual interpolated profiles | **proved**, standard axioms only |
+| finite admissible real chains across hard intervals and gaps | **proved**; ordered-partition extraction and grid rounding still needed |
+| signed Gaussian energy and the coordinate-weight comparison | **proved**, including almost-everywhere source bounds |
 | finite gap tails, telescoping, and bridges to the two cost certificates | **proved**; hard-set extraction and chain construction still needed |
 | fixed dyadic centers with controlled mass-weighted moments | **proved**, standard axioms only |
 | common truncation of correlated angular densities and discarded-mass bound | **proved**, standard axioms only |
@@ -236,6 +239,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/ProfileInterpolation.lean` | Lipschitz interpolation, normalization, and exact discrete/continuous cost compatibility |
 | `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
 | `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
+| `FalconerPacking/HardPointChains.lean` | finite real chains across hard gaps and intervals, with proved termination |
+| `FalconerPacking/FiniteHardPoints.lean` | exact finite closed-interval representation for interpolated hard-point sets |
 | `FalconerPacking/GapTails.lean` | finite ordered-gap tails, telescoping, and both certificate bridges |
 | `FalconerPacking/HardPoints.lean` | closed hard-point sets and the proved gap inequalities |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
@@ -257,6 +262,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/GaussianWeightedEnergy.lean` | bounded signed weights and the Gaussian coordinate-energy comparison |
 | `FalconerPacking/GaussianEnergy.lean` | Gaussian Fourier identity for finite planar measures, including integrability |
 | `FalconerPacking/AngularTruncation.lean` | two correlated angular marginals, common restriction, and moment-tail mass bound |
 | `FalconerPacking/MomentCenters.lean` | centers in a full-measure set with moments bounded by cell averages |

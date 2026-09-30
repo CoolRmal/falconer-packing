@@ -16,6 +16,8 @@ import FalconerPacking.HighSlopeProfile
 import FalconerPacking.ProfileInterpolation
 import FalconerPacking.HardPoints
 import FalconerPacking.GapTails
+import FalconerPacking.HardPointChains
+import FalconerPacking.FiniteHardPoints
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -28,6 +30,7 @@ import FalconerPacking.MomentCenters
 import FalconerPacking.DyadicMomentCenters
 import FalconerPacking.AngularTruncation
 import FalconerPacking.GaussianEnergy
+import FalconerPacking.GaussianWeightedEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
