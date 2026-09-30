@@ -16,7 +16,27 @@ $$
 Set
 
 $$
-d_A = \frac{4+\sqrt{10}}6\approx1.193712943.
+d_L=1+a_L\approx1.188783591,\qquad d_J=1+a_J\approx1.195322471,
+$$
+
+where the respective roots are specified by
+
+$$
+16a_L^3+6a_L^2-7a_L+1=0,\qquad 3/16<a_L<19/100,
+$$
+
+$$
+32a_J^4-28a_J^3-75a_J^2-5a_J+4=0,\qquad 19/100<a_J<1/5.
+$$
+
+For the middle branch define
+
+$$
+A(a)=3+13a+12a^2,\qquad J(a)=1-13a-12a^2,
+$$
+
+$$
+b_F(a)=\frac{A(a)-\sqrt{A(a)^2+8(1+a)J(a)}}{4(1+a)}.
 $$
 
 The refined sufficient condition is
@@ -33,9 +53,11 @@ $$
 B_{\mathrm{new}}(d)=
 \begin{cases}
 2d-1,
-  &1<d\le d_A,\\[6pt]
+  &1<d\le d_L,\\[5pt]
+1+b_F(d-1),
+  &d_L<d\le d_J,\\[6pt]
 \dfrac{d(8d-7)}{d+1},
-  &d_A<d\le\dfrac54.
+  &d_J<d\le\dfrac54.
 \end{cases}
 $$
 
@@ -66,7 +88,7 @@ minimum. A telescoping bound controls the effect of this reflection on every
 chain. Compare that chain with a route through the original late minimum and
 then through three quarters. Their weighted comparison gives the second cost below.
 
-The resulting cost per unit terminal depth is at most the maximum of
+The reflection argument bounds the cost per unit terminal depth by the maximum of
 
 $$
 \mathcal E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},
@@ -95,7 +117,18 @@ a=s-1,\qquad b=u-1,
 u<\frac{s(8s-7)}{s+1}.
 $$
 
-The Fourier transfer pays this profile cost in the frequency exponent. The
+For small upper barrier slopes, a supporting affine line improves the early
+cost further. Its explicit bound is
+
+$$
+\mathcal F(a,b)=\frac{b-a}{2(1+a)}+\frac{1-2a}{4}
+-\frac{(1-2b)(1-a)(1+b)}{8(1-b)(1+a)},\qquad b\le\frac12.
+$$
+
+Using the minimum of the early costs gives the middle branch in the full curve.
+Its onset and both joins follow from exact polynomial identities.
+
+The Fourier transfer pays the resulting profile cost in the frequency exponent. The
 coherent branch supplies the other part of the displayed dimension cutoff.
 
 ## What is established and what remains open
@@ -127,12 +160,14 @@ improve a condition involving only the two dimensions.
 - [Proof PDF](packing-refinement-proof.pdf)
 - [Main LaTeX source](packing-refinement-proof.tex)
 - [Reflection and competing-chain lemma](packing-refinement-reflection-lemma.tex)
+- [Supporting affine-line improvement](packing-refinement-small-slope.tex)
 - [Exact profile obstruction](packing-refinement-profile-obstruction.tex)
 - [Full finite-profile analytic branch](packing-refinement-finite-profile.tex)
 - [Original coherent analytic branch](packing-bound-original-branch.tex)
 - [Earlier affine-envelope lemma](packing-refinement-profile-lemma.tex)
 - [Earlier minimum-split lemma](packing-refinement-minimum-lemma.tex)
 - [Independent reflection audit](2026-09-30-reflected-minimum-audit.md)
+- [Independent supporting-line audit](2026-09-30-low-slope-envelope-audit.md)
 - [Fresh Fourier stress audit](2026-09-30-fourier-stress-audit.md)
 - [Coherent argument audit](2026-09-30-coherent-audit.md)
 - [Analytic transfer audit](2026-09-30-inflation-audit.md)

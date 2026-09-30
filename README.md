@@ -4,12 +4,14 @@ A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned di
 Hausdorff–packing dimension criterion* (19 September 2026).
 
 **Research update, 30 September 2026.** A [new proof manuscript](docs/packing-refinement/packing-refinement-proof.pdf)
-gives the stronger sufficient condition
+gives, in particular, the stronger sufficient condition
 
 $$
 D<\max\left\{2d-1,\frac{d(8d-7)}{d+1}\right\},\qquad 1<d\le\frac54.
 $$
 
+A further supporting-line estimate improves this displayed bound on a small interval
+near Hausdorff dimension 1.19; the linked statement gives the full three-branch curve.
 At Hausdorff dimension 1.24, the cutoff improves from approximately 1.506696 to
 1.616428571; in particular, packing dimension 1.60 is covered.
 

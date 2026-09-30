@@ -32,7 +32,8 @@ pdftitle={A sharper packing criterion for self-pinned distances}}
 
 This note weakens the packing restriction in the 19 September manuscript.
 The scale-selection argument uses a running-minimum reflection and two competing
-chains through the mandatory midpoint. This yields a rational packing cutoff.
+chains through the mandatory midpoint. A supporting affine line further improves
+the smaller-dimensional interval.
 Both analytic branches and the Borel-set reduction are included.
 
 \textbf{What is proved here.} Subject to the cited established analytic theorems,
@@ -56,13 +57,28 @@ For a Borel set \(E\subset\R^2\), put \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
 \(|\cdot|\) denotes one-dimensional Lebesgue measure. Set
 $$
- d_A=\frac{4+\sqrt{10}}6\approx1.193712943.
+ d_L=1+a_L\approx1.188783591,\qquad
+ d_J=1+a_J\approx1.195322471,
+$$
+where \(a_L\) and \(a_J\) are the respective unique roots in
+\((3/16,19/100)\) and \((19/100,1/5)\) of
+$$
+ 16a^3+6a^2-7a+1=0,\qquad
+ 32a^4-28a^3-75a^2-5a+4=0.
+$$
+For the middle branch put
+$$
+ A(a)=3+13a+12a^2,\qquad J(a)=1-13a-12a^2,
+$$
+$$
+ b_F(a)=\frac{A(a)-\sqrt{A(a)^2+8(1+a)J(a)}}{4(1+a)}.
 $$
 For \(1<d\le5/4\), define
 \begin{equation}\label{fprof:curve}
  B_{\rm new}(d)=\begin{cases}
- 2d-1,&1<d\le d_A,\\[6pt]
- \dfrac{d(8d-7)}{d+1},&d_A<d\le\dfrac54.
+ 2d-1,&1<d\le d_L,\\[5pt]
+ 1+b_F(d-1),&d_L<d\le d_J,\\[6pt]
+ \dfrac{d(8d-7)}{d+1},&d_J<d\le\dfrac54.
  \end{cases}
 \end{equation}
 \begin{theorem}[Refined sufficient condition]\label{target:main}
@@ -164,24 +180,34 @@ $$
 Thus \(b<b_E(a)\) implies \(M(a,b)<a\), including at \(a=1/4\).
 Consequently the finite-profile criterion holds whenever \(u<Q(s)\).
 
-The comparison with the coherent branch is
+The low-slope improvement in Lemma~\ref{fprof:smallslope} also permits
+\(F(a,b)<a\), provided \(b\le1/2\) and \(M(a,b)<a\). Its exact scalar criterion is
 $$
- Q(s)-(2s-1)=\frac{6s^2-8s+1}{s+1}.
+ K_a(b):=-2(1+a)b^2+(3+13a+12a^2)b+1-13a-12a^2<0.
 $$
-For \(s>1\), its sign changes once, at \(s=d_A\). This proves
-\(B_{\rm new}(d)=\max\{2d-1,Q(d)\}\) on \((1,5/4]\), and the two displayed
-branches agree at their common endpoint.
+On the parameter interval used for the middle branch, this is equivalent to
+\(b<b_F(a)\). The branch comparisons and the nonbinding late-cost inequality
+are proved in Proposition~\ref{fprof:small-balance}. They show that all joins in
+\eqref{fprof:curve} agree and that the middle branch is stronger than both
+\(2d-1\) and \(Q(d)\) on its open interval.
+For the rational branch, its comparison with the coherent bound is
+$$
+ Q(s)-(2s-1)=\frac{6s^2-8s+1}{s+1},
+$$
+which is positive once \(s>(4+\sqrt{10})/6<d_J\).
 
 \begin{proof}[Proof of Theorem~\ref{target:main}]
-For \(1<d\le d_A\), apply Proposition~\ref{prop:coherentborel} with both sets
- equal to \(E\). For \(d_A<d\le5/4\), the assumption \(D<Q(d)\) gives
-\(C(d,D)=\max\{E(d,D),M(d,D)\}<d-1\) by the preceding algebra.
-Theorem~\ref{fprof:main} supplies the required pin. Both inequalities in the
-profile criterion are strict, so continuity permits the nearby Frostman and
-covering exponents used in the Borel-set reduction.
+For \(1<d\le d_L\), apply Proposition~\ref{prop:coherentborel} with both sets
+ equal to \(E\). For \(d_L<d\le d_J\),
+Proposition~\ref{fprof:small-balance} shows that \(D<1+b_F(d-1)\) gives
+\(C(d,D)<d-1\). For \(d_J<d\le5/4\), the assumption \(D<Q(d)\) gives
+\(C(d,D)\le\max\{E(d,D),M(d,D)\}<d-1\) by the preceding algebra.
+Theorem~\ref{fprof:main} supplies the required pin in both cases.
+All relevant inequalities are strict, so continuity permits the nearby Frostman
+and covering exponents used in the Borel-set reduction.
 \end{proof}
 No minimum-location assumption is imposed on the set or the selected measure.
-The reflection lemma covers every admissible profile, including profiles with
+The profile lemmas cover every admissible profile, including profiles with
 multiple minima and infinitely many changes of monotonicity.
 
 \section{A stronger conditional-energy criterion}

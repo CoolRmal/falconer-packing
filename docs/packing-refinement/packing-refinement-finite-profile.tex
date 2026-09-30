@@ -3,12 +3,25 @@
 
 For \(1<s\le5/4\) and \(s\le u\le2\), define
 \begin{equation}\label{fprof:A}
- C(s,u)=\max\{E(s,u),M(s,u)\},\qquad
+ C(s,u)=\max\{\widetilde E(s,u),M(s,u)\},\qquad
  E(s,u)=\frac{(s+1)u+s-2s^2}{6s},
 \end{equation}
 $$
- M(s,u)=\frac{6u-12s+9}{16}.
+ M(s,u)=\frac{6u-12s+9}{16},\qquad
+ \widetilde E(s,u)=\begin{cases}
+ \min\{E(s,u),F(s-1,u-1)\},&u\le3/2,\\[3pt]
+ E(s,u),&u\ge3/2,
+ \end{cases}
 $$
+where, for \(0<a\le1/4\) and \(a\le b\le1/2\),
+$$
+ F(a,b)=\frac{b-a}{2(1+a)}+\frac{1-2a}{4}
+       -\frac{(1-2b)(1-a)(1+b)}{8(1-b)(1+a)}.
+$$
+These formulas agree at \(u=3/2\): there,
+\(F(a,1/2)-E(a,1/2)=(1-3a-a^2)/(6(1+a))>0\),
+where the second \(E\) uses the shifted profile variables. In particular \(C\)
+is continuous on its parameter domain.
 
 \begin{theorem}[Finite-profile criterion]\label{fprof:main}
 Let \(E\subset\R^2\) be Borel, and write \(d=\HH E\), \(D=\PP E\). If
@@ -95,6 +108,7 @@ satisfies \(x/5\leq g(x)\leq x/2\). Starting at \(1-\lambda\), \(0<\lambda<1/10\
 \input{packing-refinement-profile-lemma.tex}
 \input{packing-refinement-minimum-lemma.tex}
 \input{packing-refinement-reflection-lemma.tex}
+\input{packing-refinement-small-slope.tex}
 
 \subsection{Finite regularization of the original pin measure}
 
@@ -136,9 +150,9 @@ For the first inequality use \(\sigma_i\leq R^\Gamma\nu\), the Frostman bound, a
  \int\|\pi^y_*\mu\|_q^q\dd\sigma_i(y)\leq B R^\Gamma.
 \end{equation}
 
-Put \(g_i=f_i-\mathrm{id}\). Apply Lemma~\ref{fprof:reflection} with
-\(a=s-1\), \(b=u-1\). Its early and late bounds are exactly the functions
-\(E(s,u)\) and \(M(s,u)\) above. Start at the \(T\)-grid point immediately
+Put \(g_i=f_i-\mathrm{id}\). Apply Lemmas~\ref{fprof:reflection} and~\ref{fprof:smallslope} with
+\(a=s-1\), \(b=u-1\), using the latter only if \(u\le3/2\).
+Their early and late bounds are exactly \(\widetilde E(s,u)\) and \(M(s,u)\) above. Start at the \(T\)-grid point immediately
 below \((1-\zeta)N\), where \(0<\zeta<1/8\) is fixed.
 For sufficiently large \(N\), this point is at least \(3N/4\).
 The choice \(N=4T\ell\) puts \(N/2\) and \(3N/4\) on the grid.
@@ -342,7 +356,7 @@ $$
 $$
 where \(u>D\) if \(D<2\), and \(u=2\) if \(D=2\). Take a compactly supported \(t\)-Frostman probability on \(E\). When \(D<2\), the packing-dimension covering characterization covers \(E\) by countably many bounded pieces of upper box dimension less than \(u\). Taking their closures and intersecting with \(E\) makes a Borel cover without changing the upper box bounds. At least one piece has positive Frostman mass. By inner regularity take a compact subset of positive mass there. When \(D=2\), the original compact support already has the universal covering bound with \(u=2\). In either case split the compact set into two separated compact subsets of positive mass. Their normalized restrictions \(\mu,\nu\) retain the \(t\)-Frostman estimate; the pin support satisfies \eqref{fprof:cover}. Equation \eqref{fprof:ac} supplies the required pin in \(E\). This proves Theorem~\ref{fprof:main}.
 
-The cost bound in Lemma~\ref{fprof:reflection}, rather than either separate
-case alone, is used at every regularized component. No hypothesis on the location
+The combined cost bound from the reflection and low-slope lemmas, rather than
+either minimum-location case alone, is used at every regularized component. No hypothesis on the location
 of a minimum remains in the measure or Borel-set theorem. The algebra leading
 to the explicit curve is given in the next section.

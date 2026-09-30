@@ -1,0 +1,264 @@
+\subsection{Using both barriers when the upper slope is small}
+
+\begin{lemma}[An envelope from both linear bounds]\label{fprof:smallslope}
+Let \(0<a\le1/4\), \(a\le b\le1/2\), and let
+\(g:[0,N]\to\mathbb R\) be 1-Lipschitz with \(ax\le g(x)\le bx\).
+For \(3N/4\le n_0<N\), an admissible decreasing chain from \(n_0\)
+through \(N/2\) to zero can be chosen with
+\(O(1+\log(N/(N-n_0)))\) edges and total cost at most
+$$
+ N\max\{\min(E(a,b),F(a,b)),M(a,b)\},
+$$
+where
+$$
+ E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},\qquad
+ M(a,b)=\frac{3b}{8}+\frac3{16}-\frac{3a}{4},
+$$
+and
+\begin{equation}\label{fprof:small-F}
+ F(a,b)=\frac{b-a}{2(1+a)}+\frac{1-2a}{4}
+ -\frac{(1-2b)(1-a)(1+b)}{8(1-b)(1+a)}.
+\end{equation}
+The mesh and approximate-barrier errors have the same
+\(O(KT+Ke_0N)\) bounds as in Lemma~\ref{fprof:reflection}.
+\end{lemma}
+
+\begin{proof}
+Scale to \(N=1\). Choose a global minimum \(t\) of \(g\) on
+\([1/2,1]\), and put \(m=g(t)\), \(v=g(1/2)\), and \(e=g(1)\).
+When \(t>3/4\), the late-minimum argument in
+Lemma~\ref{fprof:reflection} gives \(M(a,b)\). We therefore assume
+\(t\in[1/2,3/4]\).
+
+Set
+$$
+ z_* =\frac{t-m}{1-b},\qquad
+ H(z)=\frac z2+\left(b-\frac12\right)z_*.
+$$
+Since \(m\le bt\), one has \(z_*\ge t\). On \([t,1]\), the two
+available upper bounds give
+$$
+ g(z)\le\min\{bz,m+z-t\}\le H(z).
+$$
+For the last inequality, if \(z\le z_*\), then
+\(H(z)-(m+z-t)=(z_*-z)/2\ge0\). If \(z\ge z_*\), then
+\(H(z)-bz=(1/2-b)(z-z_*)\ge0\). This also covers \(z_*>1\).
+
+For \(x\ge(1+t)/2\), define
+$$
+ \Lambda(x)=H(2x-1)-g(x).
+$$
+This is nondecreasing, and almost everywhere
+$$
+ (-g')_+\le\frac{1-g'}2=\frac{\Lambda'}2.
+$$
+Use maximal admissible downward jumps in the positive-potential region,
+stopping if the endpoint reaches \((1+t)/2\). Their costs sum to at most
+\(\Lambda(1)/2\). If the construction first reaches the region
+\(\Lambda\le0\) above that stopping threshold, then
+$$
+ g(2n-1)\le H(2n-1)\le g(n)
+$$
+at the current endpoint \(n\). Choosing the leftmost minimum on
+\([2n-1,n]\) gives an admissible zero-cost edge. Continue until the
+endpoint becomes at most \((1+t)/2\). Every such endpoint is at least
+\(t\), so the next jump to \(t\) is admissible and costs zero.
+If \(n_0\le(1+t)/2\), that direct zero-cost jump suffices from the start.
+
+The construction is first made on a grid. Consecutive zero-cost intervals
+can be merged whenever their union is admissible. Every two unmergeable
+intervals more than double the complementary depth; the positive-cost
+maximal jumps also double it except at their last step. Thus the number
+of retained edges has the stated logarithmic bound. Grid crossing errors
+are \(O(T)\), and a compactness limit of the bounded-length endpoint
+lists proves the continuous assertion. This is the same affine-envelope
+construction as before, now stopped at \((1+t)/2\); it does not require
+\(\Lambda((1+t)/2)\le0\).
+
+Since \(H(1)\ge e\), the prefix cost is bounded by the nonnegative number
+$$
+ \frac{H(1)-e}{2}
+ =\frac{1/2+(b-1/2)z_*-e}{2}.
+$$
+The jump from \(t\) to \(1/2\) is admissible and costs \(v-m\).
+Combining this construction with the earlier cone construction gives
+a cost at most
+\begin{equation}\label{fprof:small-scalar}
+ v-m+\min\left\{
+ \frac{1-t+m-a}{3},\quad
+ \frac{1/2-a-k(t-m)}2
+ \right\},\qquad
+ k=\frac{1/2-b}{1-b}.
+\end{equation}
+The subsequent edge to zero has zero cost.
+
+It remains to maximize \eqref{fprof:small-scalar} under
+$$
+ m\ge at,\qquad v\le\min\{b/2,m+t-1/2\}.
+$$
+For fixed \(t\), replace \(v\) by its upper bound. Both expressions
+inside the resulting minimum are nondecreasing in \(m\) below
+\(b/2-t+1/2\), and decreasing above it. Hence both attain their maximum
+at the same scalar value
+$$
+ m=\max\{at,b/2-t+1/2\}.
+$$
+Write \(t_*=(1+b)/(2(1+a))\). For \(t\le t_*\), the two resulting
+expressions increase with slopes \(1/3\) and \(1-k\); for
+\(t\ge t_*\), they decrease with slopes
+\(-(1+2a)/3\) and \(-a-k(1-a)/2\). The point \(t_*\) belongs to
+\([1/2,3/4]\), since \(a\le b\le1/2\). Their minimum is therefore
+maximized at \(t=t_*\), \(m=at_*\). Substitution gives exactly
+\(\min(E(a,b),F(a,b))\).
+
+For approximate barriers, clamp between the exact linear barriers and
+interpolate grid values. The uniform change is \(O(e_0N+T)\), and every
+edge cost changes by at most twice that quantity. The classification into
+early and late cases is applied to the clamped profile itself. This proves
+the asserted stability without requiring the minimum location to be
+preserved by clamping.
+\end{proof}
+
+\subsection{The additional packing interval}
+
+For \(3/16\le a\le1/5\), put \(c=13a+12a^2\), and define
+\begin{equation}\label{fprof:small-bF}
+ b_F(a)=\frac{3+c-\sqrt{(3+c)^2+8(1+a)(1-c)}}{4(1+a)}.
+\end{equation}
+Let \(a_L\) be the unique root in \((3/16,19/100)\) of
+$$
+ 16a^3+6a^2-7a+1=0,
+$$
+and let \(a_J\) be the unique root in \((19/100,1/5)\) of
+$$
+ 32a^4-28a^3-75a^2-5a+4=0.
+$$
+In particular, \(a_L<a_J\). Their approximate values are
+$$
+ a_L=0.188783591161\ldots,\qquad
+ a_J=0.195322470969\ldots.
+$$
+
+\begin{proposition}[Additional small-slope balance]\label{fprof:small-balance}
+For \(a_L\le a\le a_J\) and \(a\le b<b_F(a)\),
+$$
+ \max\{\min(E(a,b),F(a,b)),M(a,b)\}<a.
+$$
+Moreover,
+$$
+ b_F(a)>\max\left\{2a,\frac{8a^2+8a-1}{a+2}\right\}
+ \qquad(a_L<a<a_J).
+$$
+At the endpoints,
+$$
+ b_F(a_L)=2a_L,\qquad
+ b_F(a_J)=\frac{8a_J^2+8a_J-1}{a_J+2}.
+$$
+\end{proposition}
+
+\begin{proof}
+Multiplying \(F-a\) by its positive denominator shows
+$$
+ F(a,b)<a\quad\Longleftrightarrow\quad G(a,b)<0,
+$$
+where
+$$
+ G(a,b)=-2(1+a)b^2+(3+13a+12a^2)b+1-13a-12a^2.
+$$
+For \(0\le b\le1/2\),
+$$
+ \partial_bG\ge1+11a+12a^2>0.
+$$
+In the stated range of \(a\),
+$$
+ G(a,a)=(a-1)(a+1)(10a-1)<0,\qquad
+ G(a,1/2)=2-7a-6a^2>0.
+$$
+Thus \(b_F(a)\), as given by \eqref{fprof:small-bF}, is the unique zero
+in \((a,1/2)\), and \(b<b_F(a)\) implies \(F<a\).
+
+For the late bound, \(M<a\) is equivalent to
+\(b<R(a):=14a/3-1/2\). On \([3/16,1/5]\), this comparison point is
+in \([0,1/2]\), and
+$$
+ G(a,R(a))=\frac{112a^3+76a^2+30a-9}{9}.
+$$
+The last expression is increasing for positive \(a\) and equals
+\(1/256\) at \(a=3/16\). Therefore \(G(a,R(a))>0\), whence
+\(b_F(a)<R(a)\). This proves the strict combined balance.
+
+Next,
+$$
+ G(a,2a)=16a^3+6a^2-7a+1.
+$$
+The polynomial on the right is strictly decreasing on
+\([3/16,1/5]\); its values at \(3/16\) and \(19/100\) are
+\(1/256\) and \(-457/125000\). This proves the existence and uniqueness
+of \(a_L\), the first endpoint identity, and \(b_F(a)>2a\) for
+\(a_L<a<a_J\).
+
+Finally, with \(b_E(a)=(8a^2+8a-1)/(a+2)\), expansion gives
+$$
+ (a+2)^2G(a,b_E(a))
+ =-(a+1)(32a^4-28a^3-75a^2-5a+4).
+$$
+The quartic in parentheses is strictly decreasing on \([0,1/4]\), since
+its derivative is
+$$
+ 128a^3-84a^2-150a-5
+ \le-52a^2-150a-5<0.
+$$
+Its values at \(19/100\) and \(1/5\) are
+\(600471/3125000\) and \(-108/625\), proving the asserted unique
+root \(a_J\). Thus \(G(a,b_E(a))<0\) for \(a<a_J\) in the present
+parameter interval. Since \(a<b_E(a)<1/2\) there, monotonicity of
+\(G\) implies \(b_E(a)<b_F(a)\). Equality at \(a_J\) proves the
+second endpoint identity.
+\end{proof}
+
+\begin{proposition}[Packing consequence on the additional interval]
+\label{fprof:small-packing}
+Let \(E\subset\mathbb R^2\) be Borel, and write
+\(d=\dim_{\mathrm H}E\), \(D=\dim_{\mathrm P}E\). The finite-profile
+transfer in this manuscript, with Lemma~\ref{fprof:smallslope} as its
+chain input, gives
+$$
+ 1+a_L<d<1+a_J,\qquad D<1+b_F(d-1)
+ \quad\Longrightarrow\quad
+ \exists y\in E:\ |\Delta_y(E)|>0.
+$$
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{fprof:small-balance} gives a strict profile margin at
+\(a=d-1\), \(b=D-1\). Since the inequalities are strict and the
+expressions are continuous, choose a Frostman exponent \(s<d\) and an
+upper covering exponent \(u>D\), sufficiently close to \(d,D\), that
+the same margin holds at \(a=s-1\), \(b=u-1\).
+Lemma~\ref{fprof:smallslope} supplies bounded-length chains with that
+cost and the required regularization errors. Applying the finite-profile
+transfer with this chain bound, and the same compact selection and
+separation argument, proves the stated positive-length conclusion.
+\end{proof}
+
+For example, take \(a=19/100\) and \(b=761/2000\). Then
+$$
+ F(a,b)=\frac{74596147}{393176000},\qquad
+ M(a,b)=\frac{3003}{16000},\qquad
+ a-\max(F(a,b),M(a,b))=\frac{107293}{393176000}>0.
+$$
+Thus the additional interval includes the dimension pair
+\(d=1.19\), \(D=1.3805\), while \(2d-1=1.38\).
+
+Combining this with the preceding sufficient bounds gives the continuous
+piecewise cutoff
+\begin{equation}\label{fprof:smallslopecurve}
+ B_{\rm refined}(d)=\begin{cases}
+ 2d-1,&1<d\le1+a_L,\\[3pt]
+ 1+b_F(d-1),&1+a_L<d<1+a_J,\\[3pt]
+ \dfrac{d(8d-7)}{d+1},&1+a_J\le d\le5/4.
+ \end{cases}
+\end{equation}
+Both joins agree by Proposition~\ref{fprof:small-balance}. As elsewhere,
+the distance conclusion requires the separate analytic transfer; the
+elementary chain estimates alone are not a proof about distance sets.
