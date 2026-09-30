@@ -6,9 +6,14 @@ Authors: Yongxi Lin
 import FalconerPacking.Statement
 import FalconerPacking.Algebra
 import FalconerPacking.HardGapAlgebra
+import FalconerPacking.HardGapCurve
+import FalconerPacking.HardGapThreshold
 import FalconerPacking.Dimensions
 import FalconerPacking.Profile
 import FalconerPacking.UnforcedProfile
+import FalconerPacking.ChainCompression
+import FalconerPacking.HighSlopeProfile
+import FalconerPacking.HardPoints
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -25,6 +30,8 @@ import FalconerPacking.OccupiedCubes
 import FalconerPacking.WeakLimit
 import FalconerPacking.FrostmanLimit
 import FalconerPacking.CompactReduction
+import FalconerPacking.BorelFrostman
+import FalconerPacking.Capacity
 import FalconerPacking.PinnedMeasure
 import FalconerPacking.Main
 

@@ -186,6 +186,7 @@ measure-theoretic modules prove some of the downstream steps.
 | historical branch combination (Section 4 of the earlier manuscript) | **proved**, with explicit analytic assumptions |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
 | new hard-gap weighted certificates, threshold algebra, and exact margins | **proved**, seven theorems, standard axioms only |
+| focused-PDF curve: joins, continuity, exact examples, strict exponents, middle-branch root inequality | **proved**, standard axioms only |
 | dimensions: `dimH ≤ packingDim`, monotonicity, countable stability | **proved**, no holes |
 | profile: Lemma 3.2 (chain to the origin), Lemma 3.3 (endpoint estimate) | **proved**, no holes |
 | dyadic cubes: partition, nesting, ancestors, diameter, four-cube bound | **proved**, no holes |
@@ -197,6 +198,12 @@ measure-theoretic modules prove some of the downstream steps.
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
 | compact source and pin reduction: separated probabilities with Frostman and covering bounds | **proved**, standard axioms only; arbitrary-Borel initial Frostman extraction remains open |
 | unforced profile operations: merging, clipping, and fixed-chain perturbation | **proved**, standard axioms only |
+| arbitrary-chain compression to uniformly bounded length, with no cost increase | **proved**, standard axioms only |
+| high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
+| exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
+| compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
+| hard-point set: compactness and gap-drop geometry | **proved**, standard axioms only |
+| initial Frostman extraction for sigma-compact sets and finite Hausdorff-measure pieces | **proved**; does not replace arbitrary-Borel extraction |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
 | $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
@@ -215,9 +222,14 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/Statement.lean` | dimensions, distance sets, and historical curve definitions |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
 | `FalconerPacking/HardGapAlgebra.lean` | weighted certificates and threshold algebra for the improved curve |
+| `FalconerPacking/HardGapThreshold.lean` | exact scalar bridge, including barrier enlargement and both cost certificates |
+| `FalconerPacking/HardGapCurve.lean` | exact focused-PDF curve, joins, continuity, root equation, and strict auxiliary exponents |
 | `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
 | `FalconerPacking/UnforcedProfile.lean` | merging, clipping, truncation and perturbation for arbitrary finite chains |
+| `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
+| `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
+| `FalconerPacking/HardPoints.lean` | closed hard-point sets and the proved gap inequalities |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
@@ -229,6 +241,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/WeakLimit.lean` | compactness, subsequences, and preservation of dyadic ball bounds in the weak limit |
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
 | `FalconerPacking/CompactReduction.lean` | closure covering bounds and separated compact Frostman source/pin probabilities |
+| `FalconerPacking/Capacity.lean` | Choquet compact extraction for analytic and Borel sets under explicit capacity properties |
+| `FalconerPacking/BorelFrostman.lean` | sigma-compact and finite-measure extraction; proof that below-dimension Hausdorff sigma-finiteness is unavailable |
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/LocalEnergy.lean` | scale-sensitive bounds and geometric summability for normalized dyadic restrictions |
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
