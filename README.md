@@ -4,8 +4,9 @@
 The [short guide](docs/falconer-human/README.md) states the condition and gives a graph.
 The PDF puts the explanation and main proof first, followed by the detailed estimates.
 
-A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned distance sets: a
-Hausdorff–packing dimension criterion* (19 September 2026).
+A Lean 4 formalization project for Theorem 1.1 of the focused proof PDF above.
+The current target is the unconditional theorem with the stronger boundary below.
+**The full Lean proof is not complete, and the comparator has not passed for this target.**
 
 **Research archive, 30 September 2026.** The [longer proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
 gives the explicit stronger cutoff
@@ -102,7 +103,7 @@ distance density whose pth power is integrable for some exponent greater than
 one**. The proof treats
 both analytic branches and explicitly handles the pin mass discarded in finite
 regularization. This improves integrability without changing the dimension
-cutoff. Further formalization is currently set aside at the user's request.
+cutoff. Formalization of the focused dimension theorem is now underway.
 
 The latest addition also proves an exact limitation of a local refined-decoupling
 construction: optimizing its terminal scale and every weighted exponent from
@@ -164,22 +165,25 @@ is strict, including at the two transition points.
 
 ## Status
 
-The **checked theorem is the conditional form of Theorem 1.1** (Section 4 of the manuscript):
-the two analytic criteria enter as explicit hypotheses, and the theorem is the branch
-combination that derives the curve `B(d)` from them. That combination is fully proved, so the
-comparator's axiom report is `[propext, Classical.choice, Quot.sound]`.
+The comparator now targets `FalconerPacking.exists_pin_volume_pinnedDistances_pos`, the
+unconditional statement of Theorem 1.1 in the focused PDF, with `hausdorffPackingBound`.
+`Challenge.lean` independently states that exact target. Its theorem hole is a specification,
+not a proof; it is never imported by the solution library.
 
-Unconditional Theorem 1.1 is recorded in `Challenge.lean` as `Target` and is **not proved**: it
-needs the original branch (Proposition 2.5) and the finite-profile branch (Theorem 3.1), whose
-formalization requires Orponen's radial-projection theorem, GIOW packet localization, tube
-deletion, the inflation step, the pinned identity, the shell bounds and the joint limit —
-modules 7 to 14 of the manuscript's ledger, none of which exists in Mathlib. A green comparator
-here certifies the conditional theorem, nothing more.
+`Solution.lean` currently proves only a historical conditional result for the earlier curve.
+It is not a solution to the current challenge. The target will be added only after its analytic
+and geometric dependencies have been proved. The comparator must reject the incomplete
+solution; its permitted axioms remain exactly `propext`, `Classical.choice`, and `Quot.sound`.
+
+Major remaining dependencies include Borel Frostman extraction, the radial-projection theorem,
+the full hard-gap profile theorem, the Fourier-band comparison, wave packets, deletion and
+weighted Fourier iteration, and the pinned quadratic identity. Existing convergence and
+measure-theoretic modules prove some of the downstream steps.
 
 | stage | state |
 |---|---|
-| challenge statement | type-checks; elaborated type identical to `Solution.lean` |
-| branch combination (Section 4) — **the checked theorem** | **proved**, no holes |
+| exact focused-PDF challenge statement | type-checks; unconditional solution not yet present |
+| historical branch combination (Section 4 of the earlier manuscript) | **proved**, with explicit analytic assumptions |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
 | new hard-gap weighted certificates, threshold algebra, and exact margins | **proved**, seven theorems, standard axioms only |
 | dimensions: `dimH ≤ packingDim`, monotonicity, countable stability | **proved**, no holes |
@@ -191,6 +195,8 @@ here certifies the conditional theorem, nothing more.
 | compact occupied-cube covers and normalized atomic Frostman measures | **proved**, no holes |
 | weak compactness, supported subsequence extraction, and dyadic Frostman bounds in the limit | **proved**, no holes |
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
+| compact source and pin reduction: separated probabilities with Frostman and covering bounds | **proved**, standard axioms only; arbitrary-Borel initial Frostman extraction remains open |
+| unforced profile operations: merging, clipping, and fixed-chain perturbation | **proved**, standard axioms only |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
 | $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
@@ -198,19 +204,20 @@ here certifies the conditional theorem, nothing more.
 | coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
-| unconditional Theorem 1.1 (`Target`) | **open** — the two analytic branches |
+| unconditional focused-PDF Theorem 1.1 | **open** — comparator not yet passing |
 
 ## Layout
 
 | path | contents |
 |---|---|
 | `Challenge.lean` | the statement, self-contained, with the theorem hole |
-| `Solution.lean` | the target theorem, in the same form, proved from the library |
-| `FalconerPacking/Statement.lean` | the same definitions, for the modular development |
+| `Solution.lean` | historical conditional theorem; unconditional target still absent |
+| `FalconerPacking/Statement.lean` | dimensions, distance sets, and historical curve definitions |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
 | `FalconerPacking/HardGapAlgebra.lean` | weighted certificates and threshold algebra for the improved curve |
 | `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
+| `FalconerPacking/UnforcedProfile.lean` | merging, clipping, truncation and perturbation for arbitrary finite chains |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
 | `FalconerPacking/Restriction.lean` | module 4: normalized restrictions and their Frostman bounds |
@@ -221,6 +228,7 @@ here certifies the conditional theorem, nothing more.
 | `FalconerPacking/OccupiedCubes.lean` | finite occupied covers and support-point selection for compact sets |
 | `FalconerPacking/WeakLimit.lean` | compactness, subsequences, and preservation of dyadic ball bounds in the weak limit |
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
+| `FalconerPacking/CompactReduction.lean` | closure covering bounds and separated compact Frostman source/pin probabilities |
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/LocalEnergy.lean` | scale-sensitive bounds and geometric summability for normalized dyadic restrictions |
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
@@ -231,8 +239,9 @@ here certifies the conditional theorem, nothing more.
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
-statement — `packingDim`, `upperBoxDim`, `HasUpperBoxBound`, `pinnedDistances`, `bound`, `d0`,
-`d1` — are compared recursively, so they cannot be restated or weakened in the solution.
+statement — including `packingDim`, `upperBoxDim`, `HasUpperBoxBound`, `pinnedDistances`,
+`hausdorffPackingBound`, its transition points and its radical — are compared recursively,
+so they cannot be restated or weakened in the solution.
 
 ## Definitions used by the statement
 

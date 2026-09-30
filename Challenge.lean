@@ -15,10 +15,10 @@ import Mathlib.Topology.MetricSpace.HausdorffDimension
 
 Every transparent definition occurring in the theorem statement, and the statement itself.
 
-The theorem is Theorem 1.1 of the manuscript *Self-pinned distance sets: a Hausdorff–packing
-dimension criterion*: a planar Borel set whose Hausdorff dimension `d` lies in `(1, 5/4]` and
-whose packing dimension is below the piecewise curve `bound d` has a pin `y` inside itself whose
-pinned distance set has positive Lebesgue measure.
+The target is Theorem 1.1 of `docs/falconer-human/falconer-packing-theorem.pdf`: a planar Borel
+set whose Hausdorff dimension `d` lies in `(1, 5/4]` and whose packing dimension is strictly below
+`hausdorffPackingBound d` has a pin inside itself with a positive-length pinned distance set.
+This file is the independent comparator specification, not a proof of the target.
 -/
 
 noncomputable section
@@ -48,24 +48,31 @@ def packingDim (E : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ :=
   ⨅ (K : ℕ → Set (EuclideanSpace ℝ (Fin 2))) (_ : E ⊆ ⋃ n, K n) (_ : ∀ n, Bornology.IsBounded (K n)),
     ⨆ n, upperBoxDim (K n)
 
-/-- The first transition point `(9 + √33) / 12`: the root above one of `3d² - 5d/2 = 2d - 1`. -/
-def d0 : ℝ := (9 + Real.sqrt 33) / 12
+/-- The transition from the direct bound to the hard-gap bound. -/
+def hardGapTransition : ℝ := (7 - Real.sqrt 7) / 4
 
-/-- The second transition point `(5 + √97) / 12`: the positive root of `3d² - 5d/2 = 3/2`. -/
-def d1 : ℝ := (5 + Real.sqrt 97) / 12
+/-- The transition from the hard-gap bound to the rational bound. -/
+def rationalTransition : ℝ := (2 + Real.sqrt 6) / 4
 
-/-- The packing-dimension curve `B(d)` of the criterion, in its three branches. -/
-def bound (d : ℝ) : ℝ :=
-  if d ≤ d0 then 2 * d - 1
-  else if d ≤ d1 then 3 * d ^ 2 - (5 / 2 : ℝ) * d
-  else ((2 * d - 1) ^ 2 + Real.sqrt ((2 * d - 1) ^ 4 + 8 * d)) / 4
+/-- The discriminant in the hard-gap branch. -/
+def hardGapDiscriminant (a : ℝ) : ℝ :=
+  64 * a ^ 4 + 32 * a ^ 3 - 63 * a ^ 2 - 28 * a + 4
 
-/-- **The target theorem.**  Let `E ⊆ ℝ²` be Borel with `d = dimH E`.  If `1 < d ≤ 5/4` and
-`dimP E < B(d)`, then some pin `y ∈ E` has a pinned distance set of positive length. -/
+/-- The rationalized root defining the middle branch. -/
+def hardGapRoot (a : ℝ) : ℝ :=
+  6 * a / (8 * a ^ 2 - a + 2 + Real.sqrt (hardGapDiscriminant a))
+
+/-- The sufficient packing-dimension boundary `B_H` in Theorem 1.1 of the focused PDF. -/
+def hausdorffPackingBound (d : ℝ) : ℝ :=
+  if d ≤ hardGapTransition then 2 * d - 1
+  else if d ≤ rationalTransition then 1 + hardGapRoot (d - 1)
+  else 1 / (3 - 2 * d)
+
+/-- Theorem 1.1: the strict `B_H` condition gives a positive-length distance set at a self-pin. -/
 theorem exists_pin_volume_pinnedDistances_pos (E : Set (EuclideanSpace ℝ (Fin 2))) (d : ℝ)
     (hE : MeasurableSet E) (hdimH : dimH E = ENNReal.ofReal d)
     (hd_lt : 1 < d) (hd_le : d ≤ 5 / 4)
-    (hpack : packingDim E < ENNReal.ofReal (bound d)) :
+    (hpack : packingDim E < ENNReal.ofReal (hausdorffPackingBound d)) :
     ∃ y ∈ E, 0 < volume (pinnedDistances E y) := by
   sorry
 

@@ -8,6 +8,7 @@ import FalconerPacking.Algebra
 import FalconerPacking.HardGapAlgebra
 import FalconerPacking.Dimensions
 import FalconerPacking.Profile
+import FalconerPacking.UnforcedProfile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -23,6 +24,7 @@ import FalconerPacking.WeightMeasure
 import FalconerPacking.OccupiedCubes
 import FalconerPacking.WeakLimit
 import FalconerPacking.FrostmanLimit
+import FalconerPacking.CompactReduction
 import FalconerPacking.PinnedMeasure
 import FalconerPacking.Main
 

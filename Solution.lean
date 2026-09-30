@@ -6,17 +6,18 @@ Authors: Yongxi Lin
 import FalconerPacking.Main
 
 /-!
-# Solution: the branch combination
+# Historical conditional branch combination
 
-The challenge theorem, in the exact form of `Challenge.lean`: the conditional form of Theorem
-1.1, proved by the curve algebra of Section 4.
+This module currently contains the conditional result for the earlier curve. It does not prove
+the current `B_H` target in `Challenge.lean`. The comparator checks the unconditional theorem
+`exists_pin_volume_pinnedDistances_pos`, which must be added here after its dependencies are proved.
 -/
 
 open MeasureTheory
 
 namespace FalconerPacking
 
-/-- **The challenge theorem** (Section 4 of the manuscript).  Assume the original-branch
+/-- The historical conditional theorem (Section 4 of the earlier manuscript). Assume the original-branch
 criterion and the finite-profile criterion.  Then a planar Borel set of Hausdorff dimension
 `d ∈ (1, 5/4]` whose packing dimension is below the curve `bound d` has a pin inside itself whose
 pinned distance set has positive Lebesgue measure. -/
