@@ -453,3 +453,216 @@ $$
 $$
 
 This improves the previous forced-chain upper bound in the stated parameter range. It is a sufficient upper bound on profile-chain cost; it has not been proved to be the optimal such upper bound. Nor does this combinatorial calculation by itself prove a pinned-distance theorem without a complete verified transfer from chain cost to the Fourier estimate.
+
+## Second addendum: the early/late minimum split
+
+The further forced-chain improvement suggested by the root and the profile agent is also valid as a combinatorial statement. Normalize N to one for this calculation. Put
+
+$$
+l=\tfrac12,\qquad r=\tfrac34,
+\qquad v=g(l),\qquad e=g(1).
+$$
+
+Choose a global minimizer t of g on the entire interval from l to one and put m equal to its value. If there is an early minimizer, choose one; otherwise all minimizers are late. The minimum is global on this fixed tail, not merely on the portion below the starting depth.
+
+### Early minimum
+
+Suppose the chosen minimizer is at most r. The Lipschitz bound supplies the upper cone
+
+$$
+g(z)\le m+z-t\qquad(z\ge t).
+$$
+
+For depths at least half of one plus t define
+
+$$
+L(x)=2x-1+m-t-g(x).
+$$
+
+Its derivative is at least one, and it is nonpositive at the left endpoint because t is a global tail minimizer. Furthermore,
+
+$$
+(-g')_+\le\frac{2-g'}3.
+$$
+
+The doubling and minimum-jump argument therefore reaches a depth at most half of one plus t, with total cost at most
+
+$$
+\frac{L(1)}3=\frac{1-e-t+m}{3}.
+$$
+
+The quantity on the right is nonnegative by the Lipschitz bound from t to one. The jump to t is admissible and free. The jump from t to l is admissible because the minimum is early, and costs exactly v minus m. Thus the total cost is at most
+
+$$
+v-m+\frac{1-e-t+m}{3}.
+$$
+
+If the initial depth is below t, a direct jump to l is already admissible and costs at most v minus m, so this causes no obstruction. In the application the initial depth is above r.
+
+For a bound using only the barriers, replace e by a and use
+
+$$
+v\le\min\{b/2,m+t-1/2\},\qquad m\ge at.
+$$
+
+At fixed t the resulting expression increases up to
+
+$$
+m=b/2-t+1/2
+$$
+
+and decreases afterward. Subject to the lower bound on m, it is maximized by this value when t is at most
+
+$$
+t_* =\frac{1+b}{2(1+a)},
+$$
+
+and by m equal to at otherwise. The resulting function increases up to this transition and decreases afterward. This proves the universal early upper bound
+
+$$
+\boxed{
+E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)}.
+}
+$$
+
+The condition that the displayed transition point be at most three quarters is needed only to assert that the scalar maximizer belongs to the early subcase. It is not necessary for this upper bound: maximizing over the larger interval from one half to one is a valid relaxation, and the displayed transition belongs to that larger interval whenever the original barrier parameters lie between zero and one.
+
+One can retain the barrier envelope as well as the cone to replace the cone term by a minimum. For example, when b is at least one half the stronger bound is
+
+$$
+\frac{b-a}{2(1+a)}+
+\min\left\{\frac{b-a}{1+2b},
+\frac{(1-a)(1-t_*)}{3}\right\}.
+$$
+
+The clean cone bound above suffices for the new explicit conditions.
+
+### Late minimum
+
+Suppose instead that the global minimizer is later than three quarters. The old positive-potential and zero-cost argument reaches a depth between one half and three quarters at cost at most
+
+$$
+A(a,b)=
+\begin{cases}
+(1+2b-4a)/8,& b\le1/2,\\
+(b-a)/(1+2b),& b\ge1/2.
+\end{cases}
+$$
+
+The first branch uses the shifted affine envelope independently checked in the preceding addendum; the second is the original barrier potential. The final jump to l costs at most v minus m, regardless of whether the global minimizer itself lies above the initial depth. Since the minimizer is late,
+
+$$
+m\ge at>3a/4,\qquad v\le b/2.
+$$
+
+The total cost is therefore at most
+
+$$
+\boxed{L(a,b)=A(a,b)+b/2-3a/4.}
+$$
+
+There is no negative-cost paradox: existence of this late case itself implies that b divided by two is greater than three a divided by four, because the minimum is no greater than v. If that inequality fails, the late case is empty.
+
+Every profile belongs to one of the two cases. Hence
+
+$$
+\boxed{\max\{E(a,b),L(a,b)\}}
+$$
+
+is a valid universal forced-chain upper bound. The earlier potential construction and the minimum-jump construction have the same logarithmic edge-count bound. Grid rounding contributes a constant times the mesh, and approximation of the barriers contributes a constant times the edge count times the uniform barrier error, as in the first addendum.
+
+In the source notation, the early inequality is
+
+$$
+E(s-1,u-1)<s-1
+\quad\Longleftrightarrow\quad
+u<\frac{s(8s-7)}{s+1}.
+$$
+
+The late inequalities are
+
+$$
+L(s-1,u-1)<s-1
+\quad\Longleftrightarrow\quad
+\begin{cases}
+u<3s-13/6,&u\le3/2,\\[2pt]
+u<\dfrac{7s-6+\sqrt{49s^2-96s+56}}4,&u\ge3/2.
+\end{cases}
+$$
+
+These formulas have been independently checked by expanding the corresponding linear or quadratic inequalities. They remain profile-chain conclusions until the analytic transfer has been verified.
+
+## Third addendum: algebra of the combined candidate curve
+
+The conversion of the independently verified profile bounds into the proposed four-branch sufficient curve is algebraically correct. In the source variables the two profile costs are
+
+$$
+E(s,u)=\frac{(s+1)u+s-2s^2}{6s},
+$$
+
+and
+
+$$
+L(s,u)=
+\begin{cases}
+(6u-10s+5)/8,&u\le3/2,\\[2pt]
+(u-s)/(2u-1)+(2u-3s+1)/4,&u\ge3/2.
+\end{cases}
+$$
+
+Comparing their maximum with s minus one, then combining with the coherent sufficient line, gives the algebraic candidate
+
+$$
+\widetilde B(d)=
+\begin{cases}
+2d-1,&1<d\le d_A,\\[2pt]
+\dfrac{d(8d-7)}{d+1},&d_A<d\le d_B,\\[6pt]
+3d-\dfrac{13}{6},&d_B<d\le\dfrac{11}{9},\\[6pt]
+\dfrac{7d-6+\sqrt{49d^2-96d+56}}4,
+&\dfrac{11}{9}<d\le\dfrac54,
+\end{cases}
+$$
+
+where
+
+$$
+d_A=\frac{4+\sqrt{10}}6,
+\qquad d_B=\frac{47+\sqrt{649}}{60}.
+$$
+
+The first join solves the quadratic obtained by comparing the early bound with the coherent line. The second solves
+
+$$
+30d^2-47d+13=0.
+$$
+
+The linear branch reaches three halves at eleven ninths, exactly the transition between the two late formulas.
+
+For completeness, the early restriction is redundant along the last branch throughout the claimed range. Put
+
+$$
+a=d-1,\qquad
+b_E=\frac{8a^2+8a-1}{a+2},\qquad
+P_a(b)=4b^2+(6-14a)b-11a.
+$$
+
+The positive root of this quadratic is the last-branch packing cutoff minus one. Direct expansion gives
+
+$$
+(a+2)^2P_a(b_E)
+=144a^4+213a^3+82a^2+10a-8.
+$$
+
+At a equal to two ninths this is seven hundred divided by seven hundred twenty-nine, and its derivative is positive for nonnegative a. Also
+
+$$
+P_a(1/2)=4-18a\le0,
+$$
+
+while the quadratic is increasing in b at and above one half for a between two ninths and one quarter. The early root is at least nineteen thirty-sixths throughout this interval. Hence the positive late root is below the early root. It also exceeds the coherent cutoff, as
+
+$$
+P_a(2a)=a(1-12a)<0.
+$$
+
+These checks establish the joins and the choice of active inequality. They do not supply the separate analytic implication from the optimized profile estimate to positive-length pinned distance sets, nor any global optimality claim.

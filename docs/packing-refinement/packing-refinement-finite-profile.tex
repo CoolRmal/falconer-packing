@@ -3,11 +3,18 @@
 
 For \(1<s<3/2\) and \(s\leq u\leq2\), define
 \begin{equation}\label{fprof:A}
- C(s,u)=\begin{cases}
- \dfrac{2u-4s+3}{8}+\dfrac{u-s}{2s},&s\le u\le3/2,\\[6pt]
- \dfrac{u-s}{2u-1}+\dfrac{u-s}{2s},&3/2\le u\le2.
- \end{cases}
+ C(s,u)=\max\{E(s,u),L(s,u)\},\qquad
+ E(s,u)=\frac{(s+1)u+s-2s^2}{6s},
 \end{equation}
+$$
+ L(s,u)=\begin{cases}
+ \dfrac{6u-10s+5}{8},&s\le u\le3/2,\\[6pt]
+ \dfrac{u-s}{2u-1}+\dfrac{2u-3s+1}{4},&3/2\le u\le2.
+ \end{cases}
+$$
+\begin{equation*}
+ \text{The two expressions for }L(s,u)\text{ agree at }u=3/2.
+\end{equation*}
 
 \begin{theorem}[Finite-profile criterion]\label{fprof:main}
 Let \(E\subset\R^2\) be Borel, and write \(d=\HH E\), \(D=\PP E\). If
@@ -92,6 +99,7 @@ $$
 satisfies \(x/5\leq g(x)\leq x/2\). Starting at \(1-\lambda\), \(0<\lambda<1/10\), every admissible chain forced through \(1/2\) costs at least \(9/40-\lambda\), exceeding the unforced upper bound \(3/20\) for small \(\lambda\). Indeed, the first crossing of \(9/10\) costs, together with earlier edges, at least \(1/10-\lambda\), and ends above \(4/5\). The later crossing of \(5/8\) and continuation to \(1/2\) cost at least \(g(1/2)-g(5/8)=1/8\), by telescoping signed increments. These contributions are disjoint. The endpoints \(9/10,4/5,5/8,1/2,0\), preceded by admissible doublings of the complementary depth, attain the bound. This is a profile example, not a distance-set counterexample.
 
 \input{packing-refinement-profile-lemma.tex}
+\input{packing-refinement-minimum-lemma.tex}
 
 \subsection{Finite regularization of the original pin measure}
 
@@ -133,13 +141,12 @@ For the first inequality use \(\sigma_i\leq R^\Gamma\nu\), the Frostman bound, a
  \int\|\pi^y_*\mu\|_q^q\dd\sigma_i(y)\leq B R^\Gamma.
 \end{equation}
 
-Put \(g_i=f_i-\mathrm{id}\). When \(u\le3/2\), apply
-Lemma~\ref{fprof:affine} with \(a=s-1\), \(b=u-1\).
-When \(u\ge3/2\), apply Lemma~\ref{fprof:forced} with
-\(a=s-1\), \(b=b_0=u-1\).
-In either case start at the \(T\)-grid point nearest \((1-\zeta)N\) below it,
-where \(0<\zeta<1/4\) is fixed. Choosing \(N\) a multiple of \(4T\)
-puts both \(N/2\) and \(3N/4\) on the grid.
+Put \(g_i=f_i-\mathrm{id}\). Apply Lemma~\ref{fprof:split} with
+\(a=s-1\), \(b=u-1\). Its early and late bounds are exactly the functions
+\(E(s,u)\) and \(L(s,u)\) above. Start at the \(T\)-grid point immediately
+below \((1-\zeta)N\), where \(0<\zeta<1/8\) is fixed.
+For sufficiently large \(N\), this point is at least \(3N/4\).
+The choice \(N=4T\ell\) puts \(N/2\) and \(3N/4\) on the grid.
 We obtain a chain, common to the entire component,
 \begin{gather}\label{fprof:levels}
  n_0>n_1>\cdots>n_K=0,\qquad
@@ -336,12 +343,7 @@ $$
 $$
 where \(u>D\) if \(D<2\), and \(u=2\) if \(D=2\). Take a compactly supported \(t\)-Frostman probability on \(E\). When \(D<2\), the packing-dimension covering characterization covers \(E\) by countably many bounded pieces of upper box dimension less than \(u\). Taking their closures and intersecting with \(E\) makes a Borel cover without changing the upper box bounds. At least one piece has positive Frostman mass. By inner regularity take a compact subset of positive mass there. When \(D=2\), the original compact support already has the universal covering bound with \(u=2\). In either case split the compact set into two separated compact subsets of positive mass. Their normalized restrictions \(\mu,\nu\) retain the \(t\)-Frostman estimate; the pin support satisfies \eqref{fprof:cover}. Equation \eqref{fprof:ac} supplies the required pin in \(E\). This proves Theorem~\ref{fprof:main}.
 
-For clarity, the algebra leading to \eqref{fprof:curve} is
-$$
- \begin{array}{ll}
- u\leq3/2:& C(s,u)<s-1\ \Longleftrightarrow\ u<\dfrac{s(12s-7)}{2s+4},\\[2pt]
- u\geq3/2:& C(s,u)<s-1\ \Longleftrightarrow\
- 2u^2-(2s-1)^2u-s<0.
- \end{array}
-$$
-The first curve crosses \(2s-1\) at \(d_*\) and reaches \(3/2\) at \(d_1\). Taking the better sufficient condition from this theorem and Proposition~\ref{prop:coherentborel} proves the claimed piecewise range. Neither the profile optimization with its terminal correction nor the analytic method has been shown optimal among all possible decompositions.
+The cost bound in Lemma~\ref{fprof:split}, rather than either separate
+case alone, is used at every regularized component. No hypothesis on the location
+of a minimum remains in the measure or Borel-set theorem. The algebra leading
+to the explicit curve is given in the next section.

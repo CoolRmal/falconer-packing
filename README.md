@@ -4,15 +4,15 @@ A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned di
 Hausdorff–packing dimension criterion* (19 September 2026).
 
 **Research update, 30 September 2026.** A [new proof manuscript](docs/packing-refinement/packing-refinement-proof.pdf)
-improves the middle branch to
+gives a stronger sufficient packing bound. At Hausdorff dimension 1.24,
+the cutoff improves from approximately 1.506696 to
 
 $$
-\frac{d(12d-7)}{2d+4},
-\qquad
-\frac{13+\sqrt{41}}{16}<d\le\frac{5+\sqrt{97}}{12}.
+\frac{7d-6+\sqrt{49d^2-96d+56}}4
+\approx1.546869432\qquad(d=1.24).
 $$
 
-It covers, for example, Hausdorff dimension 1.22 and packing dimension 1.445.
+It therefore covers Hausdorff dimension 1.24 and packing dimension 1.54.
 [Full statement, proof sources, and verification status](docs/packing-refinement/README.md).
 This is a sufficient improvement, not a proved weakest condition. Its Lean formalization
 is not complete; the Lean target and curve described below remain the original ones.

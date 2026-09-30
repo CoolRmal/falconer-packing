@@ -1,0 +1,100 @@
+\begin{lemma}[Splitting at a minimum above the midpoint]\label{fprof:split}
+Let \(0<a\le b\le1\), and let \(g:[0,N]\to\R\) be 1-Lipschitz with
+\(ax\le g(x)\le bx\). For \(3N/4\le n_0<N\), there is a decreasing admissible
+chain from \(n_0\) through \(N/2\) to zero, of length
+\(O(1+\log(N/(N-n_0)))\), with cost at most \(N\max\{E(a,b),L(a,b)\}\), where
+$$
+ E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},
+$$
+$$
+ L(a,b)=\begin{cases}
+ \dfrac{1+6b-10a}{8},&b\le1/2,\\[5pt]
+ \dfrac{b-a}{1+2b}+\dfrac b2-\dfrac{3a}{4},&b\ge1/2.
+ \end{cases}
+$$
+For a grid profile, add \(O(T)\) on mesh \(T\), and for barriers with additive
+error \(eN\), add \(O(KeN+KT)\), where \(K\) is the length bound.
+\end{lemma}
+\begin{proof}
+Scale to \(N=1\). Choose a global minimum \(t\) of \(g\) on \([1/2,1]\), and put
+\(m=g(t)\), \(v=g(1/2)\), \(e=g(1)\).
+
+We first record the potential argument in the form needed here. If
+\(H(z)=hz+\alpha\) majorizes \(g(z)\) on \([q,1]\), with \(h\ge1/2\), put
+$$
+ \Lambda(x)=H(2x-1)-g(x),\qquad
+ V(x)=\frac{\Lambda(x)_+}{1+2h}.
+$$
+On the region where \(2x-1\ge q\), \(\Lambda\) is nondecreasing, and on
+\(\{\Lambda>0\}\) one has
+$$
+ (-g')_+\le\frac{2h-g'}{1+2h}=V'.
+$$
+For a nonnegative derivative the right side is nonnegative; for a negative derivative
+the inequality reduces to \(g'\ge-1\). Consequently maximal admissible jumps
+through this positive region have total cost at most \(V(1)\).
+If \(\Lambda(n)\le0\) and \(m_0=2n-1\ge q\), then
+\(g(m_0)\le H(m_0)\le g(n)\). A leftmost minimum on \([m_0,n]\) supplies a
+zero-cost admissible jump. This is the construction in the preceding two lemmas.
+It may be stopped at a specified threshold even if the positive region has not ended.
+Positive-region jumps double complementary depths except at a final clipped jump.
+Greedy merging of zero-cost jumps bounds their number by twice a logarithmic count.
+
+\emph{An early minimum.} Suppose \(t\le3/4\). Lipschitz continuity gives
+\(g(z)\le H(z)=m+z-t\) for \(z\ge t\). Use the potential with \(h=1\),
+\(q=t\); at \(x=(1+t)/2\),
+$$
+ \Lambda((1+t)/2)=m-g((1+t)/2)\le0.
+$$
+Thus the construction reaches \(n\le(1+t)/2\), with \(n\ge t\), at cost at most
+\((1-t+m-e)/3\). If \(n_0\) was already below this threshold, take no such jumps.
+The edge to \(t\) is admissible and has zero cost. The edge from \(t\) to \(1/2\)
+is admissible because \(t\le3/4\), and costs \(v-m\). The cost is therefore at most
+$$
+ v-m+\frac{1-t+m-a}{3}.
+$$
+Maximize this under the weaker scalar constraints
+$$
+ m\ge at,\qquad v\le\min\{b/2,m+t-1/2\},\qquad 1/2\le t\le1.
+$$
+Write \(t_*=(1+b)/(2(1+a))\), which lies in \([1/2,1]\).
+For \(t\le t_*\), maximizing over \(m\) gives \(m=b/2-t+1/2\), and the value
+\((t+b/2-a)/3\) increases with \(t\).
+For \(t\ge t_*\), the maximum occurs at \(m=at\), and the value
+\((1-a+3b/2-(1+2a)t)/3\) decreases with \(t\).
+Their common value at \(t_*\) is \(E(a,b)\).
+Relaxing the location interval from \([1/2,3/4]\) to \([1/2,1]\) only enlarges
+this upper bound; no assumption \(t_*\le3/4\) is needed.
+
+\emph{A late minimum.} Suppose \(t>3/4\). Every value on \([1/2,1]\) is at least
+\(m\ge at>3a/4\). If \(b\ge1/2\), use the envelope \(H(z)=bz\) and stop
+the potential construction at the first \(n\le3/4\). Its cost is at most
+\((b-a)/(1+2b)\). If \(b\le1/2\), use instead
+\(H(z)=z/2+(b-1/2)/2\) on \([1/2,1]\), as in Lemma~\ref{fprof:affine}.
+The cost to that stopping point is at most \((1+2b-4a)/8\).
+In both constructions the stopping point is at least \(1/2\): a jump starting
+above \(3/4\) ends no lower than \(2n-1>1/2\).
+The final edge to \(1/2\) is admissible, and costs at most
+$$
+ v-m\le\frac b2-\frac{3a}{4}.
+$$
+If this last upper bound is negative, the late case is impossible since \(m\le v\).
+Adding the bounds proves the claimed \(L(a,b)\). This argument also applies
+when the global minimum lies beyond \(n_0\): it still bounds every interval minimum.
+The last edge \(1/2\to0\) has zero cost in both cases.
+
+For precision concerning endpoints, first perform these constructions for a profile
+linear on a grid. Interval minima then occur at grid points. A sign-change crossing
+costs at most one mesh, as in Lemma~\ref{fprof:affine}. For the early minimum,
+the threshold \((1+t)/2\) may lie halfway between grid points; reaching the lower
+grid point before jumping to \(t\) costs at most one further mesh.
+All these short edges are admissible for sufficiently fine meshes, since
+\(t\le3/4\) and \(n_0<1\). Stop at \(3/4\) on a grid containing that point
+in the late case. This gives the stated \(O(T)\) error.
+Approximate arbitrary continuous profiles by grid interpolants and use the
+bounded-length compactness argument of Lemma~\ref{fprof:affine}. If a minimum's
+location switches cases along the approximations, the maximum of the two bounds
+still applies. Finally clamp approximate barriers and interpolate; the change
+in each edge cost is at most twice the uniform perturbation. Rescaling gives
+the result on \([0,N]\).
+\end{proof}

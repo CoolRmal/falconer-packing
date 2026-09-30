@@ -16,9 +16,9 @@ $$
 Set
 
 $$
-d_* = \frac{13+\sqrt{41}}{16}\approx1.212695265,
+d_A = \frac{4+\sqrt{10}}6\approx1.193712943,
 \qquad
-d_1 = \frac{5+\sqrt{97}}{12}\approx1.237404817.
+d_B = \frac{47+\sqrt{649}}{60}\approx1.207924640.
 $$
 
 The refined sufficient condition is
@@ -35,11 +35,13 @@ $$
 B_{\mathrm{new}}(d)=
 \begin{cases}
 2d-1,
-  &1<d\le d_*,\\[4pt]
-\dfrac{d(12d-7)}{2d+4},
-  &d_*<d\le d_1,\\[8pt]
-\dfrac{(2d-1)^2+\sqrt{(2d-1)^4+8d}}4,
-  &d_1<d\le\dfrac54.
+  &1<d\le d_A,\\[4pt]
+\dfrac{d(8d-7)}{d+1},
+  &d_A<d\le d_B,\\[8pt]
+3d-\dfrac{13}{6},
+  &d_B<d\le\dfrac{11}{9},\\[8pt]
+\dfrac{7d-6+\sqrt{49d^2-96d+56}}4,
+  &\dfrac{11}{9}<d\le\dfrac54.
 \end{cases}
 $$
 
@@ -48,41 +50,48 @@ $$
 For example, the new condition covers
 
 $$
-d=\frac{61}{50}=1.22,\qquad D=\frac{289}{200}=1.445.
+d=\frac{31}{25}=1.24,\qquad D=\frac{77}{50}=1.54.
 $$
 
-The previous cutoff at this Hausdorff dimension was 1.44. The new cutoff and the
+The quoted previous cutoff at this Hausdorff dimension was approximately 1.506696.
+The new cutoff and the
 strict analytic exponent margin are
 
 $$
-B_{\mathrm{new}}(1.22)=\frac{11651}{8050}\approx1.447329193,
-\qquad (d-1)-C(d,D)=\frac{3}{1952}>0.
+B_{\mathrm{new}}(1.24)\approx1.546869432,
+\qquad (d-1)-C(d,D)=\frac{3}{520}>0.
 $$
 
 ## Why the bound improves
 
 The finite profile has lower slope constraint a and upper slope constraint b.
-Above the mandatory midpoint, an affine upper envelope with slope one half is
-tighter than the earlier upper bound. For
+Choose a minimum above the mandatory midpoint. An early minimum allows a
+Lipschitz-cone estimate and a zero-cost landing at the minimum. A late minimum
+improves the cost of the final jump. The resulting cost per unit terminal depth
+is at most the maximum of
 
 $$
-0<a\le b\le\frac12,
+\mathcal E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},
 $$
 
-the new scale chain has cost at most
+and
 
 $$
-\left(\frac{1+2b-4a}{8}+\frac{b-a}{2(1+a)}\right)N+O(T),
+\mathcal L(a,b)=
+\begin{cases}
+\dfrac{1+6b-10a}{8},&b\le\dfrac12,\\[6pt]
+\dfrac{b-a}{1+2b}+\dfrac b2-\dfrac{3a}{4},&b\ge\dfrac12.
+\end{cases}
 $$
 
-with a bounded number of edges, the required curvature constraint, and a visit
-to the midpoint. The Fourier argument pays this cost in the exponent. The new
-middle cutoff follows by setting
+up to controlled grid errors. The chain has a bounded number of edges, satisfies
+the curvature constraint, and visits the midpoint. The Fourier argument pays
+this cost in the exponent. The four-branch cutoff follows by setting
 
 $$
 a=s-1,\qquad b=u-1,
 \qquad
-\frac{2u-4s+3}{8}+\frac{u-s}{2s}<s-1.
+\max\{\mathcal E(a,b),\mathcal L(a,b)\}<s-1.
 $$
 
 The manuscript also improves the sufficient coherent energy summability condition to
@@ -122,11 +131,13 @@ analytic hypotheses does not prove the unconditional theorem.
 - [Proof PDF](packing-refinement-proof.pdf)
 - [Main LaTeX source](packing-refinement-proof.tex)
 - [New midpoint lemma](packing-refinement-profile-lemma.tex)
+- [Universal minimum-split lemma](packing-refinement-minimum-lemma.tex)
 - [Full finite-profile analytic branch](packing-refinement-finite-profile.tex)
 - [Original coherent analytic branch](packing-bound-original-branch.tex)
 - [Coherent argument and independent midpoint audit](2026-09-30-coherent-audit.md)
 - [Analytic transfer audit](2026-09-30-inflation-audit.md)
 - [Profile optimization and its remaining limitations](2026-09-30-profile-optimization.md)
+- [Minimum-location split and cutoff algebra](2026-09-30-tail-minimum-split.md)
 
 Compile the main LaTeX source from this directory; its figure is in the adjacent
 `figures` directory.
