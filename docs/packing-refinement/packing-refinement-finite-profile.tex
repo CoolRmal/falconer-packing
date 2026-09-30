@@ -1,25 +1,19 @@
 \clearpage
 \section{The finite-profile branch}\label{fprof:section}
 
-For \(1<s<3/2\) and \(s\leq u\leq2\), define
+For \(1<s\le5/4\) and \(s\le u\le2\), define
 \begin{equation}\label{fprof:A}
- C(s,u)=\max\{E(s,u),L(s,u)\},\qquad
+ C(s,u)=\max\{E(s,u),M(s,u)\},\qquad
  E(s,u)=\frac{(s+1)u+s-2s^2}{6s},
 \end{equation}
 $$
- L(s,u)=\begin{cases}
- \dfrac{6u-10s+5}{8},&s\le u\le3/2,\\[6pt]
- \dfrac{u-s}{2u-1}+\dfrac{2u-3s+1}{4},&3/2\le u\le2.
- \end{cases}
+ M(s,u)=\frac{6u-12s+9}{16}.
 $$
-\begin{equation*}
- \text{The two expressions for }L(s,u)\text{ agree at }u=3/2.
-\end{equation*}
 
 \begin{theorem}[Finite-profile criterion]\label{fprof:main}
 Let \(E\subset\R^2\) be Borel, and write \(d=\HH E\), \(D=\PP E\). If
 \begin{equation}\label{fprof:condition}
- 1<d<3/2,\qquad C(d,D)<d-1,
+ 1<d\le5/4,\qquad C(d,D)<d-1,
 \end{equation}
 then \(|\Delta_y(E)|>0\) for some \(y\in E\).
 \end{theorem}
@@ -100,6 +94,7 @@ satisfies \(x/5\leq g(x)\leq x/2\). Starting at \(1-\lambda\), \(0<\lambda<1/10\
 
 \input{packing-refinement-profile-lemma.tex}
 \input{packing-refinement-minimum-lemma.tex}
+\input{packing-refinement-reflection-lemma.tex}
 
 \subsection{Finite regularization of the original pin measure}
 
@@ -141,9 +136,9 @@ For the first inequality use \(\sigma_i\leq R^\Gamma\nu\), the Frostman bound, a
  \int\|\pi^y_*\mu\|_q^q\dd\sigma_i(y)\leq B R^\Gamma.
 \end{equation}
 
-Put \(g_i=f_i-\mathrm{id}\). Apply Lemma~\ref{fprof:split} with
+Put \(g_i=f_i-\mathrm{id}\). Apply Lemma~\ref{fprof:reflection} with
 \(a=s-1\), \(b=u-1\). Its early and late bounds are exactly the functions
-\(E(s,u)\) and \(L(s,u)\) above. Start at the \(T\)-grid point immediately
+\(E(s,u)\) and \(M(s,u)\) above. Start at the \(T\)-grid point immediately
 below \((1-\zeta)N\), where \(0<\zeta<1/8\) is fixed.
 For sufficiently large \(N\), this point is at least \(3N/4\).
 The choice \(N=4T\ell\) puts \(N/2\) and \(3N/4\) on the grid.
@@ -165,7 +160,11 @@ Let \(Q\) be an active depth-\(m\) cube. For any concentric enlargement \(Q^+\) 
 $$
  \lambda(B(z,2^{-k}))\leq C R^{C\Gamma}2^{f_i(m)-f_i(k)}.
 $$
-Indeed, the denominator is at least the mass of the original active cube \(Q\); this avoids any boundary-sliver assumption about \(Q^+\). Summing dyadic annuli yields
+Indeed, the denominator is at least the mass of the original active cube \(Q\); this avoids any boundary-sliver assumption about \(Q^+\). For intermediate radii between consecutive block-grid points, use the mass
+bound at the coarser grid point. The ratio between adjacent radii is at most
+\(2^T\), so this changes the estimate by a multiplicative constant depending
+only on \(T\) (one may take \(O(2^{2T})\)). It introduces no additional power
+of \(R\). Summing dyadic annuli yields
 \begin{equation}\label{fprof:energy}
  J_\lambda(\rho):=\iint\min\{\rho^{-1},b/|y-z|\}\dd\lambda(y)\dd\lambda(z)
  \leq C(N+1)R^{C\Gamma}2^{c_{i,j}}.
@@ -343,7 +342,7 @@ $$
 $$
 where \(u>D\) if \(D<2\), and \(u=2\) if \(D=2\). Take a compactly supported \(t\)-Frostman probability on \(E\). When \(D<2\), the packing-dimension covering characterization covers \(E\) by countably many bounded pieces of upper box dimension less than \(u\). Taking their closures and intersecting with \(E\) makes a Borel cover without changing the upper box bounds. At least one piece has positive Frostman mass. By inner regularity take a compact subset of positive mass there. When \(D=2\), the original compact support already has the universal covering bound with \(u=2\). In either case split the compact set into two separated compact subsets of positive mass. Their normalized restrictions \(\mu,\nu\) retain the \(t\)-Frostman estimate; the pin support satisfies \eqref{fprof:cover}. Equation \eqref{fprof:ac} supplies the required pin in \(E\). This proves Theorem~\ref{fprof:main}.
 
-The cost bound in Lemma~\ref{fprof:split}, rather than either separate
+The cost bound in Lemma~\ref{fprof:reflection}, rather than either separate
 case alone, is used at every regularized component. No hypothesis on the location
 of a minimum remains in the measure or Borel-set theorem. The algebra leading
 to the explicit curve is given in the next section.

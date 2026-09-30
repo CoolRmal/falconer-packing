@@ -3,8 +3,8 @@
 30 September 2026.
 
 The [complete proof manuscript](packing-refinement-proof.pdf) improves the quoted
-packing bound. It includes both analytic branches, the new scale-selection lemma,
-the reduction to Borel sets, and a stronger conditional-energy convergence theorem.
+packing bound. It includes both analytic branches, the running-minimum reflection
+lemma, the Borel-set reduction, and an explicit obstruction for the profile method.
 
 For a Borel planar set, write
 
@@ -16,9 +16,7 @@ $$
 Set
 
 $$
-d_A = \frac{4+\sqrt{10}}6\approx1.193712943,
-\qquad
-d_B = \frac{47+\sqrt{649}}{60}\approx1.207924640.
+d_A = \frac{4+\sqrt{10}}6\approx1.193712943.
 $$
 
 The refined sufficient condition is
@@ -35,109 +33,109 @@ $$
 B_{\mathrm{new}}(d)=
 \begin{cases}
 2d-1,
-  &1<d\le d_A,\\[4pt]
+  &1<d\le d_A,\\[6pt]
 \dfrac{d(8d-7)}{d+1},
-  &d_A<d\le d_B,\\[8pt]
-3d-\dfrac{13}{6},
-  &d_B<d\le\dfrac{11}{9},\\[8pt]
-\dfrac{7d-6+\sqrt{49d^2-96d+56}}4,
-  &\dfrac{11}{9}<d\le\dfrac54.
+  &d_A<d\le\dfrac54.
 \end{cases}
 $$
 
 ![Comparison of the refined and previous sufficient packing cutoffs.](../figures/packing-refinement.svg)
 
-For example, the new condition covers
+For example, the condition covers
 
 $$
-d=\frac{31}{25}=1.24,\qquad D=\frac{77}{50}=1.54.
+d=\frac{31}{25}=1.24,\qquad D=\frac85=1.60.
 $$
 
 The quoted previous cutoff at this Hausdorff dimension was approximately 1.506696.
-The new cutoff and the
-strict analytic exponent margin are
+The new cutoff and the strict exponent margin for this pair are
 
 $$
-B_{\mathrm{new}}(1.24)\approx1.546869432,
-\qquad (d-1)-C(d,D)=\frac{3}{520}>0.
+B_{\mathrm{new}}(1.24)=\frac{2263}{1400}\approx1.616428571,
+\qquad (d-1)-C(d,D)=\frac{23}{4650}>0.
 $$
+
+At Hausdorff dimension five quarters the new sufficient packing cutoff is five thirds.
 
 ## Why the bound improves
 
-The finite profile has lower slope constraint a and upper slope constraint b.
-Choose a minimum above the mandatory midpoint. An early minimum allows a
-Lipschitz-cone estimate and a zero-cost landing at the minimum. A late minimum
-improves the cost of the final jump. The resulting cost per unit terminal depth
-is at most the maximum of
+Normalize a finite profile to a 1-Lipschitz function between two linear barriers.
+An early tail minimum allows a cone estimate and a zero-cost landing. For a late
+minimum, reflect the profile upward by its running deficit, producing an early
+minimum. A telescoping bound controls the effect of this reflection on every
+chain. Compare that chain with a route through the original late minimum and
+then through three quarters. Their weighted comparison gives the second cost below.
+
+The resulting cost per unit terminal depth is at most the maximum of
 
 $$
 \mathcal E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},
+\qquad
+\mathcal M(a,b)=\frac{3b}{8}+\frac3{16}-\frac{3a}{4},
 $$
 
-and
+up to controlled grid errors. Every constructed chain has bounded length,
+satisfies the curvature constraint, and visits the mandatory midpoint.
+For the relevant range, the early-cost inequality already implies the late one:
 
 $$
-\mathcal L(a,b)=
-\begin{cases}
-\dfrac{1+6b-10a}{8},&b\le\dfrac12,\\[6pt]
-\dfrac{b-a}{1+2b}+\dfrac b2-\dfrac{3a}{4},&b\ge\dfrac12.
-\end{cases}
+0<a\le\frac14,\qquad
+\mathcal E(a,b)<a
+\quad\Longrightarrow\quad
+\mathcal M(a,b)<a.
 $$
 
-up to controlled grid errors. The chain has a bounded number of edges, satisfies
-the curvature constraint, and visits the midpoint. The Fourier argument pays
-this cost in the exponent. The four-branch cutoff follows by setting
+Substituting the Frostman and covering exponents gives
 
 $$
 a=s-1,\qquad b=u-1,
 \qquad
-\max\{\mathcal E(a,b),\mathcal L(a,b)\}<s-1.
+\mathcal E(a,b)<a
+\quad\Longleftrightarrow\quad
+u<\frac{s(8s-7)}{s+1}.
 $$
 
-The manuscript also improves the sufficient coherent energy summability condition to
-
-$$
-\sum_n Z_n^{(q-1)/q}<\infty,\qquad 1<q\le2,
-$$
-
-from the previous exponent
-
-$$
-\frac{q-1}{2q-1}.
-$$
-
-That improvement gives additional logarithmic endpoint criteria, but does not by
-itself improve a condition involving only the two dimensions.
+The Fourier transfer pays this profile cost in the frequency exponent. The
+coherent branch supplies the other part of the displayed dimension cutoff.
 
 ## What is established and what remains open
 
-The manuscript supplies a mathematical proof using the explicitly cited established
-analytic results. Separate internal checks covered the scale-selection lemma,
-the Fourier transfer, the angular estimate, the algebra, and the exact example.
+The manuscript supplies a mathematical proof using explicitly cited established
+analytic results. Separate internal checks covered the reflection, both chain
+constructions, Fourier transfer, angular estimate, algebra, and exact example.
 These checks are not external refereeing or Lean kernel verification.
 
-The weakest possible condition remains unproved. No counterexample establishes
-necessity of the new cutoff, and even the scale-selection upper bound has not been
-proved optimal. For Hausdorff dimension greater than five quarters, GIOW already
-gives a pin with positive-length distances without a packing restriction.
+The weakest possible condition remains unproved. The manuscript proves an exact
+limiting forced-chain cost for an explicit family of profiles, including the
+boundary pairs at Hausdorff dimensions 1.24 and 1.25. This is an obstruction to
+improving the present method from its stated profile hypotheses alone. No
+counterexample establishes necessity of the cutoff for actual distance sets.
+For Hausdorff dimension greater than five quarters, GIOW already gives a pin
+with positive-length distances without a packing restriction.
 
 No Lean target or comparator definition was changed for this research update.
-The new profile lemma and the unconditional analytic branches still need complete
+The new profile lemmas and unconditional analytic branches still need complete
 Lean proofs using only standard axioms. A proof of an algebraic combination under
 analytic hypotheses does not prove the unconditional theorem.
+
+The manuscript also proves an improved coherent conditional-energy summability
+criterion, with logarithmic endpoint consequences. This does not by itself
+improve a condition involving only the two dimensions.
 
 ## Files
 
 - [Proof PDF](packing-refinement-proof.pdf)
 - [Main LaTeX source](packing-refinement-proof.tex)
-- [New midpoint lemma](packing-refinement-profile-lemma.tex)
-- [Universal minimum-split lemma](packing-refinement-minimum-lemma.tex)
+- [Reflection and competing-chain lemma](packing-refinement-reflection-lemma.tex)
+- [Exact profile obstruction](packing-refinement-profile-obstruction.tex)
 - [Full finite-profile analytic branch](packing-refinement-finite-profile.tex)
 - [Original coherent analytic branch](packing-bound-original-branch.tex)
-- [Coherent argument and independent midpoint audit](2026-09-30-coherent-audit.md)
+- [Earlier affine-envelope lemma](packing-refinement-profile-lemma.tex)
+- [Earlier minimum-split lemma](packing-refinement-minimum-lemma.tex)
+- [Independent reflection audit](2026-09-30-reflected-minimum-audit.md)
+- [Fresh Fourier stress audit](2026-09-30-fourier-stress-audit.md)
+- [Coherent argument audit](2026-09-30-coherent-audit.md)
 - [Analytic transfer audit](2026-09-30-inflation-audit.md)
-- [Profile optimization and its remaining limitations](2026-09-30-profile-optimization.md)
-- [Minimum-location split and cutoff algebra](2026-09-30-tail-minimum-split.md)
 
 Compile the main LaTeX source from this directory; its figure is in the adjacent
 `figures` directory.

@@ -1,0 +1,224 @@
+\section{Sharpness in the forced-midpoint profile model}
+\label{pfobs:section}
+
+This section concerns only the elementary scale-selection problem. Its examples
+are not planar distance-set counterexamples. In particular, they do not show that
+the sufficient Hausdorff--packing condition of this manuscript is necessary.
+
+For a continuous function \(g:[0,1]\to\mathbb R\), an edge from \(n\) to
+\(m<n\) has cost
+$$
+ c_g(m,n)=g(m)-\min_{[m,n]}g,
+$$
+and is admissible if \(2n-m\le1\). A forced-midpoint chain starts at
+\(1-\zeta\), passes through \(1/2\), and ends at zero. Write
+\(\mathcal C_\zeta(g)\) for the infimum of the total costs of these chains.
+The example below attains this infimum with a finite chain.
+
+\begin{proposition}[Exact two-collapse profile]\label{pfobs:exact}
+Suppose
+$$
+ 0<a\le\frac14,\qquad a\le b\le1,\qquad
+ t:=\frac{1+b}{2(1+a)}\le\frac34,
+$$
+and
+\begin{equation}\label{pfobs:barrier-condition}
+ 2(1-b)(1+a)^2\le(1+b)^2(1-a).
+\end{equation}
+Put
+$$
+ m=at,\qquad v=\frac b2,\qquad
+ p=\frac{1+a+t-m}{2},\qquad
+ C=\frac{1-t+m-a}{3}=\frac{(1-a)(1-t)}3.
+$$
+Define
+\begin{equation}\label{pfobs:profile}
+ g(x)=\begin{cases}
+ bx,&0\le x\le1/2,\\
+ v+1/2-x,&1/2\le x\le t,\\
+ m+x-t,&t\le x\le p,\\
+ a+1-x,&p\le x\le1.
+ \end{cases}
+\end{equation}
+Then \(g\) is 1-Lipschitz and satisfies \(ax\le g(x)\le bx\).
+For every \(0<\zeta<C\),
+\begin{equation}\label{pfobs:exact-cost}
+ \mathcal C_\zeta(g)=v-m+C-\zeta
+ =\frac{1-2a-2a^2+(2+a)b}{6(1+a)}-\zeta.
+\end{equation}
+An attaining chain has \(O(1+\log(1/\zeta))\) edges.
+\end{proposition}
+
+\begin{proof}
+The values in \eqref{pfobs:profile} match at the joins, and its slopes have
+absolute value at most one. On \([1/2,t]\), the difference \(g(x)-ax\)
+decreases to zero at \(t\). On \([t,p]\) it is increasing from zero, and on
+\([p,1]\) it equals \((1+a)(1-x)\). This proves the lower barrier.
+The upper barrier is automatic up to \(t\). On \([t,p]\), its largest
+possible violation is at \(p\), and after \(p\) the difference \(g(x)-bx\)
+decreases. The upper barrier at \(p\) is equivalent to
+$$
+ (1-b)p\le t-m.
+$$
+Substituting the definitions gives exactly
+\eqref{pfobs:barrier-condition}. Thus both barriers hold. The global minimum
+on \([1/2,1]\) is \(m\), attained at \(t\).
+
+Set
+$$
+ s=1-C,\qquad \ell=1-2C.
+$$
+The peak satisfies \(p=1-3C/2\). Moreover,
+$$
+ \ell-t=\frac{1+2a}{3}(1-t)>0,
+ \qquad t<\ell<p<s<1.
+$$
+Consider any forced-midpoint chain. Let \(n\to q\) be its first edge with
+\(n>s\) and \(q\le s\). Every preceding edge lies on the terminal affine
+segment of slope \(-1\), so the preceding costs sum to \(1-\zeta-n\).
+Admissibility gives
+$$
+ q\ge2n-1>\ell>t.
+$$
+If \(q\ge p\), the crossing edge has cost \(n-q\ge n-s\). Therefore the
+accumulated cost through this edge is at least \(C-\zeta\).
+If \(q<p\), the minimum of the profile on \([q,n]\) is the minimum of its
+endpoint values. The crossing cost is consequently
+$$
+ \bigl(q+n-(1+a+t-m)\bigr)_+
+ \ge3(n-s),
+$$
+where we used \(q\ge2n-1\) and \(3s=2+a+t-m\). Adding the preceding
+cost again gives at least \(C-\zeta\).
+
+This crossing edge ends strictly above \(t\). In the remaining part of the
+chain, let \(u\to r\) be the first edge with \(u>t\) and \(r\le t\).
+Before the required midpoint, its endpoint satisfies \(r\ge1/2\). The
+cost of this edge is \(g(r)-m\), since its interval contains the global
+tail minimum. Every later edge from \(u'\) to \(r'\) has cost at least
+\(g(r')-g(u')\). Telescoping from \(r\) down to \(1/2\) gives another
+cost of at least \(v-m\). These are disjoint portions of the chain, so its
+total cost is at least \(v-m+C-\zeta\).
+
+For attainment, start at \(1-\zeta\) and double the complementary depth
+until reaching \(s\), shortening the final jump if needed. Each edge is
+admissible and lies on the affine segment of slope \(-1\), so this part
+costs exactly \(C-\zeta\). Continue with
+$$
+ s\longrightarrow\ell\longrightarrow t\longrightarrow\frac12
+ \longrightarrow0.
+$$
+The first edge is admissible with equality. Its endpoint values coincide,
+and the profile is above that value between them, so its cost is zero.
+The next edge is admissible because
+$$
+ 2\ell-t\le1
+ \quad\Longleftrightarrow\quad
+ C\ge\frac{1-t}{4}
+ \quad\Longleftrightarrow\quad a\le\frac14.
+$$
+Its cost is zero because \(t\) is a global tail minimum. The edge from
+\(t\) to \(1/2\) is admissible since \(t\le3/4\), and costs \(v-m\).
+The final edge costs zero. The initial doubling procedure has logarithmically
+many edges. Finally, substitution of \(t=(1+b)/(2(1+a))\) proves the second
+identity in \eqref{pfobs:exact-cost}.
+\end{proof}
+
+\subsection{The critical packing curve and its verified range}
+
+Let \(a_*\) be the unique root in \((1/5,41/200)\) of
+\begin{equation}\label{pfobs:root}
+ -48a^3+94a^2+37a-11=0.
+\end{equation}
+Numerically,
+$$
+ a_*=0.203243978979\ldots.
+$$
+For existence, the polynomial in \eqref{pfobs:root} has respective values
+\(-28/125\) and \(3807/31250\) at \(1/5\) and \(41/200\). Its derivative
+\(-144a^2+188a+37\) is positive on \([0,1/4]\), proving uniqueness in
+that interval.
+
+\begin{proposition}[A sharp profile balance on a terminal dimension interval]
+\label{pfobs:critical}
+For every \(a\in[a_*,1/4]\), set
+$$
+ b=b_E(a):=\frac{8a^2+8a-1}{a+2}.
+$$
+There is a profile satisfying both linear barriers and the Lipschitz condition
+such that
+$$
+ \lim_{\zeta\downarrow0}\mathcal C_\zeta(g)=a.
+$$
+Thus the universal limiting bound \(E(a,b)\) is sharp at
+\(b=b_E(a)\) on this parameter interval. In dimension notation this critical
+curve is
+$$
+ D=1+b_E(d-1)=\frac{d(8d-7)}{d+1},
+ \qquad 1+a_*\le d\le\frac54.
+$$
+\end{proposition}
+
+\begin{proof}
+We check every hypothesis of Proposition~\ref{pfobs:exact}. Since
+\(a\ge a_*>1/5>1/7\),
+$$
+ b_E(a)-a=\frac{(a+1)(7a-1)}{a+2}>0.
+$$
+Also
+$$
+ b_E'(a)=\frac{8a^2+32a+17}{(a+2)^2}>0,
+ \qquad b_E(1/4)=\frac23,
+$$
+so \(a\le b_E(a)\le2/3<1\). The prescribed minimum location simplifies to
+$$
+ t=\frac{8a+1}{2(a+2)}.
+$$
+It is increasing in \(a\), and at \(a=1/4\) equals \(2/3\). Hence
+\(1/2<t\le2/3<3/4\).
+The remaining barrier condition follows from the identity
+$$
+ (1+b_E(a))^2(1-a)-2(1-b_E(a))(1+a)^2
+ =\frac{(1+a)^2}{(a+2)^2}
+       \bigl(-48a^3+94a^2+37a-11\bigr).
+$$
+The right side is nonnegative for \(a\ge a_*\), by the monotonicity just
+proved. Proposition~\ref{pfobs:exact} therefore applies. The definition of
+\(b_E\) gives
+$$
+ \frac{1-2a-2a^2+(2+a)b_E(a)}{6(1+a)}=a,
+$$
+so its exact chain cost is \(a-\zeta\). Taking the limit proves the claim.
+The displayed dimension formula follows from
+\(8a^2+9a+1=(a+1)(8a+1)\).
+\end{proof}
+
+At \(a=6/25\), corresponding to \(d=1.24\), the critical values are
+$$
+ b=\frac{863}{1400},\quad
+ D=\frac{2263}{1400}=1.616428571\ldots,\quad
+ t=\frac{73}{112},\quad m=\frac{219}{1400},\quad
+ C=\frac{247}{2800}.
+$$
+At \(a=1/4\), \(b=2/3\), the profile has the particularly simple knots
+$$
+ (0,0),\quad (1/2,1/3),\quad (2/3,1/6),\quad
+ (7/8,3/8),\quad (1,1/4).
+$$
+Its limiting cost is exactly \(1/4\).
+
+\begin{remark}[Scope of the sharpness statement]
+For \(d\in[1+a_*,5/4]\), the critical profile rules out a universal limiting
+cost estimate strictly below \(d-1\) at \(D=d(8d-7)/(d+1)\), when only the
+present Lipschitz condition, linear barriers, edge costs, and curvature
+admissibility are used. It does not rule out a different analytic argument,
+additional geometric information, or a proof exploiting a different finite-scale
+balance. The examples have not been asserted to be distance-set counterexamples.
+
+The family does not verify sharpness throughout the whole interval where the
+packing curve improves on \(2d-1\). At its lower crossing, put
+\(a_A=(\sqrt{10}-2)/6\) and \(b_E(a_A)=2a_A\). Then the left side of the
+barrier identity above is \(-a_A<0\), so the proposed peak exceeds the upper
+barrier. No model optimality claim is made here for
+\(a_A\le a<a_*\).
+\end{remark}

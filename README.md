@@ -4,18 +4,22 @@ A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned di
 Hausdorff–packing dimension criterion* (19 September 2026).
 
 **Research update, 30 September 2026.** A [new proof manuscript](docs/packing-refinement/packing-refinement-proof.pdf)
-gives a stronger sufficient packing bound. At Hausdorff dimension 1.24,
-the cutoff improves from approximately 1.506696 to
+gives the stronger sufficient condition
 
 $$
-\frac{7d-6+\sqrt{49d^2-96d+56}}4
-\approx1.546869432\qquad(d=1.24).
+D<\max\left\{2d-1,\frac{d(8d-7)}{d+1}\right\},\qquad 1<d\le\frac54.
 $$
 
-It therefore covers Hausdorff dimension 1.24 and packing dimension 1.54.
+At Hausdorff dimension 1.24, the cutoff improves from approximately 1.506696 to
+1.616428571; in particular, packing dimension 1.60 is covered.
+
+![Comparison of the refined and previous sufficient packing cutoffs.](docs/figures/packing-refinement.svg)
+
 [Full statement, proof sources, and verification status](docs/packing-refinement/README.md).
-This is a sufficient improvement, not a proved weakest condition. Its Lean formalization
-is not complete; the Lean target and curve described below remain the original ones.
+This is a sufficient improvement, not a proved weakest condition. An exact profile
+obstruction limits the present method in a stated range, but is not a distance-set
+counterexample. Its Lean formalization is not complete; the Lean target and curve
+described below remain the original ones.
 
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 

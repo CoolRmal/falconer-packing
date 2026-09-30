@@ -31,8 +31,8 @@ pdftitle={A sharper packing criterion for self-pinned distances}}
 \vspace{12mm}
 
 This note weakens the packing restriction in the 19 September manuscript.
-The scale-selection argument splits according to the location of a profile minimum
-above the mandatory midpoint. An affine-envelope estimate handles the remaining case.
+The scale-selection argument uses a running-minimum reflection and two competing
+chains through the mandatory midpoint. This yields a rational packing cutoff.
 Both analytic branches and the Borel-set reduction are included.
 
 \textbf{What is proved here.} Subject to the cited established analytic theorems,
@@ -56,16 +56,13 @@ For a Borel set \(E\subset\R^2\), put \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
 \(|\cdot|\) denotes one-dimensional Lebesgue measure. Set
 $$
- d_A=\frac{4+\sqrt{10}}6\approx1.193712943,\qquad
- d_B=\frac{47+\sqrt{649}}{60}\approx1.207924640.
+ d_A=\frac{4+\sqrt{10}}6\approx1.193712943.
 $$
 For \(1<d\le5/4\), define
 \begin{equation}\label{fprof:curve}
  B_{\rm new}(d)=\begin{cases}
- 2d-1,&1<d\le d_A,\\[4pt]
- \dfrac{d(8d-7)}{d+1},&d_A<d\le d_B,\\[8pt]
- 3d-\dfrac{13}{6},&d_B<d\le\dfrac{11}{9},\\[8pt]
- \dfrac{7d-6+\sqrt{49d^2-96d+56}}4,&\dfrac{11}{9}<d\le\dfrac54.
+ 2d-1,&1<d\le d_A,\\[6pt]
+ \dfrac{d(8d-7)}{d+1},&d_A<d\le\dfrac54.
  \end{cases}
 \end{equation}
 \begin{theorem}[Refined sufficient condition]\label{target:main}
@@ -82,17 +79,20 @@ Distance images of Borel sets are analytic and Lebesgue measurable.
 
 For example, this covers
 $$
- d=\frac{31}{25}=1.24,\qquad D=\frac{77}{50}=1.54.
+ d=\frac{31}{25}=1.24,\qquad D=\frac85=1.60.
 $$
 The quoted previous cutoff at this dimension was \(1.506696\ldots\), whereas
-\(B_{\rm new}(1.24)=1.546869432\ldots\).
-The two analytic costs and the strict margin are
 $$
- E(d,D)=\frac{1009}{4650},\qquad L(d,D)=\frac{609}{2600},\qquad
- (d-1)-\max\{E(d,D),L(d,D)\}=\frac3{520}>0.
+ B_{\rm new}(1.24)=\frac{2263}{1400}=1.616428571\ldots.
+$$
+The two profile costs and the strict margin for the displayed dimension pair are
+$$
+ E(d,D)=\frac{1093}{4650},\qquad M(d,D)=\frac{93}{400},\qquad
+ (d-1)-\max\{E(d,D),M(d,D)\}=\frac{23}{4650}>0.
 $$
 This slack permits the use of Frostman exponents strictly below the Hausdorff
 dimension and a covering exponent strictly above the packing dimension.
+At the endpoint, the sufficient condition is \(d=5/4\), \(D<5/3\).
 
 \begin{figure}[ht]
 \centering
@@ -141,64 +141,48 @@ size \(T\); fixed annular ratios depending on \(T\) only change multiplicative c
 \input{packing-bound-original-branch.tex}
 \input{packing-refinement-finite-profile.tex}
 \section{Algebra and proof of the refined theorem}
-The condition \(C(s,u)<s-1\) is equivalent to requiring both
-\(E(s,u)<s-1\) and \(L(s,u)<s-1\). Direct multiplication by positive denominators gives
-\begin{align*}
- E(s,u)<s-1&\iff u<Q(s):=\frac{s(8s-7)}{s+1},\\
- L(s,u)<s-1\quad(u\le3/2)&\iff u<3s-\frac{13}{6},\\
- L(s,u)<s-1\quad(u\ge3/2)&\iff
- 4u^2+(12-14s)u+3s-5<0.
-\end{align*}
-In the range under consideration the last quadratic has one negative and one
-positive root. Its positive root is
+Write \(a=s-1\), \(b=u-1\), with \(0<a\le1/4\). The two costs in
+Theorem~\ref{fprof:main} satisfy
 $$
- R(s)=\frac{7s-6+\sqrt{49s^2-96s+56}}4.
+ E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},\qquad
+ M(a,b)=\frac{3b}{8}+\frac3{16}-\frac{3a}{4}.
 $$
-For fixed \(s>1\), both \(E(s,u)\) and \(L(s,u)\) are strictly increasing in \(u\).
-For \(L\), the derivatives on its two regions are \(3/4\) and
-\((2s-1)/(2u-1)^2+1/2\); its values agree at \(u=3/2\).
+These are the same functions as \(E(s,u)\) and \(M(s,u)\), with the variables
+shifted by one. Direct multiplication by positive denominators gives
+$$
+ E(a,b)<a\quad\Longleftrightarrow\quad
+ b<b_E(a):=\frac{8a^2+8a-1}{a+2},
+$$
+and equivalently
+$$
+ u<Q(s):=\frac{s(8s-7)}{s+1}.
+$$
+The late cost is strictly increasing in \(b\). At the early-cost boundary,
+$$
+ M(a,b_E(a))-a=\frac{5a(4a-1)}{16(a+2)}\le0.
+$$
+Thus \(b<b_E(a)\) implies \(M(a,b)<a\), including at \(a=1/4\).
+Consequently the finite-profile criterion holds whenever \(u<Q(s)\).
 
-The identities
+The comparison with the coherent branch is
 $$
- Q(s)-(2s-1)=\frac{6s^2-8s+1}{s+1},\qquad
- Q(s)-\left(3s-\frac{13}{6}\right)
- =\frac{30s^2-47s+13}{6(s+1)}
+ Q(s)-(2s-1)=\frac{6s^2-8s+1}{s+1}.
 $$
-give the first two transitions \(d_A\) and \(d_B\).
-The line \(3s-13/6\) reaches \(3/2\) at \(s=11/9\), and
-\(R(11/9)=3/2\). All joins in \eqref{fprof:curve} agree.
-
-For \(11/9\le s\le5/4\), the high-region late constraint implies the early one.
-To prove this, write \(a=s-1\in[2/9,1/4]\),
-$$
- b_E=\frac{8a^2+8a-1}{a+2},\qquad
- P_a(b)=4b^2+(6-14a)b-11a.
-$$
-The polynomial \(P_a\) is strictly increasing for \(b\ge0\) in this interval.
-Direct expansion gives
-$$
- (a+2)^2P_a(b_E)=144a^4+213a^3+82a^2+10a-8.
-$$
-The right side is strictly increasing for \(a>0\) and equals \(700/729>0\)
-at \(a=2/9\). Also \(P_a(1/2)=4-18a\le0\) and \(b_E>1/2\).
-Thus the positive root of \(P_a\) is at least \(1/2\) and strictly below \(b_E\).
-This proves \(R(s)<Q(s)\) throughout that interval.
+For \(s>1\), its sign changes once, at \(s=d_A\). This proves
+\(B_{\rm new}(d)=\max\{2d-1,Q(d)\}\) on \((1,5/4]\), and the two displayed
+branches agree at their common endpoint.
 
 \begin{proof}[Proof of Theorem~\ref{target:main}]
-For \(1<d\le d_A\), apply Proposition~\ref{prop:coherentborel} with both sets equal to \(E\).
-For \(d_A<d\le d_B\), the algebra above gives
-\(D<Q(d)\le3d-13/6<3/2\). Hence \(C(d,D)<d-1\).
-For \(d_B<d\le11/9\), we have
-\(D<3d-13/6\le3/2\) and \(D<Q(d)\), with the same conclusion.
-Finally, suppose \(11/9<d\le5/4\). If \(D\ge3/2\), the high-region quadratic
-and \(R(d)<Q(d)\) give \(C(d,D)<d-1\).
-If \(D<3/2\), monotonicity and \(C(d,3/2)<d-1\) give that condition as well.
-Apply Theorem~\ref{fprof:main} in all these latter cases.
+For \(1<d\le d_A\), apply Proposition~\ref{prop:coherentborel} with both sets
+ equal to \(E\). For \(d_A<d\le5/4\), the assumption \(D<Q(d)\) gives
+\(C(d,D)=\max\{E(d,D),M(d,D)\}<d-1\) by the preceding algebra.
+Theorem~\ref{fprof:main} supplies the required pin. Both inequalities in the
+profile criterion are strict, so continuity permits the nearby Frostman and
+covering exponents used in the Borel-set reduction.
 \end{proof}
-The separate inequalities are strict, so continuity permits all Frostman and
-covering exponent choices made in the Borel reduction. No minimum-location assumption
-is made about the set or the selected measure: every profile satisfies one of the
-two cases of Lemma~\ref{fprof:split}.
+No minimum-location assumption is imposed on the set or the selected measure.
+The reflection lemma covers every admissible profile, including profiles with
+multiple minima and infinitely many changes of monotonicity.
 
 \section{A stronger conditional-energy criterion}
 The coherent branch admits a quantitative improvement even though it does not
@@ -276,14 +260,11 @@ Falconer conjecture. For \(d>5/4\), GIOW already supplies the desired pin withou
 any packing restriction. Liu's regular-pin theorem \cite{liu2026} supplies the
 case \(D=d>1\).
 
-Even the forced-chain bound is not proved minimax optimal. The profile through
-$$
-(0,0),\quad(1/2,1/4),\quad(5/8,1/8),\quad(17/20,7/20),\quad(1,1/5),
-$$
-discussed above,
-has exact limiting forced cost \(9/40\), whereas the new universal upper bound is
-\(1/4\). This one example is not a proof that the universal upper bound can be
-reduced, but it shows that its sharpness is not established by that example.
+The following obstruction establishes a limitation of the profile method over
+an explicit terminal subinterval of dimensions. It does not prove necessity for
+the distance conclusion.
+
+\input{packing-refinement-profile-obstruction.tex}
 
 One cannot simply discard the forced midpoint in the present Fourier proof.
 If the last preterminal frequency radius is \(r_*>\sqrt R\), caps of width \(1/r_*\)
@@ -299,14 +280,17 @@ analytic branches. Their algebraic combination has a formal proof under explicit
 analytic hypotheses. This does not constitute a proof of the unconditional distance
 theorem, nor of the new profile lemma in this note. No comparator result is claimed here.
 
-To formalize this refinement, first prove Lemmas~\ref{fprof:affine} and~\ref{fprof:split} using the existing
-finite-profile edge-cost and chain definitions; then prove the algebra of \(C\) and
+To formalize this refinement, first prove the affine-envelope and running-minimum reflection lemmas using the
+existing finite-profile edge-cost and chain definitions. Prove the running minimum
+is Lipschitz, the reflected profile is Lipschitz, and the edge-cost perturbation
+telescopes along a finite chain; then prove the algebra of \(C\) and
 \(B_{\rm new}\). Keep the old challenge statement intact. A separate unconditional
 target for the refined curve must be proved only after the radial theorem, finite
 regularization, packet estimates, variable-chain inflation and limit arguments have
 been discharged. Acceptance requires the exact target and an axiom report containing
 only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
 
+\clearpage
 \begin{thebibliography}{9}\small
 \interlinepenalty=10000
 \bibitem{orponen} T. Orponen. On the dimension and smoothness of radial projections. \emph{Analysis \& PDE} 12 (2019), 1273--1294. \href{https://arxiv.org/abs/1710.11053}{arXiv:1710.11053}.

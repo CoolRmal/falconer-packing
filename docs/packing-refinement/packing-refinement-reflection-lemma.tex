@@ -1,0 +1,156 @@
+\begin{lemma}[Reflecting a running minimum]\label{fprof:reflection}
+Let \(0<a\leq1/4\), \(a\leq b\leq1\), and let
+\(g:[0,N]\to\mathbb R\) be 1-Lipschitz with
+\(ax\leq g(x)\leq bx\). For \(3N/4\leq n_0<N\), there is an
+admissible decreasing chain from \(n_0\) through \(N/2\) to zero,
+with \(O(1+\log(N/(N-n_0)))\) edges and total cost at most
+$$
+ N\max\{E(a,b),M(a,b)\},\qquad
+ E(a,b)=\frac{1-2a-2a^2+(2+a)b}{6(1+a)},\qquad
+ M(a,b)=\frac{3b}{8}+\frac3{16}-\frac{3a}{4}.
+$$
+On a grid of mesh \(T\) containing \(N/2,3N/4,n_0,N\), the endpoints
+can be chosen on the grid with an additional \(O(KT)\) cost, where \(K\)
+is the displayed length bound. If the barriers hold with additive error
+\(e_0N\), the additional cost is \(O(Ke_0N+KT)\).
+\end{lemma}
+\begin{proof}
+Scale to \(N=1\). Write \(v=g(1/2)\), \(e=g(1)\), and choose
+a minimum \(t\) of \(g\) on \([1/2,1]\), with \(m=g(t)\).
+If \(t\leq3/4\), the early-minimum construction in
+Lemma~\ref{fprof:split} gives a chain of cost at most \(E(a,b)\).
+Its proof uses the cone above the minimum to give
+$$
+ v-m+\frac{1-t+m-e}{3};
+$$
+maximizing this under
+\(e\geq a\), \(m\geq at\), and
+\(v\leq\min\{b/2,m+t-1/2\}\) gives precisely \(E(a,b)\).
+
+It remains to treat \(t>3/4\). Choose \(u\in[1/2,3/4]\) at which
+\(g\) attains its minimum on that interval, and put \(w=g(u)\).
+In particular,
+\begin{equation}\label{fprof:headconstraint}
+ w\geq v-u+\tfrac12,\qquad w\geq m.
+\end{equation}
+We give two chains, retaining the information about \(u,w\) in both bounds.
+
+Define the nondecreasing running deficit
+$$
+ r(x)=\begin{cases}
+ 0,&x\leq u,\\
+ w-\min_{z\in[u,x]}g(z),&x\geq u,
+ \end{cases}
+ \qquad h(x)=g(x)+r(x).
+$$
+The second expression for \(r\) is nonnegative because \(g(u)=w\).
+The function \(h\) is 1-Lipschitz. Indeed, on \([u,1]\) it is at least
+\(w\). For \(u\leq x<y\), if \(r(x)=r(y)\), its increment equals the
+increment of \(g\). If \(r(y)>r(x)\), a new running minimum is attained
+at some \(z\in[x,y]\), so
+$$
+ h(y)=g(y)+w-g(z),\qquad h(x)\geq w,
+ \qquad h(y)-h(x)\leq y-x.
+$$
+The reverse inequality follows from
+\(h(y)-h(x)\geq g(y)-g(x)\geq-(y-x)\).
+Gluing to \(g\) at \(u\) proves the assertion on the whole interval.
+Moreover,
+$$
+ \min_{[1/2,1]}h=h(u)=w,\qquad h(1/2)=v,\qquad
+ h(1)=e+w-m.
+$$
+The cone construction for an early minimum applies to \(h\), and gives
+a chain with cost at most
+$$
+ v-w+\frac{1-u+w-(e+w-m)}3.
+$$
+No upper linear barrier for \(h\) is required here: that construction
+uses the upper cone \(h(z)\leq w+z-u\) for \(z\geq u\), its early
+global minimum, and its endpoint value.
+
+For every edge \(p<q\), monotonicity of \(r\) gives
+$$
+ \min_{[p,q]}h\leq\min_{[p,q]}g+r(q),\qquad
+ c_g(p,q)\leq c_h(p,q)+r(q)-r(p).
+$$
+The deficit increments telescope along the chain, with total at most
+\(r(1)=w-m\). Thus the same chain for \(g\) has cost at most
+\begin{equation}\label{fprof:reflectionR}
+ R_0=v+\frac{1-u-e-2m}{3}.
+\end{equation}
+
+For the second chain, first suppose \(t\leq n_0\). Use the upper cone
+from the global minimum at \(t\) to reach \(t\), at cost at most
+\((1-t+m-e)/3\). This is the same cone-potential construction, now stopped
+at \(t\); it does not require \(t\leq3/4\). From \(t\), take maximal
+admissible jumps toward \(3/4\), clipping the last jump at \(3/4\).
+Each edge cost is at most its length, so their total cost is at most
+\(t-3/4\). Finally the admissible edge from \(3/4\) to \(1/2\)
+has cost exactly \(v-w\).
+
+If \(t>n_0\), omit the first part and start the clipped jumps at \(n_0\).
+Their cost is at most \(n_0-3/4\leq t-3/4\). The omitted cone bound is
+nonnegative since \(e-m\leq1-t\). In either case this second chain has
+cost at most
+\begin{equation}\label{fprof:reflectionS}
+ S_0=v-w+\frac{2t+m-e-5/4}{3}.
+\end{equation}
+The jump from \(1/2\) to zero has zero cost.
+
+Both chains have \(O(1+\log(1/(1-n_0)))\) edges. This was established for
+the cone construction in Lemma~\ref{fprof:split}; in the additional clipped
+jumps, complementary depth doubles except on the last edge. If \(t\leq n_0\),
+starting that part at \(t\) cannot increase the stated length bound.
+
+Choose the cheaper of the two chains. By \eqref{fprof:headconstraint},
+$$
+ S_0\leq u+\frac{2t+m-e-11/4}{3}.
+$$
+Consequently its cost is at most
+\begin{align*}
+ \min\{R_0,S_0\}
+ &\leq\frac34 R_0+\frac14 S_0\\
+ &\leq\frac{3v}{4}+\frac1{48}-\frac e3+\frac t6-\frac{5m}{12}\\
+ &\leq\frac{3b}{8}+\frac1{48}-\frac a3+\frac{2-5a}{12}\,t\\
+ &\leq\frac{3b}{8}+\frac3{16}-\frac{3a}{4}=M(a,b).
+\end{align*}
+Here we used \(v\leq b/2\), \(e\geq a\), \(m\geq at\), \(t\leq1\),
+and \(2-5a\geq0\). Combining the early and late cases proves the real bound.
+
+For the grid assertion, round every endpoint of the continuous chain downward
+to the nearest grid point, retaining the prescribed endpoints, which are already
+on the grid. Write \(p',q'\) for the rounded versions of an admissible edge
+\(p<q\). After dividing by the mesh, with \(N/T\) an integer,
+$$
+ \lfloor p/T\rfloor\geq\lfloor 2q/T-N/T\rfloor
+ \geq 2\lfloor q/T\rfloor-N/T.
+$$
+Thus the rounded edge remains admissible. Delete duplicate consecutive endpoints.
+An endpoint moves by at most \(T\), and the minimum of a 1-Lipschitz function
+on an interval changes by at most \(T\) when both endpoints move by at most
+\(T\). Therefore the cost changes by at most \(2T\) per edge. The forced
+midpoint is preserved, and the edge count cannot increase. This proves the
+\(O(KT)\) assertion without requiring a grid minimum for the reflected function.
+Finally clamp an approximate-barrier profile
+between \(ax\) and \(bx\), then interpolate grid values. Clamping preserves
+the Lipschitz constant and changes the profile by \(O(e_0N+T)\); each edge
+cost changes by at most twice this uniform error. This proves stability.
+\end{proof}
+
+\begin{remark}[The sufficient region]\label{fprof:reflectionregion}
+For \(0<a\leq1/4\), put
+$$
+ b_E(a)=\frac{8a^2+8a-1}{a+2}.
+$$
+Then \(E(a,b)<a\) is equivalent to \(b<b_E(a)\), and
+$$
+ M(a,b_E(a))-a=\frac{5a(4a-1)}{16(a+2)}\leq0.
+$$
+Because \(M\) is strictly increasing in \(b\), the strict condition
+\(b<b_E(a)\) also implies \(M(a,b)<a\).
+Thus \(E(a,b)<a\) alone implies
+\(\max\{E(a,b),M(a,b)\}<a\) in this parameter range.
+This is a sufficient-condition statement; it does not assert a universal
+chain bound by \(E(a,b)\) for all larger values of \(b\).
+\end{remark}
