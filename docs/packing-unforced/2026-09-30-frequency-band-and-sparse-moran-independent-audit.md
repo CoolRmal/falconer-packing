@@ -210,3 +210,31 @@ J_\delta(\mu_Q)\le\frac{C_sC_\mu}{p_Q}\delta^{s-1}.
 $$
 
 The inner integral converges because s exceeds one, while the outer kernel integral converges because s is below three. Substitution recovers the preceding weighted count bound. The lower bound from source pairs at separation at most delta is also correct, since the kernel there is the reciprocal-distance kernel and is at least the reciprocal of delta. This refinement retains close pairs; the manuscript properly leaves open any further deduction from dimensions alone.
+
+## 7. Shared radial tails and improved summability
+
+The subsequent note `research/2026-09-30-common-radial-tail-summability.md` also passes independent audit. Its center choices control the sum of the two tail costs associated with a selected level. Summing over levels counts each edge threshold twice. The proof correctly uses this total bound and does not assert a separate bound for each individual threshold at its chosen center. The geometric coefficients are independent of those center choices, so choosing the whole threshold schedule first creates no circular dependence.
+
+Write q minus one as r and let V star denote the decreasing rearrangement of the geometric coefficients. The thresholds given by rank to the power one over r have total bad-pin cost at most the common q moment, by Tonelli and the elementary counting bound
+
+$$
+\#\{k\ge1:k^{1/r}<u\}\le u^r.
+$$
+
+Their good contribution is exactly the new sufficient sum
+
+$$
+\sum_{k\ge1}k^{1/(2r)}\sqrt{V_k^*}.
+$$
+
+The previous positive-power summability implies this sum by monotonicity of the rearranged sequence. The logarithmic example in the note correctly shows strict inclusion: the new logarithmic cutoff is beta greater than two, whereas the old cutoff is beta greater than the reciprocal of the comparison exponent.
+
+Both scalar probability-density counterexamples have finite q moment. Their prescribed survival functions may be realized on a probability interval and divided by their finite positive means; this changes their large-threshold asymptotics only by constants. Integration of the survival function gives precisely the density-weighted tails asserted in the note. The benchmark thresholds balance the good contribution and the bad tail. In both examples the remaining divergent logarithmic exponent is
+
+$$
+\frac{1+\epsilon}{2r+1}\le1.
+$$
+
+The first example obstructs the pure-power boundary of the exact numerical threshold test; the second obstructs its beta-equal-to-two logarithmic boundary. The monotonic two-case argument is valid for every threshold choice, including nonmonotone schedules, and a randomized choice cannot avoid the pointwise infimum bound. No planar realization of these scalar angular laws is asserted. Thus these are numerical-certificate obstructions, not obstructions to actual affine-law convergence or to positive distance length.
+
+The optional extra logarithmic-moment corollary in that note's Section 6 also checks. Dividing the rank threshold by log rank to a positive power a gives a counting function bounded by a constant times one plus z to power r times log of e plus z to power ar. The stated extra logarithmic moment controls the sum of the bad tails when ar is smaller than its logarithmic exponent. At the beta-equal-to-two boundary, the good terms then have the convergent logarithmic exponent one plus a divided by two. At the pure-power boundary they are summable when a exceeds two, which is available under the asserted stronger moment hypothesis. These conclusions explicitly use stronger radial data and do not conflict with the preceding scalar examples.

@@ -1,6 +1,6 @@
 # Independent audit of the frequency-band positive comparison
 
-30 September 2026. Read-only audit of [packing-unforced-band-comparison.tex](../output/pdf/packing-unforced-band-comparison.tex), through its selected-level theorem and consecutive-level corollary. This audit checks the new estimate rather than assuming earlier internal audits certify it. No substantive defect was found in these statements. Any later appended truncated-kernel result is outside the scope of this note.
+30 September 2026. Read-only audit of [packing-unforced-band-comparison.tex](packing-unforced-band-comparison.tex), including its selected-level theorem, consecutive-level corollary, and subsequently appended positive-kernel criterion. This audit checks the new estimate rather than assuming earlier internal audits certify it. No substantive defect was found in these statements.
 
 ## Gaussian estimates and angular coupling
 
@@ -94,3 +94,21 @@ $$
 $$
 
 There is no factor n. The polynomial covering deficit condition aη_q>1 is correct after shifting n to n+1. This genuinely weakens the earlier variable-exponent covering test. It does not establish a new sufficient condition in terms of the two dimensions alone.
+
+## Addendum: exact positive kernel
+
+The subsequently appended Gaussian kernel sum is comparable to
+
+$$
+k_\delta(z)=\min\{|z|^{-1},\delta^2|z|^{-3}\}.
+$$
+
+For |z|≤δ, dropping the cutoff gives the upper bound C/|z|. For |z|>δ, replacing the cutoff by (δR)² gives Cδ²/|z|³. In either case one dyadic R comparable to |z|^{-1} gives the matching lower bound. Positivity justifies Tonelli, and finite first energy removes the diagonal.
+
+Before applying Frostman estimates, the bandwise angular and translation arguments use precisely this positive Gaussian sum. Thus the refinement to J_δ holds, including arbitrary dependent angles and shifts. In the arbitrary-level comparison both scale parameters are bounded by Cr², and monotonicity plus J_{Cδ}≤max(1,C²)J_δ permits the displayed coefficient
+
+$$
+W_{n,m}=2^{-m}\left(\sum_Qp_Q\sqrt{J_{2^{-2n}}(\mu_Q)}\right)^2.
+$$
+
+The first-norm convergence proof is unchanged. The near-pair lower bound and the Frostman estimate J_δ(μ_Q)≤C_s C_μ p_Q^{-1}δ^{s−1} are also correct. These additions introduce no defect found in this audit.

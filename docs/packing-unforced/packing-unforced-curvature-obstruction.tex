@@ -1,0 +1,404 @@
+\section{The curvature coefficient on homogeneous sources}
+\label{curvatureobs:section}
+
+The exact positive kernel improves the analytic estimate, but does not
+make its numerical coefficient small for every source of a prescribed
+pair of dimensions. We compute that coefficient on homogeneous dyadic
+sources and exhibit an obstruction to every sequence of common selected
+levels. The obstruction concerns the sufficient coefficient \(W_{n,m}\),
+not the actual difference of affine densities or the actual distance law.
+
+\subsection{An exact tail-sum formula}
+
+Let \(K\subset[0,1]^2\) carry a homogeneous dyadic probability \(\mu\):
+every occupied square of depth \(k\) has mass \(2^{-F(k)}\), and there
+are \(2^{F(k)}\) such squares. Assume the same descendant counts in
+every occupied square, as in the product-digit constructions above.
+Thus an occupied depth-\(m\) square has exactly
+\(2^{F(k)-F(m)}\) occupied depth-\(k\) descendants for \(k\ge m\).
+Suppose
+\[
+ 0\le F(k+1)-F(k)\le2.
+\]
+Use the unique admissible half-open coding; the constructions below have
+infinitely many forced-zero levels, so this coding also applies to every
+point of \(K\). Put
+\begin{equation}\label{curvatureobs:tail}
+ G(k)=F(k)-k,\qquad
+ H(L)=\sum_{k\ge L}2^{-G(k)}.
+\end{equation}
+The following comparisons permit \(+\infty\).
+
+\begin{lemma}[Homogeneous curvature coefficient]
+\label{curvatureobs:formula}
+For integers \(0\le n<m\), the coefficient of
+Proposition~\ref{band:energy-criterion} satisfies
+\begin{equation}\label{curvatureobs:exact}
+ W^\mu_{n,m}\asymp
+ 2^{G(m)}H(\max\{m,2n\}).
+\end{equation}
+The comparison constants are absolute.
+Moreover, for every probability \(\eta\) supported on \(K\),
+\begin{equation}\label{curvatureobs:allsource}
+ W^\eta_{n,m}\ge c\,2^{G(m)}H(\max\{m,2n\}).
+\end{equation}
+This lower bound also holds if the depth-\(m\) dyadic partition in
+\(W^\eta_{n,m}\) is replaced by any countable measurable partition
+whose pieces have diameter at most \(C_0 2^{-m}\); its constant may
+then depend on \(C_0\). In particular
+\begin{equation}\label{curvatureobs:longjump}
+ m\ge2n\quad\Longrightarrow\quad W^\eta_{n,m}\ge c.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix an occupied depth-\(m\) square \(Q\). For \(k\ge m\), the
+conditional natural probability has pair-ball mass
+\[
+ (\mu_Q\times\mu_Q)\{|x-x'|\le2^{-k}\}
+ \asymp 2^{F(m)-F(k)}.
+\]
+For the upper bound, a radius-\(2^{-k}\) ball meets only boundedly
+many depth-\(k\) squares, each of the displayed conditional mass.
+For the lower bound, pairs in the same depth-\((k+1)\) descendant
+have distance at most \(\sqrt2\,2^{-k-1}<2^{-k}\); their probability
+is \(2^{F(m)-F(k+1)}\), which is at least one quarter of the
+displayed quantity.
+
+The positive radial layer-cake formula for
+\(k_\delta(u)=\min\{u^{-1},\delta^2u^{-3}\}\), with
+\(\delta=2^{-2n}\), consequently gives
+\begin{equation}\label{curvatureobs:dyadickernel}
+ J_{2^{-2n}}(\mu_Q)
+ \asymp
+ 2^{F(m)}
+ \sum_{k\ge m}2^{-F(k)}
+              \min\{2^k,2^{3k-4n}\}.
+\end{equation}
+The part of the layer cake at radii larger than \(2^{-m}\) is
+bounded by a constant times the \(k=m\) summand and is harmless.
+This follows either by integrating the kernel derivative there, or
+by using pair mass at most one. The dyadic comparison of the
+remaining integral uses the pair-ball estimates above.
+
+When \(m<2n\), the terms \(2^{3k-4n-F(k)}\), \(m\le k<2n\),
+increase by at least a factor two at every step. Their sum is bounded
+by a constant times \(2^{2n-F(2n)}\), which is already the first
+term of the remaining tail. When \(m\ge2n\), there is no such
+initial part. Thus \eqref{curvatureobs:dyadickernel} reduces to
+\[
+ J_{2^{-2n}}(\mu_Q)
+ \asymp 2^{F(m)}H(\max\{m,2n\}).
+\]
+These bounds are uniform in \(Q\). Multiplying their square roots
+by the masses \(\mu(Q)\), which sum to one, proves
+\eqref{curvatureobs:exact}.
+
+Here is a lower bound independent of the chosen source probability.
+Write \(L=\max\{m,2n\}\). For every \(x,x'\in K\),
+\begin{equation}\label{curvatureobs:tree-kernel}
+ k_{2^{-2n}}(x-x')
+ \ge c\sum_{k\ge L}2^k
+       \mathbf1_{\{x,x'\text{ lie in the same depth-}k
+                              \text{ original square}\}}.
+\end{equation}
+If the right side is nonzero, then
+\(|x-x'|\le\sqrt2\,2^{-L}\le\sqrt2\,2^{-2n}\);
+on this region the left kernel is at least a constant times
+\(|x-x'|^{-1}\). The geometric sum on the right is at most
+\(C|x-x'|^{-1}\). On the diagonal both sides are infinite.
+This proves \eqref{curvatureobs:tree-kernel}.
+
+Let \(P\) be a positive-\(\eta\)-mass piece of a partition of diameter
+at most \(C_0 2^{-m}\). It meets at most \(C(C_0)\) original
+depth-\(m\) squares, hence at most
+\[
+ C(C_0)2^{F(k)-F(m)}
+\]
+original depth-\(k\) squares. For its normalized restriction \(\eta_P\),
+Cauchy--Schwarz on these descendant masses gives a same-square pair
+probability at least
+\(c(C_0)2^{F(m)-F(k)}\). Integrating
+\eqref{curvatureobs:tree-kernel} and using Tonelli yields
+\[
+ J_{2^{-2n}}(\eta_P)
+ \ge c(C_0)2^{F(m)}H(L).
+\]
+Taking square roots, multiplying by \(\eta(P)\), and summing all pieces
+proves \eqref{curvatureobs:allsource}. If \(m\ge2n\), the term \(k=m\)
+in \(H(m)\) proves \eqref{curvatureobs:longjump}.
+\end{proof}
+
+\subsection{The limiting scalar quantity}
+
+Suppose \(d=1+a>1\), \(F(k)\ge dk-C\), and scales \(N_j\to\infty\)
+realize a continuous normalized profile:
+\[
+ \sup_{0\le x\le1}
+ \left|\frac{F(N_jx)-N_jx}{N_j}-g(x)\right|\longrightarrow0,
+ \qquad g(1)=a.
+\]
+Here \(F\) is interpolated linearly. For fixed
+\(0<x<y\le1\), with \(2x\le1\), put
+\(n_j=\lfloor xN_j\rfloor\), \(m_j=\lfloor yN_j\rfloor\).
+Then
+\begin{equation}\label{curvatureobs:profile-limit}
+ \lim_{j\to\infty}\frac{\log_2 W^\mu_{n_j,m_j}}{N_j}
+ =
+ g(y)-\min_{\max\{y,2x\}\le z\le1}g(z).
+\end{equation}
+Indeed the terms of \(H\) up to \(N_j\) lie between their largest
+term and \(N_j+1\) times their largest term. Uniform profile convergence
+identifies its exponential rate. The remaining infinite tail is at most
+\(C_a2^{-aN_j}\), by the lower Frostman barrier. Since \(g(1)=a\),
+this cannot increase the limiting exponential rate. An integer closest
+to a minimizing point supplies the matching lower bound. Equation
+\eqref{curvatureobs:exact} completes the proof.
+
+Thus a long jump cannot remove a future low value of \(F(k)-k\).
+The next lemma makes this observation uniform over all selected-level
+sequences and all source probabilities.
+
+\subsection{A barrier for every common selected-level sequence}
+
+\begin{lemma}[A crossing barrier]\label{curvatureobs:barrier}
+Suppose there are integers \(L_j\to\infty\), integers \(u_j\ge2L_j\),
+and a constant \(C_1<\infty\), independent of \(j\), such that
+\begin{equation}\label{curvatureobs:barrier-hyp}
+ \min_{L_j<k\le2L_j}G(k)\ge G(u_j)-C_1.
+\end{equation}
+For every probability \(\eta\) supported on \(K\), and every strictly
+increasing sequence of common depths \(n_i\to\infty\), infinitely many
+of its edges satisfy
+\[
+ W^\eta_{n_i,n_{i+1}}\ge c\,2^{-C_1}.
+\]
+The same conclusion holds for the bounded-diameter common-depth
+partitions in Lemma~\ref{curvatureobs:formula}.
+\end{lemma}
+\begin{proof}
+For large \(j\), choose the edge \(n_i\le L_j<n_{i+1}=m\).
+If \(m\ge2n_i\), apply \eqref{curvatureobs:longjump}.
+Otherwise
+\[
+ L_j<m<2n_i\le2L_j\le u_j.
+\]
+In \eqref{curvatureobs:allsource}, keep just the \(k=u_j\) term.
+The result and \eqref{curvatureobs:barrier-hyp} give
+\[
+ W^\eta_{n_i,m}
+ \ge c\,2^{G(m)-G(u_j)}\ge c\,2^{-C_1}.
+\]
+Every fixed edge crosses only finitely many \(L_j\), so infinitely
+many distinct edges have this bound.
+\end{proof}
+
+In particular, every positive-power series in these coefficients
+diverges. More generally any sufficient criterion requiring their
+convergence to zero fails. This conclusion permits changing the source
+measure entirely; it does not assume that it is dominated by the
+original homogeneous measure.
+
+\subsection{Examples with finite positive critical measures}
+
+\begin{theorem}\label{curvatureobs:criticalsets}
+For every
+\[
+ 1<d<\frac32,\qquad 2d-1\le D<2,
+\]
+there is a compact homogeneous dyadic set \(K\) such that
+\[
+ 0<\mathcal H^d(K)<\infty,\qquad
+ 0<\mathcal P^D(K)<\infty.
+\]
+In particular \(\HH K=d\) and \(\PP K=D\). Its natural probability
+\(\mu\) is \(d\)-Frostman and equals both normalized critical measures:
+\begin{equation}\label{curvatureobs:criticalmeasures}
+ \mu=\frac{\mathcal H^d|_K}{\mathcal H^d(K)}
+     =\frac{\mathcal P^D|_K}{\mathcal P^D(K)}.
+\end{equation}
+For every probability \(\eta\) supported on \(K\), every sequence
+of increasing common levels, and every sequence of partitions at
+those levels with the uniform diameter bound in
+Lemma~\ref{curvatureobs:formula}, the resulting curvature coefficients
+fail to tend to zero.
+\end{theorem}
+\begin{proof}
+Put \(V(n)=2\lfloor Dn/2\rfloor\). Its increments are zero or two.
+Choose a sufficiently large initial lower stopping depth, with an
+even branching count within two of \(dn\) and strictly below \(V(n)\).
+A finite initial path with increments zero or two realizes this count.
+
+From each lower stop increase \(F\) by two at every step until first
+meeting \(V\). This is finite because \(D<2\). The meeting is exact:
+the even difference \(F-V\) starts negative and increases by zero
+or two. After the meeting depth \(c\), follow \(F(n)=V(n)\) until
+an arbitrarily large integer \(b\). Then keep \(F\) constant until
+the next lower stop
+\[
+ a=\left\lceil V(b)/d\right\rceil.
+\]
+Choose \(b\) large enough that \(c<a/2<b<a\), and repeat. This
+is possible since \(a/b\to D/d\in(1,2)\).
+Apart from the finite initial path, the construction gives
+\begin{equation}\label{curvatureobs:criticalbarriers}
+ dn-2\le F(n)\le Dn,\qquad
+ F(b)=Db+O(1),\qquad da-d<F(a)\le da.
+\end{equation}
+Use four children at an increment of two and only the lower-left
+child at an increment of zero. The infinite flat phases give
+unambiguous half-open addresses as above.
+
+On \(a/2<k\le b\) the count is \(V(k)\), so
+\[
+ G(k)\ge(D-1)k-2
+       \ge\frac{D-1}{2}a-2
+       \ge(d-1)a-2\ge G(a)-2.
+\]
+On \(b\le k\le a\), the count is constant and
+\(G(k)=F(a)-k\ge G(a)\). Taking \(L=\lfloor a/2\rfloor\)
+and \(u=a\) gives \eqref{curvatureobs:barrier-hyp} with \(C_1=2\).
+The lower stops tend to infinity. The crossing lemma proves the
+claimed coefficient obstruction, including when \(D=2d-1\).
+
+We verify the assertions about critical measures. The lower bound
+in \eqref{curvatureobs:criticalbarriers}, and bounded overlap of
+balls with comparable dyadic cells, imply the \(d\)-Frostman bound.
+Consequently \(\mathcal H^d(K)>0\). The complete cylinder covers
+at the lower stops have bounded \(d\)-dimensional cost, proving
+\(\mathcal H^d(K)<\infty\).
+
+The upper bound \(F(n)\le Dn+C\) gives
+\[
+ \mu(B(x,r))\ge c r^D\qquad(x\in K,\ 0<r\le1).
+\]
+Indeed a cylinder containing \(x\) at a sufficiently fine comparable
+depth lies wholly inside \(B(x,r)\), and has mass at least
+\(c r^D\). Any disjoint ball packing centered on \(K\) therefore
+has bounded sum of \(D\)-th powers of diameters. This proves finite
+\(D\)-dimensional packing premeasure and hence
+\(\mathcal P^D(K)<\infty\).
+
+At each peak \(b\), the natural measure of every ball of radius
+\(C2^{-b}\), for fixed \(C\), is at most \(C'2^{-Db}\).
+For any subset \(A\subset K\), take a maximal separated family in
+\(A\) at this scale. Its enlarged balls cover \(A\), so its
+cardinality is at least \(c\mu^*(A)2^{Db}\). The smaller disjoint
+balls have total \(D\)-dimensional cost at least \(c\mu^*(A)\).
+Letting the peak depths tend to infinity shows that the packing
+premeasure of every such \(A\) is at least \(c\mu^*(A)\).
+Applying this to the intersections with \(K\) of every countable
+cover of \(K\), and using outer subadditivity, proves
+\(\mathcal P^D(K)>0\).
+
+At any fixed depth the cylinders are disjoint compact Borel subsets
+of \(K\), and are translations of one common scaled tail set.
+Translation invariance makes the restriction of each finite positive
+critical measure give them equal masses. After normalization these
+masses are exactly \(2^{-F(n)}\). The cylinders generate the Borel
+sigma algebra of \(K\); uniqueness of finite measures proves
+\eqref{curvatureobs:criticalmeasures}. Finally \(d>1\) gives
+\(I_1(\mu)<\infty\), so the obstruction is not caused by failure of
+that prerequisite.
+\end{proof}
+
+\subsection{Compatibility with the sharp profile examples}
+
+The obstruction can hold even inside the proved positive-distance region.
+For example, take \(d=11/10\) and \(D=121/100<28/23=B_{\rm H}(d)\)
+in Theorem~\ref{curvatureobs:criticalsets}.
+Theorem~\ref{target:hardgap} gives a positive-length self-pinned distance
+set on this support, whereas its curvature coefficients fail for every
+source and every sequence of common depths. Thus failure of this
+coefficient test cannot itself be a necessary obstruction to that conclusion.
+
+For \(0<a<b\le1\), the single-collapse profile
+\[
+ g(x)=\min\{bx,1+a-x\}
+\]
+has a lower-barrier valley at \(v=1\): \(g(v)=av\).
+The two-collapse profile of Section~\ref{hardgap:two-witness} has
+\[
+ g(x)=\min\{bx,av+|x-v|,1+a-x\},\qquad v=t\in(0,1).
+\]
+It too satisfies \(g(v)=av\). In either case
+\begin{equation}\label{curvatureobs:valley}
+ g(x)>av\qquad(av/b<x<v).
+\end{equation}
+For the two-collapse profile, each of the three entries in the minimum
+is strictly above \(av\) on this interval. For the single-collapse
+profile the same check uses its two entries.
+
+Suppose first that \(b>2a\). Choose
+\[
+ \frac{av}{b}<c<\frac v2.
+\]
+By \eqref{curvatureobs:valley}, the compact interval \([c,2c]\)
+has minimum strictly greater than \(av\).
+Use the fixed-measure realization from
+Theorem~\ref{realization:theorem}, and set
+\[
+ L_j=\lfloor cN_j\rfloor,\qquad u_j=\lceil vN_j\rceil.
+\]
+Uniform convergence of the realized profiles gives, for some
+\(\epsilon>0\) and all sufficiently large \(j\),
+\[
+ \min_{L_j<k\le2L_j}G(k)-G(u_j)\ge\epsilon N_j.
+\]
+Thus Lemma~\ref{curvatureobs:barrier} applies, uniformly over every
+replacement source probability on this one fixed support.
+
+At the critical equality \(b=2a<1\), uniform convergence alone need
+not give a constant error. The exact catch-up realization supplies it.
+Write \(h(x)=x+g(x)\), \(d=1+a\), and \(D=1+b<2\).
+At a preceding endpoint \(M\), assume a continuous branching function
+has value \(\mathcal F(M)=dM\). Choose the next endpoint \(N\) much
+larger than \(M\) and put on this block
+\begin{equation}\label{curvatureobs:catchup}
+ \mathcal F(t)=
+ \min\{Nh(t/N),\,2t-(2-d)M\},\qquad M\le t\le N.
+\end{equation}
+The initial piece of \(h\) is \(Dx\). The entries meet there at
+\[
+ t_0=\frac{2-d}{2-D}M.
+\]
+Choose \(N\) so large that this meeting lies in the initial linear
+piece and \(t_0<vN/2\). Before \(t_0\) the second entry is smaller;
+afterward it remains at least the first because the template is
+2-Lipschitz. Hence \(\mathcal F(t)=Nh(t/N)\) on
+\([vN/2,N]\). This block joins continuously, has slopes in \([0,2]\),
+satisfies \(dt\le\mathcal F(t)\le Dt\), and ends at \(dN\).
+
+Choose successive \(M/N\to0\) and discretize by
+\(F(k)=2\lfloor\mathcal F(k)/2\rfloor\). The increments are zero
+or two and the rounding error is less than two. The same argument as
+in Theorem~\ref{realization:theorem} gives a fixed \(d\)-Frostman
+homogeneous source with exact dimensions \(d,D\), realizing the chosen
+profile. At
+\[
+ L_j=\lfloor vN_j/2\rfloor,\qquad u_j=\lceil vN_j\rceil,
+\]
+the template has \(g(x)\ge av\) on \([v/2,v]\), since \(b=2a\).
+The bounded rounding and endpoint errors therefore prove
+\eqref{curvatureobs:barrier-hyp} with a constant independent of \(j\).
+The barrier applies at critical equality as well.
+
+For the single-collapse matching range the limiting profile cost is
+\(C_1(a,b)\), and for the two-collapse matching range it is \(C_2(a,b)\),
+as proved in Section~\ref{hardgap:section}. Whenever the relevant cost
+is at least \(a\) and \(b\ge2a\), the same fixed support therefore has
+both features: its limiting profile cost is at least \(a\), so no
+fixed strict cost margin holds along the realizing scales, and
+every source probability on it fails the curvature-coefficient
+convergence test for every sequence of common levels. The continuity
+of the limiting profile cost was proved in
+Section~\ref{hardgap:compactness}, so the realizations preserve that
+assertion.
+
+This is a limitation of these separate numerical tests. It does not
+rule out cancellation between comparison increments, a new geometric
+estimate, or a new argument mixing the two approximation schemes.
+In particular it does not assert that the actual laws have a divergent
+variation, that selected source--pin pairs cannot help, or that the
+distance sets have zero length. Arbitrary source-dependent trees with
+different comparison scales on different branches are also outside
+the common-level assertion proved here.

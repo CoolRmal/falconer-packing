@@ -66,6 +66,14 @@ Hausdorff dimension 21/20 and packing dimension 6/5, and up to 84/61 in that
 constructed class. Those examples have additional scale structure; their two
 dimensions alone are not claimed sufficient for an arbitrary set.
 
+Using the actual common angular tails now weakens the convergence test again:
+it admits a critical polynomial covering margin with logarithmic exponent
+greater than two. The proof chooses one family of centers for all scales.
+A separate construction shows that finite positive critical Hausdorff and
+packing measures cannot by themselves force this curvature-energy test,
+even after changing the source or the selected global scales. These are
+statements about sufficient estimates, not distance-set counterexamples.
+
 ![The explicit gap bound, the preceding adaptive bound, and the originally quoted curve.](docs/figures/packing-unforced.svg)
 
 Matching profiles prove this curve is optimal for the specified combination of

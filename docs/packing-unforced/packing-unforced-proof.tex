@@ -44,9 +44,9 @@ They yield an explicit, stronger dimension curve beginning at
 
 Under the same dimension curve, selected separated source and pin
 probabilities have a raw joint distance density in some \(L^p\), \(p>1\).
-A direct frequency-band comparison removes the logarithmic loss in the
-covering criterion and gives a positive energy test at the curvature scale.
-Quantitative covering assumptions reach \(D=2d-1\). Favorable selected
+A frequency-band comparison and common angular tails give weaker
+covering and curvature-energy summability tests, including logarithmic
+endpoint gains. Quantitative covering assumptions reach \(D=2d-1\). Selected
 scales also give explicit examples at \(d=21/20,D=6/5\), beyond the
 universal curve; no subset of those examples satisfies that curve's strict
 condition. These results use additional scale information.
@@ -132,6 +132,15 @@ probability with raw almost-everywhere pinned absolute continuity whenever
 covering scales, not an assertion for arbitrary sets of those dimensions.
 For \(d=21/20,D=6/5\), even selecting a subset cannot recover the
 preceding strict dimension criterion.
+
+The common-tail refinement in Section~\ref{tails:section} further weakens
+the numerical convergence test, including at its logarithmic boundary.
+Section~\ref{curvatureobs:section} constructs sets with finite positive
+critical Hausdorff and packing measures for which the curvature-energy
+coefficients fail to tend to zero for every source and every sequence of
+common selected depths. These results refine the sufficient analytic
+criteria and their limitations; they do not change the dimension-only
+curve or give counterexamples to positive-length distances.
 
 The earlier adaptive bound is retained for comparison:
 \begin{equation}\label{adaptive:curve}
@@ -256,6 +265,7 @@ in those indices. Summing polynomially many such errors preserves this property.
 \clearpage
 \input{packing-bound-original-branch.tex}
 \input{packing-unforced-band-comparison.tex}
+\input{packing-unforced-angular-tails.tex}
 \input{packing-unforced-critical-covering.tex}
 \input{packing-unforced-critical-moran.tex}
 \input{packing-unforced-sparse-moran.tex}
@@ -394,6 +404,7 @@ it; it does not establish the optimal Falconer threshold.
 \input{packing-unforced-decoupling-profile.tex}
 \input{packing-unforced-realizability.tex}
 \input{packing-unforced-hybrid-obstruction.tex}
+\input{packing-unforced-curvature-obstruction.tex}
 
 \clearpage
 \section{Plan for formal verification}

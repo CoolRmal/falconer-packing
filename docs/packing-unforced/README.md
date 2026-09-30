@@ -252,6 +252,56 @@ This keeps the actual close-pair geometry. Summability of the corresponding
 mass-weighted quantities along selected depths suffices for raw absolute
 continuity; no finite energy at the critical Frostman exponent is assumed.
 
+The [common angular-tail refinement](packing-unforced-angular-tails.tex)
+improves this summation step. For either the covering or curvature-energy
+coefficients along a selected sequence, write their decreasing rearrangement
+as follows. With the same fixed radial exponent, it suffices that
+
+$$
+V_k^*\text{ is the decreasing rearrangement of }V_j,\qquad
+\sum_{k\ge1} k^{1/[2(q-1)]}\sqrt{V_k^*}<\infty.
+$$
+
+This is strictly weaker as a numerical condition than summability of the
+eta-th powers. The proof uses the full angular tail and chooses the centers
+once for the whole sequence. In particular, for separated source and pin
+measures with the stated radial exponent, the critical covering estimate
+
+$$
+N_n\le C2^{n(2s-1)}n^{-1/\eta_q}(\log n)^{-\beta},
+\qquad \beta>2,
+$$
+
+implies raw pinned absolute continuity for almost every pin. The preceding
+power-sum test required the larger logarithmic exponent
+
+$$
+\beta>1/\eta_q>2.
+$$
+
+The [detailed tail argument](2026-09-30-common-radial-tail-summability.md)
+also gives the exact criterion using the actual tail, and explains why the
+logarithmic endpoint two cannot be obtained uniformly from arbitrary finite
+angular moments using that numerical bound alone. Its scalar obstruction is
+not asserted realizable by a planar source and pin pair.
+
+The [curvature-energy obstruction](packing-unforced-curvature-obstruction.tex)
+is a different, geometric construction. For every
+
+$$
+1<d<\frac32,\qquad 2d-1\le D<2,
+$$
+
+there is a compact set with finite positive critical Hausdorff and packing
+measures such that the curvature coefficients fail to tend to zero for every
+source probability on the set and every sequence of selected global depths.
+The lower bound also allows arbitrary partitions into pieces of uniformly
+bounded diameter at those scales. This rules out deriving the sufficient
+series merely by replacing the source, choosing other global scales, or
+using a translated grid. It does not prove failure of actual affine-law
+convergence or positive-length distances; partitions using a different
+depth for each piece would require a separate analysis.
+
 The [explicit compact construction](packing-unforced-critical-moran.tex) gives,
 for every dimension in the indicated range,
 
@@ -505,6 +555,11 @@ not enlarge the dimension-only sufficient region.
 - [Subquadratic profile transfer and its precise exponent range](packing-unforced-subquadratic.tex)
 - [Coherent strong integrability and the combined conclusion](packing-unforced-coherent-lp.tex)
 - [Direct frequency-band comparison and weighted selected-scale criterion](packing-unforced-band-comparison.tex)
+- [Common angular tails and the weaker rearranged summability test](packing-unforced-angular-tails.tex)
+- [Full tail optimization and exact scalar endpoint obstructions](2026-09-30-common-radial-tail-summability.md)
+- [Curvature-energy barriers for all sources and selected global depths](packing-unforced-curvature-obstruction.tex)
+- [Detailed profile formula and selected-scale obstruction](2026-09-30-curvature-profile-selected-scale-obstruction.md)
+- [All-source obstruction with finite critical measures and arbitrary common-scale partitions](2026-09-30-all-source-curvature-certificate-obstruction.md)
 - [Critical covering summability and the subpower endpoint theorem](packing-unforced-critical-covering.tex)
 - [Sparse covering scales and the complete irregular family](packing-unforced-sparse-moran.tex)
 - [Full comparison and exact curvature-kernel derivation](2026-09-30-no-log-positive-band-comparison.md)

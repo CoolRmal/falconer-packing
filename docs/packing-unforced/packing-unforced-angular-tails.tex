@@ -1,0 +1,226 @@
+\subsection{Using the common angular tail in the positive comparison}
+\label{tails:section}
+
+The power-law estimate for discarded pins can be replaced by the
+actual common tail of their radial densities. The centers must then be
+chosen simultaneously for the prescribed comparison schedule. This
+improves the summability condition without changing the underlying
+positive source--pin law.
+
+Use the separated compact probabilities and radial densities
+\((\Theta_x)_*\nu=\rho_x\sigma\) from
+Section~\ref{sec:coherenttree}, with \(I_1(\mu)<\infty\). Define
+$$
+T_x(A)=\int\rho_x(\theta)1_{\{\rho_x(\theta)>A\}}\,d\sigma(\theta),
+\qquad T(A)=\int T_x(A)\,d\mu(x).
+$$
+The densities have jointly measurable versions, obtained as the
+Radon--Nikodym density of the joint source--angle law. Fix strictly
+increasing sufficiently large integer depths \(n_j\), and put
+\(V_j=W_{n_j,n_{j+1}}\), as in
+\eqref{band:energy-coefficient}. For an \(s\)-Frostman source,
+\(1<s<2\), one may instead use the larger coefficient
+\(V_j=Z_{n_j,n_{j+1}}\) from Proposition~\ref{band:comparison},
+absorbing a fixed constant. Both choices are independent of the centers.
+
+\begin{proposition}[Common-tail convergence]
+\label{tails:criterion}
+If thresholds \(A_j\geq1\) satisfy
+\begin{equation}\label{tails:series}
+\sum_j\bigl[\sqrt{A_jV_j}+T(A_j)\bigr]<\infty,
+\end{equation}
+then \((d_y)_*\mu\) is absolutely continuous for
+\(\nu\)-almost every \(y\). Equivalently, it suffices that
+\begin{equation}\label{tails:optimized}
+\sum_j\Phi(V_j)<\infty,
+\qquad
+\Phi(v)=\inf_{A\geq1}\{\sqrt{Av}+T(A)\}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+A center at the selected level \(n_j\) participates in only the two
+adjacent comparisons. Set
+$$
+H_j(x)=T_x(A_{j-1})+T_x(A_j)\quad(j\geq1),
+\qquad H_0(x)=T_x(A_0).
+$$
+In each positive-mass level-\(n_j\) cell choose, once and for all,
+\(x_Q\) where the radial law is defined and
+$$
+H_j(x_Q)\leq \frac2{p_Q}\int_Q H_j\,d\mu.
+$$
+An average of zero means that almost every point has value zero;
+otherwise the averaging inequality supplies admissible centers on a
+positive-mass subset. All radial and projection assertions can be
+imposed simultaneously over the countably many cells. Unused levels
+may have arbitrary admissible centers. Thus one fixed sequence of
+positive affine laws \(f_n\) is used throughout.
+
+For a descendant \(Q\) at level \(n_{j+1}\), with ancestor \(P\)
+at level \(n_j\), the pin mass discarded at threshold \(A_j\) is at
+most \(T_{x_P}(A_j)+T_{x_Q}(A_j)\), directly by the angular
+pushforward identity. The good term is still
+\(C\sqrt{A_jV_j}\). Write
+$$
+S_j(A)=\sum_{Q\text{ at level }n_j}p_QT_{x_Q}(A).
+$$
+The bad first-norm difference is bounded by twice the discarded mass,
+and descendant masses sum to their ancestor masses. Therefore
+$$
+\|f_{n_{j+1}}-f_{n_j}\|_1
+\leq C\sqrt{A_jV_j}+2S_j(A_j)+2S_{j+1}(A_j).
+$$
+The simultaneous center choice controls the total rather than each
+individual tail:
+\begin{equation}\label{tails:centers}
+\begin{aligned}
+\sum_j[S_j(A_j)+S_{j+1}(A_j)]
+&=\sum_j\sum_{Q\text{ at level }n_j}p_QH_j(x_Q)\\
+&\leq2\sum_j\int H_j\,d\mu
+=4\sum_jT(A_j).
+\end{aligned}
+\end{equation}
+Tonelli justifies the rearrangement. Hence \eqref{tails:series} gives
+first-norm convergence of the positive affine laws. Their mass-one
+limit is the actual joint distance law, as in
+Theorem~\ref{band:criterion}. For \eqref{tails:optimized}, choose
+thresholds within an additive \(2^{-j}\) of the respective infima.
+
+If desired, the earlier center condition
+\(F_Q\leq2p_Q^{-1}\int_Q\|\rho_x\|_q^q\,d\mu(x)\)
+can also be imposed. Replace the center bound for \(H_j\) by four
+times its average. Markov bounds the two excluded proportions by
+\(1/2\) and \(1/4\), leaving a positive-mass intersection. Only
+the absolute constant in \eqref{tails:centers} changes.
+\end{proof}
+
+\begin{theorem}[A weaker summability criterion from the same radial moment]
+\label{tails:rank}
+Assume
+$$
+B=\int\!\int\rho_x^q\,d\sigma\,d\mu<\infty,
+\qquad q>1,\qquad r=q-1,\qquad\eta=\frac{r}{2r+1}.
+$$
+Let \(V_k^*\) be the decreasing rearrangement of the positive
+coefficients \(V_j\). Then
+\begin{equation}\label{tails:rank-series}
+\sum_{k\geq1} k^{1/(2r)}\sqrt{V_k^*}<\infty
+\end{equation}
+implies almost-everywhere pinned absolute continuity. This condition
+is strictly weaker than \(\sum_j V_j^\eta<\infty\).
+\end{theorem}
+\begin{proof}
+Assign the threshold \(A_j=k^{1/r}\) to the index of decreasing
+rank \(k\), breaking ties by the original index. Finite
+\eqref{tails:rank-series} ensures that the coefficients tend to zero
+and that each positive superlevel set is finite, so this enumeration
+exists. The sum of good terms is exactly
+\eqref{tails:rank-series}. The tail terms satisfy the exact counting
+bound
+\begin{equation}\label{tails:rank-count}
+\begin{aligned}
+\sum_{k\geq1}T(k^{1/r})
+&=\int\!\int\rho_x(\theta)
+       \#\{k\geq1:k^{1/r}<\rho_x(\theta)\}
+                      \,d\sigma(\theta)d\mu(x)\\
+&\leq\int\!\int\rho_x^{1+r}\,d\sigma\,d\mu=B.
+\end{aligned}
+\end{equation}
+Apply Proposition~\ref{tails:criterion}. Zero coefficients, if
+present in a larger version of the criterion, can receive separate
+thresholds with summable tails.
+
+For the asserted inclusion, put \(a_k=(V_k^*)^\eta\) and
+\(t=1/(2\eta)=1+1/(2r)>1\). If \(S=\sum_k a_k<\infty\),
+monotonicity gives \(ka_k\leq S\), and hence
+$$
+\sum_k k^{1/(2r)}\sqrt{V_k^*}
+=\sum_k k^{t-1}a_k^t\leq S^{t-1}\sum_k a_k=S^t.
+$$
+The inclusion is strict: for
+\(V_k^*=k^{-1/\eta}(\log k)^{-\beta}\), \(k\geq3\),
+\eqref{tails:rank-series} holds when \(\beta>2\), whereas
+\(\sum_k(V_k^*)^\eta<\infty\) requires
+\(\beta>1/\eta>2\).
+\end{proof}
+
+For a concrete critical covering consequence, either the weighted
+count or the ordinary occupied-cell count may be used in
+\begin{equation}\label{tails:covering}
+\mathcal N_{n+1}
+\leq C2^{n(2s-1)}n^{-1/\eta}(\log n)^{-\beta},
+\qquad \beta>2.
+\end{equation}
+The resulting coefficients are dominated by the decreasing model in
+the proof, so their rearrangement satisfies
+\eqref{tails:rank-series}. The earlier sum of \(V_n^\eta\)
+needed \(\beta>1/\eta\) at this same critical polynomial rate.
+
+\begin{remark}[The logarithmic boundary of this numerical test]
+\label{tails:boundary}
+Finite \(L^q\) data alone cannot replace \(\beta>2\) by
+\(\beta=2\) uniformly within the exact threshold test
+\eqref{tails:optimized}. Here is a scalar obstruction, without a
+claim of geometric realizability. Fix \(0<\epsilon\leq2r\), and
+choose a probability density \(\rho\) on the normalized circle with
+survival function, for large \(A\),
+$$
+\sigma\{\rho>A\}\asymp
+\frac{A^{-q}}{\log A\,(\log\log A)^{1+\epsilon}}.
+$$
+Such a density is obtained by the inverse distribution construction
+and normalization by its finite positive first moment. Its
+\(q\)-moment is finite by the tail integral
+\(\int^\infty [A\log A(\log\log A)^{1+\epsilon}]^{-1}dA\).
+Its density-weighted tail is
+$$
+T(A)\asymp
+\frac{A^{-r}}{\log A\,(\log\log A)^{1+\epsilon}},
+$$
+since \(T(A)=A\sigma\{\rho>A\}
++\int_A^\infty\sigma\{\rho>t\}\,dt\).
+For \(V_n=n^{-1/\eta}(\log n)^{-2}\), set
+$$
+A_n^*=n^{1/r}
+       (\log\log n)^{-2(1+\epsilon)/(2r+1)}.
+$$
+Both \(\sqrt{A_n^*V_n}\) and \(T(A_n^*)\) are comparable to
+$$
+\frac1{n\log n\,(\log\log n)^{(1+\epsilon)/(2r+1)}}.
+$$
+For every \(A\geq A_n^*\) the good term is at least this large;
+for every \(A\leq A_n^*\) the tail term is at least this large.
+Its sum diverges because \((1+\epsilon)/(2r+1)\leq1\).
+This proves failure of the numerical certificate for these abstract
+tails and coefficients. It does not prove failure of actual affine
+convergence or of positive distance length for any planar set.
+\end{remark}
+
+\begin{proposition}[A logarithmic radial moment at the boundary]
+\label{tails:log-moment}
+If, for some \(\kappa>0\),
+$$
+\int\!\int\rho_x^q[\log(e+\rho_x)]^\kappa
+                         \,d\sigma\,d\mu<\infty,
+$$
+then the boundary coefficients
+\(V_k^*\leq Ck^{-1/\eta}(\log k)^{-2}\) do satisfy
+the common-tail criterion. If \(\kappa>2r\), even
+\(V_k^*\leq Ck^{-1/\eta}\) suffices.
+\end{proposition}
+\begin{proof}
+Choose \(a>0\) with \(ar<\kappa\) and assign the large-rank
+thresholds \(A_k=k^{1/r}(\log k)^{-a}\). There are at most
+$$
+C\bigl[1+z^r(\log(e+z))^{ar}\bigr]
+$$
+ranks with \(A_k<z\). Indeed \(\log A_k\geq(\log k)/(2r)\)
+eventually; this first bounds \(\log k\) by \(2r\log z\), and
+substitution into \(k<z^r(\log k)^{ar}\) proves the count.
+Tonelli therefore makes the total tail finite under the stated
+moment. At the logarithmic boundary the good terms are bounded by
+\(C/[k(\log k)^{1+a/2}]\), which is summable for every \(a>0\).
+At the pure-power boundary they are
+\(C/[k(\log k)^{a/2}]\); take \(2<a<\kappa/r\).
+Proposition~\ref{tails:criterion} applies in both cases.
+\end{proof}
