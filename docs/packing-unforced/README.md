@@ -213,6 +213,25 @@ strict chain-cost test at these scales, including a nondecaying endpoint
 example. This limits a direct combination of those criteria; it does not rule
 out a new estimate connecting them.
 
+## Local decoupling and the profile optimum
+
+The new local packet estimate preserves a single source function throughout each
+frequency annulus and leaves the local energy needed for the remaining chain.
+It also permits the weighted refined-decoupling estimate at exponents between
+two and six. The resulting profile optimization has the exact value
+
+$$
+\inf_{\substack{0\le m<1\\2\le p\le6}}
+\bigl(\Phi_g(m)+T_p(g,m)\bigr)=\Phi_g(1).
+$$
+
+Here the chain cost and terminal expression are defined explicitly in the
+manuscript. This identity holds for every 1-Lipschitz profile, without dimension
+barriers or an endpoint normalization. Its proof uses the hard-component
+potential, bounded finite chains, and uniform approximation. It shows that this
+specific decoupling construction cannot improve the existing curve. It makes no
+claim about all uses of decoupling or the optimal distance-set threshold.
+
 ## Proof and audit files
 
 - [Complete manuscript](packing-unforced-proof.pdf)
@@ -220,6 +239,14 @@ out a new estimate connecting them.
 - [Sharp hard-gap estimates and matching profiles](packing-unforced-hard-gaps.tex)
 - [Explicit dimension curve and precise model optimality](packing-unforced-hard-dimension.tex)
 - [Finite-start identity and endpoint limitation](packing-unforced-finite-start.tex)
+- [Local refined-decoupling estimate and source reconstruction](packing-unforced-local-decoupling.tex)
+- [Exact profile comparison for the weighted decoupling family](packing-unforced-decoupling-profile.tex)
+- [Detailed local decoupling transfer](2026-09-30-local-giow-terminal-transfer.md)
+- [Independent packet and source-selector audit](2026-09-30-local-terminal-selector-audit.md)
+- [Detailed universal profile comparison](2026-09-30-local-giow-profile-redundancy.md)
+- [Weighted refined-decoupling exponent calculation](2026-09-30-weighted-decoupling-profile-comparison.md)
+- [Independent hard-component and approximation audit](2026-09-30-local-decoupling-redundancy-independent-audit.md)
+- [Independent weighted-exponent and profile audit](2026-09-30-terminal-redundancy-independent-audit.md)
 - [Realization by a single Frostman measure](packing-unforced-realizability.tex)
 - [Simultaneous obstruction at curvature-matched scales](packing-unforced-hybrid-obstruction.tex)
 - [Independent curvature-scale audit and its exact scope](2026-09-30-curvature-matched-hybrid-audit.md)

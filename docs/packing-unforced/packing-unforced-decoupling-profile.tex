@@ -1,0 +1,232 @@
+\subsection{An exact comparison for local decoupling terminal costs}
+\label{decprofile:statement}
+
+This section concerns an abstract profile optimization. Its proof is purely
+geometric and does not use the preceding analytic estimate.
+
+For any 1-Lipschitz \(g:[0,1]\to\mathbb R\), define
+\[
+ c_g(m,n)=g(m)-\min_{[m,n]}g.
+\]
+An edge \(n\to m<n\) is admissible when \(2n-m\le1\).
+Let \(\Phi_g(n)\) be the infimum of the costs of finite admissible chains
+from \(n<1\) to zero, and write
+\(\Phi_g(1)=\lim_{n\uparrow1}\Phi_g(n)\). The limit and the finite-chain
+properties used below are justified in the proof.
+For \(0\le m<1\), set
+\begin{equation}\label{decprofile:terminal}
+ L=1-m,\qquad n=\frac{1+m}{2},\qquad
+ T_6(g,m)=\frac{2c_g(m,n)+L-g(1)+g(m)}3.
+\end{equation}
+
+\begin{theorem}[The terminal expression is attained by ordinary chains]
+\label{decprofile:identity}
+For every 1-Lipschitz \(g:[0,1]\to\mathbb R\),
+\begin{equation}\label{decprofile:exact}
+ \begin{aligned}
+ \Phi_g(1)&\le\Phi_g(m)+T_6(g,m)\qquad(0\le m<1),\\
+ \inf_{0\le m<1}\bigl(\Phi_g(m)+T_6(g,m)\bigr)&=\Phi_g(1).
+ \end{aligned}
+\end{equation}
+No sign condition, dimension barriers, or endpoint normalization are
+required. At every fixed start \(n_0<1\), an actual chain with
+\(O(1+\log(1/(1-n_0)))\) edges has cost at most the displayed upper
+bound. Uniform profile
+perturbations of size \(\varepsilon\) and grid rounding of mesh \(\rho\)
+give error \(O(K(\varepsilon+\rho))\), where \(K\) is that edge bound.
+\end{theorem}
+
+The theorem rules out an improvement from replacing the terminal portion
+of an optimized chain by exactly \eqref{decprofile:terminal}. It does not
+rule out other uses of local decoupling.
+
+\subsection{A total-drop potential}
+\label{decprofile:potential}
+
+For a 1-Lipschitz function \(f:[0,1]\to\mathbb R\) with \(f(0)=0\),
+let \(\mathbf T(f)\) be the infimum of
+\[
+ \sum_{j\ge1}\left(f(t_j)-\min_{[t_j,t_{j-1}]}f\right)
+\]
+over good partitions \(1=t_0>t_1>\cdots\to0\), with
+\(t_{j-1}\le2t_j\). We claim that
+\begin{equation}\label{decprofile:totaldrop}
+ \mathbf T(f)\le\frac{1-2\beta}{3},
+ \qquad \beta=\min_{[1/2,1]}f.
+\end{equation}
+
+First suppose that \(f\) is piecewise affine with finitely many pieces.
+Its hard-point set
+\[
+ H=\left\{t\in[0,1]: f(t)=\min_{[t/2,t]}f\right\}
+\]
+is a finite union of closed interval components, possibly degenerate.
+It contains zero, and \(f\) is nonincreasing on each component.
+Keleti--Shmerkin's identity \cite[Lemma 5.4]{ks} gives
+\begin{equation}\label{decprofile:hardidentity}
+ \mathbf T(f)=
+ \sum_{[u,v]\text{ component of }H}\bigl(f(u)-f(v)\bigr).
+\end{equation}
+Consider the potential
+\[
+ P(t)=\frac{t-2f(t)}3.
+\]
+On a hard component \([u,v]\), its drop
+\(\delta=f(u)-f(v)\) satisfies \(0\le\delta\le v-u\). Hence
+\begin{equation}\label{decprofile:component}
+ P(v)-P(u)=\frac{v-u+2\delta}{3}\ge\delta.
+\end{equation}
+Now take the endpoints \(v<u\) of a gap between components, and put
+\(\Delta=f(u)-f(v)\). If \(\Delta\le0\), then \(P(u)\ge P(v)\).
+If \(\Delta>0\), hardness at \(u\) forces \(v<u/2\), since otherwise
+\(v\in[u/2,u]\) would give \(f(v)\ge f(u)\). Also
+\(f(u/2)\ge f(u)\), and therefore
+\[
+ 0<\Delta\le f(u/2)-f(v)\le u/2-v.
+\]
+It follows that
+\begin{equation}\label{decprofile:gap}
+ P(u)-P(v)=\frac{u-v-2\Delta}{3}\ge v/3\ge0.
+\end{equation}
+Let \(r=\max H\). Summing
+\eqref{decprofile:component} and \eqref{decprofile:gap}, and using
+\(P(0)=0\), proves
+\[
+ \mathbf T(f)\le P(r)=\frac{r-2f(r)}3.
+\]
+If \(r\ge1/2\), then \(f(r)\ge\beta\) and
+\(r-2f(r)\le1-2\beta\). If \(r<1/2\), Lipschitz continuity gives
+\[
+ f(r)\ge f(1/2)-(1/2-r)\ge\beta-1/2+r,
+ \qquad r-2f(r)\le1-2\beta-r\le1-2\beta.
+\]
+This proves \eqref{decprofile:totaldrop} in the piecewise affine case.
+The finite-chain approximation below extends it to every 1-Lipschitz
+function, without an assumed continuity theorem for infinite partitions.
+
+\subsection{Reversal, concatenation, and finite approximation}
+\label{decprofile:proof}
+
+Let \(h:[0,1]\to\mathbb R\) be 1-Lipschitz with \(h(0)=0\),
+and put \(e=h(1)\) and \(f(t)=h(1-t)-e\).
+Under reversal, an original edge \(y\to x\) corresponds to a ratio-two
+interval \([1-y,1-x]\). The difference between its original cost and
+the total-drop summand is the change in \(f\) between the two endpoints.
+Telescoping, and then letting the start approach one, yields
+\begin{equation}\label{decprofile:reversal}
+ \Phi_h(1)=\mathbf T(f)-e.
+\end{equation}
+For completeness, a finite ratio-two partition starting at \(\zeta>0\)
+can be extended towards zero by successive halvings with additional cost
+at most \(\zeta\). Conversely, an infinite good partition can be truncated
+at its interval crossing \(\zeta\), moving that endpoint to \(\zeta\);
+the crossing cost changes by at most \(2\zeta\). These observations
+justify the limit in \eqref{decprofile:reversal}.
+Since
+\[
+ \min_{[1/2,1]}f=\min_{[0,1/2]}h-e,
+\]
+equations \eqref{decprofile:totaldrop} and \eqref{decprofile:reversal}
+give
+\begin{equation}\label{decprofile:local}
+ \Phi_h(1)\le\frac{1-e-2\min_{[0,1/2]}h}{3}.
+\end{equation}
+
+We record the finite-chain details before applying this bound.
+Truncating a chain at its first crossing of a lower start can only
+decrease its cost. Conversely, successive maximal admissible edges bridge
+two starts below one with total cost at most their distance. Thus the
+finite-start infima are nondecreasing, are bounded by one, and satisfy
+\begin{equation}\label{decprofile:start}
+ 0\le\Phi_h(1)-\Phi_h(1-\zeta)\le\zeta.
+\end{equation}
+For \(l<m<n\), comparison of the two interval minima gives
+\begin{equation}\label{decprofile:merge}
+ c_h(l,n)\le c_h(l,m)+c_h(m,n).
+\end{equation}
+Merge consecutive edges whenever their union is admissible.
+In a resulting chain no two consecutive edges can be merged, so the
+complementary distance to one more than doubles every two edges.
+Its number of edges is at most
+\(2\lceil\log_2(1/\zeta)\rceil+O(1)\).
+An infimizing sequence of these bounded endpoint lists has a convergent
+subsequence. Admissibility is closed, and interval minima depend
+continuously on endpoints. Removing repeated limiting endpoints gives
+a chain attaining the finite-start infimum.
+
+For a general \(h\), approximate it uniformly by its piecewise affine
+interpolants, with the same endpoint values and Lipschitz constant.
+At any fixed finite start, the piecewise affine bound supplies chains
+of uniformly bounded length. Pass to a convergent subsequence of their
+endpoint lists. The interval minima and costs converge and admissibility
+is preserved. This proves \eqref{decprofile:local} for every finite start;
+\eqref{decprofile:start} gives its limiting form. It also establishes
+\eqref{decprofile:totaldrop} in general via the reversal identity.
+
+Apply \eqref{decprofile:local} to
+\[
+ h(x)=\frac{g(m+Lx)-g(m)}{L},\qquad L=1-m.
+\]
+Admissibility rescales exactly:
+\[
+ 2(m+Ly)-(m+Lx)\le1\quad\Longleftrightarrow\quad 2y-x\le1.
+\]
+Multiplication by \(L\) gives the upper cost \(T_6(g,m)\) for a tail
+chain ending at \(m\). Concatenate it with a chain from \(m\) to zero.
+This proves the first assertion of \eqref{decprofile:exact}.
+The Lipschitz bound gives
+\[
+ 0\le T_6(g,m)\le1-m.
+\]
+Letting \(m\uparrow1\) proves the opposite inequality for the infimum,
+and hence the exact identity.
+
+For a finite start \(n_0>m\), the rescaled tail has
+\[
+ O\left(1+\log\frac{1-m}{1-n_0}\right)
+\]
+edges. Compress the concatenated chain once more to obtain the edge
+bound in Theorem~\ref{decprofile:identity}. Starts \(n_0\le m\) are
+handled by monotonicity. A uniform perturbation of \(g\) by
+\(\varepsilon\) changes each fixed edge cost by at most \(2\varepsilon\).
+Rounding endpoints down to a grid of mesh \(\rho\), with zero, one and
+the prescribed finite start on the grid, preserves admissibility and changes each edge cost by at
+most \(2\rho\). Indeed
+\[
+ \left\lfloor m/\rho\right\rfloor
+ \ge\left\lfloor(2n-1)/\rho\right\rfloor
+ \ge2\left\lfloor n/\rho\right\rfloor-1/\rho
+\]
+when \(1/\rho\) is integral. This proves the stated stability.
+
+\subsection{The weighted refined-decoupling family}
+\label{decprofile:weighted}
+
+The conditional terminal expression associated with exponents
+\(2\le p\le6\) is
+\[
+ T_p(g,m)=\frac2p I+
+       \left(\frac2p-\frac13\right)W+
+       \left(1-\frac2p\right)c,
+\]
+where, with \(L,n\) as in \eqref{decprofile:terminal},
+\[
+ I=L+g(m)-g(1),\qquad
+ W=-L/2+g(1)-g(n),\qquad
+ c=g(m)-\min_{[m,n]}g.
+\]
+At \(p=6\) this equals \eqref{decprofile:terminal}. Direct algebra gives
+\begin{align*}
+ T_p(g,m)-T_6(g,m)
+ &=\left(\frac2p-\frac13\right)(I+W-c)\\
+ &=\left(\frac2p-\frac13\right)
+       \left(\frac L2-g(n)+\min_{[m,n]}g\right)\ge0.
+\end{align*}
+The last inequality is exactly the Lipschitz bound over an interval of
+length \(L/2\). Consequently
+\[
+ \inf_{\substack{0\le m<1\\2\le p\le6}}
+       \bigl(\Phi_g(m)+T_p(g,m)\bigr)=\Phi_g(1).
+\]
+Thus allowing this entire weighted exponent family leaves the abstract
+profile optimum unchanged.

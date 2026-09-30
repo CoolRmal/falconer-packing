@@ -1,0 +1,247 @@
+\section{A local refined-decoupling terminal step}
+\label{localdec:section}
+
+There is a natural way to insert the refined decoupling theorem of
+Guth--Iosevich--Ou--Wang \cite[Theorem 4.2 and Corollary 4.3]{giow}
+into the preceding iteration. We prove the resulting estimate here.
+The following section shows that its optimized profile cost is already
+attainable by the quadratic chain; this particular insertion therefore
+does not improve the dimension cutoff.
+
+\begin{lemma}[Weighted local packet estimate]\label{localdec:packet}
+Let \(r\gg1\), \(\rho=r^{-1/2}\), and let \(F_\theta\) have Fourier
+support in the usual canonical rectangles over a circle of radius
+\(r\): tangential width \(O(\rho^{-1})\), normal width \(O(1)\), and
+bounded angular overlap. Work in a bounded unit region. Form its usual
+smooth packets
+\[
+ f_T=\chi\eta_{\theta,T}F_\theta,
+\]
+where \(\chi=1\) on the pin region and the nonnegative transverse
+partitions \(\eta_{\theta,T}\) sum to one for each \(\theta\).
+Let \(\lambda\) have mass at most one, with density at most \(D\)
+after positive smoothing at scale \(r^{-1}\). Retain packets satisfying
+\[
+ \lambda(CT)\le H\rho,\qquad H\ge1.
+\]
+The dilation \(CT\) includes the usual small-power packet enlargement
+and adjacent \(\rho\)-cubes. For every fixed \(\varepsilon>0\),
+\begin{equation}\label{localdec:estimate}
+ \int\Big|\sum_{T\ {
+m retained}} f_T\Big|^2\,d\lambda
+ \lesssim_\varepsilon
+ r^\varepsilon H^{2/3}D^{1/3}
+ \sum_\theta\int_{Q^+}|F_\theta|^2
+ +\operatorname{RapDec}(r).
+\end{equation}
+As elsewhere, small-power enlargements, polynomial packet counts and
+polynomial bounds for the input norms are permitted; their losses are
+absorbed by \(r^\varepsilon\).
+\end{lemma}
+
+\begin{proof}
+Local constancy replaces \(\lambda\) by a positive smooth density
+\(w\lesssim D\). Enlarging the test tubes also gives
+\(\int_{C'T}w\lesssim H\rho\), up to rapid errors. Pigeonhole the
+packet sixth norms, and fix one comparable class of \(W\) packets.
+Let \(Y_M\) be a union of \(\rho\)-cubes each meeting between \(M\)
+and \(2M\) packets. Weighted incidence counting gives
+\[
+ M\int_{Y_M}w\lesssim WH\rho.
+\]
+Indeed every cube incident to a packet lies inside its enlarged test
+tube. No equal-mass assumption on these cubes is needed. H\"older and
+refined decoupling at exponent six now imply
+\begin{align*}
+ \int_{Y_M}|f|^2w
+ &\le \|f\|_{L^6(Y_M)}^2
+          \Big(\int_{Y_M}w^{3/2}\Big)^{2/3}\\
+ &\lesssim r^\varepsilon(M/W)^{2/3}
+       \sum_T\|f_T\|_6^2\,
+       D^{1/3}\Big(\int_{Y_M}w\Big)^{2/3}\\
+ &\lesssim r^\varepsilon(H\rho)^{2/3}D^{1/3}
+       \sum_T\|f_T\|_6^2.
+\end{align*}
+The frequency rectangle has area \(O(\rho^{-1})\), so Bernstein gives
+\(\|f_T\|_6^2\lesssim\rho^{-2/3}\|f_T\|_2^2\).
+For each \(\theta\), bounded overlap of its spatial partition gives
+\(\sum_T\|f_T\|_2^2\lesssim\int_{Q^+}|F_\theta|^2\).
+The powers of \(\rho\) cancel. Summing the logarithmically many
+amplitude and incidence classes proves \eqref{localdec:estimate}.
+
+These are precisely the standard microlocal packets in the cited
+corollary. One may use compact smooth spatial cutoffs and their
+Schwartz Fourier tails. Alternatively, use nonnegative band-limited
+Schwartz transverse partitions and a common band-limited Schwartz
+majorant bounded below on the pin region; its lower bound controls
+the desired extension there. In this alternative equality to one is
+unnecessary. The usual small-power enlargements reduce all tails to
+arbitrary inverse powers, while frequency localization, Bernstein and
+spatial overlap acquire only small-power losses. Polynomial input norms
+and counts allow those errors to be summed. Tiny amplitude classes
+are discarded using Bernstein and the same polynomial count.
+\end{proof}
+
+Fix one regularized component \(\sigma\) with profile \(f\), and put
+\(g(k)=f(k)-k\). For \(R=2^N\) and a parent depth \(m\), set
+\[
+ b=2^{-m},\quad r=Rb,\quad n=\frac{N+m}{2},\quad
+ a=2^{-n}=\sqrt{b/R},\quad \rho=a/b=r^{-1/2}.
+\]
+Block-grid rounding changes exponents by \(O(T)\). We keep
+\(m\le(1-\zeta)N\), with fixed \(\zeta>0\), so the local frequency
+is at least \(R^\zeta\). For an active parent \(P\), put
+\(\lambda_P=\sigma|_{P^+}/\sigma(P^+)\).
+The denominator is at least \(\sigma(P)\). Thus the regular cube
+bounds, after rescaling by \(b^{-1}\), give
+\begin{equation}\label{localdec:density}
+ D_P\lesssim_T R^{C\Gamma}2^{2(N-m)+f(m)-f(N)}
+       =R^{C\Gamma}2^{(N-m)+g(m)-g(N)}.
+\end{equation}
+The old truncated energy bound gives
+\[
+ J_{\lambda_P}(\rho)\lesssim_T (N+1)R^{C\Gamma}2^{c_g(m,n)},
+ \qquad c_g(m,n)=g(m)-\min_{[m,n]}g.
+\]
+Choose \(H=R^{D_2h+C\Gamma}2^{c_g(m,n)}\).
+Lemma~\ref{localdec:packet} then costs
+\begin{equation}\label{localdec:terminalcost}
+ 2^{\mathcal T_g(m)}R^{O(h+\Gamma)+\varepsilon},\qquad
+ \mathcal T_g(m)=
+ \frac{2c_g(m,(N+m)/2)+(N-m)+g(m)-g(N)}3.
+\end{equation}
+This uses pin masses at the actual scale \(R^{-1}\), without a
+first-cube localization loss.
+
+\paragraph{A single source function for the whole shell.}
+Fix the subsequent coarse chain from depth \(m\) to zero. Its inherited
+marks are constant on each depth-\(m\) parent \(P\) and are unions of
+whole original standard source labels \(S\), of width \(R^{-1/2}\).
+Write \(A_{P,S}\in\{0,1\}\) for their survival indicators. Group
+these standard labels into nominal ancestors \(\theta\) of width
+\(\rho\ge R^{-1/2}\), and form
+\[
+ F_{P,\theta}=\sum_{S\prec\theta}A_{P,S}F_S.
+\]
+Decompose these functions into local \emph{pin-side} packets, retaining
+whole packets according to the conditional tube bound. Their selected
+partition sums
+\[
+ c_{P,\theta}(y)=\sum_{T\ {
+m retained}}\eta_{\theta,T}(y)
+ \quad\hbox{satisfy}\quad 0\le c_{P,\theta}\le1.
+\]
+For \(y\in P\), define
+\begin{equation}\label{localdec:goodsource}
+ G_{R,y}(x)=\sum_S A_{P,S}c_{P,\theta(S)}(y)
+       \chi(x)(\psi_{R,S}\widehat\mu)^\vee(x).
+\end{equation}
+All angular grids, partitions, test tubes and coefficients are fixed
+using \(R\), independently of the circular radius throughout the
+annulus. The canonical rectangles have the required dimensions
+uniformly for every radius comparable to \(R\), with constants
+allowed to depend on its fixed annular ratio. Hence
+\eqref{localdec:goodsource} is one source function for the entire shell.
+Its coefficients are independent of the distance variable, so for
+each fixed pin they commute with the pinned pushforward and circular
+identity. Its circular extension on \(P\) is, up to the existing
+source-cutoff error, exactly
+\(\sum_{\theta,T\ {
+m retained}}\eta_{\theta,T}F_{P,\theta}\).
+
+For the discarded first norm, expand only the \emph{original}
+unit-length standard source packets. A source--pin pair meets at most
+\(R^{O(h)}\) such packets, regardless of how many standard labels are
+inside \(\theta\). Their directions lie within
+\(O(R^{-1/2+h})\) of the connecting line. Since
+\(R^{-1/2}\le\rho\) and \(b\rho=a\), a bad local pin tube implies
+the containing heavy tube in that connecting direction. The previous
+radial-projection deletion bound therefore applies, with contribution
+\[
+ \lesssim R^{O(h)}\left(L^{1-q}BR^\Gamma+
+       \sum_P\sigma(P^+)\frac{L}{H}J_{\lambda_P}(\rho)\right)
+\]
+plus the already controlled coarse-chain deletions and rapid errors.
+The old choice \(L=R^{D_1h}\), then sufficiently large \(D_2\), makes
+this a negative power of \(R\). Short \emph{source} packets would not
+justify this argument: after propagation their transverse footprint
+is \(\rho\), not \(a\). They have not been used here.
+
+\paragraph{The remaining energy.}
+The local selectors disappear from the right side of
+\eqref{localdec:estimate}. It leaves precisely the local parent energy
+\[
+ \sum_{P\ {
+m active}}\sigma(P^+)
+ \sum_{\theta:\,|\theta|=\rho}
+       \int |F_{P,\theta}|^2\,dm_{P^+}.
+\]
+For the next quadratic inflation, each initial parent label \(\theta\)
+is partitioned into descendants of width
+\((Rb)^{-1}=\rho^2\le\rho\). The inherited marks were fixed before
+the local packet selection, so the old exact inherited identity applies
+inside every \(\theta\); no selector remains in this energy.
+Continuing the coarse chain and then the original final circle estimate
+gives total cost
+\begin{equation}\label{localdec:combinedcost}
+ \Phi_g(m)+\mathcal T_g(m).
+\end{equation}
+Here \(\Phi_g(m)\) denotes the cost of the chosen admissible chain from
+\(m\) to zero. At \(m=0\), \eqref{localdec:combinedcost} is
+\((N-g(N))/3\), which recovers the GIOW shell exponent
+\((5-4s)/3\) under the Frostman lower bound. The next result compares
+\eqref{localdec:combinedcost} with the fully optimized quadratic chain.
+
+\paragraph{The weighted family below exponent six.}
+The same packet-compatible construction allows the weighted theorem of
+Du--Ou--Ren--Zhang \cite[Theorem 1.1(b)]{dorz} to be used without
+throwing away its natural-scale gain. In unit parent coordinates,
+suppose the smoothed pin density satisfies \(w\le A\), and every
+\(\rho\)-square has pin mass at most \(v\). Put
+\[
+ Q=\frac{rv}{A}\le1.
+\]
+In large coordinates \(X=rx\), the weight \(w(X/r)/A\) lies in
+\([0,1]\) and has mass at most \(r^2v/A\) on each
+\(r^{1/2}\)-square. Taking
+\(\alpha=2\log(r^2v/A)/\log r\le2\) in that theorem gives the
+squared weighted gain \(Q^{2/p-1/3}\), for \(2\le p\le6\).
+For one comparable packet class of cardinality \(W\), H\"older with
+respect to \(w\,dx\), followed by that theorem, yields
+\[
+ \int_Y|f|^2w
+ \lesssim r^\varepsilon A^{2/p}Q^{2/p-1/3}
+ \left(\frac{M\int_Yw}{W}\right)^{1-2/p}
+ \sum_T\|f_T\|_p^2.
+\]
+The same incidence bound and the packet Bernstein estimate
+\(\|f_T\|_p^2\lesssim\rho^{-(1-2/p)}\|f_T\|_2^2\)
+therefore give multiplier
+\begin{equation}\label{localdec:weightedmultiplier}
+ A^{2/p}Q^{2/p-1/3}H^{1-2/p}
+\end{equation}
+for the local parent square function. All counts and small-power losses
+are handled as in Lemma~\ref{localdec:packet}.
+
+Writing \(L=N-m\), the leading profile exponents are
+\[
+ I=L+g(m)-g(N),\qquad
+ J=-L/2+g(N)-g(n),\qquad c=c_g(m,n),
+\]
+\[
+ A=2^I,\quad v=2^{-L/2+g(m)-g(n)},\quad Q=2^J,\quad H=2^c.
+\]
+Here \(J\le0\) by the Lipschitz inequality between \(n\) and \(N\).
+The block and regularization errors only add the usual arbitrarily
+small losses; enlarging \(A\) slightly also enforces \(Q\le1\)
+when those errors are present. Thus the weighted terminal cost is
+\begin{equation}\label{localdec:weightedcost}
+ \mathcal T_{g,p}(m)=\frac2p I+
+        \left(\frac2p-\frac13\right)J+
+        \left(1-\frac2p\right)c.
+\end{equation}
+At \(p=6\) this is \eqref{localdec:terminalcost}. The comparison with
+other exponents and with optimized quadratic chains is purely a
+profile calculation, proved next. These statements concern the
+specific terminal construction just described, not all possible uses
+of refined or weighted decoupling.

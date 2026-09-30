@@ -62,6 +62,12 @@ both analytic branches and explicitly handles the pin mass discarded in finite
 regularization. This improves integrability without changing the dimension
 cutoff. Further formalization is currently set aside at the user's request.
 
+The latest addition also proves an exact limitation of a local refined-decoupling
+construction: optimizing its terminal scale and every weighted exponent from
+two to six gives exactly the original optimized chain cost. The proof holds for
+every 1-Lipschitz profile, not just the examples used to test the curve. This
+particular construction therefore does not weaken the dimension condition.
+
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
 $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$

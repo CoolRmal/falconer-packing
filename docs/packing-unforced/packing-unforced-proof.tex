@@ -42,11 +42,13 @@ nonnegative-weight certificates give matching upper and lower profile bounds.
 They yield an explicit, stronger dimension curve beginning at
 \((7-\sqrt7)/4=1.088562172\ldots\).
 
-The present addition proves a stronger regularity conclusion under the same
+The manuscript also proves a stronger regularity conclusion under the same
 curve: selected separated source and pin probabilities have a raw joint
 distance density in some \(L^p\), \(p>1\). Both the profile decomposition
 and the coherent positive approximations are treated, including the
-discarded pin remainder. This integrability gain does not lower the curve.
+discarded pin remainder. A local refined-decoupling alternative is analyzed
+below: its optimized profile cost equals the existing chain cost, even after
+the weighted exponents are optimized. Neither addition lowers the curve.
 
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
@@ -348,6 +350,8 @@ explains why this method reaches the five-quarters boundary without crossing
 it; it does not establish the optimal Falconer threshold.
 
 \input{packing-unforced-finite-start.tex}
+\input{packing-unforced-local-decoupling.tex}
+\input{packing-unforced-decoupling-profile.tex}
 \input{packing-unforced-realizability.tex}
 \input{packing-unforced-hybrid-obstruction.tex}
 
@@ -437,6 +441,7 @@ plan, not evidence that the comparator has already accepted the theorem.
 \bibitem{orponen} T. Orponen. On the dimension and smoothness of radial projections. \emph{Analysis \& PDE} 12 (2019), 1273--1294. \href{https://arxiv.org/abs/1710.11053}{arXiv:1710.11053}.
 \bibitem{ks} T. Keleti and P. Shmerkin. New bounds on the dimensions of planar distance sets. \emph{Geometric and Functional Analysis} 29 (2019), 1886--1948. \href{https://arxiv.org/abs/1801.08745}{arXiv:1801.08745}. Lemma 3.4, Corollary 3.5, Theorem 3.11.
 \bibitem{giow} L. Guth, A. Iosevich, Y. Ou and H. Wang. On Falconer's distance set problem in the plane. \emph{Inventiones Mathematicae} 219 (2020), 779--830. \href{https://arxiv.org/pdf/1808.09346v1}{arXiv:1808.09346v1}. Section 3, especially radial projection and packet localization.
+\bibitem{dorz} X. Du, Y. Ou, K. Ren and R. Zhang. Weighted refined decoupling estimates and application to Falconer distance set problem. \href{https://arxiv.org/abs/2309.04501}{arXiv:2309.04501v1} (2023), Theorem 1.1(b).
 \bibitem{liuidentity} B. Liu. An \(L^2\)-identity and pinned distance problem. \emph{Geometric and Functional Analysis} 29 (2019), 283--294. \href{https://arxiv.org/abs/1802.00350}{arXiv:1802.00350}, Theorem 1.9.
 \bibitem{liu2026} B. Liu. Lebesgue measure of distance sets with regular pins and multi-scale Mizohata--Takeuchi-type estimates. Version 3, 16 July 2026. \href{https://arxiv.org/html/2603.15328v3}{arXiv:2603.15328v3}. Lemmas 3.1, 4.2--4.4.
 \end{thebibliography}
