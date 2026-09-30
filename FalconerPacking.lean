@@ -51,6 +51,9 @@ import FalconerPacking.FiniteRegularization
 import FalconerPacking.RadialProjectionKernel
 import FalconerPacking.RadialProjectionEnergy
 import FalconerPacking.RadialProjectionTransversality
+import FalconerPacking.RadialProjectionTraceWeight
+import FalconerPacking.RadialProjectionRay
+import FalconerPacking.RadialProjectionLine
 import FalconerPacking.WeightedBandEnergy
 import FalconerPacking.AngularDerivativeEnergy
 import FalconerPacking.DyadicBandSum

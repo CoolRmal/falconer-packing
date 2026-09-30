@@ -301,6 +301,9 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RadialProjectionKernel.lean` | measurable radial kernels, candidate densities, and the unit-vector pushforward identity |
 | `FalconerPacking/RadialProjectionEnergy.lean` | explicit energy exponents and uniform weighted angular singular-integral bounds |
 | `FalconerPacking/RadialProjectionTransversality.lean` | weighted angular energy of actual orthogonal projection measures |
+| `FalconerPacking/RadialProjectionTraceWeight.lean` | energy of dual weights and strict trace exponents |
+| `FalconerPacking/RadialProjectionRay.lean` | actual polar pushforward density and the ray-to-line bound |
+| `FalconerPacking/RadialProjectionLine.lean` | explicit orthogonal projection density and radial moment reduction |
 | `FalconerPacking/WeightedBandEnergy.lean` | Gaussian and polar band bounds for signed source weights |
 | `FalconerPacking/AngularDerivativeEnergy.lean` | actual angular derivatives, band estimates, joint continuity, and negative-frequency symmetry |
 | `FalconerPacking/DyadicBandSum.lean` | convergent two-sided band sum with an explicit displacement-power constant |
