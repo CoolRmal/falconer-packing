@@ -1,0 +1,285 @@
+\subsection{An exact optimized cost}
+Throughout this section put
+\begin{equation}\label{adaptive:range}
+ \frac1{10}\le a\le\frac16,\qquad 2a\le b\le\frac12,
+ \qquad 0\le\theta\le1.
+\end{equation}
+The parameter \(\theta\) interpolates between a fixed head interval and an
+interval determined by the actual tail minimum. Define
+\begin{align*}
+ k&=2b-a,&q&=\frac b{k},&
+ h_\theta&=\frac{1+q}{2}-\frac{\theta a}{4k},&
+ r_\theta&=\frac\theta{4b},\\
+ L_0&=\frac{1-2a}{4},&\lambda&=\frac{1-2b}{4b},&
+ A_0&=\frac{1-a-3b}{3},&\gamma&=\frac{6b-1-2a}{3a}.
+\end{align*}
+Here \(\gamma\ge0\), and \(\gamma+\lambda>0\), including the corner
+\(a=1/10,b=1/5\), where \(\gamma=0\). Set
+\begin{align}
+ m_\theta&=\frac{a h_\theta}{1-a r_\theta},&
+ E_\theta&=A_0+\gamma m_\theta,&
+ J_E&=\frac{\gamma L_0+\lambda A_0}{\gamma+\lambda},
+ \label{adaptive:early}\\
+ F&=\frac{(1-a)(b-a)}{4(2b-a)(1-b)},&
+ Z&=\min\left\{\frac{1-q}{3},F\right\}.
+ \label{adaptive:zero}
+\end{align}
+For the two late routes, indexed by \(v\) (variation) and \(\ell\) (length), put
+\begin{align*}
+ A_v&=\frac{1-a}{3}-\frac{(1-b)h_\theta}{2},&
+ \sigma_v&=\frac{1-a}{6a}-\frac{(1-b)r_\theta}{2},\\
+ A_\ell&=\frac{1-a}{3}-h_\theta,&
+ \sigma_\ell&=\frac{a+2}{3a}-r_\theta,\\
+ P_i&=A_i+a\sigma_i,&
+ J_i&=\frac{\sigma_iL_0+\lambda A_i}{\sigma_i+\lambda}
+ \quad(i=v,\ell).
+\end{align*}
+Both \(\sigma_i\) are strictly positive: for example
+\(\sigma_v\ge(5-5a)/(48a)>0\), using \(b\ge2a\).
+Also \(1-a r_\theta\ge7/8\). Thus all denominators are positive.
+Our new cost and its compact optimization are
+\begin{align}
+ C_\theta(a,b)&=\max\left\{Z,\ \min(E_\theta,J_E),\
+                  \min(P_v,J_v,P_\ell,J_\ell)\right\},
+                   \label{adaptive:cost}\\
+ C_{\rm A}(a,b)&=\min_{0\le\theta\le1}C_\theta(a,b).
+                   \label{adaptive:optimized}
+\end{align}
+These are exact real expressions. The last minimum exists by continuity on
+the compact interval; it is not an assumption about a numerical optimizer.
+
+\begin{lemma}[Normalized adaptive profile bound]\label{adaptive:profile}
+Under \eqref{adaptive:range}, let \(g:[0,N]\to\R\) be 1-Lipschitz and
+\(ax\le g(x)\le bx\). For \(15N/16\le n_0<N\), there is an admissible
+chain from \(n_0\) to zero of cost at most \(NC_\theta(a,b)\), and hence
+one of cost at most \(NC_{\rm A}(a,b)\). The number of edges is
+\(O(1+\log(N/(N-n_0)))\), uniformly in \(\theta\). Grid and approximate
+barrier errors are \(O(KT+K\epsilon N)\), as in Lemma~\ref{minimum:profile}.
+\end{lemma}
+
+\subsection{Endpoint normalization and free continuation}
+Normalize \(N=1\). Replace \(g(x)\) by
+\(\widetilde g(x)=\min\{g(x),1+a-x\}\). This preserves the barriers
+and the Lipschitz constant, and sets \(\widetilde g(1)=a\). Every edge
+cost increases. Indeed, if its left endpoint \(v\) is unchanged, the
+interval minimum can only decrease. Otherwise
+\[
+ c_{\widetilde g}(v,n)\ge(1+a-v)-(1+a-n)=n-v\ge c_g(v,n).
+\]
+It is therefore enough to construct chains for a profile with \(g(1)=a\).
+
+Let \(t\) minimize \(g\) on \([q,1]\), and write \(m=g(t)\). Then
+\begin{equation}\label{adaptive:minimum-bounds}
+ aq\le at\le m\le a,\qquad m\le bq.
+\end{equation}
+Every endpoint below \(q\) has a free continuation, by
+\(g(2n-1)\le b(2n-1)\le an\le g(n)\) for \(1/2<n\le q\),
+and the free jump to zero below \(1/2\). The free region extends to
+\[
+ Q_m=\frac{1+m/b}{2},
+\]
+because \(g(2n-1)\le m\le g(n)\) when \(q<n\le Q_m\).
+Set
+\[
+ Q_\theta=(1-\theta)q+\theta Q_m,
+ \qquad H_\theta=\frac{1+Q_\theta}{2}=h_\theta+r_\theta m.
+\]
+Thus every endpoint below \(Q_\theta\) has a free continuation,
+\(q\le Q_\theta\le Q_m\), and
+\(H_\theta\le(3+q)/4\le11/12<n_0\).
+
+The affine majorant \(z/2+(b-1/2)m/b\), applied above \(Q_m\),
+has nonpositive potential at \(Q_m\). The potential construction
+\eqref{minimum:potential} therefore supplies, independently of all later
+cases, a chain with cost
+\begin{equation}\label{adaptive:floor}
+ L(m)=L_0-\lambda m.
+\end{equation}
+
+\subsection{Early minima and the supporting line}
+If \(t\le Q_\theta\), the cone chain to \(t\) followed by free
+continuation costs at most \((1-t+m-a)/3\). If
+\(Q_\theta<t\le H_\theta\), jump after that cone to a minimum on
+\([2t-1,Q_\theta]\), and then continue freely. The cost is at most
+\begin{equation}\label{adaptive:early-route}
+ \frac{1-t+m-a}{3}+\bigl(b(2t-1)-m\bigr)_+.
+\end{equation}
+
+When the terminal contribution is zero, the cone bound is at most
+\((1-q)/3\). A second construction gives \(F\). On \([t,1]\),
+\(g(z)\le\min\{bz,m+z-t\}\). These two lines meet at
+\(z_*=(t-m)/(1-b)\). The affine function
+\[
+ H(z)=\frac z2+\left(b-\frac12\right)z_*
+\]
+majorizes their minimum. Its potential bounds the cost down to
+\((1+t)/2\), followed by a free jump to \(t\), by
+\[
+ \frac{H(1)-a}{2}
+ =\frac{1/2-a-\kappa(t-m)}2,
+ \qquad\kappa=\frac{1/2-b}{1-b}\ge0.
+\]
+Here the construction can stop with positive remaining potential: its
+discarded value is nonnegative. If the potential reaches zero first,
+use zero-cost minimum steps until the terminal jump is admissible. All
+left endpoints where the majorant is used are at least \(t\).
+Since \(t-m\ge q-a\), the displayed expression is at most \(F\), by
+direct substitution. The zero-terminal case thus has cost at most \(Z\).
+
+If the terminal contribution in \eqref{adaptive:early-route} is positive,
+the bound becomes
+\[
+ A(t,m)=\frac{1-a-3b+(6b-1)t-2m}{3}.
+\]
+Using \(t\le m/a\) gives the increasing line \(A_0+\gamma m\).
+Using \(t\le H_\theta\) gives a decreasing line, whose slope is
+\(((6b-1)r_\theta-2)/3<0\). They intersect at \(m_\theta\),
+with common value \(E_\theta\). Comparing the increasing line with
+the independent floor \eqref{adaptive:floor} also gives \(J_E\).
+Hence this case has cost at most \(\min(E_\theta,J_E)\).
+
+\subsection{Late minima: reflection and two terminal routes}
+Suppose \(t>H_\theta\), and let \(u\) minimize \(g\) on
+\([Q_\theta,H_\theta]\). Put \(w=g(u)\), \(z=b(2u-1)\).
+Then \(w\ge m\), \(2u-1\le Q_\theta\), and
+\(m\ge at>aH_\theta\), so \(m>m_\theta\).
+
+If \(w\le z\), use the running-minimum reflection from the preceding
+section: set \(r=0\) before \(u\),
+\(r(x)=w-\min_{[u,x]}g\) after \(u\), and \(f=g+r\).
+It is 1-Lipschitz, has minimum \(w\) on \([Q_\theta,1]\), and
+\(f(1)=a+w-m\). The edge inequality
+\(c_g(v,n)\le c_f(v,n)+r(n)-r(v)\) transfers a cone chain to \(u\),
+its terminal jump, and free continuation, with total cost at most
+\[
+ \frac{1-u-a-2m}{3}+\max(w,z)
+ =\frac{1-a-3b+(6b-1)u-2m}{3}.
+\]
+Since \(u\le H_\theta<m/a\), both previous affine bounds apply;
+the decreasing one is evaluated to the right of \(m_\theta\).
+The bound is again \(\min(E_\theta,J_E)\).
+
+If \(w\ge z\), the interval below \(H_\theta\) is free: jump first
+to \(u\), then to a minimum on \([2u-1,Q_\theta]\), then continue
+freely. Above it, use the cone to \(t\) and an admissible chain from
+\(t\) to \(H_\theta\). Bounding this middle part by negative variation
+or by its length gives respectively
+\[
+ \frac{1-a}{3}-\frac{(1-b)H_\theta}{2}+\frac{t-m}{6},
+ \qquad
+ \frac{1-a}{3}-H_\theta+\frac{2t+m}{3}.
+\]
+The relation \(t\le m/a\) bounds these by
+\(A_i+\sigma_i m\), \(i=v,\ell\). If \(t>n_0\), omit the cone
+and restrict the middle variation or length to \([H_\theta,n_0]\);
+the omitted cone allowance is nonnegative, so the bounds remain valid.
+Since \(m\le a\), each increasing line is at most \(P_i\).
+Intersecting it with the decreasing floor gives \(J_i\). The late
+free-terminal case therefore has cost at most
+\(\min(P_v,J_v,P_\ell,J_\ell)\), completing the cost proof.
+
+There are a bounded number of chain portions. For clarity, compression
+does not require that their edges be free: for \(l<m<n\),
+\[
+ c_g(l,n)\le c_g(l,m)+c_g(m,n).
+\]
+This follows by comparing the two interval minima and using
+\(\min_{[l,m]}g\le g(m)\). Merge any adjacent pair whose union is
+admissible. In a chain with no further such merge, complementary depth
+more than doubles every two edges, giving the claimed logarithmic count.
+For piecewise affine profiles the constructions terminate; approximate
+a general Lipschitz profile by piecewise affine interpolation and pass to
+a convergent subsequence of uniformly bounded endpoint lists. Costs,
+minima and admissibility pass to the limit. Rounding down and clamping
+the barriers give the stated errors exactly as before. All bounds are
+uniform in \(\theta\); this proves Lemma~\ref{adaptive:profile}.
+
+\subsection{The unique root and the dimension curve}
+\begin{lemma}\label{adaptive:root}
+The function \(C_{\rm A}\) is continuous and strictly increasing in \(b\)
+for fixed \(a\) in \eqref{adaptive:range}. There is a unique continuous
+\(\beta(a)\in[2a,1/2]\) satisfying \(C_{\rm A}(a,\beta(a))=a\).
+Its endpoint values are \(\beta(1/10)=1/5\), \(\beta(1/6)=1/2\),
+and \(\beta(a)>2a\) for \(1/10<a\le1/6\).
+\end{lemma}
+\begin{proof}
+All expressions are jointly continuous with positive denominators;
+minimizing over a fixed compact interval preserves continuity.
+We check strict increase of every ingredient in \eqref{adaptive:cost}.
+Both terms defining \(Z\) increase strictly. Write
+\[
+ E_\theta=\frac{b-a}{3(2b-a)}T,\qquad
+ T=\frac{12b^2+(2-8a)b-\theta a(1-a)}{4b-\theta a}.
+\]
+The first factor increases strictly. We have \(T>0\), and its derivative
+has positive numerator
+\(48b^2-24ab\theta+2a\theta+4a^2\theta\).
+Thus \(E_\theta\) increases strictly. For \(J_E\), its derivative is
+a positive factor times \(60b^2-12b+1-4a\). Substitute
+\(b=2a+x\), \(x\ge0\), to obtain
+\[
+ 240a^2-28a+1+(240a-12)x+60x^2>0.
+\]
+Indeed, the constant term is increasing for \(a\ge1/10\) and is
+\(3/5\) at \(a=1/10\). Thus \(J_E\) increases strictly.
+
+For the late bounds, regard \(H_\theta(m)=h_\theta+r_\theta m\)
+as a function of \(b\) at fixed \(a,\theta,m>0\). Then
+\[
+ \partial_b H_\theta(m)
+ =-\frac{a(1-\theta)}{2(2b-a)^2}-\frac{\theta m}{4b^2}<0.
+\]
+Both route lines \(A_i+\sigma_i m\) therefore increase strictly in
+\(b\), as does \(L(m)\), since \(\partial_b L(m)=m/(4b^2)>0\).
+At \(m=aq\), the differences between the floor and the two route lines are
+\[
+ \frac{(b-a)(5-2a-9b)}{12(2b-a)}>0,
+ \qquad \frac{(4-a)(b-a)}{6(2b-a)}>0.
+\]
+Their intersections are consequently at positive \(m\). To compare
+intersection values at two upper slopes, evaluate the two new lines at
+the old intersection: both values have increased strictly. The maximum
+of the minimum of a decreasing and an increasing affine line is their
+intersection value, so \(J_i\) increases strictly. Evaluating the route
+lines at \(m=a\) similarly proves this for \(P_i\).
+Finite minima and maxima preserve strict increase. Finally, choosing a
+minimizing \(\theta\) at the larger upper slope proves strict increase
+of \(C_{\rm A}\) itself.
+
+For the lower endpoint, use \(\theta=1,b=2a\). Direct substitution
+gives a zero-terminal bound
+\((1-a)/(12(1-2a))<a\), an early bound at most
+\((1+11a)/21\), and a late bound at most \((1+6a)/16\).
+The latter two are at most \(a\), strictly so for \(a>1/10\).
+At \(a=1/10,b=1/5\), \(\gamma=0\) forces the early bound to be
+exactly \(a\) for every \(\theta\), establishing equality there.
+
+At \(b=1/2\), \(\lambda=0\), so all three intersection values equal
+\(L_0\). The other early bound is at least \(E_0=4L_0/3\).
+The zero-terminal bound is at most \(F=L_0\), while
+\(P_\ell\ge L_0\) and \(P_v\ge L_0\).
+Consequently \(C_\theta(a,1/2)=L_0\) for every \(\theta\).
+Now \(L_0\ge a\), with equality only at \(a=1/6\).
+The intermediate value theorem and strict increase give the unique root.
+Continuity of the root follows by taking convergent subsequences in the
+compact interval and using uniqueness, including the two endpoints.
+\end{proof}
+
+This gives the new curve \(B_{\rm A}\) stated at the beginning of the
+manuscript. It dominates \(B_{\rm M}\): on the latter's nontrivial middle
+range, \(\theta=0\) gives the same early bounds as \(V\), no larger
+late bounds, and \(Z\le(1-q)/3\le\min(E_2,J_E)\). Thus
+\(C_{\rm A}\le C_0\le V\). Below that range the previous curve is
+\(2d-1\); above it the two displayed curves agree.
+
+An exact new example, requiring no optimization, is
+\[
+ a=\frac{11}{100},\quad b=\frac9{40},\quad\theta=1,
+ \qquad C_1(a,b)=\frac{644}{5925},\qquad
+ a-C_1(a,b)=\frac{31}{23700}>0.
+\]
+The fully interpolated construction also covers
+\(a=7/50,b=11/35,\theta=1/3\), with cost
+\(452437/3234750\) and margin \(214/1617375\).
+These are rational checks of strict inequalities, not numerical evidence
+substituting for the profile or analytic proof.

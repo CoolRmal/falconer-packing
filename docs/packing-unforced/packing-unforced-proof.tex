@@ -36,10 +36,10 @@ Fourier estimate. The angular marks remain constant on each standard packet
 label; only the spectral calculation is subdivided more finely. This removes
 the prescribed midpoint from the scale-selection problem.
 
-The latest refinement retains the location and height of a tail minimum,
-and a second minimum on the preceding interval. Comparing several admissible
-chains yields a further improvement for Hausdorff dimensions between
-\(9/8\) and \(7/6\).
+The latest refinement first normalizes the profile endpoint and then adapts
+the preceding interval to the actual tail minimum. A compact interpolation
+of these choices yields a further improvement for Hausdorff dimensions
+between \(11/10\) and \(7/6\).
 
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
@@ -56,13 +56,36 @@ is claimed.
 The existing Lean challenge and comparator are unchanged. This mathematical
 manuscript does not complete the unconditional formalization.
 \end{titlepage}
+\begingroup
+\small\setlength{\parskip}{0pt}
 \tableofcontents
+\endgroup
 \clearpage
 \section{Statement and scope}
 For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
 \(|\cdot|\) denotes one-dimensional Lebesgue measure. The strongest sufficient
 curve proved in this manuscript is
+\begin{equation}\label{adaptive:curve}
+ B_{\rm A}(d)=\begin{cases}
+ 2d-1,&1<d\le\dfrac{11}{10},\\[7pt]
+ 1+\beta(d-1),&\dfrac{11}{10}<d<\dfrac76,\\[7pt]
+ \dfrac1{3-2d},&\dfrac76\le d\le\dfrac54.
+ \end{cases}
+\end{equation}
+Here \(\beta(a)\) is the unique solution in \([2a,1/2]\) of
+\(C_{\rm A}(a,b)=a\). The function \(C_{\rm A}\) is the minimum, over
+one parameter in \([0,1]\), of the explicit rational expression
+\eqref{adaptive:cost}. Lemma~\ref{adaptive:root} proves uniqueness,
+continuity and the endpoint values \(\beta(1/10)=1/5\),
+\(\beta(1/6)=1/2\). No numerical optimization hypothesis is used.
+
+\begin{theorem}[Adaptive sufficient packing condition]\label{target:adaptive}
+Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
+\(\PP E<B_{\rm A}(d)\), then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+
+The preceding actual-minimum refinement is retained for comparison:
 \begin{equation}\label{minimum:curve}
  B_{\rm M}(d)=\begin{cases}
  2d-1,&1<d\le\dfrac98,\\[7pt]
@@ -111,13 +134,13 @@ included. For \(d>5/4\), GIOW already gives the conclusion with no packing
 restriction \cite{giow}. The endpoints of all branches in \eqref{uf:curve}
 agree, and the packing inequality is strict throughout.
 
-A new exact example is \(d=23/20=1.15\), \(D=27/20=1.35\).
-The refined profile cost is \(187/1255\), giving the strict margin
-\(1/1004\). The refined cutoff there is
-\((37+\sqrt{13})/30=1.353518376\ldots\),
-whereas \(B_{\rm U}(1.15)=1.33\) and the originally quoted cutoff was
-\(1.30\). These decimal values illustrate the exact root definition;
-they are not used in its proof.
+A new exact example is \(d=111/100=1.11\), \(D=49/40=1.225\).
+The adaptive profile cost is at most \(644/5925\), giving the strict
+margin \(31/23700\). The previous curve at this Hausdorff dimension
+was \(1.22\). An interpolated choice also covers
+\(d=57/50=1.14\), \(D=46/35\), with exact positive margin
+\(214/1617375\). The proof supplies the exact parameter choices;
+the graph is illustrative and is not used to prove these inequalities.
 
 \begin{figure}[ht]
 \centering
@@ -168,6 +191,10 @@ in those indices. Summing polynomially many such errors preserves this property.
 \clearpage
 \section{Refinement using the actual minima}\label{minimum:section}
 \input{packing-unforced-minimum.tex}
+
+\clearpage
+\section{Endpoint normalization and adaptive intervals}\label{adaptive:section}
+\input{packing-unforced-adaptive.tex}
 
 \section{Algebra and proof of the dimension criterion}
 Put \(a=s-1\) and \(b=u-1\). For \(0<a\le1/4\), the unforced cost
@@ -237,6 +264,23 @@ Section~\ref{fprof:section}. The error and parameter choices are unchanged.
 For \(7/6\le d\le5/4\), apply Theorem~\ref{target:unforced}.
 \end{proof}
 
+\begin{proof}[Proof of Theorem~\ref{target:adaptive}]
+For \(1<d\le11/10\), use Proposition~\ref{prop:coherentborel}.
+For \(11/10<d<7/6\), the same proposition covers \(D<2d-1\).
+Otherwise put \(a=d-1\), \(b=D-1\). Lemma~\ref{adaptive:root}
+gives \(C_{\rm A}(a,b)<a\), and a minimizing parameter \(\theta\)
+has \(C_\theta(a,b)<a\). Keep this parameter fixed. Joint continuity
+and strictness allow \(s<d\), \(u>D\), with
+\(1/10<s-1<1/6\), \(2(s-1)<u-1<1/2\), and
+\(C_\theta(s-1,u-1)<s-1\).
+Use Lemma~\ref{adaptive:profile} in the finite-profile criterion,
+Theorem~\ref{fprof:main}, choosing its fixed initial loss below \(1/16\).
+The chain count, rounding error and approximate-barrier error are precisely
+those required there. The same compact restriction, finite regularization,
+deletion, Fourier iteration and shell summation give a pin in \(E\).
+For \(7/6\le d\le5/4\), use Theorem~\ref{target:unforced}.
+\end{proof}
+
 \section{What the sharpness statement does and does not establish}
 The next proposition concerns only the scale profiles and the specified
 edge-cost model. It shows that a better limiting cost in the high-slope
@@ -269,6 +313,14 @@ the three affine intersections, their positive denominators and strict
 monotonicity, and existence and continuity of the unique root \(b_*\).
 These are exact real-analysis statements; numerical root plots are not
 formal proofs of the curve.
+The adaptive extension additionally requires the edgewise endpoint-clipping
+inequality, the supporting-line stopping argument, and the variable free
+endpoint. Formalize the rational function \(C_\theta\) before defining
+its minimum over the compact interval. Prove joint continuity, attainment,
+strict monotonicity in the upper slope and the root theorem. A minimizing
+parameter at the larger slope proves that compact minimization preserves
+strict increase here. The parameter is then fixed before choosing the
+strict Frostman and covering exponent slacks in the Borel reduction.
 
 The analytic part needs independent formal proofs of Frostman extraction,
 finite regularization, averaged radial projection, packet localization,
