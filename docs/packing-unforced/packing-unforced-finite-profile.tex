@@ -195,7 +195,29 @@ Liu's pinned quadratic identity \cite{liuidentity} bounds the radial density's s
 $$
  \int_0^\infty |G_{R,y}*\widehat\omega_r(y)|^2r\,dr.
 $$
-The source-pin distances lie in a fixed interval bounded away from zero, so its radial weights are equivalent to the unweighted first-dimensional density norm. The identity is applied separately at each pin and therefore permits the dependence of \(G_{R,y}\) on \(y\). Frequencies outside a fixed enlargement of the annulus contribute rapidly decreasing errors, by the packet and cutoff localization. Integrating \eqref{fprof:circleestimate} and using
+The source-pin distances lie in a fixed interval bounded away from zero, so its radial weights are equivalent to the unweighted first-dimensional density norm. The identity is applied separately at each pin and therefore permits the dependence of \(G_{R,y}\) on \(y\).
+
+Here is an explicit uniform bound for the omitted frequencies. A standard
+source packet has the form
+\(\chi\eta_T(\psi_{R,S}\widehat\mu)^\vee\), with
+\(\|D^L(\chi\eta_T)\|_1\le C_LR^{L/2}\). Outside a fixed enlarged
+annulus, the distance to every \(\operatorname{supp}\psi_{R,S}\) is
+comparable to \(R+|\xi|\). Integrating the convolution in frequency,
+using \(|\widehat\mu|\le1\) and the polynomial number of packets, gives
+\[
+ |\widehat G_{R,y}(\xi)|
+ \le C_LR^{C+L/2}(R+|\xi|)^{-L}.
+\]
+The constant \(C\) is independent of \(L\), of the pin, and of all
+packet selections. Since \(\omega_r\) is normalized, the corresponding
+omitted circular energy is at most
+\[
+ C_LR^{2C+L}\int_0^\infty(R+r)^{-2L}r\,dr
+ \le C_LR^{2C+2-L}.
+\]
+Taking \(L\) arbitrarily large justifies the rapidly decreasing error
+uniformly over all components and pins. Integrating
+\eqref{fprof:circleestimate} over the remaining annulus and using
 $$
  \int_{|\xi|\asymp_T R}|\widehat\mu(\xi)|^2\dd\xi
  \leq C_T R^{2-s}I_s(\mu)

@@ -1,0 +1,130 @@
+\subsection{A conditional estimate using perpendicular bisectors}
+\label{bisector:section}
+
+The following criterion retains the positions of source pairs, which are
+absent from the scale profile. Its mixed-norm hypothesis is not deduced
+from Hausdorff and packing dimensions here. In particular it is not a new
+dimensional sufficient condition.
+
+Let \(\mu,\nu\) be compactly supported positive measures with
+\(I_1(\mu)<\infty\) and \(I_\tau(\nu)<\infty\), where
+\(1<\tau<2\). For \(x\ne x'\), define
+\[
+ \theta(x,x')=\frac{x-x'}{|x-x'|},\qquad
+ c(x,x')=\frac{|x|^2-|x'|^2}{2|x-x'|}.
+\]
+Their perpendicular bisector has equation \(y\cdot\theta=c\).
+The finite measure on oriented line space
+\[
+ \mathcal B_\mu=(\theta,c)_*
+       \bigl(|x-x'|^{-1}\mu(dx)\mu(dx')\bigr)
+\]
+has total mass \(I_1(\mu)\). We use ordinary angular arclength below.
+
+\begin{proposition}[Mixed-norm bisector criterion]\label{bisector:criterion}
+Suppose
+\[
+ \mathcal B_\mu=b_\mu(\theta,c)\,d\theta\,dc,\qquad
+ \|b_\mu\|_{L^2_\theta L^{2/\tau}_c}<\infty.
+\]
+Then the actual joint distance law has an \(L^2(\nu\times dt)\)
+density. Writing \(\eta_y=(d_y)_*\mu\), one has
+\begin{equation}\label{bisector:bound}
+ \int\|\eta_y\|_2^2\,d\nu(y)
+ \le C_{\tau,K}
+   \bigl(\nu(\R^2)^2+I_\tau(\nu)\bigr)^{1/2}
+   \|b_\mu\|_{L^2_\theta L^{2/\tau}_c},
+\end{equation}
+where \(K\) is a compact set containing both supports. Positive source
+mass therefore gives positive distance length for almost every pin.
+\end{proposition}
+
+\begin{proof}
+For almost every \(\theta\), let \(v_\theta\) be the density of the
+linear projection of \(\nu\) in direction \(\theta\). The Fourier
+projection identity and polar coordinates imply
+\[
+ \int\|v_\theta\|_{H^{(\tau-1)/2}(\R)}^2\,d\theta
+ \le C_\tau\bigl(\nu(\R^2)^2+I_\tau(\nu)\bigr).
+\]
+Indeed the high-frequency weight is \(|\xi|^{\tau-2}\) in the
+plane; the bounded-frequency part is controlled by the mass.
+One-dimensional Sobolev embedding and the Hardy--Littlewood maximal
+inequality give, for \(q=2/(2-\tau)\),
+\begin{equation}\label{bisector:projection}
+ \|Mv_\theta\|_{L^2_\theta L^q_c}
+ \le C_\tau\bigl(\nu(\R^2)^2+I_\tau(\nu)\bigr)^{1/2}.
+\end{equation}
+Here \(M\) is the centered interval maximal operator and
+\(q'=2/\tau\).
+
+Choose a nonnegative smooth compactly supported line mollifier
+\(\varphi_\varepsilon\) of integral one. Expanding its squared
+convolution norm bounds
+\(\int\|\eta_y*\varphi_\varepsilon\|_2^2\,d\nu(y)\) by
+\[
+ C\varepsilon^{-1}\iint
+ \nu\{y:\bigl||x-y|-|x'-y|\bigr|\le C\varepsilon\}
+ \,d\mu(x)d\mu(x').
+\]
+All distances are bounded above on \(K\), and
+\[
+ |x-y|^2-|x'-y|^2
+ =2|x-x'|\bigl(c(x,x')-\theta(x,x')\cdot y\bigr).
+\]
+Thus the integrand is at most
+\(C_K|x-x'|^{-1}Mv_\theta(c)\).
+The exceptional angular null set has zero weighted source-pair mass
+by the assumed density of \(\mathcal B_\mu\). The source diagonal
+also has zero mass, because finite first energy excludes atoms.
+Consequently the smoothed squared norm is bounded by
+\[
+ C_K\int b_\mu(\theta,c)Mv_\theta(c)\,dc\,d\theta.
+\]
+Apply H\"older with \(q',q\) in \(c\), followed by Cauchy--Schwarz
+in \(\theta\) and \eqref{bisector:projection}. This proves
+\eqref{bisector:bound} uniformly in \(\varepsilon\). Weak compactness
+in the joint \(L^2\) space identifies an actual density by testing
+against compactly supported continuous functions. Disintegration gives
+the pinned statement. No separation of the two supports is needed.
+\end{proof}
+
+For a smooth source density \(f\), the bisector density has an exact
+reflection formula:
+\begin{equation}\label{bisector:reflection}
+ b_\mu(\theta,c)=\int_{\R^2}f(x)f(\mathcal R_{\theta,c}x)\,dx,
+ \qquad \mathcal R_{\theta,c}x=x+2(c-x\cdot\theta)\theta.
+\end{equation}
+To check the normalization, put
+\(x=z+r\theta/2\), \(x'=z-r\theta/2\), and
+\(z=c\theta+u\theta^\perp\), with \(r>0\). The pair Jacobian
+\(r\) cancels the reciprocal separation. Changing \(r\) to twice
+the normal displacement and using evenness of the product converts
+the integral over positive displacements into the integral over the
+whole normal line. This gives \eqref{bisector:reflection} with no
+additional factor.
+
+For an \(s\)-Frostman source, \(s>1\), a sufficient finite-resolution
+version is the uniform bound
+\[
+ \sup_{0<\delta<1}
+ \left\|\int f_\delta(x)f_\delta(\mathcal R_{\theta,c}x)\,dx
+       \right\|_{L^2_\theta L^{2/\tau}_c}<\infty,
+ \qquad f_\delta=\mu*\psi_\delta,
+\]
+with a fixed positive smooth compactly supported planar mollifier.
+The smoothed measures retain the Frostman bound, also at radii below
+\(\delta\). Their weighted near-diagonal mass is uniformly
+\(O(r^{s-1})\). Away from the diagonal, the bisector map is continuous,
+so these measures converge weakly to \(\mathcal B_\mu\).
+Reflexivity of the mixed-norm space proves the stated implication.
+
+For example, at \(d=23/20\), \(D=3/2\), which lies outside the
+current cutoff \(B_{\rm H}(23/20)=10/7\), choose a pin energy exponent
+\(\tau=9/8\). The source reflection norm would be
+\(L^2_\theta L^{16/9}_c\), paired with
+\(L^2_\theta L^{16/7}_c\) for pin projections. Proving the required
+reflection bound for a positive source restriction under these
+dimensions remains an open step in this approach. The criterion has
+a raw quadratic conclusion, so the earlier counterexamples forbid
+asserting its hypothesis for arbitrary Frostman measures.

@@ -196,8 +196,21 @@ arguments.
 The manuscript proves a sharper quadratic selection estimate for a finite
 train-track model, including all retained cross-track interactions. Deleting
 only the pin's own track works exactly when the model's covering exponent is at
-least four thirds; below that, a larger transverse deletion gives a controlled
-norm. These model estimates do not give a new dimension-only theorem.
+least four thirds. Below that, averaging over the actual deterministic pin slats
+now gives an optimal deletion order for the averaged squared norm. With the
+model parameters, the new order is
+
+$$
+\delta^{2\alpha\beta/(1-\alpha)},\qquad
+\alpha=u-1<\frac13,\qquad \beta=\frac{s-1}{2}.
+$$
+
+The proof retains the equal-radius resonances and counts all other vertical
+slat shifts. A matching lower bound applies to arbitrary positive selections.
+This improves the former sufficient order
+$$\delta^{\alpha\beta/(1-2\alpha)}$$ for the averaged norm. The earlier
+bound remains uniform at every pin; the new estimate is averaged over pins.
+Neither finite-model estimate is a new dimension-only theorem.
 
 For fixed source and pin measures, vanishing total deletion and uniformly bounded
 full quadratic norms would force the original joint law into the quadratic
@@ -205,6 +218,21 @@ space. The fixed-measure example rules out that overly strong target. Retaining
 a fixed positive mass with a controlled norm is sufficient for a nonzero
 absolutely continuous component. Persistent deletion is one implementation,
 but proving its geometric estimates from dimensions alone remains open here.
+
+For fixed measures, the new angular truncation retains positive mass once for
+all resolutions and bounds its near-source collisions by
+
+$$
+C A\left(\varepsilon^{-1}r^{s+1}+r^{s-1}\right).
+$$
+
+At a source cutoff $$r=\varepsilon^\alpha$$ with
+$$1/(s+1)<\alpha<1$$, this has a summable positive power of the resolution.
+Uniform control of the remaining far-source collisions is still a hypothesis.
+The separate bisector criterion uses a mixed norm of reflection
+autocorrelations of an actual source measure. Both criteria preserve geometry
+discarded by the scalar profile, but neither missing geometric bound is deduced
+here from dimensions beyond the existing curve.
 
 The manuscript also checks the natural scale correspondence for a hybrid
 argument: affine source depth is half the corresponding Fourier depth. Matching
@@ -271,6 +299,14 @@ claim about all uses of decoupling or the optimal distance-set threshold.
 - [Positive selection criteria and the sharper finite-model estimate](packing-unforced-positive-selection.tex)
 - [Persistent selection and the half-order transverse potential](2026-09-30-persistent-selection-and-half-potential.md)
 - [Independent persistent-selection audit](2026-09-30-persistent-selection-independent-audit.md)
+- [Sharp averaged deletion theorem and full arithmetic proof](packing-unforced-sharp-selection.tex)
+- [Detailed sharp finite-model derivation](2026-09-30-sharp-finite-train-track-deletion.md)
+- [Independent cross-track resonance and optimality audit](2026-09-30-train-track-cross-resonance-audit.md)
+- [Second independent finite-deletion audit](2026-09-30-sharp-finite-deletion-independent-audit.md)
+- [Fixed positive angular selection and its near-source gain](packing-unforced-angular-selection.tex)
+- [Detailed angular-selection proof and bisector audit](2026-09-30-fixed-angular-selection-collisions.md)
+- [Conditional mixed-norm bisector criterion](packing-unforced-bisector.tex)
+- [Reflection geometry, exact exponents, and primary-source review](2026-09-30-bisector-mixed-norm-route.md)
 - [Modified Fourier transfer](packing-unforced-transfer.tex)
 - [Detailed selected-cap weighted embedding](packing-unforced-embedding.tex)
 - [Coherent analytic branch](packing-bound-original-branch.tex)

@@ -1,0 +1,203 @@
+\subsection{Sharp deletion order after averaging the pin slats}
+\label{selection:sharp-section}
+
+The preceding half-potential estimate is uniform at every pin. Averaging
+over the actual deterministic vertical pin slats allows a smaller deletion
+below \(u=4/3\). The result here concerns the same finite family, including
+arbitrary probabilities inside its microscopic cells. No random shifts
+or equidistribution of phases are assumed.
+
+\begin{theorem}[Sharp averaged finite-model selection]
+\label{selection:sharp-theorem}
+Assume the finite model of Section~\ref{selection:finite-model}, with
+\(0<\alpha<1/3\), and mollify at any fixed resolution
+\(\epsilon\asymp\delta\). For \(Ca\le\rho\le r_0\), retain,
+at a pin in track \(j\), exactly the source tracks satisfying
+\( |c_i-c_j|\ge\rho\). Let \(f_y\) be the resulting mollified
+pinned density. The deleted source mass is at most \(C\rho^\alpha\),
+and
+\begin{equation}\label{selection:sharp-bound}
+ \int\|f_y\|_2^2\,d\nu_\delta(y)
+ \le C\bigl(1+mr_0\rho^{\alpha-1}\bigr).
+\end{equation}
+The constants are independent of \(\delta\) and \(\rho\).
+Consequently the cutoff
+\begin{equation}\label{selection:optimal-cutoff}
+ \rho_{\rm opt}=(mr_0)^{1/(1-\alpha)}
+       \asymp r_0^{2/(1-\alpha)}
+\end{equation}
+gives a uniformly bounded averaged squared \(L^2\) norm with deleted
+mass at most
+\begin{equation}\label{selection:sharp-budget}
+ C(mr_0)^{\alpha/(1-\alpha)}
+       \asymp C\delta^{2\alpha\beta/(1-\alpha)}.
+\end{equation}
+This is the optimal order, up to constants depending on the norm bound,
+for arbitrary positive selections with bounded averaged squared norm,
+by the necessary estimate \eqref{selection:budget}.
+\end{theorem}
+
+\begin{proof}
+Fix a pin track \(j\) and use the \emph{center-to-center} offsets
+\(r_i=|c_i-c_j|\). Pins in its slat \(\ell\) are within \(O(w)\)
+horizontally and \(O(\delta)\) vertically of \((c_j,3+\ell h)\).
+For every retained track \(r_i\ge\rho\gg w\), put
+\[
+ t_{i,k,\ell}=\sqrt{r_i^2+(3+(\ell-k)h)^2}.
+\]
+The cell count of Lemma~\ref{selection:one-track} gives the uniform
+slat envelope
+\begin{equation}\label{selection:slat-envelope}
+ f_{i,y}(t)\le
+ C\frac{mh}{r_iw}\sum_k
+ \mathbf1_{\{|t-t_{i,k,\ell}|\le Cr_iw\}}
+ \quad(y\hbox{ in pin track }j,\hbox{ slat }\ell).
+\end{equation}
+To verify uniformity in the microscopic pin position, changing either
+horizontal coordinate by \(O(w)\) changes distance by
+\(O(r_iw+w^2)=O(r_iw)\). Vertical cell errors and mollification add
+\(O(\delta)\), which is absorbed since \(\delta=w^2\).
+The horizontal radial derivative has magnitude comparable to \(r_i\),
+so at most \(C/r_i\) cells in a source slat contribute at one radial
+value. Their masses are \(\asymp mh\delta/w\) and the mollifier's
+supremum is \(O(\delta^{-1})\), proving the displayed amplitude.
+This argument does not condition the vertical slat distribution on the
+exact horizontal coordinate of a pin.
+
+Tracks with \(r_i\ge r_0\) have total density bounded pointwise by a
+constant, using Lemma~\ref{selection:one-track} and the comparison of
+center offsets with actual offsets. Their total mass is at most one.
+They contribute only a constant to the squared norm, including their
+cross term with the remaining tracks. It suffices to handle
+\(\rho\le r_i\le r_0\).
+
+We first prove the following conditional averaged cross-track estimate.
+For two such tracks, write
+\(r=r_i\le R=r_{i'}\le r_0\) and \(\Delta=R^2-r^2\). Then
+\begin{equation}\label{selection:cross-track}
+ \frac1m\int_{y\ {
+m in\ pin\ track}\ j}
+       \int f_{i,y}(t)f_{i',y}(t)\,dt\,d\nu_\delta(y)
+ \le Cm^2\left(1+\frac{r_0}{R}
+               \mathbf1_{\{\Delta\le CRw\}}\right).
+\end{equation}
+The second term explicitly retains possible coherent equal-radius
+resonances.
+
+Multiply the envelopes \eqref{selection:slat-envelope}. An intersection
+of their radial intervals has length at most \(Crw\), and is empty
+unless the centers are within \(CRw\). Each pin slat has conditional
+mass \(1/N_S\), so the left side of \eqref{selection:cross-track}
+is at most
+\begin{equation}\label{selection:lattice-count}
+ C\frac{m^2h^2}{Rw}\frac1{N_S}
+ \sum_\ell\sum_{k,k'}
+ \mathbf1_{\{|t_{i,k,\ell}-t_{i',k',\ell}|\le CRw\}}.
+\end{equation}
+The use of a supremum within each pin slat justifies this estimate for
+arbitrary microscopic cell probabilities.
+
+Put \(q=k'-k\) and \(V=3+(\ell-k)h\). Both \(V\) and
+\(V-qh\) lie in the fixed positive range of vertical source--pin
+separations. Squaring the two central radii, their collision condition
+implies exactly
+\begin{equation}\label{selection:exact-phase}
+ \big|\Delta-qh(2V-qh)\big|\le CRw.
+\end{equation}
+If \(q=0\), this requires \(\Delta\le CRw\). There are at most
+\(N_S\) pairs \(k=k'\) per pin slat. Their contribution to
+\eqref{selection:lattice-count} is at most
+\[
+ C\frac{m^2h^2}{Rw}N_S\,
+       \mathbf1_{\{\Delta\le CRw\}}
+ \le Cm^2\frac{r_0}{R}\mathbf1_{\{\Delta\le CRw\}}.
+\]
+
+Now fix \(q\ne0\) and \(k\). Increasing \(\ell\) by one
+changes the expression inside the absolute value in
+\eqref{selection:exact-phase} by exactly \(-2qh^2\). Thus at most
+\[
+ C\left(1+\frac{Rw}{|q|h^2}\right)
+\]
+pin slats can satisfy it. Any possible shift also obeys
+\begin{equation}\label{selection:shift-range}
+ |q|h\le C(\Delta+Rw)\le C(R^2+Rw),
+\end{equation}
+because \(2V-qh=V+(V-qh)\) is bounded below by a positive constant.
+In particular
+\[
+ \frac{|q|h^2}{Rw}\le C(Rr_0+h)\le C.
+\]
+This absorbs the discrete counting error one. Since \(N_S\asymp h^{-1}\),
+the fraction of pin slats satisfying the condition for each \(k,q\)
+is at most \(CRw/(|q|h)\). Sum over \(k\), and substitute in
+\eqref{selection:lattice-count}; this shift contributes at most
+\(Cm^2/|q|\).
+
+The possible nonzero shifts have bounded harmonic sum. If
+\(\Delta>C_1Rw\), with a sufficiently large fixed \(C_1\),
+\eqref{selection:exact-phase} forces \(q>0\) and
+\[
+ c\Delta\le qh\le C\Delta.
+\]
+These integers lie in an interval of fixed multiplicative ratio, so
+\(\sum 1/q\lesssim1\), including when that interval meets one.
+If \(\Delta\le C_1Rw\), then \eqref{selection:shift-range} and
+\(Rw\le r_0w=h\) bound \(|q|\) by a fixed constant. The same
+conclusion holds. Hence all nonzero shifts contribute at most \(Cm^2\),
+proving \eqref{selection:cross-track}. This is a lattice count for the
+actual pin slats, with no random-phase assumption.
+
+It remains to sum the exceptional term. Its condition implies
+\[
+ |r_i-r_{i'}|\le Cw,
+\]
+since \(\Delta=(R-r)(R+r)\). For each fixed \(j,i\), only
+\(O(1)\) centers \(c_{i'}\) satisfy this: they lie in intervals
+of length \(O(w)\) around \(c_i\) or its reflection
+\(2c_j-c_i\). The centers are \(3a\)-separated and \(w/a\to0\).
+This counts exact reflected pairs as well as the diagonal \(i'=i\).
+Their radii are comparable to \(r_i\), because \(r_i\gg w\).
+
+The baseline terms in \eqref{selection:cross-track} sum to a constant,
+since \(N_Tm=1\). The exceptional terms sum to at most
+\[
+ Cm^2r_0\sum_{r_i\ge\rho}r_i^{-1}.
+\]
+Dyadic annuli and \eqref{selection:center-count}, with \(\alpha<1\),
+give
+\[
+ \sum_{r_i\ge\rho}m r_i^{-1}\le C_\alpha\rho^{\alpha-1}
+ \qquad(\rho\ge Ca).
+\]
+Thus the conditional averaged squared norm in pin track \(j\) is at
+most \(C(1+mr_0\rho^{\alpha-1})\), uniformly in \(j\). Averaging
+these conditional estimates with track masses \(m\), and adding the
+far-track contribution, proves \eqref{selection:sharp-bound}.
+
+The removed mass is at most \(C(\rho^\alpha+a^\alpha)\), hence at
+most \(C\rho^\alpha\). For \eqref{selection:optimal-cutoff}, use
+\(m\asymp a^\alpha\asymp r_0\) to check
+\[
+ \rho_{\rm opt}/a\asymp
+       a^{(3\alpha-1)/(1-\alpha)}\longrightarrow\infty,
+ \qquad
+ \rho_{\rm opt}/r_0\asymp
+       r_0^{(1+\alpha)/(1-\alpha)}\longrightarrow0.
+\]
+The cutoff is therefore in the required range and makes
+\(mr_0\rho^{\alpha-1}=1\). This proves
+\eqref{selection:sharp-budget}; the necessary bound
+\eqref{selection:budget} proves its asserted sharp order.
+\end{proof}
+
+The improvement in \eqref{selection:sharp-budget} concerns the joint
+pin-averaged norm. Proposition~\ref{selection:finite-theorem} supplies
+a larger deletion budget but a bound at \emph{every} pin; no improved
+uniform pinwise bound is asserted here. The finite configuration varies
+with \(\delta\). Consequently this theorem alone cannot be inserted
+into Proposition~\ref{selection:compactness}, which requires restrictions
+of one fixed pair of measures across the sequence of resolutions.
+A persistent construction for a general fixed fractal measure remains a
+separate missing step; no dimension-only distance theorem follows from
+this finite-model result.

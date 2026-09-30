@@ -1,0 +1,147 @@
+\section{A fixed positive angular selection and near-source collisions}
+\label{angselect:section}
+
+The following estimate uses angular geometry absent from the scalar
+profile. It does not by itself improve the dimension condition: the
+far-source estimate specified below remains a separate hypothesis.
+
+Let \(\mu,\nu\) be compactly supported planar probabilities with
+\(a_0\le |x-y|\le b_0\) on their product support, where \(a_0>0\).
+Assume \(\mu(B(x,r))\le C_F r^s\), with \(s>1\). Write
+\(\Theta_x(y)=(y-x)/|y-x|\), and suppose
+\begin{equation}\label{angselect:moment}
+ (\Theta_x)_*\nu=\rho_x(\theta)\,d\theta,
+ \qquad
+ B=\int\!\int_{S^1}\rho_x(\theta)^q\,d\theta\,d\mu(x)<\infty,
+ \qquad q>1.
+\end{equation}
+The densities are needed only for \(\mu\)-almost every source point.
+They have a jointly measurable version by the Radon--Nikodym theorem
+on source space times the circle. If both Frostman exponents exceed
+one, the averaged radial-projection theorem supplies
+\eqref{angselect:moment} after reducing to a common exponent
+\cite[Theorem 3.7]{giow}.
+
+Fix \(A\ge1\), independently of every subsequent resolution, and set
+\[
+ a_A(x,y)=\mathbf1_{\{\rho_x(\Theta_x(y))\le A\}},
+ \qquad \eta_y^A(dx)=a_A(x,y)\,d\mu(x).
+\]
+Assign selection zero on the exceptional null set of source points.
+These are positive measurable kernels, and
+\begin{equation}\label{angselect:mass}
+ \iint(1-a_A)\,d\mu\,d\nu\le B A^{1-q},
+ \qquad
+ (\Theta_x)_*(a_A(x,\cdot)\nu)\le A\,d\theta.
+\end{equation}
+Indeed, the first integral equals
+\(\int\!\int_{\{\rho_x>A\}}\rho_x\,d\theta\,d\mu(x)\),
+and the second density is exactly
+\(\rho_x\mathbf1_{\{\rho_x\le A\}}\).
+Thus a sufficiently large fixed \(A\) retains positive total mass.
+The loss is fixed; it does not tend to zero as the resolution increases.
+
+\begin{proposition}[Positive near-source collision bound]
+\label{angselect:nearprop}
+For \(0<\varepsilon<r\le1\), define
+\begin{align*}
+ \mathcal C^A_{\varepsilon,\le r}
+ =\varepsilon^{-1}\iiint
+ &\mathbf1_{\{|x-x'|\le r\}}
+ \mathbf1_{\{\,||x-y|-|x'-y||\le\varepsilon\}}\\[-2pt]
+ &\hspace{8mm}\cdot a_A(x,y)a_A(x',y)
+ \,d\mu(x)d\mu(x')d\nu(y).
+\end{align*}
+Then
+\begin{equation}\label{angselect:nearbound}
+ \mathcal C^A_{\varepsilon,\le r}
+ \le C A\bigl(\varepsilon^{-1}r^{s+1}+r^{s-1}\bigr),
+\end{equation}
+where \(C\) depends only on the standing geometric and Frostman data.
+\end{proposition}
+
+\begin{proof}
+Pairs with \(|x-x'|\le\varepsilon\) contribute at most
+\(\varepsilon^{-1}\int\mu(B(x,\varepsilon))\,d\mu(x)
+\le C_F\varepsilon^{s-1}\).
+The diagonal has zero product mass. For
+\(u=|x-x'|>\varepsilon\), put
+\(e=(x'-x)/u\), \(\ell=|y-x|\), and \(\theta=\Theta_x(y)\).
+The squared-distance identity
+\[
+ |x'-y|^2-|x-y|^2=u^2-2u\ell\,e\cdot\theta
+\]
+shows that a collision forces
+\[
+ |e\cdot\theta|\le C_{a_0,b_0}(u+\varepsilon/u).
+\]
+This set of directions has arclength at most
+\(C\min\{1,u+\varepsilon/u\}\). Drop the second selection factor,
+which is at most one, and use the first factor's angular domination in
+\eqref{angselect:mass}. The retained pin mass for this source pair is
+at most \(CA(u+\varepsilon/u)\).
+
+Frostman growth, with dyadic annuli for the second integral, gives
+\[
+ \int_{0<|x-x'|\le r}|x-x'|\,d\mu(x')\le C_F r^{s+1},
+ \qquad
+ \int_{0<|x-x'|\le r}\frac{d\mu(x')}{|x-x'|}
+ \le C_s C_F r^{s-1}.
+\]
+Integrate the preceding pin bound and divide by \(\varepsilon\).
+The smallest-separation contribution is absorbed because
+\(A\ge1\) and \(\varepsilon^{s-1}\le r^{s-1}\).
+Both collision factors throughout came from the same positive kernel;
+no arbitrary source-pair selection was substituted for that kernel.
+\end{proof}
+
+At the parabolic radius the estimate becomes
+\begin{equation}\label{angselect:parabolic}
+ \mathcal C^A_{\varepsilon,\le\sqrt\varepsilon}
+ \le CA\varepsilon^{(s-1)/2}.
+\end{equation}
+More generally, for fixed
+\(1/(s+1)<\alpha<1\) and
+\(\kappa=\min\{\alpha(s+1)-1,\alpha(s-1)\}>0\),
+\begin{equation}\label{angselect:power}
+ \mathcal C^A_{\varepsilon,\le\varepsilon^\alpha}
+ \le CA\varepsilon^\kappa.
+\end{equation}
+These contributions are summable over dyadic resolutions.
+One may choose \(\alpha<1/2\), hence control clusters larger than
+the parabolic radius. No optimality of this cutoff is asserted.
+
+\begin{proposition}[The exact remaining far-source criterion]
+\label{angselect:farcriterion}
+Choose \(A\) with \(m_0=1-BA^{1-q}>0\), and \(\alpha\) as above.
+Define \(\mathcal C^A_{\varepsilon,>r}\) by replacing
+\(|x-x'|\le r\) in Proposition~\ref{angselect:nearprop} by
+\(|x-x'|>r\), keeping both weights unchanged.
+If some sequence \(\varepsilon_j\to0\) satisfies
+\begin{equation}\label{angselect:farhyp}
+ \sup_j\mathcal C^A_{\varepsilon_j,>\varepsilon_j^\alpha}<\infty,
+\end{equation}
+then \(\nu(dy)(d_y)_*\eta_y^A(dt)\) has an
+\(L^2(d\nu\,dt)\) density and mass at least \(m_0\).
+In particular a positive-\(\nu\) set of pins has positive-length
+distance sets from \(\supp\mu\).
+\end{proposition}
+
+\begin{proof}
+Take a nonnegative smooth mollifier of integral one supported in
+\([-1/2,1/2]\). The squared norm of its \(\varepsilon\)-smoothing
+of the selected radial law is at most a fixed constant times the full
+collision integral of width \(\varepsilon\). Split into its near
+and far portions and apply \eqref{angselect:power} and
+\eqref{angselect:farhyp}. Weak compactness in the joint \(L^2\)
+space and weak convergence of mollifications of the fixed positive
+measure identify its density. Equation~\eqref{angselect:mass}
+gives the retained mass, and disintegration and Cauchy--Schwarz give
+the distance conclusion.
+\end{proof}
+
+Only \eqref{angselect:nearbound} is supplied here by angular geometry.
+The far hypothesis is not deduced from dimensions. It concerns a fixed
+positive pair restriction, unlike the false vanishing-total-loss raw
+collision target. Estimating pin mass radially within the angular bands
+in the proof is the additional geometric input still required.

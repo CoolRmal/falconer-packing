@@ -2,6 +2,12 @@
 
 Date: 2026-09-30.
 
+Update: the later [sharp finite-model proof](2026-09-30-sharp-finite-train-track-deletion.md)
+closes the deletion-budget gap for the **averaged** quadratic norm. The
+half-potential bound proved here remains useful because it is uniform at each
+pin. The fixed-measure compactness and persistent-selection distinctions below
+are unchanged.
+
 This note continues the natural-language proof investigation. It leaves the earlier audited train-track note unchanged. There are two substantive conclusions:
 
 - In the finite train-track model, a half-order transverse potential yields a sharper $L^2$ selection theorem. Deleting only the pin's own track succeeds exactly when $u\ge4/3$, matching the earlier neighboring-track counterexample below $4/3$.
@@ -144,7 +150,7 @@ $$
 
 Choose the fixed constant $A_C>0$ small enough that the latter lower bound exceeds the proposed norm bound $C$. For sufficiently small $\delta$, this radius still satisfies $\rho\gg a$ because $\alpha<1/3$. Therefore $e_\delta>(c/2)\rho^\alpha$, which is (6).
 
-The sufficient exponent in (5) and the necessary exponent in (6) differ for $\alpha<1/3$. They agree with the own-track deletion exponent $\beta$ at $\alpha=1/3$. No exact optimal deletion rate below that point is claimed.
+The pinwise sufficient exponent in (5) and the averaged necessary exponent in (6) differ below the transition. The later sharp finite-model proof now attains the necessary order for the averaged norm, by counting the deterministic vertical slat interactions. It does not assert the same improved bound uniformly at every pin.
 
 ## 2. A dimension-only vanishing-loss candidate is false
 
