@@ -206,6 +206,8 @@ measure-theoretic modules prove some of the downstream steps.
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
 | compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
 | increasing-union continuity for actual dyadic covering content | **proved**, for arbitrary sets and cube weights |
+| actual-profile hard-gap estimates and admissibility-preserving grid rounding | **proved**; final endpoint clipping and uniform interface being assembled |
+| Fourier energy in frequency balls grows at most as $$R^{2-s}$$ | **proved**, directly from Frostman growth |
 | ordered hard/gap partitions of actual interpolated profiles | **proved**, with no partition assumption |
 | real-chain compression to uniformly bounded length | **proved**, without cost increase |
 | Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
@@ -244,6 +246,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
 | `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
 | `FalconerPacking/HardPointPartition.lean` | ordered finite hard/gap partitions extracted from interpolated profiles |
+| `FalconerPacking/HardGapProfile.lean` | both actual-profile hard-gap estimates, with gap extraction and budgets proved |
+| `FalconerPacking/RealChainRounding.lean` | downward grid rounding, duplicate removal, and the quantitative cost bound |
 | `FalconerPacking/RealChainCompression.lean` | uniformly bounded real-chain length with no increase of cost |
 | `FalconerPacking/HardPointChains.lean` | finite real chains across hard gaps and intervals, with proved termination |
 | `FalconerPacking/FiniteHardPoints.lean` | exact finite closed-interval representation for interpolated hard-point sets |
@@ -269,6 +273,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/GaussianBallEnergy.lean` | frequency-ball Fourier energy estimate with the exponent 2-s |
 | `FalconerPacking/GaussianFrostman.lean` | annular Gaussian potential bound and the resulting Fourier energy growth |
 | `FalconerPacking/GaussianWeightedEnergy.lean` | bounded signed weights and the Gaussian coordinate-energy comparison |
 | `FalconerPacking/GaussianEnergy.lean` | Gaussian Fourier identity for finite planar measures, including integrability |

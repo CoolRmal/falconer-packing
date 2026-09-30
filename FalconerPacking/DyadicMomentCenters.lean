@@ -27,7 +27,8 @@ theorem ae_measure_dyadicCube_pos (μ : Measure (EuclideanSpace ℝ (Fin 2))) (n
       x ∉ dyadicCube n k := by
     intro k
     by_cases hk : μ (dyadicCube n k) = 0
-    · have hx : ∀ᵐ x ∂μ, x ∉ dyadicCube n k := by simpa only [ae_iff, not_not, setOf_mem_eq] using hk
+    · have hx : ∀ᵐ x ∂μ, x ∉ dyadicCube n k := by
+        simpa only [ae_iff, not_not, setOf_mem_eq] using hk
       filter_upwards [hx] with x hx
       exact fun _ ↦ hx
     · exact Filter.Eventually.of_forall fun _ h ↦ (hk h).elim

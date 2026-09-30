@@ -20,6 +20,8 @@ import FalconerPacking.HardPointChains
 import FalconerPacking.FiniteHardPoints
 import FalconerPacking.HardPointPartition
 import FalconerPacking.RealChainCompression
+import FalconerPacking.RealChainRounding
+import FalconerPacking.HardGapProfile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -34,6 +36,7 @@ import FalconerPacking.AngularTruncation
 import FalconerPacking.GaussianEnergy
 import FalconerPacking.GaussianWeightedEnergy
 import FalconerPacking.GaussianFrostman
+import FalconerPacking.GaussianBallEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
