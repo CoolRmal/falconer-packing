@@ -328,6 +328,12 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SmoothProbabilityApproximation.lean` | explicit smooth source probabilities converge weakly and preserve Frostman bounds |
 | `FalconerPacking/RadialProjectionSmoothTrace.lean` | actual projected characteristic functions identified with the Schwartz Fourier integral |
 | `FalconerPacking/RadialProjectionAngularMoment.lean` | angular weak bound obtained from first energy moments |
+| `FalconerPacking/AffineProjectionGeometry.lean` | exact affine pushforward identities and separated-pin geometric bounds |
+| `FalconerPacking/LocalProjectionL1.lean` | actual density support and uniform local L¹ comparison |
+| `FalconerPacking/RadialProjectionSmoothBound.lean` | joint weak trace and finite moments for smooth source measures |
+| `FalconerPacking/FrostmanLineNull.lean` | Frostman line nullity and almost-everywhere continuity of radial angles |
+| `FalconerPacking/SmoothApproximationTests.lean` | convergence against bounded tests continuous almost everywhere |
+| `FalconerPacking/WeakMomentLimit.lean` | absolute continuity of weak limits with uniform density moments above one |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

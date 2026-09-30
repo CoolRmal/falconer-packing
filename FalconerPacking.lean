@@ -96,6 +96,13 @@ import FalconerPacking.LaminarContent
 import FalconerPacking.PinnedMeasure
 import FalconerPacking.Main
 
+import FalconerPacking.AffineProjectionGeometry
+import FalconerPacking.LocalProjectionL1
+import FalconerPacking.RadialProjectionSmoothBound
+import FalconerPacking.FrostmanLineNull
+import FalconerPacking.SmoothApproximationTests
+import FalconerPacking.WeakMomentLimit
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
