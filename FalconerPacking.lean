@@ -39,6 +39,9 @@ import FalconerPacking.GaussianEnergy
 import FalconerPacking.GaussianWeightedEnergy
 import FalconerPacking.GaussianFrostman
 import FalconerPacking.GaussianBallEnergy
+import FalconerPacking.GaussianMellin
+import FalconerPacking.RieszFourier1D
+import FalconerPacking.RieszFourier2D
 import FalconerPacking.PolarFourierEnergy
 import FalconerPacking.WeakDensityLimit
 import FalconerPacking.SchwartzDensityCriterion
@@ -60,6 +63,7 @@ import FalconerPacking.AngularDerivativeEnergy
 import FalconerPacking.DyadicBandSum
 import FalconerPacking.DyadicBandIntegral
 import FalconerPacking.CorrelatedBandEnergy
+import FalconerPacking.CorrelatedFourierEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights

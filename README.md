@@ -309,7 +309,11 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicBandSum.lean` | convergent two-sided band sum with an explicit displacement-power constant |
 | `FalconerPacking/DyadicBandIntegral.lean` | full even Fourier integral bounded by the dyadic band sum |
 | `FalconerPacking/CorrelatedBandEnergy.lean` | actual characteristic-function comparison gains for correlated angles and shifts |
+| `FalconerPacking/CorrelatedFourierEnergy.lean` | full Fourier energy bound for simultaneous correlated rotations and translations |
 | `FalconerPacking/RegularMeasureProfile.lean` | actual normalized components give profiles and strict-cost chains |
+| `FalconerPacking/GaussianMellin.lean` | positive Mellin integration converts Gaussian identities into Riesz identities |
+| `FalconerPacking/RieszFourier1D.lean` | exact one-dimensional Fourier–Riesz energy identity, including infinite energies |
+| `FalconerPacking/RieszFourier2D.lean` | planar Riesz identity and angular Sobolev energy formula |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
