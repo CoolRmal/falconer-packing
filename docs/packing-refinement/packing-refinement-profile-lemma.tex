@@ -1,0 +1,89 @@
+\begin{lemma}[An affine envelope above the forced midpoint]\label{fprof:affine}
+Suppose \(g\) is 1-Lipschitz on \([0,N]\), \(g(0)=0\), and
+$$
+ ax\le g(x)\le bx,\qquad 0<a\le b\le\tfrac12.
+$$
+For \(N/2\le n_0<N\), there is an admissible decreasing chain from \(n_0\) through
+\(N/2\) to zero, with \(O(1+\log(N/(N-n_0)))\) edges and cost at most
+\begin{equation}\label{fprof:affinecost}
+ \left(\frac{1+2b-4a}{8}+\frac{b-a}{2(1+a)}\right)N.
+\end{equation}
+On a grid of mesh \(T\) containing \(N/2,3N/4,n_0\), add \(O(T)\).
+If the barriers hold within an additive error \(eN\), add \(O(KeN+KT)\),
+where \(K\) bounds the number of edges.
+\end{lemma}
+\begin{proof}
+First assume a grid profile. Put \(l=N/2\), \(r=3N/4\), and
+$$
+ \alpha=\frac{b-1/2}{2}N,\qquad
+ L(x)=x-\frac N2+\alpha-g(x),\qquad V(x)=\frac{L(x)_+}{2}.
+$$
+For \(x\ge l\), the upper barrier gives
+$$
+ g(x)\le bx\le \tfrac12x+\alpha.
+$$
+The function \(L\) is nondecreasing. Almost everywhere on \(\{L>0\}\),
+$$
+ (-g')_+\le\frac{1-g'}2=V'.
+$$
+For \(g'\ge0\) the right side is nonnegative; for \(g'<0\) the inequality
+is equivalent to \(g'\ge-1\). Also \(c_g(m,n)\le\int_m^n(-g')_+\).
+
+If \(n_0\le r\), proceed directly to the last paragraph of the chain construction.
+Otherwise let \(q\) be the largest grid point in \([l,N]\) with \(L(q)\le0\).
+It exists since \(L(l)=\alpha-g(l)<0\). If \(n_0>\max(r,q+T)\), repeatedly
+replace the current \(n\) by \(\max(r,q+T,2n-N)\) until this target is reached.
+All edges are admissible and lie where \(L>0\), so their total cost is at most
+\(V(n_0)\). Apart from the last edge, \(N-n\) doubles.
+If necessary, pass from \(q+T\) to \(q\), at cost at most \(T\).
+This step is admissible because it is used only with \(q+T\le n_0<N\), hence
+\(q+2T\le N\). We have either reached \(r\), or a point where \(L\le0\).
+
+If the current point \(n>r\) satisfies \(L(n)\le0\), set \(m_0=2n-N>l\).
+The affine envelope gives
+$$
+ g(m_0)\le\tfrac12m_0+\alpha
+ =n-\tfrac N2+\alpha\le g(n).
+$$
+Choose the leftmost grid minimizer \(m\) on \([m_0,n]\).
+It is strictly smaller than \(n\), and the resulting admissible edge has zero cost.
+Continue until the current point belongs to \([l,r]\).
+Monotonicity of \(L\) keeps this continuation in \(\{L\le0\}\).
+Merge consecutive zero-cost edges greedily whenever their union is admissible.
+The union remains zero-cost. If two consecutive resulting edges cannot be merged,
+their combined complementary depths increase by a factor greater than two.
+Thus this part has \(O(1+\log(N/(N-n_0)))\) edges.
+
+From a point \(n\in[l,r]\), jump to \(l\); this edge is admissible.
+Writing \(v=g(l)\), for every \(x\ge l\) one has
+$$
+ g(x)\ge\max\{ax,v-(x-l)\}\ge\frac{a(v+l)}{1+a}.
+$$
+The final inequality follows by minimizing the maximum of these two affine functions.
+Consequently the last edge costs at most
+$$
+ \frac{v-al}{1+a}\le\frac{(b-a)N}{2(1+a)}.
+$$
+The edge from \(l\) to zero has zero cost. Finally,
+$$
+ V(n_0)\le V(N)\le\frac{1+2b-4a}{8}N,
+$$
+where the last numerator is nonnegative since \(a\le b\le1/2\).
+This proves the grid claim and the length bound.
+
+For a continuous profile, interpolate on finer grids containing \(0,l,r,N\).
+Move \(n_0\) down by at most one mesh length first if necessary; for sufficiently
+fine meshes this extra edge is admissible and costs at most that length.
+Interpolation preserves the Lipschitz constant and barriers. The length bound is uniform.
+Pad the endpoint vectors by repetitions and extract a convergent subsequence.
+Uniform convergence of profiles and convergence of endpoints imply convergence of interval
+minima. Admissibility is closed; discard repeated endpoints. This proves the exact real bound.
+For approximate barriers, clamp the profile between \(ax\) and \(bx\), then interpolate
+grid values. The uniform change is \(O(eN+T)\); minimum and maximum preserve the
+Lipschitz constant. Each edge cost changes by at most twice this uniform error.
+\end{proof}
+
+Relative to the preceding midpoint lemma with \(b=1/2\) and actual upper slope
+\(b_0\le1/2\), the gain is \((1/2-b_0)N/4\).
+It comes from using the upper bound only above the mandatory midpoint.
+The bound is not asserted to be optimal even for this chain problem.

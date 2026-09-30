@@ -1,0 +1,302 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,longtable}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{hyperref,fancyhdr,graphicx}
+\hypersetup{hypertexnames=false,colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue,
+pdftitle={A sharper packing criterion for self-pinned distances}}
+\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small Self-pinned distance sets}
+\fancyhead[R]{\small Refined sufficient condition}\fancyfoot[C]{\thepage}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}\newcommand{\HH}{\dim_{\mathrm H}}\newcommand{\PP}{\dim_{\mathrm P}}
+\newcommand{\supp}{\operatorname{supp}}\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\dd}{\,d}\newcommand{\norm}[1]{\left\|#1\right\|}\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+\begin{titlepage}
+\vspace*{18mm}
+{\large\color{MidnightBlue} RESEARCH MANUSCRIPT}\par
+\vspace{8mm}
+{\Huge\bfseries A sharper packing criterion}\par
+\vspace{5mm}
+{\LARGE for self-pinned distance sets}\par
+\vspace{12mm}
+30 September 2026
+\vspace{12mm}
+
+This note improves the middle branch of the sufficient condition in the
+19 September manuscript. The new argument uses an affine upper envelope
+only above the forced midpoint in the finite scale-selection problem.
+Both analytic branches and the Borel-set reduction are included.
+
+\textbf{What is proved here.} Subject to the cited established analytic theorems,
+the manuscript gives a mathematical proof of the revised sufficient condition.
+It also proves a stronger conditional-energy convergence criterion.
+
+\textbf{What remains unresolved.} No weakest possible condition, optimality theorem,
+or unrestricted improvement of the five-quarters threshold is proved.
+The proof has received separate internal mathematical checks, but no external referee
+review and no complete Lean verification. A comparator check of a conditional branch
+combination would not certify either analytic branch or this new theorem.
+
+\vfill
+The prior theorem and the prior Lean target are preserved. This note is a new
+research result, not a declaration that an open formalization is finished.
+\end{titlepage}
+\tableofcontents
+\clearpage
+\section{Statement and scope}
+For a Borel set \(E\subset\R^2\), put \(d=\HH E\), \(D=\PP E\), and
+\(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
+\(|\cdot|\) denotes one-dimensional Lebesgue measure. Set
+$$
+ d_* =\frac{13+\sqrt{41}}{16}\approx1.212695265,
+ \qquad d_1=\frac{5+\sqrt{97}}{12}\approx1.237404817.
+$$
+For \(1<d\le5/4\), define
+\begin{equation}\label{fprof:curve}
+ B_{\rm new}(d)=\begin{cases}
+ 2d-1,&1<d\le d_*,\\[4pt]
+ \dfrac{d(12d-7)}{2d+4},&d_*<d\le d_1,\\[8pt]
+ \dfrac{(2d-1)^2+\sqrt{(2d-1)^4+8d}}4,&d_1<d\le5/4.
+ \end{cases}
+\end{equation}
+\begin{theorem}[Refined sufficient condition]\label{target:main}
+If \(E\subset\R^2\) is Borel, \(1<\HH E\le5/4\), and
+$$
+ \PP E<B_{\rm new}(\HH E),
+$$
+then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+The inequality is strict. The proof produces separated compact source and pin
+subsets of \(E\); in fact the selected source probability has absolutely continuous
+pinned distance laws for almost every pin under the selected pin probability.
+Distance images of Borel sets are analytic and Lebesgue measurable.
+
+For example, this covers
+$$
+ d=\frac{61}{50}=1.22,\qquad D=\frac{289}{200}=1.445.
+$$
+The previous curve at this dimension was \(2d-1=1.44\), whereas
+\(B_{\rm new}(1.22)=1.4473291925\ldots\).
+The strict analytic exponent margin is
+$$
+ (d-1)-\left(\frac{2D-4d+3}{8}+\frac{D-d}{2d}\right)
+ =\frac{15}{9760}>0.
+$$
+This slack permits the use of Frostman exponents strictly below the Hausdorff
+dimension and a covering exponent strictly above the packing dimension.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{../figures/packing-refinement.png}
+\caption{The refined sufficient bound compared with the previous one. The right
+panel enlarges the interval where the new middle branch gives a strict gain.
+Neither curve is asserted to be a necessary condition.}
+\end{figure}
+
+\subsection{Definitions and established inputs}
+A probability \(\mu\) is \(s\)-Frostman if
+\(\mu(B(x,r))\le C r^s\) for \(0<r\le1\). Write
+$$
+ I_a(\mu)=\iint |x-x'|^{-a}\dd\mu(x)\dd\mu(x').
+$$
+An \(s\)-Frostman probability of bounded support has finite \(a\)-energy
+whenever \(0<a<s\), by summing spatial annuli.
+The external inputs are as follows.
+\begin{enumerate}
+\item Frostman's lemma for Borel subsets of Euclidean space, and the
+countable bounded-cover characterization of packing dimension using upper box dimension.
+Closures preserve bounded upper box dimension; positive-mass compact restrictions
+are available by inner regularity.
+\item Orponen's averaged radial-projection integrability \cite{orponen}, in the form
+of GIOW Theorem 3.7 or Keleti--Shmerkin Theorem 3.11. For separated compact
+Frostman probabilities of exponents greater than one, radial projections have
+\(L^q\) densities for some \(q>1\), with integrable \(q\)-th powers of their norms.
+\item Plancherel, the Riesz energy identity, polar coordinates and their projection
+consequences, with Fourier normalization
+\(\widehat f(\xi)=\int e^{-2\pi i x\cdot\xi}f(x)\,dx\).
+\item Keleti--Shmerkin Lemma 3.4 and Corollary 3.5 \cite{ks}, used only for finite
+terminal-cube restrictions, not to extract an infinite regular subset.
+\item The elementary packet localization of GIOW Section 3 \cite{giow},
+Liu's cap reconstruction (Lemma 4.2 of \cite{liu2026}), and the pinned quadratic
+identity \cite{liuidentity}. The variable-chain inflation multiplier is derived below.
+\end{enumerate}
+All constants may depend on the fixed compact supports, positive source-pin
+separation and chosen auxiliary parameters. They are uniform in frequency,
+regularized component, cube and cap. The notation \(\operatorname{RapDec}(R)\)
+means a quantity bounded by \(C_MR^{-M}\) for every fixed \(M>0\), uniformly
+in those indices. Summing polynomially many such errors preserves this property.
+The constants in losses \(R^{C_Kh}\) are independent of the regularization block
+size \(T\); fixed annular ratios depending on \(T\) only change multiplicative constants.
+
+\clearpage
+\input{packing-bound-original-branch.tex}
+\input{packing-refinement-finite-profile.tex}
+\clearpage
+\section{Algebra and proof of the refined theorem}
+For \(u\le3/2\), multiply by \(8s>0\) to obtain
+\begin{align*}
+ C(s,u)<s-1
+ &\iff s(2u-4s+3)+4(u-s)<8s(s-1)\\
+ &\iff (2s+4)u<12s^2-7s\\
+ &\iff u<Q(s):=\frac{s(12s-7)}{2s+4}.
+\end{align*}
+For \(u\ge3/2\), multiplication by \(2s(2u-1)>0\) gives
+$$
+ C(s,u)<s-1\iff 2u^2-(2s-1)^2u-s<0.
+$$
+This quadratic has one negative and one positive root, so for \(u\ge0\) the condition
+is precisely the third branch in \eqref{fprof:curve}.
+The two definitions of \(C\) agree at \(u=3/2\).
+For fixed \(s>1\), \(C(s,u)\) is strictly increasing in \(u\), with derivatives
+$$
+ \frac14+\frac1{2s}\quad(u<3/2),\qquad
+ \frac{2s-1}{(2u-1)^2}+\frac1{2s}\quad(u>3/2).
+$$
+Moreover
+$$
+ Q(s)-(2s-1)=\frac{8s^2-13s+4}{2s+4}.
+$$
+Its root above one is \(d_*\), and \(Q(s)=3/2\) has root \(d_1\).
+Both junctions of \(B_{\rm new}\) are therefore continuous.
+
+\begin{proof}[Proof of Theorem~\ref{target:main}]
+If \(1<d\le d_*\), use Proposition~\ref{prop:coherentborel} with both sets equal to \(E\).
+If \(d_*<d\le d_1\), then \(D<Q(d)\le3/2\), so \(C(d,D)<d-1\) and
+Theorem~\ref{fprof:main} applies. If \(d_1<d\le5/4\) and \(D\ge3/2\), the
+positive-root calculation gives the same condition. If instead \(D<3/2\), monotonicity
+gives \(C(d,D)<C(d,3/2)<d-1\), since \(Q(d)>3/2\).
+All cases provide a pin in \(E\).
+\end{proof}
+To compare with the old middle branch, observe
+$$
+ Q(s)-\left(3s^2-\tfrac52s\right)
+ =\frac{s(-6s^2+5s+3)}{2s+4}>0\qquad(1<s<d_1).
+$$
+Thus the new curve strictly improves the quoted curve for \(d_*<d<d_1\),
+and agrees with it outside that interval.
+
+\section{A stronger conditional-energy criterion}
+The coherent branch admits a quantitative improvement even though it does not
+move the dimension line \(D<2d-1\).
+Keep the source/pin setup, node centers and angular moments from Section~\ref{sec:coherenttree},
+and reduce the radial exponent so that \(1<q\le2\).
+Let \(a=1+2\gamma\), and assume the conditional \(a\)-energies are finite.
+Write
+$$
+ z_Q=2^{-n(1+4\gamma)}I_a(\mu_Q),\qquad
+ Z_n=\sum_{Q\text{ at level }n+1}p_Qz_Q,\qquad
+ \beta=\frac{q-1}{q}.
+$$
+\begin{theorem}[Improved coherent summability]
+The positive affine densities obey
+$$
+ \|f_{n+1}-f_n\|_1\le C_q B^{1/q}Z_n^\beta.
+$$
+Consequently \(\sum_n Z_n^\beta<\infty\) implies
+\((d_y)_*\mu\ll\mathcal L^1\) for \(\nu\)-almost every \(y\).
+\end{theorem}
+\begin{proof}
+For each child \(Q\) of \(P\), use the recentered source and the angular functions
+\(G_Q\) and translation supremum \(S_Q\) from Lemma~\ref{lem:coherentangular}.
+For \(r=2^{-n}\), put
+$$
+ H_Q(\omega)=C r^{1/2+\gamma}G_Q(\omega)+C r^{1/2}S_Q(\omega).
+$$
+The first-norm difference of the two conditional probability densities is at most
+\(\min(2,H_Q(\theta)+H_Q(\phi))\), and \(\int H_Q^2\dd\sigma\le C z_Q\).
+The translation supremum is measurable: by strong continuity of translation in
+\(L^2\), it can be taken over rational shifts. These pointwise estimates hold
+outside a single angular null set avoided by both marginal pin laws.
+For \(q'=q/(q-1)\ge2\),
+$$
+ \int\min(2,H_Q)^{q'}\dd\sigma\le2^{q'-2}\int H_Q^2\dd\sigma.
+$$
+Use \(\min(2,h+k)\le\min(2,h)+\min(2,k)\), and apply Holder separately against
+the two angular densities. The integrated error for this child is at most
+$$
+ C_q(F_P^{1/q}+F_Q^{1/q})z_Q^\beta.
+$$
+Weighted Holder over the child masses, with
+\(\sum_Qp_QF_Q\le2B\) and \(\sum_Qp_QF_P\le2B\), proves the claim.
+Summability gives convergence in first norm. Uniform affine approximation of distance
+identifies the limit with the joint distance law, exactly as in
+Theorem~\ref{thm:coherentcriterion}.
+\end{proof}
+Since \((q-1)/q>(q-1)/(2q-1)\), this is a weaker sufficient summability assumption.
+For instance, suppose \(1<s<2\), \(\nu\) is Frostman of exponent greater than one,
+and, for some \(b>1\) and real \(k\), the source satisfies
+$$
+ \mu(B(x,r))\le C r^s[\log(e/r)]^{-b},\qquad
+ N(\supp\mu,r)\le C r^{-(2s-1)}[\log(e/r)]^k.
+$$
+Annular summation at the endpoint energy exponent \(a=s\) gives
+$$
+ I_s(\mu_Q)\le C p_Q^{-1}(1+n)^{1-b},\qquad
+ Z_n\le C(1+n)^{k+1-b}.
+$$
+Thus pinned absolute continuity follows if
+$$
+ b>1+k+\frac q{q-1}.
+$$
+Here finite \(s\)-energy follows from \(b>1\), so the endpoint value
+\(\gamma=(s-1)/2\) is allowed in the angular lemma. This is an additional
+quantitative growth hypothesis, not a theorem determined by the two dimensions alone.
+
+\section{What would be needed for a weakest condition}
+The refined curve is sufficient, not necessary. Showing that it were a sharp boundary
+would require counterexamples or another necessity argument for the distance conclusion;
+failure of a particular upper estimate or a particular chain does not suffice.
+Removing the packing restriction for every \(d>1\) would establish the planar pinned
+Falconer conjecture. For \(d>5/4\), GIOW already supplies the desired pin without
+any packing restriction. Liu's regular-pin theorem \cite{liu2026} supplies the
+case \(D=d>1\).
+
+Even the forced-chain bound is not proved minimax optimal. The profile through
+$$
+(0,0),\quad(1/2,1/4),\quad(5/8,1/8),\quad(17/20,7/20),\quad(1,1/5),
+$$
+discussed above,
+has exact limiting forced cost \(9/40\), whereas the available upper bound is
+\(11/40\). This one example is not a proof that the universal upper bound can be
+reduced, but it shows that its sharpness is not established by that example.
+
+One cannot simply discard the forced midpoint in the present Fourier proof.
+If the last preterminal frequency radius is \(r_*>\sqrt R\), caps of width \(1/r_*\)
+produce packet widths \(r_*/R\). A separated source-pin pair can then be counted
+in order \(r_*^2/R\) packet directions. This is a genuine loss in the present
+triangle-inequality bound for the bad part. It is an obstruction to that estimate,
+not a counterexample to a positive-length distance theorem.
+
+\subsection{Formal verification status}
+No new axiom is introduced by this mathematical manuscript, but citing a theorem is
+not a Lean proof of it. The repository still lacks complete formal proofs of both
+analytic branches. Their algebraic combination has a formal proof under explicit
+analytic hypotheses. This does not constitute a proof of the unconditional distance
+theorem, nor of the new profile lemma in this note. No comparator result is claimed here.
+
+To formalize this refinement, first prove Lemma~\ref{fprof:affine} using the existing
+finite-profile edge-cost and chain definitions; then prove the algebra of \(C\) and
+\(B_{\rm new}\). Keep the old challenge statement intact. A separate unconditional
+target for the refined curve must be proved only after the radial theorem, finite
+regularization, packet estimates, variable-chain inflation and limit arguments have
+been discharged. Acceptance requires the exact target and an axiom report containing
+only \texttt{propext}, \texttt{Classical.choice}, and \texttt{Quot.sound}.
+
+\clearpage
+\begin{thebibliography}{9}\small
+\interlinepenalty=10000
+\bibitem{orponen} T. Orponen. On the dimension and smoothness of radial projections. \emph{Analysis \& PDE} 12 (2019), 1273--1294. \href{https://arxiv.org/abs/1710.11053}{arXiv:1710.11053}.
+\bibitem{ks} T. Keleti and P. Shmerkin. New bounds on the dimensions of planar distance sets. \emph{Geometric and Functional Analysis} 29 (2019), 1886--1948. \href{https://arxiv.org/abs/1801.08745}{arXiv:1801.08745}. Lemma 3.4, Corollary 3.5, Theorem 3.11.
+\bibitem{giow} L. Guth, A. Iosevich, Y. Ou and H. Wang. On Falconer's distance set problem in the plane. \emph{Inventiones Mathematicae} 219 (2020), 779--830. \href{https://arxiv.org/pdf/1808.09346v1}{arXiv:1808.09346v1}. Section 3, especially radial projection and packet localization.
+\bibitem{liuidentity} B. Liu. An \(L^2\)-identity and pinned distance problem. \emph{Geometric and Functional Analysis} 29 (2019), 283--294. \href{https://arxiv.org/abs/1802.00350}{arXiv:1802.00350}, Theorem 1.9.
+\bibitem{liu2026} B. Liu. Lebesgue measure of distance sets with regular pins and multi-scale Mizohata--Takeuchi-type estimates. Version 3, 16 July 2026. \href{https://arxiv.org/html/2603.15328v3}{arXiv:2603.15328v3}. Lemmas 3.1, 4.2--4.4.
+\end{thebibliography}
+\end{document}

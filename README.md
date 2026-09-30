@@ -3,6 +3,20 @@
 A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned distance sets: a
 Hausdorff–packing dimension criterion* (19 September 2026).
 
+**Research update, 30 September 2026.** A [new proof manuscript](docs/packing-refinement/packing-refinement-proof.pdf)
+improves the middle branch to
+
+$$
+\frac{d(12d-7)}{2d+4},
+\qquad
+\frac{13+\sqrt{41}}{16}<d\le\frac{5+\sqrt{97}}{12}.
+$$
+
+It covers, for example, Hausdorff dimension 1.22 and packing dimension 1.445.
+[Full statement, proof sources, and verification status](docs/packing-refinement/README.md).
+This is a sufficient improvement, not a proved weakest condition. Its Lean formalization
+is not complete; the Lean target and curve described below remain the original ones.
+
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
 $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$

@@ -1,0 +1,224 @@
+\section{Coherent positive linearizations and a conditional convergence theorem}
+\label{sec:coherenttree}
+
+This section proves the original branch of the bound, rather than assuming Proposition E.6 from the longer report. It uses positive affine approximations to distance and a summable first-norm comparison.
+
+\subsection{Angular regularity with a single exceptional set}
+
+\begin{lemma}[Coupled-angle projection comparison]\label{lem:coherentangular}
+Let \(0<\gamma<1/2\), and let \(\lambda\) be a probability supported in \(B(0,Cr)\), \(0<r\leq1\), with \(I_{1+2\gamma}(\lambda)<\infty\). For almost every \(\theta\in S^1\), let \(F(\theta)\in L^2(\R)\) be the density of \((\pi_\theta)_*\lambda\), where \(\pi_\theta(x)=x\cdot\theta\). There is a nonnegative function \(G\) with
+$$
+\|G\|_{L^2(S^1)}^2\leq C_\gamma r^{2\gamma}I_{1+2\gamma}(\lambda)
+$$
+such that, outside one angular null set, every pair satisfies
+$$
+\|F(\theta)-F(\phi)\|_{L^2(\R)}
+\leq C_\gamma d(\theta,\phi)^\gamma\bigl(G(\theta)+G(\phi)\bigr),
+$$
+where \(d\) is circular arclength distance. In addition,
+$$
+\int_{S^1}\sup_{|v|\leq Cr^2}
+\|F(\theta)(\cdot-v)-F(\theta)\|_2^2d\theta
+\leq C_\gamma r^{4\gamma}I_{1+2\gamma}(\lambda).
+$$
+\end{lemma}
+\begin{proof}
+We first prove the Hilbert-valued angular Sobolev estimate
+\begin{equation}\label{eq:coherentangularsobolev}
+\|F\|_{H^\gamma(S^1;L^2(\R))}^2
+\leq C_\gamma r^{2\gamma}I_{1+2\gamma}(\lambda).
+\end{equation}
+The projection-energy identity gives the projected densities and their joint second integrability, since finite \((1+2\gamma)\)-energy implies finite first energy on the bounded support. Fourier transform in the scalar projection variable. The transformed function is
+$$
+f_\tau(\theta)=\widehat\lambda(\tau\theta).
+$$
+Its angular derivative is a linear combination, with bounded angular coefficients, of \(\tau\widehat{x_k\lambda}(\tau\theta)\), \(k=1,2\). The Riesz energy identity for these signed measures gives
+$$
+\int_{\R^2}|\widehat{x_k\lambda}(\xi)|^2|\xi|^{2\gamma-1}d\xi
+\leq C_\gamma r^2I_{1+2\gamma}(\lambda).
+$$
+Indeed the spatial double integral has the factor \(x_kx'_k\), whose absolute value is at most \(Cr^2\). Its absolute energy is finite, so approximation justifies the signed Fourier identity.
+
+Angular Sobolev interpolation, or directly Holder on angular Fourier coefficients, gives
+$$
+\|f_\tau\|_{H^\gamma}^2
+\leq\|f_\tau\|_2^{2(1-\gamma)}\|f_\tau\|_{H^1}^{2\gamma}.
+$$
+On \(|\tau|\geq1/r\), introduce the canceling weights
+$$
+A_\tau=|\tau|^{2\gamma}\|f_\tau\|_2^2,
+\qquad
+B_\tau=|\tau|^{-2(1-\gamma)}\|f_\tau\|_{H^1}^2.
+$$
+Polar coordinates and the preceding signed-energy estimate show
+$$
+\int_{|\tau|\geq1/r}A_\tau d\tau\leq C_\gamma I_{1+2\gamma}(\lambda),
+\qquad
+\int_{|\tau|\geq1/r}B_\tau d\tau\leq C_\gamma r^2I_{1+2\gamma}(\lambda).
+$$
+For the undifferentiated part of \(B_\tau\), use \(|\tau|^{-2}\leq r^2\); its derivative part has exactly the energy weight after the factor \(\tau^2\) is inserted. Holder in \(\tau\) now bounds the integral of \(\|f_\tau\|_{H^\gamma}^2\) by \(C_\gamma r^{2\gamma}I_{1+2\gamma}(\lambda)\) on this region. When \(|\tau|\leq1/r\), both \(f_\tau\) and its angular derivative are bounded uniformly, so the contribution is at most \(C/r\). This is absorbed because
+$$
+I_{1+2\gamma}(\lambda)\geq (Cr)^{-1-2\gamma}.
+$$
+Plancherel in the scalar variable proves \eqref{eq:coherentangularsobolev}.
+
+Choose a measurable Hilbert-valued representative and define
+$$
+G(\theta)^2
+=\int_{S^1}\frac{\|F(\theta)-F(z)\|_2^2}{d(\theta,z)^{1+2\gamma}}dz.
+$$
+The angular Slobodeckij identity gives \(\|G\|_2^2\leq C_\gamma\|F\|_{H^\gamma}^2\). For completeness, expand in angular Fourier coefficients: translation invariance makes each nonzero coefficient contribute its squared Hilbert norm times
+$$
+\int_{-\pi}^{\pi}\frac{|e^{ikh}-1|^2}{|h|^{1+2\gamma}}dh
+\asymp_\gamma |k|^{2\gamma}.
+$$
+Tonelli and Parseval prove the assertion also for Hilbert-valued functions.
+
+Remove the null set where \(G\) is infinite, where \(F\) is undefined, or where it does not represent the projected density. Given two remaining angles at distance \(\delta>0\), take an arc \(J\) of length comparable to \(\delta\) containing both, with every point of \(J\) within \(C\delta\) of each endpoint. Average the triangle inequality through \(z\in J\). Cauchy--Schwarz gives
+$$
+\begin{aligned}
+\|F(\theta)-F(\phi)\|_2
+&\leq |J|^{-1/2}
+\left[\left(\int_J\|F(\theta)-F(z)\|_2^2dz\right)^{1/2}
++\left(\int_J\|F(\phi)-F(z)\|_2^2dz\right)^{1/2}\right]\\
+&\leq C_\gamma\delta^\gamma\bigl(G(\theta)+G(\phi)\bigr).
+\end{aligned}
+$$
+For large \(\delta\), the whole circle serves as \(J\); the diagonal case is immediate. This proves a single-null-set, all-pairs estimate, which can be evaluated on correlated angular laws.
+
+Finally Plancherel bounds the translation expression, before angular integration, by
+$$
+Cr^{4\gamma}\int_\R |\tau|^{2\gamma}|\widehat\lambda(\tau\theta)|^2d\tau.
+$$
+Here the supremum over \(|v|\leq Cr^2\) was bounded inside the Fourier integral, using \(|e^{-2\pi i\tau v}-1|^2\leq C_\gamma|\tau v|^{2\gamma}\). Polar coordinates give the required translation bound.
+\end{proof}
+
+\subsection{Consecutive positive linearizations}
+
+Let \(\mu,\nu\) be compact probabilities with positively separated supports, satisfying Frostman bounds with exponents \(s,t>1\). Choose
+$$
+0<\gamma<\min\left(\frac12,\frac{s-1}{2}\right).
+$$
+For a positive-mass dyadic source square \(Q\), write \(p_Q=\mu(Q)\), \(\mu_Q=p_Q^{-1}\mu|_Q\). Orponen's theorem, in the GIOW Theorem 3.7 form stated in the preliminaries \cite{orponen,giow}, supplies \(q>1\) and
+$$
+(\Theta_x)_*\nu=\rho_xd\sigma,\qquad
+\Theta_x(y)=\frac{x-y}{|x-y|},\qquad
+B=\int\|\rho_x\|_q^q d\mu(x)<\infty,
+$$
+where \(\sigma\) is normalized arclength. The hypotheses follow by choosing a common Frostman exponent between one and \(\min(s,t)\). In every node choose \(x_Q\in Q\cap\supp\mu\) at which the density exists and
+$$
+F_Q:=\|\rho_{x_Q}\|_q^q\leq\frac2{p_Q}\int_Q\|\rho_x\|_q^q d\mu(x).
+$$
+There are countably many nodes, and these choices give
+$$
+\sum_{Q\text{ at level }n}p_QF_Q\leq2B
+\quad\text{at every level.}
+$$
+Define the affine approximation
+$$
+L_Q(x,y)=\Theta_{x_Q}(y)\cdot(x-y).
+$$
+At level \(n\), push the original positive pair probability by \((x,y)\mapsto(y,L_{Q_n(x)}(x,y))\). It has a nonnegative density \(f_n\) relative to \(\nu(dy)dt\). To see this, each \(\mu_Q\) has finite first energy and therefore second-integrable projected densities for almost every angle. Its chosen center's angular pin law is absolutely continuous, so the assertion holds for almost every pin, simultaneously at all countably many nodes. The conditional densities can be chosen jointly measurably. Each \(f_n\) has mass one, and Taylor's theorem gives
+$$
+|L_{Q_n(x)}(x,y)-|x-y||\leq C2^{-2n}
+$$
+uniformly, once the squares are smaller than the fixed separation.
+
+\begin{proposition}[Coherent first-norm comparison]\label{prop:coherentcomparison}
+For \(r=2^{-n}\) sufficiently small and every \(A\geq1\),
+\begin{equation}\label{eq:coherentcomparison}
+\|f_{n+1}-f_n\|_{L^1(\nu\times dt)}
+\leq C\left[
+A r^{1+4\gamma}\sum_{Q\text{ at level }n+1}p_QI_{1+2\gamma}(\mu_Q)
+\right]^{1/2}+CB A^{1-q}.
+\end{equation}
+Constants depend on the fixed support geometry and separation, the exponents and Frostman bounds, but not on \(n,A\).
+\end{proposition}
+\begin{proof}
+Let \(Q\) be a child of \(P\), and apply both affine maps to the same conditional source \(\mu_Q\). Set \(b=x_Q\), and recenter this source at \(b\). Put \(\theta=\Theta_{x_P}(y)\), \(\phi=\Theta_b(y)\). Their separation is \(O(r)\), and
+$$
+L_P(x,y)=\theta\cdot(x-b)+\theta\cdot(b-y),\qquad
+L_Q(x,y)=\phi\cdot(x-b)+|b-y|.
+$$
+The constants differ quadratically:
+$$
+|\theta\cdot(b-y)-|b-y||
+=|b-y|\,|\theta\cdot\phi-1|\leq Cr^2.
+$$
+Recentring is essential here; estimating the uncentered translations separately would lose a first-order term.
+
+Keep those pins for which both angular densities at \(\theta\) and \(\phi\) are at most \(A\). The resulting joint angular law has both marginals bounded by \(A\sigma\), while its deleted pin mass is at most
+$$
+A^{1-q}(F_P+F_Q).
+$$
+No independence of the angles or of angular and radial pin coordinates is used. Apply Lemma \ref{lem:coherentangular} to the translated conditional source. Its pointwise all-pairs bound is valid on the coupled angles, since both marginals avoid the single exceptional null set. Integrating the square and using the marginal bounds gives \(CA r^{4\gamma}I_{1+2\gamma}(\mu_Q)\). The pin-dependent scalar translation has size at most \(Cr^2\); the lemma's translation estimate, with the relevant bounded angular marginal, gives the same bound. By the triangle inequality, the integrated squared second-norm difference of the two conditional affine densities is therefore at most
+$$
+CA r^{4\gamma}I_{1+2\gamma}(\mu_Q).
+$$
+
+For each pin both densities lie in a common interval of length \(Cr\). Cauchy--Schwarz converts their second norm to their first norm with factor \(Cr^{1/2}\). On deleted pins the first-norm difference of two probability densities is at most two. Decompose each parent conditional source into its children, sum with weights \(p_Q\), and use Cauchy--Schwarz over those weights and retained pins. The good terms give the square root in \eqref{eq:coherentcomparison}. The bad terms sum to at most \(CB A^{1-q}\), because
+$$
+\sum_Qp_QF_Q\leq2B,\qquad
+\sum_{Q\text{ at level }n+1}p_QF_{\operatorname{parent}(Q)}
+=\sum_{P\text{ at level }n}p_PF_P\leq2B.
+$$
+This proves the estimate.
+\end{proof}
+
+\subsection{The convergence criterion and its scope}
+
+\begin{theorem}[Conditional-energy criterion]\label{thm:coherentcriterion}
+Under the preceding assumptions, set
+$$
+Z_n=2^{-n(1+4\gamma)}
+\sum_{Q\text{ at level }n+1}p_QI_{1+2\gamma}(\mu_Q),\qquad
+\eta_q=\frac{q-1}{2q-1}.
+$$
+If \(\sum_n Z_n^{\eta_q}<\infty\), then \((d_y)_*\mu\) is absolutely continuous for \(\nu\)-almost every \(y\).
+\end{theorem}
+\begin{proof}
+Enlarge \(B\) to at least one and omit finitely many scales so \(Z_n\leq1\). In Proposition \ref{prop:coherentcomparison} choose
+$$
+A_n=(B/\sqrt{Z_n})^{1/(q-1/2)}\geq1.
+$$
+Both terms are bounded by \(C B^{1/(2q-1)}Z_n^{\eta_q}\). Thus \(f_n\) is Cauchy in \(L^1(\nu\times dt)\). Its nonnegative limit has mass one. Uniform approximation of the affine maps to distance identifies its weak measure limit with the pushforward of \(\mu\times\nu\) by \((x,y)\mapsto(y,|x-y|)\). Uniqueness of disintegration then shows that, for almost every pin, the actual pinned law has the resulting density. In particular the conclusion is about the raw positive distance laws, not signed approximations.
+\end{proof}
+
+\subsection{The covering and Borel consequences}
+
+\begin{proposition}[A covering-number sufficient condition]\label{prop:coherentcovering}
+Suppose additionally that the number of occupied source squares of side \(r\) is at most \(Cr^{-u}\), uniformly for small dyadic \(r\). If \(u<2s-1\), then the preceding criterion holds for a suitable \(\gamma\). In particular an \(s\)-Ahlfors regular source, \(s>1\), satisfies this sufficient condition when the separated pin measure has a Frostman exponent greater than one.
+\end{proposition}
+\begin{proof}
+For \(a<s\), integration of the source Frostman ball bound within a square of diameter \(O(r)\) gives, for each \(x\) in that square,
+$$
+\int_Q|x-x'|^{-a}d\mu(x')\leq C r^{s-a}.
+$$
+Integrate over \(x\in Q\) and normalize twice. This proves
+$$
+I_a(\mu_Q)\leq Cr^{s-a}/p_Q.
+$$
+Taking \(a=1+2\gamma<s\) and summing over occupied child squares yields
+$$
+\sum_Qp_QI_{1+2\gamma}(\mu_Q)\leq C r^{s-1-2\gamma-u},
+\qquad Z_n\leq C r^{s-u+2\gamma}.
+$$
+The strict assumption \(u<2s-1\) permits a choice \(0<\gamma<\min(1/2,(s-1)/2)\) with \(s-u+2\gamma>0\). The series then converges geometrically. An \(s\)-Ahlfors regular support has covering number \(O(r^{-s})\), so one may take \(u=s\).
+\end{proof}
+
+For comparison, Keleti--Shmerkin \cite[Theorem 1.2]{ks} obtain full Hausdorff dimension of pinned distance sets when the source packing dimension is at most twice its Hausdorff dimension minus one. The absolute-continuity assertion below is derived from the preceding positive-density comparison; the cited dimension theorem is not an absolute-continuity input.
+
+\begin{proposition}[Borel-set consequence]\label{prop:coherentborel}
+Let \(E,F\subset\R^2\) be Borel sets such that
+$$
+\HH E>1,\qquad \PP E<2\HH E-1,\qquad \HH F>1.
+$$
+Then \(|\Delta_y(E)|>0\) for some \(y\in F\). More precisely, one can choose a compactly supported Frostman probability \(\mu\) on a compact subset of \(E\) so that, for any prescribed compactly supported \(t\)-Frostman pin probability \(\nu\) on \(F\), \(t>1\), the law \((d_y)_*\mu\) is absolutely continuous for \(\nu\)-almost every pin. The source measure here is a selected restriction, not an assertion about an arbitrary original measure on \(E\).
+\end{proposition}
+\begin{proof}
+Choose \(1<s<\HH E\) and \(u>\PP E\) with \(u<2s-1\). Frostman's lemma gives an \(s\)-Frostman probability \(\mu_0\) compactly supported on \(E\). Choose \(u_0\) strictly between \(\PP E\) and \(u\). The countable-cover characterization of packing dimension gives a cover by bounded sets of upper box dimension at most \(u_0\). Replacing these sets by their closures preserves upper box dimension and makes them compact. At least one member has positive \(\mu_0\)-mass. By inner regularity, choose a compact subset \(K\) of its intersection with \(E\) having positive \(\mu_0\)-mass. Set \(\mu=\mu_0|_K/\mu_0(K)\). It is still \(s\)-Frostman, and its occupied-square count is \(O(r^{-u})\), since \(\overline{\dim}_{\rm B}K\leq u_0<u\).
+
+It remains to remove the separation condition without changing this selected measure. Cover the complement of the diagonal in \(\R^2\times\R^2\) by countably many products of closed bounded rational balls \(U\times V\) with positive separation. The interiors of such products already cover the complement. On each positive-mass product, normalize the restrictions of \(\mu\) and the prescribed \(\nu\). These probabilities satisfy the Frostman and covering assumptions, have compact separated supports, and Proposition \ref{prop:coherentcovering} applies. Their joint pinned-distance pushforward is absolutely continuous with respect to \(\nu(dy)dt\).
+
+The diagonal has \(\mu\times\nu\)-mass zero because \(\mu\) has no atoms. A set of zero \(\nu\times dt\)-measure therefore has zero preimage mass on every member of the countable cover and hence under the full pair probability. Its full joint distance law is absolutely continuous. Disintegration proves the claimed almost-everywhere pinned assertion. Since these laws have mass one and are supported on \(\Delta_y(K)\subset\Delta_y(E)\), their supports have positive length. Finally \(\HH F>1\) supplies a compactly supported pin Frostman probability with exponent greater than one.
+\end{proof}
