@@ -214,6 +214,8 @@ measure-theoretic modules prove some of the downstream steps.
 | Schwartz L² test bounds imply absolute continuity of finite real measures | **proved**, including the exact square-root open-set estimate |
 | square-integrable characteristic functions yield actual nonnegative L² densities | **proved**, with the exact Plancherel energy identity |
 | almost every orthogonal projection of a Frostman probability above exponent one has an L² density | **proved**, by polar integration and Fourier inversion |
+| projection densities can be chosen jointly measurably in angle and position | **proved**, with the joint measure identity |
+| short correlated angular increments are controlled by averaged squared derivatives | **proved**, by the fundamental theorem of calculus, Hölder, and the marginal bound |
 | ordered hard/gap partitions of actual interpolated profiles | **proved**, with no partition assumption |
 | real-chain compression to uniformly bounded length | **proved**, without cost increase |
 | Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
@@ -286,6 +288,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SchwartzDensityCriterion.lean` | smooth compact cutoffs turn Schwartz test bounds into absolute continuity |
 | `FalconerPacking/FourierDensity.lean` | the inverse L² Fourier transform gives the actual nonnegative measure density |
 | `FalconerPacking/ProjectionFourier.lean` | almost-everywhere L² densities for actual orthogonal projection measures |
+| `FalconerPacking/ProjectionDensity.lean` | jointly measurable projection densities and the composition-product identity |
+| `FalconerPacking/CorrelatedAngles.lean` | sliding-interval averaging and squared derivative control without independence |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

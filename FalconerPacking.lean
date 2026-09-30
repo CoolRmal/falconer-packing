@@ -44,6 +44,8 @@ import FalconerPacking.WeakDensityLimit
 import FalconerPacking.SchwartzDensityCriterion
 import FalconerPacking.FourierDensity
 import FalconerPacking.ProjectionFourier
+import FalconerPacking.ProjectionDensity
+import FalconerPacking.CorrelatedAngles
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
