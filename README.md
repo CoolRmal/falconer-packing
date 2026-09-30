@@ -1,9 +1,13 @@
 # A Hausdorff–packing criterion for self-pinned distance sets
 
+**Start here: [focused theorem and proof PDF](docs/falconer-human/falconer-packing-theorem.pdf).**
+The [short guide](docs/falconer-human/README.md) states the condition and gives a graph.
+The PDF puts the explanation and main proof first, followed by the detailed estimates.
+
 A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned distance sets: a
 Hausdorff–packing dimension criterion* (19 September 2026).
 
-**Research update, 30 September 2026.** The [latest proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
+**Research archive, 30 September 2026.** The [longer proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
 gives the explicit stronger cutoff
 
 $$

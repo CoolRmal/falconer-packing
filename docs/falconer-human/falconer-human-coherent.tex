@@ -1,0 +1,254 @@
+\section{Positive approximation below the bound \texorpdfstring{$2d-1$}{2d-1}}
+\label{human:coherent-section}
+
+This section proves the first branch directly. The approximating measures
+are positive probabilities throughout, and converge in first norm to the
+actual pinned distance law. The only specialized external input is the
+following published radial-projection theorem.
+
+\begin{theorem}[Orponen's averaged radial-projection theorem]
+\label{human:radial}
+Let \(\alpha>1\). For two compactly supported planar probabilities
+\(\mu,\nu\) with disjoint supports and bounds
+\[
+ \mu(B(z,r))+\nu(B(z,r))\le C r^\alpha,
+ \qquad 0<r\le1,
+\]
+there is a number \(q=q(\alpha)>1\) such that, for
+\(\mu\)-almost every \(x\),
+\begin{equation}\label{human:radial-moment}
+ (\Theta_x)_*\nu=\rho_x\sigma,
+ \qquad \Theta_x(y)=\frac{x-y}{|x-y|},
+ \qquad
+ B:=\int\|\rho_x\|_{L^q(\sigma)}^q\,d\mu(x)<\infty.
+\end{equation}
+Here \(\sigma\) is normalized arclength on the circle.
+\end{theorem}
+
+This is the form of Orponen's result \cite{orponen} stated in
+\cite[Theorem 3.7]{giow}. A common translation and dilation puts the
+supports in the unit disk required there. Reversing the radial direction
+does not change an angular norm. In particular, different Frostman
+exponents \(s,t>1\) are allowed: choose
+\(1<\alpha<\min\{s,t\}\).
+
+\subsection{A projection estimate that permits correlated angles}
+
+We give the analytic estimate in detail, since the two directions used
+later are functions of the same pin. The Fourier convention is
+\(\widehat\lambda(\xi)=\int e^{-2\pi i x\cdot\xi}\,d\lambda(x)\).
+
+\begin{lemma}\label{human:bandlemma}
+Fix \(1<s<2\) and geometric constants. Let \(0<r\le1\), and let
+\(\lambda\) be a probability supported in \(B(0,C_0r)\), with
+\(\lambda(B(z,t))\le Kt^s\) for all \(z,t>0\).
+Let \(F(\theta)\) be the density of the orthogonal projection
+\(x\mapsto x\cdot\theta\), defined for almost every \(\theta\).
+Suppose a finite positive measure \(\kappa\) carries measurable
+directions \(\theta,\phi\) and a scalar shift \(v\), with both
+angular marginals bounded by \(A\sigma\), and
+\[
+ d(\theta,\phi)\le C_1r,\qquad |v|\le C_1r^2.
+\]
+Then
+\begin{equation}\label{human:bandbound}
+ \int\|F(\theta)(\cdot-v)-F(\phi)\|_2^2\,d\kappa
+ \le C AKr^{2s-2}.
+\end{equation}
+No independence of directions or shifts is assumed.
+\end{lemma}
+
+\begin{proof}
+For a frequency radius \(R>0\), the Gaussian Fourier identity gives
+\begin{align}
+ E_R&:=\int e^{-|\xi|^2/R^2}|\widehat\lambda(\xi)|^2\,d\xi
+ \label{human:gaussian}\\
+ &=cR^2\iint e^{-c'R^2|x-x'|^2}\,d\lambda(x)d\lambda(x')
+ \le C_sKR^{2-s}.\nonumber
+\end{align}
+The last bound follows by the Frostman estimate on the ball of radius
+\(R^{-1}\) and on the successive doubled annuli. Positivity of the
+spatial Gaussian also proves, for the signed coordinate measures,
+\begin{equation}\label{human:coordinate}
+ \int e^{-|\xi|^2/R^2}|\widehat{x_k\lambda}(\xi)|^2\,d\xi
+ \le C r^2E_R,\qquad k=1,2:
+\end{equation}
+in the spatial double integral, the additional factor has absolute
+value \(|x_kx'_k|\le C_0^2r^2\).
+
+Choose smooth scalar-frequency cutoffs \(\psi_R\), \(R\in2^{\mathbb Z}\),
+supported where \(R/2\le|\tau|\le2R\), so that
+\(\sum_R\psi_R(\tau)^2=1\) for \(\tau\ne0\). Put
+\[
+ U_R(\theta)=\mathcal F^{-1}_\tau
+       [\psi_R(\tau)\widehat\lambda(\tau\theta)].
+\]
+Polar coordinates and \eqref{human:gaussian} give
+\begin{equation}\label{human:band-energies}
+ \int\|U_R(\theta)\|_2^2\,d\sigma(\theta)\le CKR^{1-s},
+ \qquad
+ \int\|\partial_\theta U_R(\theta)\|_2^2\,d\sigma(\theta)
+ \le CKr^2R^{3-s}.
+\end{equation}
+For the derivative bound use \eqref{human:coordinate}: differentiating
+\(\widehat\lambda(\tau\theta)\) inserts a bounded linear combination
+of \(\tau\widehat{x_k\lambda}(\tau\theta)\).
+The projected densities exist and are jointly square integrable in
+angle and scalar variable. Indeed, summing the first estimate over
+\(R\ge1\) converges because \(s>1\); for \(R<1\) use
+\(|\widehat\lambda|\le1\), giving instead the summable bound \(CR\).
+Plancherel then identifies the projected measures with these densities
+outside one angular null set.
+
+The fundamental theorem of calculus for the smooth Hilbert-valued
+function \(U_R\), along the shorter angular arc, gives
+\[
+ \|U_R(\theta)-U_R(\phi)\|_2^2
+ \le Cr\int_{d(z,\theta)\le C_1r}
+                     \|\partial_zU_R(z)\|_2^2\,dz.
+\]
+Integration with the first marginal and Fubini contribute another
+factor \(Ar\). The trivial squared-difference bound uses both
+marginals. Together with \eqref{human:band-energies} these yield
+\[
+ \int\|U_R(\theta)-U_R(\phi)\|_2^2\,d\kappa
+ \le CAK\min\{1,(r^2R)^2\}R^{1-s}.
+\]
+For translations, the pointwise scalar Fourier multiplier bound
+\[
+ |e^{-2\pi i\tau v}-1|^2
+ \le C\min\{1,(r^2R)^2\},\qquad |\tau|\asymp R,
+\]
+gives the same estimate. It is valid before integrating in the pin
+parameter, so the shift may be correlated with either direction.
+
+For each parameter outside the angular marginal null sets, Plancherel
+and the squared partition of unity express the squared norm of the
+full difference as the sum of its band squared norms. The squared
+triangle inequality and Tonelli therefore reduce the assertion to
+\[
+ \sum_{R\in2^{\mathbb Z}}\min\{1,(r^2R)^2\}R^{1-s}
+ \le C_s r^{2s-2}.
+\]
+Below \(R=r^{-2}\) the summand is \(r^4R^{3-s}\); above it the
+summand is \(R^{1-s}\). Both geometric sums have the stated bound.
+\end{proof}
+
+\subsection{Convergence of one fixed family of positive approximations}
+
+\begin{proposition}\label{human:coherent-measure}
+Let \(\mu,\nu\) be compactly supported planar probabilities with
+positive separation. Suppose \(\mu\) is \(s\)-Frostman, where
+\(1<s<2\), and \(\nu\) has a Frostman exponent greater than one.
+If the number \(N_n\) of occupied source dyadic squares of side
+\(2^{-n}\) satisfies
+\begin{equation}\label{human:covering-bound}
+ N_n\le C2^{un},\qquad u<2s-1,
+\end{equation}
+then \((d_y)_*\mu\) is absolutely continuous for
+\(\nu\)-almost every \(y\).
+\end{proposition}
+
+\begin{proof}
+Apply Theorem~\ref{human:radial}. Write
+\(M(x)=\|\rho_x\|_q^q\), so \(\int M\,d\mu=B<\infty\).
+For each positive-mass half-open dyadic square \(Q\), put
+\(p_Q=\mu(Q)\) and \(\mu_Q=p_Q^{-1}\mu|_Q\). Choose once and
+for all a point \(x_Q\in Q\cap\operatorname{supp}\mu_Q\) where the
+radial density exists and
+\begin{equation}\label{human:center-choice}
+ M(x_Q)\le\frac2{p_Q}\int_Q M\,d\mu.
+\end{equation}
+Such points exist by averaging. There are only countably many nodes,
+and at every level
+\begin{equation}\label{human:center-sum}
+ \sum_{Q\text{ at level }n}p_QM(x_Q)\le2B.
+\end{equation}
+
+For \(x\in Q\), define
+\[
+ L_Q(x,y)=\frac{x_Q-y}{|x_Q-y|}\cdot(x-y).
+\]
+Let \(f_n\) be the density of the pushforward of \(\mu\times\nu\)
+by \((x,y)\mapsto(y,L_{Q_n(x)}(x,y))\), relative to
+\(\nu(dy)\,dt\). These densities exist: each conditional source has
+finite first energy, its orthogonal projections have square-integrable
+densities for almost every direction, and the chosen center's radial
+pin law is absolutely continuous. The countably many conditional
+densities can be chosen jointly measurably. Thus
+\[
+ f_n\ge0,\qquad\int f_n\,d\nu\,dt=1.
+\]
+Positive separation and Taylor's theorem give, uniformly for source
+and pin points and sufficiently large \(n\),
+\begin{equation}\label{human:affine-error}
+ |L_{Q_n(x)}(x,y)-|x-y||\le C2^{-2n}.
+\end{equation}
+
+We compare consecutive levels. Put \(r=2^{-n}\), let \(Q\) be a
+child of \(P\), and apply both affine maps to the same \(\mu_Q\).
+Recenter this source at \(b=x_Q\). With
+\(\theta=\Theta_{x_P}(y)\) and \(\phi=\Theta_b(y)\),
+\[
+ L_P(x,y)=\theta\cdot(x-b)+\theta\cdot(b-y),\qquad
+ L_Q(x,y)=\phi\cdot(x-b)+|b-y|.
+\]
+The directions differ by \(O(r)\), while the constants differ by
+\begin{equation}\label{human:quadratic-shift}
+ |\theta\cdot(b-y)-|b-y||
+ =|b-y|\,|\theta\cdot\phi-1|\le Cr^2.
+\end{equation}
+The recentering is what gives this quadratic error.
+
+Retain only pins where both selected angular densities are at most
+\(A\ge1\). The two retained angular marginals are bounded by
+\(A\sigma\), and the discarded pin mass is at most
+\[
+ A^{1-q}\bigl(M(x_P)+M(x_Q)\bigr).
+\]
+The translated conditional source is supported in a ball of radius
+\(Cr\) and has Frostman constant at most \(C_\mu/p_Q\).
+Lemma~\ref{human:bandlemma} gives retained integrated squared
+second-norm error at most
+\[
+ \frac{CA}{p_Q}r^{2s-2}.
+\]
+For each pin, the two conditional densities occupy the union of two
+intervals of total length \(Cr\). Cauchy--Schwarz, first on that
+union and then over retained pins, bounds their integrated first-norm
+difference by \(CA^{1/2}p_Q^{-1/2}r^{s-1/2}\).
+On discarded pins use the bound two for the difference of probability
+densities.
+
+Multiply by \(p_Q\) and sum. The retained terms satisfy
+\(\sum_Q\sqrt{p_Q}\le\sqrt{N_{n+1}}\); the discarded parent
+terms sum with the parent masses, because the child masses sum to
+their parent's mass. Equation~\eqref{human:center-sum} therefore gives
+\begin{equation}\label{human:coherent-comparison}
+ \|f_{n+1}-f_n\|_{L^1(\nu\times dt)}
+ \le C A^{1/2}r^{s-1/2}\sqrt{N_{n+1}}
+       +CB A^{1-q}
+ \le C\sqrt A\,r^{(2s-1-u)/2}+CB A^{1-q}.
+\end{equation}
+No new centers are chosen for this comparison.
+
+Write \(\kappa=2s-1-u>0\) and choose \(A=r^{-\kappa/2}\).
+The last bound is
+\[
+ C r^{\kappa/4}+CB r^{\kappa(q-1)/2},
+\]
+which is summable over dyadic scales. Hence the same positive
+probabilities \(f_n\) converge in first norm to a nonnegative density
+of mass one. Equation~\eqref{human:affine-error} identifies their weak
+limit as the pushforward of \(\mu\times\nu\) by
+\((x,y)\mapsto(y,|x-y|)\). The first-norm limit is this same measure.
+Uniqueness of disintegration gives its density on almost every pin
+fiber, proving the proposition.
+\end{proof}
+
+This proves Proposition~\ref{human:coherent-interface}: a bounded
+\(t\)-Frostman probability is also \(s\)-Frostman when \(s<t\), and
+an \(O(r^{-u})\) ball-covering bound gives \(O(2^{un})\) occupied dyadic
+squares by bounded overlap at comparable scales. The compact reduction
+needed for the Borel theorem has already been proved in
+Lemma~\ref{human:compact}.

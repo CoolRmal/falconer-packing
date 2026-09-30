@@ -1,0 +1,577 @@
+\section{Optimizing the scale profile}
+\label{humanprofile:section}
+
+This section supplies the real-variable part of the proof. A profile records
+how the masses of the regularized pin measure change with scale. The analytic
+argument needs a decreasing sequence of scales with small total cost; the
+purpose here is to construct that sequence and evaluate the resulting
+dimension condition explicitly.
+
+\subsection{The cost to be bounded}
+
+Let \(g:[0,N]\to\mathbb R\) be finitely piecewise affine,
+1-Lipschitz, and satisfy
+\[
+ ax\le g(x)\le bx,\qquad 0<a<b\le1.
+\]
+An edge from \(n\) to \(m<n\) is admissible if \(2n-m\le N\).
+Its cost is
+\begin{equation}\label{humanprofile:edge}
+ c_g(m,n)=g(m)-\min_{m\le x\le n}g(x).
+\end{equation}
+Costs are nonnegative. No intermediate endpoint is prescribed.
+
+The two bounds we shall use are
+\begin{align}
+ C_1(a,b)&=\frac{b-a}{1+2b},
+       \label{humanprofile:C1}\\
+ C_2(a,b)&=\frac{(b-a)(2+a-2b-4ab)}
+                    {(1-a)(1+2b)^2}.
+       \label{humanprofile:C2}
+\end{align}
+Also put
+\begin{equation}\label{humanprofile:parameters}
+ b_c(a)=\frac{1+2a}{4+2a},\qquad
+ R(a,b)=4(1+a)b^2-4(a+2)b+1+3a.
+\end{equation}
+
+\begin{theorem}[The profile estimate]\label{humanprofile:bound}
+Suppose \(0<a\le1/4\), \(a<b\le1\), and let \(g\) satisfy the
+preceding hypotheses. For every \(0\le n_0<N\), an admissible
+chain from \(n_0\) to zero exists with total cost at most
+\(NC(a,b)+\rho N\), for every prescribed \(\rho>0\),
+where either of the following choices is valid:
+\[
+ \begin{array}{ll}
+ C(a,b)=C_2(a,b),
+ & b\le b_c(a)\ \hbox{and}\ R(a,b)\le0,\\[2pt]
+ C(a,b)=C_1(a,b),
+ & b\ge b_c(a).
+ \end{array}
+\]
+The chain has at most
+\begin{equation}\label{humanprofile:length}
+ K\le C\left(1+\log\frac{N}{N-n_0}\right)
+\end{equation}
+edges, with an absolute constant. If a grid of mesh \(T\) contains
+\(0,n_0,N\), its endpoints can be chosen on that grid with additional
+cost \(O(KT)\). If the profile barriers hold with uniform additive
+error \(\varepsilon N\), the additional cost is
+\(O(K\varepsilon N+KT)\).
+\end{theorem}
+
+We first work on \([0,1]\). The arbitrary accuracy \(\rho\) avoids
+any need to prove attainment of an infimum; the analytic argument has
+a strict exponent margin and will choose \(\rho\) smaller than that
+margin. The finite-chain and grid assertions are established at the end.
+
+\subsection{Normalizing the endpoint and identifying the relevant gaps}
+
+Replace \(g\) by
+\[
+ \widetilde g(x)=\min\{g(x),1+a-x\}.
+\]
+This is still 1-Lipschitz with the same two barriers, and
+\(\widetilde g(1)=a\). Furthermore
+\begin{equation}\label{humanprofile:normalization}
+ c_g(m,n)\le c_{\widetilde g}(m,n).
+\end{equation}
+If \(g(m)\le1+a-m\), the left endpoint is unchanged and the
+minimum can only decrease. Otherwise the new cost is at least
+\((1+a-m)-(1+a-n)=n-m\), which bounds the old cost by
+Lipschitz continuity. We may therefore assume \(g(1)=a\).
+
+We use one published real-variable identity. In the notation below it
+is precisely the hard-point formula of Keleti--Shmerkin
+\cite[Lemma 5.4]{ks}:
+if \(f\) is a piecewise affine 1-Lipschitz function with \(f(0)=0\),
+then its infimum of total drops over partitions
+\[
+ 1=t_0>t_1>\cdots\downarrow0,\qquad t_{i-1}\le2t_i,
+\]
+where a drop on \([t_i,t_{i-1}]\) uses its lower endpoint,
+\(f(t_i)-\min_{[t_i,t_{i-1}]}f\), equals the sum of
+\(f(u)-f(v)\) over the interval components \([u,v]\) of
+\[
+ \{t:f(t)=\min_{[t/2,t]}f\}.
+\]
+We now translate this identity carefully to the cost
+\eqref{humanprofile:edge}.
+
+Let \(\Phi_\zeta(g)\) be the infimum of chain costs from \(1-\zeta\)
+to zero, and set \(f(t)=g(1-t)-a\). The edge \(n\to m\)
+corresponds to \(x=1-n<y=1-m\), with \(y\le2x\).
+Its cost is \(f(y)-\min_{[x,y]}f\). The corresponding
+total-drop cost is \(f(x)-\min_{[x,y]}f\). Their difference is
+\(f(y)-f(x)\), so telescoping gives
+\[
+ \Phi_\zeta(g)=T_\zeta(f)-g(1-\zeta),
+\]
+where \(T_\zeta(f)\) is the infimum of the usual total drop on
+\([\zeta,1]\). Extending a finite partition below \(\zeta\) by
+successive halvings adds at most \(\zeta\) to the cost.
+Conversely, truncating an infinite partition at the interval crossing
+\(\zeta\) changes that interval's cost by at most \(2\zeta\);
+the ratio condition is preserved. Hence
+\[
+ T(f)-\zeta\le T_\zeta(f)\le T(f)+2\zeta,
+ \qquad
+ \Phi_0(g):=\lim_{\zeta\downarrow0}\Phi_\zeta(g)=T(f)-a.
+\]
+
+In the original coordinate the hard-point set is
+\[
+ H_g=\{x:g(x)=\min_{[x,(1+x)/2]}g\}.
+\]
+For a piecewise affine function this is a finite union of closed intervals,
+possibly including degenerate intervals. Both zero and one belong to it.
+The function \(g\) is nondecreasing on every component: hardness compares
+sufficiently close pairs in that interval, and subdivision compares
+arbitrary pairs. A component \([p,q]\) becomes
+\([1-q,1-p]\) under reversal. The quoted identity therefore reads
+\begin{equation}\label{humanprofile:hardidentity}
+ \Phi_0(g)=
+ \sum_{[p,q]\text{ component of }H_g}\bigl(g(q)-g(p)\bigr)-a.
+\end{equation}
+The subtraction of \(a\) is essential.
+
+\begin{lemma}[The geometry of a gap]\label{humanprofile:gap}
+If \((q,p)\) lies between consecutive components of \(H_g\), then
+\[
+ g(x)\ge g(p)\quad(q<x<p),\qquad g(q)\ge g(p).
+\]
+Its drop \(\delta=g(q)-g(p)\) is nonnegative; if it is positive,
+\begin{equation}\label{humanprofile:gapbound}
+ \delta\le p-\frac{1+q}{2}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Suppose \(g(x)<g(p)\) for some interior point. A minimum point \(z\)
+of \(g\) on \([x,p]\) lies before \(p\) and has value below \(g(p)\).
+On \([z,p]\) the profile is at least \(g(z)\). Any remaining part
+of \([z,(1+z)/2]\) lies in \([p,(1+p)/2]\), where hardness of
+\(p\) gives \(g\ge g(p)>g(z)\). Thus \(z\) would be hard,
+contradicting the choice of the gap. Continuity proves the endpoint
+inequality. If the drop is positive, hardness of \(q\) forces
+\(p>(1+q)/2\) and \(g((1+q)/2)\ge g(q)\). Lipschitz
+continuity from \((1+q)/2\) to \(p\) gives
+\eqref{humanprofile:gapbound}.
+\end{proof}
+
+Telescoping the changes along all components and gaps, using
+\(g(0)=0\), \(g(1)=a\), turns \eqref{humanprofile:hardidentity} into
+\begin{equation}\label{humanprofile:drops}
+ \Phi_0(g)=\sum_{\text{gaps}}\delta.
+\end{equation}
+We may discard gaps with zero drop.
+
+\begin{lemma}[Controlling the remaining gaps]\label{humanprofile:tail}
+If \(g(p)=v\), the sum \(S\) of drops of all positive gaps
+contained in \([p,1]\) satisfies
+\[
+ S\le\frac{1-p}{2},\qquad
+ S\le\frac{1-p+v-a}{2}.
+\]
+Consequently, for \(0\le\chi\le1/2\),
+\begin{equation}\label{humanprofile:tailblend}
+ S\le\frac{1-p}{2}+\chi(v-a).
+\end{equation}
+\end{lemma}
+\begin{proof}
+A gap \((q_i,p_i)\) has
+\[
+ \delta_i\le p_i-\frac{1+q_i}{2}
+ \le\frac{p_i-q_i}{2}.
+\]
+The intervals are disjoint, proving the first estimate. Independently,
+the drop is at most the negative variation of \(g\) on that gap.
+On \([p,1]\), total variation is at most \(1-p\), and the
+net change is \(a-v\). Its negative variation is therefore at most
+\((1-p+v-a)/2\). A convex combination of the two estimates with
+weights \(1-2\chi\) and \(2\chi\) proves the last statement.
+\end{proof}
+
+If there is only one positive gap, the barriers and
+\eqref{humanprofile:gapbound} give
+\[
+ \delta\le p-\frac{1+q}{2},\qquad \delta\le bq-ap.
+\]
+Multiplying the first inequality by \(2b\), adding the second, and
+dividing by \(1+2b\) yields
+\begin{equation}\label{humanprofile:onegap}
+ \delta\le\frac{(2b-a)p-b}{1+2b}\le C_1(a,b).
+\end{equation}
+With no positive gaps the cost is zero. We henceforth consider the first
+two positive gaps. Write
+\[
+ (q_1,p_1),\ (q_2,p_2),\qquad
+ u_i=g(q_i),\quad v_i=g(p_i),\quad \delta_i=u_i-v_i.
+\]
+The remaining gaps will be handled by Lemma~\ref{humanprofile:tail}.
+
+\subsection{The bound when \(b\) is small}
+
+Assume \(b\le b_c(a)\) and \(R(a,b)\le0\). In particular
+\(b<1/2\). Put
+\[
+ s=1+2b,\qquad Z=(1-a)s^2,\qquad
+ \chi=\frac{1+a-4ab+4b^2-2b}{Z}.
+\]
+The numerator is \(1-2b+a+4b(b-a)>0\), and
+\[
+ \chi-\frac12=\frac{R(a,b)}{2Z}\le0.
+\]
+Thus the blended tail estimate is legal.
+
+The following seven inequalities follow respectively from the upper
+barrier, lower barrier, gap bound, Lipschitz continuity, upper barrier,
+gap bound, and the interval endpoint:
+\[
+ \begin{array}{rcl}
+ u_1-bq_1&\le&0,\\
+ ap_1-v_1&\le&0,\\
+ q_1-2p_1+2\delta_1&\le&-1,\\
+ u_2-v_1-q_2+p_1&\le&0,\\
+ u_2-bq_2&\le&0,\\
+ q_2-2p_2+2\delta_2&\le&-1,\\
+ p_2&\le&1.
+ \end{array}
+\]
+Multiply them, in that order, by
+\[
+ \begin{gathered}
+ w_1=\frac1s,\quad
+ w_2=\frac{1-2b}{(1-a)s},\quad
+ w_3=\frac b s,\quad
+ w_4=\frac{2b-a}{(1-a)s},\\
+ w_5=\frac{1+2a-4b-2ab}{Z},\quad
+ w_6=\frac{1-\chi}{2},\quad
+ w_7=\frac12-\chi .
+ \end{gathered}
+\]
+Every multiplier is nonnegative: the sign of \(w_5\) is exactly
+\(b\le b_c(a)\), and the other signs follow from \(a<b<1/2\)
+and \(0<\chi\le1/2\).
+For transparency, the cancellation uses
+\[
+ \begin{gathered}
+ w_3=bw_1,\quad w_1+2w_3=1,\quad
+ aw_2-2w_3+w_4=0,\quad w_2+2w_3+w_4=1,\\
+ w_6=w_4+bw_5,\quad w_4+w_5=\chi,\quad
+ 2w_6=1-\chi .
+ \end{gathered}
+\]
+The resulting inequality is
+\[
+ \delta_1+\delta_2-\frac{p_2}{2}+\chi v_2
+ \le-w_3-w_6+w_7=-\frac b{1+2b}-\frac\chi2.
+\]
+Apply \eqref{humanprofile:tailblend} after \(p_2\). Then
+\[
+ \begin{aligned}
+ \Phi_0(g)
+ &\le\delta_1+\delta_2+\frac{1-p_2}{2}+\chi(v_2-a)\\
+ &\le\frac12-\frac b{1+2b}-\left(a+\frac12\right)\chi\\
+ &=C_2(a,b).
+ \end{aligned}
+\]
+The zero- and one-gap cases also satisfy this estimate because
+\[
+ C_2(a,b)-C_1(a,b)
+ =\frac{(b-a)(1+2a-4b-2ab)}{(1-a)(1+2b)^2}\ge0.
+\]
+
+\subsection{The bound for \(b_c(a)\le b\le1/2\)}
+
+Between \(p_1\) and \(q_2\), all hard components increase and
+all omitted gaps have zero drop. Hence \(v_1\le u_2\).
+Use the eight inequalities
+\[
+ \begin{array}{rcl}
+ u_1-bq_1&\le&0,\\
+ \delta_1-p_1+q_1/2&\le&-1/2,\\
+ ap_1-v_1&\le&0,\\
+ \delta_2-p_2+q_2/2&\le&-1/2,\\
+ ap_2-v_2&\le&0,\\
+ u_2-v_1-q_2+p_1&\le&0,\\
+ p_2&\le&1,\\
+ v_1-u_2&\le&0 .
+ \end{array}
+\]
+Let \(Z_1=(1+2a)(1+2b)\). Their respective multipliers are
+\[
+ \begin{aligned}
+ \omega_1&=\frac1{1+2b},&
+ \omega_2&=\frac{2b}{1+2b},\\
+ \omega_3&=\frac{2b}{Z_1},&
+ \omega_4&=\frac{4b(1+a)}{Z_1},\\
+ \omega_5&=\frac{1+2a-2b}{Z_1},&
+ \omega_6&=\frac{2b(1+a)}{Z_1},\\
+ \omega_7&=\frac{(6+8a)b-(1+2a)^2}{2Z_1},&
+ \omega_8&=\frac{(2a+4)b-(2a+1)}{Z_1}.
+ \end{aligned}
+\]
+All are nonnegative. The last sign is \(b\ge b_c(a)\).
+The numerator of \(\omega_7\) increases with \(b\); at \(b=b_c(a)\)
+it is
+\[
+ \frac{(1+a)(1-2a)(1+2a)}{a+2}>0.
+\]
+The remaining signs follow directly from \(0<a\le1/4\) and
+\(b\le1/2\).
+
+Expanding the weighted sum gives
+\[
+ \delta_1+\delta_2-\frac{p_2}{2}
+ \le-\frac{\omega_2}{2}-\frac{\omega_4}{2}+\omega_7.
+\]
+Using the first tail estimate after \(p_2\), we obtain
+\[
+ \Phi_0(g)
+ \le\frac12-\frac{\omega_2}{2}-\frac{\omega_4}{2}+\omega_7
+ =C_1(a,b).
+\]
+The zero- and one-gap cases follow from \eqref{humanprofile:onegap}.
+
+\subsection{The bound for \(b\ge1/2\)}
+
+Here a direct potential is shorter than a gap calculation. Define
+\[
+ L(x)=2bx-b-g(x),\qquad
+ V(x)=\frac{\max\{L(x),0\}}{1+2b}.
+\]
+The function \(L\) is nondecreasing, since \(g'\le1\le2b\)
+almost everywhere. Moreover
+\[
+ (-g')_+\le\frac{2b-g'}{1+2b}.
+\]
+For \(g'\ge0\) the right side is nonnegative; for \(g'<0\),
+the inequality reduces to \(g'\ge-1\).
+Every edge cost is at most the negative variation of \(g\) on its
+interval.
+
+Above the zero region of \(L\), take maximal admissible downward
+jumps, shortening the last one to reach that region. Their costs
+sum to at most \(V(n_0)\). Once \(L(n)\le0\), if \(n>1/2\),
+\[
+ g(2n-1)\le b(2n-1)\le g(n).
+\]
+A minimum of \(g\) on \([2n-1,n]\), chosen leftmost, therefore
+gives a zero-cost admissible continuation. When \(n\le1/2\), the
+edge to zero is admissible and costs zero because \(g(0)=0\le g\).
+
+To make termination precise, perform this construction on a uniform grid
+and a piecewise affine interpolation. In the positive-\(L\) region stop
+at the first grid point above its zero region and cross to the next
+point below, at cost at most the mesh. The zero-cost minima then occur
+at grid points and strictly decrease the endpoint, so the procedure
+terminates. If the prescribed start is not on this grid, an initial
+step to the nearest point below it costs at most the mesh and is
+admissible once the mesh is small. Thus the grid construction costs
+at most \(V(n_0)+O(\text{mesh})\). Compress the chain by the
+procedure below. Its length is then bounded independently of the mesh,
+so transferring it from the interpolant to \(g\) costs only
+\(O(K\,\text{mesh})\). Taking the mesh sufficiently small makes
+the total error less than the prescribed \(\rho\). Since
+\[
+ V(n_0)\le V(1)=\frac{b-a}{1+2b}=C_1(a,b),
+\]
+this proves the required high-\(b\) estimate.
+
+\subsection{Finite chains and grid errors}
+
+First, an infimum for a finite start is bounded by the limiting cost
+used above. Truncating a chain from a larger starting point at its
+first crossing of a smaller start does not increase its cost:
+the crossing edge is replaced by a subinterval with the same lower
+endpoint, whose minimum can only increase. Conversely, maximal
+admissible edges bridge the two starting points at total cost at
+most their distance, by the variation bound. Hence
+\[
+ 0\le\Phi_0(g)-\Phi_\zeta(g)\le\zeta .
+\]
+
+Every finite chain can be compressed without increasing its cost.
+For \(l<m<n\),
+\[
+ c_g(l,n)\le c_g(l,m)+c_g(m,n).
+\]
+Indeed, if \(A=\min_{[l,m]}g\) and \(B=\min_{[m,n]}g\), the
+difference between the right side and left side is
+\(g(m)-\max(A,B)\ge0\). Merge neighboring edges whenever their
+union remains admissible. In the resulting chain, every pair of
+successive edges more than doubles the complementary distance
+from the endpoint one:
+\[
+ 2n_i-n_{i+2}>1
+ \quad\Longrightarrow\quad
+ 1-n_{i+2}>2(1-n_i).
+\]
+A start at \(1-\zeta\) therefore needs at most
+\(2\lceil\log_2(1/\zeta)\rceil+O(1)\) edges.
+
+Choose a finite chain within \(\rho\) of its finite-start infimum
+and compress it. The resulting cost is at most \(C(a,b)+\rho\)
+and its length has the displayed bound. No limiting chain or attainment
+is needed. The high-\(b\) construction gives the same conclusion:
+its interpolant differs uniformly from \(g\) by at most the mesh,
+so each retained edge cost differs by at most twice the mesh.
+Rescaling gives \eqref{humanprofile:length} and the asserted
+cost \(NC(a,b)+\rho N\).
+
+Finally round all endpoints downward to a grid of mesh \(T\) containing
+\(0,n_0,N\). Admissibility is preserved because
+\[
+ \left\lfloor\frac mT\right\rfloor
+ \ge\left\lfloor\frac{2n-N}{T}\right\rfloor
+ \ge2\left\lfloor\frac nT\right\rfloor-\frac NT .
+\]
+Each endpoint moves at most \(T\), so each cost changes by at most
+\(2T\). If the original barriers have additive error
+\(\varepsilon N\), first clamp the profile between \(ax\) and \(bx\).
+The result is still 1-Lipschitz and differs by at most
+\(\varepsilon N\); a cost changes by at most twice that amount.
+Endpoint normalization only increases the cost available to the original
+profile. Summing these errors proves the final assertions of
+Theorem~\ref{humanprofile:bound}.
+
+\subsection{Evaluating the dimension cutoff}
+
+Set
+\[
+ \alpha=\frac{3-\sqrt7}{4},\qquad
+ a_c=\frac{\sqrt6-2}{4},\qquad
+ b_F(a)=\frac{2a}{1-2a}.
+\]
+For \(\alpha\le a\le a_c\), define
+\begin{equation}\label{humanprofile:root}
+ r_2(a)=
+ \frac{8a^2-a+2-
+ \sqrt{64a^4+32a^3-63a^2-28a+4}}
+ {4(1+4a-2a^2)}.
+\end{equation}
+The radical is real on this interval, as verified below. Rationalizing the
+numerator gives the expression in \eqref{human:root}: if
+\(A=2-a+8a^2\) and \(\Delta=4-28a-63a^2+32a^3+64a^4\), then
+\(A^2-\Delta=24a(1+4a-2a^2)\).
+The final curve is
+\begin{equation}\label{humanprofile:curve}
+ B_{\mathrm H}(d)=
+ \begin{cases}
+  2d-1,&1<d\le1+\alpha,\\[2pt]
+  1+r_2(d-1),&1+\alpha<d\le1+a_c,\\[2pt]
+  \dfrac1{3-2d},&1+a_c<d\le5/4.
+ \end{cases}
+\end{equation}
+
+\begin{proposition}[What the inequality supplies]
+\label{humanprofile:algebra}
+Let \(1<d\le5/4\) and \(d\le D<B_{\mathrm H}(d)\).
+Then either
+\[
+ D<2d-1,
+\]
+or there are \(s<d\), \(u>D\), with \(1<s<5/4\),
+\(s<u<2\), for which one of the two parameter conditions in
+Theorem~\ref{humanprofile:bound} holds and
+\(C(s-1,u-1)<s-1\).
+\end{proposition}
+\begin{proof}
+Put \(a=d-1\), \(b=D-1\). Only \(b\ge2a\) needs examination.
+First let
+\(\alpha\le a\le a_c\) and \(2a\le b\le b_c(a)\).
+The guard \(R(a,b)<0\) holds throughout this region. Indeed
+\[
+ \partial_bR=8(1+a)b-4(a+2)\le-4\qquad(b\le1/2),
+\]
+and
+\[
+ R(a,2a)=16a^3+8a^2-13a+1.
+\]
+Its derivative is \(48a^2+16a-13\le-6\) on \([0,1/4]\),
+whereas
+\[
+ R(\alpha,2\alpha)=3(11\alpha-1)<0.
+\]
+For the last sign, \(\alpha<1/11\) is equivalent to
+\(29<11\sqrt7\), and squaring gives \(841<847\).
+
+The derivative of \(C_2\) in \(b\) is
+\[
+ \partial_bC_2=
+ \frac{2+11a+8a^2-(8+14a+8a^2)b}
+      {(1-a)(1+2b)^3}>0
+ \qquad(b\le b_c(a)).
+\]
+The numerator decreases with \(b\); its value at \(b_c(a)\),
+multiplied by \(4+2a\), is \(18a(1+a)>0\).
+At the lower endpoint,
+\[
+ C_2(a,2a)-a
+ =\frac{a(1+2a)(8a^2-12a+1)}
+        {(1-a)(1+4a)^2}.
+\]
+This is zero at \(a=\alpha\) and negative for
+\(\alpha<a\le a_c\).
+At \(b=b_c(a)\), the formulas \(C_1,C_2\) agree. Also
+\[
+ C_1(a,b)<a
+ \quad\Longleftrightarrow\quad b<b_F(a).
+\]
+The equality \(b_F(a)=b_c(a)\) is equivalent to
+\(8a^2+8a-1=0\), hence to \(a=a_c\).
+For \(a<a_c\), \(b_F(a)<b_c(a)\), so
+\(C_2(a,b_c(a))>a\).
+
+There is therefore one root of \(C_2(a,b)=a\) in
+\([2a,b_c(a)]\), with the indicated endpoint equalities.
+Clearing its positive denominator gives
+\[
+ (4a^2-8a-2)b^2+(8a^2-a+2)b-3a=0.
+\]
+The smaller root is \eqref{humanprofile:root}. The crossing has
+strictly positive derivative, so its discriminant is positive.
+This proves the reality and continuity of the radical expression.
+Its endpoint values are
+\[
+ r_2(\alpha)=2\alpha,\qquad
+ r_2(a_c)=b_c(a_c)=\frac{\sqrt6-1}{5}.
+\]
+Thus the middle branch gives exactly the required strict cost
+inequality above the coherent range, and the curve is continuous
+at both joins.
+
+Now let \(a_c\le a\le1/4\).
+For \(b\ge b_c(a)\), Theorem~\ref{humanprofile:bound} gives
+\(C_1<a\) exactly when \(b<b_F(a)\).
+If \(b<b_c(a)\), increase the upper profile barrier to
+\(b_c(a)x\). For \(a>a_c\), the preceding crossing calculation
+gives \(b_c(a)<b_F(a)\), so the high-side estimate at that
+larger barrier has
+\[
+ C_1(a,b_c(a))<a.
+\]
+At \(a=a_c\) and \(b<b_c(a)\), the strict low-side estimate
+has already been proved in the middle branch.
+Finally \(1+b_F(a)=1/(1-2a)=1/(3-2d)\), proving the last
+branch of \eqref{humanprofile:curve}.
+
+All inequalities used by the profile branch are strict in cost.
+The guard is also strict wherever the low branch is used here.
+Away from the common boundary, continuity permits a small decrease
+of \(a\) and increase of the chosen upper barrier. At the common
+boundary one may move to its high side, since \(C_1=C_2\) there.
+In the enlarged-barrier case \(a>a_c,\ b<b_c(a)\), choose
+\(a'<a\) sufficiently close that \(a'>a_c\) and
+\(b_c(a')>b\), and use the upper barrier \(b_c(a')\).
+These choices give \(s=1+a'<d\) and some \(u>D\) with the
+required strict profile bound. They may be chosen with
+\(1<s<5/4\), \(s<u<2\), proving the assertion.
+\end{proof}
+
+The analytic proof can now use the coherent implication when
+\(D<2d-1\). In every remaining case it uses
+Theorem~\ref{humanprofile:bound} with the strict parameter slack
+provided by Proposition~\ref{humanprofile:algebra}. This is the
+complete profile input needed for the curve
+\eqref{humanprofile:curve}.

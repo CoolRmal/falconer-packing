@@ -1,0 +1,345 @@
+\clearpage
+\section{A weighted embedding for one Fourier step}
+\label{uf:embedding}
+
+This appendix proves the one-step estimate
+\eqref{fprof:inflation} directly from its geometric and Fourier hypotheses.
+In particular, the selected caps may depend arbitrarily on the child cube.
+The proof does not restore the omitted caps before applying the good-tube
+condition. The pin measure need not satisfy a Frostman bound in this step.
+
+For a bounded rectangle \(A\) of positive area, write
+\(m_A=|A|^{-1}\mathcal L^2|_A\). Dilations of cubes and rectangles below
+are concentric. We use the Fourier convention
+\(\widehat f(\xi)=\int e^{-2\pi i x\cdot\xi}f(x)\,dx\).
+
+\begin{proposition}[Selected-cap weighted embedding]
+\label{uf:embeddingprop}
+Fix an integer \(K\geq1\), an index \(0\leq j<K\), and constants
+\(C_0,B_0\geq1\). Let \(0<a\leq b\), and let \(P\) be an
+axis-parallel square of side \(b\). Let \(\mathcal Q\) be a finite
+subfamily of squares of an axis-parallel \(a\)-grid, each contained in
+\(P\). For \(L\geq L_0(C_0,K)\), set
+$$
+ Q^+=L^{2j+2}Q,\qquad
+ \widetilde Q=LQ^+,\qquad
+ P^+=L^{2j+4}P,\qquad D=L^{4K+20}.
+$$
+Let \(\sigma\) be a finite positive Borel measure, and put
+$$
+ w_Q=\sigma(Q^+),\qquad M=\sigma(P^+).
+$$
+Let \(\Theta\) be a finite label set. For every \(\theta\in\Theta\)
+choose a function \(f_\theta\in L^2(\R^2)\), a unit vector
+\(u_\theta\), a frequency center \(\xi_\theta\), and an effective
+unit direction \(v_\theta\), subject to the following conditions:
+\begin{enumerate}
+\item The Fourier support of \(f_\theta\) is contained in
+$$
+ \left\{\xi:
+ |(\xi-\xi_\theta)\cdot u_\theta^\perp|\leq C_0/a,
+ \quad |(\xi-\xi_\theta)\cdot u_\theta|\leq C_0/b\right\}.
+$$
+These supports are also contained in balls of radius \(C_0/a\)
+whose pointwise overlap is at most \(B_0\).
+\item The angular mismatch obeys
+$$
+ |u_\theta-v_\theta|\leq C_0 a/b.
+$$
+Directions may first be given consistent signs, since the rectangles
+and the tests depend only on the unoriented lines.
+\item For each child there are numbers
+\(\varepsilon_{Q,\theta}\in\{0,1\}\). Let
+\(T_{Q,\theta}\) be the rectangle centered at the center of \(Q\),
+of width \(Da\) perpendicular to \(v_\theta\) and length \(Db\)
+parallel to \(v_\theta\). For a number \(H\geq1\), assume only that
+\begin{equation}\label{uf:embeddinggood}
+ \varepsilon_{Q,\theta}=1
+ \quad\Longrightarrow\quad
+ \sigma(T_{Q,\theta}\cap P^+)
+ \leq H\frac ab M.
+ \tag{G}
+\end{equation}
+\end{enumerate}
+The function \(f_\theta\) is the same for all children; only the
+selection numbers depend on \(Q\). Then, for every \(m>0\),
+\begin{align}
+ &\sum_{Q\in\mathcal Q}w_Q
+   \int_{Q^+}\left|\sum_{\theta\in\Theta}
+           \varepsilon_{Q,\theta}f_\theta\right|^2\,dm_{Q^+}
+ \label{uf:embeddingconclusion}\\
+ &\quad\leq C L^{8j+14}HM
+       \sum_{\theta\in\Theta}\int_{P^+}|f_\theta|^2\,dm_{P^+}
+   +C_m M a^{-2}L^{-m}
+       \sum_{\theta\in\Theta}\|f_\theta\|_2^2.\nonumber
+\end{align}
+Here \(C\) and \(C_m\) may depend on the fixed constants
+\(C_0,B_0,K\), and \(C_m\) also on \(m\). They do not depend on
+\(a,b,L,H\), the measure, or the numbers of children and labels.
+\end{proposition}
+
+\begin{proof}
+We separate the geometric consequence of the selected tests, local
+orthogonality, and the weighted reproducing-kernel estimate.
+
+\emph{Geometry and the selected tube weights.}
+The enlarged child cubes have overlap at most
+\begin{equation}\label{uf:embeddingoverlap}
+ \Lambda\leq C L^{4j+4}.
+\end{equation}
+Indeed, in each coordinate at most \(L^{2j+2}+2\) grid centers can
+place a point in the corresponding enlarged interval. Also, for a
+point in \(\widetilde Q\), its distance from the center of \(P\)
+in the maximum norm is at most
+\((1+L^{2j+3})b/2\). It follows that
+\begin{equation}\label{uf:embeddingmargin}
+ \dist\left(\bigcup_{Q\in\mathcal Q}\widetilde Q,
+                    \R^2\setminus P^+\right)\geq Lb
+\end{equation}
+for \(L\geq4\). In particular all \(Q^+\) lie in \(P^+\), and
+\begin{equation}\label{uf:embeddingtotalweight}
+ \sum_Qw_Q\leq\Lambda M.
+\end{equation}
+
+Fix \(\theta\), and let \(U\) be any translate of a rectangle of
+width \(a\) and length \(b\), oriented along \(u_\theta\).
+We claim
+\begin{equation}\label{uf:embeddingtubemass}
+ \sum_{\substack{Q:\varepsilon_{Q,\theta}=1\\
+                        \widetilde Q\cap U\ne\varnothing}}w_Q
+ \leq\Lambda H\frac ab M.
+\end{equation}
+If the index set is empty this is immediate. Otherwise choose one of
+its cubes, \(Q_0\). Every \(Q^+\) in that sum lies inside
+\(T_{Q_0,\theta}\), as we now check.
+
+Let \(q,q_0\) be the centers of \(Q,Q_0\), and choose
+\(z\in\widetilde Q\cap U\), \(z_0\in\widetilde Q_0\cap U\).
+For \(x\in Q^+\), write
+$$
+ x-q_0=(x-q)+(q-z)+(z-z_0)+(z_0-q_0).
+$$
+The first, second, and fourth terms have length at most
+\(C L^{2j+3}a\). The third has components at most \(a\) and \(b\)
+perpendicular and parallel to \(u_\theta\). Therefore
+$$
+ |(x-q_0)\cdot u_\theta^\perp|\leq C L^{2j+3}a,
+ \qquad
+ |(x-q_0)\cdot u_\theta|\leq C L^{2j+3}b.
+$$
+Changing to \(v_\theta\) adds at most
+\(C C_0 L^{2j+3}a\) to the transverse component. The longitudinal
+component stays bounded by \(C(1+C_0)L^{2j+3}b\).
+Since \(2j+3\leq2K+1\), the prescribed value of \(D\) exceeds
+twice these factors once \(L\geq L_0(C_0,K)\). This proves the
+containment. All the cubes in question also lie in \(P^+\).
+Their overlap bound and the selected test at \(Q_0\) now give
+$$
+ \sum_{\substack{Q:\varepsilon_{Q,\theta}=1\\
+                        \widetilde Q\cap U\ne\varnothing}}\sigma(Q^+)
+ \leq\Lambda\sigma(T_{Q_0,\theta}\cap P^+)
+ \leq\Lambda H(a/b)M,
+$$
+as claimed. Thus the mass bound for \emph{every} dual rectangle in
+\eqref{uf:embeddingtubemass} is a consequence of the given tests at
+selected children, not an additional assumption.
+
+\emph{Local orthogonality for a selected subset.}
+Choose a Schwartz function \(v\) whose Fourier transform is supported
+in the unit ball and whose modulus is at least one on the unit square
+centered at zero. To obtain one, start with the inverse transform of
+a smooth bump supported in a sufficiently small ball; its value can
+be made nearly constant on that square and then multiplied by a fixed
+constant. For a child centered at \(q\), put
+$$
+ v_Q(x)=v\left(\frac{x-q}{L^{2j+2}a}\right).
+$$
+The product \(v_Qf_\theta\) has Fourier support in the corresponding
+frequency ball enlarged by at most \(a^{-1}\). These enlarged balls
+have overlap at most a fixed multiple of \(B_0\). In fact, dilating
+equal-radius balls by two increases their overlap by at most a factor
+nine in the plane: balls contributing at a point have their original
+balls inside the concentric ball of three times the radius, and an
+integration of the original overlap bound gives this count.
+
+For every subset \(A\subseteq\Theta\), Plancherel and pointwise
+Cauchy--Schwarz in frequency therefore give
+\begin{equation}\label{uf:embeddingsubset}
+ \left\|v_Q\sum_{\theta\in A}f_\theta\right\|_2^2
+ \leq C\sum_{\theta\in A}\|v_Qf_\theta\|_2^2.
+\end{equation}
+The constant is independent of the subset. Apply this to
+\(A=\{\theta:\varepsilon_{Q,\theta}=1\}\). Restrict the left side
+to \(Q^+\), and truncate the right side at \(\widetilde Q=LQ^+\).
+Schwartz decay and normalization of the cube averages give, for every
+\(p>0\),
+\begin{align}\label{uf:embeddinglocalorthog}
+ &\int_{Q^+}\left|\sum_\theta
+               \varepsilon_{Q,\theta}f_\theta\right|^2\,dm_{Q^+}
+ \\
+ &\quad\leq C L^2
+        \sum_{\theta:\varepsilon_{Q,\theta}=1}
+             \int_{\widetilde Q}|f_\theta|^2\,dm_{\widetilde Q}
+       +C_p a^{-2}L^{-p}\sum_\theta\|f_\theta\|_2^2.\nonumber
+\end{align}
+For the first term the area ratio is exactly \(L^2\). For the second,
+\(|Q^+|^{-1}\leq a^{-2}\), and the square of the cutoff is bounded
+by \(C_pL^{-p}\) outside \(\widetilde Q\). No unselected label
+has been introduced into the main term.
+
+\emph{The anisotropic weighted embedding.}
+For a fixed label define the finite positive averaging measure
+$$
+ \tau_\theta=
+ \sum_{Q:\varepsilon_{Q,\theta}=1}w_Qm_{\widetilde Q}.
+$$
+Equations \eqref{uf:embeddingtubemass} and
+\eqref{uf:embeddingtotalweight} imply
+\begin{equation}\label{uf:embeddingtaumass}
+ \tau_\theta(U)\leq\Lambda H(a/b)M
+ \quad\text{for every dual rectangle }U,
+ \qquad \tau_\theta(\R^2)\leq\Lambda M.
+\end{equation}
+
+Take a smooth compact frequency bump equal to one on
+\([-C_0,C_0]^2\). Translating, rotating, and rescaling it produces
+a reproducing kernel \(k_\theta\) for the Fourier rectangle in the
+proposition. Thus \(f_\theta=f_\theta*k_\theta\), and
+\begin{gather}\label{uf:embeddingkernel}
+ \|k_\theta\|_1\leq C,\\
+ |k_\theta(z)|\leq\frac{C_p}{ab}
+ \left(1+\frac{|z\cdot u_\theta^\perp|}{a}
+          +\frac{|z\cdot u_\theta|}{b}\right)^{-p}
+ \qquad(p>0).\nonumber
+\end{gather}
+The translation of the frequency rectangle merely modulates the kernel
+and does not change these absolute-value estimates. Each \(L^2\)
+function with the specified bounded Fourier support has a continuous
+representative, since its Fourier transform is also integrable.
+The reproducing identity and the following pointwise estimate are
+understood for that representative. Cauchy--Schwarz yields
+$$
+ |f_\theta(x)|^2
+ \leq C\int|f_\theta(y)|^2|k_\theta(x-y)|\,dy.
+$$
+
+For each fixed \(y\), partition the plane into translates of dual
+rectangles \(a\)-by-\(b\) centered on the corresponding rectangular
+lattice based at \(y\). The mass estimate in
+\eqref{uf:embeddingtaumass}, the kernel bound with any \(p>2\), and
+summation of the lattice decay give
+\begin{equation}\label{uf:embeddingkerneldensity}
+ \int|k_\theta(x-y)|\,d\tau_\theta(x)
+ \leq\frac C{ab}\Lambda H\frac ab M
+ = C\frac{\Lambda HM}{b^2}.
+\end{equation}
+This computation displays the single occurrence of the tube threshold.
+
+If \(y\notin P^+\), the support margin
+\eqref{uf:embeddingmargin} gives \(|x-y|\geq Lb\) on the support
+of \(\tau_\theta\). Since \(a\leq b\), the anisotropic distance
+in \eqref{uf:embeddingkernel} is then at least a fixed multiple of
+\(L\). Its arbitrary-order decay and the total mass in
+\eqref{uf:embeddingtaumass} give the additional bound
+$$
+ \int|k_\theta(x-y)|\,d\tau_\theta(x)
+ \leq C_p\frac{\Lambda M}{ab}L^{-p}
+ \qquad(y\notin P^+).
+$$
+Integrating the pointwise estimate for \(f_\theta\), and using
+Tonelli's theorem, now proves
+\begin{equation}\label{uf:embeddingweighted}
+ \int|f_\theta|^2\,d\tau_\theta
+ \leq C\frac{\Lambda HM}{b^2}
+              \int_{P^+}|f_\theta|^2\,dy
+      +C_p\frac{\Lambda M}{ab}L^{-p}\|f_\theta\|_2^2.
+\end{equation}
+
+Finally sum \eqref{uf:embeddinglocalorthog} with weights \(w_Q\),
+and apply \eqref{uf:embeddingweighted} to each label. The main
+coefficient, after converting to the normalized parent average, is
+$$
+ C L^2\Lambda H M\frac{|P^+|}{b^2}
+ \leq C L^{2+4j+4+4j+8}HM
+ =C L^{8j+14}HM.
+$$
+The local-orthogonality remainder is bounded by
+\(C_p\Lambda M a^{-2}L^{-p}\sum_\theta\|f_\theta\|_2^2\).
+The weighted-kernel remainder has the same bound with an additional
+\(L^2\), since \((ab)^{-1}\leq a^{-2}\).
+Choosing the arbitrary decay order \(p\) larger than
+\(m+4j+6\), and absorbing \eqref{uf:embeddingoverlap}, gives the
+stated remainder. This proves the proposition.
+\end{proof}
+
+\subsection*{Verification of the hypotheses in the Fourier argument}
+
+Fix a spatial parent \(P=Q_{j+1}\) and one parent angular label in
+Section~\ref{uf:transfer}. Apply Proposition~\ref{uf:embeddingprop}
+with
+$$
+ a=a_j=r_j/R,\qquad b=a_{j+1}=r_{j+1}/R,\qquad
+ L=R^h,\qquad \sigma=\sigma_i,\qquad H=H_{i,j}.
+$$
+The spatial dilations and the test dilation then coincide exactly with
+those specified there, with \(K=K_0\). In particular the proposition
+does not require replacing the current tests by tests on additional
+parents or by a new measure.
+
+Take
+$$
+ f_\theta=F_{P,\theta},\qquad
+ \varepsilon_{Q,\theta}=
+    \mathbf 1_{\{\theta\text{ is good for }Q\}}.
+$$
+The inherited identity \eqref{fprof:identity} says that each child's
+function is exactly the selected sum in the proposition. For this
+fixed parent the functions \(F_{P,\theta}\) do not depend on the
+child. The selections are constants on the averaging cubes, even
+though different cubes may choose completely different cap subsets.
+
+The actual Fourier direction \(u_\theta\) is the direction of the
+auxiliary angular interval, and \(v_\theta\) is its effective marking
+direction. Their difference is \(O(\overline\delta_j)\), with
+\(\overline\delta_j\leq a_j/a_{j+1}\) by
+\eqref{uf:angles}. This supplies the angular mismatch hypothesis.
+The marking rule supplies \eqref{uf:embeddinggood}: multiplying its
+conditional probability bound by \(\sigma_i(P^+)\) gives precisely
+the unnormalized inequality there. Thus the stronger-looking bound
+\eqref{uf:embeddingtubemass} for arbitrary dual rectangles has been
+derived from the existing marks, rather than silently assumed.
+
+The circular support of each auxiliary cap has tangential frequency
+width \(O_T(R/r_j)=O_T(a^{-1})\) and normal width
+\(O_T(R/r_j^2)\leq O_T(R/r_{j+1})=O_T(b^{-1})\).
+The fixed frequency convolution adds bounded width, absorbed because
+\(b\leq1\). The supports lie in bounded-overlap balls of radius
+\(O_T(a^{-1})\). When labels are pairs \((S,I)\), only boundedly
+many standard labels \(S\) are nonzero at a direction, and the
+dyadic intervals have bounded overlap. Their enclosing balls have
+uniformly bounded overlap as well: consecutive angular centers at a
+given level are separated by a fixed multiple of \(\delta_j\),
+up to this bounded multiplicity. The constants \(C_0,B_0\) may
+depend on the fixed annular ratio, hence on \(T\), but not on \(R\).
+The terminal widths are at least a constant times \(R^{-1}\), so
+the fixed frequency smoothing causes no growing ball multiplicity.
+
+All functions in this application belong to \(L^2\). For example,
+a bounded-density finite circular measure convolved with the fixed
+compact smooth frequency function has a smooth compactly supported
+Fourier representative. This observation applies also to the hard
+angular indicator pieces; no differentiation of those indicators is
+needed anywhere in Proposition~\ref{uf:embeddingprop}.
+
+Consequently \eqref{uf:embeddingconclusion}, followed by summation
+over parents and parent angular labels, proves
+\eqref{fprof:inflation}, with a loss \(R^{C_{K_0}h}\) and the single
+factor \(H_{i,j}\). The remainder is rapidly decreasing in the
+required sense. Indeed \(a_j\geq R^{-1}\), and for any target
+decay power \(A\), the remainder in the proposition contains
+$$
+ a_j^{-2}L^{-m}\leq R^{2-hm}.
+$$
+For fixed \(h>0\), choose \(m\) sufficiently large to absorb \(A\)
+and the polynomial bounds on the remaining sums and global norms.
+Constants depending on this choice are independent of the frequency.

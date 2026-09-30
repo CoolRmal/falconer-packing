@@ -1,0 +1,297 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx,hyperref,fancyhdr}
+\hypersetup{hypertexnames=false,colorlinks=true,linkcolor=MidnightBlue,
+ citecolor=MidnightBlue,urlcolor=MidnightBlue,
+ pdftitle={A packing-dimension condition for positive pinned distances}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\emergencystretch}{2em}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small A packing condition for pinned distances}
+\fancyhead[R]{\small 30 September 2026}\fancyfoot[C]{\thepage}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\R}{\mathbb R}
+\newcommand{\HH}{\dim_{\mathrm H}}\newcommand{\PP}{\dim_{\mathrm P}}
+\newcommand{\supp}{\operatorname{supp}}\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\dd}{\,d}\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\eps}{\varepsilon}
+
+\begin{document}
+\begin{center}
+{\LARGE\bfseries A packing-dimension condition\\[4pt]
+for positive pinned distances}\par
+\vspace{5pt}
+{\large The theorem, its meaning, and a focused proof}\par
+\vspace{3pt}
+30 September 2026
+\end{center}
+
+\section{The result}
+Fix a point \(y\) of a planar set \(E\). Its \emph{pinned distance set} is
+\[
+ \Delta_y(E)=\{|x-y|:x\in E\}.
+\]
+The question is whether these distances occupy positive length on the real
+line. Write \(d=\HH E\) and \(D=\PP E\). Hausdorff dimension supplies
+a measure that does not concentrate too much in small balls; packing
+dimension controls the number of small squares needed after restricting
+to a suitable part of the set.
+
+\begin{theorem}\label{human:target}
+Let \(E\subset\R^2\) be Borel. If
+\[
+ 1<d=\HH E\le\frac54,\qquad \PP E<B_{\rm H}(d),
+\]
+then there is a point \(y\in E\) such that
+\(\mathcal L^1(\Delta_y(E))>0\).
+\end{theorem}
+
+The sufficient boundary is
+\begin{equation}\label{human:curve}
+ B_{\rm H}(d)=
+ \begin{cases}
+  2d-1,&1<d\le d_\alpha,\\[5pt]
+  1+r_2(d-1),&d_\alpha<d\le d_c,\\[5pt]
+  \dfrac1{3-2d},&d_c<d\le\dfrac54,
+ \end{cases}
+\end{equation}
+where
+\[
+ d_\alpha=\frac{7-\sqrt7}{4}\approx1.088562172,
+ \qquad d_c=\frac{2+\sqrt6}{4}\approx1.112372436,
+\]
+and the short middle branch is given explicitly by
+\begin{equation}\label{human:root}
+ r_2(a)=\frac{6a}
+ {2-a+8a^2+\sqrt{4-28a-63a^2+32a^3+64a^4}}.
+\end{equation}
+The radical is real throughout the required interval, and both joins are
+continuous; Appendix~\ref{humanprofile:section} proves these facts.
+
+The packing inequality is \emph{strict}. At \(d=5/4\) it permits
+\(D<2\), but does not include \(D=2\). For \(d>5/4\), the theorem of
+Guth--Iosevich--Ou--Wang already gives a positive-length pinned distance set
+without a packing restriction \cite{giow}. No necessity or global optimality
+claim is made for \eqref{human:curve}.
+
+\clearpage
+\section{How to read the bound}
+For most of the improved range, the formula is simply
+\(B_{\rm H}(d)=1/(3-2d)\). The radical only joins this branch to
+\(2d-1\) on the small interval between approximately \(1.0886\) and
+\(1.1124\).
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Hausdorff dimension \(d\) & Sufficient packing restriction & An allowed value \\
+\midrule
+\(1.05\) & \(D<1.10\) & \(D=1.08\) \\
+\(1.10\) & \(D<28/23\approx1.21739\) & \(D=1.21\) \\
+\(1.15\) & \(D<10/7\approx1.42857\) & \(D=1.40\) \\
+\(1.20\) & \(D<5/3\approx1.66667\) & \(D=1.60\) \\
+\(1.24\) & \(D<25/13\approx1.92308\) & \(D=1.90\) \\
+\(1.25\) & \(D<2\) & \(D=1.99\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{../figures/falconer-human-curve.pdf}
+\caption{The shaded region \(d\le D<B_{\rm H}(d)\) is covered by the
+theorem. Its upper boundary is excluded. The dashed line shows the simpler
+condition \(D<2d-1\). The graph illustrates the formulas; it is not used
+as evidence for the inequalities.}
+\end{figure}
+
+For example, at \(d=1.24\), the simpler condition requires \(D<1.48\),
+whereas the theorem permits \(D<25/13\). The pin is a point of the original
+set, not a point chosen elsewhere in the plane.
+
+\section{The idea of the proof}
+Choose a probability \(\mu\) on one compact part of \(E\), and a probability
+\(\nu\) on another, separated compact part. The distance distribution from
+a pin \(y\) is the pushforward
+\[
+ (d_y)_*\mu,\qquad d_y(x)=|x-y|.
+\]
+It suffices to prove that this probability has a Lebesgue density for
+\(\nu\)-almost every pin. Such a density has integral one, so its supporting
+distance set cannot have zero length.
+
+The proof supplies this density in two regimes. Under \(D<2d-1\), replace
+distance by its tangent affine map in small source squares. The resulting
+positive densities converge in \(L^1\): their average absolute differences
+are summable. Outside that regime, split the source into frequency annuli.
+In each annulus discard a small \(L^1\) error and prove a summable
+\(L^2\) bound for the remaining density.
+
+The second argument is where the improved curve comes from. The pin measure's
+mass distribution across scales is encoded by a Lipschitz function. Rather
+than fixing the same intermediate scales for every distribution, choose a
+short chain of scales adapted to that function. A one-dimensional calculation
+bounds the total loss along the chain. If this loss is smaller than \(d-1\),
+the annular density estimates are summable.
+
+Thus the proof has three separate tasks: extract compact measures, bound a
+scalar scale-selection problem, and turn that bound into a density. The
+remainder of the main text states their precise interfaces and assembles them.
+The appendices provide their proofs without the exploratory material from the
+longer research manuscript.
+
+\section{A precise proof of the theorem}
+\subsection{Measures and compact reduction}
+A probability \(\lambda\) is \(t\)-Frostman when
+\(\lambda(B(x,r))\le C r^t\) for \(0<r\le1\). Define
+\[
+ I_s(\lambda)=\iint|x-x'|^{-s}\dd\lambda(x)\dd\lambda(x').
+\]
+On a bounded support, the Frostman estimate implies \(I_s(\lambda)<\infty\)
+for every \(0<s<t\), by summing the concentric distance annuli.
+Let \(N(K,r)\) be the least number of radius-\(r\) balls covering \(K\).
+
+\begin{lemma}[Compact measures with the required exponents]
+\label{human:compact}
+If \(E\) is Borel, \(0<t<\HH E\), and \(\PP E<u\), there are separated
+compact sets inside \(E\) carrying \(t\)-Frostman probabilities \(\mu,\nu\)
+such that each support has covering number at most \(Cr^{-u}\).
+\end{lemma}
+\begin{proof}
+Frostman's lemma supplies a compactly supported \(t\)-Frostman probability
+on \(E\). The countable-cover characterization of packing dimension covers
+\(E\) by bounded sets of upper box dimension strictly below \(u\).
+Taking closures and intersecting with \(E\) makes this a Borel cover without
+changing the upper box bounds. One member has positive Frostman mass.
+Inner regularity gives a compact subset of positive mass in it; its covering
+numbers are bounded by \(Cr^{-u}\). The restricted measure is nonatomic,
+so choose two disjoint small closed balls, a positive distance apart, whose
+intersections with that compact set have positive mass. Normalize the two
+restrictions. The Frostman and covering bounds persist, with new constants.
+\end{proof}
+
+\subsection{The two density estimates}
+\begin{proposition}[The direct comparison]
+\label{human:coherent-interface}
+Suppose separated compact probabilities \(\mu,\nu\) are \(t\)-Frostman,
+where \(1<s<\min\{t,2\}\), and \(N(\supp\mu,r)\le Cr^{-u}\).
+If \(u<2s-1\), then \((d_y)_*\mu\) is absolutely continuous for
+\(\nu\)-almost every \(y\).
+\end{proposition}
+The proof in Appendix~\ref{human:coherent-section} constructs the positive
+affine approximations described above and proves their \(L^1\) convergence.
+
+Here is the interface for the improved branch. For a 1-Lipschitz profile
+\(g:[0,N]\to\R\), the cost of an edge from \(n\) down to \(m<n\) is
+\[
+ c_g(m,n)=g(m)-\min_{m\le x\le n}g(x).
+\]
+The edge is permitted when \(2n-m\le N\). Its cost records a possible
+loss caused by concentration between those two scales.
+
+\begin{proposition}[The profile-to-density implication]
+\label{human:transfer}
+Suppose separated compact probabilities \(\mu,\nu\) are \(t\)-Frostman,
+where \(1<s<t\), and \(N(\supp\nu,r)\le Cr^{-u}\), with \(s<u<2\).
+Suppose there is a number \(\mathcal C<s-1\) with the following property.
+
+Every piecewise affine, 1-Lipschitz profile satisfying
+\[
+ g(0)=0,\qquad (s-1)x\le g(x)\le(u-1)x
+\]
+has a permitted chain from \(n_0=(1-\zeta)N\) to zero whose total cost is
+at most \(\mathcal C N\), allowing an arbitrarily small additional
+multiple of \(N\). The number of edges is bounded in terms of
+\(\zeta>0\), independently of \(N\) and the profile. Rounding to a grid
+of mesh \(T\) and allowing additive barrier errors of size \(\epsilon N\)
+changes the bound by at most \(C K(\epsilon N+T)\), where \(K\) is the
+chain length.
+
+Then \((d_y)_*\mu\) is absolutely continuous for \(\nu\)-almost every pin.
+\end{proposition}
+Appendix~\ref{human:analytic-proof} proves this implication, including the
+finite measure regularization, deletion estimate, Fourier iteration, and
+identification of the limiting density. Appendix~\ref{uf:embedding} proves
+the one-step Fourier estimate used there.
+
+The real-variable calculation in Appendix~\ref{humanprofile:section}
+establishes exactly the following sufficient input:
+\begin{equation}\label{human:scalar-interface}
+ 1<s\le\frac54,\quad 2s-1\le u<B_{\rm H}(s)
+ \quad\Longrightarrow\quad
+ \text{the profile bound holds with some }\mathcal C<s-1.
+\end{equation}
+That calculation also proves continuity of \(B_{\rm H}\), so all exponent
+choices in the next paragraph are justified by strict inequalities.
+
+\subsection{Assembly}
+\begin{proof}[Proof of Theorem~\ref{human:target}]
+If \(D<2d-1\), choose \(1<s<t<d\) and \(D<u<2s-1\).
+Lemma~\ref{human:compact} gives the two compact probabilities, and
+Proposition~\ref{human:coherent-interface} gives their pinned densities.
+
+Otherwise \(2d-1\le D<B_{\rm H}(d)\). Continuity and strictness allow
+\(s<d\), sufficiently close to \(d\), and then \(t,u\) such that
+\[
+ 1<s<t<d,\qquad D<u<B_{\rm H}(s),\qquad 2s-1<u<2.
+\]
+When \(d=5/4\), choose \(s<5/4\); the strict condition \(D<2\) still
+provides the required room. Apply Lemma~\ref{human:compact}.
+Equation~\eqref{human:scalar-interface} and
+Proposition~\ref{human:transfer} give absolute continuity of
+\((d_y)_*\mu\) for \(\nu\)-almost every pin.
+
+In either case choose such a pin \(y\) in \(\supp\nu\subset E\).
+The probability \((d_y)_*\mu\) is supported on the compact set
+\(\Delta_y(\supp\mu)\subset\Delta_y(E)\). Absolute continuity and total
+mass one imply that this compact distance set has positive Lebesgue measure.
+This proves the theorem.
+\end{proof}
+
+\subsection{Established results used in the appendices}
+The proof uses Frostman's lemma and the packing-dimension covering
+characterization; Plancherel and the Riesz energy identity; Orponen's radial
+projection theorem in the averaged form of GIOW Theorem 3.7 or
+Keleti--Shmerkin Proposition 3.11; Keleti--Shmerkin Lemma 3.4 and Corollary 3.5
+for finite regularization, and Lemma 5.4 for total drop; the standard packet
+localization in GIOW Section 3 and Liu's Lemma 4.2; and Liu's pinned quadratic
+identity. These inputs are cited where used. The new profile bounds and
+variable-chain Fourier estimate are proved here.
+
+\clearpage
+\appendix
+\input{falconer-human-profile.tex}
+\clearpage
+\input{falconer-human-analytic.tex}
+\clearpage
+\input{falconer-human-coherent.tex}
+\input{falconer-human-embedding.tex}
+
+\clearpage
+\begin{thebibliography}{9}\small\raggedright
+\interlinepenalty=10000
+\bibitem{orponen} T. Orponen. On the dimension and smoothness of radial
+projections. \emph{Analysis \& PDE} 12 (2019), 1273--1294.
+\href{https://arxiv.org/abs/1710.11053}{arXiv:1710.11053}.
+\bibitem{ks} T. Keleti and P. Shmerkin. New bounds on the dimensions of planar
+distance sets. \emph{Geometric and Functional Analysis} 29 (2019), 1886--1948.
+\href{https://arxiv.org/abs/1801.08745v3}{arXiv:1801.08745v3}.
+Lemmas 3.4 and 5.4, Corollary 3.5, Proposition 3.11.
+\bibitem{giow} L. Guth, A. Iosevich, Y. Ou and H. Wang. On Falconer's distance
+set problem in the plane. \emph{Inventiones Mathematicae} 219 (2020), 779--830.
+\href{https://arxiv.org/pdf/1808.09346v1}{arXiv:1808.09346v1}.
+\bibitem{liuidentity} B. Liu. An \(L^2\)-identity and pinned distance problem.
+\emph{Geometric and Functional Analysis} 29 (2019), 283--294.
+\href{https://arxiv.org/abs/1802.00350v3}{arXiv:1802.00350v3}, Theorem 1.9.
+\bibitem{liu2026} B. Liu. Lebesgue measure of distance sets with regular pins
+and multi-scale Mizohata--Takeuchi-type estimates. Version 3, 16 July 2026.
+\href{https://arxiv.org/html/2603.15328v3}{arXiv:2603.15328v3}, Lemma 4.2.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,340 @@
+\subsection{Fourier iteration with no prescribed midpoint}
+\label{uf:transfer}
+
+We use the regularized component \(\sigma_i\), the conditional energy
+estimate \eqref{fprof:energy}, and the deletion estimates
+\eqref{fprof:sourcebad}--\eqref{fprof:pinbad}. The chain required in this
+subsection has the following properties:
+\begin{gather}\label{uf:chain}
+ n_0>n_1>\cdots>n_K=0,\qquad 2n_j-n_{j+1}\leq N,\qquad
+ n_0=(1-\zeta)N+O(T),\\
+ K\leq K_0,\qquad
+ \sum_{j<K}c_{i,j}\leq\mathcal C N+C K\Gamma N+C_{T,K},\qquad
+ c_{i,j}=g_i(n_{j+1})-\min_{[n_{j+1},n_j]}g_i.\nonumber
+\end{gather}
+Here \(0<\zeta<1/8\), \(K_0\) is fixed independently of \(R=2^N\),
+and the depths lie on the \(T\)-grid. Here \(\mathcal C\) is the cost bound in
+Proposition~\ref{human:transfer}. No intermediate depth is prescribed.
+We retain \(N\in4T\mathbb N\), so the standard angular scale
+used below is dyadic.
+
+Put
+$$
+ a_j=2^{-n_j},\qquad r_j=Ra_j,\qquad
+ \delta_j=r_j^{-1},\qquad
+ \rho_j=\frac{a_j}{a_{j+1}},\qquad
+ \delta_*=R^{-1/2}.
+$$
+The two elementary inequalities
+\begin{equation}\label{uf:angles}
+ \delta_j\leq\rho_j,\qquad \delta_*\leq\rho_j
+ \qquad(0\leq j<K)
+\end{equation}
+have different roles. The first is equivalent to
+\(r_{j+1}\leq r_j^2\). For the second, admissibility and
+\(n_{j+1}\geq0\) give
+$$
+ n_j-n_{j+1}\leq\min\{n_j,N-n_j\}\leq N/2.
+$$
+The last edge also gives \(n_{K-1}\leq N/2\), hence
+\(\delta_{K-1}\leq\delta_*\). The second inequality in
+\eqref{uf:angles} permits the standard source wave packets to be retained
+even when the auxiliary Fourier caps become narrower than \(\delta_*\).
+
+\subsubsection*{A fixed source packet decomposition and a separate label tree}
+
+Fix a smooth annular multiplier at the scale \(R\). First partition it
+into the usual smooth standard-cap multipliers \(\psi_{R,S}\), with
+angular width \(\delta_*\). The label \(S\) has a nominal dyadic angular
+arc of that length; its multiplier is supported in a fixed enlargement
+of the arc, and these supports have bounded overlap. These standard
+multipliers are fixed before any finer partition is made.
+
+Use their usual source wave packets, with spatial tubes of width
+\(R^{-1/2+h}\) and fixed bounded length. Choose the longitudinal span
+to cover the common normalized source and pin region, with its cutoff
+outside that region. Thus remoteness there is transverse separation,
+not an artifact of a tube endpoint. Write
+$$
+ M_T\mu=\chi\,\eta_T\,(\psi_{R,S(T)}\widehat\mu)^\vee.
+$$
+Here \(\chi\) is a fixed smooth compact source cutoff, equal to one on
+a neighborhood of \(\supp\mu\), and with support separated from the pin
+set. For each standard label the smooth spatial functions \(\eta_T\)
+form a partition of unity on \(\supp\chi\). Thus summing all standard
+packets gives precisely \(P_R\mu\), with the source cutoff convention
+used above. All packet localization estimates are applied only to these
+smooth standard multipliers and these standard spatial tubes.
+
+We now define a separate angular tree for Fourier estimates. For each
+level with \(\delta_j\geq\delta_*\), its labels group whole standard
+labels according to their nominal dyadic ancestors of width \(\delta_j\).
+Their multipliers are sums of the corresponding \(\psi_{R,S}\).
+For \(\delta_j<\delta_*\), a level label is a pair \((S,I)\), where
+\(I\) is a dyadic angular interval of length \(\delta_j\) meeting the
+support of \(\psi_{R,S}\); its multiplier is
+$$
+ \psi_{R,S}(\xi)\,\mathbf 1_I(\xi/|\xi|).
+$$
+The intervals partition the entire angular support of the standard
+multiplier, including the part outside its nominal arc. Consequently
+each such interval is within angular distance \(O(\delta_*)\) of the
+standard label's direction. Use half-open angular intervals to specify
+the partition at endpoints. The endpoint choices do not affect any
+circular integral.
+
+After the standard scale, parents keep the same label \(S\) and group
+the finer dyadic intervals. Before it, parents group whole standard
+labels. If an edge of the spatial chain crosses the standard angular
+scale, insert that scale in the angular tree only. This creates no
+additional spatial level and no additional inflation factor.
+The notation \(\theta\prec\alpha\) below means descent in this label
+tree. It is a relation between labels; overlapping smooth standard
+supports cause no ambiguity in this relation.
+
+Every level-\(j\) multiplier has angular support of width
+\(O(\delta_j)\), and the supports have bounded overlap at each level.
+For fine labels this follows because at each direction only boundedly
+many standard multipliers are nonzero, and the dyadic intervals partition
+that direction separately for each such multiplier. For coarse labels
+it follows by grouping adjacent standard labels. No differentiability
+of a fine angular indicator will be used: these indicators partition
+spectral measures on circles, not source packets.
+
+\subsubsection*{Coarsened marks and their bad-pair estimate}
+
+For a level-\(j\) Fourier label \(\theta\), define its effective label
+to be \(\theta\) itself if \(\delta_j\geq\delta_*\), and its standard
+parent \(S\) otherwise. Its angular width is
+$$
+ \overline\delta_j=\max\{\delta_j,\delta_*\}\leq\rho_j.
+$$
+For each active \(a_j\)-cube \(Q_j\subset Q_{j+1}\), mark an effective
+label bad when the enlarged \(a_j\)-by-\(a_{j+1}\) test tube, centered
+at \(Q_j\) and directed along that effective label, has mass greater than
+\(H_{i,j}\rho_j\) under \((\sigma_i)_{Q_{j+1}^+}\).
+All Fourier labels with the same effective label receive the same mark.
+Descendant spatial cubes inherit the mark from their unique level-\(j\)
+ancestor. Use the thresholds \eqref{fprof:thresholds}.
+
+For definiteness, the averaging cubes and test dilations may be chosen as
+$$
+ Q_j^+=R^{(2j+2)h}Q_j,
+ \qquad\text{test-tube dilation }R^{(4K_0+20)h}.
+$$
+For large \(R\), child averaging cubes and their further \(R^h\)
+localizations fit inside the corresponding enlarged parent. Additional
+fixed geometric factors are absorbed into these dilations or their
+constants. The same enlarged parent is used in the marking condition,
+the truncated conditional energy, and the Fourier iteration.
+
+These marks are unions of whole standard source-cap labels. At coarse
+levels this is true by their definition as groups of standard labels;
+at fine levels all descendants of \(S\) share the mark of \(S\).
+For an initial pin cube \(Q_0\), remove a standard source packet when
+its enlarged tube \(2T\) meets \(Q_0\) and its standard label has any
+inherited bad mark. Call the retained source function \(G_{R,i,Q_0}\).
+
+The deletion estimates already proved apply to these marks. Indeed,
+directions within \(O(\overline\delta_j)\) of an effective direction
+are within \(O(\rho_j)\), so the same \(\rho_j\)-net of directions
+and the same containing tube grid cover the marked tubes. Their widths
+and conditional mass normalization are exactly those used in
+\eqref{fprof:energy}--\eqref{fprof:pinbad}, up to the permitted
+enlargements. Source-heavy directions remain only an auxiliary device
+for estimating the bad mass; they are not additional Fourier marks.
+
+The standard packet estimates give
+\(\|M_T\mu\|_1\lesssim\mu(CT)+\operatorname{RapDec}(R)\),
+and rapidly small pinned first norm outside an enlarged \(T\).
+A separated source-pin pair lies in only \(R^{O(h)}\) enlarged
+standard packet tubes: their directions are within
+\(O(R^{-1/2+h})\) of the connecting line, and the standard directions
+have spacing comparable to \(R^{-1/2}\). Spatial tube multiplicity
+for a fixed direction is bounded. When a removed packet contributes to
+such a pair, its standard label and its effective bad label differ in
+direction by \(O(\overline\delta_j)\); its packet uncertainty is
+\(O(R^h\delta_*)\). By \eqref{uf:angles}, both fit inside the enlarged
+conditional test tube based on that pair.
+
+It follows, with \(\mathrm{Bad}_{R,i}\) the union of bad pairs estimated
+by the deletion argument, that
+\begin{equation}\label{fprof:badL1}
+ \int\|(d_y)_*(P_R\mu-G_{R,i,Q_0(y)})\|_1\,d\sigma_i(y)
+ \leq C R^{C_{K_0}h}(\mu\times\sigma_i)(\mathrm{Bad}_{R,i})
+       +\operatorname{RapDec}(R).
+\end{equation}
+Only standard packets were summed here. There is no multiplicity equal
+to the number of auxiliary fine Fourier labels in a standard cap.
+Taking \(D_1,D_2\) sufficiently large in terms of \(q,K_0\), and then
+\(\Gamma\) sufficiently small compared with \(h\), makes the right
+side at most \(CR^{-c}\) for some \(c>0\), uniformly in the component.
+
+For later reference, put \(G_{R,y}=G_{R,i,Q_0(y)}\) on the component
+\(X_i\), and zero on the discarded pin remainder. Multiplying by the
+component weights and summing proves
+\begin{equation}\label{uf:jointL1}
+ \int\|(d_y)_*(P_R\mu-G_{R,y})\|_1\,d\nu(y)\leq CR^{-c'}
+ \qquad(c'>0).
+\end{equation}
+On the discarded remainder use \(\|P_R\mu\|_1\leq C_T\) and its
+mass at most \(R^{-\epsilon}\). This uses the first norm of the whole
+annular multiplier, rather than a sum of absolute packet norms there.
+
+\subsubsection*{Initial reconstruction and the exact inherited identity}
+
+Fix a circle radius \(r\asymp_T R\), and let \(\omega_r\) be its
+normalized arclength measure. Choose a nonnegative compactly supported
+smooth frequency function \(\psi\) whose inverse transform is bounded
+away from zero on the fixed pin region. For every terminal Fourier
+label \(\ell\), with multiplier \(\psi_{R,\ell}\) specified by the
+tree above, set
+$$
+ F_\ell=\big((\psi_{R,\ell}\widehat\mu\,d\omega_r)*\psi\big)^\vee.
+$$
+The terminal label is a standard label if its width equals
+\(\delta_*\), and a pair \((S,I)\) otherwise. The fixed frequency
+convolution makes these functions smooth, even when the fine angular
+partition uses indicators. Define coarser functions by summing terminal
+descendants. In particular, summing all terminal descendants of \(S\)
+gives the original standard-cap function exactly.
+
+On \(Q_0\), the circular extension of the retained standard packets,
+multiplied by \(\check\psi\), agrees up to a rapid error with the sum
+of the retained full standard-cap functions. To verify this statement,
+sum all packets of each standard label first. A packet with
+\(2T\cap Q_0=\varnothing\) has rapidly small circular extension on
+\(Q_0\), by the standard integration-by-parts packet estimate used in
+Liu's Lemma 4.2. Therefore retaining those remote packets from a bad
+standard label changes the extension there by only a rapid error.
+
+The fixed source cutoff does not change this conclusion. The kernel of
+a smooth standard annular-cap multiplier is concentrated at transverse
+scale \(R^{-1/2}\) and longitudinal scale \(R^{-1}\). Outside a fixed
+neighborhood of \(\supp\mu\), that multiplier applied to \(\mu\),
+together with any prescribed finite number of derivatives, is rapidly
+small in integrable norms. Consequently replacing
+\(\chi(\psi_{R,S}\widehat\mu)^\vee\) by
+\((\psi_{R,S}\widehat\mu)^\vee\) changes its circular extension by a
+rapid error, uniformly for the radii in question. All source functions
+used for pinned densities still include \(\chi\), preserving their
+fixed compact support and source-pin separation.
+
+All terminal descendants of a standard label have the same survival
+decision at \(Q_0\). Thus, only after this whole-standard-cap
+reconstruction, partition each retained standard spectral measure into
+its terminal Fourier descendants. It follows that
+\begin{equation}\label{uf:initialidentity}
+ \check\psi(y)
+ \big(G_{R,i,Q_0}*\widehat\omega_r\big)(y)
+ =F_{Q_0,\mathrm{root}}(y)+\operatorname{RapDec}(R),
+ \qquad y\in Q_0,
+\end{equation}
+where the function on the right is the sum of surviving terminal labels.
+No fine angular cutoff has been applied to an individual source packet.
+In particular, no localization assertion about the spatial tails of such
+an individual fine piece is needed.
+
+More generally, for an active level-\(j\) cube and a parent angular
+label \(\alpha\), define \(F_{Q_j,\alpha}\) to be the sum of terminal
+descendants of \(\alpha\) with no inherited bad mark at levels
+\(j,j+1,\ldots,K-1\). Level zero has a single parent label, the root.
+At level \(K\), no marks remain, so \(F_{Q_K,\ell}=F_\ell\).
+The level-\(j\) mark is constant on each level-\(j\) Fourier label;
+future marks are inherited from the parent cube. Hence
+\begin{equation}\label{fprof:identity}
+ F_{Q_j,\alpha}
+ =\sum_{\substack{\theta\prec\alpha\text{ at level }j\\
+                    \theta\text{ good for }Q_j}}
+       F_{Q_{j+1},\theta}.
+\end{equation}
+This is an exact partition of terminal labels. The function on the right
+for a fixed parent and label is independent of the child cube. After
+the standard angular scale, every future mark depends only on the
+standard parent \(S\); there a fixed fine function is simply retained
+or omitted as a whole. This is compatible with the exact identity.
+
+\subsubsection*{One threshold factor per inflation step}
+
+Let \(m_Q\) be normalized Lebesgue measure on \(Q\), and define
+$$
+ \mathcal E_j=
+ \sum_{Q_j\ \mathrm{active}}\sigma_i(Q_j^+)
+ \sum_{\alpha\text{ at level }j-1}
+       \int|F_{Q_j,\alpha}|^2\,dm_{Q_j^+}.
+$$
+The level-zero angular sum consists only of the root. Initial
+localization and \eqref{uf:initialidentity} give
+$$
+ \int|G_{R,i,Q_0(y)}*\widehat\omega_r(y)|^2\,d\sigma_i(y)
+ \leq C_T R^{C\zeta+C_{K_0}h}\mathcal E_0
+       +\operatorname{RapDec}(R).
+$$
+Indeed each initial Fourier function has frequencies of size \(O_T(R)\).
+Its pointwise square is controlled by a normalized average on an
+\(R^{-1}\)-ball with rapidly decreasing tails. Replacing that ball by
+an enlarged initial cube costs at most its area ratio
+\(R^{2\zeta+O(T/N)+O_{K_0}(h)}\). Multiplication by its pin cube mass
+and summation give the displayed bound without any regularity assumption
+on the conditional pin measure.
+
+We prove
+\begin{equation}\label{fprof:inflation}
+ \mathcal E_j\leq C_T R^{C_{K_0}h}H_{i,j}\mathcal E_{j+1}
+                   +\operatorname{RapDec}(R).
+\end{equation}
+Apply Proposition~\ref{uf:embeddingprop} to each spatial parent and
+parent angular label, with \(L=R^h\), \(a=a_j\), \(b=a_{j+1}\),
+\(\sigma=\sigma_i\), and \(H=H_{i,j}\). Its hypotheses are verified
+in detail at the end of Appendix~\ref{uf:embedding}: admissibility controls
+the curvature of the frequency arc, the coarsened marking controls its
+directional mismatch, and the same enlarged parent normalizes both deletion
+and embedding. Summing the proposition over parents and labels gives
+\eqref{fprof:inflation}. Its error is rapidly decreasing because all relevant
+counts and global norms are polynomial in \(R\), while the decay order in
+the proposition is arbitrary. This step introduces one factor \(H_{i,j}\),
+independently of the number of finer angular labels.
+
+\subsubsection*{The terminal estimate and the chain cost}
+
+Iterating \eqref{fprof:inflation}, using \eqref{uf:chain} and
+\eqref{fprof:thresholds}, gives the multiplicative loss
+$$
+ R^{\mathcal C+C\zeta+C_{q,K_0}h+C K\Gamma}.
+$$
+At level \(K\), the spatial scale is one and the functions are the
+terminal Fourier functions \(F_\ell\) with no remaining marks. Their
+global Lebesgue norms bound the remaining unit-scale averages, up to
+the allowed enlargement factors. By Plancherel and Cauchy--Schwarz,
+\begin{equation}\label{fprof:circleCS}
+ \sum_\ell\|F_\ell\|_2^2
+ \leq C_T R^{-1}
+       \int_{S^1}|\widehat\mu(r\omega)|^2\,d\omega.
+\end{equation}
+For clarity, the normalized mass of the circle in a fixed-radius
+frequency ball is \(O_T(R^{-1})\). For each terminal label, apply
+Cauchy--Schwarz to the convolution defining \(F_\ell\), using this
+mass bound. Integrate in frequency and sum the squared multipliers;
+their bounded overlap proves \eqref{fprof:circleCS}. This reasoning is
+valid for all terminal widths \(\delta_{K-1}\leq R^{-1/2}\), including
+strictly finer widths. It does not introduce their number as a factor.
+
+We conclude
+\begin{equation}\label{fprof:circleestimate}
+ \int|G_{R,i,Q_0(y)}*\widehat\omega_r(y)|^2\,d\sigma_i(y)
+ \leq C_T R^{-1+\mathcal C+C\zeta+C_{q,K_0}h+C K\Gamma}
+       \int_{S^1}|\widehat\mu(r\omega)|^2\,d\omega
+       +\operatorname{RapDec}(R).
+\end{equation}
+Together with \eqref{uf:jointL1}, this supplies the two shell estimates
+needed in the following summation argument. Its parameter choices may
+be made in the same order: first \(\zeta\), fixing \(K_0\); then the
+threshold constants in terms of \(q,K_0\); then \(h\); and finally
+\(T,\epsilon\), making \(\Gamma\) sufficiently small. Fixed constants
+depending on the resulting annular ratio are absorbed for sufficiently
+large \(R\).
+
+In particular the proved transfer uses the cost of the unforced chain
+\eqref{uf:chain}. The source packet decomposition remains at the
+standard scale throughout; only the spectral functions used for
+quadratic inflation are refined past that scale.
