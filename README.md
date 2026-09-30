@@ -202,6 +202,9 @@ measure-theoretic modules prove some of the downstream steps.
 | high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
 | compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
+| finite gap tails, telescoping, and bridges to the two cost certificates | **proved**; hard-set extraction and chain construction still needed |
+| fixed dyadic centers with controlled mass-weighted moments | **proved**, standard axioms only |
+| common truncation of correlated angular densities and discarded-mass bound | **proved**, standard axioms only |
 | hard-point set: compactness and gap-drop geometry | **proved**, standard axioms only |
 | initial Frostman extraction for sigma-compact sets and finite Hausdorff-measure pieces | **proved**; does not replace arbitrary-Borel extraction |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
@@ -229,6 +232,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/UnforcedProfile.lean` | merging, clipping, truncation and perturbation for arbitrary finite chains |
 | `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
 | `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
+| `FalconerPacking/GapTails.lean` | finite ordered-gap tails, telescoping, and both certificate bridges |
 | `FalconerPacking/HardPoints.lean` | closed hard-point sets and the proved gap inequalities |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
 | `FalconerPacking/Energy.lean` | module 6: Frostman measures, Riesz kernels and finite energy |
@@ -248,6 +252,9 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/AngularTruncation.lean` | two correlated angular marginals, common restriction, and moment-tail mass bound |
+| `FalconerPacking/MomentCenters.lean` | centers in a full-measure set with moments bounded by cell averages |
+| `FalconerPacking/DyadicMomentCenters.lean` | one dyadic center family with both geometry and weighted moment bounds |
 | `FalconerPacking/DyadicCenters.lean` | measurable representative maps for occupied compact-source cubes |
 | `FalconerPacking/Main.lean` | the branch combination |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |

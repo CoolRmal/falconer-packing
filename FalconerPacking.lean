@@ -14,6 +14,7 @@ import FalconerPacking.UnforcedProfile
 import FalconerPacking.ChainCompression
 import FalconerPacking.HighSlopeProfile
 import FalconerPacking.HardPoints
+import FalconerPacking.GapTails
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -22,6 +23,9 @@ import FalconerPacking.PositiveLimit
 import FalconerPacking.PinnedKernel
 import FalconerPacking.AffineDistance
 import FalconerPacking.DyadicCenters
+import FalconerPacking.MomentCenters
+import FalconerPacking.DyadicMomentCenters
+import FalconerPacking.AngularTruncation
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
