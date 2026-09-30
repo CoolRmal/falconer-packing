@@ -36,6 +36,29 @@ New examples include Hausdorff dimension 1.09 with packing dimension 1.181, and
 Hausdorff dimension 1.15 with packing dimension 1.40. At Hausdorff dimension 1.10,
 the exact cutoff is 28/23; at dimension 1.15 it is 10/7.
 
+There is now an additional **endpoint class with a quantitative covering
+assumption**. If a compact set carries an s-Frostman probability and its
+occupied-square count satisfies
+
+$$
+N_n\le C\,2^{n(2s-1)}e^{-c\sqrt n},\qquad 1<s<2,
+$$
+
+then its raw joint distance law is absolutely continuous for any compact pin
+Frostman probability of exponent greater than one. In particular it has
+positive-length distances for almost every self-pin under that source measure.
+The manuscript constructs examples with
+
+$$
+0<\mathcal H^{21/20}(K)<\infty,\qquad
+\dim_H K=\frac{21}{20},\qquad \dim_P K=\frac{11}{10}.
+$$
+
+No subset of these examples satisfies the earlier strict dimension condition,
+and no positive-dimensional subset has equal Hausdorff and packing dimensions.
+The extra covering margin is proved for the examples; dimension equality alone
+is not asserted sufficient. The dimension-only curve above is unchanged.
+
 ![The explicit gap bound, the preceding adaptive bound, and the originally quoted curve.](docs/figures/packing-unforced.svg)
 
 Matching profiles prove this curve is optimal for the specified combination of

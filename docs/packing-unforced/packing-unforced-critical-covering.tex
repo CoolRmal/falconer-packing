@@ -1,0 +1,145 @@
+\subsection{A critical covering condition with a subpower margin}
+\label{endpoint:covering-section}
+
+The strict inequality in Proposition~\ref{prop:coherentcovering} can be
+replaced by a quantitative covering condition at its critical exponent.
+This does not replace the dimension inequality by a non-strict one for
+arbitrary sets. The extra information concerns the number of occupied
+squares at each scale and is invisible to the value of packing dimension.
+
+Let \(1<s<2\), let \(\mu\) be an \(s\)-Frostman probability on a
+compact planar set \(K\), and let \(N_n\) count the occupied dyadic
+squares of side \(2^{-n}\). Changing the convention at square boundaries
+changes the relevant covering estimates by at most a fixed factor.
+First take a compactly supported \(t\)-Frostman pin probability \(\nu\),
+\(t>1\), with support positively separated from \(K\). Use the same
+angular exponent \(q>1\), centers, and positive affine densities \(f_n\)
+as above, and put \(\eta_q=(q-1)/(2q-1)\).
+
+\begin{proposition}[Critical covering summability]
+\label{endpoint:criterion}
+If
+\begin{equation}\label{endpoint:series}
+ \sum_{n\ge1}
+ \left(n\,2^{-n(2s-1)}N_{n+1}\right)^{\eta_q}<\infty,
+\end{equation}
+then the raw joint distance law of \(\mu\times\nu\) is absolutely
+continuous relative to \(d\nu(y)dt\).
+\end{proposition}
+
+\begin{proof}
+For all sufficiently large \(n\), set
+\[
+ r=2^{-n},\qquad a_n=s-\frac1n,\qquad
+ \gamma_n=\frac{a_n-1}{2}.
+\]
+Then
+\[
+ \frac{s-1}{4}\le\gamma_n<\frac{s-1}{2}<\frac12.
+\]
+All constants in Lemma~\ref{lem:coherentangular} and
+Proposition~\ref{prop:coherentcomparison} can therefore be chosen
+uniformly in \(n\). To justify this use explicitly, the Riesz identity,
+angular interpolation, the angular Slobodeckij integral, and the scalar
+translation bound have constants bounded when their exponent ranges over
+this compact subinterval of \((0,1/2)\). The energy orders
+\(1+2\gamma_n\) stay in a compact subinterval of \((1,2)\).
+The geometric constants and the radial-projection exponent \(q\)
+are fixed. The only constant not uniform in the ensuing Frostman-energy
+calculation is the explicit factor \((s-a_n)^{-1}=n\).
+
+The centers and affine densities were defined without reference to
+\(\gamma\). Consequently we compare the same consecutive functions
+\(f_{n+1},f_n\) at each step, using \(\gamma_n\) only in their estimate.
+All exceptional angular sets remain null after taking the countable union
+over nodes and over these exponents.
+
+For a child square \(Q\) of diameter at most \(C r\), the Frostman
+bound and layer cake give, uniformly for \(x\in Q\),
+\begin{align*}
+ \int_Q|x-x'|^{-a_n}\,d\mu(x')
+ &\le (Cr)^{-a_n}\mu(Q)
+       +a_n\int_0^{Cr}\mu(B(x,\rho))\rho^{-a_n-1}\,d\rho\\
+ &\le C\left(1+\frac1{s-a_n}\right)r^{s-a_n}
+ \le C n r^{1/n}.
+\end{align*}
+Integrating in \(x\) and normalizing twice shows
+\[
+ p_Q I_{a_n}(\mu_Q)\le C n r^{1/n}.
+\]
+The quantity in the square root of the comparison, apart from its
+angular threshold, is therefore bounded by
+\begin{align*}
+ Z_n^*
+ &:=r^{1+4\gamma_n}\sum_{Q\text{ at level }n+1}
+                      p_Q I_{a_n}(\mu_Q)\\
+ &\le C n N_{n+1} r^{2s-1-1/n}
+ = C' n\,2^{-n(2s-1)}N_{n+1}.
+\end{align*}
+Here \(r^{-1/n}=2\), exactly.
+
+The comparison, uniformly in \(n\), is
+\[
+ \|f_{n+1}-f_n\|_1
+ \le C\bigl[(A Z_n^*)^{1/2}+B A^{1-q}\bigr]
+ \qquad(A\ge1).
+\]
+The hypothesis makes \(Z_n^*\to0\). Optimize \(A\) exactly as in
+Theorem~\ref{thm:coherentcriterion}, with \(B\) enlarged to at least one.
+It gives
+\[
+ \|f_{n+1}-f_n\|_1
+ \le C B^{1/(2q-1)}(Z_n^*)^{\eta_q}.
+\]
+The series of differences converges. Its nonnegative limit has mass one,
+and the uniform affine approximation identifies it with the actual joint
+distance law. This proves the assertion.
+\end{proof}
+
+For example, a bound
+\(N_n\le C2^{n(2s-1)}n^{-b}\) is sufficient for this fixed separated
+pair whenever \(b>1+1/\eta_q\). This is only a sufficient logarithmic
+power; no optimality of that exponent is asserted.
+
+\begin{theorem}[A positive-distance class at the critical dimension]
+\label{endpoint:subpower}
+Let \(1<s<2\), and suppose an \(s\)-Frostman probability \(\mu\)
+is supported on a compact planar set \(K\) satisfying, for all
+sufficiently large integers \(n\),
+\begin{equation}\label{endpoint:subpower-count}
+ N_n\le C\,2^{n(2s-1)}\exp(-c\sqrt n),\qquad C,c>0.
+\end{equation}
+For every compactly supported \(t\)-Frostman probability \(\nu\),
+\(t>1\), its raw joint distance law with source \(\mu\) is absolutely
+continuous. The supports need not be separated. In particular, taking
+\(\nu=\mu\),
+\[
+ |\Delta_y(K)|>0\qquad\text{for \(\mu\)-almost every }y\in K.
+\]
+\end{theorem}
+
+\begin{proof}
+For separated supports, \eqref{endpoint:subpower-count} bounds the
+summands in \eqref{endpoint:series} by
+\(C n^{\eta_q}\exp(-c'\eta_q\sqrt n)\), a summable sequence for
+every \(\eta_q>0\). Thus no quantitative lower bound for the radial
+exponent \(q-1\) is needed.
+
+For general compact supports cover the complement of the source--pin
+diagonal by countably many products of positively separated closed bounded
+balls. Normalize the restrictions on every product of positive measure.
+The source restriction remains \(s\)-Frostman and its support has at most
+a fixed multiple of the original covering count; the pin restriction
+remains \(t\)-Frostman. Hence the separated result applies, even though
+its constants and angular exponent may depend on the product. The diagonal
+has zero pair measure since \(\mu\) is nonatomic. A reference-null joint
+set has a null preimage on every product, and consequently under the full
+pair probability. This proves joint absolute continuity without separation.
+Disintegration and the positive total pinned mass give the final assertion.
+\end{proof}
+
+The numerical decay \(\exp(-c\sqrt n)\) is convenient rather than
+canonical. The summability condition \eqref{endpoint:series} is the actual
+criterion used. In particular the theorem concerns additional covering
+information at \(\overline{\dim}_{\rm B}K\le2s-1\); the dimension
+equality alone does not imply that information.

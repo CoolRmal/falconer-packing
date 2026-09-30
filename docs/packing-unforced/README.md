@@ -191,6 +191,64 @@ prove a weaker dimension condition or a new endpoint. The natural-language proof
 is the current focus; no additional Lean certification is claimed for these
 arguments.
 
+## A quantitative endpoint extension
+
+The [critical covering theorem](packing-unforced-critical-covering.tex) now
+reaches the boundary of the coherent condition when the source has an
+additional covering margin. For a compact source carrying an s-Frostman
+probability, the following bound on its occupied-square count at dyadic
+depth n is sufficient:
+
+$$
+N_n\le C\,2^{n(2s-1)}e^{-c\sqrt n},\qquad 1<s<2.
+$$
+
+Then the raw joint distance law is absolutely continuous for every compact pin
+Frostman probability of exponent greater than one, including the source
+probability itself. The exact summability test for separated supports is
+
+$$
+\sum_n\left(n\,2^{-n(2s-1)}N_{n+1}\right)^{\eta_q}<\infty,
+\qquad \eta_q=\frac{q-1}{2q-1}>0.
+$$
+
+The proof varies the comparison exponent with scale while keeping the positive
+affine approximations fixed. The critical energy denominator contributes only
+a factor n. The displayed covering margin makes the resulting series
+summable for every positive angular exponent. No logarithmic improvement of
+the source Frostman bound is assumed.
+
+The [explicit compact construction](packing-unforced-critical-moran.tex) gives,
+for every dimension in the indicated range,
+
+$$
+1<d\le\frac32,\qquad D=2d-1,\qquad
+0<\mathcal H^d(K)<\infty,\qquad
+\dim_H K=d,\quad\dim_P K=D.
+$$
+
+It satisfies the required covering margin and the hereditary inequality
+
+$$
+\dim_H S\le\frac dD\dim_P S\qquad(S\subset K).
+$$
+
+Consequently it contains no positive-dimensional subset with equal Hausdorff
+and packing dimensions. When d is at most the first branch transition, no
+subset with Hausdorff dimension greater than one satisfies the previous
+strict packing criterion either. Nevertheless its natural source probability
+has positive-length distance sets for almost every pin under that same
+probability. One exact example is
+
+$$
+d=\frac{21}{20},\qquad D=\frac{11}{10}.
+$$
+
+This is a proved endpoint class with extra quantitative covering information.
+It does not replace the strict dimension inequality by a non-strict inequality
+for arbitrary sets. The two-dimension curve and the unresolved global
+optimality claim are unchanged.
+
 ## What a refined positive decomposition must prove
 
 The manuscript proves a sharper quadratic selection estimate for a finite
@@ -350,6 +408,13 @@ not enlarge the dimension-only sufficient region.
 - [Finite regularization, deletion, and summation](packing-unforced-finite-profile.tex)
 - [Subquadratic profile transfer and its precise exponent range](packing-unforced-subquadratic.tex)
 - [Coherent strong integrability and the combined conclusion](packing-unforced-coherent-lp.tex)
+- [Critical covering summability and the subpower endpoint theorem](packing-unforced-critical-covering.tex)
+- [Explicit endpoint examples and their hereditary dimension inequality](packing-unforced-critical-moran.tex)
+- [Full compact construction and its exact dimensions](2026-09-30-critical-covering-moran-examples.md)
+- [Independent variable-exponent and compact-construction audit](2026-09-30-variable-exponent-coherent-endpoint-audit.md)
+- [Fresh adversarial audit of the core Fourier transfer](2026-09-30-core-fourier-transfer-adversarial-audit.md)
+- [Limits of optimizing coherent estimates using cell masses alone](2026-09-30-coherent-mass-only-obstruction.md)
+- [Circular-incidence estimates tested against the far-crowding criterion](2026-09-30-circular-incidence-crowding-test.md)
 - [Detailed subquadratic derivation and raw weak-norm obstructions](2026-09-30-subquadratic-profile-transfer.md)
 - [Independent subquadratic-transfer audit](2026-09-30-subquadratic-transfer-independent-audit.md)
 - [Detailed coherent integrability proof](2026-09-30-coherent-subquadratic-regularity.md)

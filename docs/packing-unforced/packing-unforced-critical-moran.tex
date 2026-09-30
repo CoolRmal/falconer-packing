@@ -1,0 +1,182 @@
+\subsection{Critical examples with no positive-dimensional regular subset}
+\label{criticalmoran:section}
+
+The covering gain in Theorem~\ref{endpoint:subpower} can occur at exact
+critical dimensions. The following construction also prevents reducing
+these examples to the previous strict condition by selecting a subset.
+
+\begin{theorem}\label{criticalmoran:theorem}
+For every \(1<d\le3/2\), put \(D=2d-1\). There are a compact
+\(K\subset[0,1]^2\) and a \(d\)-Frostman probability \(\mu\) on \(K\)
+such that
+\begin{equation}\label{criticalmoran:dimensions}
+ 0<\mathcal H^d(K)<\infty,\qquad \HH K=d,\qquad \PP K=D,
+\end{equation}
+and, for all sufficiently small \(r>0\),
+\begin{equation}\label{criticalmoran:cover}
+ N(K,r)\le Cr^{-D}\exp\!\left(-c\sqrt{\log(1/r)}\right).
+\end{equation}
+Every subset \(S\subset K\) satisfies
+\begin{equation}\label{criticalmoran:hereditary}
+ \HH S\le\frac dD\,\PP S.
+\end{equation}
+In particular \(K\) has no subset of positive equal Hausdorff and
+packing dimensions. Nevertheless its raw joint distance law with any
+compactly supported pin Frostman probability of exponent greater than
+one is absolutely continuous. In particular,
+\[
+ |\Delta_y(K)|>0\qquad\text{for \(\mu\)-almost every }y\in K.
+\]
+If \(d\le d_\alpha=(7-\sqrt7)/4\), no subset \(S\subset K\) with
+\(\HH S>1\) satisfies the previous strict inequality
+\(\PP S<B_H(\HH S)\).
+\end{theorem}
+
+\begin{proof}
+Fix \(A>0\) and set \(U(n)=Dn-A\sqrt{n+1}\). Choose a large
+integer \(a_0\) so that, for all \(n\ge a_0\),
+\[
+ U(n)-dn>10,\qquad 0<U(n+1)-U(n)<2.
+\]
+This is possible because \(D>d\) and \(D\le2\). The strict upper
+increment bound holds even when \(D=2\), due to the square-root term.
+Set \(F(a_0)=2\lceil da_0/2\rceil\), choosing \(a_0\) large enough
+that \(F(a_0)\le2a_0\), and join \(F(0)=0\) to this even integer
+using increments in \(\{0,2\}\).
+
+Starting at \(a_{j-1}\), let \(F\) increase with slope two at integer
+depths until its first crossing of \(U\). Explicitly, \(b_j\) is
+the first integer \(n>a_{j-1}\) for which
+\[
+ F(a_{j-1})+2(n-a_{j-1})\ge U(n).
+\]
+This crossing is finite: for \(D<2\) the difference tends to
+infinity linearly, and for \(D=2\) it is a constant plus
+\(A\sqrt{n+1}\). The first-crossing property gives
+\begin{equation}\label{criticalmoran:upperhit}
+ U(b_j)\le F(b_j)<U(b_j)+2.
+\end{equation}
+Next keep \(F\) constant until the lower line first catches it:
+let \(a_j>b_j\) be the first integer with \(da_j\ge F(b_j)\).
+Then
+\begin{equation}\label{criticalmoran:lowerhit}
+ F(a_j)=F(b_j),\qquad da_j-d<F(a_j)\le da_j.
+\end{equation}
+The separation of the barriers makes both phases nonempty. Thus
+\(a_j,b_j\to\infty\).
+
+Every increment of \(F\) is zero or two, and for \(n\ge a_0\),
+\begin{equation}\label{criticalmoran:barriers}
+ dn-2\le F(n)\le Dn-A\sqrt{n+1}+2.
+\end{equation}
+For the lower bound the growing slope exceeds \(d\), while the
+flat phase stops within one step of the lower line. For the upper
+bound use \eqref{criticalmoran:upperhit} and the monotonicity of \(U\).
+The endpoint identities also give
+\begin{equation}\label{criticalmoran:ratio}
+ da_j=Db_j-A\sqrt{b_j+1}+O(1),\qquad
+ \frac{a_j}{b_j}\longrightarrow\frac Dd.
+\end{equation}
+
+At each planar dyadic depth \(n\), use the same rule in every
+occupied square: retain all four children if
+\(F(n)-F(n-1)=2\), and only the lower-left child otherwise.
+Give equal conditional weights to the retained children.
+The closed nested construction defines a compact \(K\) and a
+probability \(\mu\). There are \(2^{F(n)}\) symbolic depth-\(n\)
+cells, each of mass \(2^{-F(n)}\).
+
+There are infinitely many zero-increment depths after every fixed
+depth. Consequently no admissible coordinate tail can consist
+entirely of ones. The alternative upper-endpoint expansion of a
+dyadic rational is therefore inadmissible, and the half-open dyadic
+partition gives unambiguous addresses with precisely the stated
+cell masses. Equivalently, descendants in any fixed construction
+square stay strictly below its upper edges because of a later
+common zero digit. This justifies the use of exact cell counts
+without discarding boundary points.
+
+A ball of radius \(2^{-n}\) meets a bounded number of dyadic
+depth-\(n\) cells. Equation~\eqref{criticalmoran:barriers} gives
+\[
+ \mu(B(x,2^{-n}))\le C2^{-F(n)}\le C2^{-dn}.
+\]
+The finite initial range changes only \(C\), and adjacent dyadic
+scales prove the \(d\)-Frostman bound at arbitrary radii.
+Similarly,
+\[
+ N(K,2^{-n})\le C2^{Dn-A\sqrt{n+1}},
+\]
+which gives \eqref{criticalmoran:cover}, allowing a fixed depth
+shift to account for square diameter.
+
+The mass distribution principle gives \(\mathcal H^d(K)>0\).
+At the flat endpoints, the full cover by construction squares has
+\(d\)-dimensional cost
+\[
+ 2^{F(a_j)}(\sqrt2\,2^{-a_j})^d
+ =2^{d/2}2^{F(a_j)-da_j}\le2^{d/2}.
+\]
+Its diameters tend to zero, so \(\mathcal H^d(K)<\infty\) and
+\(\HH K=d\).
+
+The upper covering estimate gives \(\PP K\le D\). Conversely,
+at the growing endpoints,
+\[
+ F(b_j)=Db_j-A\sqrt{b_j+1}+O(1),\qquad
+ \sup_x\mu(B(x,2^{-b_j}))\le C2^{-F(b_j)}.
+\]
+Every subset \(E\subset K\) of positive \(\mu\) outer measure
+therefore obeys
+\[
+ N(E,2^{-b_j})\ge c\,\mu^*(E)\,2^{F(b_j)},
+\]
+so its upper box dimension is at least \(D\). Every countable
+cover of \(K\) has a member of positive \(\mu\) outer measure.
+The countable-cover characterization of packing dimension gives
+\(\PP K\ge D\), proving \eqref{criticalmoran:dimensions}.
+
+To prove the stronger hereditary statement, take any nonempty
+\(S\subset K\) and write \(v=\PP S\). For \(\epsilon>0\), choose
+a countable cover by \(S_i\subset K\) with upper box dimensions
+at most \(v+\epsilon\). For every fixed \(i\), and all sufficiently
+large \(j\),
+\[
+ N(S_i,2^{-b_j})\le2^{(v+2\epsilon)b_j}.
+\]
+Replacing the covering balls by the bounded number of dyadic
+depth-\(b_j\) squares they meet changes only a constant. There is
+no branching between \(b_j\) and \(a_j\). Every occupied
+depth-\(b_j\) square has exactly one occupied depth-\(a_j\)
+descendant, so \(S_i\) can be covered by at most
+\(C2^{(v+2\epsilon)b_j}\) squares of side \(2^{-a_j}\).
+For \(t>(d/D)(v+2\epsilon)\), equation~\eqref{criticalmoran:ratio}
+shows that their \(t\)-dimensional cost tends to zero:
+\[
+ C2^{(v+2\epsilon)b_j}(\sqrt2\,2^{-a_j})^t\longrightarrow0.
+\]
+Thus \(\HH S_i\le(d/D)(v+2\epsilon)\). Countable stability of
+Hausdorff dimension, followed by \(\epsilon\downarrow0\), proves
+\eqref{criticalmoran:hereditary}. The empty case is immediate.
+Since \(d/D<1\), this rules out positive-dimensional subsets with
+equal Hausdorff and packing dimensions.
+
+Theorem~\ref{endpoint:subpower} now applies to the natural
+\(d\)-Frostman measure and its covering estimate. It proves the
+asserted joint absolute continuity and the self-pinned
+positive-length conclusion.
+
+Finally suppose \(d\le d_\alpha\), and take \(S\subset K\) with
+\(h=\HH S>1\). Then \(h\le d\le d_\alpha\), so
+\(B_H(h)=2h-1\). The hereditary inequality gives
+\[
+ \PP S\ge\frac Dd\,h,\qquad
+ \frac Dd\,h-(2h-1)=1-\frac hd\ge0.
+\]
+Hence no such subset satisfies the preceding strict dimension
+criterion.
+\end{proof}
+
+These are additional endpoint examples under the quantitative covering
+gain \eqref{criticalmoran:cover}. The equality \(\PP K=2\HH K-1\)
+alone is not asserted to imply positive pinned length.

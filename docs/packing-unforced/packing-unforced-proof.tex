@@ -44,7 +44,11 @@ They yield an explicit, stronger dimension curve beginning at
 
 The manuscript also proves a stronger regularity conclusion under the same
 curve: selected separated source and pin probabilities have a raw joint
-distance density in some \(L^p\), \(p>1\). It also proves an optimal
+distance density in some \(L^p\), \(p>1\). A separate endpoint theorem reaches
+\(D=2d-1\) under a subpower improvement in covering numbers. For
+\(1<d\le(7-\sqrt7)/4\), its examples have no subset covered by the earlier
+strict condition.
+The manuscript also proves an optimal
 averaged deletion order in a finite geometric model and gives two precise
 criteria using source--pin geometry. A fixed recursive example shows why
 the proposed bisector criterion cannot always be obtained by choosing a
@@ -80,7 +84,7 @@ manuscript does not complete the unconditional formalization.
 For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
 \(|\cdot|\) denotes one-dimensional Lebesgue measure. The strongest sufficient
-curve proved in this manuscript is
+curve depending only on \(d,D\) proved in this manuscript is
 \begin{equation}\label{hardgap:curve}
  B_{\rm H}(d)=\begin{cases}
  2d-1,&1<d\le d_\alpha,\\[5pt]
@@ -109,6 +113,19 @@ Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
 For orientation, \(B_{\rm H}(11/10)=28/23\) and
 \(B_{\rm H}(23/20)=10/7\). The conclusion now covers, for example,
 \(d=1.09,D=1.181\) and \(d=1.15,D=1.40\).
+
+There is also a quantitative endpoint extension, which is not a new
+dimension-only curve. Theorem~\ref{endpoint:subpower} proves absolute
+continuity for an \(s\)-Frostman source when its occupied-square count is
+\(O(2^{n(2s-1)}e^{-c\sqrt n})\).
+Theorem~\ref{criticalmoran:theorem} constructs compact examples with
+\(0<\mathcal H^d(K)<\infty\) and exact dimensions
+\(\HH K=d,\ \PP K=2d-1\).
+For \(1<d\le d_\alpha\), none of their subsets satisfies the preceding
+strict dimension criterion, yet their natural measure has positive-length
+distances for almost every self-pin. For instance this includes
+\(d=21/20,\ D=11/10\), with the additional covering estimate proved
+in that construction. The equality \(D=2d-1\) alone is not claimed sufficient.
 
 The earlier adaptive bound is retained for comparison:
 \begin{equation}\label{adaptive:curve}
@@ -232,6 +249,8 @@ in those indices. Summing polynomially many such errors preserves this property.
 
 \clearpage
 \input{packing-bound-original-branch.tex}
+\input{packing-unforced-critical-covering.tex}
+\input{packing-unforced-critical-moran.tex}
 \input{packing-unforced-finite-profile.tex}
 
 \clearpage
