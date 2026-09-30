@@ -205,6 +205,10 @@ measure-theoretic modules prove some of the downstream steps.
 | high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
 | compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
+| increasing-union continuity for actual dyadic covering content | **proved**, for arbitrary sets and cube weights |
+| ordered hard/gap partitions of actual interpolated profiles | **proved**, with no partition assumption |
+| real-chain compression to uniformly bounded length | **proved**, without cost increase |
+| Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
 | finite hard-interval representation of actual interpolated profiles | **proved**, standard axioms only |
 | finite admissible real chains across hard intervals and gaps | **proved**; ordered-partition extraction and grid rounding still needed |
 | signed Gaussian energy and the coordinate-weight comparison | **proved**, including almost-everywhere source bounds |
@@ -239,6 +243,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/ProfileInterpolation.lean` | Lipschitz interpolation, normalization, and exact discrete/continuous cost compatibility |
 | `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
 | `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
+| `FalconerPacking/HardPointPartition.lean` | ordered finite hard/gap partitions extracted from interpolated profiles |
+| `FalconerPacking/RealChainCompression.lean` | uniformly bounded real-chain length with no increase of cost |
 | `FalconerPacking/HardPointChains.lean` | finite real chains across hard gaps and intervals, with proved termination |
 | `FalconerPacking/FiniteHardPoints.lean` | exact finite closed-interval representation for interpolated hard-point sets |
 | `FalconerPacking/GapTails.lean` | finite ordered-gap tails, telescoping, and both certificate bridges |
@@ -254,6 +260,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/WeakLimit.lean` | compactness, subsequences, and preservation of dyadic ball bounds in the weak limit |
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
 | `FalconerPacking/CompactReduction.lean` | closure covering bounds and separated compact Frostman source/pin probabilities |
+| `FalconerPacking/LaminarContent.lean` | maximal dyadic covers, exact cover-cost identity, and increasing-union continuity |
 | `FalconerPacking/GeometricCapacity.lean` | compact Frostman-family capacity, its continuity, and the mass-distribution principle |
 | `FalconerPacking/Capacity.lean` | Choquet compact extraction for analytic and Borel sets under explicit capacity properties |
 | `FalconerPacking/BorelFrostman.lean` | sigma-compact and finite-measure extraction; proof that below-dimension Hausdorff sigma-finiteness is unavailable |
@@ -262,6 +269,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/GaussianFrostman.lean` | annular Gaussian potential bound and the resulting Fourier energy growth |
 | `FalconerPacking/GaussianWeightedEnergy.lean` | bounded signed weights and the Gaussian coordinate-energy comparison |
 | `FalconerPacking/GaussianEnergy.lean` | Gaussian Fourier identity for finite planar measures, including integrability |
 | `FalconerPacking/AngularTruncation.lean` | two correlated angular marginals, common restriction, and moment-tail mass bound |
