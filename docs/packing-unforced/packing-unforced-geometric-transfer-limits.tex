@@ -1,0 +1,184 @@
+\subsection{The inherited cost of arithmetic slats}
+\label{geomtransfer:slats}
+
+The sharp finite train-track estimate uses a global arithmetic slat
+average. The following obstruction explains why that average cannot be
+inserted unchanged at every stage of one fixed singular construction.
+
+\begin{proposition}[No uniform full-grid slats for a fixed measure]
+\label{geomtransfer:slatrigidity}
+Let \(\sigma\) be a finite measure on a compact interval, and let
+\(h_j\to0\), \(\delta_j/h_j\to0\). Let \(U_j\) be the union of
+at most \(C_0/h_j\) intervals \(I_{j,k}\), each of length at most
+\(C_0\delta_j\), whose distinct centers belong to an arithmetic grid of
+spacing \(h_j\). There do not exist positive submeasures
+\(\sigma_j\le\sigma\), supported on \(U_j\), for which
+\[
+ \sigma_j(\mathbb R)\ge m_0>0,
+ \qquad \sigma_j(I_{j,k})\le C_1h_j
+\]
+with constants independent of \(j\).
+In particular a fixed probability cannot itself satisfy these global
+slat hypotheses at infinitely many resolutions.
+\end{proposition}
+
+\begin{proof}
+For large \(j\) the slats are disjoint, and any interval \(J\)
+meets at most \(C(|J|/h_j+1)\) of them. Thus
+\[
+ \sigma_j(J)\le CC_1(|J|+h_j).
+\]
+Pass to a weakly convergent subsequence on the common compact support.
+The limit \(\tau\) has mass at least \(m_0\). Applying the preceding
+bound to open intervals and using weak convergence gives
+\(\tau(J)\le CC_1|J|\), so \(\tau\) has a bounded Lebesgue density.
+
+Write \(\sigma=\sigma^{\mathrm{ac}}+\sigma^{\mathrm{s}}\).
+The slat unions have length at most
+\(C_0^2\delta_j/h_j\to0\). Hence the absolutely continuous part
+of \(\sigma_j\) has mass at most
+\(\sigma^{\mathrm{ac}}(U_j)\to0\). Its singular part is dominated
+by \(\sigma^{\mathrm{s}}\). Testing nonnegative continuous functions
+and passing to the limit therefore gives \(\tau\le\sigma^{\mathrm{s}}\).
+This contradicts the positive mass and absolute continuity of \(\tau\).
+\end{proof}
+
+The inherited normalization loss is quantitative. Suppose the old vertical
+support lies in \(J\) intervals of total length \(L\), and a retained
+measure \(\tau\) of mass at least \(m_0\) satisfies
+\[
+ \tau(I)\le C(|I|+h)\qquad\text{for every interval }I.
+\]
+Summing over the old parent intervals forces
+\begin{equation}\label{geomtransfer:inheritedcost}
+ C\ge\frac{m_0}{L+Jh}.
+\end{equation}
+In an interval Moran construction with \(M_i\) children of length
+\(\ell_i\) and spacing \(h_i=\ell_{i-1}/M_i\), the occupied length
+after stage \(j\) is
+\[
+ L_j=\ell_0\prod_{i\le j}\frac{\ell_i}{h_i}.
+\]
+If \(L_j\to0\), later full-grid counting constants must grow at least
+as a multiple of \(L_j^{-1}\), once the fresh mesh error is negligible.
+Conditioning on an old interval of length \(\ell\) instead gives a
+normalized count proportional to \((|I|+h)/\ell\); that parent factor
+cannot be dropped.
+
+This does not prove that actual collision phase windows attain the worst
+interval in \eqref{geomtransfer:inheritedcost}, or that the loss survives
+after all conditional source and pin weights are summed. It rules out
+literal reuse of the uniform finite average with the same constant.
+Controlling those weighted inherited costs remains necessary for a
+nontrivial nested transfer.
+
+\subsection{A quantitative pinned estimate for generic nearby metrics}
+\label{geomtransfer:metrics}
+
+Positivity of distance sets for almost every elliptic metric is established
+context \cite{hofmanniosevich}; no novelty for that phenomenon is claimed
+here. The following complete estimate shows why a fixed profile witness
+is not itself a Euclidean null-distance example.
+
+Let \(\mu,\nu\) be compactly supported planar probabilities, with
+\(I_1(\mu)<\infty\). The pin probability is fixed independently of the
+metric parameter and may equal \(\mu\). For \(0<\eta<1/2\), let
+\(\mathbb P_\eta\) be normalized Lebesgue measure on the Frobenius ball
+\[
+ \mathcal M_\eta=\{M\in\operatorname{Sym}_2(\mathbb R):
+                          \|M-I\|_F<\eta\}.
+\]
+Its matrices are positive definite. Put
+\(d_{M,y}(x)=((x-y)^{\top}M(x-y))^{1/2}\).
+
+\begin{proposition}[Mean joint pinned second norm]
+\label{geomtransfer:metricbound}
+The joint distance law has a density with respect to
+\(d\mathbb P_\eta(M)\,d\nu(y)\,dt\), and
+\begin{equation}\label{geomtransfer:metricnorm}
+ \int_{\mathcal M_\eta}\int
+       \|(d_{M,y})_*\mu\|_2^2\,d\nu(y)\,d\mathbb P_\eta(M)
+ \le C\eta^{-1}I_1(\mu).
+\end{equation}
+No source--pin separation is required. In particular, for almost every
+matrix, the full pinned law has an \(L^2\) density for
+\(\nu\)-almost every pin.
+\end{proposition}
+
+\begin{proof}
+For a source pair and pin, write
+\[
+ v=x-x',\qquad z=(x+x')/2-y,
+ \qquad Q=zv^{\top}+vz^{\top}.
+\]
+The squared-distance difference is \(\operatorname{tr}(MQ)\), and
+\begin{equation}\label{geomtransfer:matrixnorm}
+ \|Q\|_F^2=2|z|^2|v|^2+2(z\cdot v)^2.
+\end{equation}
+Since all eigenvalues of \(M\) lie between \(1/2\) and \(3/2\),
+\[
+ d_{M,y}(x)+d_{M,y}(x')\le C(|v|+|z|).
+\]
+A distance difference at most \(\varepsilon\) therefore implies
+\( |\operatorname{tr}(MQ)|\le C\varepsilon(|v|+|z|)\).
+The proportion of a three-dimensional ball of radius \(\eta\)
+lying in a linear slab of width \(a\) is at most \(Ca/\eta\).
+Together with \eqref{geomtransfer:matrixnorm}, this yields
+\begin{equation}\label{geomtransfer:slabbound}
+ \varepsilon^{-1}\mathbb P_\eta
+ \{|d_{M,y}(x)-d_{M,y}(x')|\le\varepsilon\}
+ \le C\eta^{-1}(|v|^{-1}+|z|^{-1})
+\end{equation}
+when neither vector vanishes.
+
+The midpoint term cannot be discarded merely from separation of the two
+supports. Instead, for reflection \(R_y(x)=2y-x\),
+\begin{equation}\label{geomtransfer:midpoint}
+ \iint |(x+x')/2-y|^{-1}\,d\mu(x)d\mu(x')
+ =2I_1(\mu,(R_y)_*\mu)\le2I_1(\mu).
+\end{equation}
+The inequality is Cauchy--Schwarz for the positive Riesz-energy form:
+its Fourier weight is a constant times \(|\xi|^{-1}\), and reflection
+and translation preserve self-energy. Equivalently one may use the
+positive Gaussian representation of the Riesz kernel. Finite energy
+implies that \(\mu\) is nonatomic, so both the diagonal and, for each
+fixed \(y\), the reflected diagonal have zero product mass. Thus the
+exceptions in \eqref{geomtransfer:slabbound} are null after integration
+against any prescribed \(\nu\).
+
+Take a nonnegative smooth probability mollifier supported in
+\([-1/2,1/2]\). Its self-correlation is bounded and supported in
+\([-1,1]\), so the squared norm of a smoothed distance law is bounded
+by a constant times its collision probability of width
+\(\varepsilon\), divided by \(\varepsilon\). Integrating
+\eqref{geomtransfer:slabbound} and using
+\eqref{geomtransfer:midpoint} gives the uniform bound
+\(C\eta^{-1}I_1(\mu)\) for these norms in the fixed product space
+\(L^2(d\mathbb P_\eta\,d\nu\,dt)\).
+The radial supports lie in a common bounded interval. Weak compactness,
+and weak convergence of mollifications of the joint distance law,
+identify its actual density. Lower semicontinuity gives
+\eqref{geomtransfer:metricnorm}, and disintegration gives the
+almost-everywhere assertions.
+\end{proof}
+
+Retaining the distance-sum factor in the slab calculation is essential;
+replacing it by a diameter would introduce a product of reciprocal
+lengths instead of their sum. For \(L_M=M^{1/2}\),
+\[
+ d_{M,y}(x)=|L_Mx-L_My|.
+\]
+Thus almost every matrix in any prescribed small ball produces one fixed
+Euclidean image of the source and pin measures with the asserted raw
+joint density. The linear map preserves their Hausdorff and packing
+dimensions and their Frostman exponents, and differs from the identity
+by \(O(\eta)\). This applies in particular to source measures with
+dimension exponent greater than one, including the fixed realizability
+constructions discussed earlier.
+
+The norm bound deteriorates as \(\eta^{-1}\). Consequently taking good
+matrices closer to the identity gives no uniform second-norm control and
+does not establish the conclusion for the original Euclidean metric.
+That metric may belong to the exceptional parameter set. This geometric
+comparison supplies no additional dimension-only region for the original
+set.

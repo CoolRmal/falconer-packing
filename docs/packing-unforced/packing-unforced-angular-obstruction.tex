@@ -1,0 +1,97 @@
+\subsection{Two angular bounds do not give a better pairwise strip power}
+\label{angularobs:section}
+
+The positive selection in Section~\ref{angselect:section} leaves a
+far-source collision estimate to prove. The next example shows why that
+estimate must use the distribution of source pairs, rather than just the
+two selected angular marginals at an individual pair.
+
+\begin{proposition}\label{angularobs:proposition}
+For every \(1<s<2\), there are separated compactly supported
+\(s\)-Ahlfors regular probabilities \(\mu,\nu\) such that the radial
+projection of \(\nu\) from every point of \(\supp\mu\) has an
+angular density bounded by one fixed constant \(A_0\). Nevertheless,
+there are source points \(x_+,x_-\), at distance two, for which
+\[
+ \nu\{y:\bigl||x_+-y|-|x_--y|\bigr|\le\varepsilon\}
+ \asymp\varepsilon^{s-1}.
+\]
+For every sufficiently small \(\varepsilon\), the same lower bound
+holds on a set of far source pairs of positive \(\mu\times\mu\)
+mass. Thus no uniform pairwise bound with a larger power of
+\(\varepsilon\) follows from these hypotheses, even when both angular
+selection factors are retained.
+\end{proposition}
+
+\begin{proof}
+Let \(\kappa\) be an \((s-1)\)-Ahlfors regular Cantor probability
+on a subset of \([0,1/10]\) containing zero, and let \(\lambda\)
+be an \((s/2)\)-Ahlfors regular probability with the same support
+conventions. Two-map self-similar Cantor measures with ratios
+\(2^{-1/(s-1)}\) and \(2^{-2/s}\), followed by fixed dilations,
+give such measures. Put \(x_+=(1,0)\), \(x_-=(-1,0)\), and set
+\[
+ \mu=\tfrac12\bigl((x_++\cdot)_*(\lambda\times\lambda)
+                 +(x_-+\cdot)_*(\lambda\times\lambda)\bigr),
+ \qquad
+ \nu=\kappa\times\mathcal L^1|_{[2,3]}.
+\]
+Products are \(s\)-Ahlfors regular by comparing balls with product
+intervals of comparable radius. The separated union forming \(\mu\)
+preserves this property. Thus both supports have Hausdorff and packing
+dimension \(s\), and the source and pin supports are separated.
+
+For a source \(x\), fix a horizontal pin coordinate \(t\in[0,1/10]\).
+The angle of \((t,v)-x\), as \(v\) ranges over \([2,3]\), is
+injective and has derivative in absolute value
+\[
+ \frac{|t-x_1|}{(t-x_1)^2+(v-x_2)^2}.
+\]
+This is bounded above and below by positive constants uniformly in all
+the specified coordinates. The angular pushforward of vertical Lebesgue
+measure therefore has a uniformly bounded density. Integrating against
+\(\kappa(t)\) gives jointly measurable angular densities with the
+same bound \(A_0\). With these representatives, any fixed threshold
+\(A\ge A_0\) retains every original pair in the angular selection.
+
+For the two distinguished source points and \(y=(t,v)\), the exact
+squared-distance identity gives
+\[
+ \bigl||x_+-y|-|x_--y|\bigr|
+ =\frac{4|t|}{|x_+-y|+|x_--y|}.
+\]
+The denominator stays between positive fixed constants. Upper and lower
+regularity of \(\kappa\) at zero prove the claimed power.
+
+This failure is not confined to one null source pair at a fixed scale.
+If \(x\in B(x_+,c_0\varepsilon)\cap\supp\mu\) and
+\(x'\in B(x_-,c_0\varepsilon)\cap\supp\mu\), the distance
+difference changes by at most \(2c_0\varepsilon\). With \(c_0\)
+small, all pins with \(t\le c\varepsilon\) still collide.
+Their mass is at least \(c'\varepsilon^{s-1}\), and this source-pair
+set has product mass at least \(c''\varepsilon^{2s}\).
+All its source separations exceed one for small \(\varepsilon\).
+A uniform upper bound \(C\varepsilon^\theta\), \(\theta>s-1\),
+fails on this positive-mass set once the resolution is small enough.
+\end{proof}
+
+The displayed neighborhoods of source pairs contribute only a lower
+bound of order \(\varepsilon^{3s-2}\) to the normalized collision
+integral. This tends to zero. Consequently the example supplies
+\emph{no} counterexample to the source-pair-averaged far criterion,
+nor to positive-length distances. Its conclusion is precisely that
+bounded angular marginals alone cannot improve the pairwise strip
+estimate by a positive power.
+
+There is also no product-density conclusion hidden in the two angular
+bounds. On the pin rectangle the map
+\(y\mapsto(\arg(y-x_+),\arg(y-x_-))\) has Jacobian magnitude
+\[
+ \frac{2v}{|y-x_+|^2|y-x_-|^2},\qquad y=(t,v),
+\]
+bounded below by a positive constant. Its joint angular law is still
+singular with respect to two-dimensional Lebesgue measure: the source
+of this map is \(\supp\nu\), of dimension \(s<2\), and the map
+is Lipschitz there. Both one-dimensional marginals have bounded
+densities. Thus even transverse angular coordinates cannot be treated
+as independent or as having a bounded joint density.

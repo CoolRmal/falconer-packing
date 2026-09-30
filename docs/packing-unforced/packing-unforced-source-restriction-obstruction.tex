@@ -1,0 +1,425 @@
+\section{A fixed obstruction to source-only restrictions}
+\label{sourceobs:section}
+
+The mixed norm in Proposition~\ref{bisector:criterion} is an additional
+geometric assumption. The following fixed example shows that it cannot
+be supplied by the source dimensions, even after replacing the source
+measure. The example lies strictly inside the already established
+coherent dimension range. Its conclusion concerns the regularity of
+the raw measure and is not a counterexample to positive distance length.
+
+\begin{theorem}[Persistent source obstruction]\label{sourceobs:theorem}
+There are a compact \(K\subset\R^2\) and a probability \(\mu\) on \(K\)
+such that
+\begin{equation}\label{sourceobs:dimensions}
+ s=\HH K=\frac{11}{10},\qquad
+ u=\PP K=\overline{\dim}_{\mathrm B}K=\frac{13}{11}<2s-1.
+\end{equation}
+The measure \(\mu\) is \(t\)-Frostman for every \(0<t<s\).
+Let \(T(x)=x+(0,3)\), and let \(\nu\) be either \(\mu\) or
+\(T_*\mu\). For every nonzero finite
+positive measure \(\eta\) supported on \(K\), the joint distance law
+\[
+ \mathcal D_{\eta,\nu}(A)
+ =\iint 1_A(y,|x-y|)\,d\eta(x)\,d\nu(y)
+\]
+has no density in \(L^{q,\infty}(\nu\times dt)\) for any \(q>9/8\).
+In particular it has no \(L^2(\nu\times dt)\) density. For
+\(\nu=\mu\), the conclusion already holds for the restriction
+of the distance coordinate to \([1/64,1/16]\). Thus the full
+pin measure can be supported on the same set \(K\), with the
+obstruction occurring away from zero distance.
+Separately, the full joint law with pin measure \(T_*\eta\)
+has no weak-\(L^q\) density for any \(q>9/8\).
+
+More generally, if \(\eta\le\mu\), \(\xi\le T_*\mu\), and \(\eta\) and
+\((T^{-1})_*\xi\) have a common nonzero positive submeasure, the
+corresponding joint law has no weak-\(L^q(\xi\times dt)\) density for
+\(q>9/8\).
+
+Consequently, if a nonzero positive \(\eta\) supported on \(K\) has
+\(I_1(\eta)<\infty\), then for no \(1<\tau<s\) does its weighted
+bisector measure have a density in
+\(L^2_\theta L^{2/\tau}_c\). This applies to every nonzero
+\(\eta\le\mu\), and to every Frostman source on \(K\) of exponent
+greater than one.
+\end{theorem}
+
+The statement does not address arbitrary mutually singular source and
+pin restrictions, or positive restrictions depending jointly on the
+source and pin. In particular it does not preclude a joint density in
+some \(L^p\) with \(p\) sufficiently close to one.
+
+\subsection{A uniform finite block}
+
+Set
+\[
+ \alpha=\frac2{11},\qquad \beta=\frac1{20},\qquad c=2^{-10}.
+\]
+For an integer \(L\ge10\), use the scales
+\begin{equation}\label{sourceobs:scales}
+ \delta=2^{-40L},\quad a=2^{-11L},\quad
+ w=2^{-20L},\quad h=2^{-22L},\quad m=2^{-2L}.
+\end{equation}
+Thus \(w^2=\delta\), \(h=\delta^{s/2}\),
+\(m=\delta^\beta\), and \(a=\delta^{\beta/\alpha}\).
+Here \(a,m\) are geometric block parameters, independent of the
+profile notation used in earlier sections.
+
+Let \(B=2048\), and take the \(N_T=4^L=m^{-1}\) track centers
+\[
+ c_{(d_\ell)}
+ =\frac18+\frac12\sum_{\ell=1}^L d_\ell B^{-\ell},
+ \qquad d_\ell\in\{0,512,1024,1536\}.
+\]
+They have separation at least \(256a\). Uniformly in \(L\), their
+normalized counting measure assigns mass at most \(CR^\alpha\) to
+an interval of radius \(R\ge a\), and the centers can be covered by
+at most \(CR^{-\alpha}\) intervals of length \(R\). To see this,
+choose the base-\(B\) generation \(k\) with
+\(B^{-k-1}<R\le B^{-k}\). An interval of this radius meets a
+bounded number of generation-\(k\) cylinders, each of mass \(4^{-k}\);
+there are \(4^k\) cylinders in total. The fixed contraction factor
+\(1/2\) only changes the constants.
+
+Put
+\[
+ N_S=2^{22L-4},\qquad N_X=2^{20L-4}.
+\]
+In track \(i\), for \(0\le k<N_S\) and \(0\le l<N_X\), place a
+closed child square of side \(c\delta\) with center
+\[
+ z_{i,k,l}=
+ \left(c_i+4\delta\left(l-\frac{N_X-1}{2}\right),
+                  \frac14+kh\right).
+\]
+All squares are inside the unit square and have mutual separation
+at least \(3\delta\). A track has horizontal extent at most \(w/4\).
+The \(N_S\) slats in each track have vertical separation \(h\).
+There are
+\begin{equation}\label{sourceobs:branching}
+ M_L=N_TN_SN_X=2^{44L-8}=2^{-8}\delta^{-s}
+\end{equation}
+children. Assign each child probability \(M_L^{-1}\). Then every
+track has mass \(m\), and each of its slats has mass \(m/N_S\).
+All the next estimates are independent of how the probability is
+distributed inside each child.
+
+\begin{lemma}[Uniform block bounds]\label{sourceobs:block}
+For \(c\delta\le R\le1\), every such block measure satisfies
+\[
+ \mu_{\rm block}(B(x,R))\le CR^s,\qquad
+ N(\supp\mu_{\rm block},R)\le CR^{-u},
+\]
+with constants independent of \(L\). At \(R=h\) one also has
+\[
+ \mu_{\rm block}(B(x,h))\le C\delta^{3s/2-1}.
+\]
+\end{lemma}
+\begin{proof}
+For \(\delta\le R\le1\), horizontal mass is at most \(CR^\alpha\)
+for \(R\ge a\), \(Cm\) for \(w\le R\le a\), and \(CmR/w\)
+for \(\delta\le R\le w\). Vertical mass is at most \(CR\) for
+\(R\ge h\), and \(Ch\) for \(\delta\le R\le h\).
+The product child structure and fixed child diameter therefore give
+\[
+\begin{array}{c|c|c}
+\text{range}&\text{mass bound}&\text{cover bound}\\ \hline
+a\le R\le1&CR^{1+\alpha}&CR^{-1-\alpha}\\
+w\le R\le a&C\delta^\beta R&C\delta^{-\beta}R^{-1}\\
+h\le R\le w&C\delta^{\beta-1/2}R^2
+ &C\delta^{1/2-\beta}R^{-2}\\
+\delta\le R\le h&C\delta^{s-1}R
+ &C\delta^{1-s}R^{-1}.
+\end{array}
+\]
+Every mass bound is at most \(CR^s\). Every cover bound is at
+most \(CR^{-u}\), using
+\[
+ u=3-\frac2s,\qquad
+ \frac{s}{2}(2-u)=1-\frac{s}{2}=\frac12-\beta.
+\]
+For \(c\delta\le R\le\delta\), only a bounded number of children
+meet a ball, and a child needs a bounded number of radius-\(R\)
+balls. The constants can depend on the fixed \(c\).
+Finally, a radius-\(h\) ball meets a bounded number of tracks and
+slats, and \(O(h/\delta)\) horizontal children, each of mass
+comparable to \(\delta^s\). This gives the last estimate.
+\end{proof}
+
+\subsection{The recursive measure and exact dimensions}
+
+Choose
+\begin{equation}\label{sourceobs:depths}
+ L_j=10+j^2\left(1+\sum_{k<j}L_k\right).
+\end{equation}
+Inside each stage-\((j-1)\) square insert the preceding \(L_j\)
+block using its affine coordinates, with no rotation. Each child
+is a similarity of ratio \(r_j=c\delta_j\). The intersection is
+a compact set \(K\), and equal conditional child weights define a
+probability \(\mu\). Write
+\[
+ \lambda_j=\prod_{k\le j}r_k,\qquad
+ p_j=\prod_{k\le j}M_{L_k}^{-1},\qquad P_j=p_j^{-1},
+ \qquad \lambda_0=p_0=1.
+\]
+There are \(P_j\) stage-\(j\) squares, each of side \(\lambda_j\)
+and mass \(p_j\). Their separation is at least a fixed large
+multiple of \(\lambda_j\): this follows for siblings from
+\(3\delta_j/(c\delta_j)=3/c\), and for different parents by
+induction. Thus a ball of radius at most \(\lambda_j\) meets
+only a bounded number of stage-\(j\) squares. In particular every
+point of \(K\) has an unambiguous parent, track, slat, and child
+at every stage.
+
+For \(\lambda_j\le r\le\lambda_{j-1}\), applying
+Lemma~\ref{sourceobs:block} in each parent met by the ball gives
+\begin{equation}\label{sourceobs:frostman}
+ \mu(B(x,r))\le
+ C p_{j-1}\lambda_{j-1}^{-s}r^s.
+\end{equation}
+The factor \(p_{j-1}\lambda_{j-1}^{-s}\) equals
+\((2^8c^{-s})^{j-1}\). For every \(0<t<s\),
+\[
+ p_{j-1}\lambda_{j-1}^{-s}r^{s-t}
+ \le (2^8c^{-s})^{j-1}\lambda_{j-1}^{s-t},
+\]
+which is uniformly bounded. Hence \(\mu\) is \(t\)-Frostman for
+every \(0<t<s\), and \(\HH K\ge s\). Conversely the level covers
+have
+\[
+ \frac{\log P_j}{-\log\lambda_j}\longrightarrow s,
+\]
+so \(\HH K\le s\).
+
+For the covering bound, the same lemma yields
+\[
+ N(K,r)\le C P_{j-1}(r/\lambda_{j-1})^{-u}.
+\]
+The prefactor is bounded, since
+\[
+ P_{j-1}\lambda_{j-1}^u
+ =\prod_{k<j}(2^{-8}c^u\delta_k^{u-s})\le1.
+\]
+Thus \(\overline{\dim}_{\mathrm B}K\le u\) and \(\PP K\le u\).
+
+For the reverse inequality set \(r_j^*=\lambda_{j-1}h_j\).
+The refined block estimate gives
+\[
+ \sup_x\mu(B(x,r_j^*))
+ \le Cp_{j-1}\delta_j^{3s/2-1}.
+\]
+Consequently every \(A\subset K\) with \(\mu^*(A)>0\) satisfies
+\[
+ N(A,r_j^*)\ge
+ \frac{\mu^*(A)}{Cp_{j-1}\delta_j^{3s/2-1}}.
+\]
+Since \(L_j/\sum_{k<j}L_k\to\infty\), logarithms imply
+\[
+ \overline{\dim}_{\mathrm B}A
+ \ge\frac{3s/2-1}{s/2}=u.
+\]
+Every countable cover of \(K\) contains a piece of positive
+\(\mu\) outer measure. The countable-cover characterization of
+packing dimension therefore gives \(\PP K\ge u\), completing
+\eqref{sourceobs:dimensions}.
+
+\subsection{Collisions that persist under source restriction}
+
+We first use the translated pin measure \(\nu=T_*\mu\).
+Fix any finite positive \(\eta\) supported on \(K\), of mass
+\(M>0\). At stage \(j\), abbreviate
+\[
+ \lambda=\lambda_{j-1},\quad p=p_{j-1},\quad
+ \delta=\delta_j,\quad h=h_j,\quad w=w_j,\quad m=m_j.
+\]
+For each parent \(Q\), track \(i\), and slat \(k\), put
+\[
+ q_{Q,i,k}=\eta(\text{slat }(Q,i,k)),\qquad
+ q_{Q,i}=\sum_kq_{Q,i,k},\qquad M_Q=\sum_iq_{Q,i}.
+\]
+Here a slat means the union of all its descendants in \(K\).
+These are disjoint compact sets.
+
+For a pin \(y\) in the translated track \(T(Q,i)\), any two
+source points \(x,x'\) in slat \((Q,i,k)\) obey
+\begin{equation}\label{sourceobs:distancewidth}
+ \big||x-y|-|x'-y|\big|
+ \le C(\lambda\delta+\lambda^2w^2)
+ \le C\lambda\delta.
+\end{equation}
+The source vertical coordinates differ by \(O(\lambda\delta)\),
+and their horizontal displacements from \(y\) are
+\(O(\lambda w)\). Apply the difference-of-squares identity,
+using the fixed positive separation of \(K\) and \(T(K)\).
+Corresponding parent copies are separated by the global translation
+3, not by \(3\lambda\); this explains the favorable
+\(\lambda^2w^2\) term.
+
+Choose nonnegative \(\varphi\in C_c^\infty(\R)\) of integral one.
+Its autocorrelation is positive near zero. For
+\(\varepsilon_j=C_0\lambda\delta\), with \(C_0\) a sufficiently
+large fixed constant, \eqref{sourceobs:distancewidth} implies
+\[
+ \int|\varphi_{\varepsilon_j}*(d_y)_*\eta(t)|^2\,dt
+ \ge\frac{c_1}{\lambda\delta}\sum_kq_{Q,i,k}^2
+ \quad(y\in T(Q,i)).
+\]
+The pin mass of this parent-track is \(pm\). Since
+\(N_S^{-1}=16h\), successive applications of Cauchy--Schwarz
+over slats, tracks, and parents give
+\begin{align}
+ \int\|\varphi_{\varepsilon_j}*(d_y)_*\eta\|_2^2\,d\nu(y)
+ &\ge\frac{c_1pmh}{\lambda\delta}\sum_{Q,i}q_{Q,i}^2
+ \notag\\
+ &\ge\frac{c_1pm^2h}{\lambda\delta}\sum_QM_Q^2
+ \notag\\
+ &\ge c_1M^2p^2\lambda^{-1}\delta^{3s/2-2}.
+ \label{sourceobs:collision}
+\end{align}
+At \(s=11/10\), the last exponent is \(-7/20\), and
+\[
+ \log_2(p_{j-1}^2\lambda_{j-1}^{-1}\delta_j^{-7/20})
+ =14L_j-48\sum_{k<j}L_k+26(j-1)\longrightarrow+\infty.
+\]
+Thus no joint \(L^2\) density exists, since convolution would
+contract its \(L^2\) norm.
+
+For pins \(T_*\eta\), the pin mass in the corresponding parent-track
+is \(q_{Q,i}\). Jensen's inequality over the \(1/(pm)\)
+parent-tracks gives instead
+\[
+ \frac{c_1h}{\lambda\delta}\sum_{Q,i}q_{Q,i}^3
+ \ge c_1M^3p^2\lambda^{-1}\delta^{3s/2-2}\longrightarrow\infty.
+\]
+These estimates require only that \(\eta\) be supported on \(K\);
+no domination by the natural measure is used.
+
+\subsection{Failure of weak \(L^q\) above \(9/8\)}
+
+For each \(y\in T(Q,i)\), take \(S_j(y)\) to be the union over
+slats \(k\) of intervals of length \(C\lambda\delta\) centered
+at the distances from \(y\) to the corresponding source slat
+centers. The constant is fixed and large enough that
+\eqref{sourceobs:distancewidth}, also with a slat center in place
+of one source point, puts all distances from the source
+parent-track inside this union. The finitely many centers and
+compact pieces show that \(S_j=\{(y,t):t\in S_j(y)\}\) is Borel.
+For \(\omega=\nu\times dt\),
+\begin{equation}\label{sourceobs:support}
+ \omega(S_j)\le C\lambda\delta^{1-s/2},\qquad
+ \mathcal D_{\eta,\nu}(S_j)\ge
+ \sum_{Q,i}q_{Q,i}\nu(T(Q,i))=pmM.
+\end{equation}
+
+For \(q>1\), the distribution-function formula gives
+\[
+ \int_A F\,d\omega
+ \le\frac{q}{q-1}\|F\|_{L^{q,\infty}(\omega)}
+                  \omega(A)^{1-1/q}
+ \qquad(F\ge0).
+\]
+Thus a weak-\(L^q\) density of the joint law would satisfy
+\begin{equation}\label{sourceobs:weaklower}
+ \|F\|_{L^{q,\infty}}\ge
+ c_qMp\lambda^{-(1-1/q)}
+ \delta^{\beta-(1-s/2)(1-1/q)}.
+\end{equation}
+The exponent of \(\delta\) is negative precisely for
+\[
+ q>\frac{2-s}{3-2s}=\frac98.
+\]
+For each fixed such \(q\), the stage choice
+\eqref{sourceobs:depths} makes the right side of
+\eqref{sourceobs:weaklower} diverge, because the contribution of
+\(L_j\) dominates every earlier depth. This proves the asserted
+weak-\(L^q\) failure. We make no claim at \(q=9/8\).
+
+For pins \(T_*\eta\), the product measure of \(S_j\) is at most
+\(CM\lambda\delta^{1-s/2}\), whereas its joint distance mass is
+at least
+\[
+ \sum_{Q,i}q_{Q,i}^2\ge M^2pm.
+\]
+The same exponent therefore proves the matched-pin statement.
+If a nonzero \(\zeta\le\eta\) also satisfies \(T_*\zeta\le\xi\),
+the actual source--pin law dominates the law for source \(\zeta\)
+and pins \(T_*\zeta\). Its mass on \(S_j\) is at least
+\(\zeta(K)^2pm\), while
+\[
+ (\xi\times dt)(S_j)
+ \le C\xi(\R^2)\lambda\delta^{1-s/2}.
+\]
+Applying the same support inequality relative to \(\xi\times dt\)
+proves the common-submeasure variant. No change of base measure
+in a Lorentz norm is being asserted here.
+
+\subsection{The same-set full pin measure}
+
+We now use \(\nu=\mu\), and keep the relevant distances in a
+fixed interval separated from zero. The first-stage number \(N_S\)
+is even. Define \(F:K\to K\) by replacing the first vertical slat
+digit \(k\) with \(k+N_S/2\) modulo \(N_S\), leaving the first
+track and horizontal-child indices, and every subsequent digit,
+unchanged. Unique coding makes \(F\) a Borel involution, and equal
+conditional weights give \(F_*\mu=\mu\).
+
+On each first-stage child, \(F\) is a translation by either
+\((0,1/32)\) or \((0,-1/32)\), since \(N_Sh_1/2=1/32\).
+For every \(j\ge2\), it maps each stage-\((j-1)\) parent \(Q\)
+onto a parent \(F(Q)\) by that same translation, preserving
+all relative track, slat, and child geometry. In particular
+\(\mu(F(Q,i))=pm\).
+
+For \(y\in F(Q,i)\) and \(x,x'\) in source slat \((Q,i,k)\),
+the proof of \eqref{sourceobs:distancewidth} applies with
+fixed separation \(1/32\) instead of \(3\). Indeed
+\(\lambda\le\lambda_1\) is far smaller than \(1/64\), and
+\[
+ \left||x-y|-\frac1{32}\right|\le\sqrt2\,\lambda.
+\]
+Thus their distance oscillation is at most \(C\lambda\delta\),
+and these distances and their \(C\lambda\delta\) neighborhoods
+lie in \(J=[1/64,1/16]\).
+
+For \(y\in F(Q,i)\), form \(S_j(y)\) using the distances to
+all source slat centers in \(Q,i\), exactly as in the preceding
+subsection. The parent correspondence is a bijection, so
+\begin{equation}\label{sourceobs:samepins}
+ \begin{gathered}
+ S_j\subset K\times J,\qquad
+ (\mu\times dt)(S_j)\le C\lambda\delta^{1-s/2},\\
+ \mathcal D_{\eta,\mu}(S_j)\ge pmM.
+ \end{gathered}
+\end{equation}
+The support inequality giving \eqref{sourceobs:weaklower} now
+applies even if only the restriction of the law to \(K\times J\)
+were assumed to have a weak-\(L^q\) density. This proves the
+same-set full-pin assertion away from the radial diagonal.
+The collision proof \eqref{sourceobs:collision} likewise applies
+with \(F(Q,i)\) in place of \(T(Q,i)\).
+
+This argument does not assert that an arbitrary independently
+selected pin restriction retains the requisite matching
+parent-track masses. The translated matched-pin conclusion was
+proved separately above.
+
+\subsection{Consequence for the bisector criterion}
+
+Let \(1<\tau<s\), and let \(\eta\) be a nonzero positive source
+on \(K\) with finite first energy. Choosing \(\tau<t<s\), the
+\(t\)-Frostman estimate gives \(I_\tau(\mu)<\infty\), so we may
+use the full same-set pin measure \(\nu=\mu\).
+If \(\mathcal B_\eta\) had density in
+\(L^2_\theta L^{2/\tau}_c\), Proposition~\ref{bisector:criterion}
+would give a raw \(L^2(\mu\times dt)\) joint distance density,
+contrary to \eqref{sourceobs:samepins}. Every submeasure of \(\mu\),
+and every Frostman source on \(K\) of exponent greater than one,
+has the required finite first energy. This completes the proof of
+Theorem~\ref{sourceobs:theorem}.
+
+The strict inequality \(13/11<6/5=2s-1\) is deliberate. It shows
+that this mixed norm is not even forced throughout the established
+coherent range. The obstruction leaves open positive distance length,
+absolute continuity or smaller \(L^p\) exponents, and selections
+depending jointly on the source and pin.

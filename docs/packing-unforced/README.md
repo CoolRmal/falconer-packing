@@ -260,6 +260,41 @@ potential, bounded finite chains, and uniform approximation. It shows that this
 specific decoupling construction cannot improve the existing curve. It makes no
 claim about all uses of decoupling or the optimal distance-set threshold.
 
+## What the geometric tests establish
+
+The fixed recursive source construction has
+
+$$
+\dim_H K=\frac{11}{10},\qquad
+\dim_P K=\overline{\dim}_{\mathrm B}K=\frac{13}{11}.
+$$
+
+It carries a probability that is Frostman at every exponent below 11/10.
+Use this same probability as the fixed pin probability on K. For **every** nonzero
+finite positive source measure supported on K, the raw joint pinned distance
+law, even restricted to the radial interval from 1/64 to 1/16, has no weak-Lq
+density for q greater than 9/8. In particular no such source
+with finite first energy can satisfy the proposed bisector mixed norm. The
+construction also handles matching positive source and pin restrictions.
+It does not rule out independent pin restrictions or pin-dependent positive
+pair selections. The dimensions satisfy the earlier coherent sufficient
+condition, so this is not a distance-set counterexample.
+
+Two further checks identify the missing geometric information. Bounded angular
+densities at both members of a source pair need not improve the Frostman strip
+power; source-pair averaging remains essential. Uniform arithmetic slat counts
+from the finite example cannot be reused at infinitely many scales for one
+fixed measure, even after retaining a fixed positive mass. The inherited
+occupied length forces a growing counting constant.
+
+For comparison, a fully proved parameter-averaged estimate gives raw pinned
+quadratic densities after almost every arbitrarily small elliptic deformation
+of a source with finite first energy. This is consistent with the established
+random-metric results of [Hofmann and Iosevich](https://arxiv.org/abs/math/0305132).
+Its bound deteriorates as the deformation neighborhood shrinks, so it does
+not prove the conclusion for the original Euclidean metric. These tests do
+not enlarge the dimension-only sufficient region.
+
 ## Proof and audit files
 
 - [Complete manuscript](packing-unforced-proof.pdf)
@@ -307,6 +342,15 @@ claim about all uses of decoupling or the optimal distance-set threshold.
 - [Detailed angular-selection proof and bisector audit](2026-09-30-fixed-angular-selection-collisions.md)
 - [Conditional mixed-norm bisector criterion](packing-unforced-bisector.tex)
 - [Reflection geometry, exact exponents, and primary-source review](2026-09-30-bisector-mixed-norm-route.md)
+- [Fixed obstruction for every source measure on one support](packing-unforced-source-restriction-obstruction.tex)
+- [Complete recursive construction and weak-norm proof](2026-09-30-nonremovable-bisector-source-obstruction.md)
+- [Audit of all scales, dimensions, and the stronger source quantifier](2026-09-30-source-obstruction-root-audit.md)
+- [Independent recursive-construction audit](2026-09-30-source-restriction-independent-audit.md)
+- [The exact limitation of two bounded angular marginals](packing-unforced-angular-obstruction.tex)
+- [Detailed angular-marginal obstruction](2026-09-30-two-angular-marginals-far-collision-obstruction.md)
+- [Inherited-slat and generic-metric proofs](packing-unforced-geometric-transfer-limits.tex)
+- [Why uniform finite slat averaging does not persist](2026-09-30-inherited-slat-obstruction.md)
+- [Quantitative generic-metric bound and profile preservation](2026-09-30-generic-metric-pinned-energy.md)
 - [Modified Fourier transfer](packing-unforced-transfer.tex)
 - [Detailed selected-cap weighted embedding](packing-unforced-embedding.tex)
 - [Coherent analytic branch](packing-bound-original-branch.tex)

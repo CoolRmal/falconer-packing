@@ -2,6 +2,14 @@
 
 Date: 2026-09-30. This is a bounded literature audit and a proved conditional implication. It does not improve the dimension-only threshold proved in the manuscript.
 
+Update: the later [fixed recursive construction](2026-09-30-nonremovable-bisector-source-obstruction.md)
+shows that a universal source-choice version of the proposed mixed-norm
+hypothesis is false against prescribed regular pins, even inside the proved
+dimension range. No nonzero finite-first-energy source measure on that
+construction's support satisfies the mixed norm. The conditional implication
+below remains valid; a successful use must also justify its choice of pins or
+exploit additional geometry.
+
 ## 1. What the recent primary results actually supply
 
 - [Orponen–Shmerkin–Wang, Theorem 3.20](https://arxiv.org/html/2209.00348) gives thin tubes for every exponent strictly below the minimum of one and the sum of the two measure dimensions minus one. Thin tubes mean a positive pair restriction with a power upper bound on the mass of tubes through the relevant center. For both dimensions above one, this is angular Frostman control below exponent one. Our existing radial-density selection supplies bounded angular densities on a retained positive pair set, so this result alone is not a stronger input in the present range. It does not state absolute continuity for scalar distances.
@@ -225,4 +233,4 @@ There is a further warning: (3) is a raw L2 conclusion. [Guth–Iosevich–Ou–
 
 ## 6. Bounded-task outcome
 
-The literature scan did not yield a new unconditional dimension region. It did yield a precise alternative target: a mixed-norm bound for reflection autocorrelations of an actual positive source restriction, with explicit exponents and a complete implication to positive-length pinned distances. This target retains a source-pair geometry that the existing scale profile discards. Establishing it from Hausdorff and packing dimensions beyond the current curve remains the new missing estimate.
+The literature scan did not yield a new unconditional dimension region. It did yield a precise conditional target: a mixed-norm bound for reflection autocorrelations of an actual source measure, with explicit exponents and a complete implication to positive-length pinned distances. This target retains a source-pair geometry that the existing scale profile discards. The later recursive obstruction rules out deriving this norm solely by choosing a better source measure against every prescribed pin probability. Any use beyond the current curve must justify an additional geometric hypothesis or an appropriate simultaneous choice of source and pins; the unconditional source-choice version is no longer merely an unproved estimate.

@@ -76,6 +76,15 @@ mixed-norm criterion gives another precise route to pinned densities. The
 remaining hypotheses of these two general criteria have not been proved from
 dimensions beyond the curve above.
 
+A fixed recursive example now shows a stronger limitation of the bisector
+route: against the constructed probability used as pins on the same set, **no nonzero positive source measure on
+the constructed support** has a raw joint weak-Lq density for q greater than
+9/8. Its Hausdorff and packing dimensions are 11/10 and 13/11, inside the
+proved positive-distance region. The norm failure occurs even on a fixed
+radial interval bounded away from zero. Thus choosing a different source measure
+alone cannot supply the proposed quadratic bisector hypothesis. This is a
+norm obstruction, not a counterexample to positive-length distances.
+
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
 $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$
