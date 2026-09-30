@@ -334,6 +334,13 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/FrostmanLineNull.lean` | Frostman line nullity and almost-everywhere continuity of radial angles |
 | `FalconerPacking/SmoothApproximationTests.lean` | convergence against bounded tests continuous almost everywhere |
 | `FalconerPacking/WeakMomentLimit.lean` | absolute continuity of weak limits with uniform density moments above one |
+| `FalconerPacking/AffineDistanceL1.lean` | actual affine-density comparison, common-offset cancellation, and square-root mass gain |
+| `FalconerPacking/RadialProjectionAngularShift.lean` | rotation-invariant integration of actual line densities |
+| `FalconerPacking/RadialProjectionSmoothMoment.lean` | uniform radial moments for smooth positive source measures |
+| `FalconerPacking/WeakMomentDensity.lean` | actual limiting density moments from open-set power bounds |
+| `FalconerPacking/RadialProjectionWeakLimit.lean` | weak convergence of actual joint radial probabilities |
+| `FalconerPacking/RadialProjectionJointDensity.lean` | explicit and canonical joint radial density identities |
+| `FalconerPacking/RadialMomentCenters.lean` | one fixed dyadic center family with radial moment and geometric control |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

@@ -103,6 +103,14 @@ import FalconerPacking.FrostmanLineNull
 import FalconerPacking.SmoothApproximationTests
 import FalconerPacking.WeakMomentLimit
 
+import FalconerPacking.AffineDistanceL1
+import FalconerPacking.RadialProjectionAngularShift
+import FalconerPacking.RadialProjectionSmoothMoment
+import FalconerPacking.WeakMomentDensity
+import FalconerPacking.RadialProjectionWeakLimit
+import FalconerPacking.RadialProjectionJointDensity
+import FalconerPacking.RadialMomentCenters
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
