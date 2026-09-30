@@ -319,6 +319,12 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SmoothProjectionDensity.lean` | pointwise positive Schwartz line densities of smooth compact sources |
 | `FalconerPacking/RadialProjectionLevelSet.lean` | actual positive level sets satisfy the weak trace estimate |
 | `FalconerPacking/ProjectionDensityComparison.lean` | exact Plancherel comparison for jointly measurable translated projection densities |
+| `FalconerPacking/RadialProjectionWeakMoment.lean` | quantitative smaller moments from weak trace bounds |
+| `FalconerPacking/SmoothMeasureApproximation.lean` | genuine smooth probability densities and uniform energy contraction |
+| `FalconerPacking/RadialAngleGeometry.lean` | comparison of actual radial directions for separated pins |
+| `FalconerPacking/CorrelatedAngularCharts.lean` | circular Fourier comparison with the angular branch cut handled |
+| `FalconerPacking/UniformFourierBands.lean` | explicit uniform constants for Gaussian and angular Fourier bands |
+| `FalconerPacking/UniformProjectionEnergy.lean` | correlated density comparison with controlled Frostman-constant dependence |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

@@ -61,7 +61,9 @@ import FalconerPacking.RadialProjectionRay
 import FalconerPacking.RadialProjectionLine
 import FalconerPacking.RadialProjectionTrace
 import FalconerPacking.RadialProjectionLevelSet
+import FalconerPacking.RadialProjectionWeakMoment
 import FalconerPacking.SmoothProjectionDensity
+import FalconerPacking.SmoothMeasureApproximation
 import FalconerPacking.WeightedBandEnergy
 import FalconerPacking.AngularDerivativeEnergy
 import FalconerPacking.DyadicBandSum
@@ -69,6 +71,10 @@ import FalconerPacking.DyadicBandIntegral
 import FalconerPacking.CorrelatedBandEnergy
 import FalconerPacking.CorrelatedFourierEnergy
 import FalconerPacking.ProjectionDensityComparison
+import FalconerPacking.RadialAngleGeometry
+import FalconerPacking.CorrelatedAngularCharts
+import FalconerPacking.UniformFourierBands
+import FalconerPacking.UniformProjectionEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
