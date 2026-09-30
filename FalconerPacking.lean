@@ -48,6 +48,7 @@ import FalconerPacking.ProjectionDensity
 import FalconerPacking.CorrelatedAngles
 import FalconerPacking.CorrelatedFourierShift
 import FalconerPacking.FiniteRegularization
+import FalconerPacking.RegularMeasureProfile
 import FalconerPacking.RadialProjectionKernel
 import FalconerPacking.RadialProjectionEnergy
 import FalconerPacking.RadialProjectionTransversality
@@ -57,6 +58,8 @@ import FalconerPacking.RadialProjectionLine
 import FalconerPacking.WeightedBandEnergy
 import FalconerPacking.AngularDerivativeEnergy
 import FalconerPacking.DyadicBandSum
+import FalconerPacking.DyadicBandIntegral
+import FalconerPacking.CorrelatedBandEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights

@@ -307,6 +307,9 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/WeightedBandEnergy.lean` | Gaussian and polar band bounds for signed source weights |
 | `FalconerPacking/AngularDerivativeEnergy.lean` | actual angular derivatives, band estimates, joint continuity, and negative-frequency symmetry |
 | `FalconerPacking/DyadicBandSum.lean` | convergent two-sided band sum with an explicit displacement-power constant |
+| `FalconerPacking/DyadicBandIntegral.lean` | full even Fourier integral bounded by the dyadic band sum |
+| `FalconerPacking/CorrelatedBandEnergy.lean` | actual characteristic-function comparison gains for correlated angles and shifts |
+| `FalconerPacking/RegularMeasureProfile.lean` | actual normalized components give profiles and strict-cost chains |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
