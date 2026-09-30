@@ -64,6 +64,9 @@ import FalconerPacking.RadialProjectionLevelSet
 import FalconerPacking.RadialProjectionWeakMoment
 import FalconerPacking.SmoothProjectionDensity
 import FalconerPacking.SmoothMeasureApproximation
+import FalconerPacking.SmoothProbabilityApproximation
+import FalconerPacking.RadialProjectionSmoothTrace
+import FalconerPacking.RadialProjectionAngularMoment
 import FalconerPacking.WeightedBandEnergy
 import FalconerPacking.AngularDerivativeEnergy
 import FalconerPacking.DyadicBandSum

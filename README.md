@@ -325,6 +325,9 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/CorrelatedAngularCharts.lean` | circular Fourier comparison with the angular branch cut handled |
 | `FalconerPacking/UniformFourierBands.lean` | explicit uniform constants for Gaussian and angular Fourier bands |
 | `FalconerPacking/UniformProjectionEnergy.lean` | correlated density comparison with controlled Frostman-constant dependence |
+| `FalconerPacking/SmoothProbabilityApproximation.lean` | explicit smooth source probabilities converge weakly and preserve Frostman bounds |
+| `FalconerPacking/RadialProjectionSmoothTrace.lean` | actual projected characteristic functions identified with the Schwartz Fourier integral |
+| `FalconerPacking/RadialProjectionAngularMoment.lean` | angular weak bound obtained from first energy moments |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
