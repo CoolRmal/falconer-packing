@@ -59,6 +59,13 @@ and no positive-dimensional subset has equal Hausdorff and packing dimensions.
 The extra covering margin is proved for the examples; dimension equality alone
 is not asserted sufficient. The dimension-only curve above is unchanged.
 
+The direct frequency-band proof now removes the logarithmic loss in the
+covering summability test. The manuscript also incorporates the earlier
+selected-scale family, with positive-length self-pinned distances at
+Hausdorff dimension 21/20 and packing dimension 6/5, and up to 84/61 in that
+constructed class. Those examples have additional scale structure; their two
+dimensions alone are not claimed sufficient for an arbitrary set.
+
 ![The explicit gap bound, the preceding adaptive bound, and the originally quoted curve.](docs/figures/packing-unforced.svg)
 
 Matching profiles prove this curve is optimal for the specified combination of

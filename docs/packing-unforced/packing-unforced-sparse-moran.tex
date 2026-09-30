@@ -1,0 +1,293 @@
+\subsection{Sparse covering scales and explicit irregular examples}
+\label{sparsemoran:section}
+
+The coherent comparison can use selected levels of one fixed positive
+approximation sequence. This was already available in the block form of
+the argument. The open family below and its closed endpoint were already
+constructed in the earlier selected-scale research notes; the endpoint
+there used a square-root gap. Here we give a complete proof and use the
+weaker logarithmic gap at the endpoint. We record the estimate before
+constructing the examples. The
+resulting class goes beyond the preceding all-scale covering assumptions.
+It does not assert a new sufficient inequality depending only on
+Hausdorff and packing dimensions.
+
+\begin{proposition}[A selected-scale covering criterion]
+\label{sparsemoran:criterion}
+Let \(\mu,\nu\) be compactly supported planar probabilities with
+positively separated supports, where \(\mu\) is \(d\)-Frostman,
+\(1<d<2\), and \(\nu\) has a Frostman exponent greater than one.
+Let \(q>1\) be the averaged angular exponent and put
+\(\eta_q=(q-1)/(2q-1)\). Suppose increasing integers \(n_j\to\infty\)
+satisfy
+\begin{equation}\label{sparsemoran:selectedcount}
+ N_{n_j}\le C2^{dn_j},
+\end{equation}
+where \(N_n\) counts occupied source dyadic squares.
+If, for some fixed \(0<\gamma<(d-1)/2\),
+\begin{equation}\label{sparsemoran:series}
+ \sum_j2^{-2\gamma\eta_q(2n_j-n_{j+1})}<\infty,
+\end{equation}
+then the raw joint distance law is absolutely continuous.
+In particular it suffices that
+\(n_{j+1}\le(2-\epsilon)n_j\) eventually for some \(\epsilon>0\).
+It also suffices that \(n_{j+1}/n_j\to2\) and
+\(2n_j-n_{j+1}\ge c\log_2(n_j+1)\) eventually, with \(c>0\).
+\end{proposition}
+
+\begin{proof}
+Use the same chosen centers and positive affine densities \(f_n\)
+as in Section~\ref{sec:coherenttree}. They do not depend on the
+selected levels. Compare arbitrary \(n<m\), writing
+\(r=2^{-n}\) and \(\delta=2^{-m}\). For a depth-\(m\) cell \(Q\)
+inside its depth-\(n\) ancestor \(P\), both affine maps act on the
+same conditional source \(\mu_Q\), recentered at \(x_Q\).
+Their angles differ by \(O(r)\), and their scalar translation
+constants differ by \(O(r^2)\).
+
+After restricting both angular marginals to density at most \(A\),
+use the angular estimate in Lemma~\ref{lem:coherentangular} and its
+translation estimate with an arbitrary shift bound \(h>0\).
+The latter follows from its same Plancherel proof, using
+\(\lvert e^{i\xi v}-1\rvert\le C\lvert\xi h\rvert^\gamma\)
+for \(\lvert v\rvert\le h\); it is not restricted to shifts smaller
+than the square of the source diameter. With \(h=Cr^2\), these
+estimates give an integrated squared
+second-norm difference at most
+\[
+ CA\bigl(r^{2\gamma}\delta^{2\gamma}+r^{4\gamma}\bigr)
+ I_{1+2\gamma}(\mu_Q)
+ \le CA r^{4\gamma}I_{1+2\gamma}(\mu_Q).
+\]
+Each of the two conditional affine densities is supported in an
+interval of length \(C\delta\). Their difference is supported in
+the union of these intervals, whose total Lebesgue measure is
+\(O(\delta)\), regardless of the gap between them. Thus the
+first-norm Cauchy--Schwarz factor is \(\delta^{1/2}\);
+a single containing interval is unnecessary.
+
+Summing the child weights and the discarded pin masses exactly as
+in Proposition~\ref{prop:coherentcomparison} gives
+\begin{equation}\label{sparsemoran:block}
+ \|f_m-f_n\|_1
+ \le C(AZ_{n,m})^{1/2}+CBA^{1-q},\qquad
+ Z_{n,m}=\delta r^{4\gamma}
+       \sum_{Q\text{ at depth }m}p_QI_{1+2\gamma}(\mu_Q).
+\end{equation}
+The parent angular costs still sum correctly because all depth-\(m\)
+descendants of a given depth-\(n\) parent have total mass equal
+to that parent's mass. No restriction on \(m/n\) was used in
+\eqref{sparsemoran:block}.
+
+The conditional Frostman energy bound yields
+\[
+ I_{1+2\gamma}(\mu_Q)
+ \le C\delta^{d-1-2\gamma}/p_Q.
+\]
+At \(m=n_{j+1}\), equation~\eqref{sparsemoran:selectedcount} therefore
+gives
+\[
+ Z_{n_j,n_{j+1}}
+ \le C r^{4\gamma}\delta^{d-2\gamma}N_{n_{j+1}}
+ \le C2^{-2\gamma(2n_j-n_{j+1})}.
+\]
+Optimizing \(A\) in \eqref{sparsemoran:block} bounds the first-norm
+difference by \(C B^{1/(2q-1)}Z_{n_j,n_{j+1}}^{\eta_q}\).
+The assumed series makes \(f_{n_j}\) Cauchy in the joint first
+norm. Its nonnegative mass-one limit is the actual joint law,
+because the affine approximation error is uniformly
+\(O(2^{-2n_j})\).
+
+For the first stated sufficient condition the summands are bounded
+by an exponential in \(-n_j\), and \(n_j\ge j\).
+For the second, the levels eventually grow at least geometrically,
+while the summands are bounded by a negative fixed power of \(n_j\).
+Both series converge.
+\end{proof}
+
+\begin{theorem}[A class beyond the all-scale condition]
+\label{sparsemoran:theorem}
+For every
+\begin{equation}\label{sparsemoran:range}
+ 1<d<D\le\frac{4d}{d+2}<2,
+\end{equation}
+there are a compact \(K\subset[0,1]^2\) and a \(d\)-Frostman
+probability \(\mu\) on \(K\) such that
+\[
+ 0<\mathcal H^d(K)<\infty,\qquad \HH K=d,\qquad \PP K=D,
+\]
+and every subset \(S\subset K\) obeys
+\begin{equation}\label{sparsemoran:hereditary}
+ \HH S\le\frac dD\,\PP S.
+\end{equation}
+The raw joint distance law with source \(\mu\) and any compactly
+supported pin Frostman probability of exponent greater than one
+is absolutely continuous. In particular
+\[
+ |\Delta_y(K)|>0\qquad\text{for \(\mu\)-almost every }y\in K.
+\]
+The endpoint \(D=4d/(d+2)\) is included.
+
+If additionally \(d\le d_\alpha=(7-\sqrt7)/4\) and \(D\ge2d-1\),
+no subset \(S\subset K\) with \(\HH S>1\) satisfies
+\(\PP S<B_H(\HH S)\). No subset of \(K\) has positive equal
+Hausdorff and packing dimensions.
+\end{theorem}
+
+\begin{proof}
+We give the complete branching construction, allowing both the strict
+interior and the endpoint of \eqref{sparsemoran:range}. Set
+\[
+ \ell(n)=
+ \begin{cases}
+  0,&D<4d/(d+2),\\
+  A\log_2(n+1),&D=4d/(d+2),
+ \end{cases}
+ \qquad U(n)=Dn-\ell(n),
+\]
+where \(A>0\) is arbitrary in the endpoint case.
+Choose a large \(a_0\) so that
+\[
+ U(n)-dn>10,\qquad 0<U(n+1)-U(n)<2
+ \quad(n\ge a_0).
+\]
+This is possible since \(d<D<2\).
+Start with \(F(a_0)=2\lceil da_0/2\rceil\), using an initial
+integer path from \(F(0)=0\) with increments zero or two.
+
+Starting from \(a_{j-1}\), increase \(F\) with slope two until
+the first integer \(b_j\) with \(F(b_j)\ge U(b_j)\). Then keep
+\(F\) constant until the first integer \(a_j>b_j\) with
+\(da_j\ge F(b_j)\). These stopping times are finite since
+\(D<2\). The first-crossing and first-catching properties give
+\begin{equation}\label{sparsemoran:stops}
+ \begin{gathered}
+ U(b_j)\le F(b_j)<U(b_j)+2,\\
+ F(a_j)=F(b_j),\qquad da_j-d<F(a_j)\le da_j.
+ \end{gathered}
+\end{equation}
+Throughout the construction,
+\begin{equation}\label{sparsemoran:barriers}
+ dn-2\le F(n)\le Dn-\ell(n)+2
+ \quad(n\ge a_0).
+\end{equation}
+Indeed the growing slope exceeds \(d\), the flat phase stops within
+one step of the lower line, and \(U\) is increasing. Both phases
+have positive length, so their endpoints tend to infinity.
+
+At every dyadic depth use the same rule in every occupied square:
+retain all four children when \(F\) increases by two, and only the
+lower-left child when it stays constant. Equal conditional weights
+give a compact \(K\) and a probability \(\mu\), with \(2^{F(n)}\)
+occupied depth-\(n\) cells of mass \(2^{-F(n)}\).
+There are infinitely many common zero digits. Thus an admissible
+coordinate tail cannot be all ones, so half-open dyadic coding is
+unambiguous; each fixed cylinder's descendants remain below its
+upper edges.
+
+The lower barrier and bounded overlap of balls with dyadic squares
+give
+\[
+ \mu(B(x,2^{-n}))\le C2^{-F(n)}\le C2^{-dn}.
+\]
+Thus \(\mu\) is \(d\)-Frostman, and \(\mathcal H^d(K)>0\).
+At the low endpoints,
+\[
+ 2^{F(a_j)}(\sqrt2\,2^{-a_j})^d\le2^{d/2},
+\]
+which proves \(\mathcal H^d(K)<\infty\) and \(\HH K=d\).
+The upper barrier gives \(\overline{\dim}_{\mathrm B}K\le D\).
+At the peaks \(F(b_j)/b_j\to D\), and
+\(\sup_x\mu(B(x,2^{-b_j}))\le C2^{-F(b_j)}\).
+Every subset of positive \(\mu\) outer measure therefore has upper
+box dimension at least \(D\). Applying the countable-cover
+characterization of packing dimension proves \(\PP K=D\).
+
+Since \(\ell(n)=o(n)\), the flat-phase identities give
+\[
+ \frac{a_j}{b_j}\longrightarrow\frac Dd.
+\]
+For any \(S\subset K\), cover \(S\) countably by subsets \(S_i\)
+whose upper box dimensions are at most \(\PP S+\epsilon\).
+At depth \(b_j\), each fixed \(S_i\) meets at most
+\(C2^{(\PP S+2\epsilon)b_j}\) cells for large \(j\).
+There is no branching between \(b_j\) and \(a_j\), so the same
+number of depth-\(a_j\) cells covers \(S_i\).
+The Hausdorff covering sums give
+\[
+ \HH S_i\le\frac dD(\PP S+2\epsilon).
+\]
+Countable stability and \(\epsilon\downarrow0\) prove
+\eqref{sparsemoran:hereditary}, without any measurability assumption
+on \(S\).
+
+It remains to verify that the low endpoints are frequent enough
+for Proposition~\ref{sparsemoran:criterion}. Write
+\(a=a_{j-1}\), \(b=b_j\), and \(m=a_j\). The growing phase and
+\eqref{sparsemoran:stops} imply
+\[
+ (2-D)b=(2-d)a-\ell(b)+O(1),\qquad
+ dm=Db-\ell(b)+O(1).
+\]
+In particular \(b/a\to(2-d)/(2-D)\). Eliminating \(b\) gives
+\begin{equation}\label{sparsemoran:recurrence}
+ m=\kappa a-\frac{2}{d(2-D)}\ell(b)+O(1),
+ \qquad
+ \kappa=\frac{D(2-d)}{d(2-D)}.
+\end{equation}
+If \(D<4d/(d+2)\), then \(1<\kappa<2\), so the low endpoints
+satisfy \(a_j\le(2-\epsilon)a_{j-1}\) eventually for some
+\(\epsilon>0\).
+
+At \(D=4d/(d+2)\), one has \(\kappa=2\). Since
+\(\log_2(b+1)=\log_2(a+1)+O(1)\), the logarithmic choice gives
+\begin{equation}\label{sparsemoran:endpointgap}
+ 2a-m=\frac{2A}{d(2-D)}\log_2(a+1)+O(1).
+\end{equation}
+Also \(m/a\to2\), so the low endpoints grow at least geometrically.
+Thus they satisfy the second sufficient condition in
+Proposition~\ref{sparsemoran:criterion}, for every \(q>1\) and every
+fixed legal \(\gamma>0\). At all low endpoints the occupied count
+is at most \(2^{da_j}\), by \eqref{sparsemoran:stops}.
+The proposition proves raw joint absolute continuity for separated
+supports.
+
+To remove separation, cover the complement of the source--pin
+diagonal by countably many products of separated compact balls.
+Positive normalized restrictions preserve the source Frostman
+bound and the selected-scale occupied counts, and preserve the
+pin Frostman property. Each restricted joint law is absolutely
+continuous. The diagonal has zero pair mass because \(\mu\) is
+nonatomic. The countable-cover argument therefore proves absolute
+continuity of the full joint law, including self-pins.
+
+Finally, suppose \(d\le d_\alpha\), \(D\ge2d-1\), and
+\(h=\HH S>1\). Then \(h\le d\), \(B_H(h)=2h-1\), and
+\[
+ \PP S\ge(D/d)h,\qquad
+ (D/d)h-(2h-1)\ge1-h/d\ge0.
+\]
+This excludes the previous strict criterion on every such subset.
+Equation~\eqref{sparsemoran:hereditary}, with \(d/D<1\), also
+excludes every positive-dimensional regular subset.
+\end{proof}
+
+For a concrete instance choose
+\begin{equation}\label{sparsemoran:example}
+ d=\frac{21}{20},\qquad D=\frac65.
+\end{equation}
+Here \(D<4d/(d+2)=84/61\), the low-endpoint ratio is
+\(\kappa=19/14<2\), and \(B_H(d)=11/10<D\).
+Thus this fixed set has positive-length self-pinned distances for
+almost every natural pin, and every subset of Hausdorff dimension
+greater than one fails the preceding strict dimension criterion.
+The constructed class also reaches \(D=84/61\) at the same
+Hausdorff dimension by \eqref{sparsemoran:endpointgap}.
+
+The favorable information is the recurrence of the low covering
+scales, not the pair of dimension numbers alone. In the zero-gauge
+interior construction \(F(b_j)=Db_j+O(1)\) at infinitely many peaks.
+For \(D\ge2d-1\), the all-scale summands based on
+\(2^{-n(2d-1)}N_n\) consequently fail to tend to zero there.
+The sparse proof demonstrates why failure of that numerical
+all-scale criterion is not an obstruction to the actual distance law.

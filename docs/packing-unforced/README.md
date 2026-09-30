@@ -208,15 +208,49 @@ Frostman probability of exponent greater than one, including the source
 probability itself. The exact summability test for separated supports is
 
 $$
-\sum_n\left(n\,2^{-n(2s-1)}N_{n+1}\right)^{\eta_q}<\infty,
+\sum_n\left(2^{-n(2s-1)}N_{n+1}\right)^{\eta_q}<\infty,
 \qquad \eta_q=\frac{q-1}{2q-1}>0.
 $$
 
-The proof varies the comparison exponent with scale while keeping the positive
-affine approximations fixed. The critical energy denominator contributes only
-a factor n. The displayed covering margin makes the resulting series
-summable for every positive angular exponent. No logarithmic improvement of
-the source Frostman bound is assumed.
+The [direct frequency-band proof](packing-unforced-band-comparison.tex)
+removes the factor n from the earlier variable-exponent estimate. It sums the
+actual translation and angular increments before approaching critical source
+regularity. In particular a covering margin of the form
+
+$$
+N_n\le C2^{n(2s-1)}n^{-b}
+$$
+
+now suffices when
+
+$$
+b>\frac1{\eta_q},
+$$
+
+instead of the earlier sufficient requirement of one plus this reciprocal.
+The proof also retains the source-cell masses, giving the stronger criterion
+
+$$
+\sum_n\left[
+2^{-n(2s-1)}
+\left(\sum_{Q\text{ at depth }n+1}\sqrt{\mu(Q)}\right)^2
+\right]^{\eta_q}<\infty.
+$$
+
+The original subpower margin still works for every positive angular exponent.
+No logarithmic improvement of the source Frostman bound is assumed.
+
+Before inserting the Frostman estimate, the same argument gives a stronger
+positive energy test using the curvature scale:
+
+$$
+J_\delta(\lambda)=\iint
+\min\{|x-x'|^{-1},\delta^2|x-x'|^{-3}\}\,d\lambda(x)d\lambda(x').
+$$
+
+This keeps the actual close-pair geometry. Summability of the corresponding
+mass-weighted quantities along selected depths suffices for raw absolute
+continuity; no finite energy at the critical Frostman exponent is assumed.
 
 The [explicit compact construction](packing-unforced-critical-moran.tex) gives,
 for every dimension in the indicated range,
@@ -248,6 +282,68 @@ This is a proved endpoint class with extra quantitative covering information.
 It does not replace the strict dimension inequality by a non-strict inequality
 for arbitrary sets. The two-dimension curve and the unresolved global
 optimality claim are unchanged.
+
+## Favorable scales beyond the dimension-only curve
+
+The [selected-scale construction](packing-unforced-sparse-moran.tex) brings an
+additional family from the earlier research notes into the complete manuscript.
+For every pair in the range
+
+$$
+1<d<D\le\frac{4d}{d+2}<2,
+$$
+
+it constructs a compact set and a natural source probability satisfying
+
+$$
+0<\mathcal H^d(K)<\infty,\qquad
+\dim_H K=d,\qquad\dim_P K=D,\qquad
+\dim_H S\le\frac dD\dim_P S\quad(S\subset K).
+$$
+
+The raw pinned distance law is absolutely continuous for almost every pin
+under any compact pin Frostman probability of exponent greater than one.
+This includes the source probability itself.
+
+The proof uses low covering counts at selected depths only. Its ordinary
+Frostman bound is complemented by
+
+$$
+N_{n_j}\le C2^{dn_j},\qquad
+\sum_j2^{-2\gamma\eta_q(2n_j-n_{j+1})}<\infty,
+\qquad 0<\gamma<\frac{d-1}{2}.
+$$
+
+In the interior the next depth is at most a fixed multiple less than two of
+the preceding depth. At the boundary a logarithmic adjustment to the branching
+construction supplies a positive logarithmic gap below twice that depth,
+which is enough because the selected depths grow geometrically.
+
+One concrete example has
+
+$$
+d=\frac{21}{20},\qquad D=\frac65>\frac{11}{10}=B_{\mathrm H}(d).
+$$
+
+The same Hausdorff dimension permits packing dimension as large as 84/61
+in this constructed family. No subset of Hausdorff dimension greater than
+one meets the earlier strict dimension criterion, and no subset has positive
+equal Hausdorff and packing dimensions. Thus regular-subset selection does not
+reduce these examples to the preceding dimension-only result.
+
+The [critical-measure obstruction](2026-09-30-critical-measure-gauge-extraction-obstruction.md)
+also shows why finite positive critical Hausdorff and packing measures alone
+do not supply the new all-scale criterion. In its zero-gauge examples, every
+source of Frostman exponent greater than one fails that weighted covering
+criterion. The examples within the first branch of the dimension curve
+nevertheless have raw absolute continuity by the sparse argument. Failure of the numerical all-scale test therefore does not show
+failure of the actual distance conclusion.
+
+This is a theorem about an explicitly constructed class and its favorable
+scales. The inequality on its two dimensions is not asserted sufficient for
+arbitrary sets. The family and the square-root version of its boundary
+mechanism were already present in earlier research notes; the present account
+supplies the full integrated proof and the logarithmic boundary construction.
 
 ## What a refined positive decomposition must prove
 
@@ -408,10 +504,17 @@ not enlarge the dimension-only sufficient region.
 - [Finite regularization, deletion, and summation](packing-unforced-finite-profile.tex)
 - [Subquadratic profile transfer and its precise exponent range](packing-unforced-subquadratic.tex)
 - [Coherent strong integrability and the combined conclusion](packing-unforced-coherent-lp.tex)
+- [Direct frequency-band comparison and weighted selected-scale criterion](packing-unforced-band-comparison.tex)
 - [Critical covering summability and the subpower endpoint theorem](packing-unforced-critical-covering.tex)
+- [Sparse covering scales and the complete irregular family](packing-unforced-sparse-moran.tex)
+- [Full comparison and exact curvature-kernel derivation](2026-09-30-no-log-positive-band-comparison.md)
+- [Independent audit of the comparison without logarithmic loss](2026-09-30-band-comparison-independent-audit.md)
+- [Independent analytic and sparse-construction audit](2026-09-30-frequency-band-and-sparse-moran-independent-audit.md)
+- [Sparse-family derivation and provenance](2026-09-30-sparse-coherent-covering.md)
+- [Why critical measure finiteness cannot supply the all-scale criterion](2026-09-30-critical-measure-gauge-extraction-obstruction.md)
 - [Explicit endpoint examples and their hereditary dimension inequality](packing-unforced-critical-moran.tex)
 - [Full compact construction and its exact dimensions](2026-09-30-critical-covering-moran-examples.md)
-- [Independent variable-exponent and compact-construction audit](2026-09-30-variable-exponent-coherent-endpoint-audit.md)
+- [Earlier variable-exponent and compact-construction audit](2026-09-30-variable-exponent-coherent-endpoint-audit.md)
 - [Fresh adversarial audit of the core Fourier transfer](2026-09-30-core-fourier-transfer-adversarial-audit.md)
 - [Limits of optimizing coherent estimates using cell masses alone](2026-09-30-coherent-mass-only-obstruction.md)
 - [Circular-incidence estimates tested against the far-crowding criterion](2026-09-30-circular-incidence-crowding-test.md)

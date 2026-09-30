@@ -2,6 +2,8 @@
 
 Date: 2026-09-30. This note checks the proposed endpoint use of `output/pdf/packing-bound-original-branch.tex`. It proves a quantitative covering criterion under an ordinary critical Frostman bound. It does not replace a strict dimension inequality by a non-strict inequality without further hypotheses.
 
+**Subsequent strengthening.** The [direct frequency-band proof](2026-09-30-no-log-positive-band-comparison.md) removes the factor n from the sufficient series below. This note records the still-valid earlier variable-exponent argument and its construction audit; the current manuscript uses the stronger comparison.
+
 ## 1. Precise statement
 
 Let the source probability and pin probability be compactly supported and positively separated in the plane. Assume the source satisfies the ordinary estimate

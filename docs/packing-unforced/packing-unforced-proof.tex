@@ -42,22 +42,20 @@ nonnegative-weight certificates give matching upper and lower profile bounds.
 They yield an explicit, stronger dimension curve beginning at
 \((7-\sqrt7)/4=1.088562172\ldots\).
 
-The manuscript also proves a stronger regularity conclusion under the same
-curve: selected separated source and pin probabilities have a raw joint
-distance density in some \(L^p\), \(p>1\). A separate endpoint theorem reaches
-\(D=2d-1\) under a subpower improvement in covering numbers. For
-\(1<d\le(7-\sqrt7)/4\), its examples have no subset covered by the earlier
-strict condition.
-The manuscript also proves an optimal
-averaged deletion order in a finite geometric model and gives two precise
-criteria using source--pin geometry. A fixed recursive example shows why
-the proposed bisector criterion cannot always be obtained by choosing a
-better source measure. A further positive-selection reduction needs only a
-fixed positive mass of pairs with bounded far-annulus crowding; logarithmic
-and fractional moment estimates give stronger conditional conclusions.
-These geometric results do not lower the dimension curve.
-A separate comparison shows why the tested local weighted-decoupling
-alternative leaves the profile optimum unchanged.
+Under the same dimension curve, selected separated source and pin
+probabilities have a raw joint distance density in some \(L^p\), \(p>1\).
+A direct frequency-band comparison removes the logarithmic loss in the
+covering criterion and gives a positive energy test at the curvature scale.
+Quantitative covering assumptions reach \(D=2d-1\). Favorable selected
+scales also give explicit examples at \(d=21/20,D=6/5\), beyond the
+universal curve; no subset of those examples satisfies that curve's strict
+condition. These results use additional scale information.
+
+Further sections prove positive pair-selection criteria and optimal
+finite-model deletion estimates. Recursive constructions identify limits
+of the tested source restrictions, angular marginals, and hybrid estimates.
+These are obstructions to particular sufficient estimates, not to the
+actual distance conclusion.
 
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
@@ -126,6 +124,14 @@ strict dimension criterion, yet their natural measure has positive-length
 distances for almost every self-pin. For instance this includes
 \(d=21/20,\ D=11/10\), with the additional covering estimate proved
 in that construction. The equality \(D=2d-1\) alone is not claimed sufficient.
+
+Selected scales give further examples outside the dimension-only region.
+Theorem~\ref{sparsemoran:theorem} constructs a compact set and its natural
+probability with raw almost-everywhere pinned absolute continuity whenever
+\(1<d<D\le4d/(d+2)\). These are constructed examples with controlled
+covering scales, not an assertion for arbitrary sets of those dimensions.
+For \(d=21/20,D=6/5\), even selecting a subset cannot recover the
+preceding strict dimension criterion.
 
 The earlier adaptive bound is retained for comparison:
 \begin{equation}\label{adaptive:curve}
@@ -249,8 +255,10 @@ in those indices. Summing polynomially many such errors preserves this property.
 
 \clearpage
 \input{packing-bound-original-branch.tex}
+\input{packing-unforced-band-comparison.tex}
 \input{packing-unforced-critical-covering.tex}
 \input{packing-unforced-critical-moran.tex}
+\input{packing-unforced-sparse-moran.tex}
 \input{packing-unforced-finite-profile.tex}
 
 \clearpage

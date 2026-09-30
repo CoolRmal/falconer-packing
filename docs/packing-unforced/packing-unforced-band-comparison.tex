@@ -1,0 +1,320 @@
+\subsection{A positive comparison without logarithmic loss}
+\label{band:section}
+
+The comparison below works directly at a Frostman exponent, without
+assuming that the energy at that exponent is finite. It also permits
+nonconsecutive levels. All constants may depend on the fixed source and
+pin geometry, their separation, and the indicated exponents, but are
+independent of the levels, individual cell masses, and truncation height.
+
+\begin{lemma}[Frequency-band comparison]\label{band:lemma}
+Let \(1<s<2\), and let \(\lambda\) be a probability supported in
+\(B(0,C_0\rho)\), satisfying
+\(\lambda(B(z,t))\leq Kt^s\) for all \(z,t\).
+Write \(F(\theta)\in L^2(\R)\) for its projected density, defined for
+almost every \(\theta\in S^1\). Let \(\kappa\) be a finite positive measure
+on a parameter space, with measurable angles \(\theta,\phi\) and a
+measurable real shift \(v\), such that both angular marginals are bounded
+by \(A\sigma\), where \(\sigma\) is normalized arclength. If
+\(d(\theta,\phi)\leq\omega\) and \(|v|\leq v_0\), then
+\begin{equation}\label{band:lemma-bound}
+\int\|F(\theta)(\cdot-v)-F(\phi)\|_2^2\,d\kappa
+\leq C_{s,C_0}AK\bigl((\rho\omega)^{s-1}+v_0^{s-1}\bigr).
+\end{equation}
+Neither the angles nor the shifts need be independent.
+\end{lemma}
+\begin{proof}
+Finite first energy, which follows from the Frostman bound and \(s>1\),
+gives the projected densities and their angular second integrability.
+For \(R>0\), the positive Gaussian Fourier identity and the Frostman
+bound give
+\begin{equation}\label{band:gaussian}
+\begin{aligned}
+E_R(\lambda)&:=\int_{\R^2}e^{-|\xi|^2/R^2}
+                   |\widehat\lambda(\xi)|^2\,d\xi\\
+&=cR^2\iint e^{-c'R^2|x-x'|^2}\,d\lambda(x)d\lambda(x')
+\leq C_sKR^{2-s}.
+\end{aligned}
+\end{equation}
+For example, the last inequality follows by decomposing the spatial
+integral into \(|x-x'|\leq R^{-1}\) and the annuli
+\(2^jR^{-1}<|x-x'|\leq2^{j+1}R^{-1}\).
+The same Gaussian identity for the signed coordinate measures gives
+\begin{equation}\label{band:coordinate}
+\int e^{-|\xi|^2/R^2}|\widehat{x_k\lambda}(\xi)|^2\,d\xi
+\leq C_{C_0}\rho^2 E_R(\lambda)
+\leq C_{s,C_0}K\rho^2R^{2-s}.
+\end{equation}
+Indeed the spatial Gaussian kernel is nonnegative and
+\(|x_kx'_k|\leq C_0^2\rho^2\). This argument uses a Gaussian frequency
+majorant; it does not assume a comparison between sharp annular
+Fourier energies of \(x_k\lambda\) and \(\lambda\).
+
+Choose smooth even functions \(\psi_R\), \(R\in2^{\mathbb Z}\),
+supported on \(R/2\leq|\tau|\leq2R\), with bounded overlap and
+\(\sum_R\psi_R(\tau)^2=1\) for \(\tau\ne0\). Set
+$$
+U_R(\theta)=\mathcal F^{-1}_\tau
+                 [\psi_R(\tau)\widehat\lambda(\tau\theta)].
+$$
+This is a smooth function of \(\theta\) with values in \(L^2(\R)\).
+Polar coordinates, \eqref{band:gaussian}, and
+\eqref{band:coordinate}, at a fixed multiple of \(R\), imply
+\begin{equation}\label{band:two-estimates}
+\int\|U_R(\theta)\|_2^2\,d\sigma(\theta)\leq C_sKR^{1-s},
+\qquad
+\int\|\partial_\theta U_R(\theta)\|_2^2\,d\sigma(\theta)
+\leq C_{s,C_0}K\rho^2R^{3-s}.
+\end{equation}
+For the second estimate, the angular derivative of
+\(\widehat\lambda(\tau\theta)\) is a linear combination, with bounded
+coefficients, of \(\tau\widehat{x_k\lambda}(\tau\theta)\).
+
+The fundamental theorem of calculus along the shorter angular arc and
+Cauchy--Schwarz give, when \(d(\theta,\phi)\leq\omega\),
+$$
+\|U_R(\theta)-U_R(\phi)\|_2^2
+\leq \omega\int_{d(z,\theta)\leq\omega}
+                         \|\partial_zU_R(z)\|_2^2\,dz.
+$$
+For \(\omega\) exceeding the circle diameter one may replace it by that
+diameter. Integrating with the first angular marginal, using its bound
+by \(A\sigma\), and applying Fubini bounds this by
+\(CA\omega^2\|\partial_\theta U_R\|_{L^2_\theta L^2}^2\).
+The trivial squared-difference bound, using both marginals, is
+\(CA\|U_R\|_{L^2_\theta L^2}^2\). Consequently
+\begin{equation}\label{band:angular}
+\int\|U_R(\theta)-U_R(\phi)\|_2^2\,d\kappa
+\leq CAK\min\{1,(\rho\omega R)^2\}R^{1-s}.
+\end{equation}
+Similarly, Plancherel and
+\(|e^{-2\pi i\tau v}-1|^2\leq C\min\{1,(v_0R)^2\}\)
+on the band imply
+\begin{equation}\label{band:translation}
+\int\|U_R(\theta)(\cdot-v)-U_R(\theta)\|_2^2\,d\kappa
+\leq CAK\min\{1,(v_0R)^2\}R^{1-s}.
+\end{equation}
+The shift may depend arbitrarily on the parameter: this bound holds
+before its integration.
+
+For every parameter outside the angular marginal null sets, Plancherel
+and \(\sum_R\psi_R^2=1\) identify the squared norm of the full difference
+with the sum of its band squared norms. Scalar frequency localization
+is preserved by the parameter-dependent shifts. Thus Tonelli, the
+squared triangle inequality, \eqref{band:angular}, and
+\eqref{band:translation} reduce the proof to
+$$
+\sum_{R\in2^{\mathbb Z}}\min\{1,(\delta R)^2\}R^{1-s}
+\leq C_s\delta^{s-1}\qquad(\delta>0).
+$$
+Split the sum at \(R=\delta^{-1}\). The lower-frequency exponent is
+\(3-s>0\), and the upper-frequency exponent is \(1-s<0\), so both sums
+are geometric. A zero value of \(\delta\) contributes zero. This proves
+\eqref{band:lemma-bound}, with no logarithmic factor.
+\end{proof}
+
+\begin{proposition}[Weighted comparison at arbitrary levels]
+\label{band:comparison}
+Use the separated probabilities, radial exponent \(q>1\), quantity
+\(B\), fixed centers \(x_Q\), and positive affine densities \(f_n\)
+from Section~\ref{sec:coherenttree}. Assume that the source \(\mu\) is
+\(s\)-Frostman for some \(1<s<2\). For its positive-mass dyadic squares
+at level \(m\), define
+$$
+\mathcal N_m=\left(\sum_{Q\text{ at level }m}\sqrt{p_Q}\right)^2,
+\qquad
+Z_{n,m}=2^{-m-2n(s-1)}\mathcal N_m.
+$$
+For all sufficiently large integers \(n<m\) and all \(A\geq1\),
+\begin{equation}\label{band:comparison-bound}
+\|f_m-f_n\|_{L^1(\nu\times dt)}
+\leq C(AZ_{n,m})^{1/2}+CB A^{1-q}.
+\end{equation}
+In particular \(\mathcal N_m\leq N_m\), where \(N_m\) is the number of
+occupied squares. There is no restriction \(m\leq2n\).
+\end{proposition}
+\begin{proof}
+Write \(r=2^{-n}\), \(h=2^{-m}\). Let \(Q\) be a level-\(m\) square
+and \(P\) its level-\(n\) ancestor. Apply both affine maps to the same
+conditional probability \(\mu_Q\), recentered at \(b=x_Q\). Its support
+lies in \(B(0,Ch)\), and its Frostman constant is at most \(C_\mu/p_Q\).
+Put \(\theta=\Theta_{x_P}(y)\), \(\phi=\Theta_b(y)\). Separation gives
+\(d(\theta,\phi)\leq Cr\), and the difference between the constant
+terms of the two affine maps is
+$$
+v(y)=\theta\cdot(b-y)-|b-y|,
+\qquad |v(y)|=|b-y|\,|\theta\cdot\phi-1|\leq Cr^2.
+$$
+Retain pins where both selected angular densities are at most \(A\).
+Their coupled angular law has both marginals bounded by \(A\sigma\);
+the discarded pin mass is at most \(A^{1-q}(F_P+F_Q)\).
+Lemma~\ref{band:lemma} therefore bounds the retained integrated squared
+second norm of the conditional affine-density difference by
+$$
+\frac{CA}{p_Q}\bigl((hr)^{s-1}+r^{2s-2}\bigr)
+\leq \frac{CA}{p_Q}r^{2s-2},
+$$
+since \(h\leq r\).
+
+For each pin each of the two conditional densities is supported on an
+interval of length at most \(Ch\). Their union has length at most
+\(2Ch\), even if the gap between those intervals exceeds \(h\).
+Cauchy--Schwarz on this union and then over retained pins gives the
+conditional first-norm bound
+\(CA^{1/2}h^{1/2}r^{s-1}p_Q^{-1/2}\).
+On discarded pins the first norm is at most two. Multiply by \(p_Q\)
+and sum all level-\(m\) squares. The retained term is
+$$
+CA^{1/2}h^{1/2}r^{s-1}\sum_Q\sqrt{p_Q}
+=C(AZ_{n,m})^{1/2}.
+$$
+The discarded terms sum to at most \(CB A^{1-q}\), because
+$$
+\sum_Qp_QF_Q\leq2B,
+\qquad
+\sum_{Q\text{ at level }m}p_QF_{P(Q)}
+=\sum_{P\text{ at level }n}p_PF_P\leq2B.
+$$
+Decomposing every parent source into its descendants now proves
+\eqref{band:comparison-bound}. Finally
+\((\sum_Q\sqrt{p_Q})^2\leq N_m\sum_Qp_Q=N_m\).
+\end{proof}
+
+\begin{theorem}[Selected-level positive convergence]
+\label{band:criterion}
+Under the hypotheses of Proposition~\ref{band:comparison}, let
+\(n_j\) be strictly increasing integers tending to infinity, and put
+\(\eta_q=(q-1)/(2q-1)\). If
+\begin{equation}\label{band:criterion-series}
+\sum_j\left[
+2^{-n_{j+1}-2n_j(s-1)}\mathcal N_{n_{j+1}}
+\right]^{\eta_q}<\infty,
+\end{equation}
+then the raw pinned law \((d_y)_*\mu\) is absolutely continuous for
+\(\nu\)-almost every \(y\).
+\end{theorem}
+\begin{proof}
+Enlarge \(B\) to be at least one. Write \(Z_j=Z_{n_j,n_{j+1}}\), and
+omit finitely many terms so \(Z_j\leq1\). In
+\eqref{band:comparison-bound} take
+\(A_j=(B/\sqrt{Z_j})^{1/(q-1/2)}\). Both resulting terms are at most
+\(CB^{1/(2q-1)}Z_j^{\eta_q}\). Thus \(f_{n_j}\) converges in
+\(L^1(\nu\times dt)\) to a nonnegative density of mass one. The uniform
+affine approximation error \(C2^{-2n_j}\) identifies the limit measure
+as the pushforward of \(\mu\times\nu\) by
+\((x,y)\mapsto(y,|x-y|)\). Uniqueness of disintegration proves the
+assertion about the actual positive distance probabilities.
+\end{proof}
+
+For consecutive levels the count-only sufficient condition is
+\begin{equation}\label{band:consecutive}
+\sum_n\left[2^{-n(2s-1)}N_{n+1}\right]^{\eta_q}<\infty.
+\end{equation}
+In particular \(N_n\leq C2^{n(2s-1)}n^{-a}\), with
+\(a>1/\eta_q\), suffices. This improves the preceding variable-exponent
+endpoint estimate by removing its factor of \(n\). A dimension equality
+by itself does not imply \eqref{band:consecutive}; selected levels can
+instead be tested using \eqref{band:criterion-series}.
+
+\subsection{The exact energy at the curvature scale}
+\label{band:energy-section}
+
+There is a stronger spatial criterion before the Frostman estimate is
+inserted. For a finite positive measure \(\lambda\), define
+\begin{equation}\label{band:truncated-energy}
+J_\delta(\lambda)=\iint k_\delta(x-x')\,d\lambda(x)d\lambda(x'),
+\qquad
+k_\delta(z)=\min\{|z|^{-1},\delta^2|z|^{-3}\},
+\end{equation}
+with value \(+\infty\) on the diagonal. This is a positive spatial
+kernel and is bounded by the first-energy kernel.
+
+\begin{lemma}[Positive spatial form]\label{band:spatial}
+For any finite positive measure of finite first energy and any fixed
+\(c>0\),
+\begin{equation}\label{band:kernel-equivalence}
+\sum_{R\in2^{\mathbb Z}}
+\min\{1,(\delta R)^2\}R^{-1}E_{cR}(\lambda)
+\asymp_c J_\delta(\lambda).
+\end{equation}
+In Lemma~\ref{band:lemma}, the Frostman hypothesis can consequently be
+replaced by finite first energy, with the right side replaced by
+\(CA[J_{\rho\omega}(\lambda)+J_{v_0}(\lambda)]\). A term with zero
+scale parameter is interpreted as zero.
+\end{lemma}
+\begin{proof}
+The Gaussian identity and Tonelli express the sum in
+\eqref{band:kernel-equivalence} as a positive double integral with kernel
+$$
+\sum_{R\in2^{\mathbb Z}} C_cR
+                  \min\{1,(\delta R)^2\}e^{-c_cR^2|z|^2}.
+$$
+Write \(u=|z|>0\). If \(u\leq\delta\), its upper bound is
+\(C\sum_R Re^{-c_cR^2u^2}\leq C/u\). If \(u>\delta\), use
+\(\min\{1,(\delta R)^2\}\leq\delta^2R^2\), obtaining
+\(C\delta^2\sum_R R^3e^{-c_cR^2u^2}\leq C\delta^2/u^3\).
+For the matching lower bound, retain a dyadic \(R\) comparable to
+\(u^{-1}\). The diagonal has zero product mass under finite first
+energy. These observations prove \eqref{band:kernel-equivalence}.
+
+Before using the Frostman upper bound, the two estimates in
+\eqref{band:two-estimates} are bounded respectively by
+\(CR^{-1}E_{cR}(\lambda)\) and
+\(C\rho^2R E_{cR}(\lambda)\). The coordinate estimate here uses only
+the first inequality of \eqref{band:coordinate}. Repeating the
+bandwise coupled-angle and scalar-translation proof thus gives the
+two sums in \eqref{band:kernel-equivalence}, with parameters
+\(\rho\omega\) and \(v_0\). This proves the refinement.
+\end{proof}
+
+\begin{proposition}[Curvature-scale energy criterion]
+\label{band:energy-criterion}
+Suppose that the separated compact source and pin probabilities have
+the fixed radial data \(q>1,B<\infty\) and centers used above, and that
+\(I_1(\mu)<\infty\). Define
+\begin{equation}\label{band:energy-coefficient}
+W_{n,m}=2^{-m}\left[
+\sum_{Q\text{ at level }m}p_Q
+           J_{2^{-2n}}(\mu_Q)^{1/2}\right]^2,
+\qquad n<m.
+\end{equation}
+Then
+$$
+\|f_m-f_n\|_1\leq C(AW_{n,m})^{1/2}+CB A^{1-q}
+\qquad(A\geq1).
+$$
+For any increasing sequence \(n_j\), the condition
+\(\sum_j W_{n_j,n_{j+1}}^{\eta_q}<\infty\) therefore implies absolute
+continuity of the raw pinned law for \(\nu\)-almost every pin.
+\end{proposition}
+\begin{proof}
+Use Lemma~\ref{band:spatial} in the proof of
+Proposition~\ref{band:comparison}. The angular parameter is at most
+\(Chr\), and the translation parameter is at most \(Cr^2\), with
+\(h=2^{-m}\leq r=2^{-n}\). Monotonicity of \(J_\delta\) in
+\(\delta\), and \(J_{C\delta}\leq\max(1,C^2)J_\delta\), give the
+conditional squared second-norm bound \(CAJ_{r^2}(\mu_Q)\).
+Conversion on the union of the two length-\(Ch\) supports gives
+\(C\sqrt{Ah}\,J_{r^2}(\mu_Q)^{1/2}\). The same weighted sum and bad-pin
+bound prove the claimed first-norm estimate. Optimization in \(A\),
+positive first-norm convergence, and identification of the limiting
+law are exactly as in Theorem~\ref{band:criterion}.
+\end{proof}
+
+For an \(s\)-Frostman source, a direct decomposition of the kernel at
+\(|x-x'|=\delta\) gives
+$$
+J_\delta(\mu_Q)\leq \frac{C_sC_\mu}{p_Q}\delta^{s-1},
+$$
+recovering \(W_{n,m}\leq C Z_{n,m}\). The exact criterion retains more
+of the source geometry than this covering bound. It still retains all
+close source pairs: for every conditional probability,
+$$
+J_\delta(\mu_Q)\geq
+\delta^{-1}(\mu_Q\times\mu_Q)
+             \{(x,x'):|x-x'|\leq\delta\}.
+$$
+Thus replacing the energy by its curvature-scale form does not
+automatically make concentrated near-source pairs harmless. Neither
+criterion asserts that a new dimension-only region or a bare critical
+dimension equality follows without a further geometric estimate.
