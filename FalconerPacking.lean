@@ -46,6 +46,10 @@ import FalconerPacking.FourierDensity
 import FalconerPacking.ProjectionFourier
 import FalconerPacking.ProjectionDensity
 import FalconerPacking.CorrelatedAngles
+import FalconerPacking.CorrelatedFourierShift
+import FalconerPacking.FiniteRegularization
+import FalconerPacking.RadialProjectionKernel
+import FalconerPacking.RadialProjectionEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
