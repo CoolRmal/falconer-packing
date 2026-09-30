@@ -219,6 +219,9 @@ measure-theoretic modules prove some of the downstream steps.
 | correlated Fourier translation estimates over frequency bands | **proved**, allowing the direction and shift to depend on the same pin |
 | finite regular decomposition of original dyadic measure restrictions | **proved**, including normalized probabilities, discarded mass, component mass, and count bounds |
 | radial pushforward kernels and the weighted angular singularity estimate | **proved**; the full radial projection theorem remains open |
+| angular energy estimate for actual orthogonal pushforward measures | **proved**, without assuming a transversality estimate |
+| Fourier band energy of the actual angular derivative | **proved**, using signed coordinate transforms and bounded source support |
+| two-sided dyadic band sum with the sharp displacement power | **proved**, for the full range $$1<s<3$$ |
 | ordered hard/gap partitions of actual interpolated profiles | **proved**, with no partition assumption |
 | real-chain compression to uniformly bounded length | **proved**, without cost increase |
 | Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
@@ -297,6 +300,10 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/FiniteRegularization.lean` | actual finite dyadic measure decomposition with uniform ratios and quantitative mass bounds |
 | `FalconerPacking/RadialProjectionKernel.lean` | measurable radial kernels, candidate densities, and the unit-vector pushforward identity |
 | `FalconerPacking/RadialProjectionEnergy.lean` | explicit energy exponents and uniform weighted angular singular-integral bounds |
+| `FalconerPacking/RadialProjectionTransversality.lean` | weighted angular energy of actual orthogonal projection measures |
+| `FalconerPacking/WeightedBandEnergy.lean` | Gaussian and polar band bounds for signed source weights |
+| `FalconerPacking/AngularDerivativeEnergy.lean` | actual angular derivatives, band estimates, joint continuity, and negative-frequency symmetry |
+| `FalconerPacking/DyadicBandSum.lean` | convergent two-sided band sum with an explicit displacement-power constant |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

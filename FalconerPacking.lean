@@ -50,6 +50,10 @@ import FalconerPacking.CorrelatedFourierShift
 import FalconerPacking.FiniteRegularization
 import FalconerPacking.RadialProjectionKernel
 import FalconerPacking.RadialProjectionEnergy
+import FalconerPacking.RadialProjectionTransversality
+import FalconerPacking.WeightedBandEnergy
+import FalconerPacking.AngularDerivativeEnergy
+import FalconerPacking.DyadicBandSum
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
