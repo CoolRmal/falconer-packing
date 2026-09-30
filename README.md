@@ -199,6 +199,9 @@ measure-theoretic modules prove some of the downstream steps.
 | compact source and pin reduction: separated probabilities with Frostman and covering bounds | **proved**, standard axioms only; arbitrary-Borel initial Frostman extraction remains open |
 | unforced profile operations: merging, clipping, and fixed-chain perturbation | **proved**, standard axioms only |
 | arbitrary-chain compression to uniformly bounded length, with no cost increase | **proved**, standard axioms only |
+| discrete profile interpolation, normalization, and exact minimum/cost compatibility | **proved**, standard axioms only |
+| planar Gaussian Fourier energy identity and its Fubini justification | **proved**, standard axioms only |
+| compact Frostman-family capacity and the mass-distribution principle | **proved**; capacity positivity on arbitrary Borel sets remains open |
 | high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
 | compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
@@ -230,6 +233,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
 | `FalconerPacking/UnforcedProfile.lean` | merging, clipping, truncation and perturbation for arbitrary finite chains |
+| `FalconerPacking/ProfileInterpolation.lean` | Lipschitz interpolation, normalization, and exact discrete/continuous cost compatibility |
 | `FalconerPacking/HighSlopeProfile.lean` | sharp high-slope chain estimate, with uniform length and finite-grid hypotheses |
 | `FalconerPacking/ChainCompression.lean` | compression to uniformly bounded chain length without increasing cost |
 | `FalconerPacking/GapTails.lean` | finite ordered-gap tails, telescoping, and both certificate bridges |
@@ -245,6 +249,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/WeakLimit.lean` | compactness, subsequences, and preservation of dyadic ball bounds in the weak limit |
 | `FalconerPacking/FrostmanLimit.lean` | conversion from dyadic estimates to a genuine Frostman measure on a compact set |
 | `FalconerPacking/CompactReduction.lean` | closure covering bounds and separated compact Frostman source/pin probabilities |
+| `FalconerPacking/GeometricCapacity.lean` | compact Frostman-family capacity, its continuity, and the mass-distribution principle |
 | `FalconerPacking/Capacity.lean` | Choquet compact extraction for analytic and Borel sets under explicit capacity properties |
 | `FalconerPacking/BorelFrostman.lean` | sigma-compact and finite-measure extraction; proof that below-dimension Hausdorff sigma-finiteness is unavailable |
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
@@ -252,6 +257,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
+| `FalconerPacking/GaussianEnergy.lean` | Gaussian Fourier identity for finite planar measures, including integrability |
 | `FalconerPacking/AngularTruncation.lean` | two correlated angular marginals, common restriction, and moment-tail mass bound |
 | `FalconerPacking/MomentCenters.lean` | centers in a full-measure set with moments bounded by cell averages |
 | `FalconerPacking/DyadicMomentCenters.lean` | one dyadic center family with both geometry and weighted moment bounds |

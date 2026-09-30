@@ -13,6 +13,7 @@ import FalconerPacking.Profile
 import FalconerPacking.UnforcedProfile
 import FalconerPacking.ChainCompression
 import FalconerPacking.HighSlopeProfile
+import FalconerPacking.ProfileInterpolation
 import FalconerPacking.HardPoints
 import FalconerPacking.GapTails
 import FalconerPacking.Dyadic
@@ -26,6 +27,7 @@ import FalconerPacking.DyadicCenters
 import FalconerPacking.MomentCenters
 import FalconerPacking.DyadicMomentCenters
 import FalconerPacking.AngularTruncation
+import FalconerPacking.GaussianEnergy
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
@@ -36,6 +38,7 @@ import FalconerPacking.FrostmanLimit
 import FalconerPacking.CompactReduction
 import FalconerPacking.BorelFrostman
 import FalconerPacking.Capacity
+import FalconerPacking.GeometricCapacity
 import FalconerPacking.PinnedMeasure
 import FalconerPacking.Main
 
