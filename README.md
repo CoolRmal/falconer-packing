@@ -54,6 +54,14 @@ not distance-set counterexamples.
 The [earlier forced-midpoint refinements](docs/packing-refinement/README.md) remain
 available with their proofs and audits.
 
+The latest natural-language proof also strengthens the conclusion under the same
+curve: selected separated source and pin probabilities have a **raw joint
+distance density whose pth power is integrable for some exponent greater than
+one**. The proof treats
+both analytic branches and explicitly handles the pin mass discarded in finite
+regularization. This improves integrability without changing the dimension
+cutoff. Further formalization is currently set aside at the user's request.
+
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
 $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$

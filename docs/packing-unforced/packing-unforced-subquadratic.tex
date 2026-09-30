@@ -1,0 +1,276 @@
+\section{Subquadratic integrability from the profile decomposition}
+\label{subquad:section}
+
+The strict finite-profile criterion gives more than absolute continuity:
+the original joint distance law has a density in some \(L^p\) with
+\(p>1\). This conclusion uses a variable deletion threshold. It does not
+weaken the criterion on the dimensions. We first prove the elementary
+norm estimate and then keep track of the discarded pin remainder.
+
+\subsection{A parameterized decomposition estimate}
+For a measurable function on a measure space \((X,m)\), use the weak
+quasinorm
+\[
+ \|F\|_{p,\infty}=\sup_{t>0}t\,m\{|F|>t\}^{1/p}.
+\]
+\begin{lemma}\label{subquad:interpolation}
+Suppose \(\|F\|_1\le1\), \(A>0\), \(\gamma>0\), \(K>0\), and,
+for every \(\Lambda\ge1\), there is a decomposition
+\[
+ F=G_\Lambda+B_\Lambda,\qquad
+ \|B_\Lambda\|_1\le\Lambda^{-\gamma},\qquad
+ \|G_\Lambda\|_2^2\le A\Lambda^K.
+\]
+Put \(\theta=\gamma/(K+\gamma)\) and
+\(p_0=1+\theta=(K+2\gamma)/(K+\gamma)\). Then
+\begin{equation}\label{subquad:weak}
+ \sup_{t>0}t^{p_0}m\{|F|>t\}\le6A^\theta,
+ \qquad
+ \|F\|_{p_0,\infty}\le6^{1/p_0}A^{\gamma/(K+2\gamma)}.
+\end{equation}
+If \(F\) is bounded, it suffices to have these decompositions for
+\[
+ 1\le\Lambda\le\max\{1,(\|F\|_\infty/A)^{1/(K+\gamma)}\}.
+\]
+Fixed multiplicative constants in the assumptions change only the
+conclusion's multiplicative constant.
+\end{lemma}
+\begin{proof}
+For \(t\le A\), Markov gives
+\(t^{p_0}m\{|F|>t\}\le t^{p_0-1}\le A^\theta\).
+For \(t>A\), choose \(\Lambda=(t/A)^{1/(K+\gamma)}\). The triangle
+inequality and Chebyshev give
+\[
+ m\{|F|>t\}\le4A\Lambda^Kt^{-2}+2\Lambda^{-\gamma}t^{-1}
+ =6A^\theta t^{-p_0}.
+\]
+Values \(t>\|F\|_\infty\) have zero superlevel measure, proving the
+finite-range assertion. Rescaling \(F\), and changing the constant
+multiplying \(A\), handles fixed constants in the hypotheses.
+\end{proof}
+
+We also record two direct consequences of the distribution bound. If
+\(F\) is supported in a region of measure \(V<\infty\), then, for
+\(1\le p<p_0\),
+\begin{equation}\label{subquad:strong-from-weak}
+ \|F\|_p\le\left(\frac{p_0}{p_0-p}\right)^{1/p}
+ V^{1/p-1/p_0}\|F\|_{p_0,\infty}.
+\end{equation}
+For any measurable \(A\) of finite measure,
+\begin{equation}\label{subquad:restricted-set}
+ \int_A|F|\dd m\le\frac{p_0}{p_0-1}
+ \|F\|_{p_0,\infty}\,m(A)^{1-1/p_0}.
+\end{equation}
+Both follow by integrating the smaller of the trivial set-measure bound
+and the weak distribution bound, splitting the level integral where they
+are equal. Thus no interpolation or Lorentz-space theorem is needed.
+
+\subsection{Varying the deletion thresholds}
+\begin{theorem}[A stronger conclusion under the strict profile criterion]
+\label{subquad:profile-theorem}
+Assume the separated-probability hypotheses of the finite-profile measure
+argument, and suppose that the bounded-chain estimate
+\eqref{uf:chain} holds with \(\mathcal C<s-1\). Then the joint distance
+law induced by \((y,x)\mapsto(y,|x-y|)\) on \(\nu\times\mu\) has a
+density in \(L^p(d\nu\,dt)\) for some \(p>1\). In particular, its
+pinned densities belong to \(L^p(dt)\) for \(\nu\)-almost every pin.
+
+More precisely, make any fixed parameter choices in the strict proof
+leaving a negative good-shell exponent \(-\kappa<0\), a chain-length
+bound \(K\ge1\), and discarded pin mass at most
+\(CR^{-\epsilon_{\rm reg}}\), with \(\epsilon_{\rm reg}>0\).
+Let \(q>1\) be the radial-projection exponent and put
+\[
+ \gamma=\frac{q-1}{q},\qquad p_0=\frac{K+2\gamma}{K+\gamma}.
+\]
+The conclusion holds for every
+\begin{equation}\label{subquad:p-range}
+ 1<p<\min\{p_0,1+\epsilon_{\rm reg}/2\}.
+\end{equation}
+\end{theorem}
+\begin{proof}
+At each frequency fix the finite regularization, its components, and all
+spatial chains before changing any deletion thresholds. Let \(\Omega_R\)
+be the union of the retained pin components. With \(L(1),H_{i,j}(1)\)
+the original thresholds in \eqref{fprof:thresholds}, use
+\begin{equation}\label{subquad:thresholds}
+ L(\Lambda)=L(1)\Lambda^{1/q},\qquad
+ H_{i,j}(\Lambda)=H_{i,j}(1)\Lambda,\qquad \Lambda\ge1.
+\end{equation}
+The source-heavy mass estimate \eqref{fprof:sourcebad} changes by the
+factor \(\Lambda^{(1-q)/q}=\Lambda^{-\gamma}\). In
+\eqref{fprof:pinbad}, the ratio of source and pin thresholds changes by
+\(\Lambda^{1/q-1}=\Lambda^{-\gamma}\). Thus both deletion contributions
+acquire the same factor. The source-heavy directions still serve only
+as an auxiliary estimate; no new source cutoff is introduced.
+
+There is one pin-threshold factor in each Fourier inflation step.
+Consequently the squared good-shell estimate changes by at most
+\(\Lambda^K\). Write
+\[
+ F_R(y,t)=\frac{d(d_y)_*(P_R\mu)}{dt}
+\]
+for the full smooth annular density. On \(\Omega_R\), the construction
+therefore supplies a decomposition
+\begin{gather}\label{subquad:regular-decomposition}
+ F_R\mathbf1_{\Omega_R}=G_{R,\Lambda}+B_{R,\Lambda},\qquad
+ \|G_{R,\Lambda}\|_2^2\le CR^{-\kappa}\Lambda^K,\\
+ \|B_{R,\Lambda}\|_1\le CR^{-c}\Lambda^{-\gamma}
+       +\operatorname{RapDec}(R),\qquad c>0.\nonumber
+\end{gather}
+Here and below the norms are on the joint pin-distance space. The component
+weights sum to at most one, so there is no component-count loss.
+
+For precision, these bounds are uniform when
+\(1\le\Lambda\le R^M\), for any fixed \(M\), after choosing sufficiently
+high orders in the localization estimates. All thresholds select subsets
+of the same fixed standard packet family. Its size and its global derivative
+bounds are polynomial in \(R\), uniformly over the subset. The initial
+reconstruction, inherited identities, and selected-label embedding are
+unchanged. The extra products of thresholds amplify an error by at most
+\(R^{MK}\). Arbitrarily high integration-by-parts decay absorbs this
+and every other fixed polynomial factor. Thus the error order can be chosen
+after \(M\); there is no requirement of uniformity for superpolynomial
+thresholds. Any residual rapid term in the good estimate is likewise
+absorbed in its displayed main bound.
+
+The entire annular multiplier has a uniformly bounded first kernel norm.
+Pushforward contracts total variation, uniformly in the pin. Its spatial
+kernel has supremum at most \(C_TR^2\). The source cutoff is fixed, and
+the radii under consideration lie in a fixed bounded interval. Integration
+of that bounded spatial density over a circle proves
+\begin{equation}\label{subquad:full-shell-bounds}
+ \sup_y\|F_R(y,\cdot)\|_1\le C_T,
+ \qquad \|F_R\|_\infty\le C_TR^2.
+\end{equation}
+In particular the joint first norm of \(F_R\mathbf1_{\Omega_R}\) is
+uniformly bounded.
+
+Choose once and for all
+\[
+ M>\frac{2+\kappa}{K+\gamma}+1.
+\]
+The finite parameter range in Lemma~\ref{subquad:interpolation}, with
+\(A=CR^{-\kappa}\), is then contained in \([1,R^M]\) for large \(R\).
+Choose the rapid-error first norm in
+\eqref{subquad:regular-decomposition} at most \(R^{-M\gamma-1}\).
+Throughout the needed parameter range it is bounded by
+\(\Lambda^{-\gamma}\). Applying the lemma, with fixed constants
+absorbed, gives
+\begin{equation}\label{subquad:regular-weak}
+ \|F_R\mathbf1_{\Omega_R}\|_{p_0,\infty}
+ \le CR^{-\kappa\gamma/(K+2\gamma)}.
+\end{equation}
+
+The discarded pins have to be treated separately. The good function is
+zero there at every threshold, so their contribution does not gain a
+factor \(\Lambda^{-\gamma}\). Their measure and
+\eqref{subquad:full-shell-bounds} instead give
+\[
+ \|F_R\mathbf1_{\Omega_R^c}\|_1\le CR^{-\epsilon_{\rm reg}},
+ \qquad
+ \|F_R\mathbf1_{\Omega_R^c}\|_\infty\le CR^2.
+\]
+For \(p>1\), bound \(p-1\) factors of the integrand by its supremum
+and integrate the remaining factor. This yields
+\begin{equation}\label{subquad:remainder}
+ \|F_R\mathbf1_{\Omega_R^c}\|_p
+ \le C_pR^{[2(p-1)-\epsilon_{\rm reg}]/p}.
+\end{equation}
+For \(p\) in \eqref{subquad:p-range}, use
+\eqref{subquad:strong-from-weak} on the common bounded radial support in
+\eqref{subquad:regular-weak}, and add \eqref{subquad:remainder}. We obtain
+\begin{gather}\label{subquad:shell-decay}
+ \|F_R\|_p\le C_pR^{-c_p},\\
+ c_p=\min\left\{\frac{\kappa\gamma}{K+2\gamma},
+       \frac{\epsilon_{\rm reg}-2(p-1)}p\right\}>0.\nonumber
+\end{gather}
+The annular frequencies form a geometric sequence, so the shell norms
+are summable. The series, including the smooth low-frequency density,
+converges in \(L^p\), hence in \(L^1\) on the bounded joint support.
+
+To identify the limit, test against a smooth function \(\Phi(y,t)\).
+The spatial test
+\[
+ x\longmapsto\chi(x)\int\Phi(y,|x-y|)\dd\nu(y)
+\]
+is smooth and compactly supported because the source cutoff is separated
+from the pin support. Distributional reconstruction of the annular
+multipliers and first-norm convergence show that the limit is the joint
+distance law. It is therefore a nonnegative density. Disintegration and
+Fubini give the asserted almost-everywhere pinned conclusion.
+\end{proof}
+
+The exponent in this theorem depends on the regularization choices as well
+as on \(q\) and \(K\). In particular, the weak exponent \(p_0\) proved
+for the retained pin region is not automatically the exponent of the full
+law: the discarded region imposes the second restriction in
+\eqref{subquad:p-range}.
+
+\subsection{The frequency threshold is unchanged}
+Before using strictness, the leading squared good-shell factor is
+\[
+ A_R=R^{\mathcal C-(s-1)+\eta},\qquad \eta>0.
+\]
+Lemma~\ref{subquad:interpolation} raises this factor to a positive power.
+The sign of its exponent is unchanged. Thus the present interpolation
+closes under the same condition \(\mathcal C<s-1\).
+
+The abstract estimate is sharp in its dependence on \(A\). For \(A\ge1\),
+take \(F_A=A\mathbf1_{[0,1/A]}\). Its first norm is one and its squared
+second norm is \(A\). Choosing the entire function as the good part and
+zero as the bad part satisfies every hypothesis of the decomposition lemma,
+whereas
+\[
+ \|F_A\|_{p_0,\infty}^{p_0}=A^{p_0-1}=A^{\gamma/(K+\gamma)}.
+\]
+This obstructs a better power from those hypotheses alone. It does not
+exclude a different subquadratic estimate using additional geometry.
+
+For comparison, a single-threshold decomposition with
+\(\|B_H\|_1\le J/H\) and \(\|G_H\|_2^2\le HE\), \(H\ge J\),
+gives \(p_0=3/2\) by putting \(\Lambda=H/J\). Its decisive factor is
+\(A=JE\), so even this favorable case retains the original frequency sign.
+
+\subsection{A limitation of higher pin-tube moments}
+There is a similarly precise limitation to using higher moments estimated
+only by the maximum tube mass. Consider an ideal regular edge from depth
+\(n\) to depth \(m<n\), and put
+\[
+ \ell=n-m,\quad\rho=2^{-\ell},\quad
+ c=g(m)-\min_{[m,n]}g,\quad
+ d_* =\min\{\ell,\ell+g(m)-g(n)\}.
+\]
+Let \(\lambda\) be the normalized parent pin probability. A tube can be
+covered by \(O(\rho^{-1})\) child-scale cubes. Regularity, together with
+the trivial mass bound, gives
+\[
+ \frac{\max_T\lambda(T)}\rho\lesssim2^{d_*}.
+\]
+The pair bound gives \(J_2=\sum_T\lambda(T)^2\lesssim2^c\).
+For \(r\ge2\), writing \(M=\max_T\lambda(T)\), one has
+\[
+ \sum_T\lambda(T)^r\le M^{r-2}J_2.
+\]
+On a retained direction the source mass is at most \(CL\rho\).
+The higher-moment replacement in the heavy-tube calculation is therefore
+\[
+ \mathrm{BadMass}\lesssim
+ L\rho(H\rho)^{1-r}\sum_T\lambda(T)^r
+ \lesssim LH^{-(r-1)}2^{c+(r-2)d_*}.
+\]
+To get a small bad mass, this uses the base threshold exponent
+\[
+ c_r=\frac{c+(r-2)d_*}{r-1}.
+\]
+Both entries defining \(d_*\) are at least \(c\). The first follows
+from the Lipschitz bound. If \(z\) is a minimum point on the edge, then
+\[
+ \ell+g(m)-g(n)-c
+ =\ell+g(z)-g(n)\ge\ell-(n-z)\ge0.
+\]
+Consequently \(c_r\ge c\). The improved tail power is accompanied by a
+base inflation exponent no smaller than before. The finite regularization
+and geometric enlargement errors add the previously accounted small powers;
+they do not reverse this comparison. This limits this particular use of
+higher moments, not every possible higher-moment argument.

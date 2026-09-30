@@ -163,6 +163,56 @@ have nearly saturated source Fourier energy at the frequencies where the pin
 profile is near-extremal. These results do not prove necessity for positive
 pinned distance length.
 
+## Stronger integrability under the same curve
+
+The selected compact source and pin probabilities can be chosen so that the
+actual joint distance law has a density in some strong space with exponent
+greater than one. In particular the individual pinned densities have that
+integrability for almost every selected pin. The finite-profile proof varies
+the good/bad thresholds, treats the discarded pin remainder separately, and sums
+the full annular densities. The coherent proof interpolates summable first-norm
+differences with polynomial higher-norm bounds for the positive approximations.
+
+For the coherent measure assumptions, write
+
+$$
+\delta=2s-1-u>0,\qquad \eta=\frac{q-1}{2q-1},
+$$
+
+where the source has Frostman exponent $$s$$ and covering exponent $$u$$, and
+$$q>1$$ is its chosen centers' averaged angular exponent. The proved range is
+
+$$
+1<p<\left(1-\eta\frac\delta s\right)^{-1}.
+$$
+
+Both improvements require their existing strict dimension margin. They do not
+prove a weaker dimension condition or a new endpoint. The natural-language proof
+is the current focus; no additional Lean certification is claimed for these
+arguments.
+
+## What a refined positive decomposition must prove
+
+The manuscript proves a sharper quadratic selection estimate for a finite
+train-track model, including all retained cross-track interactions. Deleting
+only the pin's own track works exactly when the model's covering exponent is at
+least four thirds; below that, a larger transverse deletion gives a controlled
+norm. These model estimates do not give a new dimension-only theorem.
+
+For fixed source and pin measures, vanishing total deletion and uniformly bounded
+full quadratic norms would force the original joint law into the quadratic
+space. The fixed-measure example rules out that overly strong target. Retaining
+a fixed positive mass with a controlled norm is sufficient for a nonzero
+absolutely continuous component. Persistent deletion is one implementation,
+but proving its geometric estimates from dimensions alone remains open here.
+
+The manuscript also checks the natural scale correspondence for a hybrid
+argument: affine source depth is half the corresponding Fourier depth. Matching
+profiles can obstruct both the existing coherent summability test and the
+strict chain-cost test at these scales, including a nondecaying endpoint
+example. This limits a direct combination of those criteria; it does not rule
+out a new estimate connecting them.
+
 ## Proof and audit files
 
 - [Complete manuscript](packing-unforced-proof.pdf)
@@ -171,6 +221,8 @@ pinned distance length.
 - [Explicit dimension curve and precise model optimality](packing-unforced-hard-dimension.tex)
 - [Finite-start identity and endpoint limitation](packing-unforced-finite-start.tex)
 - [Realization by a single Frostman measure](packing-unforced-realizability.tex)
+- [Simultaneous obstruction at curvature-matched scales](packing-unforced-hybrid-obstruction.tex)
+- [Independent curvature-scale audit and its exact scope](2026-09-30-curvature-matched-hybrid-audit.md)
 - [Detailed endpoint investigation](2026-09-30-critical-profile-endpoint.md)
 - [Detailed realization construction](2026-09-30-profile-realizability.md)
 - [Synchronized profile and Fourier-energy saturation](2026-09-30-profile-fourier-saturation.md)
@@ -180,6 +232,18 @@ pinned distance length.
 - [Lean statement-fidelity audit](2026-09-30-hard-gap-lean-fidelity-audit.md)
 - [Fixed-measure and transfer quantifier audit](2026-09-30-fixed-measure-transfer-adversarial-audit.md)
 - [Finite regularization, deletion, and summation](packing-unforced-finite-profile.tex)
+- [Subquadratic profile transfer and its precise exponent range](packing-unforced-subquadratic.tex)
+- [Coherent strong integrability and the combined conclusion](packing-unforced-coherent-lp.tex)
+- [Detailed subquadratic derivation and raw weak-norm obstructions](2026-09-30-subquadratic-profile-transfer.md)
+- [Independent subquadratic-transfer audit](2026-09-30-subquadratic-transfer-independent-audit.md)
+- [Detailed coherent integrability proof](2026-09-30-coherent-subquadratic-regularity.md)
+- [Independent coherent integrability audit](2026-09-30-coherent-lp-independent-audit.md)
+- [Positive selection for the finite train-track family](2026-09-30-positive-train-track-selection.md)
+- [Independent positive-selection audit](2026-09-30-positive-selection-independent-audit.md)
+- [Weighted selected-cap estimate and soft selection](2026-09-30-selected-cap-superposition-audit.md)
+- [Positive selection criteria and the sharper finite-model estimate](packing-unforced-positive-selection.tex)
+- [Persistent selection and the half-order transverse potential](2026-09-30-persistent-selection-and-half-potential.md)
+- [Independent persistent-selection audit](2026-09-30-persistent-selection-independent-audit.md)
 - [Modified Fourier transfer](packing-unforced-transfer.tex)
 - [Detailed selected-cap weighted embedding](packing-unforced-embedding.tex)
 - [Coherent analytic branch](packing-bound-original-branch.tex)

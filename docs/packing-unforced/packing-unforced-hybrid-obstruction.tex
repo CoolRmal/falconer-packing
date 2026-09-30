@@ -1,0 +1,184 @@
+\subsection{An obstruction at the curvature-matched scales}
+\label{hybrid:subsection}
+
+The coherent approximations at source-cell depth \(n\) have scalar error
+\(O(2^{-2n})\). Their natural comparison with frequency \(R=2^N\) is
+therefore \(N=2n\), rather than \(N=n\). The following calculation shows
+that the matching profiles can obstruct both existing estimates at these
+matched scales. It does not exclude an estimate coupling the two arguments
+in a genuinely new way.
+
+\begin{lemma}\label{hybrid:collision}
+Let \(\mu\) be a homogeneous dyadic probability: at every integer depth
+\(k\), all occupied squares have mass \(2^{-F(k)}\). Assume that the
+conditional energies below are finite. Fix \(0<\gamma<1/2\), put
+\(\tau=1+2\gamma\), and use the coherent quantity
+\[
+ Z_n=2^{-n(1+4\gamma)}
+ \sum_{Q\text{ at depth }n+1}\mu(Q)I_\tau(\mu_Q).
+\]
+For every integer \(N\ge n+1\),
+\begin{equation}\label{hybrid:collision-bound}
+ Z_n\ge c_\gamma
+ 2^{\tau N+F(n+1)-F(N)-n(2\tau-1)}.
+\end{equation}
+In particular, if \(N=2n\), then
+\begin{equation}\label{hybrid:midpoint}
+ Z_n\ge c_\gamma\,2^{F(n)-F(2n)+n}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+Fix an occupied square \(Q\) of depth \(n+1\). It contains exactly
+\(2^{F(N)-F(n+1)}\) occupied depth-\(N\) descendants, each with
+conditional mass \(2^{F(n+1)-F(N)}\). Two independent points under
+\(\mu_Q\) lie in the same such descendant with probability
+\[
+ 2^{F(n+1)-F(N)}.
+\]
+Their separation is at most \(\sqrt2\,2^{-N}\). These pairs alone
+give
+\[
+ I_\tau(\mu_Q)\ge
+ 2^{-\tau/2}2^{\tau N+F(n+1)-F(N)}.
+\]
+Summing with the parent weights, which total one, proves
+\eqref{hybrid:collision-bound}. For \(N=2n\), the terms containing
+\(\tau\) reduce to \(n\); also \(F(n+1)\ge F(n)\).
+This gives \eqref{hybrid:midpoint}.
+\end{proof}
+
+Suppose even depths \(N_j\) realize a template as in
+Theorem~\ref{realization:theorem}:
+\[
+ \frac{F(N_jx)}{N_j}\longrightarrow x+g(x)
+ \quad\hbox{uniformly},\qquad g(1)=a.
+\]
+Equation~\eqref{hybrid:midpoint} gives
+\begin{equation}\label{hybrid:exponent}
+ \liminf_{j\to\infty}\frac1{N_j}\log_2 Z_{N_j/2}
+ \ge g(1/2)-a.
+\end{equation}
+Consequently, when \(g(1/2)=b/2\) and \(b>2a\), the coherent
+quantities grow along this subsequence. The coherent summability
+criterion cannot hold. This calculation is independent of the legal
+choice of \(\gamma\). For the realized \(d\)-Frostman measures,
+the required conditional energies are finite whenever
+\(1+2\gamma<d=1+a\).
+Integer rounding or a fixed additive change of the matching depth only
+changes the exponent by \(O(1)\). A strictly positive limiting exponent
+also persists under sufficiently small fixed proportional changes of
+that depth.
+
+\paragraph{Checking the matching templates.}
+For the single-collapse witness of
+Section~\ref{hardgap:one-witness}, with \(0<a<b\le1\), its first
+affine piece ends at
+\[
+ P=\frac{1+a}{1+b}>\frac12.
+\]
+Hence \(g(1/2)=b/2\). Whenever
+\[
+ b\ge b_F(a)=\frac{2a}{1-2a},\qquad 0<a\le\frac14,
+\]
+its limiting chain cost \(C_1(a,b)\) is at least \(a\).
+Since \(b_F(a)>2a\), the same witness obstructs the strict chain-cost
+test and the coherent summability estimate at the matched scales.
+
+For the two-collapse witness of
+Section~\ref{hardgap:two-witness}, its initial affine piece ends at
+\[
+ L(a,b)=
+ \frac{(1+a)(1-b)(1+2a)}
+ {(1-a)(1+2b)(1+b)}.
+\]
+This function decreases in \(b\). At
+\(b=b_{\mathrm c}(a)=(1+2a)/(4+2a)\), direct simplification gives
+\[
+ L(a,b_{\mathrm c}(a))-\frac12
+ =\frac{8a^2+11a-1}{2(1-a)(4a+5)}.
+\]
+For \(\alpha=(3-\sqrt7)/4\), its numerator equals \(23\alpha-2>0\);
+the last inequality follows from \(61^2>23^2\cdot7\).
+The numerator increases for positive \(a\). Thus
+\[
+ \alpha\le a\le a_c,\qquad
+ 2a\le b\le b_{\mathrm c}(a)
+ \quad\Longrightarrow\quad L(a,b)>\frac12.
+\]
+In particular \(g(1/2)=b/2\) throughout this range.
+For \(\alpha<a\le a_c\) and
+\(r_2(a)\le b\le b_{\mathrm c}(a)\), the proved matching cost
+satisfies \(C_2(a,b)\ge a\), while \(b>2a\).
+Equation~\eqref{hybrid:exponent} again makes both existing sufficient
+tests fail on the same realized example, with their indices matched
+by curvature.
+
+\paragraph{The zero-exponent boundary can also be realized without decay.}
+For \(0<a\le\alpha\), use the two-collapse witness with \(b=2a\).
+It is in the witness's parameter domain: \(\alpha<1/8\) implies
+\(4a^2+6a<1\), equivalently \(2a<b_{\mathrm c}(a)\).
+It has cost at least \(a\), and
+\[
+ L(a,2a)-\frac12
+ =\frac{1-5a}{2(1-a)(1+4a)}>0.
+\]
+Thus \(g(1/2)=a\). Uniform template convergence alone only gives a
+zero limiting exponent in \eqref{hybrid:exponent}; it does not prove
+failure of summability. The following modification of the realization
+does prove that failure.
+
+Write \(d=1+a\), \(D=1+2a<2\), and \(h(x)=x+g(x)\).
+Suppose a block starts at depth \(M\) with cumulative value \(dM\).
+Choose the next even endpoint \(N\) sufficiently large and, on
+\([M,N]\), define
+\[
+ \mathcal F(t)=
+ \min\{Nh(t/N),\,2t-(2-d)M\}.
+\]
+The template initially equals \(Dx\), on an interval extending past
+\(1/2\). The two entries first meet at
+\[
+ t_0=\frac{2-d}{2-D}M.
+\]
+Choose \(N\) so large that \(t_0<N/2\) and that this meeting occurs
+in the initial linear part. Before \(t_0\) the second entry is smaller.
+Afterwards it remains at least the first, since it has slope two
+and the template is 2-Lipschitz. Therefore
+\[
+ \mathcal F(N/2)=DN/2,\qquad \mathcal F(N)=dN.
+\]
+This block joins the preceding one continuously, is nondecreasing and
+2-Lipschitz, and obeys \(dt\le\mathcal F(t)\le Dt\).
+Choose successive blocks with \(M/N\to0\). Away from an initial
+interval of length \(O_{a}(M)\) the block agrees exactly with its
+template, so the same uniform realization limit holds.
+
+Use the product-digit construction with integer exponent
+\(F(k)=2\lfloor\mathcal F(k)/2\rfloor\), as in
+Theorem~\ref{realization:theorem}. Its uniform \(d\)-Frostman and
+upper-cover bounds follow from the same barriers. Its exact Hausdorff
+and packing dimensions are \(d,D\), using the endpoint and midpoint
+scales, respectively, in that theorem's dimension argument.
+The rounding error is less than two at integer depths, and hence
+\[
+ F(N/2)-F(N)+N/2\ge-2.
+\]
+Equation~\eqref{hybrid:midpoint} implies
+\(Z_{N/2}\ge c_\gamma/4\) along infinitely many blocks. Thus the
+coherent summability criterion fails even at this zero-exponent
+boundary. The realization still has the matching limiting chain cost
+at least \(a\).
+
+Fixed positive-mass cylinder restrictions preserve the calculation:
+their later-depth exponent is \(F(k)-F(k_0)\), and the subtracted
+constant cancels in \eqref{hybrid:midpoint}. The separated source
+and pin restrictions supplied by the realization construction are
+therefore compatible with these examples.
+
+This result concerns the two existing estimates, not the actual distance
+laws. In particular, one cannot infer a hybrid improvement merely because
+the coherent comparison looks favorable at depth \(N\) where the Fourier
+profile is unfavorable at frequency \(2^N\): the directly matching
+coherent depth is \(N/2\), where the examples above are unfavorable.
+Controlling a different bridge between the two approximation schemes
+could still improve the distance theorem.

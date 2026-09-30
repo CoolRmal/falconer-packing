@@ -1,0 +1,119 @@
+\subsection{Strong integrability for the coherent branch}\label{lp:coherent}
+
+The other analytic branch also admits an integrability improvement. Unlike the
+frequency argument, this follows from the positive affine approximations.
+
+\begin{proposition}\label{lp:coherent-prop}
+Let \(\mu,\nu\) be probabilities on positively separated compact planar sets.
+Suppose \(\mu\) is \(s\)-Frostman, its occupied-square count is
+\(O(r^{-u})\), and \(\nu\) has a Frostman exponent greater than one, where
+\(1<s\le2\) and \(s\le u<2s-1\).
+Let \(q>1\) be the averaged angular exponent in the coherent center
+construction. Put
+\[
+ \eta=\frac{q-1}{2q-1},\qquad \delta=2s-1-u.
+\]
+The joint law of \((y,|x-y|)\) under \(\mu\times\nu\) has a density
+in \(L^p(d\nu\,dt)\) for every
+\begin{equation}\label{lp:coherent-range}
+ 1<p<\left(1-\eta\frac{\delta}{s}\right)^{-1}.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Set \(v=2-1/q\) and \(q'=q/(q-1)\), so
+\(v-1=1/q'\) and \((v-1)/v=\eta\). Retain the chosen centers and
+positive densities \(f_n\) from Section~\ref{sec:coherenttree}. For each
+occupied square \(Q\) at scale \(r=2^{-n}\), let \(a_Q(y,t)\) be
+its conditional affine density, and let \(h_Q(\theta,t)\) be the
+orthogonal projection density before translation in the scalar variable.
+The source weights and angular densities satisfy
+\[
+ p_Q=\mu(Q),\quad \mu_Q=p_Q^{-1}\mu|_Q,\quad
+ F_Q=\|\rho_{x_Q}\|_q^q,\qquad \sum_Qp_QF_Q\le2B.
+\]
+Probability interpolation and then angular H\"older give
+\[
+ \int |h_Q(\theta,t)|^v\,dt
+ \le\|h_Q(\theta,\cdot)\|_2^{2(v-1)},\qquad
+ \|a_Q\|_v^v\le C F_Q^{1/q}I_1(\mu_Q)^{1/q'}.
+\]
+For the second inequality, use the angular pin law
+\(\rho_{x_Q}(\theta)\,d\theta\), the equality \((v-1)q'=1\),
+and the projection-energy identity. The pin-dependent translation preserves
+each scalar norm. The source Frostman bound inside \(Q\) gives
+\(I_1(\mu_Q)\le Cr^{s-1}/p_Q\).
+Since \(f_n=\sum_Qp_Qa_Q\), convexity and H\"older over the
+at most \(Cr^{-u}\) occupied squares yield
+\begin{align}
+ \|f_n\|_v^v
+ &\le C r^{(s-1)/q'}\sum_Q(p_QF_Q)^{1/q}
+ \le C B^{1/q}r^{(s-1-u)/q'},\label{lp:coherent-growth}\\
+ \|f_n\|_v&\le C r^{-A\eta},\qquad A=u+1-s>0.\nonumber
+\end{align}
+No lower bound on an individual square mass was used.
+
+Choose \(0<\gamma<\min\{1/2,(s-1)/2\}\) with
+\(\tau=s-u+2\gamma>0\). The optimized coherent comparison and
+the covering estimate in Proposition~\ref{prop:coherentcovering} give
+\[
+ \|f_{n+1}-f_n\|_1\le C r^{\tau\eta},\qquad
+ \|f_{n+1}-f_n\|_v\le C r^{-A\eta}.
+\]
+For \(1<p<v\), set
+\(\vartheta=(v-p)/(p(v-1))\), so
+\(1/p=\vartheta+(1-\vartheta)/v\). H\"older interpolation gives
+\[
+ \|f_{n+1}-f_n\|_p
+ \le C r^{\eta[\tau\vartheta-A(1-\vartheta)]}.
+\]
+The exponent is positive exactly when
+\[
+ p<\frac{v(\tau+A)}{\tau+vA}
+ =\frac{v(1+2\gamma)}{s-u+2\gamma+v(u+1-s)}.
+\]
+Letting \(\gamma\) approach \((s-1)/2\) from below makes this upper
+bound tend to
+\[
+ \frac{vs}{\delta+v(s-\delta)}
+ =\left(1-\eta\frac\delta s\right)^{-1}.
+\]
+Thus every \(p\) in \eqref{lp:coherent-range} admits a fixed legal
+\(\gamma\) giving summable dyadic differences in \(L^p\).
+The common pin-distance region has finite measure, and an initial
+approximation has finite \(v\)-norm by \eqref{lp:coherent-growth}.
+Consequently \(f_n\) converges in \(L^p\) and \(L^1\).
+The uniform affine approximation to distance identifies this limit with
+the raw positive joint distance law, as in Theorem~\ref{thm:coherentcriterion}.
+\end{proof}
+
+\begin{theorem}[A stronger conclusion under the same dimension curve]
+\label{lp:dimension}
+Under the hypotheses of Theorem~\ref{target:hardgap}, there are separated
+compact source and pin subsets of \(E\), carrying probabilities \(\mu,\nu\),
+and an exponent \(p>1\), such that the raw joint distance law has a
+density \(f\in L^p(d\nu\,dt)\). In particular
+\((d_y)_*\mu\) has an \(L^p\) density for \(\nu\)-almost every pin.
+\end{theorem}
+\begin{proof}
+In the coherent case, use the same strict Frostman and covering exponent
+choices and separated compact restrictions as in
+Proposition~\ref{prop:coherentborel}, followed by
+Proposition~\ref{lp:coherent-prop}. In the other case, retain the
+strict profile-cost margin and compact restrictions in the proof of
+Theorem~\ref{target:hardgap}, and apply the preceding subquadratic
+frequency argument. Both give a strong exponent greater than one for
+the actual joint law. Fubini and its probability disintegration give
+the final assertion. No uniform exponent as the strict margin tends
+to zero is claimed.
+\end{proof}
+
+This also gives a quantitative length statement for a positive proportion of
+the selected pins. If \(M=\int\!\int f(y,t)^p\,dt\,d\nu(y)\), then
+pins in a set of \(\nu\)-measure at least \(1/2\) satisfy
+\[
+ |\Delta_y(E)|\ge(2M)^{-1/(p-1)}.
+\]
+Indeed Markov bounds \(\int f(y,t)^pdt\) by \(2M\) on such a pin
+set, and H\"older applied to a density of mass one proves the lower
+bound. This improves integrability, not the dimensional cutoff or its
+strict endpoints.

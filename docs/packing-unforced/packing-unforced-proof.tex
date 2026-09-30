@@ -42,6 +42,12 @@ nonnegative-weight certificates give matching upper and lower profile bounds.
 They yield an explicit, stronger dimension curve beginning at
 \((7-\sqrt7)/4=1.088562172\ldots\).
 
+The present addition proves a stronger regularity conclusion under the same
+curve: selected separated source and pin probabilities have a raw joint
+distance density in some \(L^p\), \(p>1\). Both the profile decomposition
+and the coherent positive approximations are treated, including the
+discarded pin remainder. This integrability gain does not lower the curve.
+
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
 branches and the Borel-set reduction. Internal mathematical audits are not
@@ -59,7 +65,7 @@ The existing Lean challenge and comparator are unchanged. This mathematical
 manuscript does not complete the unconditional formalization.
 \end{titlepage}
 \begingroup
-\footnotesize\setlength{\parskip}{0pt}
+\small\setlength{\parskip}{0pt}\setcounter{tocdepth}{1}
 \tableofcontents
 \endgroup
 \clearpage
@@ -319,6 +325,13 @@ deletion, Fourier iteration and shell summation give a pin in \(E\).
 For \(7/6\le d\le5/4\), use Theorem~\ref{target:unforced}.
 \end{proof}
 
+\clearpage
+\input{packing-unforced-subquadratic.tex}
+\input{packing-unforced-coherent-lp.tex}
+
+\clearpage
+\input{packing-unforced-positive-selection.tex}
+
 \section{What the sharpness statement does and does not establish}
 The next proposition concerns only the scale profiles and the specified
 edge-cost model. It shows that a better limiting cost in the high-slope
@@ -336,10 +349,15 @@ it; it does not establish the optimal Falconer threshold.
 
 \input{packing-unforced-finite-start.tex}
 \input{packing-unforced-realizability.tex}
+\input{packing-unforced-hybrid-obstruction.tex}
 
 \clearpage
 \section{Plan for formal verification}
 \begingroup\small
+This previously requested plan is retained for reference. Current work is
+focused on the natural-language proof; no additional formalization is claimed
+for the integrability or selection arguments.
+
 The module \texttt{FalconerPacking/HardGapAlgebra.lean} now verifies both
 weighted certificates, the cost-difference identity, the quadratic and rational
 strict-threshold equivalences, and the two exact example margins. Each of these

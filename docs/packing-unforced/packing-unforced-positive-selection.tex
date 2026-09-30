@@ -1,0 +1,317 @@
+\section{Positive selection: a valid target and a finite-model gain}
+\label{selection:section}
+
+This section distinguishes two positive-selection targets. Vanishing total
+loss and a uniform bound for the full retained collision law would force the
+original joint law into \(L^2\), which is false for some prescribed Frostman
+probabilities. Retaining a fixed positive mass is sufficient for the desired
+distance conclusion. Persistent deletion is one possible implementation;
+nesting is not required. We then prove a sharper transverse estimate for
+the finite train-track test family. No improved dimension-only distance
+criterion follows without an additional geometric argument.
+
+\subsection{The compactness distinction}
+\label{selection:compactness-section}
+Let \(\mu,\nu\) be compactly supported planar probabilities and
+\(\varphi\ge0\) a smooth compactly supported probability on \(\R\).
+Write \(\varphi_\epsilon(t)=\epsilon^{-1}\varphi(t/\epsilon)\) and
+\[
+ \Lambda(dy,dt)=\nu(dy)(d_y)_*\mu(dt).
+\]
+A positive interaction selection is a measurable kernel
+\(\eta_{j,y}\le\mu\). For \(\epsilon_j\downarrow0\), put
+\[
+ F_j(y,t)=\varphi_{\epsilon_j}*(d_y)_*\eta_{j,y}(t).
+\]
+All radial supports lie in one fixed bounded interval for sufficiently
+large \(j\). Fix an exponent \(1<q<\infty\), independently of \(j\).
+
+\begin{proposition}[Positive-mass compactness]
+\label{selection:compactness}
+Suppose \(\sup_j\|F_j\|_{L^q(d\nu\,dt)}<\infty\).
+If
+\[
+ \int\eta_{j,y}(\R^2)\dd\nu(y)\ge m_0>0,
+\]
+then \(\Lambda\) has an absolutely continuous submeasure of mass at
+least \(m_0\), with density in \(L^q(d\nu\,dt)\).
+Consequently a positive-\(\nu\) family of pins has positive-length
+distances from \(\supp\mu\).
+
+If, more strongly,
+\[
+ \int\bigl(1-\eta_{j,y}(\R^2)\bigr)\dd\nu(y)\longrightarrow0,
+\]
+then the \emph{entire} joint law \(\Lambda\) has an \(L^q(d\nu\,dt)\)
+density.
+\end{proposition}
+\begin{proof}
+Pass to a weakly convergent subsequence in the reflexive space
+\(L^q(d\nu\,dt)\), with limit \(F\). Positivity passes to the limit.
+All bounded test functions used below belong to the dual space on the fixed
+finite joint support.
+Testing against the indicator of an interval containing all radial supports
+shows \(\int F\dd\nu\,dt\ge m_0\).
+The selected mollified laws are dominated by the full mollifications of
+\(\Lambda\). Testing against any nonnegative continuous compactly
+supported function and taking the limit gives
+\[
+ F\dd\nu\,dt\le\Lambda.
+\]
+Disintegration gives \(F(y,t)dt\le(d_y)_*\mu\) for \(\nu\)-almost
+every \(y\). It is nonzero on a positive-\(\nu\) set of pins and
+supported on the corresponding compact distance sets. Those sets therefore
+have positive Lebesgue measure.
+
+Under the stronger hypothesis, the total variation difference between the
+selected and full mollified joint laws is at most the averaged deleted mass:
+convolution and pushforward contract total variation. This tends to zero.
+Full mollifications converge weakly to \(\Lambda\), so the same test
+functions identify \(F\dd\nu\,dt=\Lambda\).
+\end{proof}
+
+\begin{remark}[A false dimension-only extension]
+\label{selection:false-candidate}
+For \(1<s<4/3\) and \(3-2/s\le u\le2\), the detailed companion
+\href{https://github.com/CoolRmal/falconer-packing/blob/main/docs/packing-unforced/2026-09-30-off-cluster-collision-obstruction.md}
+{off-cluster collision note} constructs fixed separated probabilities with
+uniform \(s\)-Frostman and \(u\)-covering bounds whose fully mollified
+joint squared \(L^2\) norms diverge along a sequence. Their support has
+Hausdorff and packing dimensions both \(s\). A variant also has finite
+energy at the stated Frostman exponent.
+
+The construction uses scaled train-track blocks with
+\[
+ \lambda_j=c2^{-j},\quad \delta_j=2^{-(j+j_0)^2},\quad
+ w_j\asymp\lambda_j^s,\quad \epsilon_j\asymp\lambda_j\delta_j,
+\]
+and gives the positive collision lower bound
+\[
+ c\lambda_j^{3s-1}\delta_j^{3s/2-2}\longrightarrow\infty.
+\]
+The uniform Frostman, covering, gluing, and collision proofs are supplied
+in that companion note; this finite construction is not reproduced here.
+
+For this fixed pair, no positive selection with total deleted mass tending
+to zero can have uniformly bounded full-law collision norms, even along an
+arbitrary sequence of resolutions tending to zero. Otherwise
+Proposition~\ref{selection:compactness}, with \(q=2\), would put the original joint law
+in \(L^2\), and Young's convolution inequality would bound all its
+mollified norms, contradicting the displayed divergence. Thus a candidate
+asserting this conclusion for every prescribed pair is false for \emph{any}
+vanishing deletion rate, not only a fast power rate. This is not an
+obstruction to positive-length distances.
+\end{remark}
+
+The same distinction applies below exponent two. Section 5 of the
+\href{https://github.com/CoolRmal/falconer-packing/blob/main/docs/packing-unforced/2026-09-30-subquadratic-profile-transfer.md}
+{subquadratic transfer companion note} proves that the fixed train-track
+joint law has no weak \(L^q\) density whenever
+\[
+ q>\frac{2-s}{3-2s},\qquad 1<s<4/3.
+\]
+It therefore cannot admit vanishing-loss selections uniformly bounded in
+strong \(L^q\) for such a fixed exponent, by
+Proposition~\ref{selection:compactness}. The cited construction and its
+quantitative weak-norm proof are not reproduced here. This supplies no
+obstruction for exponents sufficiently close to one.
+
+A valid persistent implementation would choose discarded interaction sets
+\(A_k\subset\supp\mu\times\supp\nu\) with
+\[
+ \sum_{k\ge k_0}(\mu\times\nu)(A_k)<1
+\]
+and retain
+\[
+ \eta_{j,y}=\mu\big|_{\{x:(x,y)\notin\bigcup_{k_0\le k\le j}A_k\}}.
+\]
+The mass stays uniformly positive. A uniform retained collision estimate
+would then suffice by Proposition~\ref{selection:compactness}. Such an
+estimate must use the accumulated selection: a uniform full-law bound after
+only a current-scale deletion whose mass vanishes would have the stronger,
+false consequence above.
+
+For fixed measures, existence of a positive interaction restriction of
+positive mass with an \(L^2\) joint distance density is equivalent to
+\(\Lambda\) having a nonzero absolutely continuous component. For the
+nontrivial direction, remove a null set carrying the singular part of
+\(\Lambda\), truncate its remaining density to \(0<f\le M\), and
+lift that restriction through \((y,x)\mapsto(y,|x-y|)\). A sufficiently
+large finite \(M\) retains positive mass with a bounded density.
+Allowing arbitrarily small \emph{fixed} loss similarly characterizes
+absolute continuity; the \(L^2\) constant may then deteriorate with the
+loss. The geometric construction of such a restriction is the substantive
+missing step.
+
+\subsection{The finite train-track model}
+\label{selection:finite-model}
+Fix
+\[
+ 1<s<4/3,\quad 3-2/s\le u\le2,\quad
+ \alpha=u-1,\quad\beta=(s-1)/2,\quad p=\beta/\alpha,
+\]
+and, for small \(\delta>0\), put
+\[
+ a=\delta^p,\qquad w=\delta^{1/2},\qquad h=\delta^{s/2},
+ \qquad r_0=h/w=\delta^\beta.
+\]
+Thus \(0<\beta\le p<1/2\) and \(a\gg w\gg h\gg\delta\).
+Take a maximal \(3a\)-separated net \(\{c_i\}_{i=1}^{N_T}\) in
+an \(\alpha\)-Ahlfors regular subset of a fixed horizontal interval.
+With \(m=N_T^{-1}\), standard disjoint-ball comparisons give
+\begin{equation}\label{selection:center-count}
+ m\asymp a^\alpha=\delta^\beta,\qquad
+ \sum_{c_i\in J}m\le C(|J|^\alpha+a^\alpha).
+\end{equation}
+They also give a lower bound \(c\rho^\alpha\) for track mass within
+radius \(\rho\) of any center when \(C_0a\le\rho\le c_0\), with
+fixed constants. This follows by covering the underlying regular set with
+net balls of radius \(3a\) and comparing its regular mass with the
+upper mass of one ball.
+
+In each track place \(N_S\asymp h^{-1}\) slats at heights \(kh\)
+in a bounded interval. Each slat has \(N_X\asymp w/\delta\) disjoint
+microscopic cells, with horizontal centers spaced by \(4\delta\) across
+width comparable to \(w\). Each cell lies within \(C\delta\) of
+its center and has mass \((N_TN_SN_X)^{-1}\asymp m h\delta/w\).
+Inside a cell use any compact probability supported there. Let
+\(\mu_\delta\) give equal mass to all cells and let \(\nu_\delta\)
+be its translate by \((0,3)\), normalizing the vertical source interval
+so source--pin distances are bounded above and below.
+The regular microscopic tails giving the stated dimension and covering
+properties of the original example are one permitted choice. The following
+estimates only use the explicit geometry and counts just listed.
+
+\begin{lemma}[One-track estimate]\label{selection:one-track}
+Fix a pin in the translated source region and a track at horizontal offset
+\(r=|c_i-y_1|\gg w\). Its mollified pinned density \(f_i\), at
+resolution \(\epsilon\asymp\delta\), satisfies
+\[
+ \|f_i\|_1=m,\qquad
+ \|f_i\|_\infty\le Cm(1+r_0/r),\qquad
+ \|f_i\|_2\le Cm\sqrt{1+r_0/r}.
+\]
+Constants may depend on the fixed mollifier and resolution ratio.
+\end{lemma}
+\begin{proof}
+Throughout the track the horizontal derivative of distance has constant
+sign and magnitude comparable to \(r\). In one slat, a radial interval
+of width \(C\delta\) therefore meets at most \(C/r\) cell centers.
+The slat contributes density at most \(Cm h/(rw)\).
+Its whole radial image, after mollification, has length \(O(rw+\delta)\),
+which is \(O(rw)\) because \(r\gg w\) and \(w^2=\delta\).
+Central radial values of successive slats are separated by at least
+\(ch\), since vertical source--pin separation is bounded below.
+Thus at most \(C(1+rw/h)\) slats contribute at one radial value.
+Multiplication gives the asserted supremum bound, including when
+\(rw<h\). Interpolation with the first norm proves the last bound.
+\end{proof}
+
+Minkowski now gives, for any retained family of tracks with \(r_i\gg w\),
+\begin{equation}\label{selection:half-potential}
+ \left\|\sum_i f_i\right\|_2
+ \le C\left(1+\sqrt{r_0}\sum_i m r_i^{-1/2}\right).
+\end{equation}
+The source mass is at most one. Decomposing offsets into dyadic annuli and
+using \eqref{selection:center-count}, for \(\rho\ge ca\), gives
+\begin{equation}\label{selection:potential}
+ \sum_{r_i\ge\rho}m r_i^{-1/2}\le
+ \begin{cases}
+ C_\alpha\rho^{\alpha-1/2},&\alpha<1/2,\\
+ C\log(2/\rho),&\alpha=1/2,\\
+ C_\alpha,&\alpha>1/2.
+ \end{cases}
+\end{equation}
+Indeed each annulus contributes at most \(C(2^j\rho)^{\alpha-1/2}\),
+and summing the geometric series gives these three cases.
+
+\begin{proposition}[A sharper positive finite-model selection]
+\label{selection:finite-theorem}
+If \(u\ge4/3\), deleting only the pin's own source track gives
+uniformly bounded mollified \(L^2\) densities, with lost mass
+\(m\asymp\delta^\beta\). If \(u<4/3\), deleting tracks at offsets
+less than a sufficiently large constant times
+\[
+ \rho_*=r_0^{1/(1-2\alpha)}
+\]
+gives uniformly bounded mollified \(L^2\) densities, with lost mass at most
+\(C\delta^{\alpha\beta/(1-2\alpha)}\).
+For the particular rule deleting only the own track, the transition
+\(u=4/3\) is exact: below it the retained averaged squared \(L^2\)
+norm diverges, including its off-cell contribution.
+\end{proposition}
+\begin{proof}
+After own-track deletion, the other offsets are at least \(ca\gg w\).
+For \(1/3\le\alpha<1/2\), the potential factor in
+\eqref{selection:half-potential} is bounded because
+\[
+ \sqrt{r_0}a^{\alpha-1/2}
+ =\delta^{\beta(3/2-1/(2\alpha))}\le1.
+\]
+There is no logarithmic loss at \(\alpha=1/3\). At \(\alpha=1/2\),
+use boundedness of \(\sqrt{r_0}\log(2/a)\); for \(\alpha>1/2\),
+use the constant bound in \eqref{selection:potential}.
+
+When \(\alpha<1/3\), one has \(\rho_*\gg a\gg w\), and
+\(\sqrt{r_0}\rho_*^{\alpha-1/2}=1\). The same estimates give the
+norm bound, while \eqref{selection:center-count} gives the removed mass
+\(C\rho_*^\alpha\).
+
+For the converse concerning own-track deletion, Ahlfors regularity and
+maximality of the net provide a different center at distance between
+\(3a\) and \(Ca\) from each center. Indeed, for large fixed \(C\),
+regular mass in the ball of radius \(Ca\) exceeds that in the ball
+of radius \(6a\); a net point within \(3a\) of a point in the
+difference is a suitable neighbor. A pin in the original track is therefore
+at offset comparable to \(a\) from a retained neighboring track.
+The latter's mollified radial support has length at most \(CN_Saw\).
+Its mass is \(m\), so Cauchy--Schwarz and positivity give
+\[
+ \|f_y^{\rm retained}\|_2^2\ge c\frac{m^2h}{aw}
+ \asymp\delta^{3\beta-p}.
+\]
+The exponent \(3\beta-p=\beta(3-1/\alpha)\) is negative exactly
+when \(\alpha<1/3\). Finally the same-cell contribution is at most
+\[
+ C\delta^{-1}\sum_{A\text{ cell}}\mu_\delta(A)^2
+ \lesssim\delta^{s-1}\longrightarrow0,
+\]
+since each cell has mass comparable to \(\delta^s\). The divergent
+remainder therefore comes from distinct cells.
+\end{proof}
+
+\subsection{A necessary deletion budget below the transition}
+\label{selection:budget-section}
+There remains a gap between the sufficient budget above and a necessary
+one. For \(\alpha<1/3\), any positive selection with averaged squared
+\(L^2\) norm bounded by a fixed \(C\) must delete average mass at least
+\begin{equation}\label{selection:budget}
+ c_C\delta^{2\alpha\beta/(1-\alpha)}.
+\end{equation}
+Here is the proof. At offsets \(ca\le r_i\le\rho\), with \(\rho\gg a\),
+the initial track mass is at least \(c\rho^\alpha\), and the number
+of tracks is at most \(C\rho^\alpha/m\). If \(q_i\) is the retained
+mass of track \(i\), its radial support has length at most
+\(CN_Sr_iw\); hence its squared norm is at least
+\(cr_0q_i^2/r_i\). Positivity, weighted Cauchy--Schwarz, and a total
+deleted mass \(r_y\) at the pin give
+\[
+ \|f_y^{\rm retained}\|_2^2
+ \ge c r_0m\rho^{-1-\alpha}(c\rho^\alpha-r_y)_+^2.
+\]
+Average and use Jensen. If the averaged deletion is at most
+\((c/2)\rho^\alpha\), the averaged norm is at least
+\(c'r_0m\rho^{\alpha-1}\). Choose
+\(\rho=A_C(r_0m)^{1/(1-\alpha)}\), with \(A_C>0\) fixed and small
+enough to exceed the proposed norm bound. This radius still satisfies
+\(\rho\gg a\) for small \(\delta\), precisely because \(\alpha<1/3\).
+The deletion must therefore exceed \((c/2)\rho^\alpha\), proving
+\eqref{selection:budget}.
+
+The sufficient and necessary exponents agree at \(\alpha=1/3\), but
+not below it. Exact optimal deletion rates are not asserted there.
+More substantially, the finite-model proof uses slat ordering, transverse
+radial derivatives, and explicit counts absent from dimension data alone.
+A dimension-only construction of positive-mass good interactions with a
+corresponding retained collision estimate remains unproved. The compactness
+criterion identifies a valid target; it does not supply that geometric input.
