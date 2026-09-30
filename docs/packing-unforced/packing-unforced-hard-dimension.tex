@@ -1,0 +1,159 @@
+\subsection{The explicit dimension curve}\label{hardgap:dimension}
+Put
+\[
+ \alpha=\frac{3-\sqrt7}{4},\qquad
+ a_c=\frac{\sqrt6-2}{4},\qquad
+ b_c(a)=\frac{1+2a}{4+2a},\qquad
+ b_F(a)=\frac{2a}{1-2a}.
+\]
+Thus \(d_\alpha=1+\alpha\), \(d_c=1+a_c\). The relevant threshold
+can now be evaluated exactly, rather than by compact optimization.
+
+First consider \(\alpha\le a\le a_c\) and \(2a\le b\le b_c(a)\).
+The two-gap guard holds strictly throughout this region. Indeed,
+\(\partial_b R=8(1+a)b-4(a+2)<0\) for \(b\le1/2\), and
+\[
+ R(a,2a)=16a^3+8a^2-13a+1.
+\]
+This last polynomial decreases for \(\alpha\le a\le1/6\), while
+\[
+ R(\alpha,2\alpha)=3(11\alpha-1)<0.
+\]
+The last sign follows from \(\alpha<1/11\), equivalently
+\(29<11\sqrt7\), whose squares are \(841<847\).
+
+For fixed \(a\), the derivative of \(C_2\) on this region is
+\[
+ \partial_bC_2=
+ \frac{2+11a+8a^2-(8+14a+8a^2)b}{(1-a)(1+2b)^3}>0.
+\]
+Its numerator decreases with \(b\), and multiplying its value at
+\(b_c(a)\) by \(4+2a\) gives \(18a(1+a)>0\).
+At the lower endpoint,
+\begin{equation}\label{hardgap:baseline-sign}
+ C_2(a,2a)-a
+ =\frac{a(1+2a)(8a^2-12a+1)}{(1-a)(1+4a)^2}.
+\end{equation}
+This vanishes at \(a=\alpha\) and is negative for
+\(\alpha<a\le a_c\). At the upper endpoint, \(C_2=C_1\), and
+\[
+ C_1(a,b)<a\quad\Longleftrightarrow\quad b<b_F(a).
+\]
+The equality \(b_F(a)=b_c(a)\) occurs at \(a=a_c\), since it is
+equivalent to \(8a^2+8a-1=0\). For \(a<a_c\), the left side is
+smaller; consequently \(C_2(a,b_c(a))>a\).
+
+It follows that \(C_2(a,b)=a\) has a unique root in
+\([2a,b_c(a)]\), with the appropriate endpoint equalities. Clearing
+positive denominators gives
+\[
+ (4a^2-8a-2)b^2+(8a^2-a+2)b-3a=0.
+\]
+Its smaller root is exactly \(r_2(a)\) in
+\eqref{hardgap:rootformula}. Existence of the crossing and the strictly
+positive derivative at it show that the discriminant is positive;
+the stated radical is therefore real on the full closed interval.
+The root is continuous and strictly larger than \(2a\) for
+\(\alpha<a\le a_c\). Its endpoint values are
+\[
+ r_2(\alpha)=2\alpha,\qquad
+ r_2(a_c)=b_c(a_c)=\frac{\sqrt6-1}{5}.
+\]
+Thus the dimension branches agree at the two joins; at the second join
+their common value is \((4+\sqrt6)/5\).
+
+For \(a_c\le a\le1/4\), the cutoff is \(b_F(a)\). To verify that
+no lower-slope interval is missed, suppose \(2a\le b\le b_c(a)\).
+The inequality \(2a\le b_c(a)\) forces
+\(a\le(\sqrt{13}-3)/4<1/6\). The same guard calculation above applies,
+and monotonicity gives
+\[
+ C_2(a,b)\le C_2(a,b_c(a))=C_1(a,b_c(a))\le a,
+\]
+strictly except at \(a=a_c,b=b_c(a_c)\).
+For \(b\ge b_c(a)\), the single-collapse upper bound gives
+\(C_1<a\) precisely for \(b<b_F\); above \(b=1/2\) the earlier
+high-slope estimate supplies the same bound. The cases \(b<2a\)
+are already covered by the coherent criterion.
+
+\begin{proof}[Proof of Theorem~\ref{target:hardgap}]
+For \(1<d\le d_\alpha\), or whenever \(D<2d-1\), use
+Proposition~\ref{prop:coherentborel}. In every remaining case of
+\(D<B_{\rm H}(d)\), the preceding calculation gives a universal
+profile cost strictly below \(a=d-1\), using \(C_2\) or \(C_1\)
+with \(b=D-1\). The two formulas agree at \(b=b_c(a)\), and the
+two-gap guard is strict wherever that branch is used here.
+Continuity and strictness therefore allow \(s<d\), \(u>D\), with
+\(1<s<5/4\), \(s<u<2\), still in the certified region and with
+the corresponding cost below \(s-1\).
+
+The hard-gap profile theorem gives the same bounded number of edges,
+admissibility and \(O(KT+K\epsilon N)\) perturbation error required
+by Theorem~\ref{fprof:main}. Substitute its cost in that proof.
+The compact restrictions, finite regularization, deletion, Fourier
+iteration and summable shell limit are unchanged. They give a compact
+source subset and a family of pins in \(E\) of full measure for the
+selected Frostman pin probability, with absolutely continuous pinned
+distance measures. In particular one
+\(y\in E\) has \(|\Delta_y(E)|>0\).
+\end{proof}
+
+\subsection{Precisely what is optimal here}
+For \(0<a\le1/4\), \(a\le b\le1\), define
+\[
+ \mathcal M(a,b)=\sup_g\lim_{\zeta\downarrow0}
+ \inf_{\substack{\text{finite admissible chains}\\1-\zeta\ \text{to }0}}
+       \sum c_g,
+\]
+where the supremum is over all 1-Lipschitz profiles with
+\(ax\le g(x)\le bx\). Consider the following precisely specified
+combination of sufficient tests:
+\begin{equation}\label{hardgap:model-criterion}
+ b<2a\qquad\text{or}\qquad\mathcal M(a,b)<a.
+\end{equation}
+The first is the coherent test; the second is the limiting universal
+chain-cost test used in the analytic transfer. The new curve is the
+exact threshold for this combination:
+\begin{equation}\label{hardgap:model-optimality}
+ \eqref{hardgap:model-criterion}
+ \quad\Longleftrightarrow\quad
+ 1+b<B_{\rm H}(1+a).
+\end{equation}
+
+We have proved the sufficient direction. For the converse, when
+\(0<a\le\alpha\), the two-collapse profile with upper slope \(2a\)
+has cost at least \(a\), by \eqref{hardgap:baseline-sign}.
+It is also admissible under every larger upper barrier, so
+\(\mathcal M(a,b)\ge a\) for \(b\ge2a\).
+When \(\alpha<a<a_c\), the matching two-collapse profiles give
+\(\mathcal M\ge C_2\ge a\) from \(r_2(a)\) to \(b_c(a)\).
+Above \(b_c(a)\), the single-collapse profiles give
+\(\mathcal M\ge C_1\ge a\). Finally, for \(a\ge a_c\), those
+same single-collapse profiles give \(\mathcal M\ge a\) whenever
+\(b\ge b_F(a)\). The profile lower bounds include equality at all
+displayed thresholds. This proves \eqref{hardgap:model-optimality}.
+
+This optimality concerns exactly \eqref{hardgap:model-criterion}.
+It gives no set \(E\) whose pinned distances have zero length.
+Better analytic information, a more selective family of profiles, or a
+different distance-set argument could still enlarge the sufficient region.
+In particular, it does not determine the weakest possible Hausdorff--packing
+condition for the distance theorem itself.
+
+For comparison with the preceding manuscript, its profile constructions
+give universal costs, so \(\mathcal M\le C_{\rm A}\) wherever that
+function was used. Equation~\eqref{hardgap:model-optimality} therefore
+shows that \(B_{\rm H}\) includes the entire preceding curve
+\(B_{\rm A}\). The new curve also has a direct closed-form description.
+
+Two exact examples illustrate the strict inequalities:
+\[
+ C_2\left(\frac9{100},\frac{181}{1000}\right)=\frac{4619}{51529},
+ \qquad\frac9{100}-\frac{4619}{51529}=\frac{1861}{5152900}>0,
+\]
+\[
+ C_1\left(\frac3{20},\frac25\right)=\frac5{36},
+ \qquad\frac3{20}-\frac5{36}=\frac1{90}>0.
+\]
+Also \(r_2(1/10)=5/23\), so the exact cutoff at Hausdorff dimension
+\(11/10\) is \(28/23\); at dimension \(23/20\) it is \(10/7\).

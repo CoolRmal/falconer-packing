@@ -36,10 +36,11 @@ Fourier estimate. The angular marks remain constant on each standard packet
 label; only the spectral calculation is subdivided more finely. This removes
 the prescribed midpoint from the scale-selection problem.
 
-The latest refinement first normalizes the profile endpoint and then adapts
-the preceding interval to the actual tail minimum. A compact interpolation
-of these choices yields a further improvement for Hausdorff dimensions
-between \(11/10\) and \(7/6\).
+The latest refinement normalizes the profile endpoint and represents its
+optimal chain cost through the gaps between hard components. Two exact
+nonnegative-weight certificates give matching upper and lower profile bounds.
+They yield an explicit, stronger dimension curve beginning at
+\((7-\sqrt7)/4=1.088562172\ldots\).
 
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
@@ -47,10 +48,10 @@ branches and the Borel-set reduction. Internal checks are not external
 refereeing or Lean kernel verification.
 
 \textbf{Optimality.} The weakest possible condition on the two dimensions is
-not established. An explicit profile proves sharpness of the upper-slope
-unforced chain estimate in this method; it is not a planar distance-set
-counterexample. No unrestricted improvement below the five-quarters threshold
-is claimed.
+not established. The new curve is optimal for the precisely specified
+criterion based on the limiting universal chain cost, combined with the
+coherent criterion. Its extremizing profiles are not planar distance-set
+counterexamples. No unrestricted improvement below five quarters is claimed.
 
 \vfill
 The existing Lean challenge and comparator are unchanged. This mathematical
@@ -66,6 +67,36 @@ For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
 \(|\cdot|\) denotes one-dimensional Lebesgue measure. The strongest sufficient
 curve proved in this manuscript is
+\begin{equation}\label{hardgap:curve}
+ B_{\rm H}(d)=\begin{cases}
+ 2d-1,&1<d\le d_\alpha,\\[5pt]
+ 1+r_2(d-1),&d_\alpha<d\le d_c,\\[5pt]
+ \dfrac1{3-2d},&d_c<d\le\dfrac54,
+ \end{cases}
+\end{equation}
+where
+\[
+ d_\alpha=\frac{7-\sqrt7}{4}=1.088562172\ldots,\qquad
+ d_c=\frac{2+\sqrt6}{4}=1.112372436\ldots,
+\]
+and, for \(\alpha=(3-\sqrt7)/4\le a\le a_c=(\sqrt6-2)/4\),
+\begin{equation}\label{hardgap:rootformula}
+ r_2(a)=\frac{2-a+8a^2-\sqrt{4-28a-63a^2+32a^3+64a^4}}
+                  {4(1+4a-2a^2)}.
+\end{equation}
+The square root is real on this interval, and the branches agree at both
+joins, as proved in Section~\ref{hardgap:dimension}.
+
+\begin{theorem}[Explicit improved packing condition]\label{target:hardgap}
+Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
+\(\PP E<B_{\rm H}(d)\), then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+
+For orientation, \(B_{\rm H}(11/10)=28/23\) and
+\(B_{\rm H}(23/20)=10/7\). The conclusion now covers, for example,
+\(d=1.09,D=1.181\) and \(d=1.15,D=1.40\).
+
+The earlier adaptive bound is retained for comparison:
 \begin{equation}\label{adaptive:curve}
  B_{\rm A}(d)=\begin{cases}
  2d-1,&1<d\le\dfrac{11}{10},\\[7pt]
@@ -134,13 +165,11 @@ included. For \(d>5/4\), GIOW already gives the conclusion with no packing
 restriction \cite{giow}. The endpoints of all branches in \eqref{uf:curve}
 agree, and the packing inequality is strict throughout.
 
-A new exact example is \(d=111/100=1.11\), \(D=49/40=1.225\).
-The adaptive profile cost is at most \(644/5925\), giving the strict
-margin \(31/23700\). The previous curve at this Hausdorff dimension
-was \(1.22\). An interpolated choice also covers
-\(d=57/50=1.14\), \(D=46/35\), with exact positive margin
-\(214/1617375\). The proof supplies the exact parameter choices;
-the graph is illustrative and is not used to prove these inequalities.
+At \(d=109/100=1.09\), \(D=1181/1000=1.181\), the exact new
+profile cost is \(4619/51529\), with margin \(1861/5152900\).
+At \(d=23/20=1.15\), \(D=7/5=1.40\), its value is \(5/36\),
+with margin \(1/90\). The graph illustrates the exact formulas;
+it is not used to prove these inequalities.
 
 \begin{figure}[ht]
 \centering
@@ -173,6 +202,9 @@ consequences, with Fourier normalization
 \(\widehat f(\xi)=\int e^{-2\pi i x\cdot\xi}f(x)\,dx\).
 \item Keleti--Shmerkin Lemma 3.4 and Corollary 3.5 \cite{ks}, used only for finite
 terminal-cube restrictions, not to extract an infinite regular subset.
+Their Lemma 5.4 identifies the optimal total drop for piecewise affine
+profiles from their hard components; the coordinate reversal and endpoint
+correction used here are derived explicitly below.
 \item The elementary packet localization of GIOW Section 3 \cite{giow},
 Liu's cap reconstruction (Lemma 4.2 of \cite{liu2026}), and the pinned quadratic
 identity \cite{liuidentity}. The variable-chain inflation multiplier is derived below.
@@ -195,6 +227,11 @@ in those indices. Summing polynomially many such errors preserves this property.
 \clearpage
 \section{Endpoint normalization and adaptive intervals}\label{adaptive:section}
 \input{packing-unforced-adaptive.tex}
+
+\clearpage
+\section{Sharp profile bounds from hard-component gaps}\label{hardgap:section}
+\input{packing-unforced-hard-gaps.tex}
+\input{packing-unforced-hard-dimension.tex}
 
 \section{Algebra and proof of the dimension criterion}
 Put \(a=s-1\) and \(b=u-1\). For \(0<a\le1/4\), the unforced cost
@@ -321,6 +358,14 @@ strict monotonicity in the upper slope and the root theorem. A minimizing
 parameter at the larger slope proves that compact minimization preserves
 strict increase here. The parameter is then fixed before choosing the
 strict Frostman and covering exponent slacks in the Borel reduction.
+For the sharp gap extension, formalize the reversed hard-component identity
+with its endpoint correction, then the gap lemma and both tail inequalities.
+The seven- and eight-weight certificates are finite algebraic identities:
+each multiplier's nonnegativity must be proved before summing inequalities.
+Formalize the matching profiles separately from the analytic conclusion;
+their sharpness must not be recast as a distance-set counterexample.
+The explicit quadratic root and both joins then replace numerical
+optimization in the final strongest curve.
 
 The analytic part needs independent formal proofs of Frostman extraction,
 finite regularization, averaged radial projection, packet localization,

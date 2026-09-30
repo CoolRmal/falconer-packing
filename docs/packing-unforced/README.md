@@ -1,8 +1,8 @@
-# Adaptive scale selection for self-pinned distances
+# Sharp profile bounds and an improved pinned-distance criterion
 
 30 September 2026.
 
-The [proof manuscript](packing-unforced-proof.pdf) proves a sufficient
+The [proof manuscript](packing-unforced-proof.pdf) proves the following sufficient
 condition for a Borel planar set. Write
 
 $$
@@ -11,176 +11,162 @@ d=\dim_H E,\qquad D=\dim_P E,\qquad
 $$
 
 $$
-B_{\mathrm A}(d)=
+B_{\mathrm H}(d)=
 \begin{cases}
-2d-1,&1<d\le\dfrac{11}{10},\\[7pt]
-1+\beta(d-1),&\dfrac{11}{10}<d<\dfrac76,\\[7pt]
-\dfrac1{3-2d},&\dfrac76\le d\le\dfrac54.
+2d-1,&1<d\le d_\alpha,\\[6pt]
+1+r_2(d-1),&d_\alpha<d\le d_c,\\[6pt]
+\dfrac1{3-2d},&d_c<d\le\dfrac54,
 \end{cases}
+$$
+
+$$
+d_\alpha=\frac{7-\sqrt7}{4}\approx1.088562172,
+\qquad d_c=\frac{2+\sqrt6}{4}\approx1.112372436.
+$$
+
+The radical in the middle branch is
+
+$$
+r_2(a)=\frac{2-a+8a^2-\sqrt{4-28a-63a^2+32a^3+64a^4}}
+{4(1+4a-2a^2)}.
 $$
 
 Then
 
 $$
-1<d\le\frac54,\qquad D<B_{\mathrm A}(d)
+1<d\le\frac54,\qquad D<B_{\mathrm H}(d)
 \quad\Longrightarrow\quad
 \exists y\in E:\ |\Delta_y(E)|>0.
 $$
 
-Every packing inequality is strict. At Hausdorff dimension five quarters this
-covers packing dimension strictly below two. Above five quarters, GIOW already
-gives the conclusion without a packing restriction.
+The radical is real throughout the stated middle branch, and both joins are
+continuous. Every packing inequality is strict. At Hausdorff dimension five
+quarters this covers packing dimension strictly below two. Above five quarters,
+GIOW already gives the conclusion without a packing restriction.
 
-## Exact definition of the middle branch
+![The new explicit curve and the preceding adaptive bound, with an enlarged comparison.](../figures/packing-unforced.svg)
 
-The parameters range over
+## Exact examples
+
+The new result covers
 
 $$
-\frac1{10}\le a\le\frac16,\qquad 2a\le b\le\frac12,
-\qquad 0\le\theta\le1.
+d=\frac{109}{100}=1.09,\qquad D=\frac{1181}{1000}=1.181.
+$$
+
+Its exact profile cost and margin are
+
+$$
+C_2\left(\frac9{100},\frac{181}{1000}\right)=\frac{4619}{51529},
+\qquad \frac9{100}-\frac{4619}{51529}=\frac{1861}{5152900}>0.
+$$
+
+It also covers
+
+$$
+d=\frac{23}{20}=1.15,\qquad D=\frac75=1.40,
+$$
+
+with cost 5/36 and positive margin 1/90. Exact cutoff values include
+
+$$
+B_{\mathrm H}(11/10)=\frac{28}{23},\qquad
+B_{\mathrm H}(23/20)=\frac{10}{7},\qquad
+B_{\mathrm H}(31/25)=\frac{25}{13}.
+$$
+
+## The sharp profile estimates
+
+The proof studies 1-Lipschitz functions with two linear barriers and chains whose
+edges have the following admissibility condition and cost:
+
+$$
+ax\le g(x)\le bx,\qquad
+2n-m\le1,\qquad
+c_g(m,n)=g(m)-\min_{[m,n]}g.
 $$
 
 Define
 
 $$
-\begin{aligned}
-k&=2b-a,&q&=\frac b{k},\\
-h_\theta&=\frac{1+q}{2}-\frac{\theta a}{4k},&
-r_\theta&=\frac\theta{4b},\\
-L_0&=\frac{1-2a}{4},&\lambda&=\frac{1-2b}{4b},\\
-A_0&=\frac{1-a-3b}{3},&\gamma&=\frac{6b-1-2a}{3a}.
-\end{aligned}
+b_c(a)=\frac{1+2a}{4+2a},\qquad
+R(a,b)=4(1+a)b^2-4(a+2)b+1+3a.
 $$
 
-The early and zero-terminal bounds are
+The new estimates are
 
 $$
 \begin{aligned}
-m_\theta&=\frac{a h_\theta}{1-a r_\theta},\\
-E_\theta&=A_0+\gamma m_\theta,\\
-J_E&=\frac{\gamma L_0+\lambda A_0}{\gamma+\lambda},\\
-Z&=\min\left\{\frac{1-q}{3},\frac{(1-a)(b-a)}{4(2b-a)(1-b)}\right\}.
+C_1(a,b)&=\frac{b-a}{1+2b},\\[5pt]
+C_2(a,b)&=\frac{(b-a)(2+a-2b-4ab)}{(1-a)(1+2b)^2}.
 \end{aligned}
 $$
 
-The two late routes give
+For upper slopes at most one half, the limiting universal optimal chain cost is
+exactly the second expression below the transition when the guard holds, and
+exactly the first above it:
 
 $$
-\begin{aligned}
-A_v&=\frac{1-a}{3}-\frac{(1-b)h_\theta}{2},&
-\sigma_v&=\frac{1-a}{6a}-\frac{(1-b)r_\theta}{2},\\
-A_\ell&=\frac{1-a}{3}-h_\theta,&
-\sigma_\ell&=\frac{a+2}{3a}-r_\theta.
-\end{aligned}
+\mathcal M(a,b)=
+\begin{cases}
+C_2(a,b),&0<a<b\le b_c(a),\quad b\le1/2,\quad R(a,b)\le0,\\[5pt]
+C_1(a,b),&0<a<b\le1/2,\quad b\ge b_c(a).
+\end{cases}
 $$
 
-$$
-P_i=A_i+a\sigma_i,\qquad
-J_i=\frac{\sigma_i L_0+\lambda A_i}{\sigma_i+\lambda}
-\quad(i=v,\ell).
-$$
+The earlier high-slope estimate gives the first expression above one half as
+well. All upper estimates produce bounded finite chains, with the grid and barrier
+errors required by the analytic transfer.
 
-Finally set
+Endpoint clipping reduces the problem to profiles ending on the lower barrier.
+Keleti–Shmerkin's hard-component identity then represents the optimal cost as a
+sum of drops across complementary gaps. Keeping two positive gaps and bounding
+the remaining tail gives two finite inequalities with explicit nonnegative
+weights. Matching one- and two-collapse profiles prove sharpness. The proof uses
+exact identities; numerical linear programming was only a discovery aid.
 
-$$
-\begin{aligned}
-C_\theta(a,b)&=\max\{Z,\min(E_\theta,J_E),
-                         \min(P_v,J_v,P_\ell,J_\ell)\},\\[4pt]
-C_{\mathrm A}(a,b)&=\min_{0\le\theta\le1}C_\theta(a,b).
-\end{aligned}
-$$
+## What is optimal, and what remains open
 
-All denominators are positive. Compactness gives the last minimum. The proof
-establishes continuity and strict increase in the upper slope, so the number in
-the middle branch is uniquely defined by
+The explicit dimension curve is the exact threshold for the following specified
+combination of sufficient tests:
 
 $$
-\beta(a)\in[2a,1/2],\qquad C_{\mathrm A}(a,\beta(a))=a.
+b<2a\quad\text{or}\quad\mathcal M(a,b)<a,
+\qquad a=d-1,\quad b=D-1.
 $$
 
-Its endpoint values are
+This is a sharp statement about the profile model and that criterion. It does not
+give a planar set whose pinned distances have zero length. Stronger analytic
+information or a different argument could improve the actual distance theorem.
+The weakest possible Hausdorff–packing condition therefore remains unproved.
 
-$$
-\beta(1/10)=1/5,\qquad \beta(1/6)=1/2.
-$$
+The manuscript contains the complete analytic transfer with cited established
+inputs, the earlier sufficient curves, and a plan for Lean formalization. The new
+gap proof, exact algebra, and assembled mathematical statement have independent
+internal audits. A fresh analytic audit also checks the pinned identity, packet
+marking, and joint limit. These checks are not external refereeing or Lean kernel
+verification. The unconditional Lean proof is unfinished, and its original target
+and standard-axiom requirement remain unchanged.
 
-The curve includes the previous actual-minimum bound. The parameter zero retains
-its chain constructions, while endpoint normalization adds stronger restrictions.
-The parameter one uses the fully adaptive head interval; intermediate values can
-improve both endpoint choices.
-
-![Adaptive and preceding sufficient cutoffs, with a close view of the latest improvement.](../figures/packing-unforced.svg)
-
-## Exact new examples
-
-The choice
-
-$$
-d=\frac{111}{100}=1.11,\qquad D=\frac{49}{40}=1.225,
-\qquad\theta=1
-$$
-
-has the exact cost and margin
-
-$$
-C_1\left(\frac{11}{100},\frac9{40}\right)=\frac{644}{5925},
-\qquad \frac{11}{100}-\frac{644}{5925}=\frac{31}{23700}>0.
-$$
-
-The earlier cutoff there was 1.22. An interpolated choice also covers
-
-$$
-d=\frac{57}{50}=1.14,\qquad D=\frac{46}{35},\qquad\theta=\frac13,
-$$
-
-with cost 452437/3234750 and positive margin 214/1617375. These rational
-inequalities establish the examples without relying on the plotted optimization.
-The cutoff at Hausdorff dimension 1.24 remains 25/13, approximately 1.923077.
-
-## What the proof adds
-
-The Fourier argument separates standard source wave packets from finer spectral
-caps and removes the prescribed midpoint from scale selection. The latest step
-clips the endpoint to the lower barrier without decreasing any edge cost. It then
-uses the actual tail minimum to enlarge the region of free continuation and to
-choose the preceding interval. A supporting line handles the early free-terminal
-case, while reflection and two variation bounds handle the remaining cases.
-
-The PDF contains all three sufficient curves, both analytic branches, finite
-regularization and deletion, the shell limit and Borel reduction, the weighted
-embedding proof, and a detailed plan for Lean formalization.
-
-## Scope and verification
-
-The weakest condition for actual planar distance sets is not established.
-The [multiple-collapse profiles](2026-09-30-unforced-multiple-collapse.md) give
-obstructions to the scale-chain model. The
-[off-cluster construction](2026-09-30-off-cluster-collision-obstruction.md) rules
-out unrestricted raw collision control even after removing microscopic self-pairs.
-Neither is a counterexample to pinned distance positivity.
-
-The argument uses explicitly cited established theorems and internal independent
-audits. It has not been externally refereed or fully verified in Lean. No Lean
-statement, comparator target, or axiom requirement was changed. The unconditional
-formalization remains unfinished; the plan requires only standard Lean axioms.
-
-## Proof files
+## Proof and audit files
 
 - [Complete manuscript](packing-unforced-proof.pdf)
 - [Main LaTeX source](packing-unforced-proof.tex)
+- [Sharp hard-gap estimates and matching profiles](packing-unforced-hard-gaps.tex)
+- [Explicit dimension curve and precise model optimality](packing-unforced-hard-dimension.tex)
 - [Finite regularization, deletion, and summation](packing-unforced-finite-profile.tex)
-- [Previous unforced profile bound](packing-unforced-profile.tex)
-- [Previous minimum refinement](packing-unforced-minimum.tex)
-- [New endpoint normalization and adaptive family](packing-unforced-adaptive.tex)
 - [Modified Fourier transfer](packing-unforced-transfer.tex)
 - [Detailed selected-cap weighted embedding](packing-unforced-embedding.tex)
-- [Sharp upper-slope profile](packing-unforced-obstruction.tex)
 - [Coherent analytic branch](packing-bound-original-branch.tex)
-- [Independent geometry and root audit](2026-09-30-normalized-supporting-line-independent-audit.md)
-- [Assembled-source audit](2026-09-30-normalized-adaptive-head-audit.md)
-- [Exact optimized-root derivation](2026-09-30-normalized-family-root.md)
-- [Simpler closed-form subfamily and algebra](2026-09-30-normalized-bound-algebra.md)
-- [Previous assembled-proof audit](2026-09-30-unforced-complete-audit.md)
+- [Independent hard-gap proof audit](2026-09-30-sharp-gap-independent-audit.md)
+- [Independent high-branch and cutoff algebra audit](2026-09-30-two-gap-high-branch-algebra-audit.md)
+- [Fresh joint-limit and packet audit](2026-09-30-joint-limit-packet-audit.md)
+- [Research derivation of the sharp certificates](2026-09-30-sharp-two-gap-bound.md)
+- [Independent free-frontier argument](2026-09-30-actual-free-frontier.md)
+- [Earlier adaptive profile refinement](packing-unforced-adaptive.tex)
+- [Earlier minimum refinement](packing-unforced-minimum.tex)
+- [Multiple-collapse profile obstructions](2026-09-30-unforced-multiple-collapse.md)
+- [Raw off-cluster collision obstruction](2026-09-30-off-cluster-collision-obstruction.md)
 
 Compile the main LaTeX file in this directory; its figure is in the adjacent
 `figures` directory. Earlier manuscripts and the original Lean target are retained.

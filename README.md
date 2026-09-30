@@ -4,35 +4,45 @@ A Lean 4 formalization project for Theorem 1.1 of the manuscript *Self-pinned di
 Hausdorff–packing dimension criterion* (19 September 2026).
 
 **Research update, 30 September 2026.** The [latest proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
-gives the stronger sufficient cutoff
+gives the explicit stronger cutoff
 
 $$
-B_{\mathrm A}(d)=
+B_{\mathrm H}(d)=
 \begin{cases}
-2d-1,&1<d\le\dfrac{11}{10},\\[7pt]
-1+\beta(d-1),&\dfrac{11}{10}<d<\dfrac76,\\[7pt]
-\dfrac1{3-2d},&\dfrac76\le d\le\dfrac54.
+2d-1,&1<d\le d_\alpha,\\[6pt]
+1+r_2(d-1),&d_\alpha<d\le d_c,\\[6pt]
+\dfrac1{3-2d},&d_c<d\le\dfrac54,
 \end{cases}
 $$
 
-The middle branch uses the unique root of a continuous, strictly increasing cost
-obtained by minimizing an explicit rational expression over one compact parameter
-interval. The [full statement](docs/packing-unforced/README.md) gives its exact
-definition and proof. Numerical optimization is not an assumption of the theorem.
+$$
+d_\alpha=\frac{7-\sqrt7}{4}\approx1.088562172,
+\qquad d_c=\frac{2+\sqrt6}{4}\approx1.112372436.
+$$
 
-For a Borel planar set, packing dimension strictly below this cutoff implies a
-positive-length pinned distance set for some pin in the set. This improves the
-quoted condition for every Hausdorff dimension strictly between 1.1 and 7/6 and
-includes the previous sufficient curve. A new exact example is Hausdorff dimension
-1.11 and packing dimension 1.225, with proof margin 31/23700. The cutoff at Hausdorff
-dimension 1.24 remains 25/13.
+The middle branch is the explicit radical
 
-![The adaptive sufficient curve, the preceding curve, and the originally quoted curve.](docs/figures/packing-unforced.svg)
+$$
+r_2(a)=\frac{2-a+8a^2-\sqrt{4-28a-63a^2+32a^3+64a^4}}
+{4(1+4a-2a^2)}.
+$$
 
-The weakest possible condition remains unproved. Profile obstructions limit the
-specified scale-selection method; they are not planar distance-set counterexamples.
-Internal audits are not external refereeing or complete Lean verification. The
-original Lean target and curve below are preserved.
+For a Borel planar set, packing dimension strictly below this curve implies a
+positive-length pinned distance set for some pin in the set. The
+[full statement and proof](docs/packing-unforced/README.md) include the exact joins
+and all strict endpoint conditions.
+
+New examples include Hausdorff dimension 1.09 with packing dimension 1.181, and
+Hausdorff dimension 1.15 with packing dimension 1.40. At Hausdorff dimension 1.10,
+the exact cutoff is 28/23; at dimension 1.15 it is 10/7.
+
+![The explicit gap bound, the preceding adaptive bound, and the originally quoted curve.](docs/figures/packing-unforced.svg)
+
+Matching profiles prove this curve is optimal for the specified combination of
+the coherent test and the limiting universal chain-cost test. They are not planar
+distance-set counterexamples: the weakest possible dimensional condition for the
+distance theorem remains unknown. Internal audits are not external refereeing or
+complete Lean verification. The original Lean target and curve below are preserved.
 
 The [earlier forced-midpoint refinements](docs/packing-refinement/README.md) remain
 available with their proofs and audits.

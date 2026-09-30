@@ -1,0 +1,564 @@
+\subsection{Statement of the sharp profile estimates}
+\label{hardgap:statement}
+
+For an admissible edge \(n\to m<n\) in \([0,N]\), recall that
+\(2n-m\le N\) and
+\[
+ c_g(m,n)=g(m)-\min_{[m,n]}g.
+\]
+All chains in this section are finite, decreasing, and have no prescribed
+intermediate endpoint. Define
+\begin{align}
+ b_{\mathrm c}(a)&=\frac{1+2a}{4+2a},
+       \label{hardgap:transition}\\
+ R(a,b)&=4(1+a)b^2-4(a+2)b+1+3a,
+       \label{hardgap:R}
+\end{align}
+\begin{subequations}\label{hardgap:costs}
+\begin{align}
+ C_1(a,b)&=\frac{b-a}{1+2b},
+       \label{hardgap:C1}\\
+ C_2(a,b)&=\frac{(b-a)(2+a-2b-4ab)}{(1-a)(1+2b)^2}.
+       \label{hardgap:C2}
+\end{align}
+\end{subequations}
+The additional low-side guard is
+\begin{equation}\label{hardgap:guard}
+ b\le b_{\mathrm c}(a),\qquad R(a,b)\le0.
+\end{equation}
+
+\begin{theorem}[Sharp estimates from hard gaps]\label{hardgap:profile}
+Let \(0<a<b\le1/2\), and let \(g:[0,N]\to\mathbb R\) be
+1-Lipschitz with \(ax\le g(x)\le bx\). For every
+\(0\le n_0<N\), an admissible chain from \(n_0\) to zero exists
+with total cost at most
+\[
+ \begin{cases}
+ NC_2(a,b),&b\le b_{\mathrm c}(a)\text{ and }R(a,b)\le0,\\
+ NC_1(a,b),&b\ge b_{\mathrm c}(a).
+ \end{cases}
+\]
+Its number of edges is at most
+\[
+ K\le C\left(1+\log\frac{N}{N-n_0}\right)
+\]
+with an absolute constant. If a grid of mesh \(T\) contains
+\(0,n_0,N\), its endpoints may be chosen on that grid with additional
+\(O(KT)\) cost. Uniform additive barrier errors of size \(\epsilon N\)
+give additional cost \(O(K\epsilon N+KT)\).
+
+Both bounds are sharp as universal profile estimates in their respective
+stated domains: after normalizing \(N=1\), the supremum over admissible
+profiles of the limiting optimal cost as \(n_0\uparrow1\) equals the
+displayed \(C_i(a,b)\). This is sharpness of the profile model, not a
+necessary condition for positive-length distance sets.
+\end{theorem}
+
+The previously proved profile estimate handles \(b\ge1/2\). We prove
+the theorem by analyzing complementary intervals of the hard-point set,
+and by giving explicit nonnegative linear combinations of their constraints.
+No numerical optimization is used in the proof.
+
+\subsection{Endpoint normalization}
+\label{hardgap:normalization}
+
+Normalize \(N=1\). Replace \(g\) by
+\[
+ \widetilde g(x)=\min\{g(x),1+a-x\}.
+\]
+This function is 1-Lipschitz and has the same barriers: the additional
+upper bound majorizes \(ax\), since
+\(1+a-x-ax=(1+a)(1-x)\ge0\). It has endpoint value
+\(\widetilde g(1)=a\). More importantly,
+\begin{equation}\label{hardgap:clip}
+ c_g(m,n)\le c_{\widetilde g}(m,n)
+ \quad(0\le m<n\le1).
+\end{equation}
+If \(g(m)\le1+a-m\), the lower-endpoint value is unchanged and
+the interval minimum can only decrease. Otherwise
+\[
+ c_{\widetilde g}(m,n)
+ \ge(1+a-m)-(1+a-n)=n-m\ge c_g(m,n),
+\]
+where the last step uses the Lipschitz property. Thus a chain constructed
+for the normalized profile gives no greater cost for the original one,
+with identical endpoints and length. Henceforth assume \(g(1)=a\).
+
+\subsection{Reversal and the hard-component identity}
+\label{hardgap:identity-section}
+
+For \(0<\zeta\le1\), let \(\Phi_\zeta(g)\) be the infimum of
+the costs of admissible chains from \(1-\zeta\) to zero. Put
+\[
+ f(t)=g(1-t)-a,\qquad f(0)=0,\qquad f(1)=-a.
+\]
+If an original edge has endpoints \(n>m\), write
+\(x=1-n\), \(y=1-m\). Its admissibility is exactly
+\(y\le2x\). Its original cost becomes
+\(f(y)-\min_{[x,y]}f\), whereas the usual total-drop summand is
+\(f(x)-\min_{[x,y]}f\). Their difference is \(f(y)-f(x)\).
+
+Let \(T_\zeta(f)\) be the infimum of the usual total drop over
+finite partitions of \([\zeta,1]\) whose neighboring endpoints have
+ratio at most two. Reversal gives a bijection of these partitions with
+the original chains, and telescoping yields
+\begin{equation}\label{hardgap:reversal}
+ \Phi_\zeta(g)=T_\zeta(f)-g(1-\zeta).
+\end{equation}
+Let \(T(f)\) denote the infimum of total drop over infinite good
+partitions of \([0,1]\), in the sense of Keleti--Shmerkin
+\cite[Definition 5.1]{ks}. Extending a finite partition below \(\zeta\)
+by successive halvings adds at most \(\zeta\) to its cost. Conversely,
+truncate an almost optimal infinite partition at the interval crossing
+\(\zeta\), replacing that interval's lower endpoint by \(\zeta\).
+The ratio condition is preserved, and the Lipschitz property changes the
+crossing cost by at most \(2\zeta\); later costs are nonnegative and
+can be discarded. Consequently
+\[
+ T(f)-\zeta\le T_\zeta(f)\le T(f)+2\zeta.
+\]
+Equation~\eqref{hardgap:reversal} proves
+\begin{equation}\label{hardgap:limiting-cost}
+ \Phi_0(g):=\lim_{\zeta\downarrow0}\Phi_\zeta(g)=T(f)-a.
+\end{equation}
+
+Suppose for now that \(g\) is piecewise affine with finitely many pieces.
+Its hard-point set in the original coordinate is
+\[
+ H_g=\left\{x\in[0,1]:
+           g(x)=\min_{[x,(1+x)/2]}g\right\}.
+\]
+It is a finite union of closed interval components, possibly degenerate.
+Both zero and one belong to it. Under \(t=1-x\), this is exactly the
+hard-point set \(\{t:f(t)=\min_{[t/2,t]}f\}\) of \(f\).
+On each original component \([p,q]\), the function \(g\) is
+nondecreasing. This also follows directly: for sufficiently close
+\(x<y\) in a hard interval, hardness at \(x\) gives
+\(g(y)\ge g(x)\), and subdivision and continuity give the assertion
+throughout the interval.
+
+Keleti--Shmerkin's hard-point formula
+\cite[Lemma 5.4]{ks} applies to this piecewise affine function. A component
+\([p,q]\) corresponds to \([1-q,1-p]\), whose drop is
+\(f(1-q)-f(1-p)=g(q)-g(p)\). Therefore
+\begin{equation}\label{hardgap:identity}
+ \Phi_0(g)=
+ \sum_{[p,q]\text{ component of }H_g}\bigl(g(q)-g(p)\bigr)-a.
+\end{equation}
+The subtraction of \(a\) is the endpoint correction in
+\eqref{hardgap:limiting-cost}; omitting it would change the problem.
+
+\subsection{Gaps, their drops, and two tail estimates}
+\label{hardgap:geometry}
+
+\begin{lemma}[A gap ends at its minimum]\label{hardgap:gap}
+If \((q,p)\) is a gap between consecutive components of \(H_g\), then
+\[
+ g(x)\ge g(p)\quad(q<x<p),\qquad g(q)\ge g(p).
+\]
+Writing \(u=g(q)\), \(v=g(p)\), and \(\delta=u-v\ge0\),
+every gap with \(\delta>0\) satisfies
+\begin{equation}\label{hardgap:geometric-drop}
+ \delta\le p-\frac{1+q}{2}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+If \(g(x)<g(p)\) for some \(x\in(q,p)\), choose a minimum point
+\(z\) on \([x,p]\). Then \(z<p\), and \(g(z)<g(p)\).
+On \([z,p]\) the profile is at least \(g(z)\). Any part of
+\([z,(1+z)/2]\) lying after \(p\) is contained in
+\([p,(1+p)/2]\), where hardness of \(p\) gives
+\(g\ge g(p)>g(z)\). Thus \(z\) is hard, a contradiction.
+Continuity gives \(g(q)\ge g(p)\).
+
+If \(\delta>0\), hardness of \(q\) forces
+\(p>(1+q)/2\), and \(g((1+q)/2)\ge u\). The Lipschitz
+bound between \((1+q)/2\) and \(p\) gives
+\eqref{hardgap:geometric-drop}.
+\end{proof}
+
+Telescoping all hard-component increases and the intervening gap changes,
+using \(g(0)=0\), \(g(1)=a\), turns \eqref{hardgap:identity} into
+\begin{equation}\label{hardgap:drop-sum}
+ \Phi_0(g)=\sum_{\text{gaps}}\delta.
+\end{equation}
+All terms are nonnegative. We may omit gaps with zero drop. The retained
+positive gaps remain ordered and disjoint, and all Lipschitz and barrier
+constraints at their endpoints remain valid.
+
+\begin{lemma}[Two estimates after a specified endpoint]\label{hardgap:tail}
+Suppose \(g(p)=v\), and let \(T\) be the sum of the drops of
+positive gaps contained in \([p,1]\). Then
+\begin{equation}\label{hardgap:tails}
+ T\le\frac{1-p}{2},\qquad
+ T\le\frac{1-p+v-a}{2}.
+\end{equation}
+In particular, for \(0\le\chi\le1/2\),
+\begin{equation}\label{hardgap:blended-tail}
+ T\le\frac{1-p}{2}+\chi(v-a).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For a positive gap \((q_j,p_j)\),
+\[
+ \delta_j\le p_j-\frac{1+q_j}{2}
+ =\frac{p_j-q_j}{2}-\frac{1-p_j}{2}
+ \le\frac{p_j-q_j}{2}.
+\]
+Sum over the disjoint intervals to obtain the first bound. Independently,
+each drop is at most the negative variation on its gap. A 1-Lipschitz
+function has total variation at most the interval length, so
+\[
+ T\le\operatorname{Var}^-(g;[p,1])
+ \le\frac{1-p+g(p)-g(1)}2.
+\]
+This is the second bound. Their convex combination with weights
+\(1-2\chi\) and \(2\chi\) proves \eqref{hardgap:blended-tail}.
+\end{proof}
+
+If there is just one positive gap, the barriers and
+\eqref{hardgap:geometric-drop} give
+\begin{align}
+ \delta
+ &\le\min\left\{p-\frac{1+q}{2},\ bq-ap\right\}
+ \le\frac{(2b-a)p-b}{1+2b}
+ \le C_1(a,b).\label{hardgap:one-gap}
+\end{align}
+The middle inequality follows by intersecting the decreasing and increasing
+affine bounds in \(q\); the last follows from \(p\le1\).
+With no positive gaps, the cost is zero.
+
+\subsection{The two-collapse upper bound}
+\label{hardgap:low-proof}
+
+Assume \(b\le b_{\mathrm c}(a)\) and \(R(a,b)\le0\). Put
+\[
+ s=1+2b,\qquad D=(1-a)s^2,\qquad
+ \chi=\frac{1+a-4ab+4b^2-2b}{D}.
+\]
+The numerator is \(1-2b+a+4b(b-a)>0\), while
+\begin{equation}\label{hardgap:chi-sign}
+ \chi-\frac12=\frac{R(a,b)}{2D}\le0.
+\end{equation}
+Thus \(0<\chi\le1/2\), and the blended tail bound is applicable.
+
+Suppose there are at least two positive gaps, and denote the first two by
+\((q_i,p_i)\), with \(u_i=g(q_i)\), \(v_i=g(p_i)\), and
+\(\delta_i=u_i-v_i\), for \(i=1,2\). They obey
+\begin{equation}\label{hardgap:low-constraints}
+ \begin{aligned}
+ u_1-bq_1&\le0,& ap_1-v_1&\le0,\\
+ q_1-2p_1+2\delta_1&\le-1,&
+ u_2-v_1-q_2+p_1&\le0,\\
+ u_2-bq_2&\le0,& q_2-2p_2+2\delta_2&\le-1,\\
+ p_2&\le1.&&
+ \end{aligned}
+\end{equation}
+The fourth inequality uses Lipschitz continuity between \(p_1\) and
+\(q_2\), regardless of any omitted zero-drop gaps.
+
+In the displayed order, multiply the seven constraints by
+\begin{equation}\label{hardgap:low-weights}
+ \begin{aligned}
+ w_1&=\frac1s,&
+ w_2&=\frac{1-2b}{(1-a)s},&
+ w_3&=\frac b{s},\\
+ w_4&=\frac{2b-a}{(1-a)s},&
+ w_5&=\frac{1+2a-4b-2ab}{D},&
+ w_7&=\frac{1-\chi}{2},\\
+ w_8&=\frac12-\chi.&&&&
+ \end{aligned}
+\end{equation}
+Every weight is nonnegative. The sign of \(w_5\) is exactly
+\(b\le b_{\mathrm c}(a)\); all other signs follow from the parameter
+range and \eqref{hardgap:chi-sign}. The subscripts are merely convenient
+names for these seven coefficients.
+
+The identities
+\[
+ \begin{gathered}
+ w_3=bw_1,\quad w_1+2w_3=1,\quad
+ aw_2-2w_3+w_4=0,\\
+ w_2+2w_3+w_4=1,\quad
+ w_7=w_4+bw_5,\quad w_4+w_5=\chi,\quad
+ 2w_7=1-\chi
+ \end{gathered}
+\]
+check every coefficient in the weighted sum. Its left side is
+\(\delta_1+\delta_2-p_2/2+\chi v_2\), and its right side is
+\(-w_3-w_7+w_8=-w_3-\chi/2\). Therefore
+\begin{equation}\label{hardgap:low-certificate}
+ \delta_1+\delta_2-\frac{p_2}{2}+\chi v_2
+ \le-\frac b{1+2b}-\frac\chi2.
+\end{equation}
+Apply \eqref{hardgap:blended-tail} to all gaps after \(p_2\). Using
+\eqref{hardgap:drop-sum} gives
+\begin{align*}
+ \Phi_0(g)
+ &\le\delta_1+\delta_2+\frac{1-p_2}{2}+\chi(v_2-a)\\
+ &\le\frac12-\frac b{1+2b}-\left(a+\frac12\right)\chi
+ =C_2(a,b).
+\end{align*}
+The zero- and one-positive-gap cases follow from
+\eqref{hardgap:one-gap}, since
+\begin{equation}\label{hardgap:cost-difference}
+ C_2(a,b)-C_1(a,b)
+ =\frac{(b-a)(1+2a-4b-2ab)}{(1-a)(1+2b)^2}\ge0.
+\end{equation}
+This proves the low-side upper bound for piecewise affine profiles.
+
+\subsection{The single-collapse upper bound}
+\label{hardgap:high-proof}
+
+Now assume \(b\ge b_{\mathrm c}(a)\). In addition to the constraints
+already established, the first two positive gaps satisfy
+\begin{equation}\label{hardgap:between-gaps}
+ v_1\le u_2.
+\end{equation}
+Indeed, between \(p_1\) and \(q_2\) the hard-component increases
+are nonnegative and all intervening gaps have zero drop. Telescoping gives
+\(u_2-v_1\ge0\). Pointwise monotonicity on that whole interval is
+neither asserted nor needed.
+
+Use the following eight constraints, in order:
+\begin{equation}\label{hardgap:high-constraints}
+ \begin{aligned}
+ u_1-bq_1&\le0,\\
+ \delta_1-p_1+q_1/2&\le-1/2,\\
+ ap_1-v_1&\le0,\\
+ \delta_2-p_2+q_2/2&\le-1/2,\\
+ ap_2-v_2&\le0,\\
+ u_2-v_1-q_2+p_1&\le0,\\
+ p_2&\le1,\\
+ v_1-u_2&\le0.
+ \end{aligned}
+\end{equation}
+With \(D_1=(1+2a)(1+2b)\), multiply them by
+\begin{equation}\label{hardgap:high-weights}
+ \begin{aligned}
+ \omega_1&=\frac1{1+2b},&
+ \omega_2&=\frac{2b}{1+2b},\\
+ \omega_3&=\frac{2b}{D_1},&
+ \omega_4&=\frac{4b(1+a)}{D_1},\\
+ \omega_5&=\frac{1+2a-2b}{D_1},&
+ \omega_6&=\frac{2b(1+a)}{D_1},\\
+ \omega_7&=\frac{(6+8a)b-(1+2a)^2}{2D_1},&
+ \omega_8&=\frac{(2a+4)b-(2a+1)}{D_1}.
+ \end{aligned}
+\end{equation}
+All are nonnegative. The last has precisely the required threshold.
+The numerator of \(\omega_7\) increases with \(b\), and at
+\(b=b_{\mathrm c}(a)\) it equals
+\[
+ \frac{(1+a)(1-2a)(1+2a)}{a+2}>0.
+\]
+The remaining signs follow from \(0<a<b\le1/2\).
+
+Expanding the weighted sum of \eqref{hardgap:high-constraints} gives
+exactly \(\delta_1+\delta_2-p_2/2\) on the left. On the right it
+gives \(-\omega_2/2-\omega_4/2+\omega_7\). Thus the first tail
+bound in \eqref{hardgap:tails} proves
+\begin{align*}
+ \Phi_0(g)
+ &\le\delta_1+\delta_2+\frac{1-p_2}{2}\\
+ &\le\frac12-\frac{\omega_2}{2}-\frac{\omega_4}{2}+\omega_7
+ =C_1(a,b).
+\end{align*}
+The cases with fewer than two positive gaps follow from
+\eqref{hardgap:one-gap}. This proves the second upper bound for piecewise
+affine profiles.
+
+\subsection{Finite starts, uniform chain length, and stability}
+\label{hardgap:compactness}
+
+We now justify the finite-chain statement and extend the proof to all
+continuous profiles. First, \(\Phi_\zeta(g)\) is nondecreasing as
+\(\zeta\downarrow0\). To compare starts \(n_1<n_2<1\), truncate
+a chain from \(n_2\) at its first crossing of \(n_1\), replacing the
+crossing edge by its subinterval from \(n_1\). The subinterval is
+admissible and has no greater cost. Conversely, maximal admissible edges
+bridge \(n_2\) to \(n_1\), shortening the last edge if necessary,
+with total cost at most \(n_2-n_1\). Hence
+\begin{equation}\label{hardgap:start-error}
+ 0\le\Phi_0(g)-\Phi_\zeta(g)\le\zeta.
+\end{equation}
+In particular, the proved limiting upper estimates bound every finite-start
+infimum.
+
+Any finite admissible chain can be compressed without increasing cost.
+For \(l<m<n\),
+\begin{equation}\label{hardgap:merge}
+ c_g(l,n)\le c_g(l,m)+c_g(m,n).
+\end{equation}
+If \(A=\min_{[l,m]}g\), \(B=\min_{[m,n]}g\), the difference
+between the right and left sides is \(g(m)-\max(A,B)\ge0\).
+Merge adjacent edges whenever their union remains admissible. When no
+merge is possible, three consecutive endpoints satisfy
+\[
+ 2n_i-n_{i+2}>1,\qquad
+ 1-n_{i+2}>2(1-n_i).
+\]
+The complementary depth more than doubles every two edges. A start
+\(n_0=1-\zeta\) therefore yields at most
+\(2\lceil\log_2(1/\zeta)\rceil+O(1)\) retained edges.
+
+Take finite chains with costs approaching the finite-start infimum and
+compress them. Pad their endpoint lists by repetitions to a common bounded
+length and extract a convergent subsequence. Admissibility is closed, and
+interval minima vary continuously with the endpoints of their intervals.
+The limiting chain attains the infimum; removing repeated endpoints makes
+it strictly decreasing. Thus the desired upper cost is achieved by an
+actual chain of uniformly bounded length.
+
+For a continuous 1-Lipschitz profile, first normalize its endpoint as above,
+then interpolate on partitions of mesh tending to zero, containing
+\(0,n_0,1\). The interpolants preserve both linear barriers, the
+Lipschitz constant, and the value \(g(1)=a\). The preceding argument
+provides chains of uniformly bounded length with the asserted cost for
+each interpolant. Their endpoint lists have a convergent subsequence, and
+the interpolants converge uniformly. Interval minima and costs pass to the
+limit, as does admissibility. This gives the asserted chain for the
+continuous profile. Equation~\eqref{hardgap:clip} returns it to the
+original profile if normalization was needed.
+
+For grid rounding, rescale back to \([0,N]\). Round every endpoint
+down to a multiple of \(T\). If \(m\ge2n-N\) and \(N/T\)
+is integral, then
+\[
+ \left\lfloor\frac mT\right\rfloor
+ \ge\left\lfloor\frac{2n-N}{T}\right\rfloor
+ \ge2\left\lfloor\frac nT\right\rfloor-\frac NT.
+\]
+Thus admissibility is preserved. Endpoints move by at most \(T\), and
+the interval minimum of a 1-Lipschitz function changes by at most \(T\).
+Each cost changes by at most \(2T\); discard repetitions.
+
+If the barriers hold with additive error \(\epsilon N\), clamp the
+profile between \(ax\) and \(bx\) first. This preserves the Lipschitz
+constant and changes the profile uniformly by at most \(\epsilon N\).
+Each edge cost changes by at most \(2\epsilon N\). Normalize the
+clamped profile afterwards; that step only increases edge costs and does
+not add an error. The resulting total error is
+\(O(K\epsilon N+KT)\), proving all claims concerning finite chains
+and perturbations in Theorem~\ref{hardgap:profile}.
+
+\subsection{A matching two-collapse witness}
+\label{hardgap:two-witness}
+
+We give the full hard-set calculation for the lower bound. Suppose
+\(0<a<b\le b_{\mathrm c}(a)\), and define
+\[
+ k=2b-a,\qquad q_0=\frac b{k},\qquad
+ Q(v)=\frac{2(1+a)v-1}{1+2b}.
+\]
+Set
+\[
+ q=Q(1)=\frac{1+2a}{1+2b},\qquad
+ t=\frac{(1-b)q}{1-a},\qquad r=Q(t),
+\]
+and consider
+\begin{equation}\label{hardgap:two-profile}
+ g(x)=\min\{bx,\ at+|x-t|,\ 1+a-x\}.
+\end{equation}
+This is 1-Lipschitz. Each function in the minimum majorizes \(ax\):
+for the middle one, its difference from \(ax\) is
+\((1+a)(t-x)\) when \(x\le t\), and \((1-a)(x-t)\) when
+\(x\ge t\). The last function has difference \((1+a)(1-x)\).
+Thus the profile has both barriers, and \(g(1)=a\).
+
+The parameter restriction gives \(q_0\le t<q<1\); the first inequality
+is equivalent to \(1+2a-4b-2ab\ge0\). Put
+\[
+ L=\frac{(1+a)t}{1+b},\qquad P=\frac{1+a}{1+b}.
+\]
+Then \(L<t<q<P<1\), and the consecutive affine pieces are
+\begin{equation}\label{hardgap:two-pieces}
+ g(x)=\begin{cases}
+ bx,&0\le x\le L,\\
+ (1+a)t-x,&L\le x\le t,\\
+ x-(1-a)t,&t\le x\le q,\\
+ bx,&q\le x\le P,\\
+ 1+a-x,&P\le x\le1.
+ \end{cases}
+\end{equation}
+The increasing cone after \(t\) meets \(bx\) exactly at \(q\),
+because \((1-a)t=(1-b)q\).
+
+The hard set has exactly the nondegenerate components
+\begin{equation}\label{hardgap:two-hard}
+ [0,r]\quad\text{and}\quad[t,q],
+\end{equation}
+together with the isolated endpoint one. To check this, first note
+\[
+ r-L=\frac{(1+a)t-(1+b)}{(1+b)(1+2b)}<0,
+ \qquad \frac{1+r}{2}\le t,
+\]
+where the second inequality is equivalent to \(t\ge q_0\).
+Also
+\[
+ br=(1+a)t-\frac{1+r}{2},\qquad
+ br-at=\frac{kt-b}{1+2b}\ge0.
+\]
+For \(x\le r\), the interval \([x,(1+x)/2]\) either stays on the
+initial increasing segment or enters its following descent with endpoint
+value at least \(bx\). Thus these points are hard. For \(r<x<L\),
+once its future endpoint is on that descent it has value below \(bx\);
+if the interval reaches \(t\), its value \(at<bx\) gives the same
+conclusion. The relevant endpoint is already on or beyond the descent at
+\(x=r\), since
+\[
+ \frac{1+r}{2}-L
+ =\frac{b(1+b-(1+a)t)}{(1+b)(1+2b)}\ge0.
+\]
+For \(L\le x<t\), immediate strict decrease rules out hardness.
+There are consequently no hard points in \((r,t)\).
+
+For \(t\le x\le q\), the profile initially increases. If its future
+interval enters the final descent, the difference between the final-descent
+value at \((1+x)/2\) and \(g(x)\) equals
+\[
+ 1+a-\frac{1+x}{2}-\bigl(x-(1-a)t\bigr)
+ =\frac32(q-x)\ge0.
+\]
+Thus these points are hard. For \(q<x\le P\), the same future
+endpoint lies on the final descent and has value strictly below \(bx\).
+Indeed,
+\[
+ \frac{1+q}{2}-P
+ =\frac{b(b-a)}{(1+2b)(1+b)}>0.
+\]
+For \(P\le x<1\), strict decrease again rules out hardness.
+This proves \eqref{hardgap:two-hard}, including the boundary case
+\(t=q_0\), where the first gap has zero drop.
+
+The identity \eqref{hardgap:identity} now gives
+\[
+ \Phi_0(g)=br+(bq-at)-a=C_2(a,b).
+\]
+Thus the low-side upper estimate is attained by a concrete piecewise affine
+profile wherever its hypotheses hold.
+
+\subsection{A matching single-collapse witness}
+\label{hardgap:one-witness}
+
+For all \(0<a<b\le1\), the profile
+\[
+ g(x)=\min\{bx,1+a-x\}
+\]
+is admissible and endpoint-normalized. Its only nondegenerate hard component
+is
+\[
+ \left[0,\frac{1+2a}{1+2b}\right].
+\]
+Indeed, on the initial increasing segment the boundary is the solution of
+\(bx=1+a-(1+x)/2\); beyond it the future descent has smaller value,
+and the final decreasing segment has no hard points except the endpoint
+one. Therefore
+\[
+ \Phi_0(g)=b\frac{1+2a}{1+2b}-a=C_1(a,b).
+\]
+This proves sharpness on the high-side domain and completes the proof of
+Theorem~\ref{hardgap:profile}. By \eqref{hardgap:cost-difference}, the two
+sharp formulas agree at \(b=b_{\mathrm c}(a)\).
