@@ -314,6 +314,11 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/GaussianMellin.lean` | positive Mellin integration converts Gaussian identities into Riesz identities |
 | `FalconerPacking/RieszFourier1D.lean` | exact one-dimensional Fourier–Riesz energy identity, including infinite energies |
 | `FalconerPacking/RieszFourier2D.lean` | planar Riesz identity and angular Sobolev energy formula |
+| `FalconerPacking/RegularProfileParameters.lean` | actual compact-source partition with every numerical parameter chosen |
+| `FalconerPacking/RadialProjectionTrace.lean` | Schwartz trace estimate against finite measures from spatial Riesz energy |
+| `FalconerPacking/SmoothProjectionDensity.lean` | pointwise positive Schwartz line densities of smooth compact sources |
+| `FalconerPacking/RadialProjectionLevelSet.lean` | actual positive level sets satisfy the weak trace estimate |
+| `FalconerPacking/ProjectionDensityComparison.lean` | exact Plancherel comparison for jointly measurable translated projection densities |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
