@@ -190,10 +190,14 @@ theorem exists_mem_volume_pinnedDistances_pos_of_coherent_affineDistance
     (hνF : (ν : Measure (EuclideanSpace ℝ (Fin 2))) Fᶜ = 0)
     (hδ : 0 < δ) (hc : ∀ n, Measurable (c n))
     (hr0 : Tendsto r atTop (𝓝 0))
-    (hsource : ∀ n x, dist x (c n x) ≤ r n)
-    (hseparated : ∀ n
-      (p : EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2)),
-        δ ≤ dist (c n p.2) p.1)
+    (hsource : ∀ n, ∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+        Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
+      dist p.2 (c n p.2) ≤ r n)
+    (hseparated : ∀ n, ∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+        Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
+      δ ≤ dist (c n p.2) p.1)
     (hrhalf : ∀ n, r n ≤ δ / 2)
     (hdensity : ∀ n,
       (((ν.prod μ : ProbabilityMeasure
@@ -212,9 +216,9 @@ theorem exists_mem_volume_pinnedDistances_pos_of_coherent_affineDistance
     exact (measurable_affineJointDistanceMap (hc n)).aemeasurable
   · exact tendsto_sq_div_const hr0 δ
   · intro n
-    filter_upwards with p
+    filter_upwards [hsource n, hseparated n] with p hpSource hpSeparated
     exact dist_affineJointDistanceMap_le (c n) hδ
-      (hsource n p.2) (hseparated n p) (hrhalf n)
+      hpSource hpSeparated (hrhalf n)
   · exact hdensity
   · exact hK
   · exact hZ

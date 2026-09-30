@@ -5,6 +5,7 @@ Authors: Yongxi Lin
 -/
 import FalconerPacking.AffineDistance
 import FalconerPacking.OccupiedCubes
+import Mathlib.MeasureTheory.Measure.Prod
 
 /-!
 # Measurable dyadic source centers
@@ -15,7 +16,7 @@ turns those points into a measurable center map and records its uniform dyadic e
 
 noncomputable section
 
-open Set
+open MeasureTheory Set
 
 namespace FalconerPacking
 
@@ -92,5 +93,48 @@ theorem exists_measurable_dyadicCenterMap_sequence_of_isCompact
     fun n ↦ exists_measurable_dyadicCenterMap_of_isCompact hK n
   choose c hcmeas hcK hcdist using hex
   exact ⟨c, hcmeas, fun n ↦ hcK n, fun n ↦ hcdist n⟩
+
+/-- For probability measures carried by separated compact sets, the dyadic center sequence
+satisfies the source-cell and center-pin estimates almost everywhere for the product law. -/
+theorem exists_measurable_dyadicCenterMap_sequence_ae_geometry
+    (μ ν : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2)))
+    {K L : Set (EuclideanSpace ℝ (Fin 2))}
+    (hK : IsCompact K) (hL : IsCompact L)
+    (hμK : (μ : Measure (EuclideanSpace ℝ (Fin 2))) Kᶜ = 0)
+    (hνL : (ν : Measure (EuclideanSpace ℝ (Fin 2))) Lᶜ = 0)
+    {δ : ℝ} (hseparated : ∀ x ∈ K, ∀ y ∈ L, δ ≤ dist x y) :
+    ∃ c : ℕ → EuclideanSpace ℝ (Fin 2) → EuclideanSpace ℝ (Fin 2),
+      (∀ n, Measurable (c n)) ∧
+      ∀ n,
+        (∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+          (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+            Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
+          dist p.2 (c n p.2) ≤ Real.sqrt 2 / (2 : ℝ) ^ n) ∧
+        (∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+          (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+            Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
+          δ ≤ dist (c n p.2) p.1) := by
+  obtain ⟨c, hcmeas, hcK, hcdist⟩ :=
+    exists_measurable_dyadicCenterMap_sequence_of_isCompact hK
+  have hμmem : ∀ᵐ x ∂(μ : Measure (EuclideanSpace ℝ (Fin 2))), x ∈ K := by
+    rw [ae_iff]
+    exact hμK
+  have hνmem : ∀ᵐ y ∂(ν : Measure (EuclideanSpace ℝ (Fin 2))), y ∈ L := by
+    rw [ae_iff]
+    exact hνL
+  have hpairs : ∀ᵐ p ∂((ν.prod μ : ProbabilityMeasure
+      (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))) :
+        Measure (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))),
+      p.1 ∈ L ∧ p.2 ∈ K := by
+    rw [ProbabilityMeasure.toMeasure_prod]
+    apply (Measure.ae_prod_iff_ae_ae (hL.measurableSet.prod hK.measurableSet)).mpr
+    filter_upwards [hνmem] with y hy
+    filter_upwards [hμmem] with x hx
+    exact ⟨hy, hx⟩
+  refine ⟨c, hcmeas, fun n ↦ ⟨?_, ?_⟩⟩
+  · filter_upwards [hpairs] with p hp
+    exact hcdist n p.2 hp.2
+  · filter_upwards [hpairs] with p hp
+    exact hseparated (c n p.2) (hcK n p.2 hp.2) p.1 hp.1
 
 end FalconerPacking
