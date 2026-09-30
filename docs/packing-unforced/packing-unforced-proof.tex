@@ -44,8 +44,9 @@ They yield an explicit, stronger dimension curve beginning at
 
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
-branches and the Borel-set reduction. Internal checks are not external
-refereeing or Lean kernel verification.
+branches and the Borel-set reduction. Internal mathematical audits are not
+external refereeing. The finite weighted algebra is now verified in Lean;
+the profile geometry and analytic transfer are not yet formalized.
 
 \textbf{Optimality.} The weakest possible condition on the two dimensions is
 not established. The new curve is optimal for the precisely specified
@@ -58,7 +59,7 @@ The existing Lean challenge and comparator are unchanged. This mathematical
 manuscript does not complete the unconditional formalization.
 \end{titlepage}
 \begingroup
-\small\setlength{\parskip}{0pt}
+\footnotesize\setlength{\parskip}{0pt}
 \tableofcontents
 \endgroup
 \clearpage
@@ -333,8 +334,18 @@ None is supplied here. In particular, the sharp profile at \(a=1/4,b=1\)
 explains why this method reaches the five-quarters boundary without crossing
 it; it does not establish the optimal Falconer threshold.
 
+\input{packing-unforced-finite-start.tex}
+\input{packing-unforced-realizability.tex}
+
 \clearpage
 \section{Plan for formal verification}
+\begingroup\small
+The module \texttt{FalconerPacking/HardGapAlgebra.lean} now verifies both
+weighted certificates, the cost-difference identity, the quadratic and rational
+strict-threshold equivalences, and the two exact example margins. Each of these
+seven theorems uses only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. Their hypotheses are the explicit gap and tail inequalities;
+the geometric reduction and the analytic transfer remain separate obligations.
 No unconditional Lean verification or comparator acceptance is claimed.
 The existing target must retain the standard Euclidean distance, the same
 Borel-set hypotheses, and the standard Hausdorff and packing dimensions.
@@ -398,6 +409,7 @@ requires only \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound}; \texttt{sorryAx}, extra analytical axioms, or a conditional
 replacement target would fail the requested standard. This is a development
 plan, not evidence that the comparator has already accepted the theorem.
+\endgroup
 
 \input{packing-unforced-embedding.tex}
 

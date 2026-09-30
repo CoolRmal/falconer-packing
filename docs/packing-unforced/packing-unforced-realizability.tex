@@ -1,0 +1,389 @@
+\section{Realizing the sharp profiles in one measure}
+\label{realization:section}
+
+The matching profiles are not excluded by requiring one measure to be
+consistent across all scales. They occur infinitely often for a single
+compact planar set with the prescribed exact dimensions. Conversely, the
+single-collapse profile cannot occur at every large scale. Neither statement
+is a counterexample to a distance-set theorem.
+
+\begin{theorem}[Subsequential realization]\label{realization:theorem}
+Let \(0<a<b\le1\), \(d=1+a\), \(D=1+b\). Suppose that
+\(g:[0,1]\to\R\) is 1-Lipschitz, satisfies
+\(ax\le g(x)\le bx\), has \(g(1)=a\), and equals \(bx\) on
+some interval \([0,c]\), \(c>0\). There are a compact set
+\(E\subset[0,1]^2\), a \(d\)-Frostman probability \(\mu\) on \(E\),
+and integers \(N_j\to\infty\), with
+\[
+ \HH E=d,\qquad \PP E=\overline{\dim}_{\rm B}E=D,
+\]
+such that every occupied half-open dyadic square of depth \(n\) has mass
+\(2^{-F_{\rm dyad}(n)}\). With linear interpolation of \(F_{\rm dyad}\),
+\begin{equation}\label{realization:convergence}
+ \sup_{x\in[0,1]}
+ \left|\frac{F_{\rm dyad}(N_jx)}{N_j}-x-g(x)\right|\longrightarrow0.
+\end{equation}
+The associated limiting optimal chain costs converge to \(\Phi_0(g)\).
+\end{theorem}
+
+\begin{proof}
+Put \(h(x)=x+g(x)\). It is nondecreasing and 2-Lipschitz, with
+\(dx\le h(x)\le Dx\), \(h(1)=d\), and \(h(x)=Dx\) for
+\(x\le c\). Choose integers \(N_0=0<N_1<\cdots\) with
+\(N_{j-1}/N_j<c\) and \(N_{j-1}/N_j\to0\). On
+\([N_{j-1},N_j]\), define
+\begin{equation}\label{realization:construction}
+ F(t)=\max\{dt,\ N_jh(t/N_j)-(D-d)N_{j-1}\}.
+\end{equation}
+At the left endpoint both entries equal \(dN_{j-1}\), and at the
+right endpoint the maximum equals \(dN_j\). Thus \(F\) is continuous,
+nondecreasing, and 2-Lipschitz, and
+\[
+ dt\le F(t)\le Dt,\qquad F(N_j)=dN_j.
+\]
+For every \(0\le t\le N_j\),
+\begin{equation}\label{realization:approximation}
+ 0\le N_jh(t/N_j)-F(t)\le(D-d)N_{j-1}.
+\end{equation}
+For \(t\ge N_{j-1}\), this follows from the defining maximum; for
+\(t\le N_{j-1}\), use \(h(t/N_j)=Dt/N_j\) and \(dt\le F(t)\le Dt\).
+At a fixed \(c_0\in(0,c]\), the ratio \(F(c_0N_j)/(c_0N_j)\)
+therefore tends to \(D\). It follows that
+\[
+ \liminf_{t\to\infty}F(t)/t=d,\qquad
+ \limsup_{t\to\infty}F(t)/t=D.
+\]
+
+Set \(S(n)=\lfloor F(n)/2\rfloor\). The increments of \(S\) are
+zero or one. Let \(A\) be the set of indices with increment one, and put
+\[
+ C_A=\left\{\sum_{n\ge1}\varepsilon_n2^{-n}:
+ \varepsilon_n\in\{0,1\}\ (n\in A),\quad
+ \varepsilon_n=0\ (n\notin A)\right\},\qquad E=C_A\times C_A.
+\]
+Give every allowed binary digit in each coordinate an independent fair
+choice. The resulting probability \(\mu\) gives each occupied depth-\(n\)
+square mass \(2^{-2S(n)}\), and there are \(2^{2S(n)}\) such squares.
+Ambiguous binary expansions have zero measure, because there are infinitely
+many free digits and a prescribed infinite tail has probability zero.
+The support is compact. With \(F_{\rm dyad}(n)=2S(n)\), rounding and
+interpolation give
+\[
+ \|F_{\rm dyad}-F\|_{L^\infty([0,\infty))}\le4.
+\]
+Equation~\eqref{realization:approximation} now proves
+\eqref{realization:convergence} with error at most
+\(((D-d)N_{j-1}+4)/N_j\).
+
+A ball of radius \(2^{-n}\) meets a bounded number of depth-\(n\)
+dyadic squares. Consequently
+\begin{equation}\label{realization:ball}
+ \mu(B(z,2^{-n}))\le C2^{-F_{\rm dyad}(n)}\le4C2^{-dn}.
+\end{equation}
+Neighboring dyadic radii give the \(d\)-Frostman bound at all radii,
+so \(\HH E\ge d\). At \(n=N_j\), the support is covered by at most
+\(2^{dN_j}\) squares of diameter \(\sqrt2\,2^{-N_j}\). Their
+\(s\)-dimensional covering sum tends to zero for every \(s>d\), proving
+\(\HH E=d\).
+
+The occupied-square count and the first inequality in
+\eqref{realization:ball} give matching upper and lower covering-number
+bounds, within absolute constants. Hence
+\(\overline{\dim}_{\rm B}E=\limsup_nF_{\rm dyad}(n)/n=D\).
+For the packing dimension, use the standard characterization
+\begin{equation}\label{realization:packing}
+ \PP E=\inf_{E\subset\bigcup_iE_i}
+       \sup_i\overline{\dim}_{\rm B}E_i,
+\end{equation}
+where the covers are countable and bounded; see, for example,
+\href{https://research-repository.st-andrews.ac.uk/bitstream/handle/10023/17263/CapacityProjections_Falconer.pdf?sequence=1}
+{Falconer, \emph{A capacity approach to box and packing dimensions},
+equation (4.1)}.
+Some member of any such cover has \(\mu^*(E_i\cap E)>0\).
+If \(M\) balls of radius \(2^{-n}\) cover that member, then
+\[
+ \mu^*(E_i\cap E)\le MC2^{-F_{\rm dyad}(n)}.
+\]
+Thus \(\overline{\dim}_{\rm B}E_i\ge D\). Equation~\eqref{realization:packing}
+proves \(\PP E\ge D\), and the upper box bound gives equality.
+The same argument shows that every subset of positive \(\mu\) outer measure
+has packing dimension \(D\).
+
+It remains to justify convergence of the costs; this follows from the
+stability lemma below. The interpolated functions
+\(F_{\rm dyad}(Nx)/N-x\) are 1-Lipschitz, since their slopes are
+\(-1\) or \(1\).
+\end{proof}
+
+\begin{lemma}[Continuity of limiting cost]\label{realization:stability}
+For 1-Lipschitz functions \(g,h\) on \([0,1]\), let \(\Phi_0\) denote
+the limiting optimal cost of finite admissible chains as the starting point
+tends to one. If \(\|g-h\|_\infty\le\epsilon\), then, for
+\(0<\zeta<1\),
+\[
+ |\Phi_0(g)-\Phi_0(h)|\le2\zeta+2K(\zeta)\epsilon,
+ \qquad K(\zeta)=2\lceil\log_2(1/\zeta)\rceil+4.
+\]
+In particular \(\Phi_0\) is continuous under uniform convergence within
+this Lipschitz class.
+\end{lemma}
+\begin{proof}
+Write \(\Psi_g(n)\) for the infimum of costs from \(n<1\) to zero.
+If \(n<n'\), truncate a chain from \(n'\) at its first crossing of \(n\).
+The crossing edge remains admissible and its cost can only decrease. Conversely,
+extend a chain from \(n\) up to \(n'\) by repeatedly doubling the
+complementary distance \(1-x\), stopping at \(n\). The added cost is
+at most the negative variation on \([n,n']\), hence at most \(n'-n\).
+Thus
+\[
+ 0\le\Psi_g(n')-\Psi_g(n)\le n'-n,
+ \qquad 0\le\Phi_0(g)-\Psi_g(1-\zeta)\le\zeta.
+\]
+Merging adjacent admissible edges never increases cost, since
+\(c_g(l,n)\le c_g(l,m)+c_g(m,n)\) for \(l<m<n\).
+After all possible mergers, every two edges more than double \(1-x\),
+giving the bound \(K(\zeta)\). Each edge cost changes by at most
+\(2\epsilon\) under the uniform perturbation. Infimizing over the
+bounded-length chains and adding the two truncation errors proves the claim.
+\end{proof}
+
+\begin{remark}[Applicable templates and separated restrictions]
+\label{realization:templates}
+The single-collapse profile \(\min\{bx,1+a-x\}\) satisfies the realization
+hypotheses for every \(0<a<b\le1\). The matching two-collapse profile
+\(\min\{bx,at+|x-t|,1+a-x\}\), in its certified parameter region,
+also does: its two other entries are strictly positive at zero, so it equals
+\(bx\) on an initial interval. Therefore both sharp costs occur along
+subsequences for actual Frostman measures.
+
+A fixed occupied depth-\(k\) cylinder, with the measure normalized on it,
+has descendant cube exponent \(F_{\rm dyad}(n)-F_{\rm dyad}(k)\).
+The bounded initial change disappears after normalization by \(N_j\), so
+it has the same limiting profiles and dimensions. Choosing two sufficiently
+small cylinders around distinct support points gives compact source and pin
+supports a positive distance apart, each with these properties.
+\end{remark}
+
+\begin{lemma}[Persistence under large regular restrictions]
+\label{realization:regularization}
+For the measure in Theorem~\ref{realization:theorem}, fix a union \(X\)
+of depth-\(N\) cubes, with \(w=\mu(X)>0\), and let
+\(\sigma=\mu|_X/w\). Suppose its occupied depth-\(k\) cubes obey
+\[
+ 2^{-f(k)-eN}\le\sigma(Q)\le2^{-f(k)}.
+\]
+Then
+\begin{equation}\label{realization:sandwich}
+ F_{\rm dyad}(k)+\log_2w-eN\le f(k)\le F_{\rm dyad}(k).
+\end{equation}
+In particular, a component with \(w\ge2^{-\gamma N}\) changes the
+profile by at most \((\gamma+e)N\).
+\end{lemma}
+\begin{proof}
+For the lower bound, combine the lower regularity estimate with
+\(\sigma(Q)\le\mu(Q)/w=2^{-F_{\rm dyad}(k)}/w\).
+For the upper bound, at most \(2^{F_{\rm dyad}(k)}\) occupied cubes
+have masses at most \(2^{-f(k)}\), and their masses sum to one.
+\end{proof}
+
+Thus selecting large regular components cannot remove the matching profiles
+at the constructed scales when the regularization losses tend to zero.
+This does not preclude using geometric information absent from the mass profile.
+
+\subsection{Single collapse cannot persist at all scales}
+\label{realization:sparsity-section}
+Let \(G:[0,\infty)\to\R\) be continuous and put
+\(g_N(x)=G(Nx)/N\). Take
+\(g(x)=\min\{bx,1+a-x\}\), \(0<a<b\le1\).
+
+\begin{proposition}[Separated clusters of near occurrences]
+\label{realization:sparsity}
+Suppose \(0<M<N\) and both \(g_M,g_N\) are within uniform distance
+\(\epsilon\) of \(g\), where \(0<\epsilon<b-a\). Then
+\[
+ \frac MN\le L_\epsilon:=\frac{\epsilon}{b-a-\epsilon}
+ \quad\text{or}\quad
+ \frac MN\ge U_\epsilon:=\frac{1+a-\epsilon}{1+a+\epsilon}.
+\]
+For sufficiently small \(\epsilon>0\), write
+\(\ell_\epsilon=\log(1/L_\epsilon)\) and
+\(w_\epsilon=\log(1/U_\epsilon)\). Then
+\begin{equation}\label{realization:log-density}
+ \limsup_{L\to\infty}\frac1L
+ \left|\left\{t\in[0,L]:\|g_{e^t}-g\|_\infty\le\epsilon\right\}\right|
+ \le\frac{w_\epsilon}{\ell_\epsilon}
+ =O_{a,b}\!\left(\frac{\epsilon}{\log(1/\epsilon)}\right).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Put \(r=M/N\) and \(p=(1+a)/(1+b)\). The endpoint of \(g_M\)
+and the value of \(g_N\) at \(r\) give
+\[
+ |g(r)-ra|\le\epsilon(1+r).
+\]
+For \(r\le p\), the left side equals \(r(b-a)\), yielding
+\(r\le L_\epsilon\). For \(r\ge p\), it equals
+\((1+a)(1-r)\), yielding \(r\ge U_\epsilon\).
+For small \(\epsilon\), one has \(0<L_\epsilon<U_\epsilon<1\).
+Thus in logarithmic scale no two near occurrences have separation strictly
+between \(w_\epsilon\) and \(\ell_\epsilon\). In an interval of
+length less than \(\ell_\epsilon\), their set has diameter and measure
+at most \(w_\epsilon\). It is measurable by continuity of \(G\).
+Partition long intervals into pieces of length
+\(\ell_\epsilon-\delta\), and then let \(\delta\downarrow0\), to get
+\eqref{realization:log-density}. Finally,
+\(w_\epsilon=O_a(\epsilon)\) and
+\(\ell_\epsilon\sim\log(1/\epsilon)\).
+\end{proof}
+
+For either matching template, a simpler obstruction follows from its initial
+linear interval: if \(\lambda\le c\) and both scales \(N,\lambda N\)
+have error at most \(\epsilon\), then
+\(\lambda(b-a)\le(1+\lambda)\epsilon\).
+
+These results distinguish infinite recurrence from recurrence at every scale.
+The sparsity bound does not make shell estimates of size \(2^{cN_j}\)
+summable when \(c>0\). Moreover, profiles obtained by separately regularizing
+an arbitrary measure at each scale need not be prefixes of a single function
+\(G\). A new argument would be needed to exploit this obstruction in the
+analytic transfer. No improvement to the distance criterion is claimed here.
+
+\subsection{Simultaneous raw Fourier-energy saturation}
+\label{realization:fourier-section}
+
+The profiles can also occur where the source's raw Fourier energy nearly
+attains the Frostman exponent. The assertion concerns fixed separated
+restrictions of the same measure, so it is compatible with the source--pin
+separation required in the analytic proof.
+
+\begin{proposition}[Near-extremal profiles and energy on one annulus]
+\label{realization:fourier}
+Under Theorem~\ref{realization:theorem}, choose two separated occupied
+cylinders at a fixed common depth \(k\), and normalize the restrictions
+of \(\mu\) to obtain source and pin probabilities \(\sigma,\nu\).
+Their compact supports both have Hausdorff dimension \(d\) and packing
+dimension \(D\), and both probabilities are \(d\)-Frostman.
+Writing \(F=F_{\rm dyad}\), they have the common conditional exponent
+\[
+ F_k(t)=\begin{cases}0,&0\le t\le k,\\
+ F(t)-F(k),&t\ge k.
+ \end{cases}
+\]
+For every \(\tau>0\) and \(\epsilon>0\), there are infinitely many
+integers \(n\) such that
+\begin{equation}\label{realization:fourier-conclusion}
+ \left\|F_k(nx)/n-x-g(x)\right\|_{L^\infty_x([0,1])}\le\tau,
+ \qquad
+ \int_{2^n\le|\xi|<2^{n+1}}|\widehat\sigma(\xi)|^2\dd\xi
+ \ge2^{(2-d-\epsilon)n}.
+\end{equation}
+The source and pin supports are fixed independently of both tolerances.
+\end{proposition}
+
+\begin{proof}
+The restrictions and dimensions were justified in
+Remark~\ref{realization:templates}. They can be chosen at the same depth
+by taking two sufficiently small dyadic squares with separated closures.
+Both original cube masses are \(2^{-F(k)}\). Every occupied descendant
+at depth \(n\ge k\) has conditional mass \(2^{F(k)-F(n)}\),
+proving the formula for \(F_k\). In particular
+\begin{equation}\label{realization:conditional-error}
+ \|F_k-F\|_\infty\le F(k)\le2k.
+\end{equation}
+
+Use the convention \(\widehat\sigma(\xi)=\int e^{-2\pi i x\cdot\xi}
+\dd\sigma(x)\). The Gaussian Fourier transform and Fubini give
+\begin{align}
+ \mathcal E_\sigma(R)
+ &:=\int e^{-\pi|\xi|^2/R^2}|\widehat\sigma(\xi)|^2\dd\xi
+ \nonumber\\
+ &=R^2\iint e^{-\pi R^2|x-y|^2}\dd\sigma(x)\dd\sigma(y).
+ \label{realization:gaussian}
+\end{align}
+Fubini is justified by Gaussian integrability and finiteness of the measure.
+For \(R_j=2^{N_j}\), two points in the same depth-\(N_j\) square
+have distance at most \(\sqrt2/R_j\). The sum of the squares of the
+conditional masses of these squares is \(2^{F(k)-F(N_j)}\).
+Since \(F(N_j)\le dN_j\),
+\begin{equation}\label{realization:energy-lower}
+ \mathcal E_\sigma(R_j)\ge e^{-2\pi}R_j^2 2^{F(k)-F(N_j)}
+ \ge c_0R_j^{2-d},\qquad c_0=e^{-2\pi}2^{F(k)}>0.
+\end{equation}
+
+Conversely, the Frostman bound and spatial annuli of radii \(2^m/R\)
+give
+\[
+ \int e^{-\pi R^2|x-y|^2}\dd\sigma(y)
+ \le CR^{-d}\left(1+\sum_{m\ge1}2^{md}e^{-\pi2^{2m-2}}\right).
+\]
+The sum is finite. Equation~\eqref{realization:gaussian} therefore yields,
+for \(R\ge1\),
+\begin{equation}\label{realization:energy-upper}
+ \mathcal E_\sigma(R)\le C_1R^{2-d},\qquad
+ \int_{|\xi|\le R}|\widehat\sigma(\xi)|^2\dd\xi
+ \le e^\pi\mathcal E_\sigma(R)\le C_2R^{2-d}.
+\end{equation}
+
+Put \(q=2-d>0\), and temporarily fix \(0<\eta<1/4\).
+At \(R=R_j\), the part of the Gaussian integral below
+\(R_j^{1-\eta}\) is at most \(C_2R_j^{(1-\eta)q}=o(R_j^q)\).
+The part above \(R_j^{1+\eta}\), using
+\(|\widehat\sigma|\le1\), is at most the exact planar Gaussian tail
+\[
+ \int_{|\xi|\ge R_j^{1+\eta}}e^{-\pi|\xi|^2/R_j^2}\dd\xi
+ =R_j^2e^{-\pi R_j^{2\eta}}=o(R_j^q).
+\]
+Hence the intermediate region contributes at least
+\((c_0/2)R_j^q\) for large \(j\). Its Gaussian weight is at most one,
+and it is covered by at most \(2\eta N_j+3\) dyadic annuli.
+Some index \(n_j\) consequently satisfies
+\begin{gather}
+ (1-\eta)N_j-1\le n_j\le(1+\eta)N_j+1,
+ \label{realization:nearby-annulus}\\
+ \int_{2^{n_j}\le|\xi|<2^{n_j+1}}|\widehat\sigma(\xi)|^2\dd\xi
+ \ge\frac{c_\eta}{N_j}2^{qN_j},\qquad c_\eta>0.
+ \label{realization:annular-lower}
+\end{gather}
+Only existence of one annulus in this window is asserted.
+
+For the given tolerances, take
+\[
+ \epsilon_0=\min\{\epsilon,q/2\},\qquad
+ 0<\eta<\min\{1/4,\tau/16,\epsilon_0/(8q)\}.
+\]
+For large \(j\),
+\[
+ (q-\epsilon_0)n_j
+ \le(q-\epsilon_0)(1+2\eta)N_j
+ \le(q-3\epsilon_0/4)N_j.
+\]
+The polynomial loss in \eqref{realization:annular-lower} is absorbed by
+this strict exponential margin, proving the energy inequality in
+\eqref{realization:fourier-conclusion}.
+
+Finally \(G(t)=F(t)-t\) is 1-Lipschitz and \(G(0)=0\), so
+\[
+ \left\|G(nx)/n-G(Nx)/N\right\|_{L^\infty_x([0,1])}
+ \le2|n-N|/n.
+\]
+This follows by separating the changes of argument and denominator, using
+\(|G(Nx)|\le N\). Equations~\eqref{realization:conditional-error}
+and \eqref{realization:nearby-annulus} give, for large \(j\),
+\[
+ \|F_k(n_jx)/n_j-x-g(x)\|_\infty
+ \le F(k)/n_j+4\eta+4/N_j+
+       \|G(N_jx)/N_j-g(x)\|_\infty.
+\]
+The second term is less than \(\tau/4\), and each of the other terms
+is at most \(\tau/4\) for sufficiently large \(j\), by
+\eqref{realization:convergence}. This proves the profile inequality.
+The windows in \eqref{realization:nearby-annulus} are eventually disjoint,
+since \(N_{j-1}/N_j\to0\), so infinitely many distinct indices occur.
+\end{proof}
+
+This proposition rules out a universal saving in the \emph{raw} source
+Fourier-energy exponent merely from the pin profile being near one of the
+matching templates. It proves no sharpness for the modified good-packet
+estimate and says nothing adverse about the actual pinned distance sets.
+Angular geometry, cancellation, or a different summation argument could
+still yield a stronger distance theorem.

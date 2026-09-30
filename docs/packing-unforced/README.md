@@ -144,9 +144,24 @@ The manuscript contains the complete analytic transfer with cited established
 inputs, the earlier sufficient curves, and a plan for Lean formalization. The new
 gap proof, exact algebra, and assembled mathematical statement have independent
 internal audits. A fresh analytic audit also checks the pinned identity, packet
-marking, and joint limit. These checks are not external refereeing or Lean kernel
-verification. The unconditional Lean proof is unfinished, and its original target
-and standard-axiom requirement remain unchanged.
+marking, and joint limit. These internal audits are not external refereeing.
+
+The [Lean algebra module](../../FalconerPacking/HardGapAlgebra.lean) proves both
+weighted certificates, the difference of the two costs, their strict-threshold
+equivalences, and the exact example margins. All seven theorem axiom reports are
+`[propext, Classical.choice, Quot.sound]`, with no holes. The geometric reduction
+and analytic transfer are not certified by these algebraic theorems. The
+unconditional Lean proof remains unfinished.
+
+The new limitations section proves that matching profiles recur along infinitely
+many scales of a single compact set with exact Hausdorff and packing dimensions,
+carrying a Frostman probability of the exact lower exponent. Large regular
+components and two fixed separated restrictions retain the profiles. A separate
+finite-start identity shows that the precise initial-localization cost cannot
+improve the limiting profile test. The same fixed separated measures can also
+have nearly saturated source Fourier energy at the frequencies where the pin
+profile is near-extremal. These results do not prove necessity for positive
+pinned distance length.
 
 ## Proof and audit files
 
@@ -154,6 +169,16 @@ and standard-axiom requirement remain unchanged.
 - [Main LaTeX source](packing-unforced-proof.tex)
 - [Sharp hard-gap estimates and matching profiles](packing-unforced-hard-gaps.tex)
 - [Explicit dimension curve and precise model optimality](packing-unforced-hard-dimension.tex)
+- [Finite-start identity and endpoint limitation](packing-unforced-finite-start.tex)
+- [Realization by a single Frostman measure](packing-unforced-realizability.tex)
+- [Detailed endpoint investigation](2026-09-30-critical-profile-endpoint.md)
+- [Detailed realization construction](2026-09-30-profile-realizability.md)
+- [Synchronized profile and Fourier-energy saturation](2026-09-30-profile-fourier-saturation.md)
+- [Independent energy-saturation audit](2026-09-30-profile-energy-independent-audit.md)
+- [Lean build and axiom verification](2026-09-30-hard-gap-lean-verification.md)
+- [Independent realization audit](2026-09-30-profile-realizability-independent-audit.md)
+- [Lean statement-fidelity audit](2026-09-30-hard-gap-lean-fidelity-audit.md)
+- [Fixed-measure and transfer quantifier audit](2026-09-30-fixed-measure-transfer-adversarial-audit.md)
 - [Finite regularization, deletion, and summation](packing-unforced-finite-profile.tex)
 - [Modified Fourier transfer](packing-unforced-transfer.tex)
 - [Detailed selected-cap weighted embedding](packing-unforced-embedding.tex)

@@ -1,0 +1,107 @@
+\clearpage
+\section{What optimizing the finite start can achieve}\label{start:section}
+The preceding minimax criterion uses chains whose initial point tends to one.
+One might instead optimize that initial point, including the corresponding
+localization loss. The following identity rules out an improvement by this
+particular modification; it does not rule out stronger Fourier estimates.
+
+For a 1-Lipschitz function \(g:[0,1]\to\mathbb R\), retain the notation
+\(\Phi_\zeta(g)\) for the infimum of admissible chain costs from
+\(1-\zeta\) to zero, and \(\Phi_0(g)=\lim_{\zeta\downarrow0}\Phi_\zeta(g)\).
+Define
+\[
+ I_\zeta(g)=\zeta+g(1-\zeta)-g(1),\qquad 0<\zeta<1.
+\]
+The Lipschitz bound gives \(0\le I_\zeta(g)\le2\zeta\).
+
+\begin{proposition}[Finite-start identity]\label{start:identity}
+For every such profile,
+\[
+ 0\le\Phi_0(g)-\Phi_\zeta(g)
+ \le\operatorname{Var}^-(g;[1-\zeta,1])\le\tfrac12 I_\zeta(g).
+\]
+Consequently
+\[
+ \inf_{0<\zeta<1}\bigl(\Phi_\zeta(g)+I_\zeta(g)\bigr)=\Phi_0(g).
+\]
+\end{proposition}
+\begin{proof}
+For \(0<n<n'<1\), truncating a chain from \(n'\) when it crosses
+\(n\) preserves admissibility and decreases the crossing edge's cost.
+Thus the optimal cost is nondecreasing with its initial point. Conversely,
+successively replacing a current point \(x>n\) by \(\max\{n,2x-1\}\)
+gives a finite admissible bridge from \(n'\) to \(n\): before the last
+step, \(1-x\) doubles. Each edge costs at most the negative variation
+on its interval. Appending an arbitrarily near-minimizing chain from
+\(n\) bounds the difference of optimal costs by
+\(\operatorname{Var}^-(g;[n,n'])\). This proves monotonicity,
+boundedness, and the first comparison on letting \(n'\uparrow1\).
+
+A Lipschitz function is absolutely continuous and \(-1\le g'\le1\)
+almost everywhere. Since \((-v)_+\le(1-v)/2\) on that interval,
+\[
+ \operatorname{Var}^-(g;[n,1])
+ =\int_n^1(-g')_+
+ \le\frac12\int_n^1(1-g')
+ =\frac{1-n+g(n)-g(1)}2.
+\]
+It follows that \(\Phi_\zeta+I_\zeta\ge\Phi_0+I_\zeta/2\ge\Phi_0\).
+Letting \(\zeta\downarrow0\) proves the reverse inequality for the infimum.
+\end{proof}
+
+Here \(I_\zeta\) is precisely the leading profile correction obtainable
+from the initial local-constancy argument. To see this, write \(f(x)=x+g(x)\).
+At terminal depth \(N\), suppose occupied terminal cubes have mass at most
+\(2^{-f_N(N)}\), and an initial cube of depth \(n\) has mass at least
+\(2^{-f_N(n)-eN}\). Localization at bandwidth \(2^N\) contributes
+\(2^{2N-f_N(N)}\). Converting the Lebesgue integral on the initial cube
+to its normalized average contributes \(2^{-2n}\), and division by its
+mass contributes at most \(2^{f_N(n)+eN}\). The resulting exponent is
+\[
+ 2(N-n)+f_N(n)-f_N(N)+eN.
+\]
+For \(n=(1-\zeta)N\), its leading normalized part is
+\(2\zeta+f(1-\zeta)-f(1)=I_\zeta(g)\). Enlargements, grid errors,
+and regularization losses must still be added. Proposition~\ref{start:identity}
+therefore applies even when this exact mass-profile correction replaces
+the coarser loss \(2\zeta\). It is a limitation of that estimate, not
+a lower bound for all possible localization operators.
+
+\subsection{Why a zero shell exponent alone is insufficient}
+There are compact null-length subsets of the line with positive probability
+approximations whose mutually orthogonal quadratic increments are uniformly
+bounded. This elementary example clarifies an endpoint issue; it is not a
+planar distance-set counterexample.
+
+Start with \(E_0=[0,1]\). At step \(j\ge1\), subdivide every surviving
+interval into \(j+1\) equal pieces and retain the first \(j\). Use closed
+intervals for the compact sets, ignoring endpoints in integrals. There are
+\(j!\) intervals at stage \(j\), each of length
+\(\ell_j=1/(j+1)!\), and \(|E_j|=1/(j+1)\). Put
+\(p_j=(j+1)\mathbf1_{E_j}\). These are probability densities and preserve
+the mass of each earlier interval. Their weak limit is a probability
+\(\eta\) on \(E_\infty=\bigcap_j E_j\), which has length zero.
+
+Direct computation gives
+\[
+ \|p_j\|_2^2=j+1,\qquad \int p_jp_{j-1}=j,
+ \qquad \|p_j-p_{j-1}\|_2^2=1.
+\]
+The increments are mutually orthogonal: each has integral zero on every
+earlier surviving interval, and the preceding increments are constant
+there. The limiting support even has Hausdorff dimension one. Indeed,
+each stage-\(j\) interval has mass \(1/j!\). If
+\(\ell_j\le r<\ell_{j-1}\), an interval \(I\) of length \(r\) meets at most
+\(r/\ell_j+2\) stage-\(j\) grid cells, giving
+\[
+ \eta(I)\le3(j+1)r.
+\]
+For each fixed \(0<t<1\),
+\((j+1)\ell_{j-1}^{1-t}=(j+1)(j!)^{-(1-t)}\) is bounded.
+Thus \(\eta(I)\le C_t r^t\), proving the dimension assertion.
+
+Uniform bounds on individual quadratic increments therefore do not
+establish positive support length. These increments are not asserted to
+be Fourier annuli of a distance measure. An endpoint distance argument
+still needs stronger information, such as a uniformly bounded full
+positive approximation or another suitable nonconcentration estimate.

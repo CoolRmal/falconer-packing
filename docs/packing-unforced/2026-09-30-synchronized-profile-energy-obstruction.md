@@ -222,7 +222,7 @@ This is not a distance-set counterexample. Nor does it rule out a gain from esti
 
 ## 2. The source clusters giving that energy are cheap in the positive collision formula
 
-Fix a nonnegative smooth mollifier $\varphi$ of integral one and set $\widetilde\varphi(t)=\varphi(-t)$ and $K=\varphi*\widetilde\varphi$. For a pin $y$ define
+Fix a nonnegative mollifier $\varphi\in C_c^\infty(\mathbb R)$ of integral one and set $\widetilde\varphi(t)=\varphi(-t)$ and $K=\varphi*\widetilde\varphi$. For a pin $y$ define
 
 $$
 h_{y,\delta}(t)=\int\delta^{-1}\varphi\left(\frac{t-|x-y|}{\delta}\right)\,d\mu(x).

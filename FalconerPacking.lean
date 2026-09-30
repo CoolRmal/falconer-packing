@@ -5,6 +5,7 @@ Authors: Yongxi Lin
 -/
 import FalconerPacking.Statement
 import FalconerPacking.Algebra
+import FalconerPacking.HardGapAlgebra
 import FalconerPacking.Dimensions
 import FalconerPacking.Profile
 import FalconerPacking.Dyadic

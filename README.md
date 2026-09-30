@@ -44,6 +44,13 @@ distance-set counterexamples: the weakest possible dimensional condition for the
 distance theorem remains unknown. Internal audits are not external refereeing or
 complete Lean verification. The original Lean target and curve below are preserved.
 
+The [new algebra module](FalconerPacking/HardGapAlgebra.lean) now verifies both
+weighted certificates and five supporting algebraic statements with only the
+three standard axioms. The manuscript also proves that matching profiles recur
+in a single Frostman measure and that optimizing the finite starting depth does
+not improve this profile criterion. These are limitations of specific methods,
+not distance-set counterexamples.
+
 The [earlier forced-midpoint refinements](docs/packing-refinement/README.md) remain
 available with their proofs and audits.
 
@@ -93,6 +100,7 @@ here certifies the conditional theorem, nothing more.
 | challenge statement | type-checks; elaborated type identical to `Solution.lean` |
 | branch combination (Section 4) — **the checked theorem** | **proved**, no holes |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
+| new hard-gap weighted certificates, threshold algebra, and exact margins | **proved**, seven theorems, standard axioms only |
 | dimensions: `dimH ≤ packingDim`, monotonicity, countable stability | **proved**, no holes |
 | profile: Lemma 3.2 (chain to the origin), Lemma 3.3 (endpoint estimate) | **proved**, no holes |
 | dyadic cubes: partition, nesting, ancestors, diameter, four-cube bound | **proved**, no holes |
@@ -119,6 +127,7 @@ here certifies the conditional theorem, nothing more.
 | `Solution.lean` | the target theorem, in the same form, proved from the library |
 | `FalconerPacking/Statement.lean` | the same definitions, for the modular development |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
+| `FalconerPacking/HardGapAlgebra.lean` | weighted certificates and threshold algebra for the improved curve |
 | `FalconerPacking/Dimensions.lean` | module 1: the covering definitions against Mathlib's `dimH` |
 | `FalconerPacking/Profile.lean` | module 3: finite profiles, edge costs, Lemmas 3.2 and 3.3 |
 | `FalconerPacking/Dyadic.lean` | module 4: the dyadic cube hierarchy of the plane |
