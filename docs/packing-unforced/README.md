@@ -234,6 +234,32 @@ autocorrelations of an actual source measure. Both criteria preserve geometry
 discarded by the scalar profile, but neither missing geometric bound is deduced
 here from dimensions beyond the existing curve.
 
+The [new crowding reduction](packing-unforced-crowding.tex) needs less than a
+bounded whole far-collision integral. At arbitrarily fine scales, it is enough
+that a fixed positive mass of retained source–pin pairs has bounded far-annulus
+crowding. Restricting to those pairs gives a uniformly bounded quadratic
+mollified law; the already proved near-collision error tends to zero. Weak
+compactness yields an actual positive absolutely continuous component, without
+assuming nested selections.
+
+The supremum over finite crowding thresholds of the limiting good-pair mass
+equals exactly the absolutely continuous mass of the chosen joint law. This is
+a measure-theoretic characterization, not a necessary condition for positive
+length of its support and not a weakest dimension inequality. A logarithmic
+crowding moment gives full absolute continuity with finite entropy. The
+[fractional criterion](packing-unforced-fractional-crowding.tex) also gives
+power integrability from a rich near-bisector tail satisfying
+
+$$
+\varkappa<\beta(s-1).
+$$
+
+Here the incidence normalization and tail exponents are defined in the proof;
+no inequality relating them to the two set dimensions is assumed or proved.
+The existing angular and Frostman strip estimates retain a resolution loss
+and do not establish the new tail hypothesis. These results weaken the analytic
+estimate sought, while leaving the proved dimension curve unchanged.
+
 The manuscript also checks the natural scale correspondence for a hybrid
 argument: affine source depth is half the corresponding Fourier depth. Matching
 profiles can obstruct both the existing coherent summability test and the
@@ -340,6 +366,14 @@ not enlarge the dimension-only sufficient region.
 - [Second independent finite-deletion audit](2026-09-30-sharp-finite-deletion-independent-audit.md)
 - [Fixed positive angular selection and its near-source gain](packing-unforced-angular-selection.tex)
 - [Detailed angular-selection proof and bisector audit](2026-09-30-fixed-angular-selection-collisions.md)
+- [Positive far-crowding selection, exact mass identity, and entropy proof](packing-unforced-crowding.tex)
+- [Detailed low-crowding and logarithmic criterion](2026-09-30-low-far-crowding-and-entropy.md)
+- [Independent endpoint and entropy audit](2026-09-30-crowding-endpoint-independent-audit.md)
+- [Fractional moments and rich near-bisector incidences](packing-unforced-fractional-crowding.tex)
+- [Detailed fractional moment and incidence-tail proof](2026-09-30-fractional-far-bisector-crowding.md)
+- [Independent fractional-moment audit](2026-09-30-fractional-crowding-independent-audit.md)
+- [Positive pair selection on the fixed recursive example](2026-09-30-positive-selection-on-recursive-tracks.md)
+- [Primary-source audit of possible dimensional improvements](2026-09-30-primary-pinned-literature-audit.md)
 - [Conditional mixed-norm bisector criterion](packing-unforced-bisector.tex)
 - [Reflection geometry, exact exponents, and primary-source review](2026-09-30-bisector-mixed-norm-route.md)
 - [Fixed obstruction for every source measure on one support](packing-unforced-source-restriction-obstruction.tex)

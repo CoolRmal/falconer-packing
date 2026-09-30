@@ -1,0 +1,232 @@
+\section{Far-annulus crowding below the quadratic norm}
+\label{crowding:section}
+
+The far-collision hypothesis in Proposition~\ref{angselect:farcriterion}
+is stronger than needed. A fixed positive fraction of pairs with bounded
+far-annulus crowding suffices. We prove an exact characterization of the
+absolutely continuous mass of the selected law, and a logarithmic criterion
+for its full absolute continuity. These are measure-theoretic reductions,
+not new dimension estimates. In particular, the characterization concerns
+the selected law; it is not a necessary condition for its distance support
+to have positive length.
+
+Retain the separated probabilities, fixed angular threshold, and exponent
+\(1/(s+1)<\alpha<1\) of Section~\ref{angselect:section}. Write
+\[
+ d\Pi_A(x,y)=a_A(x,y)\,d\mu(x)d\nu(y),\qquad
+ \sigma_y=(d_y)_*(a_A(\cdot,y)\mu),\qquad
+ \Lambda_A(dy,dt)=d\nu(y)\,\sigma_y(dt).
+\]
+Its mass \(m_A\) is positive and at most one. For \(0<\epsilon<1\), set
+\begin{align*}
+ H_\epsilon(x,y)
+ &=\epsilon^{-1}\sigma_y
+   ([|x-y|-\epsilon,|x-y|+\epsilon]),\\
+ N_\epsilon(x,y)
+ &=\epsilon^{-1}\int a_A(x',y)
+   \mathbf1_{\{||x-y|-|x'-y||\le\epsilon\}}
+   \mathbf1_{\{|x-x'|\le\epsilon^\alpha\}}\,d\mu(x'),\\
+ F_\epsilon(x,y)&=H_\epsilon(x,y)-N_\epsilon(x,y).
+\end{align*}
+Thus \(F_\epsilon\) counts only the far source points. All these
+functions are nonnegative and measurable. Proposition~\ref{angselect:nearprop}
+gives
+\begin{equation}\label{crowding:near}
+ \int N_\epsilon\,d\Pi_A\le C\epsilon^\kappa\longrightarrow0,
+ \qquad
+ \kappa=\min\{\alpha(s+1)-1,\alpha(s-1)\}>0.
+\end{equation}
+
+\subsection{Retain a positive mass with bounded far crowding}
+
+\begin{proposition}\label{crowding:positive}
+Suppose \(\epsilon_j\to0\) and, for some finite \(T>0\),
+\[
+ m:=\limsup_{j\to\infty}
+       \Pi_A\{F_{\epsilon_j}\le T\}>0.
+\]
+Then \(\Lambda_A\) dominates a measure \(g(y,t)\,d\nu(y)dt\) with
+\[
+ g\ge0,\qquad \int g\,d\nu\,dt=m,\qquad
+ \int g^2\,d\nu\,dt\le Tm.
+\]
+In particular there is a set of pins of \(\nu\)-measure at least
+\(m/4\) such that
+\[
+ |\Delta_y(\supp\mu)|\ge \frac{m^2}{16T}.
+\]
+No nesting or convergence of the pair selections is required.
+\end{proposition}
+
+\begin{proof}
+Pass to a subsequence on which the displayed pair masses converge to
+\(m\). Put \(G_j=\{F_{\epsilon_j}\le T\}\), and retain the positive
+source kernel
+\[
+ \eta_{j,y}(dx)=a_A(x,y)\mathbf1_{G_j}(x,y)\,d\mu(x).
+\]
+Use the box mollifier
+\(b_\epsilon=\epsilon^{-1}\mathbf1_{[-\epsilon/2,\epsilon/2]}\)
+and set \(f_j(y,t)=b_{\epsilon_j}*(d_y)_*\eta_{j,y}(t)\).
+Its correlation kernel satisfies the exact inequality
+\[
+ (b_\epsilon*\widetilde b_\epsilon)(u)
+ =\frac{(\epsilon-|u|)_+}{\epsilon^2}
+ \le\epsilon^{-1}\mathbf1_{\{|u|\le\epsilon\}}.
+\]
+Tonelli and positivity, dropping only the second factor
+\(\mathbf1_{G_j}(x',y)\), therefore give
+\begin{align*}
+ \|f_j\|_{L^2(d\nu\,dt)}^2
+ &\le\int_{G_j}H_{\epsilon_j}(x,y)\,d\Pi_A(x,y)\\
+ &\le T\Pi_A(G_j)+\int N_{\epsilon_j}\,d\Pi_A
+ \le T\Pi_A(G_j)+C\epsilon_j^\kappa.
+\end{align*}
+The near term is integrated over all pairs, so no additional near-crowding
+deletion is needed.
+
+All radial supports lie in one fixed bounded interval. Weak compactness in
+the joint \(L^2\) space gives a limit \(g\ge0\) of mass \(m\), with
+\(\|g\|_2^2\le Tm\). The selected mollifications are dominated by
+the full mollifications of \(\Lambda_A\). Testing against nonnegative
+continuous functions and taking limits gives
+\(g\,d\nu\,dt\le\Lambda_A\), exactly as in
+Proposition~\ref{selection:compactness}.
+
+Disintegration gives \(g(y,t)dt\le\sigma_y\) for almost every pin.
+Let \(h(y)=\int g(y,t)dt\), so \(0\le h\le1\) and \(\int h\,d\nu=m\).
+The set \(\{h\ge m/2\}\) has measure at least \(m/2\).
+Markov's inequality bounds the measure of
+\(\{\int g(y,t)^2dt>4T\}\) by \(m/4\).
+Their difference therefore has measure at least \(m/4\), and on it
+Cauchy--Schwarz gives
+\[
+ |\Delta_y(\supp\mu)|
+ \ge\frac{h(y)^2}{\int g(y,t)^2dt}
+ \ge\frac{m^2}{16T}.
+\]
+The domination by \(\sigma_y\) justifies the distance support in this
+inequality.
+\end{proof}
+
+\subsection{The exact amount of absolutely continuous mass}
+
+Let \(m_{\rm ac}\) be the mass of the absolutely continuous part of
+\(\Lambda_A\) relative to \(d\nu(y)dt\).
+
+\begin{proposition}\label{crowding:mass}
+For every sequence \(\epsilon_j\to0\),
+\begin{equation}\label{crowding:massformula}
+ m_{\rm ac}
+ =\sup_{T>0}\liminf_{j\to\infty}\Pi_A\{F_{\epsilon_j}\le T\}
+ =\sup_{T>0}\limsup_{j\to\infty}\Pi_A\{F_{\epsilon_j}\le T\}.
+\end{equation}
+Consequently a fixed positive mass at a fixed finite crowding threshold is
+both sufficient and necessary for \(\Lambda_A\) to have a nonzero
+absolutely continuous part. Full absolute continuity follows if
+\[
+ \lim_{T\to\infty}\limsup_{j\to\infty}
+       \Pi_A\{F_{\epsilon_j}>T\}=0.
+\]
+\end{proposition}
+
+\begin{proof}
+Proposition~\ref{crowding:positive} shows that, for each finite \(T\),
+the limsup in \eqref{crowding:massformula} is at most \(m_{\rm ac}\).
+This is immediate also when that limsup is zero.
+
+For the reverse inequality write the absolutely continuous part as
+\(f(y,t)\,d\nu(y)dt\). The Lebesgue decomposition disintegrates:
+for \(\nu\)-almost every \(y\), the absolutely continuous part of
+\(\sigma_y\) is \(f(y,t)dt\). Indeed a joint null set carrying the
+singular remainder has Lebesgue-null fibres for almost every pin, by
+Fubini; disintegrating the two positive parts then proves the assertion.
+The differentiation theorem for a finite measure on the line gives
+\[
+ \frac{\sigma_y([t-\epsilon,t+\epsilon])}{\epsilon}
+       \longrightarrow 2f(y,t)
+\]
+at Lebesgue-almost every \(t\), hence also at
+\(f(y,t)\,d\nu(y)dt\)-almost every \((y,t)\).
+Since \(F_\epsilon\le H_\epsilon\), pushforward and Fatou give
+\[
+ \liminf_j\Pi_A\{F_{\epsilon_j}\le T\}
+ \ge\int_{\{2f<T\}} f(y,t)\,d\nu(y)dt.
+\]
+Let \(T\to\infty\). The integral tends to \(m_{\rm ac}\), proving
+both equalities. The final assertion follows by taking complements in
+the finite measure \(\Pi_A\), whose mass equals that of \(\Lambda_A\).
+\end{proof}
+
+Thus a bound for the whole first moment \(\int F_\epsilon\,d\Pi_A\)
+is unnecessary. For positive length it is enough to bound crowding on a
+fixed positive mass; to obtain full absolute continuity it is enough that
+the far-crowding distributions are uniformly tight along one sequence.
+Neither statement estimates these quantities using \(d,D\).
+
+\subsection{A logarithmic sufficient estimate}
+
+\begin{proposition}\label{crowding:entropy}
+If, for some sequence \(\epsilon_j\to0\),
+\begin{equation}\label{crowding:loghyp}
+ \sup_j\int\log(1+F_{\epsilon_j})\,d\Pi_A\le C_0<\infty,
+\end{equation}
+then the entire selected joint law has a density \(f\) satisfying
+\[
+ \int f\log(1+f)\,d\nu\,dt\le C_0.
+\]
+In particular it gives positive-length distance sets for a positive
+\(\nu\)-measure family of pins. No fixed exponent greater than one
+is required by this hypothesis.
+\end{proposition}
+
+\begin{proof}
+Markov's inequality bounds
+\(\Pi_A\{F_{\epsilon_j}>T\}\) by \(C_0/\log(1+T)\).
+Proposition~\ref{crowding:mass} first implies full absolute continuity.
+To obtain the stronger entropy conclusion, let
+\(f_j(y,t)=b_{\epsilon_j}*\sigma_y(t)\).
+Whenever \(|t-|x-y||\le\epsilon_j/2\), the interval defining
+\(f_j(y,t)\) is contained in
+\([|x-y|-\epsilon_j,|x-y|+\epsilon_j]\), so
+\(f_j(y,t)\le H_{\epsilon_j}(x,y)\).
+Tonelli yields
+\begin{align*}
+ \int f_j\log(1+f_j)\,d\nu\,dt
+ &\le\int\log(1+H_{\epsilon_j})\,d\Pi_A\\
+ &\le\int\log(1+F_{\epsilon_j})\,d\Pi_A
+       +\int N_{\epsilon_j}\,d\Pi_A\\
+ &\le C_0+C\epsilon_j^\kappa.
+\end{align*}
+Here \(\log(1+F+N)\le\log(1+F)+N\).
+Fibrewise differentiation of the now absolutely continuous law gives
+\(f_j\to f\) for \(d\nu\,dt\)-almost every point.
+Fatou proves the claimed entropy bound.
+\end{proof}
+
+The logarithmic test is weaker than a uniform positive fractional moment
+of \(F_\epsilon\). The distinction is real even for ordinary scalar
+densities: the probability density
+\[
+ f(t)=\frac{2\,\mathbf1_{(0,e^{-1})}(t)}
+              {t(\log(1/t))^3}
+\]
+belongs to \(L\log L\) but to no \(L^{1+\beta}\), \(\beta>0\).
+For completeness, its own crowding averages have uniformly bounded
+logarithmic moments. Put
+\(H_\epsilon(t)=\epsilon^{-1}\int_{t-\epsilon}^{t+\epsilon}f(u)du\),
+and let \(I\) be a fixed finite interval containing the support.
+Jensen applied with probability \(f(t)dt\) gives
+\[
+ \int f\log(1+H_\epsilon)
+ \le\int f\log f+\log\!\int_I(1+H_\epsilon)
+ \le\int f\log f+\log(|I|+2).
+\]
+The substitution \(v=\log(1/t)\) verifies both the entropy integrability
+and the failure of every higher power. This scalar comparison asserts no
+new planar Frostman construction or dimension theorem.
+
+The substantive missing estimate is now explicit: beyond the curve
+\eqref{hardgap:curve}, prove positive mass below some fixed far-crowding
+threshold, or prove one of the stronger tail or moment bounds above.
+The dimensions alone have not supplied any of these new bounds here.

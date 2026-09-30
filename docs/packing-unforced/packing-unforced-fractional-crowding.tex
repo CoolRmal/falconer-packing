@@ -1,0 +1,172 @@
+\subsection{Fractional moments and rich near-bisector incidences}
+\label{crowding:fractional-section}
+
+Retain the fixed positive kernel and the notation
+\(\Pi_A,\sigma_y,\Lambda_A,H_\varepsilon=N_\varepsilon+F_\varepsilon\)
+of Section~\ref{crowding:section}. The criterion below permits an
+unbounded ordinary collision integral. It supplies regularity of the
+full selected law, whereas Proposition~\ref{crowding:positive} requires
+only a positive absolutely continuous component.
+
+\begin{proposition}[Fractional far crowding]\label{crowding:fractional}
+Fix \(0<\gamma<1\). If some sequence \(\varepsilon_j\to0\) satisfies
+\[
+ L:=\sup_j\int F_{\varepsilon_j}^{\gamma}\,d\Pi_A<\infty,
+\]
+then \(\Lambda_A\) has an \(L^{1+\gamma}(d\nu\,dt)\) density \(f\),
+with \(\|f\|_{1+\gamma}^{1+\gamma}\le L\).
+In particular, the same conclusion holds for every
+\(0<\gamma<\min\{1,\beta\}\) if, uniformly along this sequence,
+\begin{equation}\label{crowding:fartail}
+ \Pi_A\{F_\varepsilon>t\}\le C_*t^{-\beta}
+ \qquad(t\ge1)
+\end{equation}
+for some \(\beta>0\).
+\end{proposition}
+
+\begin{proof}
+Let \(\varphi_\varepsilon=\varepsilon^{-1}
+\mathbf1_{[-\varepsilon/2,\varepsilon/2]}\), and write
+\(f_\varepsilon(y,t)=\varphi_\varepsilon*\sigma_y(t)\).
+Tonelli gives
+\[
+ \int f_\varepsilon^{1+\gamma}\,d\nu\,dt
+ =\int d\nu(y)\int d\sigma_y(r)\,
+  \varepsilon^{-1}\int_{|t-r|\le\varepsilon/2}
+                    f_\varepsilon(y,t)^\gamma\,dt.
+\]
+For every \(t\) in the inner interval,
+\(f_\varepsilon(y,t)\le
+\varepsilon^{-1}\sigma_y([r-\varepsilon,r+\varepsilon])\).
+Pulling \(r\) back to \(|x-y|\), and using subadditivity, yields
+\begin{align}
+ \int f_\varepsilon^{1+\gamma}\,d\nu\,dt
+ &\le\int H_\varepsilon^\gamma\,d\Pi_A\notag\\
+ &\le\int F_\varepsilon^\gamma\,d\Pi_A
+   +\Pi_A(\R^2\times\R^2)^{1-\gamma}
+       \left(\int N_\varepsilon\,d\Pi_A\right)^\gamma.
+ \label{crowding:fractionalnear}
+\end{align}
+The last term tends to zero by \eqref{crowding:near}. This application
+of concavity is on the original fixed selected pair measure; it changes
+neither selection factor. Weak compactness in \(L^{1+\gamma}\),
+testing against continuous functions, and lower semicontinuity identify
+the limit with \(\Lambda_A\) and give the asserted norm bound.
+Finally, layer cake and \(\Pi_A(\R^2\times\R^2)\le1\) give
+\[
+ \int F_\varepsilon^\gamma\,d\Pi_A
+ \le1+\frac{\gamma C_*}{\beta-\gamma}
+ \qquad(\gamma<\beta),
+\]
+proving the tail implication.
+\end{proof}
+
+The fractional hypothesis is strictly weaker than uniform quadratic
+collision control at the level of radial laws. For example, fix
+\(0<\beta\le1\), set \(a=(1+\beta)^{-1}\), and consider the
+probability \(d\sigma(t)=(1-a)t^{-a}\mathbf1_{(0,1)}dt\).
+Its density belongs to every \(L^{1+\gamma}\) with \(\gamma<\beta\),
+but not to \(L^2\). Moreover
+\[
+ \varepsilon^{-1}\sigma([r-\varepsilon,r+\varepsilon])
+ \le C(r+\varepsilon)^{-a},\qquad
+ \sigma\{H_\varepsilon>t\}\le Ct^{-\beta}\quad(t\ge1),
+\]
+uniformly in \(\varepsilon\). Its first crowding moment diverges:
+on \(r\ge2\varepsilon\) it dominates a constant times
+\(\int_{2\varepsilon}^1r^{-2a}dr\).
+This verifies the functional distinction; it is not claimed to be
+a new planar example with the dimensional hypotheses of the main theorem.
+
+Here is a geometric sufficient condition for the fractional moment.
+Rescale the source support once so its diameter is at most one. For
+\(x\ne x'\), set
+\[
+ \theta_{x,x'}=\frac{x-x'}{|x-x'|},\qquad
+ c_{x,x'}=\frac{|x|^2-|x'|^2}{2|x-x'|}.
+\]
+For dyadic \(0<u\le1\), put
+\begin{equation}\label{crowding:richquantity}
+ Q_{\varepsilon,u}(x,y)
+ =\frac1{\varepsilon u^{s-1}}
+  \int_{u/2<|x-x'|\le u} a_A(x',y)
+   \mathbf1_{\{|y\cdot\theta_{x,x'}-c_{x,x'}|
+                    \le 2b_0\varepsilon/u\}}\,d\mu(x').
+\end{equation}
+This counts source partners whose perpendicular bisectors pass near
+the retained pin. The normalization is \(\varepsilon u^{s-1}\),
+and rich pairs are measured using \(\Pi_A\), so both factors from
+the same fixed positive kernel are retained.
+
+\begin{proposition}[A rich-incidence tail criterion]
+\label{crowding:richtail}
+Suppose \(\beta>0\), \(\varkappa\ge0\), and \(C_*\ge1\) satisfy,
+uniformly along \(\varepsilon_j\to0\), for every dyadic
+\(u>\varepsilon_j^\alpha\),
+\begin{equation}\label{crowding:richhyp}
+ \Pi_A\{Q_{\varepsilon_j,u}>t\}
+ \le C_*u^{-\varkappa}t^{-\beta}\quad(t\ge1),
+ \qquad \varkappa<\beta(s-1).
+\end{equation}
+Then \(\Lambda_A\) has an \(L^{1+\gamma}(d\nu\,dt)\) density for
+every \(0<\gamma<\min\{1,\beta\}\).
+\end{proposition}
+
+\begin{proof}
+A distance collision with \(u/2<|x-x'|\le u\) implies
+\[
+ 2|x-x'|\,|c_{x,x'}-y\cdot\theta_{x,x'}|
+ =\big||x-y|^2-|x'-y|^2\big|\le2b_0\varepsilon.
+\]
+It is therefore counted in \eqref{crowding:richquantity}, giving
+\[
+ F_\varepsilon(x,y)
+ \le\sum_{\substack{u\text{ dyadic}\le1\\u>\varepsilon^\alpha}}
+           u^{s-1}Q_{\varepsilon,u}(x,y).
+\]
+The annulus crossing the source cutoff may count extra pairs, which
+only increases this upper bound. Combining \eqref{crowding:richhyp}
+with the bound one for every level-set mass, and splitting layer cake
+at \((C_*u^{-\varkappa})^{1/\beta}\), gives
+\[
+ \int Q_{\varepsilon,u}^\gamma\,d\Pi_A
+ \le\frac\beta{\beta-\gamma}
+       C_*^{\gamma/\beta}u^{-\varkappa\gamma/\beta}.
+\]
+Subadditivity now yields
+\[
+ \int F_\varepsilon^\gamma\,d\Pi_A
+ \le\frac\beta{\beta-\gamma}C_*^{\gamma/\beta}
+       \sum_{u\text{ dyadic}\le1}
+         u^{\gamma(s-1-\varkappa/\beta)}<\infty.
+\]
+Proposition~\ref{crowding:fractional} applies.
+\end{proof}
+
+For finite equal-mass source cells, \eqref{crowding:richquantity} is
+a normalized weighted count of cells satisfying the approximate
+bisector incidence. It is neither a source-only bisector mixed norm
+nor a pointwise bound on pin mass for each source pair.
+
+The missing input is \eqref{crowding:richhyp}. Angular domination alone
+gives only
+\[
+ \int Q_{\varepsilon,u}\,d\Pi_A
+ \le CA(1+u^2/\varepsilon).
+\]
+Indeed the bisector band implies a distance collision with a fixed
+constant enlargement of its width, and the near-source angular
+calculation applies at radius \(u\). If the pins are additionally
+\(t\)-Frostman, \(1<t\le2\), covering the bisector strip instead gives
+\[
+ \int Q_{\varepsilon,u}\,d\Pi_A
+ \le C(u/\varepsilon)^{2-t}.
+\]
+Its strip width is \(O(\varepsilon/u)\), its pin mass is at most
+\(C(\varepsilon/u)^{t-1}\), and source partners have mass at most
+\(Cu^s\), proving this bound. For fixed \(u>0\), these estimates
+may diverge as \(\varepsilon\to0\) when \(t<2\).
+Markov's inequality or fractional interpolation retains that loss.
+No relation between the incidence exponents
+\(\beta,\varkappa\) and Hausdorff/packing dimensions is proved here;
+in particular \eqref{crowding:richhyp} is not a new dimensional theorem.

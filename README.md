@@ -85,6 +85,14 @@ radial interval bounded away from zero. Thus choosing a different source measure
 alone cannot supply the proposed quadratic bisector hypothesis. This is a
 norm obstruction, not a counterexample to positive-length distances.
 
+The new positive-selection reduction weakens the analytic target: at arbitrarily
+fine scales, it suffices that a fixed positive mass of source–pin pairs has
+bounded normalized far-annulus crowding. The proof gives a nonzero absolutely
+continuous component and a quantitative positive-length conclusion. A
+logarithmic crowding moment gives an integrable entropy density; a fractional
+moment gives an integrable power greater than one. The dimension cutoff is
+unchanged: the required crowding bounds remain to be proved in a larger region.
+
 For a Borel set $E \subseteq \mathbb{R}^2$ write $\Delta_y(E) = \{|x-y| : x \in E\}$, put
 
 $$d_0 = \frac{9+\sqrt{33}}{12}, \qquad d_1 = \frac{5+\sqrt{97}}{12},$$
