@@ -22,6 +22,7 @@ import FalconerPacking.HardPointPartition
 import FalconerPacking.RealChainCompression
 import FalconerPacking.RealChainRounding
 import FalconerPacking.HardGapProfile
+import FalconerPacking.FiniteHardGapProfile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -37,6 +38,7 @@ import FalconerPacking.GaussianEnergy
 import FalconerPacking.GaussianWeightedEnergy
 import FalconerPacking.GaussianFrostman
 import FalconerPacking.GaussianBallEnergy
+import FalconerPacking.WeakDensityLimit
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
