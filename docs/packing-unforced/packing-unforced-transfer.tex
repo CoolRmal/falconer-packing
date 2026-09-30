@@ -19,9 +19,11 @@ subsection has the following properties:
  c_{i,j}=g_i(n_{j+1})-\min_{[n_{j+1},n_j]}g_i.\nonumber
 \end{gather}
 Here \(0<\zeta<1/8\), \(K_0\) is fixed independently of \(R=2^N\),
-and the depths lie on the \(T\)-grid. The exponent \(\mathcal C\) is the
-bound supplied by the profile argument; here we set \(\mathcal C=C(s,u)\)
-in \eqref{fprof:A}. No depth is required to equal
+and the depths lie on the \(T\)-grid. The exponent \(\mathcal C\) is any
+bound supplied by a profile argument with the stated edge count and
+perturbation errors. For the original finite-profile criterion it is
+\(C(s,u)\) in \eqref{fprof:A}; for the minimum refinement it is
+\(V(s-1,u-1)\) in \eqref{minimum:cost}. No depth is required to equal
 \(N/2\). We retain \(N\in4T\mathbb N\), so the standard angular scale
 used below is dyadic.
 
@@ -288,6 +290,9 @@ We prove
                    +\operatorname{RapDec}(R).
 \end{equation}
 Fix a parent cube \(P=Q_{j+1}\) and a parent angular label.
+Proposition~\ref{uf:embeddingprop} below gives a full selected-subset
+Plancherel and weighted-kernel proof of the step; we describe its geometry
+here in the notation of this iteration.
 For its level-\(j\) descendants, the Fourier supports of the functions
 on the right of \eqref{fprof:identity} lie in balls of radius
 \(O_T(R/r_j)\) with bounded overlap. The fixed frequency smoothing

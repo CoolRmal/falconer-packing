@@ -1,0 +1,556 @@
+\subsection{Parameters and statement}
+
+Throughout this section assume
+\begin{equation}\label{minimum:range}
+ \frac18\le a\le\frac16,\qquad 2a\le b\le\frac12.
+\end{equation}
+Define
+\begin{align*}
+ k&=2b-a,&q&=\frac b{k},&h&=\frac{1+q}{2},\\
+ \lambda&=\frac{1-2b}{4b},&L_0&=\frac{1-2a}{4},&
+ E_1&=\frac{1-q}{3},\\
+ E_2&=\frac{(b-a)(1+6b-4a)}{6k},&&&
+ A_E&=\frac{1-a-3b}{3},\\
+ \sigma_E&=\frac{6b-1-2a}{3a},&
+ S_F&=\frac{1-a}{3}-h,&\sigma_F&=\frac{a+2}{3a},\\
+ S_V&=\frac{1-a}{3}-\frac{(1-b)h}{2},&
+ \sigma_V&=\frac{1-a}{6a}.&&
+\end{align*}
+All three quantities \(\sigma_E,\sigma_F,\sigma_V\) are strictly positive.
+For \(\sigma_E\), use \(6b-1-2a\ge10a-1\ge1/4\).
+Set
+\begin{align}
+ J_E&=\frac{\sigma_E L_0+\lambda A_E}{\sigma_E+\lambda}
+     =\frac{(1-a)(b-a)(6b-1)}{24b^2-14ab+3a-4b},
+       \label{minimum:JE}\\
+ J_F&=\frac{\sigma_F L_0+\lambda S_F}{\sigma_F+\lambda},
+       \label{minimum:JF}\\
+ J_V&=\frac{\sigma_V L_0+\lambda S_V}{\sigma_V+\lambda}.
+       \label{minimum:JV}
+\end{align}
+In particular, all the denominators in these expressions are positive.
+The refined cost is the explicit continuous function
+\begin{equation}\label{minimum:cost}
+ V(a,b)=\max\bigl\{\min(E_2,J_E),\ \min(J_F,J_V)\bigr\}.
+\end{equation}
+
+\begin{lemma}[Profile bound retaining two actual minima]\label{minimum:profile}
+Assume \eqref{minimum:range}. Let \(g:[0,N]\to\mathbb R\) be
+1-Lipschitz, with \(ax\le g(x)\le bx\). If
+\(7N/8\le n_0<N\), there is an admissible decreasing chain from
+\(n_0\) to zero, without a prescribed intermediate endpoint, whose cost
+is at most \(NV(a,b)\). Its number of edges satisfies
+\[
+ K\le C\left(1+\log\frac{N}{N-n_0}\right)
+\]
+with an absolute constant \(C\). On a grid of mesh \(T\) containing
+\(0,n_0,N\), the additional cost is \(O(KT)\). Additive barrier errors
+of size \(\epsilon N\) increase this to
+\(O(K\epsilon N+KT)\).
+\end{lemma}
+
+The proof is elementary. It uses an affine potential, the location and value
+of a minimum on \([q,1]\), and a reflection that raises successive new
+minima to the same height. We provide the construction, including its
+bounded-length and stability assertions.
+
+\subsection{Two reusable chain constructions}
+Normalize \(N=1\). Write \(\operatorname{Var}^-(g;I)\) for the negative
+variation of \(g\) on an interval \(I\), in the direction of increasing
+coordinate. Every edge cost is at most this negative variation on its
+interval. Since a Lipschitz function is absolutely continuous,
+\begin{equation}\label{minimum:variation}
+ \operatorname{Var}^-(g;[v,w])
+ =\int_v^w(-g')_+\le\frac{w-v+g(v)-g(w)}2.
+\end{equation}
+
+The following potential construction will be used twice. Suppose that
+\(H(z)=cz+d\), where \(c\ge1/2\), majorizes the profile at all left
+endpoints being considered. Define
+\[
+ \Lambda(x)=H(2x-1)-g(x).
+\]
+Then \(\Lambda\) is nondecreasing, and almost everywhere
+\begin{equation}\label{minimum:potential}
+ (-g')_+\le\frac{2c-g'}{2c+1}=\frac{\Lambda'}{2c+1}.
+\end{equation}
+Indeed, for \(g'\ge0\) the inequality is immediate, while for
+\(g'\le0\) it reduces to \(g'\ge-1\). Through the region
+\(\Lambda>0\), use maximal admissible downward edges, shortening the
+last edge to the lower boundary of that region. The cost is at most
+\(\Lambda(n_0)_+/(2c+1)\), by \eqref{minimum:variation} and
+\eqref{minimum:potential}. If \(\Lambda(n)\le0\), then
+\[
+ g(2n-1)\le H(2n-1)\le g(n),
+\]
+so moving to a leftmost minimum on \([2n-1,n]\) gives a zero-cost
+edge. Each such endpoint is strictly smaller unless the desired terminal
+point has already been reached.
+
+In particular, suppose that \(t\) is a minimum of \(g\) on
+\([t,1]\), with \(g(t)=m\), and put \(e=g(1)\). The cone
+\(H(z)=m+z-t\) majorizes \(g\) on \([t,1]\). Its potential is
+nonpositive at \((1+t)/2\). The preceding construction, with \(c=1\),
+followed by a free jump to \(t\) as soon as the current endpoint is at
+most \((1+t)/2\), gives a chain to \(t\), whenever \(n_0\ge t\),
+of cost at most
+\begin{equation}\label{minimum:cone}
+ \frac{1-t+m-e}{3}.
+\end{equation}
+This quantity is nonnegative by the Lipschitz inequality. No linear upper
+barrier is needed for this cone construction. Zero-cost steps before its
+last jump stay in \([t,1]\), since their left endpoints are at least
+\(t\).
+
+Here and below, the construction can first be performed for a piecewise
+affine profile. A chosen interval minimum is either a breakpoint or the
+left endpoint of the interval, except for constant pieces, where the
+leftmost convention again chooses a breakpoint or the left endpoint.
+There are consequently finitely many steps: steps that do not encounter
+a new breakpoint double the complementary depth \(1-n\). The general
+continuous case follows by the compactness argument at the end of the
+proof. This avoids assuming termination of an arbitrary infinite sequence
+of successive minima.
+
+\subsection{The expanded free interval}
+For \(n\le q\), a free continuation to zero is always possible. If
+\(1/2<n\le q\), then
+\[
+ g(2n-1)\le b(2n-1)\le an\le g(n).
+\]
+Choose a leftmost interval minimum to obtain a zero-cost edge. When
+\(n\le1/2\), jump directly to zero. This jump is free since
+\(g(0)=0\) and \(g\ge0\).
+
+Choose a minimum point \(t\) of \(g\) on \([q,1]\), and write
+\[
+ m=g(t),\qquad e=g(1).
+\]
+We shall retain the following relations, rather than immediately replacing
+the minimum by the lower barrier:
+\begin{equation}\label{minimum:actual-relations}
+ t\ge q,\qquad at\le m\le bq,\qquad m\le e,\qquad e\ge a.
+\end{equation}
+Define
+\[
+ Q_m=\frac{1+m/b}{2}.
+\]
+Then \(q\le Q_m\le h\). For \(q<n\le Q_m\),
+\[
+ g(2n-1)\le b(2n-1)\le m\le g(n).
+\]
+Thus the free interval actually extends to \(Q_m\), by the same
+leftmost-minimum construction and the already proved free continuation
+below \(q\).
+
+On \(z\ge m/b\), the affine function
+\[
+ H_m(z)=\frac z2+\left(b-\frac12\right)\frac mb
+\]
+majorizes \(bz\). Its potential at \(Q_m\) is
+\(m-g(Q_m)\le0\). Apply the potential construction with \(c=1/2\)
+down to the expanded free interval, then continue for free. This gives
+an always available chain of cost at most
+\begin{equation}\label{minimum:floor}
+ L(m,e)=\frac{1-2e}{4}-\lambda m
+ \le L_0-\lambda m.
+\end{equation}
+The first expression is nonnegative: it is
+\((H_m(1)-g(1))/2\). If the initial point is already in the free
+interval, its zero cost satisfies the same estimate.
+
+We will compare this chain with chains whose costs increase with \(m\).
+For any \(\sigma>0\), \(\lambda\ge0\), and real \(A\), the elementary
+intersection inequality is
+\begin{equation}\label{minimum:intersection}
+ \min\{L_0-\lambda m,A+\sigma m\}
+ \le\frac{\sigma L_0+\lambda A}{\sigma+\lambda}
+ \quad(m\in\mathbb R).
+\end{equation}
+To check it, split at \(m=(L_0-A)/(\sigma+\lambda)\). To the left,
+use the increasing line; to the right, use the decreasing line. The
+argument includes \(\lambda=0\).
+
+\subsection{An early minimum}
+Suppose first that \(t\le h\). In the parameter range
+\eqref{minimum:range}, \(q\le2/3\), so \(h\le5/6<7/8\le n_0\).
+The cone construction \eqref{minimum:cone} can therefore reach \(t\).
+Choose a minimum point \(v\) on \([2t-1,q]\). This interval is
+nonempty because \(t\le h\). The edge \(t\to v\) is admissible
+and has cost
+\[
+ (g(v)-m)_+\le\bigl(b(2t-1)-m\bigr)_+.
+\]
+Indeed, \(g\ge m\) on \([q,t]\), and \(g(v)\) is the minimum
+on \([v,q]\). Below \(q\) we continue for free. This yields cost
+\begin{equation}\label{minimum:early-route}
+ \frac{1-t+m-e}{3}+\bigl(b(2t-1)-m\bigr)_+.
+\end{equation}
+
+If the positive part vanishes, \(m\le e\) implies that this cost
+is at most \((1-t)/3\le E_1\). Otherwise it is
+\[
+ A=\frac{1-e-3b+(6b-1)t-2m}{3}.
+\]
+Since \(e\ge a\), \(m\ge at\), and \(t\le h\),
+\begin{equation}\label{minimum:earlyE2}
+ A\le\frac{1-a-3b+(6b-1-2a)h}{3}=E_2.
+\end{equation}
+Alternatively \(t\le m/a\) and \(6b-1>0\) give
+\[
+ A\le A_E+\sigma_E m.
+\]
+Comparison with \eqref{minimum:floor}, using
+\eqref{minimum:intersection}, bounds the cheaper chain by \(J_E\).
+Consequently the early case has cost at most
+\begin{equation}\label{minimum:early-bound}
+ \max\{E_1,\min(E_2,J_E)\}.
+\end{equation}
+
+\subsection{A late minimum and reflection}
+Now suppose \(t>h\). Choose a minimum point \(u\) on \([q,h]\),
+and put
+\[
+ w=g(u),\qquad z=b(2u-1).
+\]
+Here \(q\le u\le h\), \(w\ge m\), and \(2u-1\le q\).
+We distinguish whether the terminal left interval is certainly free.
+
+First suppose \(w\le z\). Define a nondecreasing function
+\[
+ r(x)=\begin{cases}
+ 0,&x\le u,\\
+ w-\min_{[u,x]}g,&x\ge u,
+ \end{cases}
+ \qquad f(x)=g(x)+r(x).
+\]
+The reflected function \(f\) is 1-Lipschitz. Here is a direct check.
+For \(u\le x<y\), if the running minimum does not decrease on
+\([x,y]\), then \(r(x)=r(y)\), so the assertion follows for \(g\).
+Otherwise a new minimum is attained at some \(v\in[x,y]\), and
+\[
+ f(y)=g(y)+w-g(v),\qquad f(x)\ge w.
+\]
+It follows that \(f(y)-f(x)\le y-v\le y-x\). The lower bound follows
+from \(r(y)\ge r(x)\) and \(g(y)-g(x)\ge-(y-x)\). Gluing at
+\(u\) handles intervals crossing \(u\).
+
+Moreover, \(f\ge w=f(u)\) on \([q,1]\) and
+\(f(1)=e+w-m\). Apply the cone construction to \(f\), reaching
+\(u<n_0\) with cost at most
+\[
+ \frac{1-u-e+m}{3}.
+\]
+The function is unchanged to the left of \(u\). A terminal jump
+to a minimum on \([2u-1,q]\) has cost at most \((z-w)_+\), after
+which the original free continuation below \(q\) applies. The
+reflection need not satisfy the original linear upper barrier to the
+right of \(u\): the cone uses only its Lipschitz property and its
+minimum, while the terminal and free portions use its unchanged left part.
+
+For every edge \(n\to v\), monotonicity of \(r\) gives
+\[
+ c_g(v,n)\le c_f(v,n)+r(n)-r(v).
+\]
+The extra terms telescope over the entire chain, to at most
+\(r(n_0)\le w-m\). We have therefore constructed a chain for \(g\)
+of cost at most
+\begin{equation}\label{minimum:reflection}
+ \frac{1-u-e-2m}{3}+\max(w,z).
+\end{equation}
+In the present case \(w\le z\), this is
+\[
+ \frac{1-e-3b+(6b-1)u-2m}{3}\le E_2,
+\]
+using \(e\ge a\), \(u\le h\), \(m\ge at\ge ah\), and
+\(6b-1\ge0\). The floor chain also costs at most
+\(L_0-\lambda ah\). At \(m=ah\), the increasing line
+\(A_E+\sigma_E m\) has value \(E_2\). Consequently
+\eqref{minimum:intersection} implies
+\[
+ \min\{E_2,L_0-\lambda ah\}\le J_E.
+\]
+The late case with \(w\le z\) is bounded by \(\min(E_2,J_E)\).
+
+\subsection{A free terminal interval: length and variation}
+It remains to consider \(t>h\) and \(w\ge z\). If \(t\le n_0\),
+use the cone to reach \(t\), then maximal admissible edges to reach
+\(h\). The edge \(h\to u\) is admissible since \(u\ge q=2h-1\),
+and it is free since \(u\) minimizes \(g\) on \([q,h]\). The next
+edge to a minimum on \([2u-1,q]\) is also free: its cost is at most
+\((z-w)_+=0\). Finish with the free continuation below \(q\).
+
+The middle chain from \(t\) to \(h\) has cost at most \(t-h\).
+Combining with the cone yields
+\[
+ \frac{1-t+m-e}{3}+t-h
+ =\frac{1-e-3h+2t+m}{3}
+ \le S_F+\sigma_F m,
+\]
+where the last step uses \(e\ge a\) and \(t\le m/a\).
+Comparison with the floor chain proves the bound \(J_F\).
+
+For the same middle chain, \eqref{minimum:variation} gives the sharper
+alternative
+\[
+ \operatorname{Var}^-(g;[h,t])
+ \le\frac{t-h+g(h)-m}{2}
+ \le\frac{t-h+bh-m}{2}.
+\]
+Its total cost with the cone is therefore at most
+\[
+ \frac{1-e}{3}-\frac{(1-b)h}{2}+\frac{t-m}{6}
+ \le S_V+\sigma_Vm.
+\]
+Comparison with the floor chain proves the bound \(J_V\).
+
+If \(t>n_0\), omit the cone and start the middle chain at \(n_0\).
+Its length is at most \(t-h\) and its negative variation is at most
+\(\operatorname{Var}^-(g;[h,t])\). The omitted cone cost
+\((1-t+m-e)/3\) is nonnegative. Both displayed upper bounds thus
+remain valid. In all cases \(n_0>h\), as checked in the early case.
+The late case with \(w\ge z\) is bounded by \(\min(J_F,J_V)\).
+
+\subsection{Removing a redundant term and controlling the chain}
+The cases proved so far give cost at most
+\[
+ \max\{E_1,\min(E_2,J_E),\min(J_F,J_V)\}.
+\]
+In fact \(E_1\) is redundant. First,
+\[
+ \frac{E_2}{E_1}=\frac{1+6b-4a}{2}\ge1.
+\]
+Second, the numerator of \(L_0-\lambda ah-E_1\), after multiplication
+by its positive denominator \(24b(2b-a)\), is
+\[
+ (4-6a)b^2+(6a^2-7a)b+3a^2.
+\]
+Writing \(b=2a+x\), \(x\ge0\), this is
+\[
+ a^2(5-12a)+9a(1-2a)x+(4-6a)x^2\ge0.
+\]
+At \(m=ah\), both lines used to define \(J_E\) consequently have
+value at least \(E_1\). Their intersection value is at least their
+minimum at any specified point, by \eqref{minimum:intersection}.
+Thus \(J_E\ge E_1\), proving precisely the cost
+\eqref{minimum:cost}.
+
+Each positive-potential or middle portion consists of maximal edges
+\(n\to2n-1\), apart from a bounded number of terminal shortened edges.
+Such a maximal edge doubles \(1-n\). Consecutive zero-cost edges
+can be merged whenever their union is admissible; the union still has
+zero cost because its lower endpoint is a minimum on both constituent
+intervals. After all possible adjacent merges, any two consecutive retained
+edges, with endpoints \(n_i>n_{i+1}>n_{i+2}\), satisfy
+\[
+ 2n_i-n_{i+2}>1,\quad\text{hence}\quad
+ 1-n_{i+2}>2(1-n_i).
+\]
+Every construction above has only a bounded number of such portions and
+special terminal edges. It follows that its number of edges is at most
+\(C(1+\log(1/(1-n_0)))\).
+
+To justify the continuous assertion fully, interpolate the given profile
+on finer and finer partitions containing \(0,n_0,1\). Linear
+interpolation preserves both linear barriers and the Lipschitz constant.
+Run the finite piecewise affine constructions proved above. Their costs
+obey the same bound, and their lengths have the uniform bound just
+established. Pad endpoint lists by repeated endpoints and pass to a
+subsequence. The profiles converge uniformly. Minima on intervals vary
+continuously under uniform convergence and convergence of their endpoints.
+Admissibility is closed. The limiting chain therefore has the asserted
+cost and length; removing repeated endpoints gives a strictly decreasing
+chain.
+
+For a prescribed grid of mesh \(T\), round every endpoint down. If
+\(m<n\), \(m\ge2n-N\), and \(N/T\) is integral, then
+\[
+ \left\lfloor\frac mT\right\rfloor
+ \ge \left\lfloor\frac{2n-N}{T}\right\rfloor
+ \ge2\left\lfloor\frac nT\right\rfloor-\frac NT.
+\]
+Thus admissibility is preserved. An endpoint moves by at most \(T\),
+and the minimum of a 1-Lipschitz function changes by at most \(T\)
+under this change of interval. The increase in cost is at most \(2T\)
+per edge. Remove repetitions. Finally, clamping between \(ax\) and
+\(bx\) preserves the Lipschitz constant and changes a profile with
+approximate barriers uniformly by at most \(\epsilon N\). Each edge
+cost changes by at most twice this amount. These arguments prove all
+stability and length claims in Lemma~\ref{minimum:profile}.
+
+\subsection{The exact cutoff is a unique root}
+\begin{proposition}\label{minimum:root}
+For every \(a\in[1/8,1/6]\), there is a unique
+\(b_*(a)\in[2a,1/2]\) such that \(V(a,b_*(a))=a\).
+The function \(b_*\) is continuous,
+\[
+ b_*(1/8)=1/4,\qquad b_*(1/6)=1/2,
+\]
+and \(2a<b_*(a)<1/2\) in the interior. For parameters
+\eqref{minimum:range},
+\[
+ V(a,b)<a\quad\Longleftrightarrow\quad b<b_*(a).
+\]
+\end{proposition}
+
+\begin{proof}
+We first show that \(V(a,b)\) is strictly increasing in \(b\), for
+fixed \(a\). Both factors \((b-a)/(2b-a)\) and \(1+6b-4a\)
+are positive and strictly increasing, so \(E_2\) is strictly increasing.
+Writing \(D_E=24b^2-14ab+3a-4b>0\), differentiation gives
+\[
+ \frac{\partial J_E}{\partial b}
+ =\frac{a(1-a)(60b^2-12b+1-4a)}{D_E^2}>0.
+\]
+For the last sign, the quadratic in \(b\) is increasing for
+\(b\ge2a\ge1/4\); at \(b=2a\) it is
+\(240a^2-28a+1\ge5/4\), since its derivative in \(a\) is
+positive for \(a\ge1/8\).
+
+For \(J_F,J_V\), the corresponding \(\sigma\) is independent of
+\(b\), \(\lambda'(b)<0\), and \(S_F,S_V\) are strictly increasing
+in \(b\). Indeed,
+\[
+ q'(b)=-\frac a{(2b-a)^2}<0,\qquad h'=q'/2<0,
+\]
+so \(S_F'=-h'>0\), and
+\(S_V'=h/2-(1-b)h'/2>0\). Both \(S_F\) and \(S_V\) are less
+than \(L_0\). The former is negative; for the latter,
+\[
+ S_V-L_0=\frac{1+2a}{12}-\frac{(1-b)h}{2}
+ \le\frac19-\frac3{16}<0,
+\]
+using \(h\ge3/4\). Thus the derivative of either intersection value
+\(J=(\sigma L_0+\lambda S)/(\sigma+\lambda)\) is
+\[
+ J'=\frac{\sigma\lambda'(S-L_0)+\lambda(\sigma+\lambda)S'}
+              {(\sigma+\lambda)^2}>0.
+\]
+The minimum or maximum of finitely many strictly increasing functions is
+strictly increasing: compare all their values at two ordered arguments.
+This proves the strict monotonicity and continuity of \(V\).
+
+At \(b=2a\), direct substitution gives
+\[
+ E_2=\frac{1+8a}{18}<a,\qquad
+ J_F=\frac{5-2a}{2(19-4a)},\qquad
+ J_V=\frac{3-2a-16a^2}{4(7-16a)}.
+\]
+In the stated range \(J_V\le a\), with equality only at \(a=1/8\):
+the numerator of \(J_V-a\) is
+\(3(1-8a)(1-2a)\). At \(a=1/8\), \(J_F>a\), so
+\(V(1/8,1/4)=1/8\); in the interior \(V(a,2a)<a\).
+At \(b=1/2\),
+\[
+ J_E=J_F=J_V=L_0,\qquad E_2=\frac{1-2a}{3}>L_0,
+\]
+and hence \(V(a,1/2)=(1-2a)/4\ge a\), with equality only at
+\(a=1/6\). The intermediate value theorem and strict monotonicity
+give the unique root and the claimed endpoint and inequality statements.
+
+For continuity, let \(a_j\to a\) and take any convergent subsequence
+of \(b_*(a_j)\), with limit \(b\). The parameter constraints pass
+to the limit, and joint continuity gives \(V(a,b)=a\). Uniqueness
+implies \(b=b_*(a)\). Compactness then proves continuity of the full
+sequence, including at the endpoints.
+\end{proof}
+
+\subsection{Comparison, an exact example, and numerical values}
+The new bound improves the previous low-slope cost
+\[
+ U(a,b)=\frac{(b-a)(1-a)}{2(2b-a)}
+       =\frac{(1-a)(1-q)}2.
+\]
+Here is an algebraic check that uses no numerical optimization. At
+\(m=aq\), the decreasing floor line has value \(U\); the increasing
+early line has value \(2U/3\), while the increasing free-terminal line
+has value
+\[
+ S_F+\sigma_F aq=-\frac{(1+2a)(1-q)}6<0.
+\]
+Both intersections therefore occur to the right of \(aq\). Their
+values satisfy \(J_E,J_F\le U\), strictly when \(b<1/2\) because
+then \(\lambda>0\). Consequently
+\begin{equation}\label{minimum:old-comparison}
+ V(a,b)\le U(a,b),
+ \qquad V(a,b)<U(a,b)\quad\hbox{if }b<1/2.
+\end{equation}
+
+At \(a=3/20\), \(b=7/20\), exact arithmetic gives
+\[
+ E_2=\frac5{33},\qquad J_E=\frac{187}{1255},\qquad
+ J_F=\frac{1000}{6919},\qquad J_V=\frac{937}{6424}.
+\]
+It follows by rational comparison that
+\[
+ V(3/20,7/20)=\frac{187}{1255},\qquad
+ \frac3{20}-V(3/20,7/20)=\frac1{1004}>0.
+\]
+This is the exact profile margin used for the example in the main theorem.
+The cutoff at this dimension also has a simple exact expression:
+\begin{equation}\label{minimum:exact-cutoff}
+ b_*(3/20)=\frac{7+\sqrt{13}}{30},\qquad
+ B_{\rm M}(23/20)=\frac{37+\sqrt{13}}{30}.
+\end{equation}
+To verify the root identification, put \(b=(7+\sqrt{13})/30\).
+Substitution gives \(J_E=3/20\) and
+\(E_2-3/20=(2\sqrt{13}-7)/60>0\). Also \(b<9/25\), and
+strict monotonicity together with the exact calculation
+\[
+ J_F(3/20,9/25)-3/20=-\frac{136}{51015}<0
+\]
+shows that \(\min(J_F,J_V)<3/20\). Thus
+\(V(3/20,b)=3/20\), and Proposition~\ref{minimum:root} identifies
+the claimed unique root.
+
+For convenient evaluation, the level equations for \(E_2,J_E,J_F,J_V\)
+to equal \(a\), after clearing positive denominators, are respectively
+\begin{align*}
+ 0={}&6b^2+(1-22a)b+10a^2-a,\\
+ 0={}&(6-30a)b^2+(20a^2-a-1)b+a-4a^2,\\
+ 0={}&(8a^2-34a+8)b^2+(-4a^3+4a^2-9a)b+a^2+8a^3,\\
+ 0={}&-18ab^3+(4-17a+94a^2)b^2
+            -(3a+19a^2+44a^3)b+16a^3-a^2.
+\end{align*}
+One can alternatively evaluate \eqref{minimum:cost} directly and use
+monotone bisection. The following decimals are illustrative evaluations of
+the unique root; they play no role in the proof or in the definition of
+\(b_*\).
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+\(a\)&\(b_*(a)\), approximately&Expression attaining the root\\
+\midrule
+\(0.125\)&\(0.250000000\)&\(J_V\)\\
+\(0.130\)&\(0.269213180\)&\(J_V\)\\
+\(0.135\)&\(0.289846951\)&\(J_V\)\\
+\(0.140\)&\(0.312168690\)&\(J_V\)\\
+\(0.142\)&\(0.322586562\)&\(J_F\)\\
+\(0.145\)&\(0.332270658\)&\(E_2\)\\
+\(0.150\)&\(0.353518376\)&\(J_E\)\\
+\(0.155\)&\(0.386846972\)&\(J_E\)\\
+\(0.160\)&\(0.427797338\)&\(J_E\)\\
+\(0.165\)&\(0.479534898\)&\(J_E\)\\
+\(1/6\)&\(0.500000000\)&\(J_E=J_F=J_V\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+Numerically, the active expressions change near
+\(a=0.140503259\), \(0.142267709\), and \(0.147793654\), in the
+order \(J_V,J_F,E_2,J_E\). These approximate transition locations
+are not assertions of an additional piecewise algebraic theorem; the
+proved, continuous, unique-root definition already covers the full interval.
+
+\begin{remark}[Distinction from the usual total-drop orientation]
+Keleti--Shmerkin's total-drop framework \cite[Definition 5.1 and
+Proposition 5.2]{ks} also combines interval minima with dyadically related
+endpoints. Its admissible partitions have neighboring scales in ratio at
+most two, and its summands subtract an interval minimum from the value at
+the smaller scale. Reflecting our coordinate, \(x=1-n\), turns our
+admissibility into \(x_{i+1}\le2x_i\), but turns our cost into
+\(f(x_{i+1})-\min_{[x_i,x_{i+1}]}f\), which uses the larger endpoint.
+The affine barriers are also reflected. Thus that proposition cannot be
+substituted with the same parameters for the lemma proved here. Our proof
+establishes the required orientation directly; it does not claim an
+optimal profile estimate in the present low-slope range.
+\end{remark}

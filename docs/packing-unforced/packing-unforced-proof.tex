@@ -36,6 +36,11 @@ Fourier estimate. The angular marks remain constant on each standard packet
 label; only the spectral calculation is subdivided more finely. This removes
 the prescribed midpoint from the scale-selection problem.
 
+The latest refinement retains the location and height of a tail minimum,
+and a second minimum on the preceding interval. Comparing several admissible
+chains yields a further improvement for Hausdorff dimensions between
+\(9/8\) and \(7/6\).
+
 \textbf{Scope.} The manuscript gives the complete mathematical argument using
 the explicitly cited established analytic inputs, including both analytic
 branches and the Borel-set reduction. Internal checks are not external
@@ -56,7 +61,27 @@ manuscript does not complete the unconditional formalization.
 \section{Statement and scope}
 For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
 \(\Delta_y(E)=\{|x-y|:x\in E\}\). All distances are Euclidean and
-\(|\cdot|\) denotes one-dimensional Lebesgue measure. Define
+\(|\cdot|\) denotes one-dimensional Lebesgue measure. The strongest sufficient
+curve proved in this manuscript is
+\begin{equation}\label{minimum:curve}
+ B_{\rm M}(d)=\begin{cases}
+ 2d-1,&1<d\le\dfrac98,\\[7pt]
+ 1+b_*(d-1),&\dfrac98<d<\dfrac76,\\[7pt]
+ \dfrac1{3-2d},&\dfrac76\le d\le\dfrac54.
+ \end{cases}
+\end{equation}
+Here \(b_*(a)\) is the unique solution in \([2a,1/2]\) of
+\(V(a,b)=a\), for the explicit rational minimum--maximum expression
+\eqref{minimum:cost} below. The proof establishes uniqueness, continuity,
+and the endpoint values \(b_*(1/8)=1/4\), \(b_*(1/6)=1/2\);
+thus this definition requires no numerical or optimization hypothesis.
+
+\begin{theorem}[Refined sufficient packing condition]\label{target:main}
+Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
+\(\PP E<B_{\rm M}(d)\), then \(|\Delta_y(E)|>0\) for some \(y\in E\).
+\end{theorem}
+
+The preceding, simpler sufficient curve remains useful for comparison:
 \begin{equation}\label{uf:curve}
  B_{\rm U}(d)=\begin{cases}
  2d-1,&1<d\le\dfrac87,\\[7pt]
@@ -64,7 +89,7 @@ For a Borel set \(E\subset\R^2\), write \(d=\HH E\), \(D=\PP E\), and
  \dfrac1{3-2d},&\dfrac76<d\le\dfrac54.
  \end{cases}
 \end{equation}
-\begin{theorem}[Sufficient packing condition]\label{target:main}
+\begin{theorem}[Simpler sufficient packing condition]\label{target:unforced}
 Let \(E\subset\R^2\) be Borel. If \(1<d=\HH E\le5/4\) and
 $$
  \PP E<B_{\rm U}(d),
@@ -86,15 +111,20 @@ included. For \(d>5/4\), GIOW already gives the conclusion with no packing
 restriction \cite{giow}. The endpoints of all branches in \eqref{uf:curve}
 agree, and the packing inequality is strict throughout.
 
-A second exact example is \(d=23/20=1.15\), \(D=33/25=1.32\).
-Its profile cost is \(289/1960\), giving the strict margin \(1/392\).
-The dimension cutoff there is \(133/100=1.33\).
+A new exact example is \(d=23/20=1.15\), \(D=27/20=1.35\).
+The refined profile cost is \(187/1255\), giving the strict margin
+\(1/1004\). The refined cutoff there is
+\((37+\sqrt{13})/30=1.353518376\ldots\),
+whereas \(B_{\rm U}(1.15)=1.33\) and the originally quoted cutoff was
+\(1.30\). These decimal values illustrate the exact root definition;
+they are not used in its proof.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=\textwidth]{../figures/packing-unforced.png}
-\caption{The new sufficient curve and the originally quoted curve. Values
-strictly below a curve are covered. No curve is asserted to be necessary.}
+\caption{The refined sufficient curve, the preceding unforced curve, and the
+originally quoted curve. The second panel isolates the latest improvement.
+Values strictly below a curve are covered. No curve is asserted to be necessary.}
 \end{figure}
 
 \subsection{Definitions and established inputs}
@@ -129,13 +159,15 @@ separation and chosen auxiliary parameters. They are uniform in frequency,
 regularized component, cube and cap. The notation \(\operatorname{RapDec}(R)\)
 means a quantity bounded by \(C_MR^{-M}\) for every fixed \(M>0\), uniformly
 in those indices. Summing polynomially many such errors preserves this property.
-The constants in losses \(R^{C_Kh}\) are independent of the regularization block
-size \(T\); fixed annular ratios depending on \(T\) only change multiplicative constants.
 
 
 \clearpage
 \input{packing-bound-original-branch.tex}
 \input{packing-unforced-finite-profile.tex}
+
+\clearpage
+\section{Refinement using the actual minima}\label{minimum:section}
+\input{packing-unforced-minimum.tex}
 
 \section{Algebra and proof of the dimension criterion}
 Put \(a=s-1\) and \(b=u-1\). For \(0<a\le1/4\), the unforced cost
@@ -176,7 +208,7 @@ At \(a=1/6\), strict \(b<1/2\) also gives \(U<a\).
 The joins at \(d=8/7\) and \(d=7/6\) have values \(9/7\) and \(3/2\),
 respectively.
 
-\begin{proof}[Proof of Theorem~\ref{target:main}]
+\begin{proof}[Proof of Theorem~\ref{target:unforced}]
 For \(1<d\le8/7\), apply the coherent criterion,
 Proposition~\ref{prop:coherentborel}, with both sets equal to \(E\).
 For \(8/7<d\le5/4\), the preceding algebra shows that
@@ -185,6 +217,24 @@ The unforced finite-profile criterion, Theorem~\ref{fprof:main}, gives the
 required pin. Its compact restrictions are subsets of \(E\), so the pin lies
 in \(E\). Strictness and continuity supply every exponent slack used in
 that theorem's Borel reduction.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{target:main}]
+For \(1<d\le9/8\), use Proposition~\ref{prop:coherentborel}.
+For \(9/8<d<7/6\), first use that proposition if \(D<2d-1\).
+Otherwise put \(a=d-1\), \(b=D-1\). The root characterization in
+Section~\ref{minimum:section} gives \(V(a,b)<a\), with
+\(1/8<a<1/6\) and \(2a\le b<1/2\).
+The profile estimate proved there supplies exactly the same bounded-length
+chains, admissibility, and perturbation errors as Lemma~\ref{unforced:profile}.
+Thus the proof of the finite-profile criterion applies with
+\(C(s,u)=V(s-1,u-1)\). Explicitly, continuity and strictness allow
+\(s<d\) and \(u>D\), still with
+\(1/8<s-1<1/6\), \(2(s-1)<u-1<1/2\), and
+\(V(s-1,u-1)<s-1\). Use these parameters in the compact restriction,
+finite regularization, deletion, Fourier iteration, and shell summation of
+Section~\ref{fprof:section}. The error and parameter choices are unchanged.
+For \(7/6\le d\le5/4\), apply Theorem~\ref{target:unforced}.
 \end{proof}
 
 \section{What the sharpness statement does and does not establish}
@@ -214,6 +264,11 @@ with only \(2n-m\le N\); prove zero-cost merging and its length bound;
 formalize the affine-potential construction, its localized low-slope version,
 and the perturbation and rounding bounds. Then prove the algebra of
 \(U\) and \(B_{\rm U}\), including strict joins and continuity.
+The minimum refinement additionally needs the tail-minimum reflection,
+the three affine intersections, their positive denominators and strict
+monotonicity, and existence and continuity of the unique root \(b_*\).
+These are exact real-analysis statements; numerical root plots are not
+formal proofs of the curve.
 
 The analytic part needs independent formal proofs of Frostman extraction,
 finite regularization, averaged radial projection, packet localization,
@@ -246,6 +301,8 @@ requires only \texttt{propext}, \texttt{Classical.choice}, and
 \texttt{Quot.sound}; \texttt{sorryAx}, extra analytical axioms, or a conditional
 replacement target would fail the requested standard. This is a development
 plan, not evidence that the comparator has already accepted the theorem.
+
+\input{packing-unforced-embedding.tex}
 
 \clearpage
 \begin{thebibliography}{9}\small
