@@ -23,6 +23,7 @@ import FalconerPacking.RealChainCompression
 import FalconerPacking.RealChainRounding
 import FalconerPacking.HardGapProfile
 import FalconerPacking.FiniteHardGapProfile
+import FalconerPacking.StrictFiniteProfile
 import FalconerPacking.Dyadic
 import FalconerPacking.Energy
 import FalconerPacking.Restriction
@@ -38,7 +39,11 @@ import FalconerPacking.GaussianEnergy
 import FalconerPacking.GaussianWeightedEnergy
 import FalconerPacking.GaussianFrostman
 import FalconerPacking.GaussianBallEnergy
+import FalconerPacking.PolarFourierEnergy
 import FalconerPacking.WeakDensityLimit
+import FalconerPacking.SchwartzDensityCriterion
+import FalconerPacking.FourierDensity
+import FalconerPacking.ProjectionFourier
 import FalconerPacking.Extraction
 import FalconerPacking.Content
 import FalconerPacking.FrostmanWeights
@@ -50,6 +55,9 @@ import FalconerPacking.CompactReduction
 import FalconerPacking.BorelFrostman
 import FalconerPacking.Capacity
 import FalconerPacking.GeometricCapacity
+import FalconerPacking.DyadicCapacity
+import FalconerPacking.DyadicContentComparison
+import FalconerPacking.BorelCompactReduction
 import FalconerPacking.LaminarContent
 import FalconerPacking.PinnedMeasure
 import FalconerPacking.Main

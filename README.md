@@ -201,14 +201,19 @@ measure-theoretic modules prove some of the downstream steps.
 | arbitrary-chain compression to uniformly bounded length, with no cost increase | **proved**, standard axioms only |
 | discrete profile interpolation, normalization, and exact minimum/cost compatibility | **proved**, standard axioms only |
 | planar Gaussian Fourier energy identity and its Fubini justification | **proved**, standard axioms only |
-| compact Frostman-family capacity and the mass-distribution principle | **proved**; capacity positivity on arbitrary Borel sets remains open |
+| compact Frostman-family capacity and the mass-distribution principle | **proved**, standard axioms only |
 | high-slope profile: sharp chain cost and uniformly bounded length | **proved**, standard axioms only |
 | exact scalar bridge from the focused-PDF cutoff to profile certificates | **proved**, standard axioms only |
-| compact extraction for analytic and Borel sets under explicit capacity properties | **proved**; geometric capacity instance remains open |
+| compact extraction and Frostman probabilities for arbitrary planar Borel sets above dimension one | **proved**, using dyadic capacity and Hausdorff-content comparisons |
 | increasing-union continuity for actual dyadic covering content | **proved**, for arbitrary sets and cube weights |
 | finite-grid hard-gap chain theorem, including endpoint clipping and barrier errors | **proved**, with uniform chain length and standard axioms only |
+| strict cutoff gives uniformly short profile chains with cost strictly below $$(s-1)N$$ | **proved**, with positive error tolerance and a profile-independent starting scale |
 | absolute continuity of weak limits under uniform L² density bounds | **proved**, by Hölder, Portmanteau, and outer regularity |
 | Fourier energy in frequency balls grows at most as $$R^{2-s}$$ | **proved**, directly from Frostman growth |
+| angular Fourier band bounds and summed positive-frequency integrability | **proved**, using polar coordinates and the Frostman exponent above one |
+| Schwartz L² test bounds imply absolute continuity of finite real measures | **proved**, including the exact square-root open-set estimate |
+| square-integrable characteristic functions yield actual nonnegative L² densities | **proved**, with the exact Plancherel energy identity |
+| almost every orthogonal projection of a Frostman probability above exponent one has an L² density | **proved**, by polar integration and Fourier inversion |
 | ordered hard/gap partitions of actual interpolated profiles | **proved**, with no partition assumption |
 | real-chain compression to uniformly bounded length | **proved**, without cost increase |
 | Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
@@ -249,6 +254,7 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/HardPointPartition.lean` | ordered finite hard/gap partitions extracted from interpolated profiles |
 | `FalconerPacking/HardGapProfile.lean` | both actual-profile hard-gap estimates, with gap extraction and budgets proved |
 | `FalconerPacking/FiniteHardGapProfile.lean` | full finite-grid interface, endpoint clipping, and additive barrier-error control |
+| `FalconerPacking/StrictFiniteProfile.lean` | the exact cutoff absorbs rounding and barrier errors into a strict linear cost margin |
 | `FalconerPacking/RealChainRounding.lean` | downward grid rounding, duplicate removal, and the quantitative cost bound |
 | `FalconerPacking/RealChainCompression.lean` | uniformly bounded real-chain length with no increase of cost |
 | `FalconerPacking/HardPointChains.lean` | finite real chains across hard gaps and intervals, with proved termination |
@@ -268,12 +274,19 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/CompactReduction.lean` | closure covering bounds and separated compact Frostman source/pin probabilities |
 | `FalconerPacking/LaminarContent.lean` | maximal dyadic covers, exact cover-cost identity, and increasing-union continuity |
 | `FalconerPacking/GeometricCapacity.lean` | compact Frostman-family capacity, its continuity, and the mass-distribution principle |
+| `FalconerPacking/DyadicCapacity.lean` | boundary frames, outer approximation, and the concrete dyadic Choquet capacity |
+| `FalconerPacking/DyadicContentComparison.lean` | Hausdorff-content comparisons and unconditional Borel Frostman extraction |
+| `FalconerPacking/BorelCompactReduction.lean` | separated compact Frostman probabilities from the actual Borel dimension hypotheses |
 | `FalconerPacking/Capacity.lean` | Choquet compact extraction for analytic and Borel sets under explicit capacity properties |
 | `FalconerPacking/BorelFrostman.lean` | sigma-compact and finite-measure extraction; proof that below-dimension Hausdorff sigma-finiteness is unavailable |
 | `FalconerPacking/PinnedMeasure.lean` | pinned distance pushforwards and the absolute-continuity-to-positive-length implication |
 | `FalconerPacking/LocalEnergy.lean` | scale-sensitive bounds and geometric summability for normalized dyadic restrictions |
 | `FalconerPacking/PositiveLimit.lean` | `L¹` density convergence, weak limits, and absolute continuity |
 | `FalconerPacking/WeakDensityLimit.lean` | absolute continuity of weak probability limits with uniformly bounded L² densities |
+| `FalconerPacking/SchwartzDensityCriterion.lean` | smooth compact cutoffs turn Schwartz test bounds into absolute continuity |
+| `FalconerPacking/FourierDensity.lean` | the inverse L² Fourier transform gives the actual nonnegative measure density |
+| `FalconerPacking/ProjectionFourier.lean` | almost-everywhere L² densities for actual orthogonal projection measures |
+| `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
 | `FalconerPacking/GaussianBallEnergy.lean` | frequency-ball Fourier energy estimate with the exponent 2-s |
