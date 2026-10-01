@@ -235,6 +235,19 @@ import FalconerPacking.ActiveCapCircleTree
 import FalconerPacking.SmoothPeriodicUnfolding
 import FalconerPacking.FullCirclePacketDecay
 
+import FalconerPacking.UniformSchwartzFourier
+import FalconerPacking.UniformSchwartzTails
+import FalconerPacking.RescaledSchwartzKernel
+import FalconerPacking.StandardAngularGrid
+import FalconerPacking.LocalCompositionBounds
+import FalconerPacking.RescaledAngularDerivatives
+import FalconerPacking.CapFrequencyRescaling
+import FalconerPacking.RescaledAnnularFactor
+import FalconerPacking.UniformDyadicCapSymbols
+import FalconerPacking.DyadicCapKernelBounds
+import FalconerPacking.SourcePacketFrequency
+import FalconerPacking.RemotePinnedPacket
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

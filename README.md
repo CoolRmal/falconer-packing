@@ -466,6 +466,18 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/ActiveCapCircleTree.lean` | active fine-label parent identities and terminal energy control |
 | `FalconerPacking/SmoothPeriodicUnfolding.lean` | exact smooth periodic unfolding with chart endpoints accounted for |
 | `FalconerPacking/FullCirclePacketDecay.lean` | actual full-circle decay for remote source-strip packets |
+| `FalconerPacking/UniformSchwartzFourier.lean` | uniform inverse Fourier bounds for actual bounded Schwartz families |
+| `FalconerPacking/UniformSchwartzTails.lean` | uniform first norms and transverse tails from spatial moments |
+| `FalconerPacking/RescaledSchwartzKernel.lean` | exact Fourier and first-norm identities under linear rescaling |
+| `FalconerPacking/StandardAngularGrid.lean` | a concrete dyadic angular grid with exact refinement divisibility |
+| `FalconerPacking/LocalCompositionBounds.lean` | local composition bounds for all iterated derivatives |
+| `FalconerPacking/RescaledAngularDerivatives.lean` | uniform derivatives of the actual anisotropic angular weights |
+| `FalconerPacking/CapFrequencyRescaling.lean` | actual normalized cap coordinates and common compact support |
+| `FalconerPacking/RescaledAnnularFactor.lean` | uniform derivatives of the actual rescaled radial annular factor |
+| `FalconerPacking/UniformDyadicCapSymbols.lean` | uniform symbol seminorms for the constructed dyadic caps |
+| `FalconerPacking/DyadicCapKernelBounds.lean` | uniform decay and first-norm bounds for actual rescaled cap kernels |
+| `FalconerPacking/SourcePacketFrequency.lean` | exact source-packet frequency representation and circle Fubini |
+| `FalconerPacking/RemotePinnedPacket.lean` | actual pinned-density first-norm decay for remote source packets |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
