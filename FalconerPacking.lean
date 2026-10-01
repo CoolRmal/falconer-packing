@@ -310,6 +310,16 @@ import FalconerPacking.InitialSpectralReconstruction
 
 import FalconerPacking.PhysicalBadPacketPairs
 
+import FalconerPacking.AngularMeshChoice
+import FalconerPacking.EnlargedTruncatedEnergy
+import FalconerPacking.ProfileMarginParameters
+import FalconerPacking.StrictShellParameters
+import FalconerPacking.InheritedCapMultiplier
+import FalconerPacking.InheritedCircleEnergy
+import FalconerPacking.GridEnergyBounds
+import FalconerPacking.MarkedCircleEnergyBounds
+import FalconerPacking.MarkedCircleFourierChain
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

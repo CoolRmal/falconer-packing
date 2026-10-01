@@ -534,6 +534,15 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SpectralCircleLinearity.lean` | finite linearity of actual spectral circle averages |
 | `FalconerPacking/InitialSpectralReconstruction.lean` | actual retained packets reconstruct the original surviving cap spectrum |
 | `FalconerPacking/PhysicalBadPacketPairs.lean` | actual removed pairs controlled by one conditional finite-grid energy |
+| `FalconerPacking/AngularMeshChoice.lean` | constructing the integer angular mesh from actual geometric uncertainty |
+| `FalconerPacking/EnlargedTruncatedEnergy.lean` | actual regular conditional energy after the physical scale enlargement |
+| `FalconerPacking/ProfileMarginParameters.lean` | strict profile margin chosen before the initial localization scale |
+| `FalconerPacking/StrictShellParameters.lean` | explicit threshold, packet width, block, and common decay parameters |
+| `FalconerPacking/InheritedCapMultiplier.lean` | actual inherited cap multipliers and their squared partition bound |
+| `FalconerPacking/InheritedCircleEnergy.lean` | uniform circle energy for arbitrary inherited physical marks |
+| `FalconerPacking/GridEnergyBounds.lean` | actual enlarged-grid overlap, area, and normalized energy bounds |
+| `FalconerPacking/MarkedCircleEnergyBounds.lean` | actual marked local and global energies bounded by the source spectrum |
+| `FalconerPacking/MarkedCircleFourierChain.lean` | full finite circle chain with all terminal and error energies eliminated |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
