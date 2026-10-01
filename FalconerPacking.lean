@@ -349,6 +349,28 @@ import FalconerPacking.BroadMarkedCircleChain
 import FalconerPacking.BroadMarkedCircleFourierChain
 import FalconerPacking.BlockProfileChainScales
 
+import FalconerPacking.DyadicRootRestriction
+import FalconerPacking.SeparatedDyadicData
+import FalconerPacking.DisjointComponentDensities
+import FalconerPacking.AnnularRemainder
+import FalconerPacking.AnnularComponentGluing
+import FalconerPacking.EventualAnnularCriterion
+import FalconerPacking.PacketAnnularIdentity
+import FalconerPacking.RegularPhysicalDeletion
+import FalconerPacking.UniformPhysicalDeletion
+import FalconerPacking.UniformInheritedPacketL1
+import FalconerPacking.InitialCircleMultiplier
+import FalconerPacking.InitialCircleMultiplierRadius
+import FalconerPacking.MarkedStandardReconstruction
+import FalconerPacking.InitialRetainedEnergy
+import FalconerPacking.RetainedCircleChain
+import FalconerPacking.ChainThresholdProduct
+import FalconerPacking.ChainThresholdDecay
+import FalconerPacking.ChainEnergyRemainders
+import FalconerPacking.ChainEnergyDecay
+import FalconerPacking.PaddedProfileChain
+import FalconerPacking.PaddedChainDecay
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

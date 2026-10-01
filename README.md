@@ -570,6 +570,27 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/BroadMarkedCircleChain.lean` | finite marked chain preserving fixed marks across a broad annulus |
 | `FalconerPacking/BroadMarkedCircleFourierChain.lean` | broad-annulus chain controlled by the actual source spectrum |
 | `FalconerPacking/BlockProfileChainScales.lean` | physical block depths and angular grids from the actual profile chain |
+| `FalconerPacking/DyadicRootRestriction.lean` | positive compact pin restrictions in one unit dyadic cube |
+| `FalconerPacking/SeparatedDyadicData.lean` | actual separated source and rooted pin data after an explicit isometry |
+| `FalconerPacking/DisjointComponentDensities.lean` | exact original-mass gluing of conditional first and second norms |
+| `FalconerPacking/AnnularRemainder.lean` | uniform first-norm cost of discarded pins |
+| `FalconerPacking/AnnularComponentGluing.lean` | constructed global annular good parts with weighted component errors |
+| `FalconerPacking/EventualAnnularCriterion.lean` | pinned absolute continuity from separately constructed late good parts |
+| `FalconerPacking/PacketAnnularIdentity.lean` | exact agreement between original packet sums and the compact annular source |
+| `FalconerPacking/RegularPhysicalDeletion.lean` | actual profile-energy cancellation in conditional deletion |
+| `FalconerPacking/UniformPhysicalDeletion.lean` | one threshold coefficient for all physical parents and measures |
+| `FalconerPacking/UniformInheritedPacketL1.lean` | actual deleted-packet bound with local conditional estimates discharged |
+| `FalconerPacking/InitialCircleMultiplier.lean` | constructed fixed multiplier for initial pin localization |
+| `FalconerPacking/InitialCircleMultiplierRadius.lean` | initial multiplier for arbitrary bounded pin supports |
+| `FalconerPacking/MarkedStandardReconstruction.lean` | exact original masked spectrum for initial marked circles |
+| `FalconerPacking/InitialRetainedEnergy.lean` | actual retained pin energy with arbitrarily rapid reconstruction error |
+| `FalconerPacking/RetainedCircleChain.lean` | actual retained source energy through the complete broad-annulus chain |
+| `FalconerPacking/ChainThresholdProduct.lean` | explicit finite product of geometric and profile thresholds |
+| `FalconerPacking/ChainThresholdDecay.lean` | strict eventual decay for the complete threshold product |
+| `FalconerPacking/ChainEnergyRemainders.lean` | all accumulated chain errors controlled by the full threshold product |
+| `FalconerPacking/ChainEnergyDecay.lean` | eventual uniform bound for accumulated geometric tails |
+| `FalconerPacking/PaddedProfileChain.lean` | fixed-length zero padding with identical profile cost |
+| `FalconerPacking/PaddedChainDecay.lean` | complete padded chain coefficient bounded using the strict margin |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
