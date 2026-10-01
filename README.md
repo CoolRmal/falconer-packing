@@ -591,6 +591,18 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/ChainEnergyDecay.lean` | eventual uniform bound for accumulated geometric tails |
 | `FalconerPacking/PaddedProfileChain.lean` | fixed-length zero padding with identical profile cost |
 | `FalconerPacking/PaddedChainDecay.lean` | complete padded chain coefficient bounded using the strict margin |
+| `FalconerPacking/AnnularScaleSchedule.lean` | complete annular frequency schedule with compatible rounded profile depths |
+| `FalconerPacking/SourcePacketRadialTail.lean` | actual Fourier leakage of arbitrary retained source packets |
+| `FalconerPacking/DyadicPacketRadialTail.lean` | uniform Fourier tails at every dyadic annular scale |
+| `FalconerPacking/RetainedOmittedCircleEnergy.lean` | arbitrarily rapid actual spectral energy outside the main annulus |
+| `FalconerPacking/DyadicDeletionCoefficients.lean` | explicit packet counts and geometric deletion coefficients |
+| `FalconerPacking/DyadicDeletionDecay.lean` | dyadic decay from the actual source and pin thresholds |
+| `FalconerPacking/InheritedShellDecay.lean` | actual inherited deleted-shell first norm with conditional radial moments |
+| `FalconerPacking/RegularInheritedEnergy.lean` | actual regular-component energies at every inherited parent |
+| `FalconerPacking/RetainedShellRemainder.lean` | exact full-annular-minus-retained distance density identity |
+| `FalconerPacking/DyadicSchwartzFamily.lean` | jointly measurable finite dyadic families of actual Schwartz sources |
+| `FalconerPacking/RetainedPinFamily.lean` | measurable retained source and its exact initial-cell energy sum |
+| `FalconerPacking/RetainedCircleIntegration.lean` | radial integration preserving the inverse lower-frequency gain |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

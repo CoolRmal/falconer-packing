@@ -371,6 +371,19 @@ import FalconerPacking.ChainEnergyDecay
 import FalconerPacking.PaddedProfileChain
 import FalconerPacking.PaddedChainDecay
 
+import FalconerPacking.AnnularScaleSchedule
+import FalconerPacking.SourcePacketRadialTail
+import FalconerPacking.DyadicPacketRadialTail
+import FalconerPacking.RetainedOmittedCircleEnergy
+import FalconerPacking.DyadicDeletionCoefficients
+import FalconerPacking.DyadicDeletionDecay
+import FalconerPacking.InheritedShellDecay
+import FalconerPacking.RegularInheritedEnergy
+import FalconerPacking.RetainedShellRemainder
+import FalconerPacking.DyadicSchwartzFamily
+import FalconerPacking.RetainedPinFamily
+import FalconerPacking.RetainedCircleIntegration
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
