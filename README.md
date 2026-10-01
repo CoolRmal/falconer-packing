@@ -196,7 +196,7 @@ measure-theoretic modules prove some of the downstream steps.
 | compact occupied-cube covers and normalized atomic Frostman measures | **proved**, no holes |
 | weak compactness, supported subsequence extraction, and dyadic Frostman bounds in the limit | **proved**, no holes |
 | compact Frostman lemma: positive content or larger Hausdorff dimension gives an all-radius Frostman probability | **proved**, no holes |
-| compact source and pin reduction: separated probabilities with Frostman and covering bounds | **proved**, standard axioms only; arbitrary-Borel initial Frostman extraction remains open |
+| compact source and pin reduction: separated probabilities with Frostman and covering bounds | **proved**, including arbitrary-Borel initial Frostman extraction |
 | unforced profile operations: merging, clipping, and fixed-chain perturbation | **proved**, standard axioms only |
 | arbitrary-chain compression to uniformly bounded length, with no cost increase | **proved**, standard axioms only |
 | discrete profile interpolation, normalization, and exact minimum/cost compatibility | **proved**, standard axioms only |
@@ -218,7 +218,7 @@ measure-theoretic modules prove some of the downstream steps.
 | short correlated angular increments are controlled by averaged squared derivatives | **proved**, by the fundamental theorem of calculus, Hölder, and the marginal bound |
 | correlated Fourier translation estimates over frequency bands | **proved**, allowing the direction and shift to depend on the same pin |
 | finite regular decomposition of original dyadic measure restrictions | **proved**, including normalized probabilities, discarded mass, component mass, and count bounds |
-| radial pushforward kernels and the weighted angular singularity estimate | **proved**; the full radial projection theorem remains open |
+| radial pushforward kernels and the weighted angular singularity estimate | **proved**, including actual averaged radial densities with a moment above one |
 | angular energy estimate for actual orthogonal pushforward measures | **proved**, without assuming a transversality estimate |
 | Fourier band energy of the actual angular derivative | **proved**, using signed coordinate transforms and bounded source support |
 | two-sided dyadic band sum with the sharp displacement power | **proved**, for the full range $$1<s<3$$ |
@@ -226,13 +226,13 @@ measure-theoretic modules prove some of the downstream steps.
 | real-chain compression to uniformly bounded length | **proved**, without cost increase |
 | Gaussian spatial and Fourier growth bounds from the Frostman condition | **proved**, standard axioms only |
 | finite hard-interval representation of actual interpolated profiles | **proved**, standard axioms only |
-| finite admissible real chains across hard intervals and gaps | **proved**; ordered-partition extraction and grid rounding still needed |
+| finite admissible real chains across hard intervals and gaps | **proved**, including ordered-partition extraction and grid rounding |
 | signed Gaussian energy and the coordinate-weight comparison | **proved**, including almost-everywhere source bounds |
-| finite gap tails, telescoping, and bridges to the two cost certificates | **proved**; hard-set extraction and chain construction still needed |
+| finite gap tails, telescoping, and bridges to the two cost certificates | **proved**, including hard-set extraction and chain construction |
 | fixed dyadic centers with controlled mass-weighted moments | **proved**, standard axioms only |
 | common truncation of correlated angular densities and discarded-mass bound | **proved**, standard axioms only |
 | hard-point set: compactness and gap-drop geometry | **proved**, standard axioms only |
-| initial Frostman extraction for sigma-compact sets and finite Hausdorff-measure pieces | **proved**; does not replace arbitrary-Borel extraction |
+| initial Frostman extraction for sigma-compact sets and finite Hausdorff-measure pieces | **proved**; arbitrary-Borel extraction is proved separately |
 | pinned pushforward: absolute continuity or a displayed density implies positive-length pinned distances | **proved**, no holes |
 | localized conditional-energy bounds and full-measure finite conditioning families | **proved**, no holes |
 | $$u<2s-1$$ gives powered conditional-energy summability and convergence from a first-norm comparison | **proved**, no holes |
@@ -345,6 +345,10 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RadialProjectionApproximationMoment.lean` | uniform moments for the explicit smoothing sequence |
 | `FalconerPacking/RadialProjectionTheorem.lean` | averaged radial absolute continuity and a higher moment from bounded Frostman hypotheses |
 | `FalconerPacking/DyadicComparisonSums.lean` | child-mass regrouping and square-root mass sums |
+| `FalconerPacking/CoherentBorelParameters.lean` | strict coherent exponents and complete separated compact measure data from Borel sets |
+| `FalconerPacking/DyadicPositiveCubes.lean` | finite families of every positive-mass source cube |
+| `FalconerPacking/DyadicAffineDensity.lean` | actual finite affine-mixture densities and common-refinement L¹ comparison |
+| `FalconerPacking/CoherentStepSummability.lean` | finite child comparison sums and explicit summable geometric errors |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

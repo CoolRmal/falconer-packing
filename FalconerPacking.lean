@@ -116,6 +116,12 @@ import FalconerPacking.RadialProjectionApproximationMoment
 import FalconerPacking.RadialProjectionTheorem
 import FalconerPacking.DyadicComparisonSums
 
+import FalconerPacking.CoherentBorelParameters
+import FalconerPacking.DyadicPositiveCubes
+import FalconerPacking.DyadicAffineDensity
+
+import FalconerPacking.CoherentStepSummability
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
