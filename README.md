@@ -478,6 +478,12 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicCapKernelBounds.lean` | uniform decay and first-norm bounds for actual rescaled cap kernels |
 | `FalconerPacking/SourcePacketFrequency.lean` | exact source-packet frequency representation and circle Fubini |
 | `FalconerPacking/RemotePinnedPacket.lean` | actual pinned-density first-norm decay for remote source packets |
+| `FalconerPacking/CircleCapScaledGeometry.lean` | actual cap rectangles at the spatial edge scales |
+| `FalconerPacking/InheritedFineCapSupport.lean` | actual Fourier supports and overlap of inherited fine labels |
+| `FalconerPacking/SelectedFineCapEmbedding.lean` | the fine-scale spatial edge for actual inherited circle functions |
+| `FalconerPacking/PhysicalDyadicCapKernels.lean` | exact physical cap rescaling and uniform transverse kernel tails |
+| `FalconerPacking/StandardCapKernelBounds.lean` | uniform kernel bounds on a concrete dividing dyadic angular grid |
+| `FalconerPacking/DyadicPacketDeletion.lean` | actual dyadic packet deletion with all kernel estimates discharged |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

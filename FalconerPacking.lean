@@ -248,6 +248,13 @@ import FalconerPacking.DyadicCapKernelBounds
 import FalconerPacking.SourcePacketFrequency
 import FalconerPacking.RemotePinnedPacket
 
+import FalconerPacking.CircleCapScaledGeometry
+import FalconerPacking.InheritedFineCapSupport
+import FalconerPacking.SelectedFineCapEmbedding
+import FalconerPacking.PhysicalDyadicCapKernels
+import FalconerPacking.StandardCapKernelBounds
+import FalconerPacking.DyadicPacketDeletion
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

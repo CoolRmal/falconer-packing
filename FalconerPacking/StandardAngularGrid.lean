@@ -48,4 +48,14 @@ theorem standard_dyadic_angular_grid_dvd (n k : ℕ) :
   refine ⟨2 ^ k, ?_⟩
   rw [pow_add, mul_assoc]
 
+/-- The annuli with exponent four times a block length have one concrete admissible grid. -/
+theorem standard_fourfold_angular_grid_bounds (T n : ℕ) :
+    0 < 64 * 2 ^ (2 * T * n) ∧
+    Real.sqrt ((2 : ℝ) ^ ((4 * T) * n)) ≤ (64 * 2 ^ (2 * T * n) : ℕ) ∧
+    4 * Real.pi ≤ (64 * 2 ^ (2 * T * n) : ℕ) ∧
+    (64 * 2 ^ (2 * T * n) : ℕ) ≤
+      2 * Real.pi * 32 * Real.sqrt ((2 : ℝ) ^ ((4 * T) * n)) := by
+  rw [show (4 * T) * n = 2 * (2 * T * n) by ring]
+  exact standard_dyadic_angular_grid_bounds (2 * T * n)
+
 end FalconerPacking
