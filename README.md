@@ -6,8 +6,9 @@ The PDF puts the explanation and main proof first, followed by the detailed esti
 
 A Lean 4 formalization project for Theorem 1.1 of the focused proof PDF above.
 The current target is the unconditional theorem with the stronger boundary below.
-**The full Lean proof now builds, using only `propext`, `Classical.choice`, and `Quot.sound`.
-The independent comparator run is pending.**
+**The full Lean proof passes the independent comparator and clean build, using only
+`propext`, `Classical.choice`, and `Quot.sound`.**
+[Verified GitHub run](https://github.com/CoolRmal/falconer-packing/actions/runs/36824796497).
 
 **Research archive, 30 September 2026.** The [longer proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
 gives the explicit stronger cutoff
@@ -175,7 +176,12 @@ not a proof; it is never imported by the solution library.
 `Solution.lean` imports the complete unconditional proof from
 [`HausdorffPackingTheorem.lean`](FalconerPacking/HausdorffPackingTheorem.lean).
 The exact target builds and its transitive axiom audit returns only `propext`,
-`Classical.choice`, and `Quot.sound`. The independent comparator run is pending.
+`Classical.choice`, and `Quot.sound`. The independent comparator and clean build
+[passed on 1 October 2026](https://github.com/CoolRmal/falconer-packing/actions/runs/36824796497)
+at proof commit [`34c7c95`](https://github.com/CoolRmal/falconer-packing/commit/34c7c95d82dc85bb2c166f64c2a36700b1bb0ca4).
+The comparator rebuilt the solution on a fresh Linux runner inside its sandbox,
+compared the theorem and its recursive definition dependencies, checked the permitted
+axioms, and reported: `Lean default kernel accepts the solution`.
 
 The proof includes Borel Frostman extraction, averaged radial densities, hard-gap profile
 chains, actual retained wave packets and their Fourier tails, weighted Fourier iteration,
@@ -244,7 +250,7 @@ criterion is left as a hypothesis of the final theorem.
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
 | Borel coherent criterion $$\dim_P E<2\dim_H E-1$$ for $$1<\dim_H E<2$$ | **proved**, with only the three standard axioms |
 | first interval of focused-PDF Theorem 1.1 | **proved**, including all measure construction and analytic estimates |
-| unconditional focused-PDF Theorem 1.1 | **proved**, only the three standard axioms; independent comparator pending |
+| unconditional focused-PDF Theorem 1.1 | **proved**, only the three standard axioms; independent comparator and clean build passed |
 
 ## Layout
 
@@ -252,7 +258,7 @@ criterion is left as a hypothesis of the final theorem.
 |---|---|
 | `Challenge.lean` | the statement, self-contained, with the theorem hole |
 | `Solution.lean` | exports the unconditional target and retains the historical conditional theorem |
-| `FalconerPacking/Statement.lean` | dimensions, distance sets, and historical curve definitions |
+| `FalconerPacking/Statement.lean` | dimensions, distance sets, focused cutoff, and historical curve definitions |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
 | `FalconerPacking/HardGapAlgebra.lean` | weighted certificates and threshold algebra for the improved curve |
 | `FalconerPacking/HardGapThreshold.lean` | exact scalar bridge, including barrier enlargement and both cost certificates |
