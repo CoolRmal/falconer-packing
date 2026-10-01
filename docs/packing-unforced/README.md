@@ -44,7 +44,7 @@ continuous. Every packing inequality is strict. At Hausdorff dimension five
 quarters this covers packing dimension strictly below two. Above five quarters,
 GIOW already gives the conclusion without a packing restriction.
 
-![The new explicit curve and the preceding adaptive bound, with an enlarged comparison.](../figures/packing-unforced.svg)
+![The current cutoff and earlier bounds, with the improvement shaded.](../figures/packing-unforced.svg)
 
 ## Exact examples
 
