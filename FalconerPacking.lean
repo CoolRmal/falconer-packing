@@ -393,6 +393,11 @@ import FalconerPacking.RetainedDistanceEnergy
 import FalconerPacking.RetainedChainDistance
 import FalconerPacking.RetainedEnergyConstants
 
+import FalconerPacking.RetainedChainScalarDecay
+import FalconerPacking.RetainedChainConstantBound
+import FalconerPacking.ChainCoefficientMonotone
+import FalconerPacking.RegularDiscardedPins
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

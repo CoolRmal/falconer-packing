@@ -611,6 +611,10 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RetainedDistanceEnergy.lean` | full retained distance energy including the actual omitted spectrum |
 | `FalconerPacking/RetainedChainDistance.lean` | actual full retained density bound from the proved spatial chain |
 | `FalconerPacking/RetainedEnergyConstants.lean` | uniform annular multiplier norms and finite fixed energy factors |
+| `FalconerPacking/RetainedChainScalarDecay.lean` | strict decay of every actual retained scalar term on the complete annular schedule |
+| `FalconerPacking/RetainedChainConstantBound.lean` | uniform absorption of fixed analytic factors in the four retained-energy terms |
+| `FalconerPacking/ChainCoefficientMonotone.lean` | monotonicity of the complete chain coefficient including accumulated errors |
+| `FalconerPacking/RegularDiscardedPins.lean` | exact component-union discarded mass at the actual annular exponent |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
