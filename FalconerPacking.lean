@@ -299,6 +299,17 @@ import FalconerPacking.SpectralCircleKernel
 import FalconerPacking.SpectralPacketFubini
 import FalconerPacking.RemoteSpectralPacket
 
+import FalconerPacking.SourceCutoffSpectrum
+import FalconerPacking.PacketEffectiveNormals
+import FalconerPacking.PhysicalDyadicMarks
+import FalconerPacking.PhysicalMarkedPairs
+import FalconerPacking.DyadicChainCubes
+import FalconerPacking.MarkedCircleChain
+import FalconerPacking.SpectralCircleLinearity
+import FalconerPacking.InitialSpectralReconstruction
+
+import FalconerPacking.PhysicalBadPacketPairs
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

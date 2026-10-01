@@ -525,6 +525,15 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SpectralCircleKernel.lean` | full-circle nonstationary decay with the periodic boundary terms proved |
 | `FalconerPacking/SpectralPacketFubini.lean` | exact selected spectral-circle kernel identity for integrable packets |
 | `FalconerPacking/RemoteSpectralPacket.lean` | actual remote spectral packet decay including pointwise cone leakage |
+| `FalconerPacking/SourceCutoffSpectrum.lean` | exact original-source spectrum and literal cutoff comparison |
+| `FalconerPacking/PacketEffectiveNormals.lean` | actual effective normals and source-pin direction uncertainty |
+| `FalconerPacking/PhysicalDyadicMarks.lean` | common physical tests and whole-standard-packet survival decisions |
+| `FalconerPacking/PhysicalMarkedPairs.lean` | actual bad marks imply the conditional heavy-tube pair event |
+| `FalconerPacking/DyadicChainCubes.lean` | constructed spatial ancestor families and exact finite fiber sums |
+| `FalconerPacking/MarkedCircleChain.lean` | complete finite marked circle chain with explicit accumulated errors |
+| `FalconerPacking/SpectralCircleLinearity.lean` | finite linearity of actual spectral circle averages |
+| `FalconerPacking/InitialSpectralReconstruction.lean` | actual retained packets reconstruct the original surviving cap spectrum |
+| `FalconerPacking/PhysicalBadPacketPairs.lean` | actual removed pairs controlled by one conditional finite-grid energy |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
