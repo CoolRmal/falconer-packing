@@ -154,6 +154,16 @@ import FalconerPacking.GridMassGrowth
 import FalconerPacking.AnisotropicKernelPotential
 import FalconerPacking.ScaledBandlimitedCutoff
 
+import FalconerPacking.CutoffEnergyLocalization
+import FalconerPacking.SelectedLocalEnergy
+import FalconerPacking.SelectedTubeWeights
+import FalconerPacking.SelectedTubeGeometry
+import FalconerPacking.EnlargedGridSquares
+import FalconerPacking.SlopeStripGeometry
+import FalconerPacking.SlopeTubeEnergy
+import FalconerPacking.SlopeTubeNet
+import FalconerPacking.AnnularDensityLimit
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

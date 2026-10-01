@@ -394,6 +394,15 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicMomentCenters.lean` | one dyadic center family with both geometry and weighted moment bounds |
 | `FalconerPacking/DyadicCenters.lean` | measurable representative maps for occupied compact-source cubes |
 | `FalconerPacking/Main.lean` | the branch combination |
+| `FalconerPacking/CutoffEnergyLocalization.lean` | actual local cutoff energy with uniform rapidly decreasing tails |
+| `FalconerPacking/SelectedLocalEnergy.lean` | nonnegative selected Fourier energies ready for positive averaging |
+| `FalconerPacking/SelectedTubeWeights.lean` | actual measures averaging only selected children and labels |
+| `FalconerPacking/SelectedTubeGeometry.lean` | selected tube tests control the corresponding averaging rectangles |
+| `FalconerPacking/EnlargedGridSquares.lean` | explicit grid overlap and separation from enlarged parent complements |
+| `FalconerPacking/SlopeStripGeometry.lean` | concrete two-chart slope strips with exact finite pair counting |
+| `FalconerPacking/SlopeTubeEnergy.lean` | actual truncated-energy and heavy-tube deletion estimates |
+| `FalconerPacking/SlopeTubeNet.lean` | approximation of every direction and finite strip coverage |
+| `FalconerPacking/AnnularDensityLimit.lean` | summable complex shells give actual positive densities from reconstruction |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
