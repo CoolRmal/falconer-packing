@@ -543,6 +543,22 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/GridEnergyBounds.lean` | actual enlarged-grid overlap, area, and normalized energy bounds |
 | `FalconerPacking/MarkedCircleEnergyBounds.lean` | actual marked local and global energies bounded by the source spectrum |
 | `FalconerPacking/MarkedCircleFourierChain.lean` | full finite circle chain with all terminal and error energies eliminated |
+| `FalconerPacking/PhysicalBadPacketBounds.lean` | automatic retention for thresholds at least one and actual angular mesh choice |
+| `FalconerPacking/PhysicalChainScales.lean` | physical curvature and exact dyadic slope-grid scale identities |
+| `FalconerPacking/ConditionalAngularThreshold.lean` | integer angular mesh chosen below the actual conditional threshold |
+| `FalconerPacking/PhysicalConditionalDeletion.lean` | actual conditional deletion with the spatial ratio canceled |
+| `FalconerPacking/PhysicalDeletionGeometry.lean` | explicit geometric bound for source and pin angular uncertainty |
+| `FalconerPacking/MarkedCircleInitialLocalization.lean` | initial pin localization from actual marked spectral support |
+| `FalconerPacking/MarkedCircleInitialSum.lean` | finite initial pin-energy sum with explicit localization tails |
+| `FalconerPacking/ProfileChainSequences.lean` | actual global spatial and angular sequences from the strict finite chain |
+| `FalconerPacking/ProfileChainPhysicalScales.lean` | admissible profile edges satisfy the physical curvature constraints |
+| `FalconerPacking/WeightedConditionalDeletion.lean` | weighted conditional parent and regular-component deletion sums |
+| `FalconerPacking/InheritedPacketDeletion.lean` | actual failed-packet pin sets and their bad-ancestor pair coverage |
+| `FalconerPacking/InheritedPacketL1.lean` | first-norm estimate for the constructed deleted dyadic packets |
+| `FalconerPacking/DyadicSpectralNorms.lean` | uniform norms for the actual dyadic cap spectrum |
+| `FalconerPacking/DyadicInitialReconstruction.lean` | arbitrarily rapid reconstruction for actual dyadic packets |
+| `FalconerPacking/InitialCellRemoteGeometry.lean` | actual remote-cell selection and its geometric separation |
+| `FalconerPacking/InitialPacketDecomposition.lean` | exact retained plus deleted identity for the original packet sum |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

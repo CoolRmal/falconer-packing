@@ -320,6 +320,23 @@ import FalconerPacking.GridEnergyBounds
 import FalconerPacking.MarkedCircleEnergyBounds
 import FalconerPacking.MarkedCircleFourierChain
 
+import FalconerPacking.PhysicalBadPacketBounds
+import FalconerPacking.PhysicalChainScales
+import FalconerPacking.ConditionalAngularThreshold
+import FalconerPacking.PhysicalConditionalDeletion
+import FalconerPacking.PhysicalDeletionGeometry
+import FalconerPacking.MarkedCircleInitialLocalization
+import FalconerPacking.MarkedCircleInitialSum
+import FalconerPacking.ProfileChainSequences
+import FalconerPacking.ProfileChainPhysicalScales
+import FalconerPacking.WeightedConditionalDeletion
+import FalconerPacking.InheritedPacketDeletion
+import FalconerPacking.InheritedPacketL1
+import FalconerPacking.DyadicSpectralNorms
+import FalconerPacking.DyadicInitialReconstruction
+import FalconerPacking.InitialCellRemoteGeometry
+import FalconerPacking.InitialPacketDecomposition
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

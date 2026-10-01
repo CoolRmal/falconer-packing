@@ -21,16 +21,6 @@ open scoped ENNReal RealInnerProductSpace
 
 namespace FalconerPacking
 
-/-- A dyadic cell lies in every concentric enlargement by a factor at least one. -/
-theorem dyadicCube_subset_enlargedGridSquare {n : ℕ} (Q : Fin 2 → ℤ) {t : ℝ}
-    (ht : 1 ≤ t) : dyadicCube n Q ⊆ enlargedGridSquare ((2 : ℝ) ^ n)⁻¹ t Q := by
-  intro x hx
-  apply (mem_enlargedGridSquare_iff _ _ _ _).mpr
-  intro i
-  have h := coordinate_sub_gridSquareCenter_le hx i
-  change |x i - ((2 : ℝ) ^ n)⁻¹ * ((Q i : ℝ) + 1 / 2)| ≤ _ at h
-  exact h.trans (by nlinarith [inv_pos.mpr (by positivity : (0 : ℝ) < 2 ^ n)])
-
 /-- A dyadic child pin belongs to the same enlarged parent used by its physical test. -/
 theorem mem_physicalDyadicParent {n : ℕ → ℕ} (hn : Antitone n) {L : ℝ} (hL : 1 ≤ L)
     {j : ℕ} {Q : Fin 2 → ℤ} {y : EuclideanSpace ℝ (Fin 2)}

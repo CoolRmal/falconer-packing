@@ -49,6 +49,16 @@ theorem coordinate_sub_gridSquareCenter_le {n : ℕ} {Q : Fin 2 → ℤ}
   have h := hx i
   constructor <;> linarith
 
+/-- A dyadic cell lies in every concentric enlargement by a factor at least one. -/
+theorem dyadicCube_subset_enlargedGridSquare {n : ℕ} (Q : Fin 2 → ℤ) {t : ℝ}
+    (ht : 1 ≤ t) : dyadicCube n Q ⊆ enlargedGridSquare ((2 : ℝ) ^ n)⁻¹ t Q := by
+  intro x hx
+  apply (mem_enlargedGridSquare_iff _ _ _ _).mpr
+  intro i
+  have h := coordinate_sub_gridSquareCenter_le hx i
+  change |x i - ((2 : ℝ) ^ n)⁻¹ * ((Q i : ℝ) + 1 / 2)| ≤ _ at h
+  exact h.trans (by nlinarith [inv_pos.mpr (by positivity : (0 : ℝ) < 2 ^ n)])
+
 /-- The child center satisfies the actual parent-center condition of an inflation edge. -/
 theorem dyadic_child_center_parent_bound {m n : ℕ} (hmn : m ≤ n)
     (Q : Fin 2 → ℤ) (i : Fin 2) :
