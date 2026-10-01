@@ -357,6 +357,12 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/CoherentBorelTheorem.lean` | unconditional Borel coherent criterion and the focused theorem's first interval |
 | `FalconerPacking/DistancePolarDensity.lean` | exact pinned and joint distance density formulas for Lebesgue-density sources |
 | `FalconerPacking/PinnedPositiveComponent.lean` | positive absolutely continuous joint components give positive-length pins |
+| `FalconerPacking/BallOverlap.lean` | doubling equal-radius planar balls costs at most nine in overlap |
+| `FalconerPacking/FiniteFourierOrthogonality.lean` | actual Plancherel orthogonality for every selected Fourier subfamily |
+| `FalconerPacking/RadialFourierAverage.lean` | Fourier transformation commutes with actual angular averaging |
+| `FalconerPacking/TruncatedConditionalEnergy.lean` | finite-scale profile energy bounds, including diagonal atoms |
+| `FalconerPacking/WeakDomination.lean` | dominated absolutely continuous subsequential limits of actual probabilities |
+| `FalconerPacking/WeightedConvolutionEmbedding.lean` | actual Schwartz convolution, weighted Cauchy–Schwarz, and kernel-potential embedding |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

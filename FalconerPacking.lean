@@ -128,6 +128,12 @@ import FalconerPacking.CoherentCompactTheorem
 import FalconerPacking.CoherentBorelTheorem
 import FalconerPacking.DistancePolarDensity
 import FalconerPacking.PinnedPositiveComponent
+import FalconerPacking.BallOverlap
+import FalconerPacking.FiniteFourierOrthogonality
+import FalconerPacking.RadialFourierAverage
+import FalconerPacking.TruncatedConditionalEnergy
+import FalconerPacking.WeakDomination
+import FalconerPacking.WeightedConvolutionEmbedding
 
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
