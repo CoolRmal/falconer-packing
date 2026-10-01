@@ -413,6 +413,16 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SelectedCapEnergySums.lean` | exact finite selected-measure energy rearrangement |
 | `FalconerPacking/SelectedCapGeometry.lean` | dual-grid containment and actual selected averaging-measure geometry |
 | `FalconerPacking/SelectedCapEmbedding.lean` | weighted selected-cap estimate with every kernel hypothesis discharged |
+| `FalconerPacking/TerminalCircleEnergy.lean` | actual source Fourier specialization of the terminal circle energy estimate |
+| `FalconerPacking/CircleSpectralSchwartz.lean` | constructed circle spectral pieces and exact physical Plancherel bounds |
+| `FalconerPacking/CompactAnnularReconstruction.lean` | compact Schwartz annular source pieces with exact reconstruction |
+| `FalconerPacking/AnnularPinnedReconstruction.lean` | annular pinned densities reconstruct the canonical joint distance law |
+| `FalconerPacking/SelectedCapCoefficients.lean` | exact inflation exponent and arbitrary inverse-power bounds for both tails |
+| `FalconerPacking/SelectedCapGridEmbedding.lean` | actual normalized square averages and explicit grid embedding |
+| `FalconerPacking/SelectedCapNormalized.lean` | the normalized selected-cap inequality with its final scale exponents |
+| `FalconerPacking/InheritedFourierLabels.lean` | exact surviving-label regrouping and inherited Fourier supports |
+| `FalconerPacking/FiniteEnergyIteration.lean` | sharp finite products of edge factors with controlled accumulated errors |
+| `FalconerPacking/SmoothStripPartition.lean` | explicit smooth strip partitions with uniform derivative bounds |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

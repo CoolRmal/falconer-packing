@@ -175,6 +175,17 @@ import FalconerPacking.SelectedCapEnergySums
 import FalconerPacking.SelectedCapGeometry
 import FalconerPacking.SelectedCapEmbedding
 
+import FalconerPacking.TerminalCircleEnergy
+import FalconerPacking.CircleSpectralSchwartz
+import FalconerPacking.CompactAnnularReconstruction
+import FalconerPacking.AnnularPinnedReconstruction
+import FalconerPacking.SelectedCapCoefficients
+import FalconerPacking.SelectedCapGridEmbedding
+import FalconerPacking.SelectedCapNormalized
+import FalconerPacking.InheritedFourierLabels
+import FalconerPacking.FiniteEnergyIteration
+import FalconerPacking.SmoothStripPartition
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

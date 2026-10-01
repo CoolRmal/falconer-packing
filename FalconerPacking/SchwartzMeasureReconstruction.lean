@@ -150,7 +150,8 @@ theorem tendsto_integral_lowpassMeasureDensity
     (fun _ ↦ (∫ w, ‖unitReproducingKernel w‖) * ‖g‖)
     (fun n ↦ (show Continuous (fun p : EuclideanSpace ℝ (Fin 2) ×
       EuclideanSpace ℝ (Fin 2) ↦ unitReproducingKernel p.2 *
-        g (p.1 + (a n)⁻¹ • p.2)) by fun_prop).stronglyMeasurable.integral_prod_right.aestronglyMeasurable)
+        g (p.1 + (a n)⁻¹ • p.2)) by
+          fun_prop).stronglyMeasurable.integral_prod_right.aestronglyMeasurable)
     (integrable_const _) (fun n ↦ Eventually.of_forall (hbound n))
     (Eventually.of_forall hpoint)
   convert h using 1
