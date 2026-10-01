@@ -255,6 +255,19 @@ import FalconerPacking.PhysicalDyadicCapKernels
 import FalconerPacking.StandardCapKernelBounds
 import FalconerPacking.DyadicPacketDeletion
 
+import FalconerPacking.CircleCapChordGeometry
+import FalconerPacking.InheritedCoarseCapSupport
+import FalconerPacking.SelectedCoarseCapEmbedding
+import FalconerPacking.NormalizedSpatialStrip
+import FalconerPacking.SpatialStripFourier
+import FalconerPacking.ScaledFourierBallEnergy
+import FalconerPacking.JointPinnedCircleEnergy
+import FalconerPacking.FiniteTubeEnlargement
+import FalconerPacking.EnlargedSlopeTubes
+import FalconerPacking.SlopeNormalChart
+import FalconerPacking.EnlargedSlopeTubeGeometry
+import FalconerPacking.SlopeTubeCoverage
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

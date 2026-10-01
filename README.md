@@ -484,6 +484,18 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/PhysicalDyadicCapKernels.lean` | exact physical cap rescaling and uniform transverse kernel tails |
 | `FalconerPacking/StandardCapKernelBounds.lean` | uniform kernel bounds on a concrete dividing dyadic angular grid |
 | `FalconerPacking/DyadicPacketDeletion.lean` | actual dyadic packet deletion with all kernel estimates discharged |
+| `FalconerPacking/CircleCapChordGeometry.lean` | quantitative circular chord bounds in the actual cap frames |
+| `FalconerPacking/InheritedCoarseCapSupport.lean` | actual coarse inherited supports and exact crossing regrouping |
+| `FalconerPacking/SelectedCoarseCapEmbedding.lean` | the coarse spatial edge with actual support and overlap proofs |
+| `FalconerPacking/NormalizedSpatialStrip.lean` | uniform support and derivative bounds for normalized strip cutoffs |
+| `FalconerPacking/SpatialStripFourier.lean` | exact anisotropic Fourier decay of the actual strip cutoffs |
+| `FalconerPacking/ScaledFourierBallEnergy.lean` | Frostman Fourier energy with the actual source Fourier convention |
+| `FalconerPacking/JointPinnedCircleEnergy.lean` | joint Liu identity bounds with measurability and integrability proved |
+| `FalconerPacking/FiniteTubeEnlargement.lean` | square-mass control for finite tube enlargements |
+| `FalconerPacking/EnlargedSlopeTubes.lean` | actual enlarged finite slope tubes and their truncated energy bound |
+| `FalconerPacking/SlopeNormalChart.lean` | uniform finite-grid approximation for arbitrary unit normals |
+| `FalconerPacking/EnlargedSlopeTubeGeometry.lean` | physical strip bounds and actual enlarged tube containment |
+| `FalconerPacking/SlopeTubeCoverage.lean` | arbitrary heavy directions force a heavy tube in the concrete finite grid |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
