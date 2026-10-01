@@ -13,12 +13,10 @@ import Mathlib.Topology.MetricSpace.HausdorffDimension
 /-!
 # The statement definitions
 
-The definitions of `Challenge.lean`, for the modular development.
-
-The theorem is Theorem 1.1 of the manuscript *Self-pinned distance sets: a Hausdorff–packing
-dimension criterion*: a planar Borel set whose Hausdorff dimension `d` lies in `(1, 5/4]` and
-whose packing dimension is below the piecewise curve `bound d` has a pin `y` inside itself whose
-pinned distance set has positive Lebesgue measure.
+The definitions of the independent `Challenge.lean`, followed by the historical curve API.
+The focused Theorem 1.1 uses `hausdorffPackingBound`. Its definitions are kept together in
+the same order as the specification so that Lean's shared numeral proofs also match in the
+comparator's structural check. This module does not import the challenge.
 -/
 
 noncomputable section
@@ -47,6 +45,26 @@ def upperBoxDim (E : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ :=
 def packingDim (E : Set (EuclideanSpace ℝ (Fin 2))) : ℝ≥0∞ :=
   ⨅ (K : ℕ → Set (EuclideanSpace ℝ (Fin 2))) (_ : E ⊆ ⋃ n, K n) (_ : ∀ n, Bornology.IsBounded (K n)),
     ⨆ n, upperBoxDim (K n)
+
+/-- The Hausdorff dimension where the hard-gap branch first improves the linear branch. -/
+def hardGapTransition : ℝ := (7 - Real.sqrt 7) / 4
+
+/-- The Hausdorff dimension where the rational branch replaces the hard-gap branch. -/
+def rationalTransition : ℝ := (2 + Real.sqrt 6) / 4
+
+/-- The discriminant of the quadratic level equation for the two-gap cost. -/
+def hardGapDiscriminant (a : ℝ) : ℝ :=
+  64 * a ^ 4 + 32 * a ^ 3 - 63 * a ^ 2 - 28 * a + 4
+
+/-- The smaller quadratic root, written without subtracting two nearby quantities. -/
+def hardGapRoot (a : ℝ) : ℝ :=
+  6 * a / (8 * a ^ 2 - a + 2 + Real.sqrt (hardGapDiscriminant a))
+
+/-- The dimension cutoff in Theorem 1.1, used for `1 < d ≤ 5 / 4`. -/
+def hausdorffPackingBound (d : ℝ) : ℝ :=
+  if d ≤ hardGapTransition then 2 * d - 1
+  else if d ≤ rationalTransition then 1 + hardGapRoot (d - 1)
+  else 1 / (3 - 2 * d)
 
 /-- The first transition point `(9 + √33) / 12`: the root above one of `3d² - 5d/2 = 2d - 1`. -/
 def d0 : ℝ := (9 + Real.sqrt 33) / 12

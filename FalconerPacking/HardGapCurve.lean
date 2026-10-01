@@ -4,13 +4,14 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
 import FalconerPacking.HardGapAlgebra
+import FalconerPacking.Statement
 import Mathlib.Analysis.Real.Sqrt
 import Mathlib.Topology.Order.OrderClosed
 
 /-!
 # The Hausdorff–packing cutoff from the hard-gap certificates
 
-The definitions here are the curve in Theorem 1.1 of the focused manuscript.
+The definitions in `Statement` are the curve in Theorem 1.1 of the focused manuscript.
 They do not replace the earlier `FalconerPacking.bound` API. The middle branch uses a
 rationalized quadratic root, whose denominator is positive on the whole real line.
 -/
@@ -18,26 +19,6 @@ rationalized quadratic root, whose denominator is positive on the whole real lin
 noncomputable section
 
 namespace FalconerPacking
-
-/-- The Hausdorff dimension where the hard-gap branch first improves the linear branch. -/
-def hardGapTransition : ℝ := (7 - Real.sqrt 7) / 4
-
-/-- The Hausdorff dimension where the rational branch replaces the hard-gap branch. -/
-def rationalTransition : ℝ := (2 + Real.sqrt 6) / 4
-
-/-- The discriminant of the quadratic level equation for the two-gap cost. -/
-def hardGapDiscriminant (a : ℝ) : ℝ :=
-  64 * a ^ 4 + 32 * a ^ 3 - 63 * a ^ 2 - 28 * a + 4
-
-/-- The smaller quadratic root, written without subtracting two nearby quantities. -/
-def hardGapRoot (a : ℝ) : ℝ :=
-  6 * a / (8 * a ^ 2 - a + 2 + Real.sqrt (hardGapDiscriminant a))
-
-/-- The dimension cutoff in Theorem 1.1, used for `1 < d ≤ 5 / 4`. -/
-def hausdorffPackingBound (d : ℝ) : ℝ :=
-  if d ≤ hardGapTransition then 2 * d - 1
-  else if d ≤ rationalTransition then 1 + hardGapRoot (d - 1)
-  else 1 / (3 - 2 * d)
 
 theorem one_lt_hardGapTransition : 1 < hardGapTransition := by
   have h : Real.sqrt 7 < 3 := (Real.sqrt_lt' (by norm_num)).2 (by norm_num)
