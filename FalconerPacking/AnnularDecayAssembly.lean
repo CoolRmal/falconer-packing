@@ -10,7 +10,7 @@ import FalconerPacking.EventualAnnularCriterion
 # One summable bound for the actual annular pieces
 
 The retained second norm, deleted first norm, and discarded-pin mass may decay at different
-positive rates. They admit one common rate, including the shift between packet shell index
+positive rates. They have one common rate, including the shift between packet shell index
 and the full compact annular expansion.
 -/
 
@@ -21,7 +21,7 @@ open scoped ENNReal
 
 namespace FalconerPacking
 
-/-- Three independently obtained shell bounds admit a single positive exponential rate.
+/-- Three independently obtained shell bounds have a single positive exponential rate.
 The output is indexed by the actual compact-annulus index `k + 1`. -/
 theorem exists_common_annular_decay {A B C : ℝ≥0∞}
     (hA : A ≠ ∞) (hB : B ≠ ∞) (hC : C ≠ ∞)
