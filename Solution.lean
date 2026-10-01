@@ -6,11 +6,12 @@ Authors: Yongxi Lin
 import FalconerPacking
 
 /-!
-# Historical conditional branch combination
+# Theorem 1.1 and the historical conditional branch combination
 
-This module currently contains the conditional result for the earlier curve. It does not prove
-the current `B_H` target in `Challenge.lean`. The comparator checks the unconditional theorem
-`exists_pin_volume_pinnedDistances_pos`, which must be added here after its dependencies are proved.
+The imported library proves `FalconerPacking.exists_pin_volume_pinnedDistances_pos`, the
+unconditional `B_H` theorem specified independently in `Challenge.lean`. Its full proof is in
+`FalconerPacking.HausdorffPackingTheorem` and uses only the three standard axioms.
+The historical conditional result for the earlier curve is retained below.
 -/
 
 open MeasureTheory

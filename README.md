@@ -6,7 +6,8 @@ The PDF puts the explanation and main proof first, followed by the detailed esti
 
 A Lean 4 formalization project for Theorem 1.1 of the focused proof PDF above.
 The current target is the unconditional theorem with the stronger boundary below.
-**The full Lean proof is not complete, and the comparator has not passed for this target.**
+**The full Lean proof now builds, using only `propext`, `Classical.choice`, and `Quot.sound`.
+The independent comparator run is pending.**
 
 **Research archive, 30 September 2026.** The [longer proof manuscript](docs/packing-unforced/packing-unforced-proof.pdf)
 gives the explicit stronger cutoff
@@ -84,8 +85,8 @@ statements about sufficient estimates, not distance-set counterexamples.
 Matching profiles prove this curve is optimal for the specified combination of
 the coherent test and the limiting universal chain-cost test. They are not planar
 distance-set counterexamples: the weakest possible dimensional condition for the
-distance theorem remains unknown. Internal audits are not external refereeing or
-complete Lean verification. The original Lean target and curve below are preserved.
+distance theorem remains unknown. The focused dimension theorem now has a complete
+Lean proof; the other research claims are not all formalized. The original curve below is preserved.
 
 The [new algebra module](FalconerPacking/HardGapAlgebra.lean) now verifies both
 weighted certificates and five supporting algebraic statements with only the
@@ -103,7 +104,8 @@ distance density whose pth power is integrable for some exponent greater than
 one**. The proof treats
 both analytic branches and explicitly handles the pin mass discarded in finite
 regularization. This improves integrability without changing the dimension
-cutoff. Formalization of the focused dimension theorem is now underway.
+cutoff. The focused dimension theorem is formalized; this stronger integrability
+conclusion is a separate natural-language result.
 
 The latest addition also proves an exact limitation of a local refined-decoupling
 construction: optimizing its terminal scale and every weighted exponent from
@@ -170,19 +172,19 @@ unconditional statement of Theorem 1.1 in the focused PDF, with `hausdorffPackin
 `Challenge.lean` independently states that exact target. Its theorem hole is a specification,
 not a proof; it is never imported by the solution library.
 
-`Solution.lean` currently proves only a historical conditional result for the earlier curve.
-It is not a solution to the current challenge. The target will be added only after its analytic
-and geometric dependencies have been proved. The comparator must reject the incomplete
-solution; its permitted axioms remain exactly `propext`, `Classical.choice`, and `Quot.sound`.
+`Solution.lean` imports the complete unconditional proof from
+[`HausdorffPackingTheorem.lean`](FalconerPacking/HausdorffPackingTheorem.lean).
+The exact target builds and its transitive axiom audit returns only `propext`,
+`Classical.choice`, and `Quot.sound`. The independent comparator run is pending.
 
-Major remaining dependencies include Borel Frostman extraction, the radial-projection theorem,
-the full hard-gap profile theorem, the Fourier-band comparison, wave packets, deletion and
-weighted Fourier iteration, and the pinned quadratic identity. Existing convergence and
-measure-theoretic modules prove some of the downstream steps.
+The proof includes Borel Frostman extraction, averaged radial densities, hard-gap profile
+chains, actual retained wave packets and their Fourier tails, weighted Fourier iteration,
+the pinned quadratic identity, and the final absolute-continuity argument. No analytic
+criterion is left as a hypothesis of the final theorem.
 
 | stage | state |
 |---|---|
-| exact focused-PDF challenge statement | type-checks; unconditional solution not yet present |
+| exact focused-PDF challenge statement | type-checks; unconditional proof provided separately |
 | historical branch combination (Section 4 of the earlier manuscript) | **proved**, with explicit analytic assumptions |
 | curve algebra (transition points, monotone branches) | **proved**, no holes |
 | new hard-gap weighted certificates, threshold algebra, and exact margins | **proved**, seven theorems, standard axioms only |
@@ -242,14 +244,14 @@ measure-theoretic modules prove some of the downstream steps.
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
 | Borel coherent criterion $$\dim_P E<2\dim_H E-1$$ for $$1<\dim_H E<2$$ | **proved**, with only the three standard axioms |
 | first interval of focused-PDF Theorem 1.1 | **proved**, including all measure construction and analytic estimates |
-| unconditional focused-PDF Theorem 1.1 | **open** — comparator not yet passing |
+| unconditional focused-PDF Theorem 1.1 | **proved**, only the three standard axioms; independent comparator pending |
 
 ## Layout
 
 | path | contents |
 |---|---|
 | `Challenge.lean` | the statement, self-contained, with the theorem hole |
-| `Solution.lean` | historical conditional theorem; unconditional target still absent |
+| `Solution.lean` | exports the unconditional target and retains the historical conditional theorem |
 | `FalconerPacking/Statement.lean` | dimensions, distance sets, and historical curve definitions |
 | `FalconerPacking/Algebra.lean` | the curve algebra of Section 4 |
 | `FalconerPacking/HardGapAlgebra.lean` | weighted certificates and threshold algebra for the improved curve |
@@ -617,6 +619,9 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RegularDiscardedPins.lean` | exact component-union discarded mass at the actual annular exponent |
 | `FalconerPacking/RegularChainCoefficient.lean` | actual regular thresholds and canonical broad-annulus chain geometry |
 | `FalconerPacking/RetainedScalarEnergy.lean` | common geometric decay for all four literal nonnegative retained-energy terms |
+| `FalconerPacking/RegularRetainedEnergy.lean` | actual retained distance densities have uniform squared-norm decay on every annulus |
+| `FalconerPacking/RegularAnnularComponents.lean` | compact regular-shell joint and pinned absolute continuity |
+| `FalconerPacking/HausdorffPackingTheorem.lean` | complete unconditional Theorem 1.1 for the focused Hausdorff-packing bound |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

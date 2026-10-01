@@ -400,6 +400,9 @@ import FalconerPacking.RegularDiscardedPins
 
 import FalconerPacking.RegularChainCoefficient
 import FalconerPacking.RetainedScalarEnergy
+import FalconerPacking.RegularRetainedEnergy
+import FalconerPacking.RegularAnnularComponents
+import FalconerPacking.HausdorffPackingTheorem
 
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
