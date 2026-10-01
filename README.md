@@ -403,6 +403,16 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SlopeTubeEnergy.lean` | actual truncated-energy and heavy-tube deletion estimates |
 | `FalconerPacking/SlopeTubeNet.lean` | approximation of every direction and finite strip coverage |
 | `FalconerPacking/AnnularDensityLimit.lean` | summable complex shells give actual positive densities from reconstruction |
+| `FalconerPacking/CircleBallMass.lean` | actual arbitrary-center ball bounds for normalized circle measure |
+| `FalconerPacking/CircleCapGeometry.lean` | curvature and smoothing place circular arcs in admissible Fourier rectangles |
+| `FalconerPacking/CircleSpectralConvolution.lean` | circle convolution energy bounds without a factor counting labels |
+| `FalconerPacking/CompactSourceSchwartz.lean` | actual smooth and Schwartz convolution functions from bounded source measures |
+| `FalconerPacking/DyadicAnnularKernel.lean` | constructed annular kernels with exact telescoping and uniform first norms |
+| `FalconerPacking/InitialFourierLocalization.lean` | local bandlimited energy against arbitrary finite pin measures |
+| `FalconerPacking/SchwartzMeasureReconstruction.lean` | actual source reconstruction by scaled Schwartz approximate identities |
+| `FalconerPacking/SelectedCapEnergySums.lean` | exact finite selected-measure energy rearrangement |
+| `FalconerPacking/SelectedCapGeometry.lean` | dual-grid containment and actual selected averaging-measure geometry |
+| `FalconerPacking/SelectedCapEmbedding.lean` | weighted selected-cap estimate with every kernel hypothesis discharged |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

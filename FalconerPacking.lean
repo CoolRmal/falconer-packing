@@ -164,6 +164,17 @@ import FalconerPacking.SlopeTubeEnergy
 import FalconerPacking.SlopeTubeNet
 import FalconerPacking.AnnularDensityLimit
 
+import FalconerPacking.CircleBallMass
+import FalconerPacking.CircleCapGeometry
+import FalconerPacking.CircleSpectralConvolution
+import FalconerPacking.CompactSourceSchwartz
+import FalconerPacking.DyadicAnnularKernel
+import FalconerPacking.InitialFourierLocalization
+import FalconerPacking.SchwartzMeasureReconstruction
+import FalconerPacking.SelectedCapEnergySums
+import FalconerPacking.SelectedCapGeometry
+import FalconerPacking.SelectedCapEmbedding
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
