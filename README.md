@@ -458,6 +458,14 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/CircularPacketAmplitude.lean` | actual circle-restricted packet amplitudes and remote arc decay |
 | `FalconerPacking/AnisotropicDirectionProfile.lean` | exact rescaled direction profiles with uniform joint derivatives |
 | `FalconerPacking/PacketDeletionMass.lean` | actual deleted packet densities controlled by bad-pair mass and kernel tails |
+| `FalconerPacking/AngularGridRefinement.lean` | exact refinement of angular cells and actual circle pieces |
+| `FalconerPacking/CapLabelGeometry.lean` | uniform support overlap for the actual coarse and fine cap labels |
+| `FalconerPacking/StandardCapLabelData.lean` | actual standard-cap circle data and precise parent groupings |
+| `FalconerPacking/StandardCapCircleSchwartz.lean` | Schwartz circle functions from the actual standard-cap label data |
+| `FalconerPacking/CoarseCapCircleSupport.lean` | Fourier supports and overlap for actual grouped coarse cap functions |
+| `FalconerPacking/ActiveCapCircleTree.lean` | active fine-label parent identities and terminal energy control |
+| `FalconerPacking/SmoothPeriodicUnfolding.lean` | exact smooth periodic unfolding with chart endpoints accounted for |
+| `FalconerPacking/FullCirclePacketDecay.lean` | actual full-circle decay for remote source-strip packets |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

@@ -226,6 +226,15 @@ import FalconerPacking.AnisotropicDirectionProfile
 
 import FalconerPacking.PacketDeletionMass
 
+import FalconerPacking.AngularGridRefinement
+import FalconerPacking.CapLabelGeometry
+import FalconerPacking.StandardCapLabelData
+import FalconerPacking.StandardCapCircleSchwartz
+import FalconerPacking.CoarseCapCircleSupport
+import FalconerPacking.ActiveCapCircleTree
+import FalconerPacking.SmoothPeriodicUnfolding
+import FalconerPacking.FullCirclePacketDecay
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
