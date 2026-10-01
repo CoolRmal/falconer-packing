@@ -122,6 +122,13 @@ import FalconerPacking.DyadicAffineDensity
 
 import FalconerPacking.CoherentStepSummability
 
+import FalconerPacking.DyadicAffineGeometry
+import FalconerPacking.CoherentDyadicStep
+import FalconerPacking.CoherentCompactTheorem
+import FalconerPacking.CoherentBorelTheorem
+import FalconerPacking.DistancePolarDensity
+import FalconerPacking.PinnedPositiveComponent
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

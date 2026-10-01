@@ -240,6 +240,8 @@ measure-theoretic modules prove some of the downstream steps.
 | coherent joint approximation: summable `L¹` densities and affine-map convergence give joint absolute continuity and a positive-length pin | **proved**, no holes |
 | affine distance geometry: measurability and the quadratic error bound under positive source–pin separation | **proved**, no holes |
 | compact dyadic source centers: measurable selectors with a uniform cube-diameter error | **proved**, no holes |
+| Borel coherent criterion $$\dim_P E<2\dim_H E-1$$ for $$1<\dim_H E<2$$ | **proved**, with only the three standard axioms |
+| first interval of focused-PDF Theorem 1.1 | **proved**, including all measure construction and analytic estimates |
 | unconditional focused-PDF Theorem 1.1 | **open** — comparator not yet passing |
 
 ## Layout
@@ -349,6 +351,12 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicPositiveCubes.lean` | finite families of every positive-mass source cube |
 | `FalconerPacking/DyadicAffineDensity.lean` | actual finite affine-mixture densities and common-refinement L¹ comparison |
 | `FalconerPacking/CoherentStepSummability.lean` | finite child comparison sums and explicit summable geometric errors |
+| `FalconerPacking/DyadicAffineGeometry.lean` | uniform tail scale and almost-everywhere source-pin geometry |
+| `FalconerPacking/CoherentDyadicStep.lean` | actual whole-pin density comparison at each dyadic step |
+| `FalconerPacking/CoherentCompactTheorem.lean` | unconditional separated compact criterion below the coherent cutoff |
+| `FalconerPacking/CoherentBorelTheorem.lean` | unconditional Borel coherent criterion and the focused theorem's first interval |
+| `FalconerPacking/DistancePolarDensity.lean` | exact pinned and joint distance density formulas for Lebesgue-density sources |
+| `FalconerPacking/PinnedPositiveComponent.lean` | positive absolutely continuous joint components give positive-length pins |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |
