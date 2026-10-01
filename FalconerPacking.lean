@@ -337,6 +337,18 @@ import FalconerPacking.DyadicInitialReconstruction
 import FalconerPacking.InitialCellRemoteGeometry
 import FalconerPacking.InitialPacketDecomposition
 
+import FalconerPacking.PhysicalDeletionConstants
+import FalconerPacking.RegularPartitionInitialLoss
+import FalconerPacking.SourceTubeMassAE
+import FalconerPacking.TubeDeletionAE
+import FalconerPacking.PhysicalDeletionAE
+import FalconerPacking.BroadCircleOverlap
+import FalconerPacking.BroadSelectedCircleParents
+import FalconerPacking.BroadMarkedCircleEdge
+import FalconerPacking.BroadMarkedCircleChain
+import FalconerPacking.BroadMarkedCircleFourierChain
+import FalconerPacking.BlockProfileChainScales
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

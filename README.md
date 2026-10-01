@@ -559,6 +559,17 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicInitialReconstruction.lean` | arbitrarily rapid reconstruction for actual dyadic packets |
 | `FalconerPacking/InitialCellRemoteGeometry.lean` | actual remote-cell selection and its geometric separation |
 | `FalconerPacking/InitialPacketDecomposition.lean` | exact retained plus deleted identity for the original packet sum |
+| `FalconerPacking/PhysicalDeletionConstants.lean` | uniform polynomial bounds for actual grid and angular constants |
+| `FalconerPacking/RegularPartitionInitialLoss.lean` | actual compact regularization preserving the margin chosen before localization |
+| `FalconerPacking/SourceTubeMassAE.lean` | retained source-tube estimate using almost-everywhere pin geometry |
+| `FalconerPacking/TubeDeletionAE.lean` | finite-grid deletion assuming separation only on the measure support |
+| `FalconerPacking/PhysicalDeletionAE.lean` | actual conditional deletion and inherited support geometry |
+| `FalconerPacking/BroadCircleOverlap.lean` | circle overlap bounds throughout the actual broad annular shell |
+| `FalconerPacking/BroadSelectedCircleParents.lean` | selected-parent estimates with a fixed upper frequency scale |
+| `FalconerPacking/BroadMarkedCircleEdge.lean` | actual marked spatial edge throughout a broad frequency shell |
+| `FalconerPacking/BroadMarkedCircleChain.lean` | finite marked chain preserving fixed marks across a broad annulus |
+| `FalconerPacking/BroadMarkedCircleFourierChain.lean` | broad-annulus chain controlled by the actual source spectrum |
+| `FalconerPacking/BlockProfileChainScales.lean` | physical block depths and angular grids from the actual profile chain |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
