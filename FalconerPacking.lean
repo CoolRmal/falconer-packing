@@ -384,6 +384,15 @@ import FalconerPacking.DyadicSchwartzFamily
 import FalconerPacking.RetainedPinFamily
 import FalconerPacking.RetainedCircleIntegration
 
+import FalconerPacking.AnnularDecayAssembly
+import FalconerPacking.ComponentAnnularCriterion
+import FalconerPacking.HardGapBorelData
+import FalconerPacking.RegularShellParameters
+import FalconerPacking.RegularRetainedRemainder
+import FalconerPacking.RetainedDistanceEnergy
+import FalconerPacking.RetainedChainDistance
+import FalconerPacking.RetainedEnergyConstants
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

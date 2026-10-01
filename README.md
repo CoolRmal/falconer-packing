@@ -603,6 +603,14 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/DyadicSchwartzFamily.lean` | jointly measurable finite dyadic families of actual Schwartz sources |
 | `FalconerPacking/RetainedPinFamily.lean` | measurable retained source and its exact initial-cell energy sum |
 | `FalconerPacking/RetainedCircleIntegration.lean` | radial integration preserving the inverse lower-frequency gain |
+| `FalconerPacking/AnnularDecayAssembly.lean` | one common decay rate for retained, deleted and discarded shell terms |
+| `FalconerPacking/ComponentAnnularCriterion.lean` | pinned absolute continuity from actual weighted component estimates |
+| `FalconerPacking/HardGapBorelData.lean` | unconditional Borel extraction with rooted separated data and finite radial moment |
+| `FalconerPacking/RegularShellParameters.lean` | compatible threshold and block parameters with strict remaining margin |
+| `FalconerPacking/RegularRetainedRemainder.lean` | literal annular remainder decay for actual regularized components |
+| `FalconerPacking/RetainedDistanceEnergy.lean` | full retained distance energy including the actual omitted spectrum |
+| `FalconerPacking/RetainedChainDistance.lean` | actual full retained density bound from the proved spatial chain |
+| `FalconerPacking/RetainedEnergyConstants.lean` | uniform annular multiplier norms and finite fixed energy factors |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
