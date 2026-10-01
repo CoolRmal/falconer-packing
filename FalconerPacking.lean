@@ -142,6 +142,17 @@ import FalconerPacking.RegularComponentBalls
 import FalconerPacking.RegularConditionalEnergy
 import FalconerPacking.SchwartzReproducingKernel
 import FalconerPacking.LiuPinnedIdentity
+import FalconerPacking.CircleFourierConvolution
+import FalconerPacking.ComplexDistancePushforward
+import FalconerPacking.AngularHeavyCells
+import FalconerPacking.RadialHeavyCells
+import FalconerPacking.TubePairCounting
+import FalconerPacking.AnisotropicSchwartzKernel
+import FalconerPacking.OrientedReproducingKernel
+import FalconerPacking.SchwartzPotential
+import FalconerPacking.GridMassGrowth
+import FalconerPacking.AnisotropicKernelPotential
+import FalconerPacking.ScaledBandlimitedCutoff
 
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets

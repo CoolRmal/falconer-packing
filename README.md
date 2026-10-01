@@ -368,6 +368,17 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RadialPlancherel.lean` | contraction of radial averaging and its actual L² Plancherel identity |
 | `FalconerPacking/CircularPlancherel.lean` | angular shift invariance and exact radius-weighted circular Plancherel |
 | `FalconerPacking/LiuPinnedIdentity.lean` | exact pinned identity with integrable energies and identification of actual distance densities |
+| `FalconerPacking/CircleFourierConvolution.lean` | actual circular Fourier convolution and the unweighted pinned L² bound |
+| `FalconerPacking/ComplexDistancePushforward.lean` | signed and complex distance pushforward tests and L¹ contraction |
+| `FalconerPacking/AngularHeavyCells.lean` | finite angular-cell deletion without a factor counting the cells |
+| `FalconerPacking/RadialHeavyCells.lean` | deletion estimates for actual source–pin pairs and retained radial-cell masses |
+| `FalconerPacking/TubePairCounting.lean` | exact finite tube-pair identity and weighted heavy-tube deletion |
+| `FalconerPacking/AnisotropicSchwartzKernel.lean` | actual rescaled kernels, exact Jacobians, uniform L¹ norm, and rapid decay |
+| `FalconerPacking/OrientedReproducingKernel.lean` | explicit kernels for arbitrary oriented Fourier rectangles |
+| `FalconerPacking/SchwartzPotential.lean` | dyadic-annulus control of actual Schwartz potentials |
+| `FalconerPacking/GridMassGrowth.lean` | explicit unit-grid ball covers and uniform kernel potential bounds |
+| `FalconerPacking/AnisotropicKernelPotential.lean` | weighted embedding from actual Fourier support, rectangle masses, and support margin |
+| `FalconerPacking/ScaledBandlimitedCutoff.lean` | constructed spatial cutoffs at every center and positive scale |
 | `FalconerPacking/RegularComponentBalls.lean` | ball and conditional-mass estimates for actual regularized components |
 | `FalconerPacking/RegularConditionalEnergy.lean` | truncated conditional energy controlled by the constructed profile's edge cost |
 | `FalconerPacking/SchwartzReproducingKernel.lean` | an explicit smooth Fourier cutoff and its actual reproducing convolution kernel |
