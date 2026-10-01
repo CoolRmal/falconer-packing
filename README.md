@@ -508,6 +508,23 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SchwartzRadialTails.lean` | uniform radial first-norm tails from actual Schwartz moments |
 | `FalconerPacking/PhysicalCapRadialTails.lean` | uniform physical cap tails outside a fixed source neighborhood |
 | `FalconerPacking/SourceCutoffError.lean` | actual first-norm and Fourier errors from removing the source cutoff |
+| `FalconerPacking/AngularSpectralSelector.lean` | constructed smooth spectral cone selectors with uniform angular derivatives |
+| `FalconerPacking/AngularSpectralWindowBounds.lean` | finite derivative windows for the actual spectral selectors |
+| `FalconerPacking/DyadicAnnularSummability.lean` | actual shell norm summability from eventual geometric decay |
+| `FalconerPacking/AnnularPinnedDensity.lean` | actual joint and pinned absolute continuity from annular shell estimates |
+| `FalconerPacking/FiniteEnergyIterationENNReal.lean` | finite energy iteration with explicit accumulated errors |
+| `FalconerPacking/InheritedEnergyPartition.lean` | exact angular parent energy sums for inherited masks |
+| `FalconerPacking/SelectedCapParentEmbedding.lean` | parent-summed selected cap embeddings without angular multiplicity |
+| `FalconerPacking/SelectedCircleParentEdges.lean` | actual coarse and fine parent-summed circle edges |
+| `FalconerPacking/DyadicCircleIdentification.lean` | actual circle functions identified with dyadic inherited labels |
+| `FalconerPacking/DyadicGridEdgeGeometry.lean` | spatial child-center geometry for the actual dyadic grid |
+| `FalconerPacking/MarkedCircleParentEdge.lean` | actual marked spatial parent edge across all angular scales |
+| `FalconerPacking/DyadicSourceCutoffError.lean` | uniform actual dyadic cutoff removal in first norm and Fourier norm |
+| `FalconerPacking/SlopeTubeSourceCoverage.lean` | simultaneous finite-grid coverage of actual pin tubes and source pairs |
+| `FalconerPacking/AllDirectionTubeDeletion.lean` | all tested heavy tube directions bounded by one finite-grid energy |
+| `FalconerPacking/SpectralCircleKernel.lean` | full-circle nonstationary decay with the periodic boundary terms proved |
+| `FalconerPacking/SpectralPacketFubini.lean` | exact selected spectral-circle kernel identity for integrable packets |
+| `FalconerPacking/RemoteSpectralPacket.lean` | actual remote spectral packet decay including pointwise cone leakage |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

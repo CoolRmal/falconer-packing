@@ -281,6 +281,24 @@ import FalconerPacking.SchwartzRadialTails
 import FalconerPacking.PhysicalCapRadialTails
 import FalconerPacking.SourceCutoffError
 
+import FalconerPacking.AngularSpectralSelector
+import FalconerPacking.AngularSpectralWindowBounds
+import FalconerPacking.DyadicAnnularSummability
+import FalconerPacking.AnnularPinnedDensity
+import FalconerPacking.FiniteEnergyIterationENNReal
+import FalconerPacking.InheritedEnergyPartition
+import FalconerPacking.SelectedCapParentEmbedding
+import FalconerPacking.SelectedCircleParentEdges
+import FalconerPacking.DyadicCircleIdentification
+import FalconerPacking.DyadicGridEdgeGeometry
+import FalconerPacking.MarkedCircleParentEdge
+import FalconerPacking.DyadicSourceCutoffError
+import FalconerPacking.SlopeTubeSourceCoverage
+import FalconerPacking.AllDirectionTubeDeletion
+import FalconerPacking.SpectralCircleKernel
+import FalconerPacking.SpectralPacketFubini
+import FalconerPacking.RemoteSpectralPacket
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

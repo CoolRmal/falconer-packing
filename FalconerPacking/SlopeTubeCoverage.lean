@@ -21,19 +21,22 @@ open scoped ENNReal RealInnerProductSpace
 namespace FalconerPacking
 
 /-- Every nonempty physical strip in the parent ball is contained in one finite-grid tube. -/
-theorem exists_enlargedSlopeTube_containing_unit_strip
+theorem exists_enlargedSlopeTube_containing_strip_with_normal
     (o p e : EuclideanSpace ℝ (Fin 2)) (he : ‖e‖ = 1)
     {b : ℝ} (hb : 0 < b) {M : ℕ} (hM : 0 < M)
     {w C : ℝ} (hw : w ≤ C * (b / M))
     (hne : (Metric.ball o b ∩ {x | |⟪e, x - p⟫| ≤ w}).Nonempty) :
     ∃ i ∈ slopeTubeLabels M,
       Metric.ball o b ∩ {x | |⟪e, x - p⟫| ≤ w} ⊆
-        enlargedSlopeTube o b M (Nat.ceil (4 * C + 2) + 1) i := by
+        enlargedSlopeTube o b M (Nat.ceil (4 * C + 2) + 1) i ∧
+      ∀ z : EuclideanSpace ℝ (Fin 2),
+        |slopeLinearCoordinate i.1 ((i.2.1 : ℝ) / M) z| ≤
+          2 * |⟪e, z⟫| + ‖z‖ / M := by
   have ha : 0 < b / M := div_pos hb (by exact_mod_cast hM)
   obtain ⟨x₀, hx₀ball, hx₀strip⟩ := hne
   obtain ⟨c, k, hk, hnet⟩ := exists_slopeNet_unit_normal_bound hM e he
   obtain ⟨l, hl, hx₀⟩ := exists_slopeStrip_cover hb hM c hk hx₀ball
-  refine ⟨(c, k, l), Finset.mem_product.mpr ⟨Finset.mem_univ c, hl⟩, ?_⟩
+  refine ⟨(c, k, l), Finset.mem_product.mpr ⟨Finset.mem_univ c, hl⟩, ?_, hnet⟩
   rintro x ⟨hxball, hxstrip⟩
   change |⟪e, x - p⟫| ≤ w at hxstrip
   change |⟪e, x₀ - p⟫| ≤ w at hx₀strip
@@ -56,6 +59,19 @@ theorem exists_enlargedSlopeTube_containing_unit_strip
     _ = (4 * C + 2) * (b / M) := by ring
     _ ≤ (Nat.ceil (4 * C + 2) : ℝ) * (b / M) :=
       mul_le_mul_of_nonneg_right (Nat.le_ceil _) ha.le
+
+/-- The containing member is a single tube in the concrete finite family. -/
+theorem exists_enlargedSlopeTube_containing_unit_strip
+    (o p e : EuclideanSpace ℝ (Fin 2)) (he : ‖e‖ = 1)
+    {b : ℝ} (hb : 0 < b) {M : ℕ} (hM : 0 < M)
+    {w C : ℝ} (hw : w ≤ C * (b / M))
+    (hne : (Metric.ball o b ∩ {x | |⟪e, x - p⟫| ≤ w}).Nonempty) :
+    ∃ i ∈ slopeTubeLabels M,
+      Metric.ball o b ∩ {x | |⟪e, x - p⟫| ≤ w} ⊆
+        enlargedSlopeTube o b M (Nat.ceil (4 * C + 2) + 1) i := by
+  obtain ⟨i, hi, hsub, _⟩ :=
+    exists_enlargedSlopeTube_containing_strip_with_normal o p e he hb hM hw hne
+  exact ⟨i, hi, hsub⟩
 
 /-- A heavy strip in an arbitrary direction forces a heavy member of the finite family. -/
 theorem exists_heavy_enlargedSlopeTube_of_heavy_unit_strip
