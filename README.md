@@ -615,6 +615,8 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RetainedChainConstantBound.lean` | uniform absorption of fixed analytic factors in the four retained-energy terms |
 | `FalconerPacking/ChainCoefficientMonotone.lean` | monotonicity of the complete chain coefficient including accumulated errors |
 | `FalconerPacking/RegularDiscardedPins.lean` | exact component-union discarded mass at the actual annular exponent |
+| `FalconerPacking/RegularChainCoefficient.lean` | actual regular thresholds and canonical broad-annulus chain geometry |
+| `FalconerPacking/RetainedScalarEnergy.lean` | common geometric decay for all four literal nonnegative retained-energy terms |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
