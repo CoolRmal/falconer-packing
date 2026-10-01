@@ -10,7 +10,7 @@ using only `propext`, `Classical.choice`, and `Quot.sound`.
 Let E be a Borel subset of the Euclidean plane, and write
 
 $$
-d=\dim_H E,\qquad \Delta_y(E)=\{\lVert x-y\rVert:x\in E\}.
+d=\dim_H E,\qquad \Delta_y(E)=\lbrace\lVert x-y\rVert:x\in E\rbrace.
 $$
 
 If
