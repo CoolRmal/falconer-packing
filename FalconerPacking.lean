@@ -268,6 +268,19 @@ import FalconerPacking.SlopeNormalChart
 import FalconerPacking.EnlargedSlopeTubeGeometry
 import FalconerPacking.SlopeTubeCoverage
 
+import FalconerPacking.CircleEnergyIntegration
+import FalconerPacking.PinnedShellL2
+import FalconerPacking.OmittedCircleEnergy
+import FalconerPacking.DyadicCapAncestry
+import FalconerPacking.MarkedDyadicCircle
+import FalconerPacking.SourcePacketFourierConvolution
+import FalconerPacking.SourcePacketMicrolocal
+import FalconerPacking.SlopeTubeNormals
+import FalconerPacking.EnlargedSlopeTubeDeletion
+import FalconerPacking.SchwartzRadialTails
+import FalconerPacking.PhysicalCapRadialTails
+import FalconerPacking.SourceCutoffError
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

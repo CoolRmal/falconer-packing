@@ -496,6 +496,18 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/SlopeNormalChart.lean` | uniform finite-grid approximation for arbitrary unit normals |
 | `FalconerPacking/EnlargedSlopeTubeGeometry.lean` | physical strip bounds and actual enlarged tube containment |
 | `FalconerPacking/SlopeTubeCoverage.lean` | arbitrary heavy directions force a heavy tube in the concrete finite grid |
+| `FalconerPacking/CircleEnergyIntegration.lean` | polar integration of actual annular circle energies |
+| `FalconerPacking/PinnedShellL2.lean` | joint shell-density bounds from explicit annular and omitted energies |
+| `FalconerPacking/OmittedCircleEnergy.lean` | actual omitted circle energy from a pointwise Fourier envelope |
+| `FalconerPacking/DyadicCapAncestry.lean` | explicit dyadic angular ancestry across standard cap scale |
+| `FalconerPacking/MarkedDyadicCircle.lean` | exact marked circle identities using actual spatial ancestors |
+| `FalconerPacking/SourcePacketFourierConvolution.lean` | literal packet Fourier convolution and anisotropic frequency tail |
+| `FalconerPacking/SourcePacketMicrolocal.lean` | exact cone core and tail with pointwise Fourier-circle control |
+| `FalconerPacking/SlopeTubeNormals.lean` | actual unit normals and centers for the finite enlarged tubes |
+| `FalconerPacking/EnlargedSlopeTubeDeletion.lean` | actual source-strip heavy-tube deletion from truncated energy |
+| `FalconerPacking/SchwartzRadialTails.lean` | uniform radial first-norm tails from actual Schwartz moments |
+| `FalconerPacking/PhysicalCapRadialTails.lean` | uniform physical cap tails outside a fixed source neighborhood |
+| `FalconerPacking/SourceCutoffError.lean` | actual first-norm and Fourier errors from removing the source cutoff |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
