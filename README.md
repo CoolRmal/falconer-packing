@@ -448,6 +448,16 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/CircularReciprocal.lean` | constructed circular reciprocal and quantitative arc decay |
 | `FalconerPacking/SourceWavePackets.lean` | actual Schwartz source packets with exact finite reconstruction |
 | `FalconerPacking/LocalizedPacketMass.lean` | first-norm packet bound by actual source strip mass and kernel tail |
+| `FalconerPacking/PacketDirectionCounting.lean` | actual angular-grid direction count for transverse constraints |
+| `FalconerPacking/PacketPairMultiplicity.lean` | explicit enlarged-strip multiplicity for separated source-pin pairs |
+| `FalconerPacking/SourceWavePacketMass.lean` | actual packet and pinned-density bounds using inverse cap kernels |
+| `FalconerPacking/DeletedPacketSum.lean` | actual pin-dependent deleted sums and averaged first-norm contraction |
+| `FalconerPacking/DyadicAngularCaps.lean` | constructed dyadic cap symbols with uniform rescaled support |
+| `FalconerPacking/AngularBumpDerivatives.lean` | uniform derivative estimates for the actual finite cap bump family |
+| `FalconerPacking/NormalizedAngularDerivatives.lean` | actual normalized ambient angular weights with uniform derivatives |
+| `FalconerPacking/CircularPacketAmplitude.lean` | actual circle-restricted packet amplitudes and remote arc decay |
+| `FalconerPacking/AnisotropicDirectionProfile.lean` | exact rescaled direction profiles with uniform joint derivatives |
+| `FalconerPacking/PacketDeletionMass.lean` | actual deleted packet densities controlled by bad-pair mass and kernel tails |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the

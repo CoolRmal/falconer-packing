@@ -213,6 +213,19 @@ import FalconerPacking.CircularReciprocal
 import FalconerPacking.SourceWavePackets
 import FalconerPacking.LocalizedPacketMass
 
+import FalconerPacking.PacketDirectionCounting
+import FalconerPacking.PacketPairMultiplicity
+import FalconerPacking.SourceWavePacketMass
+import FalconerPacking.DeletedPacketSum
+import FalconerPacking.DyadicAngularCaps
+import FalconerPacking.AngularBumpDerivatives
+import FalconerPacking.NormalizedAngularDerivatives
+import FalconerPacking.CircularPacketAmplitude
+
+import FalconerPacking.AnisotropicDirectionProfile
+
+import FalconerPacking.PacketDeletionMass
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
