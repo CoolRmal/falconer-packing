@@ -207,6 +207,12 @@ import FalconerPacking.RegularizedReciprocal
 import FalconerPacking.AngularCapWeights
 import FalconerPacking.SmoothAngularCaps
 
+import FalconerPacking.SeparatedBallGeometry
+import FalconerPacking.SeparatedBallMeasures
+import FalconerPacking.CircularReciprocal
+import FalconerPacking.SourceWavePackets
+import FalconerPacking.LocalizedPacketMass
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

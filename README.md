@@ -443,6 +443,11 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RegularizedReciprocal.lean` | constructed smooth reciprocals with quantitative scaled derivatives |
 | `FalconerPacking/AngularCapWeights.lean` | explicit smooth angular weights with uniform overlap |
 | `FalconerPacking/SmoothAngularCaps.lean` | globally smooth compact cap multipliers with exact reconstruction |
+| `FalconerPacking/SeparatedBallGeometry.lean` | explicit common coordinates for quantitatively separated balls |
+| `FalconerPacking/SeparatedBallMeasures.lean` | positive compact restrictions with preserved Frostman and covering bounds |
+| `FalconerPacking/CircularReciprocal.lean` | constructed circular reciprocal and quantitative arc decay |
+| `FalconerPacking/SourceWavePackets.lean` | actual Schwartz source packets with exact finite reconstruction |
+| `FalconerPacking/LocalizedPacketMass.lean` | first-norm packet bound by actual source strip mass and kernel tail |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
