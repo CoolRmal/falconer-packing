@@ -49,7 +49,7 @@ For example, the theorem applies when the Hausdorff dimension is 1.15 and the
 packing dimension is 1.40: the cutoff is 10/7. The weakest possible dimensional
 condition remains unknown.
 
-![The Hausdorff–packing cutoff compared with earlier bounds.](docs/figures/packing-unforced.svg)
+![The current Hausdorff–packing bound.](docs/figures/packing-unforced.svg)
 
 ## Formal proof and verification
 
