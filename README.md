@@ -341,6 +341,10 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/RadialProjectionWeakLimit.lean` | weak convergence of actual joint radial probabilities |
 | `FalconerPacking/RadialProjectionJointDensity.lean` | explicit and canonical joint radial density identities |
 | `FalconerPacking/RadialMomentCenters.lean` | one fixed dyadic center family with radial moment and geometric control |
+| `FalconerPacking/AffineDistanceTruncation.lean` | whole-pin affine comparison with the exact discarded-mass error |
+| `FalconerPacking/RadialProjectionApproximationMoment.lean` | uniform moments for the explicit smoothing sequence |
+| `FalconerPacking/RadialProjectionTheorem.lean` | averaged radial absolute continuity and a higher moment from bounded Frostman hypotheses |
+| `FalconerPacking/DyadicComparisonSums.lean` | child-mass regrouping and square-root mass sums |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

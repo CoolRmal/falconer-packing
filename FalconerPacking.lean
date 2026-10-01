@@ -111,6 +111,11 @@ import FalconerPacking.RadialProjectionWeakLimit
 import FalconerPacking.RadialProjectionJointDensity
 import FalconerPacking.RadialMomentCenters
 
+import FalconerPacking.AffineDistanceTruncation
+import FalconerPacking.RadialProjectionApproximationMoment
+import FalconerPacking.RadialProjectionTheorem
+import FalconerPacking.DyadicComparisonSums
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/
