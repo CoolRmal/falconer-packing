@@ -186,6 +186,27 @@ import FalconerPacking.InheritedFourierLabels
 import FalconerPacking.FiniteEnergyIteration
 import FalconerPacking.SmoothStripPartition
 
+import FalconerPacking.AngularGridGeometry
+import FalconerPacking.OverlappingHeavyCells
+import FalconerPacking.EnlargedAngularCells
+import FalconerPacking.WitnessedTubeDeletion
+import FalconerPacking.SourceTubeMass
+import FalconerPacking.SelectedCapSpectralWidth
+import FalconerPacking.SelectedCapSpectralNormalized
+import FalconerPacking.CircleCellSchwartz
+import FalconerPacking.CircleCellSupport
+import FalconerPacking.CircleCellTerminal
+import FalconerPacking.PlanarStripPackets
+import FalconerPacking.SourceStripPartition
+import FalconerPacking.RadialAngleChart
+import FalconerPacking.StripRadialContainment
+import FalconerPacking.CircularPhase
+import FalconerPacking.NonstationaryPhase
+import FalconerPacking.NonstationaryPhaseBounds
+import FalconerPacking.RegularizedReciprocal
+import FalconerPacking.AngularCapWeights
+import FalconerPacking.SmoothAngularCaps
+
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
 -/

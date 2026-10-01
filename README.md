@@ -423,6 +423,26 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/InheritedFourierLabels.lean` | exact surviving-label regrouping and inherited Fourier supports |
 | `FalconerPacking/FiniteEnergyIteration.lean` | sharp finite products of edge factors with controlled accumulated errors |
 | `FalconerPacking/SmoothStripPartition.lean` | explicit smooth strip partitions with uniform derivative bounds |
+| `FalconerPacking/AngularGridGeometry.lean` | explicit nested angular grids with quantitative overlap |
+| `FalconerPacking/OverlappingHeavyCells.lean` | heavy-cell bounds for overlapping measurable families |
+| `FalconerPacking/EnlargedAngularCells.lean` | actual enlarged cells cover angular neighborhoods with overlap four |
+| `FalconerPacking/WitnessedTubeDeletion.lean` | heavy-tube deletion from retained witnesses outside null pins |
+| `FalconerPacking/SourceTubeMass.lean` | source mass and total deletion bounds from actual strip geometry |
+| `FalconerPacking/SelectedCapSpectralWidth.lean` | selected Fourier embedding with an arbitrary fixed spectral dilation |
+| `FalconerPacking/SelectedCapSpectralNormalized.lean` | normalized spectral-dilation embedding with unchanged physical tube tests |
+| `FalconerPacking/CircleCellSchwartz.lean` | actual circle cells and exact finite reconstruction |
+| `FalconerPacking/CircleCellSupport.lean` | actual cell Fourier supports in inherited oriented rectangles |
+| `FalconerPacking/CircleCellTerminal.lean` | terminal energy of the constructed circle-cell functions |
+| `FalconerPacking/PlanarStripPackets.lean` | actual smooth planar strip packets and derivative estimates |
+| `FalconerPacking/SourceStripPartition.lean` | a finite source strip partition with explicit supports and overlap |
+| `FalconerPacking/RadialAngleChart.lean` | quantitative radial angle comparison in a common half-plane chart |
+| `FalconerPacking/StripRadialContainment.lean` | actual common strips give angular containment |
+| `FalconerPacking/CircularPhase.lean` | exact circular phase derivatives and transverse nonstationarity |
+| `FalconerPacking/NonstationaryPhase.lean` | repeated integration by parts for smooth compact amplitudes |
+| `FalconerPacking/NonstationaryPhaseBounds.lean` | explicit scale bounds for the iterated transport amplitude |
+| `FalconerPacking/RegularizedReciprocal.lean` | constructed smooth reciprocals with quantitative scaled derivatives |
+| `FalconerPacking/AngularCapWeights.lean` | explicit smooth angular weights with uniform overlap |
+| `FalconerPacking/SmoothAngularCaps.lean` | globally smooth compact cap multipliers with exact reconstruction |
 | `comparator.json` | permits only `propext`, `Quot.sound`, `Classical.choice` |
 
 `comparator.json` has no `definition_names` escape hatch: the definitions reachable from the
