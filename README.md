@@ -363,6 +363,14 @@ measure-theoretic modules prove some of the downstream steps.
 | `FalconerPacking/TruncatedConditionalEnergy.lean` | finite-scale profile energy bounds, including diagonal atoms |
 | `FalconerPacking/WeakDomination.lean` | dominated absolutely continuous subsequential limits of actual probabilities |
 | `FalconerPacking/WeightedConvolutionEmbedding.lean` | actual Schwartz convolution, weighted Cauchy–Schwarz, and kernel-potential embedding |
+| `FalconerPacking/LocalizedFourierOrthogonality.lean` | local selected orthogonality from actual product Fourier supports |
+| `FalconerPacking/BandlimitedCutoff.lean` | a constructed Schwartz cutoff with compact Fourier support and a spatial lower bound |
+| `FalconerPacking/RadialPlancherel.lean` | contraction of radial averaging and its actual L² Plancherel identity |
+| `FalconerPacking/CircularPlancherel.lean` | angular shift invariance and exact radius-weighted circular Plancherel |
+| `FalconerPacking/LiuPinnedIdentity.lean` | exact pinned identity with integrable energies and identification of actual distance densities |
+| `FalconerPacking/RegularComponentBalls.lean` | ball and conditional-mass estimates for actual regularized components |
+| `FalconerPacking/RegularConditionalEnergy.lean` | truncated conditional energy controlled by the constructed profile's edge cost |
+| `FalconerPacking/SchwartzReproducingKernel.lean` | an explicit smooth Fourier cutoff and its actual reproducing convolution kernel |
 | `FalconerPacking/PolarFourierEnergy.lean` | polar integration, angular Fourier bands, and their finite sum for exponents above one |
 | `FalconerPacking/PinnedKernel.lean` | joint pin-distance laws, coherent affine limits, disintegration, and the positive-length fiber conclusion |
 | `FalconerPacking/AffineDistance.lean` | measurable affine distance maps and their uniform quadratic approximation error |

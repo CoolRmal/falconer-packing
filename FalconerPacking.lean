@@ -134,6 +134,14 @@ import FalconerPacking.RadialFourierAverage
 import FalconerPacking.TruncatedConditionalEnergy
 import FalconerPacking.WeakDomination
 import FalconerPacking.WeightedConvolutionEmbedding
+import FalconerPacking.LocalizedFourierOrthogonality
+import FalconerPacking.BandlimitedCutoff
+import FalconerPacking.RadialPlancherel
+import FalconerPacking.CircularPlancherel
+import FalconerPacking.RegularComponentBalls
+import FalconerPacking.RegularConditionalEnergy
+import FalconerPacking.SchwartzReproducingKernel
+import FalconerPacking.LiuPinnedIdentity
 
 /-!
 # A Hausdorff–packing criterion for self-pinned distance sets
