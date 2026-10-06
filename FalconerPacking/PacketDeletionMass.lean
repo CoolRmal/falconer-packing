@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PacketPairMultiplicity
-import FalconerPacking.DeletedPacketSum
-import FalconerPacking.BallOverlap
+module
+
+public import FalconerPacking.PacketPairMultiplicity
+public import FalconerPacking.DeletedPacketSum
+public import FalconerPacking.BallOverlap
 
 /-!
 # From actual packet pair multiplicity to deletion mass
@@ -13,6 +15,8 @@ import FalconerPacking.BallOverlap
 The source strips and the pin-dependent deleted sets determine actual measurable pair sets.
 Their product masses sum with only the proved packet overlap factor on separated supports.
 -/
+
+@[expose] public section
 
 noncomputable section
 

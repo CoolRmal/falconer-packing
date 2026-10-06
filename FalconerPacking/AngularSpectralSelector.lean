@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularBumpDerivatives
-import FalconerPacking.CircularPacketAmplitude
-import FalconerPacking.LocalCompositionBounds
+module
+
+public import FalconerPacking.AngularBumpDerivatives
+public import FalconerPacking.CircularPacketAmplitude
+public import FalconerPacking.LocalCompositionBounds
 
 /-!
 # A smooth periodic selector for enlarged angular caps
@@ -14,6 +16,8 @@ The selector is a fixed compact smooth bump of the normalized frequency directio
 on chord distance at most `8π/S` and supported where that distance is less than `16π/S`.
 Its restrictions to positive-radius circles have uniform derivative bounds of order `S^k`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

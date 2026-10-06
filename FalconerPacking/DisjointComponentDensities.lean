@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeightedConditionalDeletion
-import FalconerPacking.AnnularPinnedReconstruction
+module
+
+public import FalconerPacking.WeightedConditionalDeletion
+public import FalconerPacking.AnnularPinnedReconstruction
 
 /-!
 # Gluing density estimates over disjoint regular components
@@ -13,6 +15,8 @@ The assembled density uses the original measure on each component. Disjointness 
 its first norm and its squared second norm the exact mass-weighted sum of the conditional
 norms. In particular, no factor counting the regular components is introduced.
 -/
+
+@[expose] public section
 
 noncomputable section
 

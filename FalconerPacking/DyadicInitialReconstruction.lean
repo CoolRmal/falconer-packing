@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialSpectralReconstruction
-import FalconerPacking.DyadicSpectralNorms
+module
+
+public import FalconerPacking.InitialSpectralReconstruction
+public import FalconerPacking.DyadicSpectralNorms
 
 /-!
 # Arbitrarily rapid initial reconstruction on concrete dyadic packet grids
@@ -12,6 +14,8 @@ import FalconerPacking.DyadicSpectralNorms
 The packet integer is independent of the regularization block length. Passing from the
 index `n` to a multiple of `n` therefore preserves the result without linking the two choices.
 -/
+
+@[expose] public section
 
 noncomputable section
 

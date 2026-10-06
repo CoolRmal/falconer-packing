@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.TerminalCircleEnergy
-import FalconerPacking.CompactSourceSchwartz
+module
+
+public import FalconerPacking.TerminalCircleEnergy
+public import FalconerPacking.CompactSourceSchwartz
 
 /-!
 # Actual Schwartz terminal circle pieces
@@ -13,6 +15,8 @@ Compact circle support and a smooth compact spectral bump produce actual Schwart
 convolutions. Fourier inversion and Plancherel transfer the terminal estimate to
 physical space without an assumed Fourier representation.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalDyadicCapKernels
-import FalconerPacking.SchwartzRadialTails
+module
+
+public import FalconerPacking.PhysicalDyadicCapKernels
+public import FalconerPacking.SchwartzRadialTails
 
 /-!
 # Actual spatial tails of physical cap kernels
@@ -12,6 +14,8 @@ import FalconerPacking.SchwartzRadialTails
 Every coordinate expands by at least the square root of the frequency. Radial Schwartz
 tails therefore control the physical kernel outside a fixed source neighborhood.
 -/
+
+@[expose] public section
 
 noncomputable section
 

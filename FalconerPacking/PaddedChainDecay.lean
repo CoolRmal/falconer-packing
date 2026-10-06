@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PaddedProfileChain
-import FalconerPacking.ChainThresholdDecay
-import FalconerPacking.ChainEnergyDecay
+module
+
+public import FalconerPacking.PaddedProfileChain
+public import FalconerPacking.ChainThresholdDecay
+public import FalconerPacking.ChainEnergyDecay
 
 /-!
 # The complete numerical coefficient for the actual padded profile
@@ -13,6 +15,8 @@ import FalconerPacking.ChainEnergyDecay
 Both the main threshold product and every preceding-factor error are reduced to the
 strict profile exponent. No list, scale, cost-sum, or terminal identity is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

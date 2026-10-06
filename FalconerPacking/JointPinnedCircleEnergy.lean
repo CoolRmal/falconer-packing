@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleFourierConvolution
-import FalconerPacking.AnnularPinnedReconstruction
+module
+
+public import FalconerPacking.CircleFourierConvolution
+public import FalconerPacking.AnnularPinnedReconstruction
 
 /-!
 # Joint pinned energy from actual circular energy
@@ -13,6 +15,8 @@ The source may depend measurably on the pin. Liu's identity is applied to each a
 source, and Tonelli then transfers the integrated spectral-circle estimate to the actual joint
 distance densities. Only an upper bound on source-pin distances is needed in this step.
 -/
+
+@[expose] public section
 
 noncomputable section
 

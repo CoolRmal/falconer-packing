@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularPhysicalDeletion
+module
+
+public import FalconerPacking.RegularPhysicalDeletion
 
 /-!
 # Uniform conditional deletion at the actual dyadic chain scales
@@ -12,6 +14,8 @@ One polynomial coefficient works for every finite pin and source measure, every 
 parent, and every selected edge of a bounded chain. The spatial grid, angular mesh, and
 complete geometric coefficient are constructed in the proof.
 -/
+
+@[expose] public section
 
 noncomputable section
 

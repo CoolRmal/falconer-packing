@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
+module
+
+public import FalconerPacking.Dyadic
 
 /-!
 # The actual finite spatial family of a dyadic chain
@@ -12,6 +14,8 @@ At every level we take the ancestors of the prescribed initial finite collection
 The next collection is exactly the parent image, so summing over its fibers counts
 each current cube once, irrespective of overlapping enlarged squares.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalDyadicMarks
-import FalconerPacking.AllDirectionTubeDeletion
+module
+
+public import FalconerPacking.PhysicalDyadicMarks
+public import FalconerPacking.AllDirectionTubeDeletion
 
 /-!
 # Actual bad physical marks give the source-pin pairs used by deletion
@@ -13,6 +15,8 @@ The pin lies in its actual dyadic child; the conditional measure uses exactly th
 parent of the circle-energy edge. A failed physical test and an actual source packet strip
 place the pair in the coarsening theorem's heavy-tube event.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CompactAnnularReconstruction
-import FalconerPacking.ComplexDistancePushforward
-import FalconerPacking.PinnedKernel
+module
+
+public import FalconerPacking.CompactAnnularReconstruction
+public import FalconerPacking.ComplexDistancePushforward
+public import FalconerPacking.PinnedKernel
 
 /-!
 # Joint pinned reconstruction of actual annular source pieces
@@ -14,6 +16,8 @@ The compact smooth source expansion reconstructs the actual joint pin-distance l
 pushing every complex annular piece through the distance map. This supplies the test
 reconstruction hypothesis in the annular density-limit theorem without assuming it.
 -/
+
+@[expose] public section
 
 noncomputable section
 

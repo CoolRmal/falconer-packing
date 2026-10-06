@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialRetainedEnergy
-import FalconerPacking.BroadMarkedCircleFourierChain
+module
+
+public import FalconerPacking.InitialRetainedEnergy
+public import FalconerPacking.BroadMarkedCircleFourierChain
 
 /-!
 # The actual retained packet energy after the complete spatial chain
@@ -13,6 +15,8 @@ The retained source is reconstructed from the original common spectrum, localize
 the pin cubes, and passed through the proved finite Fourier chain. The marks are the
 actual physical rectangle tests, so their analytic tube hypothesis is discharged.
 -/
+
+@[expose] public section
 
 noncomputable section
 

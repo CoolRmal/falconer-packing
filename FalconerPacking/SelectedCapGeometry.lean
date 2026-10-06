@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapEnergySums
-import FalconerPacking.EnlargedGridSquares
-import FalconerPacking.Dyadic
+module
+
+public import FalconerPacking.SelectedCapEnergySums
+public import FalconerPacking.EnlargedGridSquares
+public import FalconerPacking.Dyadic
 
 /-!
 # Geometry of the measures used in the selected-cap embedding
@@ -13,6 +15,8 @@ import FalconerPacking.Dyadic
 Inverse images of unit grid cells are actual oriented rectangles. The Euclidean support
 margin controls the anisotropic norm, including arbitrary aspect ratios.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FiniteTubeEnlargement
-import FalconerPacking.SlopeTubeEnergy
-import FalconerPacking.SlopeTubeNet
+module
+
+public import FalconerPacking.FiniteTubeEnlargement
+public import FalconerPacking.SlopeTubeEnergy
+public import FalconerPacking.SlopeTubeNet
 
 /-!
 # Actual enlarged slope tubes
@@ -13,6 +15,8 @@ import FalconerPacking.SlopeTubeNet
 Each enlargement is a finite union of neighboring strips at the same slope. Both incidence
 degrees are bounded explicitly, so their square masses retain the truncated-energy bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

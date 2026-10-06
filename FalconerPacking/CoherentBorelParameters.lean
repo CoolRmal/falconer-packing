@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BorelCompactReduction
-import Mathlib.Analysis.Normed.Group.Bounded
+module
+
+public import FalconerPacking.BorelCompactReduction
+public import Mathlib.Analysis.Normed.Group.Bounded
 
 /-!
 # Strict exponents and bounded Frostman data for the coherent branch
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Normed.Group.Bounded
 The strict packing inequality leaves room to lower the Hausdorff exponent before compact
 extraction. Frostman constants can be increased to at least one without changing the measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

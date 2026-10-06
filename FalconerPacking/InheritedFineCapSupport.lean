@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ActiveCapCircleTree
-import FalconerPacking.CircleCapScaledGeometry
+module
+
+public import FalconerPacking.ActiveCapCircleTree
+public import FalconerPacking.CircleCapScaledGeometry
 
 /-!
 # Fourier geometry of actual surviving fine descendants
@@ -13,6 +15,8 @@ A current function is the sum of arbitrary surviving terminal circle pieces. Its
 Fourier support stays in the current auxiliary arc, while its physical frame remains
 the standard cap's frame. Both enclosing-ball overlap and curvature bounds are uniform.
 -/
+
+@[expose] public section
 
 noncomputable section
 

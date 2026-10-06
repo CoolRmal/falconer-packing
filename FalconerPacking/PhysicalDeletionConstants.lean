@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalDeletionGeometry
+module
+
+public import FalconerPacking.PhysicalDeletionGeometry
 
 /-!
 # Uniform polynomial bounds for physical deletion constants
@@ -12,6 +14,8 @@ The actual slope grid and parent enlargement introduce only a fixed power of the
 width parameter. The exponent depends on the maximum number of chain edges, never on the
 frequency or the number of occupied cubes.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CoherentBorelTheorem
-import FalconerPacking.HardGapBorelData
-import FalconerPacking.RegularAnnularComponents
+module
+
+public import FalconerPacking.CoherentBorelTheorem
+public import FalconerPacking.HardGapBorelData
+public import FalconerPacking.RegularAnnularComponents
 
 /-!
 # The Hausdorff-packing criterion for a positive-length self-pinned distance set
@@ -14,6 +16,8 @@ The coherent range is already proved by positive affine approximations. Outside 
 the actual compact regular-shell theorem applies to the extracted source and pin measures.
 The common isometry preserves pinned distances and returns the pin to the original Borel set.
 -/
+
+@[expose] public section
 
 noncomputable section
 

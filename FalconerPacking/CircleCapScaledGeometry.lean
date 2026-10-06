@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCapGeometry
-import FalconerPacking.CapLabelGeometry
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import FalconerPacking.CircleCapGeometry
+public import FalconerPacking.CapLabelGeometry
+public import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
 # Fixed-width cap rectangles and inherited physical frames
@@ -13,6 +15,8 @@ import Mathlib.Analysis.Real.Pi.Bounds
 The actual angular grid has width `2π / F`. This file retains that fixed factor in
 admissible rectangles and compares its Fourier frame with the inherited standard frame.
 -/
+
+@[expose] public section
 
 noncomputable section
 

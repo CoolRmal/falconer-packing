@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SchwartzReproducingKernel
-import Mathlib.Analysis.InnerProductSpace.Adjoint
-import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
+module
+
+public import FalconerPacking.SchwartzReproducingKernel
+public import Mathlib.Analysis.InnerProductSpace.Adjoint
+public import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 
 /-!
 # Anisotropically rescaled Schwartz kernels
@@ -13,6 +15,8 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.EqHaar
 Linear changes of variables produce actual reproducing kernels with a uniform L¹ norm
 and rapid decay in the transformed spatial coordinate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

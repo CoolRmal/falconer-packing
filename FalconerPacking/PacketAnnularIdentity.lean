@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialPacketDecomposition
-import FalconerPacking.CompactAnnularReconstruction
+module
+
+public import FalconerPacking.InitialPacketDecomposition
+public import FalconerPacking.CompactAnnularReconstruction
 
 /-!
 # Identifying the actual packet sum with the compact annular source
@@ -13,6 +15,8 @@ The real spatial cutoff used by the packets is postcomposed with the standard in
 into the complex numbers. With this same cutoff, the finite packet sum is exactly the
 annular source appearing in the reconstruction theorem.
 -/
+
+@[expose] public section
 
 noncomputable section
 

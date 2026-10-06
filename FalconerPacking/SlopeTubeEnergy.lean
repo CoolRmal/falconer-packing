@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeStripGeometry
+module
+
+public import FalconerPacking.SlopeStripGeometry
 
 /-!
 # The truncated energy bound for a concrete two-chart tube family
@@ -11,6 +13,8 @@ import FalconerPacking.SlopeStripGeometry
 Every tube and angular label is explicitly defined. The pair-count bound is derived from
 the slope geometry and includes coincident pairs, rather than assuming nonatomic measures.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -88,8 +92,10 @@ theorem tubePairCount_slopeTube_eq_add (o x y : EuclideanSpace ℝ (Fin 2))
       tubePairCount (slopeStripLabels M) (slopeStrip o b M false) x y +
         tubePairCount (slopeStripLabels M) (slopeStrip o b M true) x y := by
   classical
-  simp only [tubePairCount, Finset.card_filter, slopeTubeLabels, Finset.sum_product, slopeTube]
-  simp [add_comm]
+  simp only [tubePairCount, Finset.card_filter]
+  simp only [slopeTubeLabels, Finset.sum_product, Fintype.sum_bool]
+  simp only [slopeTube, add_comm]
+  rfl
 
 /-- The full concrete family satisfies the atom-compatible truncated pair-count bound. -/
 theorem tubePairCount_slopeTube_le_truncKernel

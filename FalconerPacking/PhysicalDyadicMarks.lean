@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PacketEffectiveNormals
-import FalconerPacking.Restriction
+module
+
+public import FalconerPacking.PacketEffectiveNormals
+public import FalconerPacking.Restriction
 
 /-!
 # The physical marks used by both deletion and circle-energy iteration
@@ -13,6 +15,8 @@ A mark is defined by the actual measure of the tested rectangle in the enlarged 
 The same definition supplies the selected tube test and the conditional heavy-tube event.
 No auxiliary fine Fourier cell changes a whole standard packet's survival decision.
 -/
+
+@[expose] public section
 
 noncomputable section
 

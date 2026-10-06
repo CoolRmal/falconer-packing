@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.MeasureTheory.Constructions.Polish.Basic
-import Mathlib.Topology.MetricSpace.ProperSpace
-import Mathlib.Topology.Sequences
+module
+
+public import Mathlib.MeasureTheory.Constructions.Polish.Basic
+public import Mathlib.Topology.MetricSpace.ProperSpace
+public import Mathlib.Topology.Sequences
 
 /-!
 # Compact extraction for capacities on analytic sets
@@ -13,6 +15,8 @@ import Mathlib.Topology.Sequences
 The capacity assumptions in this file are explicit hypotheses. In particular, no assertion
 that Hausdorff content satisfies these assumptions is made here.
 -/
+
+@[expose] public section
 
 noncomputable section
 

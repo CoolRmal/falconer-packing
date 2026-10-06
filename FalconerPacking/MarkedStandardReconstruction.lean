@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialPacketDecomposition
-import FalconerPacking.DyadicCircleIdentification
-import FalconerPacking.CircleCellTerminal
+module
+
+public import FalconerPacking.InitialPacketDecomposition
+public import FalconerPacking.DyadicCircleIdentification
+public import FalconerPacking.CircleCellTerminal
 
 /-!
 # Initial marked circle functions and the common standard spectrum
@@ -14,6 +16,8 @@ Physical marks depend only on whole standard labels. Summing the actual terminal
 cells therefore recovers precisely those standard caps, with no nominal-support loss.
 At initial angular depth zero the entire marked spectrum has one initial label.
 -/
+
+@[expose] public section
 
 noncomputable section
 

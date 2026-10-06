@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedCapMultiplier
-import FalconerPacking.CircleCellTerminal
+module
+
+public import FalconerPacking.InheritedCapMultiplier
+public import FalconerPacking.CircleCellTerminal
 
 /-!
 # Uniform energy of actual surviving circle functions
@@ -13,6 +15,8 @@ The inherited physical functions are exactly the smoothed extension of their con
 multiplier times the common source spectrum. The multiplier square sum and circle
 convolution estimate therefore give the full global bound, uniformly in every mark.
 -/
+
+@[expose] public section
 
 noncomputable section
 

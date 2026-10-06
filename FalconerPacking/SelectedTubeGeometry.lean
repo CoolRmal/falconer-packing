@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedTubeWeights
-import FalconerPacking.OrientedReproducingKernel
+module
+
+public import FalconerPacking.SelectedTubeWeights
+public import FalconerPacking.OrientedReproducingKernel
 
 /-!
 # Geometric containment for selected tube tests
@@ -12,6 +14,8 @@ import FalconerPacking.OrientedReproducingKernel
 Rectangles below are specified by their half-widths. The proof allows a change of frame
 of order a/b, and keeps the transverse and longitudinal bounds separate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothAngularCaps
+module
+
+public import FalconerPacking.SmoothAngularCaps
 
 /-!+# Uniform derivatives of the actual angular covering bumps
 
@@ -11,6 +13,8 @@ The bumps used in the angular partition are translates and dilates of one fixed 
 function. Their derivative constants therefore depend only on the derivative order, rather than
 on the angular grid or cap index. No rotational invariance of the chosen bump is required.
 -/
+
+@[expose] public section
 
 noncomputable section
 

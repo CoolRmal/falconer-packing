@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAngularCaps
+module
+
+public import FalconerPacking.DyadicAngularCaps
 
 /-!
 # Actual anisotropic frequency rescaling of dyadic caps
@@ -11,6 +13,8 @@ import FalconerPacking.DyadicAngularCaps
 The tangential scale is the square root of the annular radius and the radial scale is the radius.
 The resulting Schwartz symbols have a common compact support independent of the annulus index.
 -/
+
+@[expose] public section
 
 noncomputable section
 

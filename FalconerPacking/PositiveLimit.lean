@@ -3,12 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LocalEnergy
-import FalconerPacking.PinnedMeasure
-import Mathlib.MeasureTheory.Function.L1Space.Integrable
-import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
-import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
-import Mathlib.MeasureTheory.Measure.FiniteMeasure
+module
+
+public import FalconerPacking.LocalEnergy
+public import FalconerPacking.PinnedMeasure
+public import Mathlib.MeasureTheory.Function.L1Space.Integrable
+public import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+public import Mathlib.MeasureTheory.Function.ConvergenceInDistribution
+public import Mathlib.MeasureTheory.Measure.FiniteMeasure
 
 /-!
 # Positive density limits
@@ -18,6 +20,8 @@ argument.  An integrable real function determines the finite measure whose densi
 positive part.  The main goal is to show that this construction is compatible with convergence
 in `L¹`, so that a weak limit of the positive affine laws remains absolutely continuous.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -179,11 +183,11 @@ theorem tendsto_map_toFiniteMeasure_of_ae_tendsto
     Tendsto
       (fun n ↦ ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map (F n),
-          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+          inferInstance⟩ : ProbabilityMeasure α))
       atTop
       (𝓝 (ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map G,
-          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+          inferInstance⟩ : ProbabilityMeasure α))) := by
   have hdist := tendstoInDistribution_of_ae_tendsto hF hG hlim
   exact (ProbabilityMeasure.toFiniteMeasure_continuous.tendsto _).comp hdist.tendsto
 
@@ -200,11 +204,11 @@ theorem tendsto_map_toFiniteMeasure_of_dist_le
     Tendsto
       (fun n ↦ ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map (F n),
-          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+          inferInstance⟩ : ProbabilityMeasure α))
       atTop
       (𝓝 (ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map G,
-          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+          inferInstance⟩ : ProbabilityMeasure α))) := by
   apply tendsto_map_toFiniteMeasure_of_ae_tendsto μ hF hG
   filter_upwards with ω
   apply tendsto_iff_dist_tendsto_zero.2
@@ -224,11 +228,11 @@ theorem tendsto_map_toFiniteMeasure_of_ae_dist_le
     Tendsto
       (fun n ↦ ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map (F n),
-          Measure.isProbabilityMeasure_map (hF n)⟩ : ProbabilityMeasure α))
+          inferInstance⟩ : ProbabilityMeasure α))
       atTop
       (𝓝 (ProbabilityMeasure.toFiniteMeasure
         (⟨(μ : Measure Ω).map G,
-          Measure.isProbabilityMeasure_map hG⟩ : ProbabilityMeasure α))) := by
+          inferInstance⟩ : ProbabilityMeasure α))) := by
   apply tendsto_map_toFiniteMeasure_of_ae_tendsto μ hF hG
   filter_upwards [ae_all_iff.2 hclose] with ω hω
   apply tendsto_iff_dist_tendsto_zero.2

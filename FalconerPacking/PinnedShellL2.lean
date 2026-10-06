@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleEnergyIntegration
-import FalconerPacking.ScaledFourierBallEnergy
+module
+
+public import FalconerPacking.CircleEnergyIntegration
+public import FalconerPacking.ScaledFourierBallEnergy
 
 /-!
 # The actual joint shell exponent from an explicit circle estimate
@@ -14,6 +16,8 @@ omitted-frequency bound remain explicit hypotheses on actual spectral averages. 
 measurability, Liu's identity, polar integration, and the source's Fourier/Frostman exponent
 are proved in the imported lemmas and assembled here with the exact `2π` convention.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -44,7 +48,7 @@ theorem exists_pinned_shell_energy_bound
         ∂ν.prod volume) ≤ ENNReal.ofReal (B * A * R ^ (1 - s + c)) +
           ENNReal.ofReal (L * (2 * Real.pi) ^ 2) * E := by
   let μ' := μ.map (fun x ↦ (-2 * Real.pi) • x)
-  haveI : IsProbabilityMeasure μ' := Measure.isProbabilityMeasure_map (by fun_prop)
+  haveI : IsProbabilityMeasure μ' := by dsimp [μ']; infer_instance
   obtain ⟨B₀, hB₀, hb⟩ := exists_source_fourier_ball_energy_bound μ hs hs₂ hfr
   let B := L * (2 * Real.pi) ^ 2 * B₀ * hi ^ (2 - s)
   refine ⟨B, by dsimp [B]; positivity, ?_⟩

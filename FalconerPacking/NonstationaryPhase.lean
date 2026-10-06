@@ -1,7 +1,9 @@
-import Mathlib.MeasureTheory.Integral.IntegralEqImproper
-import Mathlib.Analysis.Calculus.Deriv.Support
-import Mathlib.Analysis.Calculus.ContDiff.Deriv
-import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
+module
+
+public import Mathlib.MeasureTheory.Integral.IntegralEqImproper
+public import Mathlib.Analysis.Calculus.Deriv.Support
+public import Mathlib.Analysis.Calculus.ContDiff.Deriv
+public import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 
 /-!
 # Repeated integration by parts for a nonstationary phase
@@ -10,6 +12,8 @@ The inverse derivative of the phase is required only on the amplitude's closed s
 The transformed amplitudes have smaller supports, so the same local hypothesis suffices
 at every iteration. Compact support supplies all integrability and boundary conditions.
 -/
+
+@[expose] public section
 
 open MeasureTheory Set Function
 open scoped ContDiff

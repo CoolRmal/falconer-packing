@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothStripPartition
-import Mathlib.Analysis.Calculus.ContDiff.Bounds
-import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
+module
+
+public import FalconerPacking.SmoothStripPartition
+public import Mathlib.Analysis.Calculus.ContDiff.Bounds
+public import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
 
 /-!
 # Compact smooth planar strip packets
@@ -13,6 +15,8 @@ import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
 An explicit one-dimensional partition is pulled back along a strip normal and
 multiplied by a fixed compact source cutoff. All scale and overlap bounds are proved.
 -/
+
+@[expose] public section
 
 noncomputable section
 

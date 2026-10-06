@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleEnergyIntegration
-import FalconerPacking.TerminalCircleEnergy
-import FalconerPacking.ScaledFourierBallEnergy
+module
+
+public import FalconerPacking.CircleEnergyIntegration
+public import FalconerPacking.TerminalCircleEnergy
+public import FalconerPacking.ScaledFourierBallEnergy
 
 /-!
 # Radial integration with the actual circle-chain factor
@@ -14,6 +16,8 @@ The circle-chain estimate contains an inverse radius. Keeping it through polar i
 gives the source Fourier mass times the inverse lower annular radius. A uniform reconstruction
 error instead costs only the finite annular area.
 -/
+
+@[expose] public section
 
 noncomputable section
 

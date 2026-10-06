@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedDyadicCircle
+module
+
+public import FalconerPacking.MarkedDyadicCircle
 
 /-!
 # Identification of marked dyadic labels with the analytic circle families
@@ -11,6 +13,8 @@ import FalconerPacking.MarkedDyadicCircle
 These identities connect the single dyadic ancestry, including crossing edges, to the
 coarse and fine functions used by the actual selected-cap estimates.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialCellRemoteGeometry
-import FalconerPacking.InheritedPacketDeletion
+module
+
+public import FalconerPacking.InitialCellRemoteGeometry
+public import FalconerPacking.InheritedPacketDeletion
 
 /-!
 # Exact agreement of retained and deleted source packets
@@ -13,6 +15,8 @@ At a pin in an initial cube, the whole-packet deletion rule is exactly complemen
 the retained source used in the initial spectral reconstruction. The underlying source
 packets and their common annular source are unchanged.
 -/
+
+@[expose] public section
 
 noncomputable section
 

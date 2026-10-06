@@ -51,8 +51,30 @@ requires packing dimension below 1.48.
 
 The upper inequality is strict, including at Hausdorff dimension 5/4, where it
 requires packing dimension below 2. This is a sufficient condition; necessity
-and global optimality are not established. The document is a natural-language
-proof and does not claim complete Lean verification or external refereeing.
+and global optimality are not established.
+
+The document is a natural-language proof dated 30 September 2026. The
+repository subsequently completed a Lean formalization of this theorem;
+the [main README](../../README.md#formal-proof-and-verification) links the
+formal statement, independent comparator, and verification record. The older
+conditional curve and the exploratory results in the research archive are
+outside that compared claim. External human refereeing is not recorded.
+
+The source headers and Git history identify Yongxi Lin as the author. Codex
+assisted with the present submission preparation; the existing repository
+does not document a complete historical AI contribution log or an independent
+human statement review. [Palomar metadata](../../formalization.yaml) carries
+the submission's contribution and review disclosures.
+
+## Sources
+
+The proof cites Orponen's [radial projection theorem](https://arxiv.org/abs/1710.11053),
+Keleti and Shmerkin's [finite regularization and profile estimates](https://arxiv.org/abs/1801.08745v3),
+Guth, Iosevich, Ou and Wang's [planar distance theorem and packet construction](https://arxiv.org/abs/1808.09346v1),
+Liu's [pinned quadratic identity](https://arxiv.org/abs/1802.00350v3), and Liu's
+[regular-pin packet localization](https://arxiv.org/abs/2603.15328v3).
+The PDF gives the particular lemmas and propositions used. Its profile bounds
+and variable-chain Fourier estimate are developed in the appendices.
 
 ## Rebuilding
 

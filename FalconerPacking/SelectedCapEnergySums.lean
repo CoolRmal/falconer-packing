@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedLocalEnergy
+module
+
+public import FalconerPacking.SelectedLocalEnergy
 
 /-!
 # Summation of child-dependent selected Fourier energies
@@ -11,6 +13,8 @@ import FalconerPacking.SelectedLocalEnergy
 The selected labels are rearranged exactly. The main term never restores labels omitted
 at an individual child; only the harmless remote error is enlarged to all labels.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SeparatedBallMeasures
-import FalconerPacking.RegularPartitionInitialLoss
+module
+
+public import FalconerPacking.SeparatedBallMeasures
+public import FalconerPacking.RegularPartitionInitialLoss
 
 /-!
 # Positive compact pin measures in one unit dyadic cube
@@ -13,6 +15,8 @@ A countable unit-cube partition followed by inner regularity supplies the root r
 by finite regularization. Restriction preserves the covering exponent and changes only
 the Frostman constant. All previously established support geometry is preserved by inclusion.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PaddedChainDecay
+module
+
+public import FalconerPacking.PaddedChainDecay
 
 /-!
 # Increasing the fixed chain constant
@@ -12,6 +14,8 @@ The actual embedding constant can be increased to at least one before applying t
 uniform scalar estimate. Every preceding-edge product and every accumulated error
 is monotone in the same constant.
 -/
+
+@[expose] public section
 
 noncomputable section
 

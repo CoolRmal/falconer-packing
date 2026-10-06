@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StandardCapCircleSchwartz
+module
+
+public import FalconerPacking.StandardCapCircleSchwartz
 
 /-!
 # Actual Fourier support of grouped coarse labels
@@ -12,6 +14,8 @@ Grouping whole standard caps enlarges their nominal ancestor by only a fixed fac
 After compact spectral smoothing there is one enclosing ball per coarse ancestor,
 with overlap independent of the number of standard caps grouped there.
 -/
+
+@[expose] public section
 
 noncomputable section
 

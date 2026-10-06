@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProfileChainPhysicalScales
+module
+
+public import FalconerPacking.ProfileChainPhysicalScales
 
 /-!
 # Block profiles at their actual spatial scales
@@ -11,6 +13,8 @@ import FalconerPacking.ProfileChainPhysicalScales
 Regularized profiles use block indices. Their actual dyadic depths are multiplied by the
 block size, while angular depths use one fixed upper frequency for the entire annulus.
 -/
+
+@[expose] public section
 
 noncomputable section
 

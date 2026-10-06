@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicSchwartzFamily
-import FalconerPacking.JointPinnedCircleEnergy
+module
+
+public import FalconerPacking.DyadicSchwartzFamily
+public import FalconerPacking.JointPinnedCircleEnergy
 
 /-!
 # The measurable retained source and its actual pinned distance density
@@ -13,6 +15,8 @@ The pin's initial dyadic cell selects a finite sum of the constructed source pac
 The resulting family is jointly measurable, retains the fixed source support, and has
 exactly the cellwise spectral energy already bounded by the Fourier chain.
 -/
+
+@[expose] public section
 
 noncomputable section
 

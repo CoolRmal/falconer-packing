@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PolarFourierEnergy
-import Mathlib.Probability.Kernel.RadonNikodym
-import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
+module
+
+public import FalconerPacking.PolarFourierEnergy
+public import Mathlib.Probability.Kernel.RadonNikodym
+public import Mathlib.MeasureTheory.Function.SpecialFunctions.Basic
 
 /-!
 # Measurable radial projections and their canonical densities
@@ -15,6 +17,8 @@ Its pushforwards form an actual finite kernel. Kernel Radon--Nikodym derivatives
 give one jointly measurable candidate density, without separate choices at each pin.
 The absolute continuity and averaged moment estimate are distinct analytic obligations.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -99,8 +103,9 @@ instance (ν : Measure (EuclideanSpace ℝ (Fin 2))) [IsFiniteMeasure ν] :
 
 instance (ν : Measure (EuclideanSpace ℝ (Fin 2))) [IsProbabilityMeasure ν] :
     IsMarkovKernel (radialProjectionKernel ν) where
-  isProbabilityMeasure x := Measure.isProbabilityMeasure_map
-    (measurable_radialAngle.of_uncurry_left (x := x)).aemeasurable
+  isProbabilityMeasure x := by
+    change IsProbabilityMeasure (ν.map (radialAngle x))
+    infer_instance
 
 /-- Lebesgue angular measure on one full turn; normalization is immaterial for finite moments. -/
 def radialAngularMeasure : Measure ℝ := volume.restrict (Ioc (-Real.pi) Real.pi)

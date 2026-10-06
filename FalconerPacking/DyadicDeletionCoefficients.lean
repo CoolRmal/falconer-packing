@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformInheritedPacketL1
-import FalconerPacking.DyadicInitialReconstruction
-import FalconerPacking.StrictShellParameters
+module
+
+public import FalconerPacking.UniformInheritedPacketL1
+public import FalconerPacking.DyadicInitialReconstruction
+public import FalconerPacking.StrictShellParameters
 
 /-!
 # Explicit coefficients of actual inherited packet deletion
@@ -13,6 +15,8 @@ import FalconerPacking.StrictShellParameters
 The complete packet count, literal multiplicity ceiling, parent overlap, and cap tail are
 bounded on the same concrete dyadic grid used for initial reconstruction.
 -/
+
+@[expose] public section
 
 noncomputable section
 

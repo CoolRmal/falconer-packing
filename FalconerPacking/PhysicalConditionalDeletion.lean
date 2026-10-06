@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalBadPacketBounds
-import FalconerPacking.ConditionalAngularThreshold
+module
+
+public import FalconerPacking.PhysicalBadPacketBounds
+public import FalconerPacking.ConditionalAngularThreshold
 
 /-!
 # Conditional deletion for the actual physical marks
@@ -13,6 +15,8 @@ The auxiliary angular grid is constructed internally. If the pin threshold is at
 there are no bad packets. Otherwise its lower bound by the geometric factor guarantees the
 required small angular width, and the spatial scale ratio cancels from the estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

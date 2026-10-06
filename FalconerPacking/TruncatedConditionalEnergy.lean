@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Energy
-import Mathlib.Algebra.BigOperators.Intervals
+module
+
+public import FalconerPacking.Energy
+public import Mathlib.Algebra.BigOperators.Intervals
 
 /-!
 # Finite truncated conditional energies
@@ -12,6 +14,8 @@ import Mathlib.Algebra.BigOperators.Intervals
 Increasing the truncation depth costs only the mass of one dyadic ball. Summing this finite
 recurrence includes the diagonal and needs neither nonatomicity nor finite Riesz energy.
 -/
+
+@[expose] public section
 
 noncomputable section
 

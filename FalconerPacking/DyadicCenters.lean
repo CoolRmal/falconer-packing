@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AffineDistance
-import FalconerPacking.OccupiedCubes
-import Mathlib.MeasureTheory.Measure.Prod
+module
+
+public import FalconerPacking.AffineDistance
+public import FalconerPacking.OccupiedCubes
+public import Mathlib.MeasureTheory.Measure.Prod
 
 /-!
 # Measurable dyadic source centers
@@ -13,6 +15,8 @@ import Mathlib.MeasureTheory.Measure.Prod
 The coherent affine construction chooses one point in every occupied source cube.  This file
 turns those points into a measurable center map and records its uniform dyadic error.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCellSchwartz
+module
+
+public import FalconerPacking.CircleCellSchwartz
 
 /-!
 # Exact ancestry of the half-open angular grid
@@ -11,6 +13,8 @@ import FalconerPacking.CircleCellSchwartz
 Integral refinements have exact parent sums, including angular endpoints. These
 identities concern measurable spectral data and do not differentiate indicators.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeightedConditionalDeletion
-import FalconerPacking.DyadicPacketDeletion
+module
+
+public import FalconerPacking.WeightedConditionalDeletion
+public import FalconerPacking.DyadicPacketDeletion
 
 /-!
 # Actual whole-packet deletion from inherited physical marks
@@ -13,6 +15,8 @@ A bad standard packet is deleted near an initial pin cube precisely when its enl
 physical strip meets that cube. The resulting measurable pin sets are covered by the actual
 bad ancestor events, without introducing auxiliary angular labels.
 -/
+
+@[expose] public section
 
 noncomputable section
 

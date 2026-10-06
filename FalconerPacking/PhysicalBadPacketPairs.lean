@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalMarkedPairs
+module
+
+public import FalconerPacking.PhysicalMarkedPairs
 
 /-!
 # Coarsening the actual removed packet pairs in one parent
@@ -12,6 +14,8 @@ All child cubes, standard cap labels, and strip indices are included in one lite
 set. Their bad physical tests put this entire set in the single heavy-tube family used by
 the finite-grid deletion bound. No count of source caps or child cubes is incurred here.
 -/
+
+@[expose] public section
 
 noncomputable section
 

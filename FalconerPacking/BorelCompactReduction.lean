@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicContentComparison
-import FalconerPacking.CompactReduction
-import FalconerPacking.HardGapCurve
+module
+
+public import FalconerPacking.DyadicContentComparison
+public import FalconerPacking.CompactReduction
+public import FalconerPacking.HardGapCurve
 
 /-!
 # Unconditional compact reduction for Borel sets
@@ -14,6 +16,8 @@ The dyadic capacity proof supplies the initial Frostman measure on an arbitrary 
 The existing positive-mass reduction then gives separated compact source and pin measures
 with the selected Frostman exponent and polynomial covering bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

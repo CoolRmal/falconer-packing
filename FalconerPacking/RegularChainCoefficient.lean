@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularRetainedRemainder
-import FalconerPacking.RegularShellParameters
+module
+
+public import FalconerPacking.RegularRetainedRemainder
+public import FalconerPacking.RegularShellParameters
 
 /-!
 # The full circle-chain coefficient for the actual regular-component thresholds
@@ -12,6 +14,8 @@ import FalconerPacking.RegularShellParameters
 The geometric prefactor, finite conditional-energy estimate, and heavy threshold are
 the same literal factors used by the proved retained-remainder theorem.
 -/
+
+@[expose] public section
 
 noncomputable section
 

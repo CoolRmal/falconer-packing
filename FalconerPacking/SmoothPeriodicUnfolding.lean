@@ -1,5 +1,7 @@
-import FalconerPacking.SmoothStripPartition
-import FalconerPacking.CircularPlancherel
+module
+
+public import FalconerPacking.SmoothStripPartition
+public import FalconerPacking.CircularPlancherel
 
 /-!
 # Smooth unfolding of a periodic integral
@@ -7,6 +9,8 @@ import FalconerPacking.CircularPlancherel
 A fixed smooth cutoff whose period translates sum to one converts a full-period integral
 to a compactly supported whole-line integral, without introducing chart endpoint terms.
 -/
+
+@[expose] public section
 
 open MeasureTheory Set Function
 open scoped ContDiff

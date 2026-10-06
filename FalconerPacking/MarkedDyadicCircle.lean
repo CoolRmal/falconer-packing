@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicCapAncestry
-import FalconerPacking.Dyadic
+module
+
+public import FalconerPacking.DyadicCapAncestry
+public import FalconerPacking.Dyadic
 
 /-!
 # Actual circle functions with inherited spatial and angular marks
@@ -13,6 +15,8 @@ The future marks for a child cube are precisely the future marks of its unique p
 Combined with the constructed angular ancestry, this gives the exact spatial-edge
 identity for actual circle functions, through coarse and fine levels alike.
 -/
+
+@[expose] public section
 
 noncomputable section
 

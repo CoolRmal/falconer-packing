@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.MeasureTheory.Measure.CharacteristicFunction.Basic
-import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+module
+
+public import Mathlib.MeasureTheory.Measure.CharacteristicFunction.Basic
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 
 /-!
 # Gaussian Fourier energy
@@ -12,6 +14,8 @@ import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
 The Gaussian identity turns a positive measure's squared Fourier transform into a positive
 spatial kernel. The characteristic-function convention has phase `exp(i ⟪x,ξ⟫)`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

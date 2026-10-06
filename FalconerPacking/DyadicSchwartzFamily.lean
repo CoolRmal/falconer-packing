@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InitialRetainedEnergy
+module
+
+public import FalconerPacking.InitialRetainedEnergy
 
 /-!
 # Actual Schwartz sources selected by the pin cube
@@ -11,6 +13,8 @@ import FalconerPacking.InitialRetainedEnergy
 A finite dyadic partition gives a jointly measurable source family. Its nonnegative
 observables integrate exactly as the sum of the cell integrals, with no count of cells.
 -/
+
+@[expose] public section
 
 noncomputable section
 

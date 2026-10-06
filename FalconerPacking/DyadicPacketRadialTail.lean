@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketRadialTail
-import FalconerPacking.DyadicInitialReconstruction
+module
+
+public import FalconerPacking.SourcePacketRadialTail
+public import FalconerPacking.DyadicInitialReconstruction
 
 /-!
 # Off-annulus Fourier bounds for every shell of the actual dyadic packet family
@@ -13,6 +15,8 @@ The packet parameter is arbitrary. In particular it can be the product of the an
 parameter and the regularization block length, while the shell index still ranges over
 all natural numbers.
 -/
+
+@[expose] public section
 
 noncomputable section
 

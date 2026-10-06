@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GaussianWeightedEnergy
-import FalconerPacking.PolarFourierEnergy
+module
+
+public import FalconerPacking.GaussianWeightedEnergy
+public import FalconerPacking.PolarFourierEnergy
 
 /-!
 # Fourier band energy for bounded real weights
@@ -12,6 +14,8 @@ import FalconerPacking.PolarFourierEnergy
 The signed-weight Gaussian comparison and the positive Gaussian lower bound on a ball yield
 the same Frostman Fourier growth estimate, multiplied by the squared bound on the weight.
 -/
+
+@[expose] public section
 
 noncomputable section
 

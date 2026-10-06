@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnnularPinnedDensity
+module
+
+public import FalconerPacking.AnnularPinnedDensity
 
 /-!
 # Absolute continuity from separately constructed late annular pieces
@@ -12,6 +14,8 @@ Only sufficiently late annuli need a good part. Early annuli are assigned wholly
 bad part, whose integrability is already proved for the actual compact source expansion.
 There is no compatibility requirement between decompositions at different frequencies.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionKernel
-import FalconerPacking.RadialProjectionEnergy
+module
+
+public import FalconerPacking.RadialProjectionKernel
+public import FalconerPacking.RadialProjectionEnergy
 
 /-!
 # Weighted angular energies of orthogonal projections
@@ -13,6 +15,8 @@ The explicit planar angle formula turns the integrable angular sine singularity 
 uniform weighted bound for projected Riesz kernels. Tonelli then gives the corresponding
 energy estimate for an actual source measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

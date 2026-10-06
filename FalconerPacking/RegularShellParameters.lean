@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularPartitionInitialLoss
-import FalconerPacking.PaddedChainDecay
-import FalconerPacking.AnnularScaleSchedule
+module
+
+public import FalconerPacking.RegularPartitionInitialLoss
+public import FalconerPacking.PaddedChainDecay
+public import FalconerPacking.AnnularScaleSchedule
 
 /-!
 # Compatible scalar choices for the actual regularized shells
@@ -15,6 +17,8 @@ are chosen before the regularization block; any sufficiently large block then wo
 The later derivative orders may exceed arbitrary prescribed lower bounds. All comparisons
 refer to the complete shell schedule, whose packet parameter is the product `J * T`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

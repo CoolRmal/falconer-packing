@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalDeletionAE
-import FalconerPacking.PhysicalDeletionConstants
+module
+
+public import FalconerPacking.PhysicalDeletionAE
+public import FalconerPacking.PhysicalDeletionConstants
 
 /-!
 # Cancelling the actual conditional profile energy in the physical threshold
@@ -12,6 +14,8 @@ import FalconerPacking.PhysicalDeletionConstants
 The pin threshold includes the regular conditional-energy bound and the complete finite-grid
 coefficient. Their cancellation leaves only the ratio of the source and pin inflation thresholds.
 -/
+
+@[expose] public section
 
 noncomputable section
 

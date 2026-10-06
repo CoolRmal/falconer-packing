@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StrictFiniteProfile
+module
+
+public import FalconerPacking.StrictFiniteProfile
 
 /-!
 # Global sequences from the constructed finite profile chain
@@ -11,6 +13,8 @@ import FalconerPacking.StrictFiniteProfile
 The actual finite depth list is extended by zero. Its real cost is exactly the sum of
 its consecutive edge costs, and every genuine edge retains the original admissibility.
 -/
+
+@[expose] public section
 
 noncomputable section
 

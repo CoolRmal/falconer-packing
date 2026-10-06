@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Tactic
 
 /-!
 # Finite energy iteration with explicit errors
@@ -12,6 +14,8 @@ import Mathlib.Tactic
 Each step contributes one threshold factor. The terminal coefficient is their product,
 and each additive error is multiplied only by the preceding factors.
 -/
+
+@[expose] public section
 
 namespace FalconerPacking
 
@@ -51,7 +55,7 @@ theorem finite_energy_iteration_uniform_error (E A e : ℕ → ℝ) (K : ℕ)
       have hp : (∏ i ∈ Finset.range j, A i) ≤ M ^ j := by
         calc
           _ ≤ ∏ _i ∈ Finset.range j, M :=
-            Finset.prod_le_prod
+            Finset.prod_le_prod₀
               (fun i hi ↦ hA i ((Finset.mem_range.mp hi).trans hjK))
               (fun i hi ↦ hAM i ((Finset.mem_range.mp hi).trans hjK))
           _ = _ := by simp

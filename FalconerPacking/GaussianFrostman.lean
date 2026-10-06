@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Energy
-import FalconerPacking.GaussianEnergy
-import Mathlib.Analysis.SpecialFunctions.Exp
+module
+
+public import FalconerPacking.Energy
+public import FalconerPacking.GaussianEnergy
+public import Mathlib.Analysis.SpecialFunctions.Exp
 
 /-!
 # Gaussian potential bounds from Frostman growth
@@ -13,6 +15,8 @@ import Mathlib.Analysis.SpecialFunctions.Exp
 Spatial annuli of width `r` convert polynomial ball growth into a Gaussian potential bound
 of order `r^s`. The scalar summation constant is finite uniformly for `0 ≤ s ≤ 2`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

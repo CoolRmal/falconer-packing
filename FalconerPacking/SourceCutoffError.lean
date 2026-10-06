@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LocalizedPacketMass
-import FalconerPacking.PhysicalCapRadialTails
+module
+
+public import FalconerPacking.LocalizedPacketMass
+public import FalconerPacking.PhysicalCapRadialTails
 
 /-!
 # Removing the fixed source cutoff with an actual error bound
@@ -13,6 +15,8 @@ A cutoff equal to one in a neighborhood of the source changes a convolved measur
 through the kernel tail outside that neighborhood. The same first-norm bound controls
 the literal Fourier transform of the error at every frequency.
 -/
+
+@[expose] public section
 
 noncomputable section
 

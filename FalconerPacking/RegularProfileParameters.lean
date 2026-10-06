@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularMeasureProfile
-import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
+module
+
+public import FalconerPacking.RegularMeasureProfile
+public import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 /-!
 # Choosing regularization parameters
@@ -14,6 +16,8 @@ loss by choosing the block size first. At sufficiently large depths, the fixed F
 covering constants are absorbed as well. The resulting partition theorem has no numerical
 side conditions supplied by its caller.
 -/
+
+@[expose] public section
 
 noncomputable section
 

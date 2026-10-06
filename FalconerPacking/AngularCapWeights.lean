@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularGridGeometry
-import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
-import Mathlib.Analysis.InnerProductSpace.Calculus
+module
+
+public import FalconerPacking.AngularGridGeometry
+public import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
+public import Mathlib.Analysis.InnerProductSpace.Calculus
 
 /-!
 # Explicit smooth angular weights
@@ -13,6 +15,8 @@ import Mathlib.Analysis.InnerProductSpace.Calculus
 Unit-circle bumps cover all nonzero directions. Normalizing their finite sum gives
 actual nonnegative smooth angular weights with a fixed overlap bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

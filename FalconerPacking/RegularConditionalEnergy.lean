@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularComponentBalls
+module
+
+public import FalconerPacking.RegularComponentBalls
 
 /-!
 # Truncated energies of actual regularized components
@@ -11,6 +13,8 @@ import FalconerPacking.RegularComponentBalls
 The finite kernel recurrence is summed on the regularization grid. Its radius ratio costs
 one fixed block factor, and the existing edge cost controls every remaining profile drop.
 -/
+
+@[expose] public section
 
 noncomputable section
 

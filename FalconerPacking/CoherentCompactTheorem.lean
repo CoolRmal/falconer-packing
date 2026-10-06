@@ -3,12 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CoherentBorelParameters
-import FalconerPacking.RadialProjectionTheorem
-import FalconerPacking.RadialMomentCenters
-import FalconerPacking.AffineDistance
-import FalconerPacking.CoherentDyadicStep
-import FalconerPacking.DyadicAffineGeometry
+module
+
+public import FalconerPacking.CoherentBorelParameters
+public import FalconerPacking.RadialProjectionTheorem
+public import FalconerPacking.RadialMomentCenters
+public import FalconerPacking.AffineDistance
+public import FalconerPacking.CoherentDyadicStep
+public import FalconerPacking.DyadicAffineGeometry
 
 /-!
 # The coherent compact-source distance theorem
@@ -16,6 +18,8 @@ import FalconerPacking.DyadicAffineGeometry
 The radial theorem supplies one fixed family of centers with a common moment bound.
 Finite dyadic affine approximations then converge through summable density comparisons.
 -/
+
+@[expose] public section
 
 noncomputable section
 

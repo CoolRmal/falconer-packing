@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.NormalizedSpatialStrip
-import FalconerPacking.RescaledSchwartzKernel
+module
+
+public import FalconerPacking.NormalizedSpatialStrip
+public import FalconerPacking.RescaledSchwartzKernel
 
 /-!
 # Actual anisotropic Fourier decay of spatial strip cutoffs
@@ -13,6 +15,8 @@ An exact affine change of variables transfers the uniform normalized Schwartz es
 to the physical cutoff. Transverse frequency is measured in units of inverse strip width;
 longitudinal frequency retains unit scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

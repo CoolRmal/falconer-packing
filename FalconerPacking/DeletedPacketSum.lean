@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceWavePacketMass
+module
+
+public import FalconerPacking.SourceWavePacketMass
 
 /-!
 # The actual first-norm cost of pin-dependent packet deletion
@@ -12,6 +14,8 @@ A finite measurable choice of packets may depend on the pin. Its actual source f
 and consequently its actual pinned distance first norm, are bounded by the weighted sum
 of individual packet first norms.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularGridGeometry
-import FalconerPacking.OverlappingHeavyCells
+module
+
+public import FalconerPacking.AngularGridGeometry
+public import FalconerPacking.OverlappingHeavyCells
 
 /-!
 # Explicit enlarged angular cells
@@ -13,6 +15,8 @@ Enlarging equal cells by one grid step on each side covers every interval of tha
 centered in the original cell. The enlarged family has overlap at most four, so its
 heavy-cell deletion estimate remains independent of the grid size.
 -/
+
+@[expose] public section
 
 noncomputable section
 

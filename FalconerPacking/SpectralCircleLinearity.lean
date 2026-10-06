@@ -3,11 +3,15 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RemoteSpectralPacket
+module
+
+public import FalconerPacking.RemoteSpectralPacket
 
 /-!
 # Finite linearity and stable comparison for actual spectral circle extensions
 -/
+
+@[expose] public section
 
 noncomputable section
 

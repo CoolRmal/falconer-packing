@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedFineCapSupport
-import FalconerPacking.CoarseCapCircleSupport
-import FalconerPacking.CircleCapChordGeometry
+module
+
+public import FalconerPacking.InheritedFineCapSupport
+public import FalconerPacking.CoarseCapCircleSupport
+public import FalconerPacking.CircleCapChordGeometry
 
 /-!
 # Actual coarse ancestors of surviving terminal cap labels
@@ -14,6 +16,8 @@ Coarse ancestors group whole standard labels. Terminal auxiliary cells may be ar
 fine; their marks never create separate coarse enclosing balls. This includes a spatial
 edge crossing the standard angular scale, without adding a spatial step.
 -/
+
+@[expose] public section
 
 noncomputable section
 

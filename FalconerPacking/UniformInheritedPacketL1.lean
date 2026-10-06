@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedPacketL1
-import FalconerPacking.UniformPhysicalDeletion
+module
+
+public import FalconerPacking.InheritedPacketL1
+public import FalconerPacking.UniformPhysicalDeletion
 
 /-!
 # Uniform inherited deletion with actual local physical thresholds
@@ -12,6 +14,8 @@ import FalconerPacking.UniformPhysicalDeletion
 The cap constants are chosen before the pin measure. The local deletion estimate is then
 obtained from the constructed physical threshold and its actual conditional-energy bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

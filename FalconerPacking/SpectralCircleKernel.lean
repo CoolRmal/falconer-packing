@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FullCirclePacketDecay
-import FalconerPacking.CircleCapScaledGeometry
-import FalconerPacking.SourcePacketMicrolocal
+module
+
+public import FalconerPacking.FullCirclePacketDecay
+public import FalconerPacking.CircleCapScaledGeometry
+public import FalconerPacking.SourcePacketMicrolocal
 
 /-!
 # Nonstationary angular kernels for remote spectral circle extensions
@@ -14,6 +16,8 @@ The amplitude here is an angular selector. A spectral extension is subsequently 
 as its oscillatory kernel integrated against the physical source packet. This is distinct
 from integration of a packet over a physical distance circle.
 -/
+
+@[expose] public section
 
 noncomputable section
 

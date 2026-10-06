@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceWavePackets
-import FalconerPacking.FullCirclePacketDecay
-import FalconerPacking.ComplexDistancePushforward
+module
+
+public import FalconerPacking.SourceWavePackets
+public import FalconerPacking.FullCirclePacketDecay
+public import FalconerPacking.ComplexDistancePushforward
 
 /-!
 # Frequency representations of the constructed source packets
@@ -13,6 +15,8 @@ import FalconerPacking.ComplexDistancePushforward
 All exchanges of the source, frequency, and angular integrals are justified by absolute
 integrability. The source enters through its actual characteristic function.
 -/
+
+@[expose] public section
 
 noncomputable section
 

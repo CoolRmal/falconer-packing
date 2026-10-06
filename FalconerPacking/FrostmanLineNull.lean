@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GeometricCapacity
-import FalconerPacking.RadialProjectionKernel
+module
+
+public import FalconerPacking.GeometricCapacity
+public import FalconerPacking.RadialProjectionKernel
 
 /-!
 # Frostman measures do not charge lines
@@ -13,6 +15,8 @@ A planar Frostman measure of exponent greater than one vanishes on every Lipschi
 parametrized by the real line. In particular the branch cut and diagonal of any fixed radial
 angle map are null, so that map is continuous almost everywhere for the Frostman measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

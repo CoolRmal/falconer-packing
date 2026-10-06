@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
-import Mathlib.MeasureTheory.Function.JacobianOneDim
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+public import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+public import Mathlib.MeasureTheory.Function.JacobianOneDim
 
 /-!
 # Positive Mellin formulas for Gaussian kernels
@@ -14,6 +16,8 @@ import Mathlib.MeasureTheory.Function.JacobianOneDim
 All identities are stated in extended nonnegative integrals, so that the formulas continue
 to hold at the singular spatial point.
 -/
+
+@[expose] public section
 
 noncomputable section
 

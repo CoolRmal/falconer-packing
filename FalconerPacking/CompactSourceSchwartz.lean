@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothMeasureApproximation
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+module
+
+public import FalconerPacking.SmoothMeasureApproximation
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
 
 /-!
 # Schwartz source functions from compactly supported measures
@@ -13,6 +15,8 @@ Multiplying the convolution of a Schwartz kernel with a bounded source measure b
 smooth compact cutoff gives an actual Schwartz function. The proof replaces the kernel
 on the relevant difference set by a smooth compact kernel before differentiating.
 -/
+
+@[expose] public section
 
 noncomputable section
 

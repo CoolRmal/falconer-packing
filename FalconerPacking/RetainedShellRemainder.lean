@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedPinFamily
-import FalconerPacking.PacketAnnularIdentity
-import FalconerPacking.InheritedShellDecay
+module
+
+public import FalconerPacking.RetainedPinFamily
+public import FalconerPacking.PacketAnnularIdentity
+public import FalconerPacking.InheritedShellDecay
 
 /-!
 # The exact annular remainder is the inherited deleted packet density
@@ -13,6 +15,8 @@ import FalconerPacking.InheritedShellDecay
 This identifies the literal full annular source minus the measurable retained source. The
 identity holds on the covered pin support and therefore also under the joint first norm.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GeometricCapacity
-import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
-import Mathlib.MeasureTheory.Measure.WithDensity
+module
+
+public import FalconerPacking.GeometricCapacity
+public import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
+public import Mathlib.MeasureTheory.Measure.WithDensity
 
 /-!
 # Absolute continuity of weak limits with uniform density bounds
@@ -15,6 +17,8 @@ absolute continuity when `ν` is outer regular. The estimate is closed under wea
 of probability measures by Portmanteau. Hölder's inequality supplies it for measures with
 uniformly bounded `L²` densities. No convergence of the densities is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -72,7 +76,7 @@ theorem withDensity_ofReal_le_eLpNorm_two_mul_sqrt
   calc
     ∫⁻ x in A, ENNReal.ofReal (f x) ∂ν ≤ ∫⁻ x in A, ‖f x‖ₑ ∂ν :=
       lintegral_mono (fun x ↦ Real.ofReal_le_enorm (f x))
-    _ = eLpNorm f 1 (ν.restrict A) := eLpNorm_one_eq_lintegral_enorm.symm
+    _ = eLpNorm f 1 (ν.restrict A) := (eLpNorm_one_eq_lintegral_enorm hf.restrict).symm
     _ ≤ eLpNorm f 2 (ν.restrict A) * ν A ^ (1 / 2 : ℝ) := by
       have h := eLpNorm_le_eLpNorm_mul_rpow_measure_univ (μ := ν.restrict A)
         (by norm_num : (1 : ℝ≥0∞) ≤ 2) hf.restrict

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SchwartzMeasureReconstruction
-import FalconerPacking.SourceStripPartition
+module
+
+public import FalconerPacking.SchwartzMeasureReconstruction
+public import FalconerPacking.SourceStripPartition
 
 /-!
 # Actual packet mass from a source strip and a kernel tail
@@ -13,6 +15,8 @@ A bounded spatial cutoff supported in a strip localizes a convolved source in fi
 The near-source contribution is its actual enlarged-strip mass. The remaining contribution
 is the actual transverse tail of the convolution kernel.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MomentCenters
-import FalconerPacking.DyadicCenters
+module
+
+public import FalconerPacking.MomentCenters
+public import FalconerPacking.DyadicCenters
 
 /-!
 # A fixed dyadic family with controlled moments
@@ -12,6 +14,8 @@ import FalconerPacking.DyadicCenters
 The centers lie in one prescribed full-measure set and satisfy both the cube geometry and
 the mass-weighted moment estimate at every finite level.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.MeasureTheory.Integral.Average
+module
+
+public import Mathlib.MeasureTheory.Integral.Average
 
 /-!
 # Choosing centers with controlled angular moments
@@ -11,6 +13,8 @@ import Mathlib.MeasureTheory.Integral.Average
 One family of centers can be chosen in a prescribed set of full measure. At every finite
 disjoint level, its mass-weighted moments are bounded by the global moment integral.
 -/
+
+@[expose] public section
 
 noncomputable section
 

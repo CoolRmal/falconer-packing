@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ChainThresholdProduct
-import FalconerPacking.StrictShellParameters
+module
+
+public import FalconerPacking.ChainThresholdProduct
+public import FalconerPacking.StrictShellParameters
 
 /-!
 # Strict shell decay for the complete threshold product
@@ -12,6 +14,8 @@ import FalconerPacking.StrictShellParameters
 The block size, width exponent, and threshold inflation are fixed before the shell depth.
 The actual polynomial prefactor is then absorbed uniformly over all admissible profiles.
 -/
+
+@[expose] public section
 
 noncomputable section
 

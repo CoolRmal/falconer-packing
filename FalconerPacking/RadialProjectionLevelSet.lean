@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionTrace
+module
+
+public import FalconerPacking.RadialProjectionTrace
 
 /-!
 # Positive level-set estimates from Riesz trace bounds
@@ -11,6 +13,8 @@ import FalconerPacking.RadialProjectionTrace
 Restriction and Hölder give an energy bound with the correct power of the retained mass.
 This applies the Fourier trace estimate to actual level-set restrictions of the pin measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

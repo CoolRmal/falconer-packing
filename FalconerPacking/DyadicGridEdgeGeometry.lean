@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
-import FalconerPacking.EnlargedGridSquares
+module
+
+public import FalconerPacking.Dyadic
+public import FalconerPacking.EnlargedGridSquares
 
 /-!
 # Actual dyadic centers in a spatial inflation edge
@@ -12,6 +14,8 @@ import FalconerPacking.EnlargedGridSquares
 The child centers and enlarged parent squares used by the selected-cap estimate are
 identified with the actual dyadic hierarchy, rather than supplied as geometric assumptions.
 -/
+
+@[expose] public section
 
 noncomputable section
 

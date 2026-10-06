@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeTubeSourceCoverage
+module
+
+public import FalconerPacking.SlopeTubeSourceCoverage
 
 /-!
 # Coarsening every tested direction without a label-count loss
@@ -11,6 +13,8 @@ import FalconerPacking.SlopeTubeSourceCoverage
 An arbitrary family of heavy physical tubes and its associated source pairs is contained
 in the one concrete finite-grid heavy-tube union. Its index set may even be infinite.
 -/
+
+@[expose] public section
 
 noncomputable section
 

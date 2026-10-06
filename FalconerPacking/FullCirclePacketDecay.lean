@@ -1,5 +1,7 @@
-import FalconerPacking.SmoothPeriodicUnfolding
-import FalconerPacking.CircularPacketAmplitude
+module
+
+public import FalconerPacking.SmoothPeriodicUnfolding
+public import FalconerPacking.CircularPacketAmplitude
 
 /-!
 # Remote-pin decay for the full circle integral of a spatial packet
@@ -7,6 +9,8 @@ import FalconerPacking.CircularPacketAmplitude
 A fixed smooth periodic cutoff unfolds the angular chart to the real line. Since nonstationarity
 is needed only on the packet support, one whole-line integration-by-parts argument suffices.
 -/
+
+@[expose] public section
 
 open MeasureTheory Set Function Finset
 open scoped ContDiff RealInnerProductSpace

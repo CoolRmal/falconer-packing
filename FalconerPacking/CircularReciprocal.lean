@@ -1,6 +1,8 @@
-import FalconerPacking.CircularPhase
-import FalconerPacking.RegularizedReciprocal
-import Mathlib.Analysis.Calculus.IteratedDeriv.FaaDiBruno
+module
+
+public import FalconerPacking.CircularPhase
+public import FalconerPacking.RegularizedReciprocal
+public import Mathlib.Analysis.Calculus.IteratedDeriv.FaaDiBruno
 
 /-!
 # A quantitative reciprocal for the circular phase
@@ -8,6 +10,8 @@ import Mathlib.Analysis.Calculus.IteratedDeriv.FaaDiBruno
 The reciprocal is constructed globally, agrees with the inverse phase derivative on
 nonstationary arcs, and has uniform derivative bounds proved by Faà di Bruno's formula.
 -/
+
+@[expose] public section
 
 open Set Function Finset MeasureTheory
 open scoped ContDiff RealInnerProductSpace
@@ -99,7 +103,7 @@ theorem norm_iteratedDeriv_circularReciprocal_le
         rw [norm_prod]
         calc
           _ ≤ ∏ _j : Fin c.length, max 1 R := by
-            apply prod_le_prod (fun _ _ ↦ norm_nonneg _)
+            apply prod_le_prod₀ (fun _ _ ↦ norm_nonneg _)
             intro j _
             rw [← iteratedDeriv_succ', Real.norm_eq_abs]
             exact (abs_iteratedDeriv_circularPhase_le z _ θ).trans (hz.trans (le_max_right _ _))

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnisotropicKernelPotential
-import FalconerPacking.OrientedReproducingKernel
+module
+
+public import FalconerPacking.AnisotropicKernelPotential
+public import FalconerPacking.OrientedReproducingKernel
 
 /-!
 # Initial localization against an arbitrary pin measure
@@ -13,6 +15,8 @@ A function supported in a frequency ball has its energy against any finite measu
 a spatial ball controlled by ordinary Lebesgue energy on an enlarged ball, with a rapid
 tail. Only the total pin mass enters; no conditional Frostman hypothesis is required.
 -/
+
+@[expose] public section
 
 noncomputable section
 

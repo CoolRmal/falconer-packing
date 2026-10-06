@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProfileChainSequences
-import FalconerPacking.PhysicalChainScales
+module
+
+public import FalconerPacking.ProfileChainSequences
+public import FalconerPacking.PhysicalChainScales
 
 /-!
 # Actual dyadic scales of the finite profile chain
@@ -12,6 +14,8 @@ import FalconerPacking.PhysicalChainScales
 The profile admissibility inequality gives the physical curvature inequality. Auxiliary
 angular depths use a possibly larger frequency depth, without changing the profile costs.
 -/
+
+@[expose] public section
 
 noncomputable section
 

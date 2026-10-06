@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceCutoffError
+module
+
+public import FalconerPacking.SourceCutoffError
 
 /-!
 # Uniform removal of the fixed source cutoff for actual caps
@@ -11,6 +13,8 @@ import FalconerPacking.SourceCutoffError
 All kernel tails are discharged using the constructed dyadic caps. The resulting bound
 is simultaneous in cap index, annular scale, and spectral frequency.
 -/
+
+@[expose] public section
 
 noncomputable section
 

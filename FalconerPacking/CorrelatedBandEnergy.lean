@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CorrelatedFourierShift
-import FalconerPacking.AngularDerivativeEnergy
+module
+
+public import FalconerPacking.CorrelatedFourierShift
+public import FalconerPacking.AngularDerivativeEnergy
 
 /-!
 # Correlated angular Fourier band estimates
@@ -12,6 +14,8 @@ import FalconerPacking.AngularDerivativeEnergy
 The actual characteristic function satisfies both the derivative and trivial comparison
 bounds. Their combination is the small-scale gain used in the coherent density argument.
 -/
+
+@[expose] public section
 
 noncomputable section
 

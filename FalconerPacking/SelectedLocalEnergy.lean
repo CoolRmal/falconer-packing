@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CutoffEnergyLocalization
-import FalconerPacking.SelectedTubeWeights
+module
+
+public import FalconerPacking.CutoffEnergyLocalization
+public import FalconerPacking.SelectedTubeWeights
 
 /-!
 # Selected local energies as nonnegative integrals
@@ -12,6 +14,8 @@ import FalconerPacking.SelectedTubeWeights
 The local Fourier estimate is put in a form that can be summed with positive measure
 weights and identified with the selected averaging measures.
 -/
+
+@[expose] public section
 
 noncomputable section
 

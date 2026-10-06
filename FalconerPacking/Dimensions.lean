@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Statement
-import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
-import Mathlib.Analysis.SpecificLimits.Basic
+module
+
+public import FalconerPacking.Statement
+public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+public import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
 # The dimension definitions
@@ -17,6 +19,8 @@ The main results are `dimH_le_upperBoxDim` and `dimH_le_packingDim`: a polynomia
 bound at the dyadic scales with exponent `s` forces every Hausdorff measure of order `t > s` to
 vanish, and packing dimension dominates Hausdorff dimension through countable stability.
 -/
+
+@[expose] public section
 
 noncomputable section
 

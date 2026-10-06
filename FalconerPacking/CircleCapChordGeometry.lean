@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCapScaledGeometry
+module
+
+public import FalconerPacking.CircleCapScaledGeometry
 
 /-!
 # Curvature rectangles from chord distance
@@ -11,6 +13,8 @@ import FalconerPacking.CircleCapScaledGeometry
 Grouped smooth standard caps can cross the angular branch cut. Unit-vector chord
 geometry gives the same quadratic normal displacement without choosing an angular lift.
 -/
+
+@[expose] public section
 
 noncomputable section
 

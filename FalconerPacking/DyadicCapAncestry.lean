@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedCoarseCapSupport
+module
+
+public import FalconerPacking.InheritedCoarseCapSupport
 
 /-!
 # Exact dyadic angular ancestry through the standard scale
@@ -11,6 +13,8 @@ import FalconerPacking.InheritedCoarseCapSupport
 Coarse labels group whole standard caps; fine labels retain a standard index and an
 auxiliary cell. A single explicit parent map covers coarse, fine, and crossing edges.
 -/
+
+@[expose] public section
 
 noncomputable section
 

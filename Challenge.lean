@@ -3,12 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import Mathlib.Analysis.Normed.Lp.MeasurableSpace
-import Mathlib.Analysis.Real.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
-import Mathlib.Topology.MetricSpace.HausdorffDimension
+module
+
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import Mathlib.Analysis.Normed.Lp.MeasurableSpace
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import Mathlib.Topology.MetricSpace.HausdorffDimension
 
 /-!
 # Challenge: a Hausdorff–packing criterion for self-pinned distance sets
@@ -20,6 +22,8 @@ set whose Hausdorff dimension `d` lies in `(1, 5/4]` and whose packing dimension
 `hausdorffPackingBound d` has a pin inside itself with a positive-length pinned distance set.
 This file is the independent comparator specification, not a proof of the target.
 -/
+
+@[expose] public section
 
 noncomputable section
 

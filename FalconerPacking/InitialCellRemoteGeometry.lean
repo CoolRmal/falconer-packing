@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicInitialReconstruction
+module
+
+public import FalconerPacking.DyadicInitialReconstruction
 
 /-!
 # Initial reconstruction for the actual remote strips of a pin cell
@@ -11,6 +13,8 @@ import FalconerPacking.DyadicInitialReconstruction
 The remote selection is the complement of meeting the fourfold source packet strip.
 For all sufficiently large annuli its margin discharges every remote-decay hypothesis.
 -/
+
+@[expose] public section
 
 noncomputable section
 

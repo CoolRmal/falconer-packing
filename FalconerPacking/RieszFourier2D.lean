@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GaussianMellin
-import FalconerPacking.ProjectionFourier
+module
+
+public import FalconerPacking.GaussianMellin
+public import FalconerPacking.ProjectionFourier
 
 /-!
 # Planar Riesz energy and angular Sobolev Fourier energy
@@ -12,6 +14,8 @@ import FalconerPacking.ProjectionFourier
 The same positive Mellin identity used on the real line applies to the planar Gaussian
 duality formula. Polar integration then identifies the averaged one-dimensional Sobolev energy.
 -/
+
+@[expose] public section
 
 noncomputable section
 

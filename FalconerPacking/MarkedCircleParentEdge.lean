@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCircleParentEdges
-import FalconerPacking.DyadicCircleIdentification
-import FalconerPacking.DyadicGridEdgeGeometry
+module
+
+public import FalconerPacking.SelectedCircleParentEdges
+public import FalconerPacking.DyadicCircleIdentification
+public import FalconerPacking.DyadicGridEdgeGeometry
 
 /-!
 # One actual marked spatial edge through coarse and fine angular scales
@@ -14,6 +16,8 @@ The child selections, the common parent function, angular regrouping, Fourier su
 and spatial center geometry all come from their explicit constructions. Only the numerical
 scale conditions and the physical selected-tube mass tests remain as inputs.
 -/
+
+@[expose] public section
 
 noncomputable section
 

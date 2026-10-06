@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionAngularShift
+module
+
+public import FalconerPacking.RadialProjectionAngularShift
 
 /-!
 # Uniform radial moments of actual smooth sources
@@ -11,6 +13,8 @@ import FalconerPacking.RadialProjectionAngularShift
 The constants depend on the energy bound, the pin measure, and the support-distance bound,
 and are uniform in the smooth source. This is the form needed for positive approximation.
 -/
+
+@[expose] public section
 
 noncomputable section
 

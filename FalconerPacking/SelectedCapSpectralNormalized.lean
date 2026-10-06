@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapSpectralWidth
+module
+
+public import FalconerPacking.SelectedCapSpectralWidth
 
 /-!
 # Normalized selected-cap embedding for thickened Fourier rectangles
@@ -11,6 +13,8 @@ import FalconerPacking.SelectedCapSpectralWidth
 The spectral enlargement affects the uniform constant only. Physical grid squares,
 source measures, selected tests, and all scale exponents remain unchanged.
 -/
+
+@[expose] public section
 
 noncomputable section
 

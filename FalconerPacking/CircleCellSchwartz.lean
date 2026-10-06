@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleSpectralSchwartz
-import FalconerPacking.AngularGridGeometry
+module
+
+public import FalconerPacking.CircleSpectralSchwartz
+public import FalconerPacking.AngularGridGeometry
 
 /-!
 # Actual angular-cell circle pieces
@@ -12,6 +14,8 @@ import FalconerPacking.AngularGridGeometry
 The half-open angular grid gives measurable spectral indicators. Convolution with the
 fixed compact smooth bump yields genuine Schwartz pieces and an exact physical sum.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LocalProjectionL1
-import FalconerPacking.AffineProjectionGeometry
+module
+
+public import FalconerPacking.LocalProjectionL1
+public import FalconerPacking.AffineProjectionGeometry
 
 /-!
 # Integrated comparison of actual affine distance laws
@@ -13,6 +15,8 @@ The Radon--Nikodym density at each center is chosen independently of any compari
 center. The geometric projection identities identify these canonical densities almost
 everywhere. Lebesgue translation invariance then removes their common distance offset.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -168,7 +172,7 @@ theorem ae_map_affineDistance_eq_withDensity
     ∀ᵐ y ∂κ, μ.map (fun x ↦ affineDistance c x y) =
       volume.withDensity (fun t ↦ ENNReal.ofReal (affineDistanceDensity μ c y t)) := by
   letI : IsProbabilityMeasure (μ.map (fun x ↦ x - b)) :=
-    Measure.isProbabilityMeasure_map (by fun_prop)
+    inferInstance
   have hchar := ae_memLp_charFun_composed_angle (μ.map (fun x ↦ x - b)) hs hs₂
     (hfr.map_sub_const b) κ (radialAngle c) A (by fun_prop) hdom
     (ae_of_all _ fun y ↦ ⟨(radialAngle_mem c y).1.le, (radialAngle_mem c y).2⟩)

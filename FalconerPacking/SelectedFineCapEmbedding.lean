@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedFineCapSupport
-import FalconerPacking.SelectedCapSpectralNormalized
+module
+
+public import FalconerPacking.InheritedFineCapSupport
+public import FalconerPacking.SelectedCapSpectralNormalized
 
 /-!
 # One spatial edge for actual surviving circle labels
@@ -15,6 +17,8 @@ mass tests remain explicit. The inherited functions are common to all spatial ch
 the child-dependent choices enter solely through their selected ancestor sets. For source
 Fourier data, `integrable_circle_planarMeasureFourier` supplies the integrability input.
 -/
+
+@[expose] public section
 
 noncomputable section
 

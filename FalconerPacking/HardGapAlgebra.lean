@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.Data.Real.Basic
+public import Mathlib.Tactic
 
 /-!
 # The hard-gap weighted inequalities
@@ -13,6 +15,8 @@ These are the finite algebraic certificates in Sections 6.5 and 6.6 of the updat
 packing manuscript. The hypotheses are the displayed endpoint, gap, and tail inequalities.
 The geometric reduction to those hypotheses and the distance theorem are separate obligations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

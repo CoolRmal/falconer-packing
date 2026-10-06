@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceTubeMass
+module
+
+public import FalconerPacking.SourceTubeMass
 
 /-!
 # Source tube mass with geometry only at almost every pin
@@ -12,6 +14,8 @@ An enlarged tested tube can extend outside the separated pin support. Its retain
 is chosen outside the single null set where radial absolute continuity, the norm bound,
 or source separation fails. No geometric assertion about the rest of the tube is required.
 -/
+
+@[expose] public section
 
 noncomputable section
 

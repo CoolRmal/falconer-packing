@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleFourierConvolution
-import FalconerPacking.SpectralCircleKernel
+module
+
+public import FalconerPacking.CircleFourierConvolution
+public import FalconerPacking.SpectralCircleKernel
 
 /-!
 # Selected spectral circle averages as physical kernel integrals
@@ -12,6 +14,8 @@ import FalconerPacking.SpectralCircleKernel
 The angular selector is inside the frequency-circle integral. Absolute Fubini follows
 from source integrability and the selector's angular first norm.
 -/
+
+@[expose] public section
 
 noncomputable section
 

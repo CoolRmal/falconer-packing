@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleEnergyBounds
-import FalconerPacking.InitialFourierLocalization
+module
+
+public import FalconerPacking.MarkedCircleEnergyBounds
+public import FalconerPacking.InitialFourierLocalization
 
 /-!
 # Initial pin localization of the actual inherited circle functions
@@ -13,6 +15,8 @@ All marked functions have their actual Fourier support in the circle thickened b
 fixed spectral cutoff. Restricting pins to a dyadic cell therefore gives the proved
 bandlimited localization estimate with no extra spectral-support assumption.
 -/
+
+@[expose] public section
 
 noncomputable section
 

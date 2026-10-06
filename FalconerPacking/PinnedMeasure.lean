@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FrostmanLimit
-import Mathlib.MeasureTheory.Measure.Map
+module
+
+public import FalconerPacking.FrostmanLimit
+public import Mathlib.MeasureTheory.Measure.Map
 
 /-!
 # Pinned distance pushforward measures
@@ -13,6 +15,8 @@ This file isolates the last measure-theoretic implication used by both analytic 
 pushforward of a nonzero measure under `x ↦ dist x y` is absolutely continuous with respect to
 Lebesgue measure, then the pinned distance set at `y` has positive Lebesgue measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

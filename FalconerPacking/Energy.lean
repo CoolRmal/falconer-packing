@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dimensions
-import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
+module
+
+public import FalconerPacking.Dimensions
+public import Mathlib.MeasureTheory.Integral.Lebesgue.Basic
 
 /-!
 # Frostman measures and Riesz energies
@@ -17,6 +19,8 @@ The Riesz kernel is taken in `ℝ≥0∞`, so that it is `∞` on the diagonal i
 totalized to zero, as Lean's real `rpow` would do.  A Frostman measure has no atoms, so the
 diagonal is null and contributes nothing.
 -/
+
+@[expose] public section
 
 noncomputable section
 

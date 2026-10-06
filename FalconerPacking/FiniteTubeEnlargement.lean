@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.TubePairCounting
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import FalconerPacking.TubePairCounting
+public import Mathlib.Analysis.MeanInequalities
 
 /-!
 # Square-mass bounds for finite tube enlargements
@@ -12,6 +14,8 @@ import Mathlib.Analysis.MeanInequalities
 Replacing each tube by a bounded union costs the product of the row and column multiplicities.
 This applies to actual finite unions and retains diagonal masses.
 -/
+
+@[expose] public section
 
 noncomputable section
 

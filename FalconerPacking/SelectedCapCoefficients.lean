@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedGridSquares
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import FalconerPacking.EnlargedGridSquares
+public import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
 # Explicit coefficients for selected-cap inflation
@@ -13,6 +15,8 @@ The child area cancels the enlarged averaging area. This leaves the stated polyn
 inflation factor, while taking a sufficiently high kernel decay order makes both tails
 smaller than any prescribed inverse power of the enlargement parameter.
 -/
+
+@[expose] public section
 
 namespace FalconerPacking
 

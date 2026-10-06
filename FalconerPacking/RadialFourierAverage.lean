@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionLine
-import Mathlib.Analysis.Fourier.FourierTransform
+module
+
+public import FalconerPacking.RadialProjectionLine
+public import Mathlib.Analysis.Fourier.FourierTransform
 
 /-!
 # Fourier transform and angular averaging
@@ -14,6 +16,8 @@ transfers almost-everywhere measurability, and its angular fibers all have the s
 first norm. This proves the product integrability needed for Fubini directly from
 integrability of the source function, without a uniform-integrability hypothesis.
 -/
+
+@[expose] public section
 
 noncomputable section
 

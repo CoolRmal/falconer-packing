@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ScaledBandlimitedCutoff
+module
+
+public import FalconerPacking.ScaledBandlimitedCutoff
 
 /-!
 # Spatial energy localization with a rapidly decreasing tail
@@ -11,6 +13,8 @@ import FalconerPacking.ScaledBandlimitedCutoff
 The actual bandlimited cutoff localizes the squared norm to an enlarged ball. The
 remaining global term decays to arbitrary polynomial order, uniformly in center and scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

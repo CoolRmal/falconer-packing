@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAnnularKernel
-import FalconerPacking.InitialCircleMultiplierRadius
+module
+
+public import FalconerPacking.DyadicAnnularKernel
+public import FalconerPacking.InitialCircleMultiplierRadius
 
 /-!
 # Fixed constants in the retained-energy estimate
@@ -13,6 +15,8 @@ The annular multiplier's zeroth seminorm is uniform over all scales and block si
 The other Fourier multipliers are fixed Schwartz functions, so their displayed integrals
 are actual finite real constants.
 -/
+
+@[expose] public section
 
 noncomputable section
 

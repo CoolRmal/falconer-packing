@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularMeasureProfile
-import FalconerPacking.TruncatedConditionalEnergy
+module
+
+public import FalconerPacking.RegularMeasureProfile
+public import FalconerPacking.TruncatedConditionalEnergy
 
 /-!
 # Ball masses of actual regularized components
@@ -12,6 +14,8 @@ import FalconerPacking.TruncatedConditionalEnergy
 Regularity is used only through the finite trees constructed by finite regularization. An
 enlarged conditioning set contains an active cube, which controls its normalization mass.
 -/
+
+@[expose] public section
 
 noncomputable section
 

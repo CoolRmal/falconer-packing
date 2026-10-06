@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.OccupiedCubes
+module
+
+public import FalconerPacking.OccupiedCubes
 
 /-!
 # Localized Frostman energy estimates
@@ -13,6 +15,8 @@ argument needs the sharper local statement: inside a ball of radius `R`, the `a`
 `s`-Frostman measure is `O(R ^ (s - a))`.  This file proves that estimate by annular summation and
 then applies it to normalized restrictions to dyadic cubes.
 -/
+
+@[expose] public section
 
 noncomputable section
 

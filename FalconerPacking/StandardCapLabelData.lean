@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CapLabelGeometry
-import FalconerPacking.InheritedFourierLabels
+module
+
+public import FalconerPacking.CapLabelGeometry
+public import FalconerPacking.InheritedFourierLabels
 
 /-!
 # Actual circular data with inherited standard-cap labels
@@ -13,6 +15,8 @@ Coarse labels sum whole standard caps according to their nominal ancestors. Fine
 labels retain the standard cap and split its entire support into angular cells.
 The resulting identities hold pointwise, including nominal-cap crossings.
 -/
+
+@[expose] public section
 
 noncomputable section
 

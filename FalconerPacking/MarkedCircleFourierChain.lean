@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleEnergyBounds
+module
+
+public import FalconerPacking.MarkedCircleEnergyBounds
 
 /-!
 # The complete marked chain bounded by the actual source circle energy
@@ -11,6 +13,8 @@ import FalconerPacking.MarkedCircleEnergyBounds
 Every terminal and global error energy is eliminated using the constructed cap
 multipliers and actual enlarged-grid overlap. The remaining factors are explicit.
 -/
+
+@[expose] public section
 
 noncomputable section
 

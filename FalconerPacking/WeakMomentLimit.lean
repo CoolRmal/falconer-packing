@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeakDensityLimit
+module
+
+public import FalconerPacking.WeakDensityLimit
 
 /-!
 # Absolute continuity from uniform higher moments
@@ -11,6 +13,8 @@ import FalconerPacking.WeakDensityLimit
 Hölder turns a uniform positive density moment of any order greater than one into a
 positive-power set bound. The latter passes to weak limits by Portmanteau.
 -/
+
+@[expose] public section
 
 noncomputable section
 

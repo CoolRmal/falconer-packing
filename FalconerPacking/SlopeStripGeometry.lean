@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.TubePairCounting
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.Finset.Max
+module
+
+public import FalconerPacking.TubePairCounting
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Finset.Max
 
 /-!
 # An explicit slope net for strip pair counting
@@ -13,6 +15,8 @@ import Mathlib.Data.Finset.Max
 The two bounded-slope charts replace trigonometric angle counting by integer interval
 counting. Strip offsets are half-open, so one point has at most one offset per slope.
 -/
+
+@[expose] public section
 
 noncomputable section
 

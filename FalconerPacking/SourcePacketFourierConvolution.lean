@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketFrequency
-import FalconerPacking.SpatialStripFourier
+module
+
+public import FalconerPacking.SourcePacketFrequency
+public import FalconerPacking.SpatialStripFourier
 
 /-!
 # The actual Fourier convolution and microlocal tails of source packets
@@ -13,6 +15,8 @@ The Fourier transform of each spatially cut off source packet is an ordinary con
 Uniform anisotropic decay of the spatial cutoff therefore controls the actual frequency
 leakage, including pointwise on each frequency circle.
 -/
+
+@[expose] public section
 
 noncomputable section
 

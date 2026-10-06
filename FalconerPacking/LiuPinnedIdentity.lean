@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircularPlancherel
-import FalconerPacking.DistancePolarDensity
+module
+
+public import FalconerPacking.CircularPlancherel
+public import FalconerPacking.DistancePolarDensity
 
 /-!
 # The pinned circular Plancherel identity
@@ -14,6 +16,8 @@ identifies weighted distance-density energy with weighted spectral circle energy
 including the normalization constant. The nonnegative case is identified with
 the actual pinned-distance pushforward measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedShellDecay
+module
+
+public import FalconerPacking.InheritedShellDecay
 
 /-!
 # Actual regular-component energies at every inherited parent
@@ -11,6 +13,8 @@ import FalconerPacking.InheritedShellDecay
 Positive initial cells force positive mass in each ancestor core. Regularity therefore supplies
 the literal energy bound needed by the inherited deleted-shell theorem, including padded edges.
 -/
+
+@[expose] public section
 
 noncomputable section
 

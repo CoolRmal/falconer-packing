@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCapGeometry
-import Mathlib.Analysis.Calculus.ContDiff.WithLp
-import Mathlib.Analysis.SpecialFunctions.Sqrt
+module
+
+public import FalconerPacking.CircleCapGeometry
+public import Mathlib.Analysis.Calculus.ContDiff.WithLp
+public import Mathlib.Analysis.SpecialFunctions.Sqrt
 
 /-!+# Smooth extension of the anisotropically rescaled direction map
 
@@ -13,6 +15,8 @@ The quotient of the direction displacement by the angular scale extends smoothly
 Rationalizing its radial coordinate exposes this extension and gives uniform derivatives on
 every compact rectangle separated from the zero radial coordinate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

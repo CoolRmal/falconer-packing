@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AffineDistanceL1
-import FalconerPacking.OccupiedCubes
-import Mathlib.MeasureTheory.Function.Floor
+module
+
+public import FalconerPacking.AffineDistanceL1
+public import FalconerPacking.OccupiedCubes
+public import Mathlib.MeasureTheory.Function.Floor
 
 /-!
 # Finite dyadic affine density mixtures
@@ -14,6 +16,8 @@ The affine approximations are actual pushforward laws. Their jointly measurable 
 are finite mixtures of the canonical conditional affine densities, with the original cube
 masses as weights. The mixture estimates also apply after a common refinement.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -217,6 +221,8 @@ theorem map_dyadicAffineMap_eq_sum
     simp only [dyadicAffineMap, mem_dyadicCube_iff.1 hp]
   rw [hmap, jointAffineDistanceMeasure, jointAffineDistanceMeasure,
     ← Measure.map_smul, ← Measure.prod_smul_right, measure_smul_normalizedRestrict]
+  unfold affineDistance
+  fun_prop
 
 /-- The finite dyadic approximation has the stated jointly measurable density. -/
 theorem map_dyadicAffineMap_eq_withDensity
@@ -336,8 +342,7 @@ theorem integrable_dyadicAffineDensity_of_density
     Integrable (dyadicAffineDensity μ n S b) (ν.prod volume) ∧
       (∫⁻ p, ENNReal.ofReal (dyadicAffineDensity μ n S b p) ∂ν.prod volume) = 1 ∧
       (∫ p, dyadicAffineDensity μ n S b p ∂ν.prod volume) = 1 := by
-  haveI := Measure.isProbabilityMeasure_map (μ := ν.prod μ)
-    (measurable_dyadicAffineMap n b).aemeasurable
+  haveI : IsProbabilityMeasure ((ν.prod μ).map (dyadicAffineMap n b)) := inferInstance
   have hmass := congrArg (fun m : Measure (EuclideanSpace ℝ (Fin 2) × ℝ) ↦ m univ) hd
   have hlin :
       (∫⁻ p, ENNReal.ofReal (dyadicAffineDensity μ n S b p) ∂ν.prod volume) = 1 := by

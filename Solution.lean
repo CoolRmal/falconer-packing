@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking
+module
+
+public import FalconerPacking
 
 /-!
 # Theorem 1.1 and the historical conditional branch combination
@@ -13,6 +15,8 @@ unconditional `B_H` theorem specified independently in `Challenge.lean`. Its ful
 `FalconerPacking.HausdorffPackingTheorem` and uses only the three standard axioms.
 The historical conditional result for the earlier curve is retained below.
 -/
+
+@[expose] public section
 
 open MeasureTheory
 

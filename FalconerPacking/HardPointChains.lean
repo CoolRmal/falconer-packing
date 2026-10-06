@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GapTails
-import Mathlib.Algebra.Order.Archimedean.Basic
+module
+
+public import FalconerPacking.GapTails
+public import Mathlib.Algebra.Order.Archimedean.Basic
 
 /-!
 # Real-endpoint chains across hard intervals and gaps
@@ -12,6 +14,8 @@ import Mathlib.Algebra.Order.Archimedean.Basic
 These are finite chain constructions, rather than an invocation of a total-drop identity.
 All chains start below one, since a strictly descending admissible edge cannot start at one.
 -/
+
+@[expose] public section
 
 noncomputable section
 

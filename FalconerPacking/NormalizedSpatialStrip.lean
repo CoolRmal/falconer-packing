@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceWavePackets
-import FalconerPacking.OrientedReproducingKernel
-import FalconerPacking.UniformSchwartzFourier
+module
+
+public import FalconerPacking.SourceWavePackets
+public import FalconerPacking.OrientedReproducingKernel
+public import FalconerPacking.UniformSchwartzFourier
 
 /-!
 # Uniform Schwartz bounds after normalization of actual spatial strips
@@ -14,6 +16,8 @@ Only the transverse coordinate is rescaled. The normalized strip cutoffs have a 
 compact support and uniform derivatives of every order, independently of width and orientation.
 This retains the distinct transverse and longitudinal Fourier scales.
 -/
+
+@[expose] public section
 
 noncomputable section
 

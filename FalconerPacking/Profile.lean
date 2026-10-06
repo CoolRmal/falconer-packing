@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Statement
-import Mathlib.Algebra.BigOperators.Intervals
-import Mathlib.Order.Interval.Finset.Nat
+module
+
+public import FalconerPacking.Statement
+public import Mathlib.Algebra.BigOperators.Intervals
+public import Mathlib.Order.Interval.Finset.Nat
 
 /-!
 # Finite profiles and edge costs
@@ -26,6 +28,8 @@ This file proves the elementary part of the profile API:
 
 No analytic input is used: everything here is finite real arithmetic.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -161,10 +165,10 @@ def chainEnd : ℕ → List ℕ → ℕ
   | _, m :: rest => chainEnd m rest
 
 theorem chainCost_nonneg (g : ℕ → ℝ) :
-    ∀ (n : ℕ) (l : List ℕ), List.Chain (· > ·) n l → 0 ≤ chainCost g n l
+    ∀ (n : ℕ) (l : List ℕ), List.IsChain (· > ·) (n :: l) → 0 ≤ chainCost g n l
   | _, [], _ => le_rfl
   | n, m :: rest, h => by
-    obtain ⟨hmn, hrest⟩ := List.chain_cons.1 h
+    obtain ⟨hmn, hrest⟩ := List.isChain_cons_cons.1 h
     exact add_nonneg (edgeCost_nonneg hmn.le) (chainCost_nonneg g m rest hrest)
 
 /-- A single edge costs at most the increment of the potential across it. -/
@@ -182,11 +186,11 @@ theorem edgeCost_le_potential {N m n : ℕ} (hmn : m ≤ n) (hb : 1 / 2 ≤ b)
 potential between its endpoints. -/
 theorem chainCost_le_potential {N : ℕ} (hb : 1 / 2 ≤ b)
     (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
-    ∀ (n : ℕ) (l : List ℕ), List.Chain (· > ·) n l →
+    ∀ (n : ℕ) (l : List ℕ), List.IsChain (· > ·) (n :: l) →
       chainCost g n l ≤ (potential b N g n - potential b N g (chainEnd n l)) / (1 + 2 * b)
   | n, [], _ => by simp [chainCost, chainEnd]
   | n, m :: rest, h => by
-    obtain ⟨hmn, hrest⟩ := List.chain_cons.1 h
+    obtain ⟨hmn, hrest⟩ := List.isChain_cons_cons.1 h
     have hstep := edgeCost_le_potential (N := N) (g := g) (b := b) hmn.le hb hlip
     have htail := chainCost_le_potential (N := N) hb hlip m rest hrest
     have : chainCost g n (m :: rest) = edgeCost g m n + chainCost g m rest := rfl
@@ -262,20 +266,20 @@ theorem descentChain_length (N q : ℕ) : ∀ (k n : ℕ), (descentChain N q k n
 /-- Every step of the descent decreases the point and is an admissible edge. -/
 theorem descentChain_chain (N q : ℕ) :
     ∀ (k n : ℕ), n < N →
-      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n (descentChain N q k n)
-  | 0, _, _ => by simp [descentChain, List.Chain.nil]
+      List.IsChain (fun n m ↦ m < n ∧ Admissible N m n) (n :: descentChain N q k n)
+  | 0, _, _ => by simp [descentChain]
   | (k + 1), n, hn => by
     rw [descentChain]
     split
     · rename_i hq
-      refine List.Chain.cons ⟨descend_lt hq hn, admissible_descend N q n⟩ ?_
+      refine List.IsChain.cons_cons ⟨descend_lt hq hn, admissible_descend N q n⟩ ?_
       exact descentChain_chain N q k _ ((descend_lt hq hn).trans hn)
-    · exact List.Chain.nil
+    · exact List.IsChain.singleton _
 
 /-- The descent is in particular a strictly decreasing chain. -/
 theorem descentChain_decreasing (N q k n : ℕ) (hn : n < N) :
-    List.Chain (· > ·) n (descentChain N q k n) :=
-  List.Chain.imp (fun _ _ h ↦ h.1) (descentChain_chain N q k n hn)
+    List.IsChain (· > ·) (n :: descentChain N q k n) :=
+  List.IsChain.imp (fun _ _ h ↦ h.1) (descentChain_chain N q k n hn)
 
 /-- The remaining depth exactly doubles, capped at the barrier depth. -/
 theorem sub_descend {N q n : ℕ} (hn : n ≤ N) :
@@ -314,7 +318,7 @@ theorem exists_descent_chain {N q k n₀ : ℕ} {b : ℝ} {g : ℕ → ℝ} (hqN
     (hn : n₀ < N) (hb : 1 / 2 ≤ b) (hlip : ∀ j : ℕ, |g (j + 1) - g j| ≤ 1)
     (hk : N - (q + 1) ≤ 2 ^ k * (N - n₀)) :
     ∃ l : List ℕ, l.length ≤ k ∧
-      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n₀ l ∧
+      List.IsChain (fun n m ↦ m < n ∧ Admissible N m n) (n₀ :: l) ∧
       chainEnd n₀ l ≤ q + 1 ∧
       chainCost g n₀ l ≤
         (potential b N g n₀ - potential b N g (chainEnd n₀ l)) / (1 + 2 * b) :=
@@ -545,15 +549,15 @@ theorem greedyChain_length (g : ℕ → ℝ) (N : ℕ) : ∀ (k n : ℕ), (greed
 
 /-- Every greedy step decreases the point and is an admissible edge. -/
 theorem greedyChain_chain (g : ℕ → ℝ) (N : ℕ) :
-    ∀ (k n : ℕ), List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n (greedyChain g N k n)
-  | 0, _ => by simp [greedyChain, List.Chain.nil]
+    ∀ (k n : ℕ), List.IsChain (fun n m ↦ m < n ∧ Admissible N m n) (n :: greedyChain g N k n)
+  | 0, _ => by simp [greedyChain]
   | (k + 1), n => by
     rw [greedyChain]
     split
     · rename_i h
-      exact List.Chain.cons ⟨bestJump_lt h, (mem_jumpSet.1 (bestJump_mem h)).2.1⟩
+      exact List.IsChain.cons_cons ⟨bestJump_lt h, (mem_jumpSet.1 (bestJump_mem h)).2.1⟩
         (greedyChain_chain g N k _)
-    · exact List.Chain.nil
+    · exact List.IsChain.singleton _
 
 /-- The greedy chain is free. -/
 theorem chainCost_greedyChain (g : ℕ → ℝ) (N : ℕ) :
@@ -625,7 +629,7 @@ theorem exists_free_chain {N n₀ m : ℕ} {b : ℝ} {g : ℕ → ℝ}
     (hL : ∀ k, k ≤ n₀ → potential b N g k ≤ 0) (hn₀ : n₀ < N)
     (hm : N ≤ 2 ^ m * (N - n₀)) :
     ∃ l : List ℕ, l.length ≤ 2 * m ∧
-      List.Chain (fun n m ↦ m < n ∧ Admissible N m n) n₀ l ∧
+      List.IsChain (fun n m ↦ m < n ∧ Admissible N m n) (n₀ :: l) ∧
       chainEnd n₀ l = 0 ∧ chainCost g n₀ l = 0 := by
   have hjump : ∀ k, 0 < k → k ≤ n₀ → (jumpSet g N k).Nonempty := by
     intro k hk0 hkn
@@ -661,11 +665,12 @@ theorem chainCost_append (g : ℕ → ℝ) : ∀ (n : ℕ) (l₁ l₂ : List ℕ
     ring
 
 theorem chain_append {R : ℕ → ℕ → Prop} : ∀ (n : ℕ) (l₁ l₂ : List ℕ),
-    List.Chain R n l₁ → List.Chain R (chainEnd n l₁) l₂ → List.Chain R n (l₁ ++ l₂)
+    List.IsChain R (n :: l₁) → List.IsChain R (chainEnd n l₁ :: l₂) →
+      List.IsChain R (n :: (l₁ ++ l₂))
   | _, [], _, _, h₂ => by simpa [chainEnd] using h₂
   | n, m :: rest, l₂, h₁, h₂ => by
-    obtain ⟨hnm, hrest⟩ := List.chain_cons.1 h₁
-    exact List.Chain.cons hnm (chain_append m rest l₂ hrest (by simpa [chainEnd] using h₂))
+    obtain ⟨hnm, hrest⟩ := List.isChain_cons_cons.1 h₁
+    exact List.IsChain.cons_cons hnm (chain_append m rest l₂ hrest (by simpa [chainEnd] using h₂))
 
 /-- The potential is nondecreasing along the grid. -/
 theorem potential_mono {N : ℕ} (hb : 1 / 2 ≤ b) (hlip : ∀ k : ℕ, |g (k + 1) - g k| ≤ 1) :
@@ -714,7 +719,7 @@ theorem exists_chain_to_zero {N n₀ q m m' : ℕ}
     (hn₀ : n₀ < N) (hq : q + 2 ≤ N) (hqL : potential b N g q ≤ 0)
     (hm : N - (q + 1) ≤ 2 ^ m * (N - n₀)) (hm' : N ≤ 2 ^ m' * (N - q)) :
     ∃ l : List ℕ, l.length ≤ m + 2 * m' + 1 ∧
-      List.Chain (fun n k ↦ k < n ∧ Admissible N k n) n₀ l ∧
+      List.IsChain (fun n k ↦ k < n ∧ Admissible N k n) (n₀ :: l) ∧
       chainEnd n₀ l = 0 ∧
       chainCost g n₀ l ≤ (potential b N g n₀ - potential b N g 0) / (1 + 2 * b) + 1 := by
   have hpos : (0 : ℝ) < 1 + 2 * b := by linarith
@@ -741,7 +746,7 @@ theorem exists_chain_to_zero {N n₀ q m m' : ℕ}
       omega
     · refine chain_append n₀ l₁ _ hchain₁ ?_
       rw [hpq]
-      exact List.Chain.cons ⟨by omega, by rw [Admissible]; omega⟩ hchain₂
+      exact List.IsChain.cons_cons ⟨by omega, by rw [Admissible]; omega⟩ hchain₂
     · rw [chainEnd_append, hpq]
       simpa [chainEnd] using hend₂
     · rw [chainCost_append]

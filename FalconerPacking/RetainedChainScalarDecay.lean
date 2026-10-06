@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularShellParameters
+module
+
+public import FalconerPacking.RegularShellParameters
 
 /-!
 # Scalar decay of the actual retained-circle energy coefficients
@@ -12,6 +14,8 @@ The floored initial depth is retained explicitly. These estimates keep the inver
 lower radial frequency supplied by polar integration, and absorb the fixed ratio between
 the two annular radii only into constants.
 -/
+
+@[expose] public section
 
 noncomputable section
 

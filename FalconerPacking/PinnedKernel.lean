@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PositiveLimit
-import Mathlib.MeasureTheory.Measure.WithDensityFinite
-import Mathlib.MeasureTheory.Measure.FiniteMeasureProd
-import Mathlib.Probability.Kernel.Composition.AbsolutelyContinuous
-import Mathlib.Probability.Kernel.Composition.Lemmas
+module
+
+public import FalconerPacking.PositiveLimit
+public import Mathlib.MeasureTheory.Measure.WithDensityFinite
+public import Mathlib.MeasureTheory.Measure.FiniteMeasureProd
+public import Mathlib.Probability.Kernel.Composition.AbsolutelyContinuous
+public import Mathlib.Probability.Kernel.Composition.Lemmas
 
 /-!
 # Pinned distance kernels
@@ -16,6 +18,8 @@ This file packages pinned distance measures as a measurable kernel in the pin.  
 absolute-continuity theorem for composition products to pass absolute continuity of a joint law
 to almost-every pinned law.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -181,14 +185,14 @@ theorem jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximatio
   let τ : ProbabilityMeasure (EuclideanSpace ℝ (Fin 2) × ℝ) :=
     ⟨(ρ : Measure
       (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map G,
-      Measure.isProbabilityMeasure_map hG⟩
+      inferInstance⟩
   have hmap := tendsto_map_toFiniteMeasure_of_ae_dist_le
     ρ hA hG hε hclose
   have heq : ∀ n,
       ProbabilityMeasure.toFiniteMeasure
           (⟨(ρ : Measure
             (EuclideanSpace ℝ (Fin 2) × EuclideanSpace ℝ (Fin 2))).map (A n),
-            Measure.isProbabilityMeasure_map (hA n)⟩ :
+            inferInstance⟩ :
               ProbabilityMeasure (EuclideanSpace ℝ (Fin 2) × ℝ)) =
         finiteMeasureOfL1Density
           ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume) (f n) := by
@@ -208,7 +212,7 @@ theorem jointPinnedDistanceMeasure_absolutelyContinuous_of_coherent_approximatio
     absolutelyContinuous_of_coherentDensityComparison
       ((ν : Measure (EuclideanSpace ℝ (Fin 2))).prod volume)
       hK hZ hstep hweak
-  simpa [jointPinnedDistanceMeasure, ρ, G, τ] using hac
+  simpa [jointPinnedDistanceMeasure, ρ, G, τ, ProbabilityMeasure.toFiniteMeasure] using hac
 
 /-- The self-contained endpoint of the coherent approximation strategy: once the approximating
 joint laws have coherent `L¹` densities and converge uniformly to the distance map, there is a

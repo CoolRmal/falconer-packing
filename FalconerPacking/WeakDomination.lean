@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeakMomentLimit
-import Mathlib.MeasureTheory.Integral.Regular
-import Mathlib.MeasureTheory.Measure.Prokhorov
+module
+
+public import FalconerPacking.WeakMomentLimit
+public import Mathlib.MeasureTheory.Integral.Regular
+public import Mathlib.MeasureTheory.Measure.Prokhorov
 
 /-!
 # Domination under weak convergence
@@ -13,6 +15,8 @@ import Mathlib.MeasureTheory.Measure.Prokhorov
 Domination of finite measures passes to simultaneous weak limits. The proof uses
 nonnegative bounded continuous tests and regular approximation of open sets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

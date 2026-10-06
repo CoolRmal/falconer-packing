@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionKernel
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv
-import Mathlib.Analysis.Calculus.MeanValue
+module
+
+public import FalconerPacking.RadialProjectionKernel
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.ArctanDeriv
+public import Mathlib.Analysis.Calculus.MeanValue
 
 /-!
 # A quantitative right-half-plane chart for radial angles
@@ -13,6 +15,8 @@ import Mathlib.Analysis.Calculus.MeanValue
 Positive first-coordinate separation fixes the argument branch. The angle difference
 is bounded by the determinant divided by the two separated first coordinates.
 -/
+
+@[expose] public section
 
 noncomputable section
 

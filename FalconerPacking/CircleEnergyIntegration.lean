@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.JointPinnedCircleEnergy
+module
+
+public import FalconerPacking.JointPinnedCircleEnergy
 
 /-!
 # Integrating an explicit circle-energy estimate
@@ -12,6 +14,8 @@ These assembly results take the actual integrated circle inequality as a hypothe
 not assert the packet or chain estimate that will supply that hypothesis. Polar coordinates
 and the checked Gaussian Fourier bound supply the radial weights and the Frostman exponent.
 -/
+
+@[expose] public section
 
 noncomputable section
 

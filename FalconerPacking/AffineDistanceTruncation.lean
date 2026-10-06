@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AffineDistanceL1
-import FalconerPacking.AngularTruncation
+module
+
+public import FalconerPacking.AffineDistanceL1
+public import FalconerPacking.AngularTruncation
 
 /-!
 # Whole-pin affine comparison by angular truncation
@@ -13,6 +15,8 @@ Absolute continuity of the two radial laws identifies the full affine densities 
 any truncation. Their integrals are one, giving a bound of two on the discarded pins.
 Only the retained restriction needs bounded angular densities.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -32,7 +36,7 @@ theorem ae_map_affineDistance_eq_withDensity_of_radial_ac
     ∀ᵐ y ∂ν, μ.map (fun x ↦ affineDistance b x y) =
       volume.withDensity (fun t ↦ ENNReal.ofReal (affineDistanceDensity μ b y t)) := by
   letI : IsProbabilityMeasure (μ.map (fun x ↦ x - b)) :=
-    Measure.isProbabilityMeasure_map (by fun_prop)
+    inferInstance
   have ha := ae_memLp_charFun_on_line (μ.map (fun x ↦ x - b)) hs hs₂
     (hfr.map_sub_const b)
   rw [Measure.restrict_congr_set Ioo_ae_eq_Ioc] at ha

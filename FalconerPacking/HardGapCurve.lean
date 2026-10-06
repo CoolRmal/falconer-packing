@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardGapAlgebra
-import FalconerPacking.Statement
-import Mathlib.Analysis.Real.Sqrt
-import Mathlib.Topology.Order.OrderClosed
+module
+
+public import FalconerPacking.HardGapAlgebra
+public import FalconerPacking.Statement
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.Topology.Order.OrderClosed
 
 /-!
 # The Hausdorff–packing cutoff from the hard-gap certificates
@@ -15,6 +17,8 @@ The definitions in `Statement` are the curve in Theorem 1.1 of the focused manus
 They do not replace the earlier `FalconerPacking.bound` API. The middle branch uses a
 rationalized quadratic root, whose denominator is positive on the whole real line.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProfileMarginParameters
-import FalconerPacking.RegularProfileParameters
+module
+
+public import FalconerPacking.ProfileMarginParameters
+public import FalconerPacking.RegularProfileParameters
 
 /-!
 # Choosing thresholds for strict-profile shell decay
@@ -15,6 +17,8 @@ kernel tails. The two displayed bad exponents are respectively the source-heavy 
 terms, after packet multiplicity. The good exponent retains the cost of every edge threshold.
 No analytic estimate is assumed proved by these scalar inequalities.
 -/
+
+@[expose] public section
 
 noncomputable section
 

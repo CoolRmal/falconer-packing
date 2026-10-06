@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAnnularKernel
-import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
+module
+
+public import FalconerPacking.DyadicAnnularKernel
+public import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 
 /-!
 # Smooth frequency reconstruction of finite measures
@@ -14,6 +16,8 @@ controlled by the source mass. The dyadically rescaled low-pass kernels reconstr
 against bounded continuous complex tests, by an explicit change of variables and dominated
 convergence. No positivity of the kernels or absolute continuity of the source is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeightedBandEnergy
-import Mathlib.Analysis.Complex.RealDeriv
+module
+
+public import FalconerPacking.WeightedBandEnergy
+public import Mathlib.Analysis.Complex.RealDeriv
 
 /-!
 # Angular derivatives of characteristic functions
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Complex.RealDeriv
 The actual angular derivative is a linear combination of two signed coordinate transforms.
 Their weighted Fourier band estimates retain the source-radius gain before integration.
 -/
+
+@[expose] public section
 
 noncomputable section
 

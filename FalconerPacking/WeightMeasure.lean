@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FrostmanWeights
-import FalconerPacking.Restriction
-import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
+module
+
+public import FalconerPacking.FrostmanWeights
+public import FalconerPacking.Restriction
+public import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
 
 /-!
 # From Frostman weights to measures
@@ -22,6 +24,8 @@ file turns them into an actual measure — a finite sum of point masses, one in 
 
 What remains for the classical Frostman lemma is the weak limit as `n → ∞`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

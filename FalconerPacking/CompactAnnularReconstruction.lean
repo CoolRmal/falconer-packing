@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SchwartzMeasureReconstruction
-import FalconerPacking.CompactSourceSchwartz
+module
+
+public import FalconerPacking.SchwartzMeasureReconstruction
+public import FalconerPacking.CompactSourceSchwartz
 
 /-!
 # Compact smooth annular reconstruction
@@ -14,6 +16,8 @@ to the low-frequency term and the dyadic annular source convolutions gives actua
 supported Schwartz functions. Their finite sums telescope and reconstruct the source against
 all bounded continuous complex tests.
 -/
+
+@[expose] public section
 
 noncomputable section
 

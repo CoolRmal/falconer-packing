@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedSlopeTubes
-import FalconerPacking.SlopeNormalChart
+module
+
+public import FalconerPacking.EnlargedSlopeTubes
+public import FalconerPacking.SlopeNormalChart
 
 /-!
 # Geometric coverage by actual enlarged slope tubes
@@ -12,6 +14,8 @@ import FalconerPacking.SlopeNormalChart
 A uniformly bounded number of neighboring offsets covers every tube of comparable width,
 in any direction. The containing tube is one member of the constructed finite family.
 -/
+
+@[expose] public section
 
 noncomputable section
 

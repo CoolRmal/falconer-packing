@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
-import FalconerPacking.Energy
+module
+
+public import FalconerPacking.Dyadic
+public import FalconerPacking.Energy
 
 /-!
 # Normalized restrictions
@@ -17,6 +19,8 @@ The manuscript's two uses are recorded here: passing to a larger cube keeps the 
 and a normalized restriction of a Frostman measure is again Frostman, with the constant divided
 by the mass of the set.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -52,7 +56,7 @@ measure of the ball, divided by the mass of the set. -/
 theorem normalizedRestrict_ball_le (σ : Measure (EuclideanSpace ℝ (Fin 2))) (Q : Set (EuclideanSpace ℝ (Fin 2))) (x : EuclideanSpace ℝ (Fin 2)) (r : ℝ) :
     normalizedRestrict σ Q (Metric.ball x r) ≤ (σ Q)⁻¹ * σ (Metric.ball x r) := by
   rw [normalizedRestrict_apply σ Q _ Metric.isOpen_ball.measurableSet]
-  exact mul_le_mul_left' (measure_mono inter_subset_left) _
+  exact mul_le_mul_right (measure_mono inter_subset_left) _
 
 /-- **The Frostman estimate survives normalization.**  A normalized restriction of an
 `(s, C)`-Frostman measure to a set of positive finite mass is `(s, C / σ Q)`-Frostman. -/
@@ -62,7 +66,7 @@ theorem isFrostman_normalizedRestrict {σ : Measure (EuclideanSpace ℝ (Fin 2))
   intro x r hr hr1
   have hpos : 0 < (σ Q).toReal := ENNReal.toReal_pos h0 hfin
   refine (normalizedRestrict_ball_le σ Q x r).trans ?_
-  refine (mul_le_mul_left' (hfr x r hr hr1) _).trans (le_of_eq ?_)
+  refine (mul_le_mul_right (hfr x r hr hr1) _).trans (le_of_eq ?_)
   rw [div_mul_eq_mul_div, ENNReal.ofReal_div_of_pos hpos, ENNReal.ofReal_toReal hfin,
     ENNReal.div_eq_inv_mul]
 

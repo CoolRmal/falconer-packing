@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+public import Mathlib.Analysis.MeanInequalities
 
 /-!
 # Orthogonality from bounded Fourier overlap
@@ -12,6 +14,8 @@ import Mathlib.Analysis.MeanInequalities
 A pointwise overlap bound gives a quadratic estimate for every selected subfamily, with
 no dependence on the number of labels. Plancherel transfers this to spatial Schwartz functions.
 -/
+
+@[expose] public section
 
 noncomputable section
 

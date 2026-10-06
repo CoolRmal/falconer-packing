@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAnnularSummability
-import FalconerPacking.AnnularPinnedReconstruction
-import FalconerPacking.CircleFourierConvolution
+module
+
+public import FalconerPacking.DyadicAnnularSummability
+public import FalconerPacking.AnnularPinnedReconstruction
+public import FalconerPacking.CircleFourierConvolution
 
 /-!
 # Absolute continuity from actual decaying annular good/bad pieces
@@ -15,6 +17,8 @@ The source expansion's convergence is proved in `AnnularPinnedReconstruction`, r
 postulated as an additional analytic hypothesis. The remaining explicit assumptions are the
 actual good squared second-norm and bad first-norm bounds, with finite norms for early shells.
 -/
+
+@[expose] public section
 
 noncomputable section
 

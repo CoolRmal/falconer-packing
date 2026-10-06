@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularGridGeometry
-import Mathlib.Algebra.Order.Floor.Ring
+module
+
+public import FalconerPacking.AngularGridGeometry
+public import Mathlib.Algebra.Order.Floor.Ring
 
 /-!
 # Choosing the concrete angular grid from a physical uncertainty
@@ -12,6 +14,8 @@ import Mathlib.Algebra.Order.Floor.Ring
 The integer grid size is the floor of two pi divided by the required uncertainty. Its
 actual spacing lies between that uncertainty and twice it; no matching grid is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

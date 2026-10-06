@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProfileInterpolation
-import FalconerPacking.HardPoints
-import Mathlib.Order.Interval.Set.OrdConnected
+module
+
+public import FalconerPacking.ProfileInterpolation
+public import FalconerPacking.HardPoints
+public import Mathlib.Order.Interval.Set.OrdConnected
 
 /-!
 # Finite interval geometry of interpolated hard-point sets
@@ -14,6 +16,8 @@ For a finite linear interpolant, lower bounds on an interval can be checked at i
 and intervening grid nodes. Slicing by the cells containing a point and its forward midpoint
 then expresses its hard-point set as a finite union of closed intervals.
 -/
+
+@[expose] public section
 
 noncomputable section
 

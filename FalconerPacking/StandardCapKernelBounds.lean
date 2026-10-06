@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalDyadicCapKernels
-import FalconerPacking.StandardAngularGrid
+module
+
+public import FalconerPacking.PhysicalDyadicCapKernels
+public import FalconerPacking.StandardAngularGrid
 
 /-!
 # Kernel estimates on the concrete dividing cap grid
@@ -12,6 +14,8 @@ import FalconerPacking.StandardAngularGrid
 The explicit grid discharges every geometric hypothesis of the uniform cap construction.
 The constants below are uniform in annular scale, direction, and physical strip width.
 -/
+
+@[expose] public section
 
 noncomputable section
 

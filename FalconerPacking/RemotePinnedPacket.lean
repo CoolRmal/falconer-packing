@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketFrequency
+module
+
+public import FalconerPacking.SourcePacketFrequency
 
 /-!
 # Remote pinned first-norm estimates for actual source packets
@@ -12,6 +14,8 @@ The frequency representation is combined with full-circle nonstationary phase. T
 cutoff gives bounded distance support, so the resulting estimate controls the entire distance
 density, rather than just a single circular average.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,12 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.InnerProductSpace.PiL2
-import Mathlib.Analysis.Normed.Lp.MeasurableSpace
-import Mathlib.Analysis.Real.Sqrt
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
-import Mathlib.Topology.MetricSpace.HausdorffDimension
+module
+
+public import Mathlib.Analysis.InnerProductSpace.PiL2
+public import Mathlib.Analysis.Normed.Lp.MeasurableSpace
+public import Mathlib.Analysis.Real.Sqrt
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+public import Mathlib.Topology.MetricSpace.HausdorffDimension
 
 /-!
 # The statement definitions
@@ -18,6 +20,8 @@ The focused Theorem 1.1 uses `hausdorffPackingBound`. Its definitions are kept t
 the same order as the specification so that Lean's shared numeral proofs also match in the
 comparator's structural check. This module does not import the challenge.
 -/
+
+@[expose] public section
 
 noncomputable section
 

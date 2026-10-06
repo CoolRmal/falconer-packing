@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StandardCapCircleSchwartz
+module
+
+public import FalconerPacking.StandardCapCircleSchwartz
 
 /-!
 # Exact parent sums on the active circular label tree
@@ -12,6 +14,8 @@ Discarding geometrically nonincident cap-cell pairs changes no Schwartz function
 The actual finite label sets therefore have exact parent sums both within the fine
 grid and across the standard scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

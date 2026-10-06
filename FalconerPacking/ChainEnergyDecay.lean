@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ChainEnergyRemainders
-import FalconerPacking.StrictShellParameters
+module
+
+public import FalconerPacking.ChainEnergyRemainders
+public import FalconerPacking.StrictShellParameters
 
 /-!
 # Absorbing the complete finite-chain remainder
@@ -12,6 +14,8 @@ import FalconerPacking.StrictShellParameters
 A fixed sufficiently high kernel order makes the entire preceding-factor error no larger
 than the full threshold product. The choice is uniform over all padded spatial chains.
 -/
+
+@[expose] public section
 
 noncomputable section
 

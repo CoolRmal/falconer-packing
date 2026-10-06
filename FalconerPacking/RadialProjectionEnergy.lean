@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Energy
-import Mathlib.Analysis.SpecialFunctions.Pow.Integral
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
-import Mathlib.MeasureTheory.Integral.MeanInequalities
+module
+
+public import FalconerPacking.Energy
+public import Mathlib.Analysis.SpecialFunctions.Pow.Integral
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+public import Mathlib.MeasureTheory.Integral.MeanInequalities
 
 /-!
 # Energy exponents and angular singularities for radial projections
@@ -16,6 +18,8 @@ The strict inequalities below are the two independent integrability requirements
 Orponen's averaged radial-projection argument. The angular estimate uses the integrable
 singularity of `|sin θ| ^ (-β)` for `β < 1`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

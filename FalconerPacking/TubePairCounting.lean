@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.TruncatedConditionalEnergy
-import Mathlib.MeasureTheory.Measure.Prod
+module
+
+public import FalconerPacking.TruncatedConditionalEnergy
+public import Mathlib.MeasureTheory.Measure.Prod
 
 /-!
 # Finite tube pair counting and heavy-tube deletion
@@ -12,6 +14,8 @@ import Mathlib.MeasureTheory.Measure.Prod
 The exact square-mass identity retains the diagonal and therefore applies to measures with
 atoms. The weighted deletion estimate uses actual measurable product sets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedFineCapSupport
-import FalconerPacking.InheritedCoarseCapSupport
+module
+
+public import FalconerPacking.InheritedFineCapSupport
+public import FalconerPacking.InheritedCoarseCapSupport
 
 /-!
 # Inherited circle overlap on one fixed broad annulus
@@ -12,6 +14,8 @@ import FalconerPacking.InheritedCoarseCapSupport
 The upper frequency fixes every label and spatial mark throughout the annulus.
 Allowing the circle radius to be smaller by a fixed factor only changes overlap constants.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -1,103 +1,121 @@
-name: Lean build
+name: Lean build and Palomar preflight
 
 on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      authorization_relationship:
+        description: Your relationship to the substantive formalization
+        required: true
+        type: choice
+        options:
+          - I am a responsible author or maintainer
+          - I have approval from a responsible author or maintainer
+
+permissions:
+  contents: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-permissions:
-  contents: read
-
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  source-hygiene:
+    name: Check submission source
+    runs-on: ubuntu-24.04
+    outputs:
+      request_id: ${{ steps.request.outputs.request_id }}
     steps:
       - name: Check out the repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Generate the verification request identifier
+        id: request
+        env:
+          REQUEST_KEY: ${{ github.run_id }}:${{ github.run_attempt }}
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+
+          request_id = hashlib.sha256(os.environ["REQUEST_KEY"].encode()).hexdigest()[:12]
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a") as output:
+              output.write(f"request_id={request_id}\n")
+          PY
+
+      - name: Check Palomar source and configuration requirements
+        run: python3 scripts/check_submission.py
+
+      - name: Reject proof holes and additional axioms
+        shell: bash
+        run: |
+          python3 - <<'CHECK'
+          import pathlib
+          import re
+          import subprocess
+
+          forbidden = re.compile(
+              r"\b(?:admit|native_decide)\b|Lean\.ofReduceBool|^\s*axiom\b",
+              re.MULTILINE,
+          )
+          holes = re.compile(r"\bsorry\b")
+          files = subprocess.check_output(["git", "ls-files", "-z"]).decode().split("\0")
+          problems = []
+          for filename in files:
+              if not filename.endswith(".lean"):
+                  continue
+              path = pathlib.Path(filename)
+              if ".lake" in path.parts:
+                  continue
+              source = path.read_text()
+              if forbidden.search(source):
+                  problems.append(f"{filename}: additional axiom or unchecked proof method")
+              # The independent Challenge has one deliberate statement hole.
+              if filename != "Challenge.lean" and holes.search(source):
+                  problems.append(f"{filename}: unresolved proof hole")
+          if problems:
+              raise SystemExit("\n".join(problems))
+          CHECK
+
+  build:
+    name: Build the Lean project
+    if: github.event_name != 'workflow_dispatch'
+    needs: source-hygiene
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Configure Lean and restore the Mathlib cache
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
         with:
           auto-config: false
+          build: false
           use-github-cache: true
           use-mathlib-cache: true
 
-      - name: Build the project and challenge
+      - name: Build the project and independent statement
         run: lake build FalconerPacking Challenge Solution
 
-      - name: Check source hygiene
-        shell: bash
-        run: |
-          if grep -REn --include='*.lean' --exclude-dir='.lake' \
-              '(^|[^[:alnum:]_])admit([^[:alnum:]_]|$)|native_decide|Lean\.ofReduceBool|^[[:space:]]*axiom([^[:alnum:]_]|$)' \
-              .; then
-            exit 1
-          fi
-          while IFS= read -r file; do
-            lines=$(wc -l < "$file")
-            if (( lines > 1500 )); then
-              echo "$file has $lines lines"
-              exit 1
-            fi
-            if awk 'length($0) > 180 { exit 1 }' "$file"; then
-              :
-            else
-              echo "$file has a line longer than 100 characters"
-              exit 1
-            fi
-          done < <(find . -path './.lake' -prune -o -name '*.lean' -print)
-
-  comparator:
-    # A fresh runner: the comparator must build the solution itself, inside its sandbox, without
-    # reusing any artifact compiled from Solution.lean.
-    runs-on: ubuntu-latest
-    env:
-      LANDRUN_REV: f59e83dbb4fd0af584dec5091168d0b35c8410b7
-      LEAN4EXPORT_REV: 4e7915201d3f9f04470d9eae002fa695f7cdc589 # v4.32.0
-      COMPARATOR_REV: 07bc4ea40f2266dcb861820a2ec1fa3244ed307f # toolchain v4.32.0
-      # Upstream fix, later than the v4.32.0 toolchain: pass `--` to landrun before the sandboxed
-      # command, so that the `--` in the lean4export arguments reaches lean4export.
-      COMPARATOR_SEPARATOR_FIX: 9badaf470d8f724346d33738bd273efacd78df76
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
-
-      - name: Configure Lean and restore the Mathlib cache
-        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1.5.0
-        with:
-          auto-config: false
-          use-github-cache: false
-          use-mathlib-cache: true
-
-      - name: Set up Go
-        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
-        with:
-          go-version: stable
-          cache: false
-
-      - name: Build landrun, lean4export and the comparator
-        shell: bash
-        run: |
-          set -euo pipefail
-          tools="$RUNNER_TEMP/tools"
-          mkdir -p "$tools/bin"
-          git clone --quiet https://github.com/Zouuup/landrun.git "$tools/landrun"
-          git -C "$tools/landrun" checkout --quiet --detach "$LANDRUN_REV"
-          (cd "$tools/landrun" && go build -o "$tools/bin/landrun" ./cmd/landrun)
-          git clone --quiet https://github.com/leanprover/lean4export.git "$tools/lean4export"
-          git -C "$tools/lean4export" checkout --quiet --detach "$LEAN4EXPORT_REV"
-          (cd "$tools/lean4export" && lake build lean4export)
-          cp "$tools/lean4export/.lake/build/bin/lean4export" "$tools/bin/"
-          git clone --quiet https://github.com/leanprover/comparator.git "$tools/comparator"
-          git -C "$tools/comparator" checkout --quiet --detach "$COMPARATOR_REV"
-          git -C "$tools/comparator" cherry-pick --no-commit "$COMPARATOR_SEPARATOR_FIX"
-          (cd "$tools/comparator" && lake build comparator)
-          cp "$tools/comparator/.lake/build/bin/comparator" "$tools/bin/"
-          echo "$tools/bin" >> "$GITHUB_PATH"
-
-      - name: Run the comparator
-        run: lake env comparator comparator.json
+  mechanical:
+    name: Full Palomar verification
+    if: github.event_name == 'workflow_dispatch'
+    needs: source-hygiene
+    # This includes clean dependency builds, the Challenge import audit,
+    # lake comparator, Lean's kernel, NanoDa, and con-ron. The uploaded
+    # mechanical report is advisory; submission and registration are separate.
+    uses: PalomarRegistry/PalomarSubmission/.github/workflows/submission.yml@d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44
+    with:
+      repository: ${{ github.repository }}
+      commit: ${{ github.sha }}
+      pipeline_commit: d4e41c1d5b0d114c4859e6e5831dc6d3ad1d0d44
+      request_id: ${{ needs.source-hygiene.outputs.request_id }}
+      mode: full
+      execution_profile: palomar-standard-v1
+      options: ${{ format('{{"comparator_config_path":"comparator.json","authorization_relationship":{0}}}', toJSON(inputs.authorization_relationship)) }}

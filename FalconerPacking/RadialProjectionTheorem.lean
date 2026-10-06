@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionApproximationMoment
-import FalconerPacking.RadialProjectionJointDensity
-import FalconerPacking.WeakMomentLimit
-import FalconerPacking.WeakMomentDensity
+module
+
+public import FalconerPacking.RadialProjectionApproximationMoment
+public import FalconerPacking.RadialProjectionJointDensity
+public import FalconerPacking.WeakMomentLimit
+public import FalconerPacking.WeakMomentDensity
 
 /-!
 # Averaged radial projection of Frostman probabilities
@@ -15,6 +17,8 @@ Actual positive smooth source densities satisfy a uniform moment bound. Their jo
 laws converge weakly. The resulting positive-power set bound yields absolute continuity and
 a smaller moment of the canonical jointly measurable radial density.
 -/
+
+@[expose] public section
 
 noncomputable section
 

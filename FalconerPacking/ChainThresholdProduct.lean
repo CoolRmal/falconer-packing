@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProfileChainSequences
-import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+module
+
+public import FalconerPacking.ProfileChainSequences
+public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 
 /-!
 # Products of the actual finite-chain threshold factors
@@ -12,6 +14,8 @@ import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
 Every edge threshold is retained. A uniform polynomial factor is separated from the
 sum of profile costs before any asymptotic exponent is absorbed.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -42,7 +46,7 @@ theorem prod_common_dyadic_factor (P : ℝ≥0∞) (v T : ℝ) (c : ℕ → ℝ)
 theorem prod_range_le_prod_range_ennreal {A : ℕ → ℝ≥0∞} {j k : ℕ}
     (hjk : j ≤ k) (hA : ∀ i < k, 1 ≤ A i) :
     (∏ i ∈ Finset.range j, A i) ≤ ∏ i ∈ Finset.range k, A i := by
-  exact Finset.prod_le_prod_of_subset_of_one_le (Finset.range_mono hjk) (fun _ _ ↦ bot_le)
+  exact Finset.prod_le_prod_of_subset_of_one_le₀ (Finset.range_mono hjk) (fun _ _ ↦ bot_le)
     (fun i hi _ ↦ hA i (Finset.mem_range.mp hi))
 
 /-- Actual edge thresholds give one explicit full-product bound. `v` is the per-edge
@@ -86,7 +90,8 @@ theorem marked_chain_threshold_product_le
         dsimp [P]
         rw [show 28 * K + 114 = (8 * K + 14) + (20 * K + 100) by omega, pow_add]
         ring
-  have hprod := Finset.prod_le_prod (fun _ _ ↦ bot_le) (fun j hj ↦ hstep j (Finset.mem_range.mp hj))
+  have hprod := Finset.prod_le_prod₀ (fun _ _ ↦ bot_le)
+    (fun j hj ↦ hstep j (Finset.mem_range.mp hj))
   rw [prod_common_dyadic_factor] at hprod
   refine hprod.trans ?_
   have hPk : (ENNReal.ofReal P) ^ k ≤ (ENNReal.ofReal P) ^ K :=

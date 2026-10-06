@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RealChainCompression
-import FalconerPacking.ProfileInterpolation
+module
+
+public import FalconerPacking.RealChainCompression
+public import FalconerPacking.ProfileInterpolation
 
 /-!
 # Rounding real chains to integer profile scales
@@ -13,6 +15,8 @@ Both endpoints of an edge are rounded downward. Admissibility is preserved exact
 the normalized edge cost changes by at most twice the grid spacing. Equal rounded scales
 are then deleted without changing the cost or the final endpoint.
 -/
+
+@[expose] public section
 
 noncomputable section
 

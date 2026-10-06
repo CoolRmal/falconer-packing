@@ -1,5 +1,7 @@
-import FalconerPacking.NonstationaryPhaseBounds
-import Mathlib.Analysis.SpecialFunctions.SmoothTransition
+module
+
+public import FalconerPacking.NonstationaryPhaseBounds
+public import Mathlib.Analysis.SpecialFunctions.SmoothTransition
 
 /-!
 # A smooth reciprocal with uniform derivative bounds
@@ -7,6 +9,8 @@ import Mathlib.Analysis.SpecialFunctions.SmoothTransition
 The reciprocal is cut off near zero. Its derivatives are bounded on a fixed compact interval;
 outside that interval they are exactly the derivatives of the ordinary reciprocal.
 -/
+
+@[expose] public section
 
 open MeasureTheory Set Filter Function
 open scoped ContDiff Topology

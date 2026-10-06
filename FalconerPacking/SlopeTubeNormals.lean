@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedSlopeTubeGeometry
-import Mathlib.Analysis.Normed.Module.Normalize
+module
+
+public import FalconerPacking.EnlargedSlopeTubeGeometry
+public import Mathlib.Analysis.Normed.Module.Normalize
 
 /-!
 # Actual unit normals and centers for the enlarged slope tubes
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Normed.Module.Normalize
 The coordinate normal of a slope chart is normalized explicitly. The resulting physical
 strip contains the finite union used in the energy estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

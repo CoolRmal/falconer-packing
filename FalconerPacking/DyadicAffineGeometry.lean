@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicCenters
+module
+
+public import FalconerPacking.DyadicCenters
 
 /-!
 # Tail geometry for coherent affine approximations
@@ -11,6 +13,8 @@ import FalconerPacking.DyadicCenters
 Dyadic cube diameters tend to zero, so a fixed initial depth makes all later cubes smaller
 than the source-pin separation. Almost-everywhere source-center bounds lift to the joint law.
 -/
+
+@[expose] public section
 
 noncomputable section
 

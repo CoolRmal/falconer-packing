@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FiniteHardPoints
-import Mathlib.Data.Finset.Sort
+module
+
+public import FalconerPacking.FiniteHardPoints
+public import Mathlib.Data.Finset.Sort
 
 /-!
 # Ordered finite partitions of hard-point sets
@@ -13,6 +15,8 @@ Sorting the endpoints of finitely many closed intervals gives consecutive cells 
 lie in their union or have no interior point in that union. For a hard-point set, all partition
 nodes are hard, including the right endpoints of complementary cells.
 -/
+
+@[expose] public section
 
 noncomputable section
 

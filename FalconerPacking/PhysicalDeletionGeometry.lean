@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalChainScales
-import FalconerPacking.PhysicalConditionalDeletion
+module
+
+public import FalconerPacking.PhysicalChainScales
+public import FalconerPacking.PhysicalConditionalDeletion
 
 /-!
 # Geometric uncertainty in the actual conditional deletion estimate
@@ -13,6 +15,8 @@ The enlarged source-strip width is a fixed geometric factor times the original s
 ratio. Its three contributions are the parent grid width, the standard-packet uncertainty,
 and the mismatch of the effective normal.
 -/
+
+@[expose] public section
 
 noncomputable section
 

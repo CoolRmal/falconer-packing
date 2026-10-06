@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionWeakMoment
+module
+
+public import FalconerPacking.RadialProjectionWeakMoment
 
 /-!
 # Averaging positive trace level sets
@@ -11,6 +13,8 @@ import FalconerPacking.RadialProjectionWeakMoment
 The probability bound interpolates the directional weak trace estimate to a joint exponent
 strictly greater than one. Only the first angular moments of the two Fourier energies enter.
 -/
+
+@[expose] public section
 
 noncomputable section
 

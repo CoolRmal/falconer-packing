@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DisjointComponentDensities
-import FalconerPacking.SourceWavePacketMass
+module
+
+public import FalconerPacking.DisjointComponentDensities
+public import FalconerPacking.SourceWavePacketMass
 
 /-!
 # Discarded pin mass in the annular decomposition
@@ -13,6 +15,8 @@ The first norm of every full source annulus is uniformly bounded. Assigning the 
 to the discarded pin set therefore costs only the original discarded mass, independent of
 the frequency and of the regular partition.
 -/
+
+@[expose] public section
 
 noncomputable section
 

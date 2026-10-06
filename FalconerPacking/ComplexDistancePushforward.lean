@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleFourierConvolution
+module
+
+public import FalconerPacking.CircleFourierConvolution
 
 /-!
 # Complex pinned-distance densities
@@ -13,6 +15,8 @@ source. Its integral against every bounded measurable test is exactly the source
 test under the distance map. This supplies the signed and complex pushforward
 identification needed when applying the pinned identity to wave packets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

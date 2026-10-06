@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialMomentCenters
-import Mathlib.Analysis.MeanInequalities
+module
+
+public import FalconerPacking.RadialMomentCenters
+public import Mathlib.Analysis.MeanInequalities
 
 /-!
 # Summing comparisons over children of dyadic cubes
@@ -12,6 +14,8 @@ import Mathlib.Analysis.MeanInequalities
 Disjointness bounds the total child mass in a parent. Regrouping then controls the parent
 moment terms, while Hölder bounds the sum of square roots of the child masses.
 -/
+
+@[expose] public section
 
 noncomputable section
 

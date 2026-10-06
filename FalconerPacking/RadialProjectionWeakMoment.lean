@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionLevelSet
-import Mathlib.Analysis.SpecificLimits.Normed
+module
+
+public import FalconerPacking.RadialProjectionLevelSet
+public import Mathlib.Analysis.SpecificLimits.Normed
 
 /-!
 # Smaller moments from distribution bounds
@@ -13,6 +15,8 @@ Dyadic positive level sets turn a uniform weak power bound into a quantitative s
 moment bound. The argument uses only positive integrals, so it also applies before
 integrability has been established.
 -/
+
+@[expose] public section
 
 noncomputable section
 

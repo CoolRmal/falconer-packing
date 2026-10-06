@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FiniteRegularization
-import FalconerPacking.OccupiedCubes
-import FalconerPacking.StrictFiniteProfile
+module
+
+public import FalconerPacking.FiniteRegularization
+public import FalconerPacking.OccupiedCubes
+public import FalconerPacking.StrictFiniteProfile
 
 /-!
 # Profiles of regularized original measures
@@ -14,6 +16,8 @@ The profile is the cumulative sum of the exponents produced by finite regulariza
 from the root toward the leaves. The factor-eight regularity errors accumulate linearly in
 the number of blocks. Frostman and covering estimates then give its two affine barriers.
 -/
+
+@[expose] public section
 
 noncomputable section
 

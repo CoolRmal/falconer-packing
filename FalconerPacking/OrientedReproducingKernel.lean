@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnisotropicSchwartzKernel
-import Mathlib.Analysis.InnerProductSpace.NormDet
+module
+
+public import FalconerPacking.AnisotropicSchwartzKernel
+public import Mathlib.Analysis.InnerProductSpace.NormDet
 
 /-!
 # Reproducing kernels for oriented rectangles
@@ -12,6 +14,8 @@ import Mathlib.Analysis.InnerProductSpace.NormDet
 The coordinate frame is a linear isometry. Independent positive spatial widths give
 an actual linear dilation, whose Jacobian and dual frequency coordinates are computed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

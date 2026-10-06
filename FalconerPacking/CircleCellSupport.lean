@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCellSchwartz
-import FalconerPacking.CircleCapGeometry
+module
+
+public import FalconerPacking.CircleCellSchwartz
+public import FalconerPacking.CircleCapGeometry
 
 /-!
 # Fourier support of actual angular-cell pieces
@@ -12,6 +14,8 @@ import FalconerPacking.CircleCapGeometry
 The defining convolution gives the spectral support. Circular arc geometry then gives
 both the anisotropic rectangle and an actual family of frequency balls of finite overlap.
 -/
+
+@[expose] public section
 
 noncomputable section
 

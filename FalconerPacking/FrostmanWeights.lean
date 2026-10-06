@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Content
+module
+
+public import FalconerPacking.Content
 
 /-!
 # The Frostman normalization on a finite dyadic tree
@@ -20,6 +22,8 @@ established at one generation survives all later steps.
 The complementary half — that the total mass stays comparable to the dyadic content of the set —
 is the saturated-cube argument, and is not proved here.
 -/
+
+@[expose] public section
 
 noncomputable section
 

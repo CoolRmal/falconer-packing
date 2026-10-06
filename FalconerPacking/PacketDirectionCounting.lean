@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularGridGeometry
-import FalconerPacking.CircleCapGeometry
-import FalconerPacking.RadialAngleGeometry
+module
+
+public import FalconerPacking.AngularGridGeometry
+public import FalconerPacking.CircleCapGeometry
+public import FalconerPacking.RadialAngleGeometry
 
 /-!
 # Counting standard packet directions through a separated pair
@@ -13,6 +15,8 @@ import FalconerPacking.RadialAngleGeometry
 A small transverse component places an axis near one of the two normalized pair directions.
 The actual angular grid then gives a count linear in grid size times transverse width.
 -/
+
+@[expose] public section
 
 noncomputable section
 

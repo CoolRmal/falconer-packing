@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Statement
-import Mathlib.Algebra.Order.Floor.Ring
+module
+
+public import FalconerPacking.Statement
+public import Mathlib.Algebra.Order.Floor.Ring
 
 /-!
 # Dyadic cubes in the plane
@@ -22,6 +24,8 @@ half-open coordinate intervals of side `2⁻ⁿ`, indexed by integers.
 
 This is the geometric hierarchy, not `Data.Dyadic`, which is an arithmetic number type.
 -/
+
+@[expose] public section
 
 noncomputable section
 

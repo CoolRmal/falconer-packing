@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeakDensityLimit
-import FalconerPacking.RadialProjectionWeakMoment
+module
+
+public import FalconerPacking.WeakDensityLimit
+public import FalconerPacking.RadialProjectionWeakMoment
 
 /-!
 # Actual density moments from open-set power bounds
@@ -15,6 +17,8 @@ all strictly smaller positive moments. In particular a weak limit retains some m
 strictly greater than one whenever its open-set power exponent lies strictly between
 zero and one.
 -/
+
+@[expose] public section
 
 noncomputable section
 

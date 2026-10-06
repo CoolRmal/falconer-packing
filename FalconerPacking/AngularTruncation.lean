@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.MeasureTheory.Measure.WithDensity
-import Mathlib.MeasureTheory.Integral.Average
-import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.MeasureTheory.Measure.WithDensity
+public import Mathlib.MeasureTheory.Integral.Average
+public import Mathlib.Analysis.SpecialFunctions.Pow.NNReal
+public import Mathlib.Tactic.Linarith
 
 /-!
 # Truncating two correlated angular densities
@@ -15,6 +17,8 @@ The retained measure has both angular marginals bounded by the truncation thresh
 The discarded mass is controlled by the two density moments, without an independence
 assumption on the angular maps.
 -/
+
+@[expose] public section
 
 noncomputable section
 

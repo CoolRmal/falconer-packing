@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CorrelatedAngles
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+module
+
+public import FalconerPacking.CorrelatedAngles
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-!
 # Fourier translation multipliers with correlated shifts
@@ -12,6 +14,8 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 The translation multiplier is controlled before integration over the common pin parameter.
 The shift therefore needs no independence from the direction or the Fourier amplitude.
 -/
+
+@[expose] public section
 
 noncomputable section
 

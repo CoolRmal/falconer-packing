@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapGeometry
-import FalconerPacking.AnisotropicKernelPotential
+module
+
+public import FalconerPacking.SelectedCapGeometry
+public import FalconerPacking.AnisotropicKernelPotential
 
 /-!
 # Weighted embedding from selected tube tests
@@ -13,6 +15,8 @@ All kernel-potential hypotheses are discharged from selected tube tests, bounded
 and geometric support margins. The averaging components here are actual ball restrictions
 of volume; their common area is retained explicitly.
 -/
+
+@[expose] public section
 
 noncomputable section
 

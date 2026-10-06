@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAffineDensity
-import FalconerPacking.PhysicalBadPacketPairs
-import FalconerPacking.GridEnergyBounds
+module
+
+public import FalconerPacking.DyadicAffineDensity
+public import FalconerPacking.PhysicalBadPacketPairs
+public import FalconerPacking.GridEnergyBounds
 
 /-!
 # Summing conditional deletion bounds with their original masses
@@ -14,6 +16,8 @@ Normalization is undone before summing. Enlarged parents cost their geometric ov
 whereas disjoint regular components cost no counting factor. The pair sets may be arbitrary;
 only the parent regions need to be measurable.
 -/
+
+@[expose] public section
 
 noncomputable section
 

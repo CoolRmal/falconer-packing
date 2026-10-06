@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Capacity
-import FalconerPacking.FrostmanLimit
-import Mathlib.Topology.Semicontinuity.Basic
+module
+
+public import FalconerPacking.Capacity
+public import FalconerPacking.FrostmanLimit
+public import Mathlib.Topology.Semicontinuity.Basic
 
 /-!
 # Capacities defined by compact families of Frostman measures
@@ -17,6 +19,8 @@ This constructs an actual capacity, rather than assuming continuity of Hausdorff
 It does not yet prove positivity of this capacity on arbitrary Borel sets whose Hausdorff
 dimension exceeds the Frostman exponent. Such a positivity theorem is a separate obligation.
 -/
+
+@[expose] public section
 
 noncomputable section
 
