@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StrictShellParameters
+module
+
+public import FalconerPacking.StrictShellParameters
 
 /-!
 # Regular partitions with the initial localization loss already absorbed
@@ -12,6 +14,8 @@ The strict margin is fixed before the initial spatial scale. The decomposition b
 this same margin, so choosing the later regularization block does not restart the parameter
 selection or change the localization budget.
 -/
+
+@[expose] public section
 
 noncomputable section
 

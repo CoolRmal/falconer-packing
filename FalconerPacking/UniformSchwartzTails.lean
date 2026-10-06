@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformSchwartzFourier
+module
+
+public import FalconerPacking.UniformSchwartzFourier
 
 /-!
 # Uniform transverse tails of actual Schwartz kernels
@@ -11,6 +13,8 @@ import FalconerPacking.UniformSchwartzFourier
 Weighted first moments control the integral outside any transverse strip. The constants
 are uniform over a bounded Schwartz family and all normals of norm at most one.
 -/
+
+@[expose] public section
 
 noncomputable section
 

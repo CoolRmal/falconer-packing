@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Extraction
-import FalconerPacking.SeparatedBallGeometry
+module
+
+public import FalconerPacking.Extraction
+public import FalconerPacking.SeparatedBallGeometry
 
 /-!
 # Positive compact pieces in a separated coordinate chart
@@ -14,6 +16,8 @@ pieces. A single explicit isometry then supplies the coordinate gap used in angu
 strip deletion. Normalization changes the Frostman constant by exactly the reciprocal
 mass, and the isometry preserves that constant and polynomial covering bounds.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -83,7 +87,7 @@ theorem normalizedRestrict_map_isometry_data
       IsFrostman ((normalizedRestrict μ K).map e) s (C / (μ K).toReal) := by
   letI := isProbabilityMeasure_normalizedRestrict hK.measurableSet hμK.ne'
     (measure_ne_top μ K)
-  refine ⟨Measure.isProbabilityMeasure_map e.continuous.measurable.aemeasurable, ?_,
+  refine ⟨inferInstance, ?_,
     (isFrostman_normalizedRestrict hfr hμK.ne' (measure_ne_top μ K)).map_isometryEquiv e⟩
   rw [Measure.map_apply e.continuous.measurable (hK.image e.continuous).measurableSet.compl]
   have he : e ⁻¹' (e '' K)ᶜ = Kᶜ := by

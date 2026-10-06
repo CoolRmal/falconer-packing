@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AffineDistanceTruncation
-import FalconerPacking.DyadicComparisonSums
+module
+
+public import FalconerPacking.AffineDistanceTruncation
+public import FalconerPacking.DyadicComparisonSums
 
 /-!
 # Summable whole-pin coherent comparison errors
@@ -13,6 +15,8 @@ Regrouping the parent moments and summing square-root child masses produces the 
 comparison bound. The strict covering gap then gives two geometric series after the
 angular threshold is chosen as a fixed power of the dyadic scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

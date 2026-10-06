@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularCapWeights
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+module
+
+public import FalconerPacking.AngularCapWeights
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
 
 /-!
 # A constructed smooth angular partition of an annular multiplier
@@ -13,6 +15,8 @@ The multiplier vanishes in a neighborhood of the origin. Multiplying it by the e
 normalized direction bumps therefore gives globally smooth compactly supported caps.
 Their sum, norm control, angular support, and finite overlap are all proved directly.
 -/
+
+@[expose] public section
 
 noncomputable section
 

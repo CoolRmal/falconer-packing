@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicRootRestriction
-import FalconerPacking.CoherentBorelParameters
+module
+
+public import FalconerPacking.DyadicRootRestriction
+public import FalconerPacking.CoherentBorelParameters
 
 /-!
 # Compact source and pin data for the physical packet construction
@@ -13,6 +15,8 @@ An explicit common isometry supplies coordinate separation. The actual pin proba
 then restricted to a positive compact subset of one unit dyadic cube. Frostman exponents,
 covering exponents, and the coordinate gap are preserved through these operations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

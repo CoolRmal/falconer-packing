@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleSpectralConvolution
-import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+module
+
+public import FalconerPacking.CircleSpectralConvolution
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 
 /-!
 # Terminal circle energy of finite source measures
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 The circle convolution estimate is applied to the actual Fourier transform of a
 finite measure and an arbitrary finite multiplier family with bounded square sum.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketMicrolocal
-import FalconerPacking.InitialSpectralReconstruction
+module
+
+public import FalconerPacking.SourcePacketMicrolocal
+public import FalconerPacking.InitialSpectralReconstruction
 
 /-!
 # Radial Fourier leakage of actual retained source packets
@@ -13,6 +15,8 @@ Spatial cutoff destroys exact annular Fourier support. The convolution formula i
 gives an explicit rapidly decreasing envelope outside an enlarged original annulus.
 The estimate is uniform in every choice of retained spatial packets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CapFrequencyRescaling
+module
+
+public import FalconerPacking.CapFrequencyRescaling
 
 /-!
 # The fixed radial factor of a rescaled dyadic cap
@@ -11,6 +13,8 @@ import FalconerPacking.CapFrequencyRescaling
 After rescaling, the radial multiplier is the fixed first annulus composed with a linear
 contraction. Consequently all its derivatives have bounds independent of the annulus index.
 -/
+
+@[expose] public section
 
 noncomputable section
 

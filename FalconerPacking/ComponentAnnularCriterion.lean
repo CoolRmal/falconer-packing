@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnnularDecayAssembly
+module
+
+public import FalconerPacking.AnnularDecayAssembly
 
 /-!
 # Absolute continuity from actual component density estimates
@@ -12,6 +14,8 @@ Original component masses cancel their conditional normalizations. A finite glob
 moment and exponentially small discarded pin mass therefore suffice to assemble the annular
 pieces, even though individual normalized moments need not be uniformly bounded.
 -/
+
+@[expose] public section
 
 noncomputable section
 

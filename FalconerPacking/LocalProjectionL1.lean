@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformProjectionEnergy
-import FalconerPacking.CorrelatedAngularCharts
-import Mathlib.MeasureTheory.Integral.MeanInequalities
+module
+
+public import FalconerPacking.UniformProjectionEnergy
+public import FalconerPacking.CorrelatedAngularCharts
+public import Mathlib.MeasureTheory.Integral.MeanInequalities
 
 /-!
 # Local integrated comparison of projection densities
@@ -14,6 +16,8 @@ Support of the source implies support of its actual Radon--Nikodym projection de
 Cauchy--Schwarz on the resulting finite interval changes the uniform squared comparison
 into an integrated `L¹` estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 open MeasureTheory Set Filter

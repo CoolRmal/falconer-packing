@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicBandSum
-import FalconerPacking.ProjectionFourier
+module
+
+public import FalconerPacking.DyadicBandSum
+public import FalconerPacking.ProjectionFourier
 
 /-!
 # From dyadic band estimates to a full Fourier integral
@@ -12,6 +14,8 @@ import FalconerPacking.ProjectionFourier
 The integer dyadic bands cover the positive half-line. Their scalar estimates therefore
 control the full integral of an even nonnegative Fourier energy.
 -/
+
+@[expose] public section
 
 noncomputable section
 

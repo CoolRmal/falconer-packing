@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardGapProfile
-import FalconerPacking.RealChainRounding
-import FalconerPacking.HighSlopeProfile
+module
+
+public import FalconerPacking.HardGapProfile
+public import FalconerPacking.RealChainRounding
+public import FalconerPacking.HighSlopeProfile
 
 /-!
 # Uniform finite-grid hard-gap profile estimates
@@ -14,6 +16,8 @@ The actual real-profile chains are compressed and rounded. Endpoint clipping rem
 endpoint equality required by the low-side certificate. All hypotheses concern the finite
 grid, and the chain length is uniform when its start stays a fixed proportion below the end.
 -/
+
+@[expose] public section
 
 noncomputable section
 

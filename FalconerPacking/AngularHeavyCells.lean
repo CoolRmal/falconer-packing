@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularTruncation
+module
+
+public import FalconerPacking.AngularTruncation
 
 /-!
 # Finite angular heavy-cell deletion
@@ -11,6 +13,8 @@ import FalconerPacking.AngularTruncation
 Heavy cells are defined by their actual density averages. A high/low decomposition controls
 their mass without a maximal-function theorem and without paying the number of cells.
 -/
+
+@[expose] public section
 
 noncomputable section
 

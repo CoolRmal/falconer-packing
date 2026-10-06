@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CoherentStepSummability
-import FalconerPacking.DyadicPositiveCubes
-import FalconerPacking.DyadicAffineDensity
-import FalconerPacking.RadialMomentCenters
+module
+
+public import FalconerPacking.CoherentStepSummability
+public import FalconerPacking.DyadicPositiveCubes
+public import FalconerPacking.DyadicAffineDensity
+public import FalconerPacking.RadialMomentCenters
 
 /-!
 # The actual summed dyadic affine comparison
@@ -14,6 +16,8 @@ import FalconerPacking.RadialMomentCenters
 The normalized child probabilities retain the original Frostman constant divided by their
 mass. The whole-pin comparison is summed using the fixed radial moments at both centers.
 -/
+
+@[expose] public section
 
 noncomputable section
 

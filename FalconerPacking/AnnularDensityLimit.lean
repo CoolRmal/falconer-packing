@@ -3,10 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PositiveLimit
-import Mathlib.Analysis.Distribution.AEEqOfIntegralContDiff
-import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
-import Mathlib.MeasureTheory.Function.LpSpace.InfiniteSum
+module
+
+public import FalconerPacking.PositiveLimit
+public import Mathlib.Analysis.Distribution.AEEqOfIntegralContDiff
+public import Mathlib.MeasureTheory.Function.LpSeminorm.CompareExp
+public import Mathlib.MeasureTheory.Function.LpSpace.InfiniteSum
+public import Mathlib.Topology.ContinuousMap.CompactlySupported
 
 /-!
 # Summation and identification of annular distance densities
@@ -17,6 +20,8 @@ Reconstruction against bounded continuous tests identifies the limit with a posi
 The finite reference measure can be the pin measure times Lebesgue measure on a bounded distance
 interval; no probability normalization is required.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -38,7 +43,8 @@ theorem norm_toL1_le_secondNorm
     ENNReal.mul_ne_top hf.eLpNorm_ne_top (ENNReal.rpow_ne_top_of_nonneg (by norm_num)
       (measure_ne_top κ univ))
   have hreal := ENNReal.toReal_mono hfin h
-  simpa only [Integrable.norm_toL1_eq_lintegral_enorm, eLpNorm_one_eq_lintegral_enorm,
+  simpa only [Integrable.norm_toL1_eq_lintegral_enorm,
+    eLpNorm_one_eq_lintegral_enorm hf.aestronglyMeasurable,
     ENNReal.toReal_mul] using hreal
 
 /-- Summable good second norms and bad first norms give an absolutely convergent series in

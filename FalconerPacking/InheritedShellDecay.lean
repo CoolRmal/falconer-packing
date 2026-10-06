@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicDeletionDecay
+module
+
+public import FalconerPacking.DyadicDeletionDecay
 
 /-!
 # Actual inherited deleted shells decay at every annulus
@@ -12,6 +14,8 @@ The shell frequency is indexed by every natural number. Its packet integer and t
 regularization enlargement block are independent. The only measure-dependent coefficient is
 the actual radial density moment, allowing subsequent weighted component summation.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedGridSquares
-import FalconerPacking.SelectedCapGridEmbedding
-import FalconerPacking.BallOverlap
+module
+
+public import FalconerPacking.EnlargedGridSquares
+public import FalconerPacking.SelectedCapGridEmbedding
+public import FalconerPacking.BallOverlap
 
 /-!
 # Actual enlarged-grid mass and normalized energy bounds
@@ -13,6 +15,8 @@ import FalconerPacking.BallOverlap
 Bounded pointwise overlap controls total pin mass even for overlapping enlarged cells.
 For normalized Lebesgue averages, their exact area cancels the enlargement-square loss.
 -/
+
+@[expose] public section
 
 noncomputable section
 

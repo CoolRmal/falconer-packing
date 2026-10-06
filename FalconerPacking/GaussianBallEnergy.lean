@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GaussianFrostman
+module
+
+public import FalconerPacking.GaussianFrostman
 
 /-!
 # Fourier mass in a frequency ball
@@ -11,6 +13,8 @@ import FalconerPacking.GaussianFrostman
 The Gaussian lower bound on a frequency ball turns the checked Gaussian estimate into
 the local Fourier energy estimate used in polar-coordinate band decompositions.
 -/
+
+@[expose] public section
 
 noncomputable section
 

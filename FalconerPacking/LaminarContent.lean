@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
-import Mathlib.Analysis.SpecificLimits.Basic
-import Mathlib.Order.Antichain
-import Mathlib.Order.WellFounded
-import Mathlib.Topology.Algebra.InfiniteSum.ENNReal
+module
+
+public import FalconerPacking.Dyadic
+public import Mathlib.Analysis.SpecificLimits.Basic
+public import Mathlib.Order.Antichain
+public import Mathlib.Order.WellFounded
+public import Mathlib.Topology.Algebra.InfiniteSum.ENNReal
 
 /-!
 # Laminar covers and continuity of dyadic content
@@ -17,6 +19,8 @@ telescope because the maximal union and the smaller overlaps account for both or
 The concrete dyadic order below has finite ascending chains, since coarser cubes have smaller
 natural-number generations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

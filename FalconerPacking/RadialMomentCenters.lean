@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicMomentCenters
-import FalconerPacking.RadialProjectionKernel
+module
+
+public import FalconerPacking.DyadicMomentCenters
+public import FalconerPacking.RadialProjectionKernel
 
 /-!
 # One fixed family of radial moment centers
@@ -13,6 +15,8 @@ Almost-everywhere radial absolute continuity and an averaged moment bound yield 
 family of dyadic centers. The same family has the geometric and moment properties needed at
 every generation, and each selected center lies in the original source set.
 -/
+
+@[expose] public section
 
 noncomputable section
 

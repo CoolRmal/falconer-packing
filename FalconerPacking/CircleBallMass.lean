@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleFourierConvolution
-import FalconerPacking.RadialAngleGeometry
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import FalconerPacking.CircleFourierConvolution
+public import FalconerPacking.RadialAngleGeometry
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 /-!
 # Local mass of normalized circle measure
@@ -13,6 +15,8 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 Two angular charts of length pi and the quantitative chord inequality give the actual
 radius-over-circle-radius bound for every centered frequency ball.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -23,7 +27,7 @@ namespace FalconerPacking
 
 instance (r : ℝ) : IsProbabilityMeasure (normalizedCircleMeasure r) := by
   unfold normalizedCircleMeasure
-  exact Measure.isProbabilityMeasure_map (by fun_prop)
+  infer_instance
 
 /-- In one half-turn chart a circle-ball preimage has small angular diameter. -/
 theorem volume_circle_closedBall_preimage_chart_le

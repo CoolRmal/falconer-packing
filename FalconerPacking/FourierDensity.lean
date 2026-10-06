@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SchwartzDensityCriterion
-import Mathlib.Analysis.Fourier.LpSpace
-import Mathlib.MeasureTheory.Measure.CharacteristicFunction.TaylorExpansion
-import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
-import Mathlib.MeasureTheory.Measure.Decomposition.RadonNikodym
+module
+
+public import FalconerPacking.SchwartzDensityCriterion
+public import Mathlib.Analysis.Fourier.LpSpace
+public import Mathlib.MeasureTheory.Measure.CharacteristicFunction.TaylorExpansion
+public import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
+public import Mathlib.MeasureTheory.Measure.Decomposition.RadonNikodym
 
 /-!
 # Square-integrable Fourier transforms of finite measures
@@ -17,6 +19,8 @@ Smooth cutoffs then give absolute continuity. The fundamental lemma for smooth t
 identifies the inverse `L²` Fourier transform with the Radon--Nikodym density. With the
 probability normalization `charFun`, its squared `L²` norm is `(2π)⁻¹` times Fourier energy.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -91,7 +95,9 @@ theorem norm_integral_mul_le_eLpNorm_two {f g : ℝ → ℂ}
     hg.aestronglyMeasurable hf.aestronglyMeasurable
   have hnorm : ‖∫ x, f x * g x‖ₑ ≤ eLpNorm f 2 volume * eLpNorm g 2 volume := by
     apply (enorm_integral_le_lintegral_enorm _).trans
-    simpa only [eLpNorm_one_eq_lintegral_enorm, Pi.smul_apply, smul_eq_mul, Pi.mul_apply] using h
+    rw [eLpNorm_one_eq_lintegral_enorm
+      (hg.aestronglyMeasurable.smul hf.aestronglyMeasurable)] at h
+    simpa only [Pi.smul_apply, smul_eq_mul, Pi.mul_apply, mul_comm] using h
   have hfin : eLpNorm f 2 volume * eLpNorm g 2 volume ≠ ⊤ :=
     ENNReal.mul_ne_top hf.eLpNorm_ne_top hg.eLpNorm_ne_top
   simpa only [ENNReal.toReal_mul, toReal_enorm] using ENNReal.toReal_mono hfin hnorm
@@ -207,7 +213,9 @@ theorem exists_L2_density_of_memLp_measureFourier
     apply withDensity_congr_ae
     filter_upwards [Measure.rnDeriv_lt_top μ volume] with x hx
     exact (ENNReal.ofReal_toReal hx.ne).symm
-  · rw [← eLpNorm_congr_norm_ae hn, ← Lp.enorm_def, ← ofReal_norm,
+  · rw [← eLpNorm_congr_norm_ae
+      (Lp.memLp (measureFourierDensity μ hμ)).aestronglyMeasurable hm hn,
+      ← Lp.enorm_def, ← ofReal_norm,
       norm_measureFourierDensity, ENNReal.ofReal_toReal hμ.eLpNorm_ne_top]
 
 /-- The characteristic-function hypothesis yields an actual nonnegative `L²` density. -/

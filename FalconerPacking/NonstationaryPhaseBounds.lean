@@ -1,7 +1,9 @@
-import FalconerPacking.NonstationaryPhase
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
-import Mathlib.Data.Nat.Choose.Sum
-import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
+module
+
+public import FalconerPacking.NonstationaryPhase
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+public import Mathlib.Data.Nat.Choose.Sum
+public import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 
 /-!
 # Uniform derivative bounds for nonstationary transport
@@ -9,6 +11,8 @@ import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 Leibniz's formula preserves the derivative scale: one transport step costs exactly one
 power of the amplitude scale and one power of the inverse phase derivative.
 -/
+
+@[expose] public section
 
 open MeasureTheory Set Function Finset
 open scoped ContDiff

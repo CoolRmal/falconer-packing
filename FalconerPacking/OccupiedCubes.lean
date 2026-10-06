@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeightMeasure
-import Mathlib.Data.Finset.Pi
+module
+
+public import FalconerPacking.WeightMeasure
+public import Mathlib.Data.Finset.Pi
 
 /-!
 # Finite occupied dyadic covers
@@ -14,6 +16,8 @@ the form needed by the finite Frostman construction.  It first covers the compac
 many balls of radius `2⁻ⁿ⁻¹`; each ball meets at most four generation-`n` cubes.  Empty cubes are
 then discarded, allowing one point of the compact set to be selected in every remaining cube.
 -/
+
+@[expose] public section
 
 noncomputable section
 

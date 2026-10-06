@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardGapThreshold
-import FalconerPacking.FiniteHardGapProfile
+module
+
+public import FalconerPacking.HardGapThreshold
+public import FalconerPacking.FiniteHardGapProfile
 
 /-!
 # Strict finite-profile cost below the hard-gap cutoff
@@ -12,6 +14,8 @@ import FalconerPacking.FiniteHardGapProfile
 The scalar cutoff selects a valid hard-gap certificate. Its strict cost margin absorbs both
 the finite-chain rounding constant and small additive errors in the profile barriers.
 -/
+
+@[expose] public section
 
 noncomputable section
 

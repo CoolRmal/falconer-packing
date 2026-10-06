@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketFrequency
-import FalconerPacking.SourceCutoffError
-import Mathlib.Analysis.Fourier.Inversion
+module
+
+public import FalconerPacking.SourcePacketFrequency
+public import FalconerPacking.SourceCutoffError
+public import Mathlib.Analysis.Fourier.Inversion
 
 /-!
 # The original source spectrum after removing the spatial cutoff
@@ -14,6 +16,8 @@ The Fourier transform of the actual convolved source is exactly the cap multipli
 its characteristic function. The cutoff error therefore compares the actual packet sum
 with the original common source spectrum, at every frequency.
 -/
+
+@[expose] public section
 
 noncomputable section
 

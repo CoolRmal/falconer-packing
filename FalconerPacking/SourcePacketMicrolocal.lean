@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourcePacketFourierConvolution
-import FalconerPacking.RadialAngleGeometry
-import FalconerPacking.CircleCapScaledGeometry
-import FalconerPacking.CircleSpectralSchwartz
+module
+
+public import FalconerPacking.SourcePacketFourierConvolution
+public import FalconerPacking.RadialAngleGeometry
+public import FalconerPacking.CircleCapScaledGeometry
+public import FalconerPacking.CircleSpectralSchwartz
 
 /-!
 # Exact angular cores and frequency-circle tails of source packets
@@ -15,6 +17,8 @@ The core is the actual packet Fourier transform restricted to a doubled angular 
 The complementary tail is pointwise rapidly small on every frequency circle. Angular
 restriction is measurable; the subsequent fixed circle convolution supplies smoothness.
 -/
+
+@[expose] public section
 
 noncomputable section
 

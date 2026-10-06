@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Restriction
+module
+
+public import FalconerPacking.Restriction
 
 /-!
 # Extracting a piece of controlled box dimension
@@ -16,6 +18,8 @@ one member has positive mass.*
 `exists_isCompact_subset_of_measure_pos` refines it to a compact subset of positive mass by inner
 regularity, as the manuscript does immediately afterwards.
 -/
+
+@[expose] public section
 
 noncomputable section
 

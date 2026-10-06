@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PhysicalBadPacketPairs
-import FalconerPacking.AngularMeshChoice
+module
+
+public import FalconerPacking.PhysicalBadPacketPairs
+public import FalconerPacking.AngularMeshChoice
 
 /-!
 # Actual conditional packet bounds with the angular grid chosen
@@ -13,6 +15,8 @@ Large conditional thresholds remove no packets. In the nontrivial small-width ca
 angular mesh is constructed from the source-pair uncertainty, and its cardinality no longer
 appears as an assumed choice in the deletion estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

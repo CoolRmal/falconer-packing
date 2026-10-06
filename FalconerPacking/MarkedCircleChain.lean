@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleParentEdge
-import FalconerPacking.DyadicChainCubes
-import FalconerPacking.FiniteEnergyIterationENNReal
+module
+
+public import FalconerPacking.MarkedCircleParentEdge
+public import FalconerPacking.DyadicChainCubes
+public import FalconerPacking.FiniteEnergyIterationENNReal
 
 /-!
 # Finite inflation of the actual inherited circle functions
@@ -14,6 +16,8 @@ The complete finite chain is derived from the proved marked spatial edge. Angula
 crossings and spatial fibers are exact; the error retains every preceding threshold
 factor. The physical tube tests and numerical scale conditions are explicit hypotheses.
 -/
+
+@[expose] public section
 
 noncomputable section
 

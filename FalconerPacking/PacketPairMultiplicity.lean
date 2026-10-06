@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PacketDirectionCounting
-import FalconerPacking.SourceWavePackets
-import FalconerPacking.LocalizedPacketMass
+module
+
+public import FalconerPacking.PacketDirectionCounting
+public import FalconerPacking.SourceWavePackets
+public import FalconerPacking.LocalizedPacketMass
 
 /-!
 # Pair multiplicity of the actual source packet grid
@@ -14,6 +16,8 @@ The enlarged strips have bounded overlap in their offset coordinate. For separat
 the simultaneous angular restriction bounds the full packet multiplicity by the inflation
 factor, rather than by the total number of packets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

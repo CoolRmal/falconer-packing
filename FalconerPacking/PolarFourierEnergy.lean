@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GaussianBallEnergy
-import Mathlib.Analysis.SpecialFunctions.PolarCoord
-import Mathlib.MeasureTheory.Measure.CharacteristicFunction.TaylorExpansion
+module
+
+public import FalconerPacking.GaussianBallEnergy
+public import Mathlib.Analysis.SpecialFunctions.PolarCoord
+public import Mathlib.MeasureTheory.Measure.CharacteristicFunction.TaylorExpansion
 
 /-!
 # Polar integration and angular Fourier energy
@@ -14,6 +16,8 @@ Polar coordinates are transferred from the complex plane to the Euclidean plane 
 volume-preserving linear isometry. The radial Jacobian then converts Fourier ball growth
 into angular band bounds.
 -/
+
+@[expose] public section
 
 noncomputable section
 

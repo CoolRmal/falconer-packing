@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FrostmanLineNull
-import FalconerPacking.SmoothApproximationTests
-import Mathlib.Probability.Kernel.Composition.IntegralCompProd
+module
+
+public import FalconerPacking.FrostmanLineNull
+public import FalconerPacking.SmoothApproximationTests
+public import Mathlib.Probability.Kernel.Composition.IntegralCompProd
 
 /-!
 # Weak convergence of actual joint radial laws
@@ -13,6 +15,8 @@ import Mathlib.Probability.Kernel.Composition.IntegralCompProd
 The angular branch cut is null for a Frostman source of exponent greater than one.
 Consequently smoothing that source preserves the weak limit of the joint pin-angle law.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleBallMass
-import FalconerPacking.BallOverlap
-import Mathlib.Order.Interval.Set.Union
+module
+
+public import FalconerPacking.CircleBallMass
+public import FalconerPacking.BallOverlap
+public import Mathlib.Order.Interval.Set.Union
 
 /-!
 # Equal angular grids and frequency-ball overlap
@@ -14,6 +16,8 @@ Half-open equal angular cells have exactly equal normalized mass. Their disjoint
 and the actual circle-ball mass estimate control the overlap of frequency balls centered
 at grid directions, without an assumption on the overlap.
 -/
+
+@[expose] public section
 
 noncomputable section
 

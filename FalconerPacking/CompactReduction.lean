@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Extraction
-import FalconerPacking.FrostmanLimit
+module
+
+public import FalconerPacking.Extraction
+public import FalconerPacking.FrostmanLimit
 
 /-!
 # Compact source and pin measures
@@ -15,6 +17,8 @@ compact original set, the existing compact Frostman theorem supplies the initial
 
 This module does not assert the separate Borel compact-dimension extraction theorem.
 -/
+
+@[expose] public section
 
 noncomputable section
 

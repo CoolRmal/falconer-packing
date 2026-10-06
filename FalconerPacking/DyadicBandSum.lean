@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.SpecificLimits.Basic
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Pow.Real
+public import Mathlib.Analysis.SpecificLimits.Basic
 
 /-!
 # Summation of the scalar Fourier-band estimates
@@ -12,6 +14,8 @@ import Mathlib.Analysis.SpecificLimits.Basic
 The quadratic low-frequency gain and the negative high-frequency power give a summable sequence
 over every integer dyadic scale. The resulting constant is independent of the displacement.
 -/
+
+@[expose] public section
 
 noncomputable section
 

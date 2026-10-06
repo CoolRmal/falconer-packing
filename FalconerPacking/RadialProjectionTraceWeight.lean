@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionEnergy
+module
+
+public import FalconerPacking.RadialProjectionEnergy
 
 /-!
 # The positive weighting step in radial trace duality
@@ -12,6 +14,8 @@ Hölder on the product measure bounds the Riesz energy of an actual weighted mea
 Choosing the pin-energy exponent to be exactly `p * (2 - s)` avoids any bounded-support
 comparison of distinct kernels.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Profile
-import Mathlib.Topology.MetricSpace.Lipschitz
-import Mathlib.Algebra.Order.Floor.Semiring
+module
+
+public import FalconerPacking.Profile
+public import Mathlib.Topology.MetricSpace.Lipschitz
+public import Mathlib.Algebra.Order.Floor.Semiring
 
 /-!
 # Piecewise linear interpolation of finite profiles
@@ -14,6 +16,8 @@ The interpolant is linear on each unit grid interval and constant outside the fi
 It preserves the endpoint values, the unit Lipschitz bound, and linear barriers. Minima and
 edge costs on integer-ended intervals agree exactly with the discrete definitions.
 -/
+
+@[expose] public section
 
 noncomputable section
 

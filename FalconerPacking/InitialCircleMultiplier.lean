@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BandlimitedCutoff
+module
+
+public import FalconerPacking.BandlimitedCutoff
 
 /-!
 # A fixed multiplier for the initial circle estimate
@@ -12,6 +14,8 @@ The frequency multiplier is the Fourier transform of the constructed bandlimited
 cutoff. Its support lies in the unit ball, its inverse transform has modulus at least one
 on the unit pin ball, and its square integral is finite.
 -/
+
+@[expose] public section
 
 noncomputable section
 

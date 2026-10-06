@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProjectionDensity
-import FalconerPacking.CorrelatedFourierEnergy
+module
+
+public import FalconerPacking.ProjectionDensity
+public import FalconerPacking.CorrelatedFourierEnergy
 
 /-!
 # Plancherel comparison of actual projection densities
@@ -13,6 +15,8 @@ The inverse Fourier representatives agree almost everywhere with any nonnegative
 of the original finite measure. Linearity of the `L²` Fourier isometry therefore gives
 the exact norm identity for differences, including translated orthogonal projections.
 -/
+
+@[expose] public section
 
 noncomputable section
 

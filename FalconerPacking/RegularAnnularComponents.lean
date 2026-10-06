@@ -3,12 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularRetainedRemainder
-import FalconerPacking.RegularRetainedEnergy
-import FalconerPacking.RegularShellParameters
-import FalconerPacking.ComponentAnnularCriterion
-import FalconerPacking.DyadicPositiveCubes
-import FalconerPacking.RegularDiscardedPins
+module
+
+public import FalconerPacking.RegularRetainedRemainder
+public import FalconerPacking.RegularRetainedEnergy
+public import FalconerPacking.RegularShellParameters
+public import FalconerPacking.ComponentAnnularCriterion
+public import FalconerPacking.DyadicPositiveCubes
+public import FalconerPacking.RegularDiscardedPins
 
 /-!
 # Compact regular components and actual annular density convergence
@@ -17,6 +19,8 @@ The strict profile parameters are chosen before regularization. Each actual regu
 component supplies its own admissible chain and positive initial cubes. The same threshold
 and retained source occur in the good estimate and in the exact annular remainder.
 -/
+
+@[expose] public section
 
 noncomputable section
 

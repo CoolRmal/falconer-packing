@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionWeakMoment
-import FalconerPacking.SmoothProjectionDensity
-import FalconerPacking.RieszFourier2D
+module
+
+public import FalconerPacking.RadialProjectionWeakMoment
+public import FalconerPacking.SmoothProjectionDensity
+public import FalconerPacking.RieszFourier2D
 
 /-!
 # Trace bounds for actual smooth projection densities
@@ -13,6 +15,8 @@ import FalconerPacking.RieszFourier2D
 The Fourier transform of each positive Schwartz line density is identified with the
 characteristic function of the corresponding projected source measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

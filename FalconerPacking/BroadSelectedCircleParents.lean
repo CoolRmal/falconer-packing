@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BroadCircleOverlap
-import FalconerPacking.SelectedCapParentEmbedding
-import FalconerPacking.SelectedFineCapEmbedding
-import FalconerPacking.SelectedCoarseCapEmbedding
+module
+
+public import FalconerPacking.BroadCircleOverlap
+public import FalconerPacking.SelectedCapParentEmbedding
+public import FalconerPacking.SelectedFineCapEmbedding
+public import FalconerPacking.SelectedCoarseCapEmbedding
 
 /-!
 # Actual circle edges over one fixed broad annulus
@@ -14,6 +16,8 @@ import FalconerPacking.SelectedCoarseCapEmbedding
 The actual circle geometry discharges all spectral hypotheses. Both the retained main
 term and the global error are summed over parent angular labels without a counting loss.
 -/
+
+@[expose] public section
 
 noncomputable section
 

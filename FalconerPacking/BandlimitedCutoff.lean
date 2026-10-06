@@ -3,10 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LocalizedFourierOrthogonality
-import Mathlib.Analysis.Calculus.BumpFunction.Normed
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import FalconerPacking.LocalizedFourierOrthogonality
+public import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
+public import Mathlib.Analysis.Calculus.BumpFunction.Normed
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+public import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
 # An actual bandlimited spatial cutoff
@@ -14,6 +17,8 @@ import Mathlib.Analysis.Real.Pi.Bounds
 A normalized nonnegative frequency bump has inverse Fourier transform close to one on
 a fixed spatial ball. This constructs the cutoff needed for local orthogonality.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -63,7 +68,8 @@ theorem norm_fourierInv_normalizedFrequencyBump_sub_one_le
       apply norm_integral_le_of_norm_le (φ.integrable_normed.const_mul _)
       exact Eventually.of_forall fun ξ ↦ by
         by_cases hχ : φ.normed volume ξ = 0
-        · simp [χ, normalizedFrequencyBump, hχ]
+        · change ‖(e ξ - 1) * (φ.normed volume ξ : ℂ)‖ ≤ _
+          simp [hχ]
         have hξ : ‖ξ‖ < φ.rOut := by
           have hmem : ξ ∈ Function.support (φ.normed volume) := hχ
           simpa only [φ.support_normed_eq, mem_ball, dist_zero_right] using hmem
@@ -103,7 +109,10 @@ theorem support_fourier_localFourierCutoff :
   have hb : localCutoffBump.normed volume ξ ≠ 0 := by
     intro h
     apply hξ
-    simp [localFourierCutoff, normalizedFrequencyBump, h]
+    have hbump : normalizedFrequencyBump localCutoffBump ξ = 0 := by
+      change (localCutoffBump.normed volume ξ : ℂ) = 0
+      simp [h]
+    simp [localFourierCutoff, hbump]
   have hmem : ξ ∈ ball (0 : EuclideanSpace ℝ (Fin 2)) localCutoffBump.rOut := by
     rwa [← localCutoffBump.support_normed_eq (μ := volume)]
   exact ball_subset_ball (by norm_num [localCutoffBump]) hmem

@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Topology.Order.Compact
-import Mathlib.Topology.MetricSpace.Lipschitz
-import Mathlib.Topology.Instances.Real.Lemmas
-import Mathlib.Tactic.Linarith
-import Mathlib.Tactic.NormNum
+module
+
+public import Mathlib.Topology.Order.Compact
+public import Mathlib.Topology.MetricSpace.Lipschitz
+public import Mathlib.Topology.Instances.Real.Lemmas
+public import Mathlib.Tactic.Linarith
+public import Mathlib.Tactic.NormNum
 
 /-!
 # Hard points and the geometry of a profile gap
@@ -16,6 +18,8 @@ These are the geometric inequalities in Lemma A.2 of the focused proof. A hard p
 the profile on the forward interval ending halfway between that point and one. Between two hard
 points with no intervening hard point, the profile stays above its value at the right endpoint.
 -/
+
+@[expose] public section
 
 noncomputable section
 

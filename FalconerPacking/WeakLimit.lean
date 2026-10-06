@@ -3,8 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.OccupiedCubes
-import Mathlib.MeasureTheory.Measure.Prokhorov
+module
+
+public import FalconerPacking.OccupiedCubes
+public import Mathlib.MeasureTheory.Measure.Prokhorov
+public import Mathlib.MeasureTheory.Measure.LevyProkhorovMetric
+public import Mathlib.MeasureTheory.Measure.Portmanteau
 
 /-!
 # Weak compactness for the finite Frostman measures
@@ -13,6 +17,8 @@ Probability measures carried by one compact planar set form a compact set for th
 Consequently every sequence of the normalized atomic Frostman measures has a weakly convergent
 subsequence whose limit is still carried by the same compact set.
 -/
+
+@[expose] public section
 
 noncomputable section
 

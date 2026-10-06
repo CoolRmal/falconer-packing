@@ -3,13 +3,17 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.Calculus.ContDiff.Bounds
+module
+
+public import Mathlib.Analysis.Calculus.ContDiff.Bounds
 
 /-!+# Pointwise derivative bounds for locally smooth compositions
 
 These versions of the derivative estimates require smoothness only near the evaluation point.
 They allow the direction chart to be used on its natural half-space.
 -/
+
+@[expose] public section
 
 noncomputable section
 

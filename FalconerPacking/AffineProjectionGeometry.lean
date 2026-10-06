@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AffineDistance
-import FalconerPacking.CorrelatedAngularCharts
-import FalconerPacking.ProjectionDensity
+module
+
+public import FalconerPacking.AffineDistance
+public import FalconerPacking.CorrelatedAngularCharts
+public import FalconerPacking.ProjectionDensity
 
 /-!
 # Geometric inputs for comparing affine distance maps
@@ -14,6 +16,8 @@ Two nearby affine distance approximations become two orthogonal projections of t
 translated source, with a common offset and a quadratic residual translation. Separation
 from the pin supplies every angular and translation bound used by the Fourier comparison.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -211,7 +215,7 @@ theorem affineProjection_comparison_inputs
           (orthogonalProjectionKernel (μ.map (fun x ↦ x - b)) (radialAngle c y)).map
             (fun t ↦ (t + affineProjectionShift b c y) + dist b y) := by
   refine ⟨affineComparisonRadius_pos hδ hr, affineComparisonRadius_le_one hδ hδ₁ hrδ,
-    Measure.isProbabilityMeasure_map (by fun_prop), hfr.map_sub_const b, ?_, ?_⟩
+    inferInstance, hfr.map_sub_const b, ?_, ?_⟩
   · exact (ae_norm_le_map_sub_const hsource).mono fun _ hz ↦
       hz.trans (le_affineComparisonRadius hδ hr.le)
   · filter_upwards [hsep] with y hy

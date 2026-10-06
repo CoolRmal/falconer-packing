@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Statement
+module
+
+public import FalconerPacking.Statement
 
 /-!
 # The curve algebra
@@ -17,6 +19,8 @@ and the content of this file is that `A d t < d - 1` holds for every `t` with
 `2 * d - 1 ≤ t < bound d`, when `1 < d ≤ 5 / 4`.  The two transition points `d0` and `d1` are
 where the three branches of `bound` meet.
 -/
+
+@[expose] public section
 
 noncomputable section
 

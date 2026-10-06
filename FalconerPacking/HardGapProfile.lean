@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardPointPartition
-import FalconerPacking.HardPointChains
-import FalconerPacking.GapTails
+module
+
+public import FalconerPacking.HardPointPartition
+public import FalconerPacking.HardPointChains
+public import FalconerPacking.GapTails
 
 /-!
 # Actual profile bounds from the finite hard-point partition
@@ -14,6 +16,8 @@ Positive drops are extracted from the ordered partition. Skipped cells are nonde
 the net increase between consecutive positive gaps follows from the construction. The finite
 gap certificates then bound the actual chain budget.
 -/
+
+@[expose] public section
 
 noncomputable section
 

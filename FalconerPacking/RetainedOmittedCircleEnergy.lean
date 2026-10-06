@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicPacketRadialTail
-import FalconerPacking.OmittedCircleEnergy
+module
+
+public import FalconerPacking.DyadicPacketRadialTail
+public import FalconerPacking.OmittedCircleEnergy
 
 /-!
 # Arbitrarily rapid omitted radial energy for actual retained packets
@@ -12,6 +14,8 @@ import FalconerPacking.OmittedCircleEnergy
 The spatially cut off packets have nonzero Fourier tails. Their proved radial envelopes
 are integrated over the whole omitted radial region, uniformly in all retained subsets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

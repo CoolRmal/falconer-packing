@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedPinFamily
-import FalconerPacking.RetainedOmittedCircleEnergy
-import FalconerPacking.RetainedCircleIntegration
+module
+
+public import FalconerPacking.RetainedPinFamily
+public import FalconerPacking.RetainedOmittedCircleEnergy
+public import FalconerPacking.RetainedCircleIntegration
 
 /-!
 # Full distance energy of the actual retained source
@@ -14,6 +16,8 @@ The actual finite choice in each pin cube has a rapidly decaying omitted spectru
 Combining this with a circle estimate on the main annulus gives the full joint distance
 energy, without assuming compact Fourier support or discarding a range of distances.
 -/
+
+@[expose] public section
 
 noncomputable section
 

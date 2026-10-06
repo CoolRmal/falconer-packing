@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StandardCapLabelData
-import FalconerPacking.CircleCellSupport
+module
+
+public import FalconerPacking.StandardCapLabelData
+public import FalconerPacking.CircleCellSupport
 
 /-!
 # Actual Schwartz functions for the standard-cap angular tree
@@ -12,6 +14,8 @@ import FalconerPacking.CircleCellSupport
 The circular data are smoothed only after angular restriction. Exact parent sums hold
 for whole coarse caps, fine auxiliary cells, and edges crossing the standard scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

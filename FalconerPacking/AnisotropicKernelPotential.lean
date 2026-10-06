@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnisotropicSchwartzKernel
-import FalconerPacking.GridMassGrowth
+module
+
+public import FalconerPacking.AnisotropicSchwartzKernel
+public import FalconerPacking.GridMassGrowth
 
 /-!
 # Kernel potentials from anisotropic cell masses
@@ -12,6 +14,8 @@ import FalconerPacking.GridMassGrowth
 Transporting a measure to unit-grid coordinates makes the potential estimate uniform
 over all aspect ratios and rotations. A support margin gives an independent tail bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeTubeEnergy
-import FalconerPacking.RadialHeavyCells
+module
+
+public import FalconerPacking.SlopeTubeEnergy
+public import FalconerPacking.RadialHeavyCells
 
 /-!
 # Heavy-tube deletion from a retained witness
@@ -14,6 +16,8 @@ enough that any retained pair in it certifies the mass bound for that source tub
 retained pieces contribute nothing. The resulting deletion estimate keeps this distinction
 explicit and uses the actual truncated pair energy of the finite slope-tube family.
 -/
+
+@[expose] public section
 
 noncomputable section
 

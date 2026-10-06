@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapEmbedding
+module
+
+public import FalconerPacking.SelectedCapEmbedding
 
 /-!
 # Normalized square averages in the selected-cap estimate
@@ -11,6 +13,8 @@ import FalconerPacking.SelectedCapEmbedding
 The geometric squares have their actual Lebesgue areas. Their normalized averages are
 therefore related to the localized ball estimate by exact measure identities.
 -/
+
+@[expose] public section
 
 noncomputable section
 

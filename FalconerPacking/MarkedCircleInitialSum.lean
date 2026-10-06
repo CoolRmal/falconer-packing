@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleInitialLocalization
+module
+
+public import FalconerPacking.MarkedCircleInitialLocalization
 
 /-!
 # Initial pin energy summed over the actual dyadic cells
@@ -12,6 +14,8 @@ The normalized local main term is precisely the initial energy of the proved cha
 The global tail is bounded by the actual source circle energy; disjoint dyadic cells
 cost only the total pin mass.
 -/
+
+@[expose] public section
 
 noncomputable section
 

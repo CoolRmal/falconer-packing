@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedAngularCells
-import FalconerPacking.StripRadialContainment
-import FalconerPacking.WitnessedTubeDeletion
+module
+
+public import FalconerPacking.EnlargedAngularCells
+public import FalconerPacking.StripRadialContainment
+public import FalconerPacking.WitnessedTubeDeletion
 
 /-!
 # Source-tube mass from actual geometry and a retained pair
@@ -14,6 +16,8 @@ Positive coordinate separation gives a common angular chart. The proved strip ge
 then places the entire source tube in one enlarged angular cell. A retained witness
 therefore bounds its mass, which is precisely the hypothesis needed for heavy-pin deletion.
 -/
+
+@[expose] public section
 
 noncomputable section
 

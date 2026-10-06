@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ScaledBandlimitedCutoff
+module
+
+public import FalconerPacking.ScaledBandlimitedCutoff
 
 /-!
 # The initial circle multiplier for any bounded pin region
@@ -11,6 +13,8 @@ import FalconerPacking.ScaledBandlimitedCutoff
 Rescaling the actual bandlimited cutoff accommodates an arbitrary fixed pin radius.
 Frequency support remains inside the unit ball; no source or pin normalization is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

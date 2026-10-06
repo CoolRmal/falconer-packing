@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularDerivativeEnergy
+module
+
+public import FalconerPacking.AngularDerivativeEnergy
 
 /-!
 # Uniform Frostman constants in Fourier band estimates
@@ -12,6 +14,8 @@ The constants below depend only on the exponent. Every dependence on the probabi
 measure is the explicitly displayed factor `max C 1`; the maximum is necessary because
 `IsFrostman` controls only radii at most one.
 -/
+
+@[expose] public section
 
 noncomputable section
 open MeasureTheory Set Filter

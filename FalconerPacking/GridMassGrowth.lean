@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
-import FalconerPacking.SchwartzPotential
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.Fintype.Pi
+module
+
+public import FalconerPacking.Dyadic
+public import FalconerPacking.SchwartzPotential
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Fintype.Pi
 
 /-!
 # Quadratic mass growth from unit grid cells
@@ -14,6 +16,8 @@ import Mathlib.Data.Fintype.Pi
 A ball of integer radius meets at most `(2N+1)²` unit grid cells. Thus a uniform
 cell-mass bound supplies the geometric hypothesis of the Schwartz potential estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

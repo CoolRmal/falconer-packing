@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionRay
-import Mathlib.Analysis.Complex.Isometry
+module
+
+public import FalconerPacking.RadialProjectionRay
+public import Mathlib.Analysis.Complex.Isometry
 
 /-!
 # Full-line integrals as orthogonal projection densities
@@ -13,6 +15,8 @@ A rotated Cartesian change of variables gives an explicit density of the orthogo
 projection of a Lebesgue-density source. The identity is pointwise on each line, which
 is necessary when that density is later integrated against a singular pin projection.
 -/
+
+@[expose] public section
 
 noncomputable section
 

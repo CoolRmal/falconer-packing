@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LiuPinnedIdentity
+module
+
+public import FalconerPacking.LiuPinnedIdentity
 
 /-!
 # Circular Fourier convolution in the pinned identity
@@ -13,6 +15,8 @@ of normalized circle measure. Its Fubini hypothesis follows from source integrab
 and unit-modulus phases. A bounded-distance support condition then converts the weighted
 pinned identity into the usual unweighted squared-density estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

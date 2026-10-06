@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionKernel
-import Mathlib.Analysis.Normed.Module.Normalize
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+module
+
+public import FalconerPacking.RadialProjectionKernel
+public import Mathlib.Analysis.Normed.Module.Normalize
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-!
 # Quantitative geometry of radial directions
@@ -13,6 +15,8 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 Normalized radial vectors vary Lipschitz continuously away from the pin. The chordal
 metric controls the difference of angles whenever the angles belong to a common chart.
 -/
+
+@[expose] public section
 
 noncomputable section
 

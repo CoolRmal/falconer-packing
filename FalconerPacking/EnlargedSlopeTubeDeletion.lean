@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeTubeNormals
-import FalconerPacking.SourceTubeMass
+module
+
+public import FalconerPacking.SlopeTubeNormals
+public import FalconerPacking.SourceTubeMass
 
 /-!
 # Actual source sets associated with enlarged heavy pin tubes
@@ -12,6 +14,8 @@ import FalconerPacking.SourceTubeMass
 The normals, centers, source strips, and pin tubes are all constructed. The source-heavy
 radial deletion and the actual truncated pin energy give their total product-mass bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

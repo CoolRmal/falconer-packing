@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Profile
+module
+
+public import FalconerPacking.Profile
 
 /-!
 # Profile operations for the unforced chain argument
@@ -13,6 +15,8 @@ upper-endpoint truncation, uniform stability along a fixed chain, and the endpoi
 operation used before the hard-gap optimization. These are finite profile statements; the
 hard-component identity and the analytic distance theorem are separate obligations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

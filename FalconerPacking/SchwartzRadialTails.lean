@@ -3,13 +3,17 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformSchwartzTails
+module
+
+public import FalconerPacking.UniformSchwartzTails
 
 /-!
 # Uniform radial tails of Schwartz families
 
 Spatial moments give every inverse power of the radius for the actual first-norm tail.
 -/
+
+@[expose] public section
 
 noncomputable section
 

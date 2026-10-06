@@ -3,9 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeightedConvolutionEmbedding
-import Mathlib.Analysis.Fourier.Convolution
-import Mathlib.Analysis.Calculus.BumpFunction.Normed
+module
+
+public import FalconerPacking.WeightedConvolutionEmbedding
+public import Mathlib.Analysis.Fourier.Convolution
+public import Mathlib.Analysis.Calculus.BumpFunction.InnerProduct
+public import Mathlib.Analysis.Calculus.BumpFunction.Normed
 
 /-!
 # Actual Schwartz reproducing kernels
@@ -14,6 +17,8 @@ The inverse Fourier transform of a cutoff reproduces a Schwartz function when th
 cutoff equals one on its Fourier support. A fixed compact smooth cutoff is constructed
 explicitly; neither reproduction nor decay is assumed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

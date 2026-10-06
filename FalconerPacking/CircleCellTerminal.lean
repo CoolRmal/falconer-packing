@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleCellSchwartz
+module
+
+public import FalconerPacking.CircleCellSchwartz
 
 /-!
 # Terminal energy for the actual angular partition
@@ -12,6 +14,8 @@ A finite source has integrable circle data. The exact disjoint angular indicator
 squared multiplier sum one, so the terminal circle estimate applies without an assumed
 partition or multiplier overlap bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

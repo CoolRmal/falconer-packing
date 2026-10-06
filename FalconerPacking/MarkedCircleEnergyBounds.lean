@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleChain
-import FalconerPacking.InheritedCircleEnergy
-import FalconerPacking.GridEnergyBounds
+module
+
+public import FalconerPacking.MarkedCircleChain
+public import FalconerPacking.InheritedCircleEnergy
+public import FalconerPacking.GridEnergyBounds
 
 /-!
 # Actual terminal and error energies from the source circle spectrum
@@ -14,6 +16,8 @@ The uniform multiplier bound controls every marked parent's full-space energy.
 The proved finite-grid mass bound then controls the global errors, and exact normalized
 square areas give the terminal local-energy estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

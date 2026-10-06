@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleParentEdge
-import FalconerPacking.PhysicalDyadicCapKernels
-import FalconerPacking.LocalizedPacketMass
+module
+
+public import FalconerPacking.MarkedCircleParentEdge
+public import FalconerPacking.PhysicalDyadicCapKernels
+public import FalconerPacking.LocalizedPacketMass
 
 /-!
 # Actual effective directions of marked standard source packets
@@ -14,6 +16,8 @@ Coarse tests use the nominal ancestor of a whole standard cap. Fine tests keep i
 original normal. In either regime the physical direction is independent of the auxiliary
 terminal cell, and its discrepancy is controlled by the actual dyadic angular mesh.
 -/
+
+@[expose] public section
 
 noncomputable section
 

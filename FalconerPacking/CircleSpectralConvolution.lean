@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleBallMass
-import FalconerPacking.WeightedConvolutionEmbedding
+module
+
+public import FalconerPacking.CircleBallMass
+public import FalconerPacking.WeightedConvolutionEmbedding
 
 /-!
 # Convolution of complex circle data with a compact spectral bump
@@ -12,6 +14,8 @@ import FalconerPacking.WeightedConvolutionEmbedding
 The actual local mass of normalized circle measure supplies the factor `a/r` in
 Cauchy--Schwarz. Positive Tonelli then gives the global squared-norm bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -166,15 +170,18 @@ theorem memLp_circleSpectralConvolution
     (hk : Function.support k ⊆ Metric.closedBall 0 a) :
     MemLp (circleSpectralConvolution r g k) 2 volume := by
   have hi := MemLp.integrable (by norm_num : (1 : ℝ≥0∞) ≤ 2) hg₂
-  refine ⟨(continuous_circleSpectralConvolution r hi k).aestronglyMeasurable, ?_⟩
+  rw [memLp_iff]
   have hgf : (∫⁻ ξ, ‖g ξ‖ₑ ^ (2 : ℕ) ∂normalizedCircleMeasure r) < ∞ := by
     simpa using (eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top
-      (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num)).mp hg₂.eLpNorm_lt_top
+      (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num) hg₂.aestronglyMeasurable).mp
+        hg₂.eLpNorm_lt_top
   have hkf : (∫⁻ x, ‖k x‖ₑ ^ (2 : ℕ)) < ∞ := by
     simpa using (eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top
-      (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num)).mp (k.memLp 2 volume).eLpNorm_lt_top
+      (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num) k.continuous.aestronglyMeasurable).mp
+        (k.memLp 2 volume).eLpNorm_lt_top
   rw [eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top
-    (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num)]
+    (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num)
+    (continuous_circleSpectralConvolution r hi k).aestronglyMeasurable]
   norm_num only [ENNReal.toReal_ofNat, ENNReal.rpow_two]
   exact (lintegral_circleSpectralConvolution_sq_le hr ha hg k hk).trans_lt
     (ENNReal.mul_lt_top (ENNReal.mul_lt_top ENNReal.ofReal_lt_top hkf) hgf)

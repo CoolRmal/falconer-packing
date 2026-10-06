@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Dyadic
-import Mathlib.MeasureTheory.Measure.Hausdorff
+module
+
+public import FalconerPacking.Dyadic
+public import Mathlib.MeasureTheory.Measure.Hausdorff
 
 /-!
 # Hausdorff content
@@ -17,6 +19,8 @@ The content is dominated by the measure, and — the direction the construction 
 vanishing content is null for the Hausdorff measure.  So a set of positive `s`-dimensional
 measure has positive `s`-content, which is the hypothesis of the Frostman construction.
 -/
+
+@[expose] public section
 
 noncomputable section
 

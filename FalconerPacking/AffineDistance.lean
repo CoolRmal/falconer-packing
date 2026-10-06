@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PinnedKernel
-import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Analysis.InnerProductSpace.Continuous
+module
+
+public import FalconerPacking.PinnedKernel
+public import Mathlib.Analysis.InnerProductSpace.Basic
+public import Mathlib.Analysis.InnerProductSpace.Continuous
 
 /-!
 # Affine approximation to distance
@@ -14,6 +16,8 @@ This file defines the positive linearization used on each source cube and proves
 error estimate away from the pin.  The estimate supplies the geometric `hclose` hypothesis of
 the coherent joint-approximation theorem.
 -/
+
+@[expose] public section
 
 noncomputable section
 

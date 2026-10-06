@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ChainCompression
+module
+
+public import FalconerPacking.ChainCompression
 
 /-!
 # The high-slope profile bound
@@ -13,6 +15,8 @@ with cost at most `(b - a) * N / (1 + 2 * b) + 1`. The additive one is the cost 
 the last unit interval at which the potential changes sign. Compression makes the number of
 edges independent of the grid resolution when the initial relative gap is fixed.
 -/
+
+@[expose] public section
 
 noncomputable section
 

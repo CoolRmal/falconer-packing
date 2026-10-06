@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RescaledAnnularFactor
-import FalconerPacking.RescaledAngularDerivatives
+module
+
+public import FalconerPacking.RescaledAnnularFactor
+public import FalconerPacking.RescaledAngularDerivatives
 
 /-!
 # Uniform derivative bounds for the actual rescaled dyadic caps
@@ -12,6 +14,8 @@ import FalconerPacking.RescaledAngularDerivatives
 The angular estimates and the fixed radial factor give all derivatives on the positive radial
 chart. The common compact support and its positive radial margin handle the rest of the plane.
 -/
+
+@[expose] public section
 
 noncomputable section
 

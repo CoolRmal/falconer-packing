@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularSpectralSelector
-import FalconerPacking.RadialPlancherel
+module
+
+public import FalconerPacking.AngularSpectralSelector
+public import FalconerPacking.RadialPlancherel
 
 /-!
 # Uniform finite-order bounds for the angular spectral selector
@@ -13,6 +15,8 @@ The actual real and complex angular windows are integrable on the normalized cir
 closed supports remain in the enlarged cap, and a single constant bounds every derivative up
 to any prescribed finite order.
 -/
+
+@[expose] public section
 
 noncomputable section
 

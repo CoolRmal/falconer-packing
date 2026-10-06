@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularConditionalEnergy
+module
+
+public import FalconerPacking.RegularConditionalEnergy
 
 /-!
 # Truncated energy under the physical parent enlargement
@@ -12,6 +14,8 @@ The finite slope grid uses an enlarged parent ball. Enlarging both of the origin
 scales by a factor lambda costs at most lambda in truncated energy, including on the diagonal.
 This connects the actual finite-grid energy to the regular profile estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

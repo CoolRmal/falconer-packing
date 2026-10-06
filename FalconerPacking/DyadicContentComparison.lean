@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicCapacity
-import FalconerPacking.FrostmanLimit
+module
+
+public import FalconerPacking.DyadicCapacity
+public import FalconerPacking.FrostmanLimit
 
 /-!
 # Dyadic content and Hausdorff dimension
@@ -13,6 +15,8 @@ Comparison with small Euclidean balls connects the geometric dyadic capacity to 
 dimension. This permits the capacity extraction theorem to produce compact subsets of Borel
 sets without any assumption of sigma-finite Hausdorff measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -233,8 +237,7 @@ theorem le_dimH_of_dyadicPowerContent_pos {s : ℝ} (hs : 0 < s)
     rw [hz, mul_zero] at hle
     exact hA.not_ge hle
   have hdim := le_dimH_of_hausdorffMeasure_ne_zero (d := ⟨s, hs.le⟩) hmeasure
-  rw [ENNReal.coe_nnreal_eq] at hdim
-  exact hdim
+  exact (ENNReal.ofReal_eq_coe_nnreal hs.le).trans_le hdim
 
 /-- Every analytic planar set of dimension above `s > 1` contains a compact subset
 whose dimension is still strictly above `s`. -/

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PlanarStripPackets
+module
+
+public import FalconerPacking.PlanarStripPackets
 
 /-!
 # An actual finite packet partition for a bounded source ball
@@ -12,6 +14,8 @@ The source cutoff and the finite strip grid are constructed explicitly. The pack
 sum to one on the source ball, have overlap at most three, and satisfy uniform
 scale-correct spatial derivative bounds.
 -/
+
+@[expose] public section
 
 noncomputable section
 

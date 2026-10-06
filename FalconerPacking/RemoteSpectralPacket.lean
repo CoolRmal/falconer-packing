@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SpectralPacketFubini
-import FalconerPacking.AngularSpectralWindowBounds
-import FalconerPacking.SchwartzMeasureReconstruction
+module
+
+public import FalconerPacking.SpectralPacketFubini
+public import FalconerPacking.AngularSpectralWindowBounds
+public import FalconerPacking.SchwartzMeasureReconstruction
 
 /-!
 # Remote spectral circle averages of actual spatial packets
@@ -13,6 +15,8 @@ import FalconerPacking.SchwartzMeasureReconstruction
 The smooth enlarged-cone contribution is controlled through the physical source integral.
 The complementary contribution is controlled pointwise by the proved Fourier leakage bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

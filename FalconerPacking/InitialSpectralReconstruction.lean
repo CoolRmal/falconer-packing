@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SpectralCircleLinearity
-import FalconerPacking.SourceCutoffSpectrum
+module
+
+public import FalconerPacking.SpectralCircleLinearity
+public import FalconerPacking.SourceCutoffSpectrum
 
 /-!
 # Initial spectral reconstruction from actual retained source packets
@@ -13,6 +15,8 @@ Good standard labels retain every spatial strip. Other labels retain only the sp
 remote strips. The common source spectrum is explicitly the original cap multiplier
 times the Fourier transform of the same source measure.
 -/
+
+@[expose] public section
 
 noncomputable section
 

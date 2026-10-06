@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedCircleParentEdge
-import FalconerPacking.EnlargedTruncatedEnergy
+module
+
+public import FalconerPacking.MarkedCircleParentEdge
+public import FalconerPacking.EnlargedTruncatedEnergy
 
 /-!
 # Physical scales and effective angular uncertainty
@@ -13,6 +15,8 @@ The curvature condition and the bounded parent scale imply that both the standar
 width and the chosen coarse width are no larger than the spatial scale ratio. The finite
 slope grid uses their literal dyadic ratio, so its energy has exactly the enlarged scales.
 -/
+
+@[expose] public section
 
 noncomputable section
 

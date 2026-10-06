@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialPlancherel
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
+module
+
+public import FalconerPacking.RadialPlancherel
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.Periodic
 
 /-!
 # Circular averages and polar Plancherel
@@ -13,6 +15,8 @@ Full-turn angular integration is invariant under shifts. Polar integration there
 turns the planar radialized Plancherel identity into equality of circular energies
 with the exact planar radial weight.
 -/
+
+@[expose] public section
 
 noncomputable section
 

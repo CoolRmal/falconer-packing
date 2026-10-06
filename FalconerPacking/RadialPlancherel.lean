@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialFourierAverage
-import Mathlib.Analysis.Convex.Integral
-import Mathlib.Analysis.Fourier.LpSpace
+module
+
+public import FalconerPacking.RadialFourierAverage
+public import Mathlib.Analysis.Convex.Integral
+public import Mathlib.Analysis.Fourier.LpSpace
 
 /-!
 # Plancherel for normalized radial averages
@@ -16,6 +18,8 @@ angular average in `L²`. Fourier duality identifies the classical transform wit
 radial average of a Schwartz function satisfies Plancherel, without any assumption
 that its angular integral is itself a Schwartz function.
 -/
+
+@[expose] public section
 
 noncomputable section
 

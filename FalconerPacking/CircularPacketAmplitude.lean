@@ -1,6 +1,8 @@
-import FalconerPacking.CircularReciprocal
-import FalconerPacking.PlanarStripPackets
-import FalconerPacking.RadialProjectionTransversality
+module
+
+public import FalconerPacking.CircularReciprocal
+public import FalconerPacking.PlanarStripPackets
+public import FalconerPacking.RadialProjectionTransversality
 
 /-!
 # Spatial packet amplitudes restricted to circles
@@ -8,6 +10,8 @@ import FalconerPacking.RadialProjectionTransversality
 The bounds concern the actual compact source cutoff and actual strip weights. Their constants
 are independent of the pin, strip index, width, and unit-bounded strip normal.
 -/
+
+@[expose] public section
 
 open Set Function Finset MeasureTheory
 open scoped ContDiff RealInnerProductSpace

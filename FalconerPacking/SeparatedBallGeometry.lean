@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialAngleChart
-import Mathlib.Analysis.Complex.Isometry
+module
+
+public import FalconerPacking.RadialAngleChart
+public import Mathlib.Analysis.Complex.Isometry
 
 /-!
 # A common coordinate chart for two separated balls
@@ -13,6 +15,8 @@ An explicit translation and rotation send the source center to zero and the pin 
 to the positive horizontal axis. Small balls around these centers then satisfy the
 coordinate separation required by the strip-to-angle estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

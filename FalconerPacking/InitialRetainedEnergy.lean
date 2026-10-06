@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedStandardReconstruction
-import FalconerPacking.InitialCircleMultiplierRadius
-import FalconerPacking.MarkedCircleInitialSum
+module
+
+public import FalconerPacking.MarkedStandardReconstruction
+public import FalconerPacking.InitialCircleMultiplierRadius
+public import FalconerPacking.MarkedCircleInitialSum
 
 /-!
 # From actual retained packets to the initial marked pin energy
@@ -14,6 +16,8 @@ The fixed multiplier is bounded below on the pin ball. The actual reconstruction
 can therefore be added in square norm before applying the initial circle localization.
 At angular depth zero there is exactly one label, so no angular cardinality is lost.
 -/
+
+@[expose] public section
 
 noncomputable section
 

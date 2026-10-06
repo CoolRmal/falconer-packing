@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BallOverlap
-import FalconerPacking.FiniteFourierOrthogonality
-import Mathlib.Analysis.Fourier.Convolution
+module
+
+public import FalconerPacking.BallOverlap
+public import FalconerPacking.FiniteFourierOrthogonality
+public import Mathlib.Analysis.Fourier.Convolution
 
 /-!
 # Local Fourier orthogonality
@@ -14,6 +16,8 @@ Multiplication by an actual Schwartz cutoff enlarges Fourier supports by its Fou
 radius. Doubling equal-radius balls and Plancherel then give uniform local orthogonality
 for any selected subfamily.
 -/
+
+@[expose] public section
 
 noncomputable section
 

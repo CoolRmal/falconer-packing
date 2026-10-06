@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapGridEmbedding
-import FalconerPacking.SelectedCapCoefficients
+module
+
+public import FalconerPacking.SelectedCapGridEmbedding
+public import FalconerPacking.SelectedCapCoefficients
 
 /-!
 # The normalized selected-cap scale bound
@@ -12,6 +14,8 @@ import FalconerPacking.SelectedCapCoefficients
 The exact geometric coefficients simplify to a polynomial main term and an arbitrarily
 small inverse-power tail. The finite overlap and every averaging area remain explicit.
 -/
+
+@[expose] public section
 
 noncomputable section
 

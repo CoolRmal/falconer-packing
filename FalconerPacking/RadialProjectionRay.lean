@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionKernel
+module
+
+public import FalconerPacking.RadialProjectionKernel
 
 /-!
 # Radial densities from the polar change of variables
@@ -12,6 +14,8 @@ For a Lebesgue-density source the radial density is the positive-ray integral wi
 its radial Jacobian. The formula uses oriented rays, so no identification of opposite
 directions or full-line polar identity is required.
 -/
+
+@[expose] public section
 
 noncomputable section
 

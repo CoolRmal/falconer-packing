@@ -3,16 +3,20 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FrostmanWeights
-import FalconerPacking.Restriction
-import Mathlib.Combinatorics.Pigeonhole
-import Mathlib.MeasureTheory.Measure.Real
+module
+
+public import FalconerPacking.FrostmanWeights
+public import FalconerPacking.Restriction
+public import Mathlib.Combinatorics.Pigeonhole
+public import Mathlib.MeasureTheory.Measure.Real
 
 /-!
 # Finite regularization by restriction
 
 The construction in this file selects subsets of terminal cells and never changes their weights.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -247,14 +251,15 @@ def FiniteTreeRegular (S : Finset α) (w : α → ℝ) (p : α → α) (L : ℕ)
 
 private lemma tree_mass_zero_aux (S : Finset α) (w : α → ℝ) (p : α → α) (x : α)
     (hx : x ∈ S) : finiteTreeMass S w p 0 x = w x := by
-  simp [finiteTreeMass, sum_filter, hx]
+  change (∑ y ∈ S.filter (fun y ↦ y = x), w y) = w x
+  rw [filter_eq', if_pos hx, sum_singleton]
 
 private lemma tree_mass_restrict_parent_aux (S A : Finset α) (w : α → ℝ) (p : α → α)
     (j : ℕ) (q : α) :
     finiteTreeMass (S.filter (fun x ↦ p x ∈ A)) w p (j + 1) q =
       finiteTreeMass A (finiteTreeMass S w p 1) p j q := by
-  unfold finiteTreeMass
-  simp only [Function.iterate_succ_apply, Function.iterate_zero_apply]
+  change (∑ x ∈ (S.filter (fun x ↦ p x ∈ A)).filter (fun x ↦ p^[j] (p x) = q), w x) =
+    ∑ y ∈ A.filter (fun y ↦ p^[j] y = q), ∑ x ∈ S.filter (fun x ↦ p x = y), w x
   rw [← sum_fiberwise_of_maps_to (t := A.filter (fun x ↦ p^[j] x = q)) (g := p)
     (fun x hx ↦ mem_filter.2 ⟨(mem_filter.1 (mem_filter.1 hx).1).2,
       (mem_filter.1 hx).2⟩) w]

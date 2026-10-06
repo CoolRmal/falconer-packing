@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FourierDensity
-import FalconerPacking.GaussianMellin
-import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
-import Mathlib.MeasureTheory.Function.JacobianOneDim
+module
+
+public import FalconerPacking.FourierDensity
+public import FalconerPacking.GaussianMellin
+public import Mathlib.Analysis.SpecialFunctions.Gaussian.FourierTransform
+public import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
+public import Mathlib.MeasureTheory.Function.JacobianOneDim
 
 /-!
 # One-dimensional Fourier representation of Riesz energy
@@ -15,6 +17,8 @@ import Mathlib.MeasureTheory.Function.JacobianOneDim
 The Gaussian identity is integrated against its positive Mellin weight. Extended nonnegative
 integrals retain the diagonal singularity rather than assigning it the real-number value zero.
 -/
+
+@[expose] public section
 
 noncomputable section
 

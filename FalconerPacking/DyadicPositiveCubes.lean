@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicMomentCenters
+module
+
+public import FalconerPacking.DyadicMomentCenters
 
 /-!
 # Finite families of all positive-mass dyadic cubes
@@ -11,6 +13,8 @@ import FalconerPacking.DyadicMomentCenters
 A finite geometric cover contains every positive-mass cube. Removing null cubes gives the
 actual finite partition used for the positive affine approximation, with the same card bound.
 -/
+
+@[expose] public section
 
 noncomputable section
 

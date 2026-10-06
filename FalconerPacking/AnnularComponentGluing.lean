@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnnularRemainder
+module
+
+public import FalconerPacking.AnnularRemainder
 
 /-!
 # The actual annular good part assembled from regular components
@@ -12,6 +14,8 @@ The good density is the finite sum of the component densities on their original 
 Its squared second norm has the exact conditional weights. Its first-norm remainder is
 bounded by the weighted component remainders plus the full annulus on discarded pins.
 -/
+
+@[expose] public section
 
 noncomputable section
 

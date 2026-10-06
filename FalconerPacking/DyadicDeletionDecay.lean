@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicDeletionCoefficients
+module
+
+public import FalconerPacking.DyadicDeletionCoefficients
 
 /-!
 # Decay of the actual inherited-deletion coefficients
@@ -11,6 +13,8 @@ import FalconerPacking.DyadicDeletionCoefficients
 The source and pin marking thresholds overwhelm the proved geometric loss. The regularization
 block controls enlargement independently of the packet integer, so every annulus is retained.
 -/
+
+@[expose] public section
 
 noncomputable section
 

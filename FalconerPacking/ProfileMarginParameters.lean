@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StrictFiniteProfile
+module
+
+public import FalconerPacking.StrictFiniteProfile
 
 /-!
 # A strict profile margin chosen before the initial scale
@@ -12,6 +14,8 @@ The cost margin depends only on the Hausdorff and packing exponents. The initial
 can therefore be chosen after this margin, before fixing the chain length and regularization.
 This order of quantifiers is needed to absorb the initial Fourier-localization factor.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapParentEmbedding
-import FalconerPacking.SelectedFineCapEmbedding
-import FalconerPacking.SelectedCoarseCapEmbedding
+module
+
+public import FalconerPacking.SelectedCapParentEmbedding
+public import FalconerPacking.SelectedFineCapEmbedding
+public import FalconerPacking.SelectedCoarseCapEmbedding
 
 /-!
 # Actual circle edges summed over angular parents
@@ -13,6 +15,8 @@ import FalconerPacking.SelectedCoarseCapEmbedding
 The actual circle geometry discharges all spectral hypotheses. Both the retained main
 term and the global error are summed over parent angular labels without a counting loss.
 -/
+
+@[expose] public section
 
 noncomputable section
 

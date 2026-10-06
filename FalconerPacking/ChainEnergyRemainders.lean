@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ChainThresholdProduct
+module
+
+public import FalconerPacking.ChainThresholdProduct
 
 /-!
 # Every preceding factor in the finite-chain error
@@ -12,6 +14,8 @@ The actual global errors are bounded without dropping the product of thresholds 
 preceding edges. All such products are bounded by the full product, since each threshold
 factor is at least one.
 -/
+
+@[expose] public section
 
 noncomputable section
 

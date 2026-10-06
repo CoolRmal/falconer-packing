@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PolarFourierEnergy
+module
+
+public import FalconerPacking.PolarFourierEnergy
 
 /-!
 # Fourier ball bounds with the actual frequency normalization
@@ -12,6 +14,8 @@ The `2π` source Fourier convention is a fixed dilation of the characteristic fu
 Expanding the source preserves a Frostman bound, which allows the previously proved Gaussian
 estimate to be used without silently changing Fourier conventions.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -54,7 +58,7 @@ theorem exists_scaled_fourier_ball_energy_bound
       (∫⁻ ξ in Metric.ball (0 : EuclideanSpace ℝ (Fin 2)) R,
         ENNReal.ofReal (‖charFun μ (κ • ξ)‖ ^ 2)) ≤ ENNReal.ofReal (B * R ^ (2 - s)) := by
   let μ' := μ.map (fun x ↦ κ • x)
-  haveI : IsProbabilityMeasure μ' := Measure.isProbabilityMeasure_map (by fun_prop)
+  haveI : IsProbabilityMeasure μ' := by dsimp [μ']; infer_instance
   obtain ⟨B, hB, hb⟩ := exists_fourier_ball_energy_bound μ' hs hs₂
     (hfr.map_expanding_smul hs hκ)
   refine ⟨B, hB, fun R hR ↦ ?_⟩

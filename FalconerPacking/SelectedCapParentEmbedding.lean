@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapSpectralNormalized
-import FalconerPacking.InheritedEnergyPartition
+module
+
+public import FalconerPacking.SelectedCapSpectralNormalized
+public import FalconerPacking.InheritedEnergyPartition
 
 /-!
 # Selected-cap embedding summed over angular parents
@@ -13,6 +15,8 @@ The parent masks are exact zero-or-original Schwartz functions. Summation remove
 from the local and error energies, rather than multiplying either term by the number
 of angular parents.
 -/
+
+@[expose] public section
 
 noncomputable section
 

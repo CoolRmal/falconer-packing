@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Data.ENNReal.Operations
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Tactic
+module
+
+public import Mathlib.Data.ENNReal.Operations
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Tactic
 
 /-!
 # Finite nonnegative energy iteration
@@ -13,6 +15,8 @@ import Mathlib.Tactic
 The extended formulation applies directly to the localized Lebesgue energies, without
 first proving finiteness or converting infinite integrals to real numbers.
 -/
+
+@[expose] public section
 
 open scoped ENNReal
 

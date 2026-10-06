@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedChainScalarDecay
-import FalconerPacking.RetainedChainConstantBound
+module
+
+public import FalconerPacking.RetainedChainScalarDecay
+public import FalconerPacking.RetainedChainConstantBound
 
 /-!
 # Nonnegative scalar decay of the complete retained energy
@@ -12,6 +14,8 @@ import FalconerPacking.RetainedChainConstantBound
 The finite-chain coefficient is converted to the literal main scalar expression.
 The four terms then have a common summable geometric rate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

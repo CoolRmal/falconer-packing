@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialAngleChart
+module
+
+public import FalconerPacking.RadialAngleChart
 
 /-!
 # Actual radial angular containment of source strips
@@ -11,6 +13,8 @@ import FalconerPacking.RadialAngleChart
 A common narrow strip and positive coordinate separation place all source directions
 in a quantitatively small interval about any witnessed direction.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RieszFourier1D
-import FalconerPacking.RadialProjectionTraceWeight
+module
+
+public import FalconerPacking.RieszFourier1D
+public import FalconerPacking.RadialProjectionTraceWeight
 
 /-!
 # Fourier trace estimates for finite measures
@@ -13,6 +15,8 @@ Weighted Cauchy--Schwarz is applied to the genuine Fourier pairing with a Schwar
 test function. Extended nonnegative energies keep every bound valid before finiteness
 has been established.
 -/
+
+@[expose] public section
 
 noncomputable section
 

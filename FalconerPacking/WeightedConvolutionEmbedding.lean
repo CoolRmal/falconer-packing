@@ -3,10 +3,14 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.Convolution
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
-import Mathlib.MeasureTheory.Integral.MeanInequalities
-import Mathlib.MeasureTheory.Measure.WithDensity
+module
+
+public import Mathlib.Analysis.Convolution
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+public import Mathlib.MeasureTheory.Integral.MeanInequalities
+public import Mathlib.MeasureTheory.Measure.WithDensity
+public import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+public import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-!
 # Weighted convolution embedding
@@ -15,6 +19,8 @@ Cauchy--Schwarz with the kernel as a weight and positive Tonelli give the weight
 embedding estimate. The convolution is an actual Bochner integral, whose integrability
 follows from the Schwartz hypotheses.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -157,7 +163,7 @@ theorem schwartz_convolution_energy_ne_top_of_potential_bounds
   have hf : (∫⁻ y, ‖f y‖ₑ ^ 2) ≠ ∞ := by
     have h := lintegral_rpow_enorm_lt_top_of_eLpNorm_lt_top
       (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num : (2 : ℝ≥0∞) ≠ ∞)
-      (f.memLp 2 volume).2
+      (f.memLp 2 volume)
     simpa only [ENNReal.toReal_ofNat, ENNReal.rpow_two] using h.ne
   have hfP : (∫⁻ y in P, ‖f y‖ₑ ^ 2) ≠ ∞ :=
     ne_top_of_le_ne_top hf (setLIntegral_le_lintegral P _)
@@ -177,9 +183,10 @@ theorem schwartz_convolution_memLp_of_potential_bounds
     (hA : ∀ y ∈ P, ∫⁻ x, ‖k (x - y)‖ₑ ∂τ ≤ A)
     (hB : ∀ y ∉ P, ∫⁻ x, ‖k (x - y)‖ₑ ∂τ ≤ B) :
     MemLp (f ⋆[ContinuousLinearMap.mul ℂ ℂ] k) 2 τ := by
-  refine ⟨(continuous_schwartz_convolution f k).aestronglyMeasurable, ?_⟩
+  rw [memLp_iff]
   rw [eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top
-    (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num : (2 : ℝ≥0∞) ≠ ∞)]
+    (by norm_num : (2 : ℝ≥0∞) ≠ 0) (by norm_num : (2 : ℝ≥0∞) ≠ ∞)
+    (continuous_schwartz_convolution f k).aestronglyMeasurable]
   simpa only [ENNReal.toReal_ofNat, ENNReal.rpow_two] using
     (schwartz_convolution_energy_ne_top_of_potential_bounds f k τ hP
       hAfinite hBfinite hA hB).lt_top

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformFourierBands
-import FalconerPacking.ProjectionDensityComparison
+module
+
+public import FalconerPacking.UniformFourierBands
+public import FalconerPacking.ProjectionDensityComparison
 
 /-!
 # Uniform correlated projection comparison
@@ -13,6 +15,8 @@ Every scalar coefficient is bounded explicitly in terms of the exponent and `max
 Consequently the final constant works simultaneously for all Frostman source probabilities,
 which is essential when summing over conditional measures.
 -/
+
+@[expose] public section
 
 noncomputable section
 open MeasureTheory Set Filter

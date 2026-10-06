@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionLine
-import Mathlib.Analysis.Calculus.ContDiff.Convolution
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+module
+
+public import FalconerPacking.RadialProjectionLine
+public import Mathlib.Analysis.Calculus.ContDiff.Convolution
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
 
 /-!
 # Smooth densities of orthogonal projections
@@ -14,6 +16,8 @@ Integrating a smooth compactly supported source along a line gives a smooth comp
 supported function of the perpendicular coordinate. The formula is pointwise, so the same
 representative may be tested against singular measures.
 -/
+
+@[expose] public section
 
 noncomputable section
 

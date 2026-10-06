@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
-import Mathlib.Analysis.LocallyConvex.WithSeminorms
+module
+
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+public import Mathlib.Analysis.LocallyConvex.WithSeminorms
 
 /-!
 # Uniform actual inverse-Fourier bounds for compact symbol families
@@ -13,6 +15,8 @@ Common bounded support and uniform bounds for each derivative order make a symbo
 bounded in Schwartz space. Continuity of the actual inverse Fourier transform then supplies
 uniform rapid decay and weighted first-norm bounds for its kernels.
 -/
+
+@[expose] public section
 
 noncomputable section
 

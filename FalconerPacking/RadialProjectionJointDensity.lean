@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionWeakLimit
-import FalconerPacking.RadialProjectionRay
-import FalconerPacking.PinnedKernel
+module
+
+public import FalconerPacking.RadialProjectionWeakLimit
+public import FalconerPacking.RadialProjectionRay
+public import FalconerPacking.PinnedKernel
 
 /-!
 # Densities of joint radial laws
@@ -13,6 +15,8 @@ import FalconerPacking.PinnedKernel
 The explicit ray density represents each smooth joint law. Absolute continuity of a limiting
 joint law identifies its Radon--Nikodym derivative with the canonical radial kernel density.
 -/
+
+@[expose] public section
 
 noncomputable section
 

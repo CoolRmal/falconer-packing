@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnisotropicSchwartzKernel
+module
+
+public import FalconerPacking.AnisotropicSchwartzKernel
 
 /-!
 # Exact linear rescaling of arbitrary Schwartz kernels
@@ -12,6 +14,8 @@ The determinant normalization preserves the actual first norm, including on tran
 measurable sets. The dual symbol identity identifies these constructed kernels with the
 actual inverse Fourier transform of any corresponding rescaled multiplier.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StandardCapKernelBounds
-import FalconerPacking.PacketDeletionMass
+module
+
+public import FalconerPacking.StandardCapKernelBounds
+public import FalconerPacking.PacketDeletionMass
 
 /-!
 # Deletion bounds for the actual standard dyadic packets
@@ -12,6 +14,8 @@ import FalconerPacking.PacketDeletionMass
 The kernel first norms and transverse tails are discharged for the concrete cap construction.
 The remaining mass is exactly that of the source-pin pairs selected for deletion.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionSmoothTrace
-import FalconerPacking.RadialProjectionAngularMoment
-import FalconerPacking.RadialProjectionTransversality
+module
+
+public import FalconerPacking.RadialProjectionSmoothTrace
+public import FalconerPacking.RadialProjectionAngularMoment
+public import FalconerPacking.RadialProjectionTransversality
 
 /-!
 # Averaged bounds for smooth orthogonal densities
@@ -13,6 +15,8 @@ import FalconerPacking.RadialProjectionTransversality
 Positive trace estimates are applied to actual projected pin measures. Angular integration
 uses only ordinary Riesz energies of the two original planar measures.
 -/
+
+@[expose] public section
 
 noncomputable section
 

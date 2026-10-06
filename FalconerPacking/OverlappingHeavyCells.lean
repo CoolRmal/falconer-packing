@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialHeavyCells
-import FalconerPacking.BallOverlap
+module
+
+public import FalconerPacking.RadialHeavyCells
+public import FalconerPacking.BallOverlap
 
 /-!
 # Heavy cells with bounded overlap
@@ -12,6 +14,8 @@ import FalconerPacking.BallOverlap
 Enlarged angular cells can replace a maximal operator at the finitely many relevant
 scales. The deletion constant depends on their overlap, not on their number.
 -/
+
+@[expose] public section
 
 noncomputable section
 

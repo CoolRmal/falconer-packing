@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Energy
-import FalconerPacking.WeakLimit
+module
+
+public import FalconerPacking.Energy
+public import FalconerPacking.WeakLimit
 
 /-!
 # From dyadic ball estimates to a Frostman measure
@@ -13,6 +15,8 @@ The finite tree construction and weak compactness produce a probability measure 
 at every dyadic scale.  This file compares an arbitrary radius with two consecutive powers of
 `1 / 2` and packages the resulting estimate as `IsFrostman`.
 -/
+
+@[expose] public section
 
 noncomputable section
 

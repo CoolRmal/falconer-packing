@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothMeasureApproximation
-import Mathlib.Analysis.Calculus.BumpFunction.Convolution
-import Mathlib.MeasureTheory.Integral.DominatedConvergence
-import Mathlib.MeasureTheory.Group.IntegralConvolution
+module
+
+public import FalconerPacking.SmoothMeasureApproximation
+public import Mathlib.Analysis.Calculus.BumpFunction.Convolution
+public import Mathlib.MeasureTheory.Integral.DominatedConvergence
+public import Mathlib.MeasureTheory.Group.IntegralConvolution
 
 /-!
 # Weak convergence of the actual smoothed source probabilities
@@ -14,6 +16,8 @@ import Mathlib.MeasureTheory.Group.IntegralConvolution
 Normalized bumps form an approximate identity. Testing the measure convolution against
 bounded continuous functions and applying dominated convergence recovers the original source.
 -/
+
+@[expose] public section
 
 noncomputable section
 

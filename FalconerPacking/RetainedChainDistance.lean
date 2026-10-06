@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedCircleChain
-import FalconerPacking.RetainedDistanceEnergy
+module
+
+public import FalconerPacking.RetainedCircleChain
+public import FalconerPacking.RetainedDistanceEnergy
 
 /-!
 # The full retained distance density from the actual Fourier chain
@@ -13,6 +15,8 @@ This composes initial reconstruction, the marked Fourier chain, polar source int
 the actual omitted-frequency estimate and Liu's identity. All remaining hypotheses concern
 the finite chain geometry. The source and its Fourier transform are common to all pin cells.
 -/
+
+@[expose] public section
 
 noncomputable section
 

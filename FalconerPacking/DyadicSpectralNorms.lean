@@ -3,12 +3,16 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.StandardCapKernelBounds
-import FalconerPacking.PhysicalCapRadialTails
+module
+
+public import FalconerPacking.StandardCapKernelBounds
+public import FalconerPacking.PhysicalCapRadialTails
 
 /-!
 # Actual spectral first norms and radial tails on the standard dyadic grid
 -/
+
+@[expose] public section
 
 noncomputable section
 

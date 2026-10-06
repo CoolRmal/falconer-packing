@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.EnlargedSlopeTubeGeometry
+module
+
+public import FalconerPacking.EnlargedSlopeTubeGeometry
 
 /-!
 # A finite containing tube for every physical tube direction
@@ -12,6 +14,8 @@ The explicit slope grid and finite offset enlargements cover arbitrary unit-norm
 The conclusion selects one actual finite-family member, so taking unions over finer cap
 choices never incurs their number.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedTubeGeometry
-import Mathlib.Data.Int.Interval
-import Mathlib.Data.Fintype.BigOperators
-import Mathlib.Algebra.Order.Floor.Ring
+module
+
+public import FalconerPacking.SelectedTubeGeometry
+public import Mathlib.Data.Int.Interval
+public import Mathlib.Data.Fintype.BigOperators
+public import Mathlib.Algebra.Order.Floor.Ring
 
 /-!
 # Overlap and support margins for enlarged grid squares
@@ -14,6 +16,8 @@ import Mathlib.Algebra.Order.Floor.Ring
 The grid has arbitrary positive spacing. Closed boundary conventions are allowed, so the
 overlap estimate applies to all concentric enlargements without exceptional null sets.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BlockProfileChainScales
+module
+
+public import FalconerPacking.BlockProfileChainScales
 
 /-!
 # Padding every profile chain to one fixed length
@@ -11,6 +13,8 @@ import FalconerPacking.BlockProfileChainScales
 Zero-depth edges have zero profile cost and admissible physical scales. Thus the same
 fixed length can be used in all packet rectangles and all analytic constants.
 -/
+
+@[expose] public section
 
 noncomputable section
 

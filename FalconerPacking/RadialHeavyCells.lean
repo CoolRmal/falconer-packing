@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularHeavyCells
-import FalconerPacking.RadialProjectionTheorem
+module
+
+public import FalconerPacking.AngularHeavyCells
+public import FalconerPacking.RadialProjectionTheorem
 
 /-!
 # Heavy angular cells in the actual source--pin product measure
@@ -12,6 +14,8 @@ import FalconerPacking.RadialProjectionTheorem
 The canonical radial densities define a jointly measurable deletion set. Finite disjoint
 angular cell families at finitely many scales obey the density-moment deletion estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

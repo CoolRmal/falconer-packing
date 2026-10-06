@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionSmoothMoment
-import FalconerPacking.SmoothProbabilityApproximation
+module
+
+public import FalconerPacking.RadialProjectionSmoothMoment
+public import FalconerPacking.SmoothProbabilityApproximation
 
 /-!
 # Uniform moments for the actual shrinking source sequence
@@ -12,6 +14,8 @@ import FalconerPacking.SmoothProbabilityApproximation
 Bounded Frostman source and pin probabilities produce one exponent above one and one common
 moment bound for the explicitly normalized smooth approximations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

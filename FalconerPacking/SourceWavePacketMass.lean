@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceWavePackets
-import FalconerPacking.LocalizedPacketMass
-import FalconerPacking.ComplexDistancePushforward
+module
+
+public import FalconerPacking.SourceWavePackets
+public import FalconerPacking.LocalizedPacketMass
+public import FalconerPacking.ComplexDistancePushforward
 
 /-!
 # First norms of the constructed source packets
@@ -13,6 +15,8 @@ import FalconerPacking.ComplexDistancePushforward
 The exact source wave packet construction satisfies the geometric convolution bound.
 Its actual pinned distance density obeys the same bound by the proved first-norm contraction.
 -/
+
+@[expose] public section
 
 noncomputable section
 

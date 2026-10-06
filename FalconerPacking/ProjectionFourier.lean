@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PolarFourierEnergy
-import FalconerPacking.FourierDensity
+module
+
+public import FalconerPacking.PolarFourierEnergy
+public import FalconerPacking.FourierDensity
 
 /-!
 # Square-integrable Fourier transforms of orthogonal projections
@@ -12,6 +14,8 @@ import FalconerPacking.FourierDensity
 The polar energy estimates imply square integrability on almost every line through the
 origin. The characteristic function of the projected measure is its restriction to that line.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -47,8 +51,8 @@ theorem ae_memLp_charFun_on_line
   have hm : Measurable (fun θ : ℝ ↦ ∫⁻ r in Ioi (0 : ℝ),
       ENNReal.ofReal (‖charFun μ (r • angularDirection θ)‖ ^ 2)) := by fun_prop
   filter_upwards [ae_lt_top hm hfin.ne] with θ hθ
-  refine ⟨by fun_prop, ?_⟩
-  rw [eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top (by norm_num) (by norm_num)]
+  rw [memLp_iff, eLpNorm_lt_top_iff_lintegral_rpow_enorm_lt_top
+    (by norm_num) (by norm_num) (by fun_prop)]
   have heven (r : ℝ) : ENNReal.ofReal (‖charFun μ ((-r) • angularDirection θ)‖ ^ 2) =
       ENNReal.ofReal (‖charFun μ (r • angularDirection θ)‖ ^ 2) := by
     simp only [neg_smul, charFun_neg, RCLike.norm_conj]

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialAngleGeometry
-import FalconerPacking.CorrelatedFourierEnergy
+module
+
+public import FalconerPacking.RadialAngleGeometry
+public import FalconerPacking.CorrelatedFourierEnergy
 
 /-!
 # Two angular charts for correlated projection estimates
@@ -13,6 +15,8 @@ The principal angle chart has a cut at ±π. A simultaneous half-turn puts pairs
 that cut into a common short chart. The change of chart is two translations, preserves
 bounded angular densities up to a factor two, and negates both projection directions.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -93,7 +97,8 @@ theorem map_halfTurnAngle_le {ν : Measure ℝ} {A : ℝ≥0∞}
   calc
     ν.map halfTurnAngle ≤ (A • (volume : Measure ℝ)).map halfTurnAngle :=
       Measure.map_mono hν measurable_halfTurnAngle
-    _ = A • ((volume : Measure ℝ).map halfTurnAngle) := Measure.map_smul _ _ _
+    _ = A • ((volume : Measure ℝ).map halfTurnAngle) :=
+      Measure.map_smul A measurable_halfTurnAngle.aemeasurable
     _ ≤ A • ((2 : ℝ≥0∞) • (volume : Measure ℝ)) := by
       apply Measure.le_iff'.2
       intro S

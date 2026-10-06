@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.MarkedDyadicCircle
-import Mathlib.Algebra.Order.BigOperators.Ring.Finset
+module
+
+public import FalconerPacking.MarkedDyadicCircle
+public import Mathlib.Algebra.Order.BigOperators.Ring.Finset
 
 /-!
 # Uniform square sums for arbitrary inherited cap multipliers
@@ -13,6 +15,8 @@ Nonnegative cap weights and disjoint auxiliary cells bound the total absolute mu
 amplitude. Arbitrary deletions and grouping cannot increase this bound, so no number of
 labels or parent cubes enters the circle-energy estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

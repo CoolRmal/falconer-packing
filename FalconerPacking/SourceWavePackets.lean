@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothAngularCaps
-import FalconerPacking.CompactSourceSchwartz
-import FalconerPacking.PlanarStripPackets
-import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+module
+
+public import FalconerPacking.SmoothAngularCaps
+public import FalconerPacking.CompactSourceSchwartz
+public import FalconerPacking.PlanarStripPackets
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
 
 /-!
 # Constructed source wave packets and exact reconstruction
@@ -15,6 +17,8 @@ The angular caps, spatial strip weights, and finite index sets are actual constr
 For any compact smooth source cutoff, their finite sum reconstructs its product with
 the annular convolution exactly. Each individual packet is a genuine Schwartz function.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -66,13 +70,13 @@ def sourceWavePacketNormal (N j : ℕ) : EuclideanSpace ℝ (Fin 2) :=
 theorem norm_sourceWavePacketNormal (N j : ℕ) : ‖sourceWavePacketNormal N j‖ = 1 :=
   norm_angularDirection _
 
-private theorem contDiff_complexStripPacket
+theorem contDiff_complexStripPacket
     (χ : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ)
     (w : ℝ) (e : EuclideanSpace ℝ (Fin 2)) (k : ℤ) :
     ContDiff ℝ ∞ (fun x ↦ (smoothStripPacket χ w e k x : ℂ)) :=
   Complex.ofRealCLM.contDiff.comp (contDiff_smoothStripPacket χ w e k)
 
-private theorem hasCompactSupport_complexStripPacket
+theorem hasCompactSupport_complexStripPacket
     (χ : SchwartzMap (EuclideanSpace ℝ (Fin 2)) ℝ) (hχ : HasCompactSupport χ)
     (w : ℝ) (e : EuclideanSpace ℝ (Fin 2)) (k : ℤ) :
     HasCompactSupport (fun x ↦ (smoothStripPacket χ w e k x : ℂ)) :=

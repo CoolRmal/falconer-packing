@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularDerivativeEnergy
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
-import Mathlib.Analysis.Calculus.MeanValue
+module
+
+public import FalconerPacking.AngularDerivativeEnergy
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+public import Mathlib.Analysis.Calculus.MeanValue
 
 /-!
 # Explicit derivatives and nonstationarity of the circular phase
@@ -13,6 +15,8 @@ import Mathlib.Analysis.Calculus.MeanValue
 Every derivative of the actual circular phase is a quarter-turn of the direction.
 Transverse separation at one angle controls the derivative on a whole arc.
 -/
+
+@[expose] public section
 
 noncomputable section
 

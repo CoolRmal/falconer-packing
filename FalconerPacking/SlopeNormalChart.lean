@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeTubeNet
+module
+
+public import FalconerPacking.SlopeTubeNet
 
 /-!
 # Quantitative slope charts for every unit normal
@@ -11,6 +13,8 @@ import FalconerPacking.SlopeTubeNet
 One coordinate of a planar unit normal has absolute value at least one half. Dividing by
 that coordinate gives a bounded slope, and the concrete slope net approximates its normal form.
 -/
+
+@[expose] public section
 
 noncomputable section
 

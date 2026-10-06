@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.ProjectionFourier
-import Mathlib.MeasureTheory.Measure.WithDensityFinite
-import Mathlib.Probability.Kernel.RadonNikodym
-import Mathlib.Probability.Kernel.Composition.Lemmas
+module
+
+public import FalconerPacking.ProjectionFourier
+public import Mathlib.MeasureTheory.Measure.WithDensityFinite
+public import Mathlib.Probability.Kernel.RadonNikodym
+public import Mathlib.Probability.Kernel.Composition.Lemmas
 
 /-!
 # Jointly measurable orthogonal projection densities
@@ -15,6 +17,8 @@ An equivalent finite reference measure permits the kernel Radon--Nikodym theorem
 a jointly measurable density against a sigma-finite reference measure. Applying this construction
 to orthogonal projections gives a common measurable choice of their almost-everywhere L² densities.
 -/
+
+@[expose] public section
 
 noncomputable section
 

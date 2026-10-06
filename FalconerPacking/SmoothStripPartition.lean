@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeStripGeometry
-import Mathlib.Analysis.SpecialFunctions.SmoothTransition
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
-import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
-import Mathlib.Algebra.BigOperators.Group.Finset.Interval
+module
+
+public import FalconerPacking.SlopeStripGeometry
+public import Mathlib.Analysis.SpecialFunctions.SmoothTransition
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+public import Mathlib.Analysis.Calculus.IteratedDeriv.Lemmas
+public import Mathlib.Algebra.BigOperators.Group.Finset.Interval
 
 /-!
 # An explicit smooth partition on a uniform strip grid
@@ -15,6 +17,8 @@ import Mathlib.Algebra.BigOperators.Group.Finset.Interval
 Differences of consecutive smooth transitions give a nonnegative compact bump whose
 integer translates sum exactly to one. Rescaling gives uniform derivative bounds.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothProbabilityApproximation
+module
+
+public import FalconerPacking.SmoothProbabilityApproximation
 
 /-!
 # Smoothing tests with almost-everywhere continuity
@@ -11,6 +13,8 @@ import FalconerPacking.SmoothProbabilityApproximation
 The approximate identity also converges against bounded measurable tests that are continuous
 at almost every source point. This permits angular maps with a null branch-cut set.
 -/
+
+@[expose] public section
 
 noncomputable section
 

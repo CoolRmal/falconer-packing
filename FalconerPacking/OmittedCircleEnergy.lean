@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircleEnergyIntegration
-import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
+module
+
+public import FalconerPacking.CircleEnergyIntegration
+public import Mathlib.Analysis.SpecialFunctions.ImproperIntegrals
 
 /-!
 # Omitted radial energy from an actual Fourier envelope
@@ -13,6 +15,8 @@ A bound on the actual Fourier transform outside a radial set bounds the normaliz
 circle average there. The remaining positive radial integral is evaluated using translation
 invariance and an integrable power. These lemmas do not assume an omitted-energy estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

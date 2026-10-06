@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionRay
+module
+
+public import FalconerPacking.RadialProjectionRay
 
 /-!
 # Exact polar density of pinned distance laws
@@ -13,6 +15,8 @@ times the radial Jacobian. The formula is jointly measurable in the pin and radi
 represents the full pushforward measure. All identities use the proved polar change of
 variables and apply without Fourier estimates or integrability assumptions.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Algebra
+module
+
+public import FalconerPacking.Algebra
 
 /-!
 # Combining the branches
@@ -16,6 +18,8 @@ condition `A d t < d - 1`, and the finite-profile branch applies.
 Both branches enter as hypotheses: this is the conditional form of Theorem 1.1, and it is what
 the curve algebra of this development actually proves.
 -/
+
+@[expose] public section
 
 noncomputable section
 

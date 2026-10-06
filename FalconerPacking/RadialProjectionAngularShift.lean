@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RadialProjectionSmoothBound
+module
+
+public import FalconerPacking.RadialProjectionSmoothBound
 
 /-!
 # Rotating the angular moment
@@ -11,6 +13,8 @@ import FalconerPacking.RadialProjectionSmoothBound
 Positive integration over a full period is invariant under angular translation, including
 infinite integrals. This identifies the radial-to-orthogonal moment with its canonical frame.
 -/
+
+@[expose] public section
 
 noncomputable section
 

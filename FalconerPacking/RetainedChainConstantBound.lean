@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedChainDistance
-import FalconerPacking.RetainedEnergyConstants
+module
+
+public import FalconerPacking.RetainedChainDistance
+public import FalconerPacking.RetainedEnergyConstants
 
 /-!
 # Absorbing the fixed Fourier constants
@@ -13,6 +15,8 @@ Only four nonnegative scalar terms remain: the chain main term, spatial localiza
 initial reconstruction and omitted spectral energy. This module absorbs every fixed
 Schwartz and polar constant uniformly over the entire annular family.
 -/
+
+@[expose] public section
 
 noncomputable section
 

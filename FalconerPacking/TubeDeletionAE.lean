@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SourceTubeMassAE
-import FalconerPacking.AllDirectionTubeDeletion
+module
+
+public import FalconerPacking.SourceTubeMassAE
+public import FalconerPacking.AllDirectionTubeDeletion
 
 /-!
 # Finite-grid and arbitrary-direction deletion with almost-everywhere pin geometry
@@ -12,6 +14,8 @@ import FalconerPacking.AllDirectionTubeDeletion
 The tested geometric tubes and their finite-grid energy are unchanged. Only pins carrying
 the conditional measure must lie in the fixed bounded, separated pin set.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardPointChains
-import FalconerPacking.ChainCompression
+module
+
+public import FalconerPacking.HardPointChains
+public import FalconerPacking.ChainCompression
 
 /-!
 # Uniformly short real-endpoint chains
@@ -13,6 +15,8 @@ Greedy merging removes intermediate scales without increasing the profile cost. 
 remaining chain, every two edges more than double the distance from one. Thus the number
 of edges depends only on the initial distance from one, not on the profile.
 -/
+
+@[expose] public section
 
 noncomputable section
 

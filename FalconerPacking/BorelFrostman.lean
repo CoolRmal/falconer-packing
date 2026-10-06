@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.Extraction
-import FalconerPacking.FrostmanLimit
-import Mathlib.Topology.Compactness.SigmaCompact
+module
+
+public import FalconerPacking.Extraction
+public import FalconerPacking.FrostmanLimit
+public import Mathlib.Topology.Compactness.SigmaCompact
 
 /-!
 # Compact extraction and the remaining Borel reduction
@@ -18,6 +20,8 @@ Neither statement asserts that an arbitrary Borel set is σ-compact or that its 
 measure below its dimension is σ-finite. The general Borel compact-dimension extraction
 theorem remains a separate dependency.
 -/
+
+@[expose] public section
 
 noncomputable section
 

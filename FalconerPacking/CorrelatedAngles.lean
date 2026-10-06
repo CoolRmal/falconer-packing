@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularTruncation
-import Mathlib.MeasureTheory.Measure.Prod
-import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
-import Mathlib.MeasureTheory.Integral.MeanInequalities
+module
+
+public import FalconerPacking.AngularTruncation
+public import Mathlib.MeasureTheory.Measure.Prod
+public import Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus
+public import Mathlib.MeasureTheory.Integral.MeanInequalities
 
 /-!
 # Averaging short angular intervals with correlated parameters
@@ -14,6 +16,8 @@ import Mathlib.MeasureTheory.Integral.MeanInequalities
 A bounded angular marginal controls the average of a sliding interval integral. The other
 angular map can depend on the same parameter; no independence assumption is used.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnnularComponentGluing
-import FalconerPacking.EventualAnnularCriterion
+module
+
+public import FalconerPacking.AnnularComponentGluing
+public import FalconerPacking.EventualAnnularCriterion
 
 /-!
 # One summable bound for the actual annular pieces
@@ -13,6 +15,8 @@ The retained second norm, deleted first norm, and discarded-pin mass may decay a
 positive rates. They have one common rate, including the shift between packet shell index
 and the full compact annular expansion.
 -/
+
+@[expose] public section
 
 noncomputable section
 

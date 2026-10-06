@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.GaussianEnergy
+module
+
+public import FalconerPacking.GaussianEnergy
 
 /-!
 # Gaussian energy of bounded signed weights
@@ -12,6 +14,8 @@ The coordinate measures in the angular derivative estimate are signed. Their Gau
 energy comparison follows from the positive spatial kernel, with the weight retained
 inside both source integrals.
 -/
+
+@[expose] public section
 
 noncomputable section
 

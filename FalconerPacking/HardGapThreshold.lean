@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardGapCurve
+module
+
+public import FalconerPacking.HardGapCurve
 
 /-!
 # The scalar bridge from the cutoff curve to a profile certificate
@@ -12,6 +14,8 @@ This file proves the parameter selection in Appendix A.7 of the focused manuscri
 The scalar upper barrier may be enlarged to the point where the two hard-gap costs agree.
 No geometric or analytic assumption enters these inequalities.
 -/
+
+@[expose] public section
 
 noncomputable section
 

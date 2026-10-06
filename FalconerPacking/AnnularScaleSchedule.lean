@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PaddedProfileChain
-import FalconerPacking.StrictShellParameters
+module
+
+public import FalconerPacking.PaddedProfileChain
+public import FalconerPacking.StrictShellParameters
 
 /-!
 # A scale schedule retaining every annulus
@@ -13,6 +15,8 @@ The width integer is chosen before the regularization block. Their product is th
 parameter, while the packet index runs through every natural number. This gives exactly the
 same frequency depth as the regular profile and preserves the full annular reconstruction.
 -/
+
+@[expose] public section
 
 noncomputable section
 

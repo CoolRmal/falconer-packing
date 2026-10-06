@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SelectedCapNormalized
+module
+
+public import FalconerPacking.SelectedCapNormalized
 
 /-!
 # Fixed spectral enlargement in the selected-cap estimate
@@ -11,6 +13,8 @@ import FalconerPacking.SelectedCapNormalized
 Only the reproducing kernel is rescaled. The physical squares, selected tube tests,
 and source measure keep their original scales.
 -/
+
+@[expose] public section
 
 noncomputable section
 

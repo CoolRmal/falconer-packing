@@ -1,0 +1,167 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "A Hausdorff–packing criterion for self-pinned distance sets"
+  description: >-
+    For a Borel subset E of the Euclidean plane with Hausdorff dimension d in
+    (1, 5/4], a strict upper bound on its packing dimension by the explicit
+    piecewise curve B_H(d) ensures a point y in E whose pinned distance set
+    has positive one-dimensional Lebesgue measure. The three branches are
+    2d-1, 1+r_2(d-1), and 1/(3-2d), with the transitions and algebraic root
+    defined independently in Challenge.lean. This is a sufficient criterion
+    with an additional packing-dimension hypothesis, not a resolution of
+    the general planar Falconer conjecture.
+  authors:
+    - "Yongxi Lin"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Yongxi Lin"
+
+classification:
+  arxiv: ["math.CA"]
+  msc2020: ["28A80", "42B10"]
+
+sources:
+  - title: "A packing-dimension condition for positive pinned distances"
+    authors: ["Yongxi Lin"]
+    type: "repository manuscript"
+    id: "falconer-packing-theorem, 30 September 2026, Theorem 1.1"
+    location: "docs/falconer-human/falconer-packing-theorem.pdf"
+    relationship: "formalizes"
+    note: >-
+      The focused manuscript in this repository is the informal source of
+      the compared theorem. It presents the B_H criterion; the older
+      conditional curve and exploratory archive are outside this submission.
+      The manuscript predates completion of the Lean proof on 1 October 2026.
+    license: "Apache-2.0"
+  - title: "On the dimension and smoothness of radial projections"
+    authors: ["Tuomas Orponen"]
+    type: "article"
+    id: "arXiv:1710.11053"
+    location: "https://arxiv.org/abs/1710.11053"
+    relationship: "background"
+    note: "Analysis & PDE 12 (2019), 1273–1294; radial projection estimates."
+  - title: "New bounds on the dimensions of planar distance sets"
+    authors: ["Tamás Keleti", "Pablo Shmerkin"]
+    type: "article"
+    id: "arXiv:1801.08745v3"
+    location: "https://arxiv.org/abs/1801.08745v3"
+    relationship: "background"
+    note: >-
+      Geometric and Functional Analysis 29 (2019), 1886–1948;
+      Lemmas 3.4 and 5.4, Corollary 3.5, and Proposition 3.11.
+  - title: "On Falconer's distance set problem in the plane"
+    authors: ["Larry Guth", "Alex Iosevich", "Yumeng Ou", "Hong Wang"]
+    type: "article"
+    id: "arXiv:1808.09346v1"
+    location: "https://arxiv.org/abs/1808.09346v1"
+    relationship: "background"
+    note: >-
+      Inventiones Mathematicae 219 (2020), 779–830; packet construction,
+      radial projection estimates, and the existing 5/4 threshold.
+  - title: "An L²-identity and pinned distance problem"
+    authors: ["Bochen Liu"]
+    type: "article"
+    id: "arXiv:1802.00350v3"
+    location: "https://arxiv.org/abs/1802.00350v3"
+    relationship: "background"
+    note: "Geometric and Functional Analysis 29 (2019), 283–294; Theorem 1.9."
+  - title: >-
+      Lebesgue measure of distance sets with regular pins and multi-scale
+      Mizohata–Takeuchi-type estimates
+    authors: ["Bochen Liu"]
+    type: "preprint"
+    id: "arXiv:2603.15328v3"
+    location: "https://arxiv.org/abs/2603.15328v3"
+    relationship: "background"
+    note: "Version 3, 16 July 2026; Lemma 4.2 on packet localization."
+
+related_formalizations: []
+
+status:
+  scope: >-
+    The sole compared result is
+    FalconerPacking.exists_pin_volume_pinnedDistances_pos, matching Theorem
+    1.1 of the focused manuscript. The proof has no additional analytic
+    hypotheses. Challenge.lean independently repeats the transparent
+    statement definitions and contains one deliberate theorem hole.
+    Historical conditional results involving OriginalBranch,
+    FiniteProfileBranch, bound, or Target, and other research-archive claims,
+    are not selected for registration.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+  main_results:
+    - declaration: "FalconerPacking.exists_pin_volume_pinnedDistances_pos"
+      file: "FalconerPacking/HausdorffPackingTheorem.lean"
+      sorry_count: 0
+      axioms: ["propext", "Classical.choice", "Quot.sound"]
+      comparator_config: "comparator.json"
+      literature_dependencies: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: []
+      framework: "Codex"
+      tool_setup: >-
+        AI-assisted repository preparation, independent statement and source
+        audits, module-system migration, and dependency compatibility work;
+        Lean tactics and kernel checking supply mechanical proof validation.
+      prompting_notes: >-
+        Prepare the existing formalization for Palomar submission without
+        changing the mathematical claim or introducing axioms.
+  spend_usd: "not tracked"
+  notes: >-
+    Source headers and Git history identify Yongxi Lin as the author.
+    Codex assisted with this submission preparation. The existing repository
+    does not document a complete historical AI contribution log or the
+    exact models used for the original proof development. No undocumented
+    human review or model attribution is asserted here.
+
+fidelity:
+  divergences: >-
+    The strict cutoff, Borel hypothesis, dimension range, and self-pin
+    conclusion are retained. Hausdorff dimension is Mathlib dimH. Packing
+    dimension is defined by the bounded countable-cover characterization
+    using upper box dimension and dyadic polynomial covering bounds. The
+    equivalence with a separately defined packing-measure dimension is not
+    formalized. The formal conclusion uses Lebesgue outer measure of the
+    distance set; Borel E has an analytic, Lebesgue-measurable distance image,
+    but that separate image-measurability fact is not part of the compared
+    theorem. Literature estimates are proved within the Lean development
+    rather than assumed as additional axioms. No novelty or optimality claim
+    is made by the registration metadata.
+
+review:
+  status: "agent-reviewed; no documented independent human statement review"
+  reviewers: []
+  notes: >-
+    The original proof commit 34c7c95d82dc85bb2c166f64c2a36700b1bb0ca4
+    passed an independent Comparator run and a clean Linux build on Lean
+    4.32.0 (GitHub Actions run 36824796497). This is historical evidence,
+    not verification of the current Lean 4.35.0-rc2 snapshot. The migrated
+    development passes a complete local build and a local Comparator run,
+    including proof acceptance by Lean's kernel, NanoDa, and con-ron. The
+    local macOS comparison ran without the Linux sandbox and does not
+    replace the required full hosted Palomar report for the exact commit.
+    Preparation also includes independent AI statement and provenance
+    audits. No independent human statement review or external refereeing
+    is recorded.
+
+alignment:
+  namespace: "FalconerPacking"
+  statements:
+    - source: "Focused manuscript, Theorem 1.1"
+      lean: "FalconerPacking.exists_pin_volume_pinnedDistances_pos"
+      module: "FalconerPacking.HausdorffPackingTheorem"
+      status: "proved"
+      note: >-
+        Independent statement in Challenge; proved declaration imported by
+        Solution; the single theorem selected by comparator.json.
+
+acknowledgements: >-
+  Lean, Mathlib, Comparator, and the Palomar verification infrastructure;
+  the cited mathematical works provide the literature context. Listing a
+  source does not assert its authors' review or endorsement of this project.

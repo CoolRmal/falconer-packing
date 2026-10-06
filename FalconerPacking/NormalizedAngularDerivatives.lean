@@ -3,8 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularBumpDerivatives
-import FalconerPacking.RegularizedReciprocal
+module
+
+public import FalconerPacking.AngularBumpDerivatives
+public import FalconerPacking.RegularizedReciprocal
+public import Mathlib.Analysis.Calculus.ContDiff.Bounds
 
 /-!+# Uniform derivatives of normalized angular bumps
 
@@ -12,6 +15,8 @@ A fixed smooth reciprocal extends the normalization away from the unit circle. A
 the cap width, every derivative of this actual extension is uniformly bounded. Bounded overlap,
 rather than the number of caps, controls the denominator.
 -/
+
+@[expose] public section
 
 noncomputable section
 

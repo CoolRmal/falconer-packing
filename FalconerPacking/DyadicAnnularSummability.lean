@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AnnularDensityLimit
-import Mathlib.Analysis.SpecificLimits.Normed
+module
+
+public import FalconerPacking.AnnularDensityLimit
+public import Mathlib.Analysis.SpecificLimits.Normed
 
 /-!
 # Numerical summation of decaying annular densities
@@ -13,6 +15,8 @@ An eventual negative dyadic exponent suffices: finitely many early shells need o
 norms. Squared second-norm estimates imply summability of the unsquared second norms, with half
 the decay exponent. No reconstruction or positivity of an individual shell is assumed here.
 -/
+
+@[expose] public section
 
 noncomputable section
 

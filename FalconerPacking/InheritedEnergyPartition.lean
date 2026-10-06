@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedFourierLabels
+module
+
+public import FalconerPacking.InheritedFourierLabels
 
 /-!
 # Summing inherited angular energies without counting parent labels
@@ -12,6 +14,8 @@ Restriction to a parent label is already inside each inherited terminal sum. At 
 current label exactly one parent restriction survives, so both localized energies and
 global error energies sum exactly, with no factor counting angular parents.
 -/
+
+@[expose] public section
 
 noncomputable section
 

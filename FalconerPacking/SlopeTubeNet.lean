@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeStripGeometry
-import Mathlib.Algebra.Order.Floor.Ring
+module
+
+public import FalconerPacking.SlopeStripGeometry
+public import Mathlib.Algebra.Order.Floor.Ring
 
 /-!
 # Coverage and approximation by the explicit slope net
@@ -12,6 +14,8 @@ import Mathlib.Algebra.Order.Floor.Ring
 Every bounded slope is approximated at spacing `1/M`. Together the two charts cover all
 unoriented lines. Parallel strip offsets cover the entire support ball at every net slope.
 -/
+
+@[expose] public section
 
 noncomputable section
 

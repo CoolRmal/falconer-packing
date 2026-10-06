@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UniformDyadicCapSymbols
-import FalconerPacking.UniformSchwartzTails
+module
+
+public import FalconerPacking.UniformDyadicCapSymbols
+public import FalconerPacking.UniformSchwartzTails
 
 /-!
 # Uniform bounds for the actual rescaled cap kernels
@@ -14,6 +16,8 @@ dyadic annular multiplier. Their support and derivative bounds have already been
 continuity of inverse Fourier transformation gives genuine kernel estimates, uniformly in the
 annular scale and cap index.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularInheritedEnergy
-import FalconerPacking.RetainedShellRemainder
-import FalconerPacking.AnnularScaleSchedule
+module
+
+public import FalconerPacking.RegularInheritedEnergy
+public import FalconerPacking.RetainedShellRemainder
+public import FalconerPacking.AnnularScaleSchedule
 
 /-!
 # The actual retained remainder on a regular pin component
@@ -14,6 +16,8 @@ The padded regular profile determines every spatial and angular scale. The physi
 angular uncertainty, regular conditional energy, actual packet count, and exact full-minus-
 retained density identity are all discharged in the final estimate.
 -/
+
+@[expose] public section
 
 noncomputable section
 

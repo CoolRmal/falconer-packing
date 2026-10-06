@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.TubeDeletionAE
-import FalconerPacking.PhysicalConditionalDeletion
+module
+
+public import FalconerPacking.TubeDeletionAE
+public import FalconerPacking.PhysicalConditionalDeletion
 
 /-!
 # Conditional physical deletion on the actual separated pin support
@@ -13,6 +15,8 @@ The parent ball can grow with the inflation parameters and need not be separated
 source. Norm and coordinate separation are required only almost everywhere for its normalized
 pin measure. The angular mesh, exact spatial ratio cancellation, and constants are unchanged.
 -/
+
+@[expose] public section
 
 noncomputable section
 

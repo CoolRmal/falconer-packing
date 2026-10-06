@@ -3,9 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
-import Mathlib.Analysis.SpecificLimits.Normed
-import Mathlib.Algebra.Order.Archimedean.Basic
+module
+
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+public import Mathlib.Analysis.Normed.Lp.MeasurableSpace
+public import Mathlib.Analysis.SpecificLimits.Normed
+public import Mathlib.Algebra.Order.Archimedean.Basic
 
 /-!
 # Schwartz potentials from local mass growth
@@ -13,6 +16,8 @@ import Mathlib.Algebra.Order.Archimedean.Basic
 Dyadic annuli turn quadratic mass growth into a uniform convolution-potential bound.
 The only function constants are its zeroth and fourth Schwartz seminorms.
 -/
+
+@[expose] public section
 
 noncomputable section
 

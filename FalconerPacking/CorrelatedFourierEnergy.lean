@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CorrelatedBandEnergy
-import FalconerPacking.DyadicBandIntegral
+module
+
+public import FalconerPacking.CorrelatedBandEnergy
+public import FalconerPacking.DyadicBandIntegral
 
 /-!
 # Full Fourier energy of correlated changes of projection
@@ -12,6 +14,8 @@ import FalconerPacking.DyadicBandIntegral
 The frequency band gains sum to a power of the spatial displacement. The angle maps and
 translations may all depend on the same parameter.
 -/
+
+@[expose] public section
 
 noncomputable section
 

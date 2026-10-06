@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicCapKernelBounds
-import FalconerPacking.RescaledSchwartzKernel
-import FalconerPacking.SourceWavePackets
+module
+
+public import FalconerPacking.DyadicCapKernelBounds
+public import FalconerPacking.RescaledSchwartzKernel
+public import FalconerPacking.SourceWavePackets
 
 /-!
 # Physical kernels of the actual dyadic caps
@@ -13,6 +15,8 @@ import FalconerPacking.SourceWavePackets
 The frequency normalization is dual to an explicit spatial dilation. Its Jacobian cancels
 in first norms, and its transverse coordinate gives the square-root frequency gain in tails.
 -/
+
+@[expose] public section
 
 noncomputable section
 

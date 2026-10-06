@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.BandlimitedCutoff
-import FalconerPacking.OrientedReproducingKernel
+module
+
+public import FalconerPacking.BandlimitedCutoff
+public import FalconerPacking.OrientedReproducingKernel
 
 /-!
 # Translated and rescaled spatial cutoffs
@@ -12,6 +14,8 @@ import FalconerPacking.OrientedReproducingKernel
 The constructed cutoff is transported to any spatial ball. Its Fourier radius is the
 reciprocal spatial radius, and its rapid decay constants are independent of center and scale.
 -/
+
+@[expose] public section
 
 noncomputable section
 

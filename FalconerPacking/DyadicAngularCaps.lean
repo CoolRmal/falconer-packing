@@ -3,15 +3,19 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothAngularCaps
-import FalconerPacking.DyadicAnnularKernel
-import FalconerPacking.CircleCapGeometry
+module
+
+public import FalconerPacking.SmoothAngularCaps
+public import FalconerPacking.DyadicAnnularKernel
+public import FalconerPacking.CircleCapGeometry
 
 /-!+# Actual smooth angular caps of a dyadic annulus
 
 The previously constructed angular partition is applied to the actual dyadic multiplier.
 Its support, after tangential square-root scaling and radial scaling, lies in a fixed rectangle.
 -/
+
+@[expose] public section
 
 noncomputable section
 

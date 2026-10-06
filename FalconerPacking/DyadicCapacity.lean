@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.LaminarContent
-import FalconerPacking.Content
-import FalconerPacking.Capacity
-import Mathlib.Data.Int.Interval
+module
+
+public import FalconerPacking.LaminarContent
+public import FalconerPacking.Content
+public import FalconerPacking.Capacity
+public import Mathlib.Data.Int.Interval
 
 /-!
 # Geometric dyadic capacity in the plane
@@ -15,6 +17,8 @@ A thin frame of finer dyadic squares enlarges each half-open cube to an open nei
 The frame uses only linearly many fine squares, so its power-weighted cost tends to zero
 for exponents greater than one.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -263,7 +267,8 @@ theorem dyadicCoverCost_iUnion_le {ι : Type*} (w : DyadicCell → ℝ≥0∞)
   by_cases hQ : Q ∈ ⋃ i, S i
   · rw [indicator_of_mem hQ]
     obtain ⟨i, hi⟩ := mem_iUnion.mp hQ
-    exact (le_of_eq (indicator_of_mem hi w).symm).trans (ENNReal.le_tsum i)
+    exact (le_of_eq (indicator_of_mem hi w).symm).trans
+      (ENNReal.le_tsum (f := fun i ↦ (S i).indicator w Q) i)
   · simp only [indicator_of_notMem hQ, zero_le]
 
 /-- Every dyadic cover can be enlarged to an open cover for arbitrarily small additional cost. -/
@@ -321,7 +326,7 @@ theorem dyadicPowerContent_iInter {s : ℝ} (hs : 1 < s)
     obtain ⟨U, hU, hsub, hcost⟩ :=
       exists_open_superset_dyadicPowerContent_le hs (⋂ n, K n) hε hfinite.ne
     obtain ⟨n, hn⟩ := exists_subset_nhds_of_isCompact' hanti.directed_ge hK
-      (fun n ↦ (hK n).isClosed) (fun x hx ↦ hU.mem_nhds (hsub hx))
+      (fun n ↦ (hK n).isClosed) (hU.mem_nhdsSet.mpr hsub)
     exact (iInf_le (fun n ↦ dyadicPowerContent s (K n)) n).trans
       ((dyadicCoverContent_mono _ hn).trans hcost)
 

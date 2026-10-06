@@ -3,11 +3,13 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.WeakDensityLimit
-import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
-import Mathlib.Geometry.Manifold.PartitionOfUnity
-import Mathlib.MeasureTheory.Integral.Regular
-import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
+module
+
+public import FalconerPacking.WeakDensityLimit
+public import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+public import Mathlib.Geometry.Manifold.PartitionOfUnity
+public import Mathlib.MeasureTheory.Integral.Regular
+public import Mathlib.MeasureTheory.Integral.Bochner.ContinuousLinearMap
 
 /-!
 # Absolute continuity from a bounded Schwartz pairing
@@ -16,6 +18,8 @@ A finite positive measure whose action on complex Schwartz functions is bounded 
 Lebesgue `L²` norm satisfies the corresponding square-root open-set mass bound. Smooth
 compactly supported cutoffs and measure regularity establish the implication directly.
 -/
+
+@[expose] public section
 
 noncomputable section
 
@@ -53,13 +57,13 @@ private theorem schwartz_cutoff_eLpNorm_le_aux {φ : SchwartzMap ℝ ℂ} {U : S
     eLpNorm (φ : ℝ → ℂ) 2 volume ≤ volume U ^ (1 / 2 : ℝ) := by
   have hmono : eLpNorm (φ : ℝ → ℂ) 2 volume ≤
       eLpNorm (U.indicator (fun _ : ℝ ↦ (1 : ℝ))) 2 volume := by
-    apply eLpNorm_mono_ae
+    apply eLpNorm_mono_ae φ.continuous.aestronglyMeasurable
     filter_upwards [] with x
     by_cases hx : x ∈ U
     · simpa only [indicator_of_mem hx, norm_one] using hbound x
     · simp only [hzero x hx, norm_zero, indicator_of_notMem hx, norm_zero, le_refl]
   have heq := eLpNorm_indicator_const (μ := (volume : Measure ℝ))
-    (c := (1 : ℝ)) hU (by norm_num : (2 : ℝ≥0∞) ≠ 0)
+    (c := (1 : ℝ)) hU.nullMeasurableSet (by norm_num : (2 : ℝ≥0∞) ≠ 0)
     (by norm_num : (2 : ℝ≥0∞) ≠ ⊤)
   norm_num at heq
   rwa [heq] at hmono

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.DyadicAngularCaps
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import FalconerPacking.DyadicAngularCaps
+public import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
 # A standard angular grid compatible with dyadic refinement
@@ -12,6 +14,8 @@ import Mathlib.Analysis.Real.Pi.Bounds
 The explicit power-of-two count has angular width comparable to inverse square-root
 frequency. All coarser and finer dyadic counts divide one another exactly.
 -/
+
+@[expose] public section
 
 namespace FalconerPacking
 

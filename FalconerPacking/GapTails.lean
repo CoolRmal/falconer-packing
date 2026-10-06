@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.HardPoints
-import FalconerPacking.HardGapAlgebra
-import Mathlib.Data.List.Pairwise
+module
+
+public import FalconerPacking.HardPoints
+public import FalconerPacking.HardGapAlgebra
+public import Mathlib.Data.List.Pairwise
 
 /-!
 # Finite gap sums and their tail estimates
@@ -16,6 +18,8 @@ ordered endpoint pair, and the ordering hypothesis says that earlier gaps end be
 ones begin. The second tail estimate is proved directly from Lipschitz continuity, without
 introducing a total-variation functional.
 -/
+
+@[expose] public section
 
 noncomputable section
 

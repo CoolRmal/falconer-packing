@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.UnforcedProfile
+module
+
+public import FalconerPacking.UnforcedProfile
 
 /-!
 # Compressing admissible scale chains
@@ -12,6 +14,8 @@ Removing an intermediate scale whose two adjacent edges can be merged preserves 
 and does not increase the profile cost. A compressed chain has a complementary gap that more
 than doubles every two steps, giving a length bound independent of the grid resolution.
 -/
+
+@[expose] public section
 
 noncomputable section
 

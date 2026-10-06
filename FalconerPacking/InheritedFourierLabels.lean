@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.FiniteFourierOrthogonality
+module
+
+public import FalconerPacking.FiniteFourierOrthogonality
 
 /-!
 # Exact regrouping of surviving Fourier labels
@@ -12,6 +14,8 @@ Terminal labels are grouped by their ancestors. A current mark is constant on ea
 current label, while later marks are retained inside the inherited function. Regrouping
 these finite sums gives the exact identity used by selected-cap inflation.
 -/
+
+@[expose] public section
 
 noncomputable section
 

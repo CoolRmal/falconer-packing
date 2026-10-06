@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.CircularPlancherel
-import FalconerPacking.RadialProjectionTransversality
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
+module
+
+public import FalconerPacking.CircularPlancherel
+public import FalconerPacking.RadialProjectionTransversality
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-!
 # Rectangular localization of circular frequency arcs
@@ -14,6 +16,8 @@ An arc has tangential displacement linear in its angular width and normal displa
 quadratic in that width. The estimates include a bounded frequency thickening and turn
 the admissibility inequality between spatial scales into the required Fourier rectangle.
 -/
+
+@[expose] public section
 
 noncomputable section
 

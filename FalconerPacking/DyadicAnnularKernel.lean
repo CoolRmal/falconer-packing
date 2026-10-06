@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.OrientedReproducingKernel
+module
+
+public import FalconerPacking.OrientedReproducingKernel
 
 /-!
 # Actual smooth dyadic annular kernels
@@ -12,6 +14,8 @@ The low-pass multiplier is the fixed smooth cutoff evaluated at the reciprocal f
 Its inverse transform is a rescaled Schwartz kernel. Consecutive differences have annular
 Fourier support, a uniform first-norm bound, and an exact finite telescoping identity.
 -/
+
+@[expose] public section
 
 noncomputable section
 

@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SlopeTubeCoverage
-import FalconerPacking.EnlargedSlopeTubeDeletion
+module
+
+public import FalconerPacking.SlopeTubeCoverage
+public import FalconerPacking.EnlargedSlopeTubeDeletion
 
 /-!
 # A common finite label for tested pin tubes and their source pairs
@@ -12,6 +14,8 @@ import FalconerPacking.EnlargedSlopeTubeDeletion
 The containing slope-grid member carries a quantitative normal comparison. This puts each
 associated source point in the source strip with the same label, without counting finer caps.
 -/
+
+@[expose] public section
 
 noncomputable section
 

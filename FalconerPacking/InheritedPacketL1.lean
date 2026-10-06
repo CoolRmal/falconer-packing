@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.InheritedPacketDeletion
+module
+
+public import FalconerPacking.InheritedPacketDeletion
 
 /-!
 # The actual first-norm bound for inherited packet deletion
@@ -13,6 +15,8 @@ measurable pin sets, standard-strip containment, bad-ancestor pair coverage, and
 parent summation are all discharged. Only the explicit conditional parent deletion
 inequality is an input to this final summation step.
 -/
+
+@[expose] public section
 
 noncomputable section
 

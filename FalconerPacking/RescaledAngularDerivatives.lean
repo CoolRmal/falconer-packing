@@ -3,15 +3,19 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.NormalizedAngularDerivatives
-import FalconerPacking.AnisotropicDirectionProfile
-import FalconerPacking.LocalCompositionBounds
+module
+
+public import FalconerPacking.NormalizedAngularDerivatives
+public import FalconerPacking.AnisotropicDirectionProfile
+public import FalconerPacking.LocalCompositionBounds
 
 /-!+# Uniform angular-symbol derivatives in anisotropic coordinates
 
 The normalized bump extension is composed with the smooth rescaled direction profile. The
 resulting derivative constants are uniform over all grids, caps, and orthonormal orientations.
 -/
+
+@[expose] public section
 
 noncomputable section
 

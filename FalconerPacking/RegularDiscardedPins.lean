@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RegularPartitionInitialLoss
+module
+
+public import FalconerPacking.RegularPartitionInitialLoss
 
 /-!
 # The actual discarded pin mass in annular coordinates
@@ -12,6 +14,8 @@ The complement of the finite component union is the same set discarded by finite
 regularization. Its real mass bound converts to the extended nonnegative bound used
 by the joint density criterion, with the exact complete-annulus decay exponent.
 -/
+
+@[expose] public section
 
 noncomputable section
 

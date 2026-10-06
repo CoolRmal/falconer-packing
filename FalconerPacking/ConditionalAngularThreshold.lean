@@ -3,9 +3,11 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularMeshChoice
-import Mathlib.Data.ENNReal.Inv
-import Mathlib.Analysis.Real.Pi.Bounds
+module
+
+public import FalconerPacking.AngularMeshChoice
+public import Mathlib.Data.ENNReal.Inv
+public import Mathlib.Analysis.Real.Pi.Bounds
 
 /-!
 # Choosing the source-heavy angular mesh below a conditional threshold
@@ -14,6 +16,8 @@ If the pin threshold exceeds the geometric enlargement factor, every nontrivial 
 has sufficiently small angular uncertainty. The spatial ratio cancels exactly from the
 source-mass versus pin-threshold ratio.
 -/
+
+@[expose] public section
 
 noncomputable section
 

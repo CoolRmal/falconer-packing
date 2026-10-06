@@ -3,7 +3,9 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.PinnedKernel
+module
+
+public import FalconerPacking.PinnedKernel
 
 /-!
 # A positive absolutely continuous component gives a positive pinned distance set
@@ -13,6 +15,8 @@ joint distance law is carried by this relation. If all its pinned fibers had zer
 Fubini would give the relation zero product measure, contradicting a positive absolutely
 continuous component. No disintegration of the component is assumed or used.
 -/
+
+@[expose] public section
 
 noncomputable section
 

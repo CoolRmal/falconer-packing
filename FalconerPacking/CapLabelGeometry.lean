@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.AngularGridRefinement
-import FalconerPacking.SmoothAngularCaps
+module
+
+public import FalconerPacking.AngularGridRefinement
+public import FalconerPacking.SmoothAngularCaps
 
 /-!
 # Geometry and uniform overlap of actual coarse and fine cap labels
@@ -13,6 +15,8 @@ Coarse labels group whole standard caps. Fine labels are standard-cap/cell pairs
 whose enlarged angular supports meet. Their enclosing frequency balls have bounded
 overlap independently of both grid sizes.
 -/
+
+@[expose] public section
 
 noncomputable section
 

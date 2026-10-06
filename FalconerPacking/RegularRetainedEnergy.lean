@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.RetainedScalarEnergy
-import FalconerPacking.RegularChainCoefficient
+module
+
+public import FalconerPacking.RetainedScalarEnergy
+public import FalconerPacking.RegularChainCoefficient
 
 /-!
 # Actual good-distance energy on every regularized shell
@@ -12,6 +14,8 @@ import FalconerPacking.RegularChainCoefficient
 The literal retained packet family, with the same inherited thresholds as the bad-part
 estimate, has geometrically decaying joint squared norm. Every annulus is included.
 -/
+
+@[expose] public section
 
 noncomputable section
 

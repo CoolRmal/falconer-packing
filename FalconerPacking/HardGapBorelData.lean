@@ -3,8 +3,10 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SeparatedDyadicData
-import FalconerPacking.RadialProjectionTheorem
+module
+
+public import FalconerPacking.SeparatedDyadicData
+public import FalconerPacking.RadialProjectionTheorem
 
 /-!
 # Actual compact data beyond the coherent cutoff
@@ -13,6 +15,8 @@ Outside the already proved coherent range, strict exponent extraction automatica
 both exponents in the hard-gap range. The original Borel set then supplies bounded separated
 Frostman probabilities, a rooted pin support, and the finite radial moment used in deletion.
 -/
+
+@[expose] public section
 
 noncomputable section
 

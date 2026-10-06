@@ -3,10 +3,12 @@ Copyright (c) 2026 Yongxi Lin. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Yongxi Lin
 -/
-import FalconerPacking.SmoothProjectionDensity
-import FalconerPacking.RieszFourier2D
-import Mathlib.Analysis.Calculus.BumpFunction.Normed
-import Mathlib.MeasureTheory.Group.LIntegral
+module
+
+public import FalconerPacking.SmoothProjectionDensity
+public import FalconerPacking.RieszFourier2D
+public import Mathlib.Analysis.Calculus.BumpFunction.Normed
+public import Mathlib.MeasureTheory.Group.LIntegral
 
 /-!
 # Smooth approximation of finite source measures
@@ -15,6 +17,8 @@ A compact smooth convolution kernel gives an actual smooth density. The correspo
 measure is the convolution of the source with the kernel measure, so probability kernels
 decrease Fourier energy.
 -/
+
+@[expose] public section
 
 noncomputable section
 
